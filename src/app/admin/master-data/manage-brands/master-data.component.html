@@ -19,117 +19,120 @@
 </div>
 
 <!--  Container Start-->
-<div class="section-container">
-    <div class="col-md-12 padding-0 border-ddd margin-btm34">
-        <div class="row " style="padding: 10px 17px;">
-            <a class="btn btn-modal-blue pull-right" (click)="staticModal.show()"><i class="fa fa-plus"></i> Add Brand</a>
-        </div>
-        <div class="panel panel-primary">
-            <div class="table-responsive kv-grid-container" style="overflow: auto">
-                <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
-                    <thead>
-                        <tr>
-                            <th class="blue-grid-head" data-col-seq="0" style="width: 18.89%;"><a>Logo</a></th>
-                            <th class="blue-grid-head" data-col-seq="1" style="width: 26.24%;"><a>Brand Name</a></th>
-                            <th class="blue-grid-head" data-col-seq="2" style="width: 25.95%;"><a>Support Email</a></th>
-                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Support Phone Number</a></th>
-                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Terms and Condition URL</a></th>
-                            <!--<th class="blue-grid-head" data-col-seq="3"><a>Share File URL</a></th> -->
-                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Status</a></th>
-                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Delete</a></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                            <td><a (click)="staticModal.show()" class="tbl-col-link">testing</a></td>
-                            <td>testing@acars.com</td>
-                            <td>(999) 999-9999</td>
-                            <td>https://acareportingservice.com/terms-and-conditions/</td>
-                            <!-- <td>http:googl/SDxdsd</td> -->
-                            <td><a>Active</a></td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                            <td><a (click)="staticModal.show()" class="tbl-col-link">AKY ACA</a></td>
-                            <td>testing@acars.com</td>
-                            <td>(999) 999-9999</td>
-                            <td>https://acareportingservice.com/terms-and-conditions/</td>
-                            <!-- <td>http:googl/SDxdsd</td> -->
-                            <td><a>Active</a></td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                            <td><a (click)="staticModal.show()" class="tbl-col-link">ABY ACA</a></td>
-                            <td>testing@acars.com</td>
-                            <td>(999) 999-9999</td>
-                            <td>https://acareportingservice.com/terms-and-conditions/</td>
-                            <!-- <td>http:googl/SDxdsd</td> -->
-                            <td><a>Active</a></td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                            <td><a (click)="staticModal.show()" class="tbl-col-link">ACA</a></td>
-                            <td>testing@acars.com</td>
-                            <td>(999) 999-9999</td>
-                            <td>https://acareportingservice.com/terms-and-conditions/</td>
-                            <!-- <td>http:googl/SDxdsd</td> -->
-                            <td><a>Active</a></td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                            <td><a (click)="staticModal.show()" class="tbl-col-link">PRO ACA</a></td>
-                            <td>testing@acars.com</td>
-                            <td>(999) 999-9999</td>
-                            <td>https://acareportingservice.com/terms-and-conditions/</td>
-                            <!-- <td>http:googl/SDxdsd</td> -->
-                            <td><a>Active</a></td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="row " style="padding: 10px 17px;">
+                <a class="btn btn-modal-blue pull-right" (click)="staticModal.show()"><i class="fa fa-plus"></i> Add Brand</a>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-3 padding10">
-                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 5 of 48 entries</div>
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Manage Brands</caption>
+                    <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
+                        <thead>
+                            <tr>
+                                <th class="blue-grid-head" data-col-seq="0" style="width: 18.89%;"><a>Logo</a></th>
+                                <th class="blue-grid-head" data-col-seq="1" style="width: 26.24%;"><a>Brand Name</a></th>
+                                <th class="blue-grid-head" data-col-seq="2" style="width: 25.95%;"><a>Support Email</a></th>
+                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Support Phone Number</a></th>
+                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Terms and Condition URL</a></th>
+                                <!--<th class="blue-grid-head" data-col-seq="3"><a>Share File URL</a></th> -->
+                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Status</a></th>
+                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Delete</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                                <td><a (click)="staticModal.show()" class="tbl-col-link">testing</a></td>
+                                <td>testing@acars.com</td>
+                                <td>(999) 999-9999</td>
+                                <td>https://acareportingservice.com/terms-and-conditions/</td>
+                                <!-- <td>http:googl/SDxdsd</td> -->
+                                <td><a>Active</a></td>
+                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                                <td><a (click)="staticModal.show()" class="tbl-col-link">AKY ACA</a></td>
+                                <td>testing@acars.com</td>
+                                <td>(999) 999-9999</td>
+                                <td>https://acareportingservice.com/terms-and-conditions/</td>
+                                <!-- <td>http:googl/SDxdsd</td> -->
+                                <td><a>Active</a></td>
+                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                                <td><a (click)="staticModal.show()" class="tbl-col-link">ABY ACA</a></td>
+                                <td>testing@acars.com</td>
+                                <td>(999) 999-9999</td>
+                                <td>https://acareportingservice.com/terms-and-conditions/</td>
+                                <!-- <td>http:googl/SDxdsd</td> -->
+                                <td><a>Active</a></td>
+                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                                <td><a (click)="staticModal.show()" class="tbl-col-link">ACA</a></td>
+                                <td>testing@acars.com</td>
+                                <td>(999) 999-9999</td>
+                                <td>https://acareportingservice.com/terms-and-conditions/</td>
+                                <!-- <td>http:googl/SDxdsd</td> -->
+                                <td><a>Active</a></td>
+                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                                <td><a (click)="staticModal.show()" class="tbl-col-link">PRO ACA</a></td>
+                                <td>testing@acars.com</td>
+                                <td>(999) 999-9999</td>
+                                <td>https://acareportingservice.com/terms-and-conditions/</td>
+                                <!-- <td>http:googl/SDxdsd</td> -->
+                                <td><a>Active</a></td>
+                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
-                <div class="col-md-9 text-right">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                <span>First</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                <span aria-hidden="true">
+                <div class="col-md-12">
+                    <div class="col-md-3 padding10">
+                        <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 5 of 48 entries</div>
+                    </div>
+                    <div class="col-md-9 text-right">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                    <span>First</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                    <span aria-hidden="true">
                                             <i class="fa fa-arrow-left"></i>
                                         </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                <span aria-hidden="true">
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                    <span aria-hidden="true">
                                             <i class="fa fa-arrow-right"></i>
                                         </span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                <span>Last</span>
-                            </a>
-                        </li>
-                    </ul>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                    <span>Last</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,7 +140,7 @@
 </div>
 
 <!-- Add modal start-->
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"  role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -172,7 +175,7 @@
                     <div class="col-md-6 required">
                         <label class="form-control-label">Support Phone</label>
                         <div class="form-group field-adminusers-last_name required">
-                            <input type="text"  id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
                             <div class="help-block"></div>
                         </div>
                     </div>

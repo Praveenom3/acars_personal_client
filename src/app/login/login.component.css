@@ -1,0 +1,14 @@
+/*body {
+    background-image: url(/assets/images/login_bg.jpg);
+    background-position: 0px 0px;
+    height: auto !important;
+}*/
+
+body {
+    height: unset !important;
+}
+
+span.help-block {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

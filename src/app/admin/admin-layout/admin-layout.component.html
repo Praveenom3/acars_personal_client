@@ -21,12 +21,10 @@
         </ul>   
     </div>
 </nav>-->
-
-av>
 <!-- left scroll menu start(in tab size)-->
 <!-- left end header start-->
 
-<nav class="top-menu transistion top-nav">
+<nav class="top-menu transistion top-nav admin-nav">
     <div class="menu-icon-container items-class hidden-md-up">
         <div class="animate-menu-button left-menu-toggle" [class.active]="isLinkActive" (click)="toggleClass()">
             <div>
@@ -47,12 +45,12 @@ av>
         </div>
         <ul class="actions media-hide-header">
             <li>
-                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/dashboard']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/summary']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
             </li>
             <li>
                 <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/admin/search']"><b>Search</b></a>
             </li>
-              <li>
+            <li>
                 <div class="menu-user-block" [routerLinkActive]="['dropdown-menu-active']">
                     <div class="dropdown">
                         <a href="javascript: void(0);" class="dropdown-toggle disable-hover" data-toggle="dropdown" aria-expanded="false"><b>Actions</b>
@@ -74,7 +72,7 @@ av>
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/activity-log']" [routerLinkActive]="['page-active']">
                             Activity Log
                         </a>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -105,10 +103,10 @@ av>
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/code-calculator']" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
                          Code Calculator
                         </a>
-                           <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/error-master']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/error-master']" [routerLinkActive]="['page-active']">
                       Error Master
                        </a>
-                         
+
 
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
 
@@ -127,7 +125,7 @@ av>
         </ul>
     </div>
 
-    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile" id="profile_details">
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile" id="profile_details">
         <div class="menu-user-block col-md-12">
             <div class="dropdown dropdown-avatar pull-right">
                 <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false"> <span class="header-name media-hide-profilename"><span class="font-14">Welcome</span> Admin<span class="font-14"></span></span>
@@ -152,7 +150,7 @@ av>
         <router-outlet></router-outlet>
     </div>
 </section>
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"  role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">

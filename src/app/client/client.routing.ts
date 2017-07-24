@@ -63,31 +63,16 @@ const routes: Routes = [
                 component: UsersComponent
             },
             {
-                path: '',        
-                children: [
-                    {
-                        path: ':product/:company/employer-info',
-                        loadChildren: 'app/client/employer-info/employer-info.module#EmployerInfoModule'
-                    }
-                ],
+                path: ':product/:company/employer-info',
+                loadChildren: 'app/client/employer-info/employer-info.module#EmployerInfoModule'
             },
             {
-                path: '',        
-                children: [
-                    {
-                        path: 'setup',
-                        loadChildren: 'app/client/setup/setup.module#SetupModule'
-                    }
-                ],
+                path: 'setup',
+                loadChildren: 'app/client/setup/setup.module#SetupModule'
             },
             {
-                path: '',        
-                children: [
-                    {
-                        path: 'search',
-                        loadChildren: 'app/client/search/search.module#SearchModule'
-                    }
-                ],
+                path: 'search',
+                loadChildren: 'app/client/search/search.module#SearchModule'
             },
         ],
     },

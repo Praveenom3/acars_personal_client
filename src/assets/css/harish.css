@@ -12,7 +12,7 @@
 }
 
 .header-breadcrumb {
-    padding: 22px 0px 0px 55px;
+    padding: 10px 0px 0px 55px;
 }
 
 .color-blue-link {
@@ -54,9 +54,9 @@ h3.login-heading::after {
 
 .login-form-div {
     background-color: #FFF;
-    height: 379px;
+    height: 382px;
     position: relative;
-    padding: 21px 21px 21px 19px;
+    padding: 27px 21px 20px 19px;
     top: 7px;
 }
 
@@ -188,4 +188,121 @@ body.login-single-page .login-content .page-content-inner {
 .dashboard-links {
     text-align: center;
     margin: 0px auto;
+}
+
+.table-caption-div {
+    height: 50px;
+}
+
+.inline-edit-input {
+    height: 20px !important;
+    width: 94px !important;
+}
+
+.inline-save-cancel-div a.save {
+    cursor: pointer;
+    background: green;
+    color: #FFF;
+    padding: 7px;
+}
+
+.inline-save-cancel-div a.cancel {
+    cursor: pointer;
+    background: red;
+    color: #FFF;
+    padding: 7px;
+}
+
+.input-group-addon {
+    padding: 0 0 !important;
+}
+
+.counter-fa-icon {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    margin-top: 30px;
+    display: inline-block;
+    color: #827ca1;
+    font-size: 37px;
+}
+
+.counter-fa-icon:hover {
+    font-size: 37px;
+}
+
+.text-float-right {
+    float: right;
+}
+
+.border-ddd {
+    background: #FFF;
+}
+
+.section-page-content {
+    top: 46px;
+    background-color: #ECEFF4;
+}
+
+.dashboard-page-content {
+    top: 86px;
+    background-color: #ECEFF4;
+}
+
+.client-search-page-content {
+    top: 127px;
+    background-color: #ECEFF4;
+}
+
+body .section-page-content,
+.dashboard-page-content {
+    padding: 46px 30px;
+    min-height: 100%;
+}
+
+.table-caption {
+    padding-top: 27px;
+    font-size: 1rem;
+    padding-left: 24px;
+    color: #514d6a;
+    font-weight: 700;
+}
+
+.background-blue {
+    background: #13A9CC;
+    color: #fff;
+}
+
+.widget-seven .counter-icon {
+    color: #fff !important;
+}
+
+.widget-seven .counter-count {
+    color: #fff !important;
+}
+
+.summary-container {
+    padding: 12px 15px;
+    background: #FFF;
+}
+
+.table-caption-div-email {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 17px;
+}
+
+.table-caption-email {
+    padding-top: 7px;
+    font-size: 1rem;
+    padding-left: 24px;
+    color: #514d6a;
+    font-weight: 700;
+}
+
+body.body-blue nav.admin-nav {
+    height: 64px !important;
+}
+
+body.body-blue nav.top-menu .menu {
+    height: 63px !important;
 }

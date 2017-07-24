@@ -1,288 +1,246 @@
-<div class="product-container col-md-12 pull-left width-100">
+<!-- company info -->
+    <client-company-info></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+    <client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
 
-    <!-- company info -->
-    <nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-        <div class="pull-right">
-            <a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-        </div>
-        <h5 class="cat__core__title d-block mb-0 pt-3">
-            <span> Name: <span class="text-muted">Cargo Force</span></span>
-            <span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-            <span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-        </h5>
-    </nav>
-    <!-- ./company info -->
-
-    <div class="">
-        <div class="col-md-12 border-ddd widget padding-0">
-
-            <!-- Main Tabs -->
-            <div class="search-header padding-10">
-                <ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-                    <li class="col-md-1"></li>
-                    <li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-                        <p class="font-white margin-0">Basic Reporting Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-                        <p class="font-white margin-0">Benefit Plan Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-                        <p class="font-white margin-0">Plan Classes</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Payroll</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Enrollments</p>
-                    </li>
-                    <li class="col-md-1"></li>
-                </ul>
-            </div>
-            <!-- ./Main Tabs -->
-
-
-            <div class="tab-content clearfix">
-                <div aria-expanded="true" class="tab-pane active" id="account_setup_block">
-                    <!-- Sub category Tabs -->
-                    <div class="col-md-12  padding-10 ul-block">
-                        <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']">
-                                    <div class="inner-block-digits pull-left">1</div>
-                                    <span class="inner-block-text">Basic Info</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-                                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']">
-                                    <div class="inner-block-digits pull-left">2</div>
-                                    <span class="inner-block-text">Large Emp. Status & Tracking</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
-                                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
-                                    <div class="inner-block-digits pull-left ">3</div>
-                                    <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
-								</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
-                                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']">
-                                    <div class="inner-block-digits pull-left ">4</div>
-                                    <span class="inner-block-text">Designated Govt. Entity </span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-                                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']">
-                                    <div class="inner-block-digits pull-left ">5</div>
-                                    <span class="inner-block-text">Aggregated Group</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-                                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']">
-                                    <div class="inner-block-digits pull-left ">6</div>
-                                    <span class="inner-block-text">Anything Else</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- ./Sub category Tabs -->
-
-
-                    <div class="col-md-12 padding-0">
-                        <div class="tab-content clearfix">
-                            <div class="tab-pane active " id="planbasics" role="tabpanel">
-
-                                <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
-                                    <div class="border-top-bottom-ddd col-md-12 padding-0">
-                                        <div class="container margin-top-30 margin-bottom-10">
-
-                                            <!-- form content -->
-                                            <div class="col-md-12">
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.1 Contact Person Legal First Name</label>
-                                                                <input type="text" id="planbasics-network" class="form-control">
-                                                                <div class="help-block"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.2 Contact Person Legal Middle Initial</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.3 Contact Person Legal Last Name</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.4 Contact Person Suffix</label>
-                                                                <input type="text" id="planbasics-network" class="form-control">
-                                                                <div class="help-block"></div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.5 Title of Contact Person</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.6 Contact Person Email Address</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.7 Contact Telephone Number</label>
-                                                                <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
-                                                                <div class="help-block"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.8 Street Address 1</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.9 Street Address 2 (Apt #, Suite #)</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.10 Country</label>
-                                                                <select class="form-control form-height">
-																			<option value="">Select Country</option>
-																			<option value="AF">Afghanistan</option>
-																			<option value="AL">Albania</option>
-																			<option value="DZ">Algeria</option>
-																			<option value="DS">American Samoa</option>
-																		</select>
-                                                                <div class="help-block"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.11 State or Province</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <select class="form-control form-height" id="tblacabasicinformation-contact_state" name="TblAcaBasicInformation[contact_state]" onchange="statebasicChange(this.value);">
-																			<option  value="">Select State</option>
-																			<option  value="AL">AL</option>
-																			<option  value="AK">AK</option>
-																			<option  value="AZ">AZ</option>
-																		</select>
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.12  City or Town</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-city-town" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.13 ZIP or Foreign Postal Code</label>
-                                                                <input type="text" id="planbasics-network" class="form-control">
-                                                                <div class="help-block"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.14 Employee Benefit Broker Name</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.15 Employee Benefit Broker Email Address</label>
-                                                                <div class="form-group field-planbasics-network">
-                                                                    <input type="text" id="planbasics-network" class="form-control">
-                                                                    <div class="help-block"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-3">
-                                                            <div class="form-group ">
-                                                                <label class="form-control-label" for="l0">1.16 Employee Benefit Broker Telephone Number</label>
-                                                                <input type="text" name="broker-telephone" class="form-control" [(ngModel)]="model.broker-telephone" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
-                                                                <div class="help-block"></div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- ./form content -->
-
-                                        </div>
-                                    </div>
-                                    <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
-                                        <div class="modal-footer-btn padding-15">
-                                            <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-                                            <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-                                            <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Sub Tabs -->
+    <div class="col-xs-12 client-reporting-subTabs-band-fixed">
+        <div class="col-md-12 padding-10 ul-block">
+            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']">
+                        <div class="inner-block-digits pull-left">1</div>
+                        <span class="inner-block-text">Basic Info</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']">
+                        <div class="inner-block-digits pull-left">2</div>
+                        <span class="inner-block-text">Large Emp. Status & Tracking</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
+                        <div class="inner-block-digits pull-left ">3</div>
+                        <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+                    </span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']">
+                        <div class="inner-block-digits pull-left ">4</div>
+                        <span class="inner-block-text">Designated Govt. Entity </span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']">
+                        <div class="inner-block-digits pull-left ">5</div>
+                        <span class="inner-block-text">Aggregated Group</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']">
+                        <div class="inner-block-digits pull-left ">6</div>
+                        <span class="inner-block-text">Anything Else</span></a>
+                </li>
+            </ul>
         </div>
     </div>
-</div>
+<!-- ./Sub Tabs -->
+
+
+<div class="product-container-with-sub-tabs col-md-12">
+        <div class="col-md-12 padding-0">
+            
+            <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+                <div class="col-md-12 padding-0">
+                    <div class="container margin-top-30 margin-bottom-10">
+
+                        <!-- form content -->
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.1 Contact Person Legal First Name</label>
+                                            <input type="text" id="planbasics-network" class="form-control">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.2 Contact Person Legal Middle Initial</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.3 Contact Person Legal Last Name</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.4 Contact Person Suffix</label>
+                                            <input type="text" id="planbasics-network" class="form-control">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.5 Title of Contact Person</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.6 Contact Person Email Address</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.7 Contact Telephone Number</label>
+                                            <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.8 Street Address 1</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.9 Street Address 2 (Apt #, Suite #)</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.10 Country</label>
+                                            <select class="form-control form-height">
+                                                        <option value="">Select Country</option>
+                                                        <option value="AF">Afghanistan</option>
+                                                        <option value="AL">Albania</option>
+                                                        <option value="DZ">Algeria</option>
+                                                        <option value="DS">American Samoa</option>
+                                                    </select>
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.11 State or Province</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <select class="form-control form-height" id="tblacabasicinformation-contact_state" name="TblAcaBasicInformation[contact_state]" onchange="statebasicChange(this.value);">
+                                                        <option  value="">Select State</option>
+                                                        <option  value="AL">AL</option>
+                                                        <option  value="AK">AK</option>
+                                                        <option  value="AZ">AZ</option>
+                                                    </select>
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.12  City or Town</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-city-town" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.13 ZIP or Foreign Postal Code</label>
+                                            <input type="text" id="planbasics-network" class="form-control">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.14 Employee Benefit Broker Name</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.15 Employee Benefit Broker Email Address</label>
+                                            <div class="form-group field-planbasics-network">
+                                                <input type="text" id="planbasics-network" class="form-control">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label class="form-control-label" for="l0">1.16 Employee Benefit Broker Telephone Number</label>
+                                            <input type="text" name="broker-telephone" class="form-control" [(ngModel)]="model.broker-telephone" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- ./form content -->
+
+                    </div>
+                </div>
+                <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+                    <div class="modal-footer-btn padding-15">
+                        <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+                        <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
+                        <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+                    </div>
+                </div>
+            </form>
+                    
+        </div>
+    </div>

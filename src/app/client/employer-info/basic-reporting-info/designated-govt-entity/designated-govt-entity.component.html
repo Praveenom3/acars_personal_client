@@ -1,309 +1,278 @@
-<div class="product-container col-md-12 pull-left width-100">
-
-	<!-- company info -->
-	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-		<div class="pull-right">
-			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-		</div>
-		<h5 class="cat__core__title d-block mb-0 pt-3">
-			<span> Name: <span class="text-muted">Cargo Force</span></span>
-			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-		</h5>
-	</nav>
-	<!-- ./company info -->
-
-	<div class="">
-		<div class="col-md-12 border-ddd widget padding-0">
-
-     <!-- Main Tabs -->
-			<div class="search-header padding-10">
-				<ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-					<li class="col-md-1"></li>
-					<li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-						<p class="font-white margin-0">Basic Reporting Info</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-						<p class="font-white margin-0">Benefit Plan Info</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-						<p class="font-white margin-0">Plan Classes</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-						<p class="font-white margin-0 ">Payroll</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-						<p class="font-white margin-0 ">Enrollments</p></li>
-					<li class="col-md-1"></li>
-				</ul>
-			</div>
-      <!-- ./Main Tabs -->
-
-    
-			<div class="tab-content clearfix">
-				<div aria-expanded="true" class="tab-pane active" id="account_setup_block">
-          <!-- Sub category Tabs -->
-					<div class="col-md-12  padding-10 ul-block">
-						<ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                  <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><div class="inner-block-digits pull-left">1</div>
-									<span class="inner-block-text">Basic Info</span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']"><div class="inner-block-digits pull-left">2</div>
-									<span class="inner-block-text">Large Emp. Status & Tracking</span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']"><div class="inner-block-digits pull-left ">3</div>
-									<span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
-								</span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']"><div class="inner-block-digits pull-left ">4</div>
-									<span class="inner-block-text">Designated Govt. Entity </span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']"><div class="inner-block-digits pull-left ">5</div>
-									<span class="inner-block-text">Aggregated Group</span></a>
-							</li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']"><div class="inner-block-digits pull-left ">6</div>
-									<span class="inner-block-text">Anything Else</span></a>
-							</li>
-						</ul>
-					</div>
-          <!-- ./Sub category Tabs -->
-
-
-					<div class="col-md-12 padding-0">
-						<div class="tab-content clearfix">
-							<div class="tab-pane active " id="planbasics" role="tabpanel">
-								
-								<form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
-									<div class="border-top-bottom-ddd col-md-12 padding-0">
-										<div class="container margin-top-30 margin-bottom-10">
-
-											
-											<!-- form content -->
-											<div class="col-md-12">
-										
-											<div class="col-sm-12">
-												<div class="form-group">
-													<label class="control-label">
-														4.1&nbsp;&nbsp;&nbsp;Will you be assigning a Designated Governmental Entity (DGE) for reporting purposes ?
-														<div>
-															<input type="radio" name="assign_dge" [(ngModel)]="assign_dge" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" name="assign_dge" [(ngModel)]="assign_dge" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-														</div>
-													</label>													
-												</div>
-											</div>
-
-											<div class="designation" *ngIf="assign_dge == 1">
-												<div class="form-group">
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.1&nbsp;&nbsp;&nbsp;Name of Designated Governmental Entity</span></label>
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_name">
-
-
-																<input type="text" id="tblacadesignatedgovtentity-dge_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_name]" maxlength="75" onkeypress="return companyname(event);">
-
-																<div class="help-block"></div>
-
-																</div></div>
-
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.2&nbsp;&nbsp;&nbsp;DGE's Employer Identification Number (EIN)</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_ein">
-
-
-															<input type="text" id="tblacadesignatedgovtentity-dge_ein" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_ein]" data-inputmask="&quot;mask&quot;: &quot;99-9999999&quot;" data-mask="">
-
-															<div class="help-block"></div>
-
-															</div>
-													</div>
-														
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.3&nbsp;&nbsp;&nbsp;Street Address 1</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-street_address_1">
-
-
-																<input type="text" id="tblacadesignatedgovtentity-street_address_1" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[street_address_1]" maxlength="200"span>
-
-																<div class="help-block"></div>
-
-																</div>
-														</div>
-												</div>
-
-												<div class="form-group">
-
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.4&nbsp;&nbsp;&nbsp;Street Address 2</span></label>
-														
-														<div class="form-group field-tblacadesignatedgovtentity-street_address_2">
-
-
-																<input type="text" id="tblacadesignatedgovtentity-street_address_2" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[street_address_2]" maxlength="200"span>
-
-																<div class="help-block"></div>
-
-																</div>
-														</div>
-														
-												<div class="col-sm-4">
-														<label class="control-label"><span>4.1.5&nbsp;&nbsp;&nbsp;DGE's State or Province</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_state">
-
-
-															<select id="tblacadesignatedgovtentity-dge_state" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_state]" onchange="return statedgeChange(this.value)">
-															<option value="">Select State</option>
-															<option value="AL">AL</option>
-															<option value="AK">AK</option>
-															<option value="AZ">AZ</option>
-															<option value="AR">AR</option>
-															<option value="CA">CA</option>
-															</select>
-
-															<div class="help-block"></div>
-
-															</div>
-													</div>
-													
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.6&nbsp;&nbsp;&nbsp;DGE's City or Town</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_city">
-
-																<input type="text" id="tblacadesignatedgovtentity-dge_city" class="form-control form-height" name="TblAcaDesignatedGovtEntity[dge_city]">
-
-																<div class="help-block"></div>
-
-																</div>																			  
-													</div>
-
-												</div>
-
-												<div class="form-group">
-
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.7&nbsp;&nbsp;&nbsp;DGE's Zip Code</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_zip">
-
-
-																	<input type="text" id="tblacadesignatedgovtentity-dge_zip" class="form-control numbers form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_zip]" maxlength="5">
-
-																	<div class="help-block"></div>
-
-																	</div>
-															</div>
-														
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.8&nbsp;&nbsp;&nbsp;DGE's Contact Person First Name</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_contact_first_name">
-
-
-															<input type="text" id="tblacadesignatedgovtentity-dge_contact_first_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_first_name]" maxlength="20" onkeypress="return alpha(event);">
-
-															<div class="help-block"></div>
-
-															</div>
-													</div>
-														
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.9&nbsp;&nbsp;&nbsp;DGE's Contact Person Middle Initial</span></label> 
-														<div class="form-group field-tblacadesignatedgovtentity-dge_contact_middle_name">
-
-
-															<input type="text" id="tblacadesignatedgovtentity-dge_contact_middle_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_middle_name]" maxlength="20" onkeypress="return alpha(event);">
-
-															<div class="help-block"></div>
-
-															</div>
-													</div>
-												</div>
-
-												<div class="form-group">
-
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.10&nbsp;&nbsp;&nbsp;DGE's Contact Person Last Name</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_contact_last_name">
-
-
-															<input type="text" id="tblacadesignatedgovtentity-dge_contact_last_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_last_name]" maxlength="20" onkeypress="return alpha(event);">
-
-															<div class="help-block"></div>
-
-															</div> 
-													</div>
-
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.11&nbsp;&nbsp;&nbsp;DGE's Contact Person Suffix</span></label>
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_contact_suffix">
-
-
-															<select id="tblacadesignatedgovtentity-dge_contact_suffix" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_suffix]">
-															<option value="">Select Suffix</option>
-															<option value="75">Jr</option>
-															<option value="76">Sr</option>
-															<option value="77">I</option>
-															<option value="78">II</option>
-															<option value="79">III</option>
-															<option value="99">IV</option>
-															<option value="100">V</option>
-															</select>
-
-															<div class="help-block"></div>
-
-															</div>
-													</div>
-													
-													<div class="col-sm-4">
-														<label class="control-label"><span>4.1.12&nbsp;&nbsp;&nbsp;DGE's Contact Phone number</span></label> 
-														
-														<div class="form-group field-tblacadesignatedgovtentity-dge_contact_phone_number">
-
-															<input type="text" class="form-control" name="dge_contact_phone_number" [(ngModel)]="model.dge-contact-phone-number" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
-															
-															<div class="help-block"></div>
-
-															</div>
-													</div>
-
-												</div>
-												
-												<div class="form-group">
-													<div class="col-sm-12 plan-div-margin">
-														<label class="control-label">4.1.13&nbsp;&nbsp;&nbsp;What will your DGE be reporting ?</label> 
-														<div>
-															<input type="radio" class="dge-clear-radio" name="TblAcaDesignatedGovtEntity[dge_reporting]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Enrollment Only</span>&nbsp;&nbsp;&nbsp;&nbsp; 
-															<input type="radio" class="dge-clear-radio" name="TblAcaDesignatedGovtEntity[dge_reporting]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Enrollment and Offer of Coverage</span>
-														</div>
-													</div>
-												</div>
-
-
-											</div>							
-									</div>
-											<!-- ./form content -->
-											
-											
-										</div>
-									</div>
-									<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
-										<div class="modal-footer-btn padding-15">
-											<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-											<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-											<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
-										</div>
-									</div>
-								</form>
-							</div>
+<!-- company info -->
+    <client-company-info></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+    <client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
+
+<!-- Sub Tabs -->
+    <div class="col-xs-12 client-reporting-subTabs-band-fixed">
+        <div class="col-md-12 padding-10 ul-block">
+            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']">
+                        <div class="inner-block-digits pull-left">1</div>
+                        <span class="inner-block-text">Basic Info</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']">
+                        <div class="inner-block-digits pull-left">2</div>
+                        <span class="inner-block-text">Large Emp. Status & Tracking</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
+                        <div class="inner-block-digits pull-left ">3</div>
+                        <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+                    </span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']">
+                        <div class="inner-block-digits pull-left ">4</div>
+                        <span class="inner-block-text">Designated Govt. Entity </span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']">
+                        <div class="inner-block-digits pull-left ">5</div>
+                        <span class="inner-block-text">Aggregated Group</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']">
+                        <div class="inner-block-digits pull-left ">6</div>
+                        <span class="inner-block-text">Anything Else</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!-- ./Sub Tabs -->
+
+<div class="product-container-with-sub-tabs col-md-12">
+	<div class="col-md-12 padding-0">
+		<form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+			<div class="col-md-12 padding-0">
+				<div class="container margin-top-30 margin-bottom-10">
+					
+					<!-- form content -->
+					<div class="col-md-12">
+				
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="control-label">
+								4.1&nbsp;&nbsp;&nbsp;Will you be assigning a Designated Governmental Entity (DGE) for reporting purposes ?
+								<div>
+									<input type="radio" name="assign_dge" [(ngModel)]="assign_dge" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="assign_dge" [(ngModel)]="assign_dge" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+								</div>
+							</label>													
 						</div>
 					</div>
+
+					<div class="designation" *ngIf="assign_dge == 1">
+						<div class="form-group">
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.1&nbsp;&nbsp;&nbsp;Name of Designated Governmental Entity</span></label>
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_name">
+
+
+										<input type="text" id="tblacadesignatedgovtentity-dge_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_name]" maxlength="75" onkeypress="return companyname(event);">
+
+										<div class="help-block"></div>
+
+										</div></div>
+
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.2&nbsp;&nbsp;&nbsp;DGE's Employer Identification Number (EIN)</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_ein">
+
+
+									<input type="text" id="tblacadesignatedgovtentity-dge_ein" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_ein]" data-inputmask="&quot;mask&quot;: &quot;99-9999999&quot;" data-mask="">
+
+									<div class="help-block"></div>
+
+									</div>
+							</div>
+								
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.3&nbsp;&nbsp;&nbsp;Street Address 1</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-street_address_1">
+
+
+										<input type="text" id="tblacadesignatedgovtentity-street_address_1" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[street_address_1]" maxlength="200"span>
+
+										<div class="help-block"></div>
+
+										</div>
+								</div>
+						</div>
+
+						<div class="form-group">
+
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.4&nbsp;&nbsp;&nbsp;Street Address 2</span></label>
+								
+								<div class="form-group field-tblacadesignatedgovtentity-street_address_2">
+
+
+										<input type="text" id="tblacadesignatedgovtentity-street_address_2" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[street_address_2]" maxlength="200"span>
+
+										<div class="help-block"></div>
+
+										</div>
+								</div>
+								
+						<div class="col-sm-4">
+								<label class="control-label"><span>4.1.5&nbsp;&nbsp;&nbsp;DGE's State or Province</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_state">
+
+
+									<select id="tblacadesignatedgovtentity-dge_state" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_state]" onchange="return statedgeChange(this.value)">
+									<option value="">Select State</option>
+									<option value="AL">AL</option>
+									<option value="AK">AK</option>
+									<option value="AZ">AZ</option>
+									<option value="AR">AR</option>
+									<option value="CA">CA</option>
+									</select>
+
+									<div class="help-block"></div>
+
+									</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.6&nbsp;&nbsp;&nbsp;DGE's City or Town</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_city">
+
+										<input type="text" id="tblacadesignatedgovtentity-dge_city" class="form-control form-height" name="TblAcaDesignatedGovtEntity[dge_city]">
+
+										<div class="help-block"></div>
+
+										</div>																			  
+							</div>
+
+						</div>
+
+						<div class="form-group">
+
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.7&nbsp;&nbsp;&nbsp;DGE's Zip Code</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_zip">
+
+
+											<input type="text" id="tblacadesignatedgovtentity-dge_zip" class="form-control numbers form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_zip]" maxlength="5">
+
+											<div class="help-block"></div>
+
+											</div>
+									</div>
+								
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.8&nbsp;&nbsp;&nbsp;DGE's Contact Person First Name</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_contact_first_name">
+
+
+									<input type="text" id="tblacadesignatedgovtentity-dge_contact_first_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_first_name]" maxlength="20" onkeypress="return alpha(event);">
+
+									<div class="help-block"></div>
+
+									</div>
+							</div>
+								
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.9&nbsp;&nbsp;&nbsp;DGE's Contact Person Middle Initial</span></label> 
+								<div class="form-group field-tblacadesignatedgovtentity-dge_contact_middle_name">
+
+
+									<input type="text" id="tblacadesignatedgovtentity-dge_contact_middle_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_middle_name]" maxlength="20" onkeypress="return alpha(event);">
+
+									<div class="help-block"></div>
+
+									</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.10&nbsp;&nbsp;&nbsp;DGE's Contact Person Last Name</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_contact_last_name">
+
+
+									<input type="text" id="tblacadesignatedgovtentity-dge_contact_last_name" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_last_name]" maxlength="20" onkeypress="return alpha(event);">
+
+									<div class="help-block"></div>
+
+									</div> 
+							</div>
+
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.11&nbsp;&nbsp;&nbsp;DGE's Contact Person Suffix</span></label>
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_contact_suffix">
+
+
+									<select id="tblacadesignatedgovtentity-dge_contact_suffix" class="form-control form-height dge-clear" name="TblAcaDesignatedGovtEntity[dge_contact_suffix]">
+									<option value="">Select Suffix</option>
+									<option value="75">Jr</option>
+									<option value="76">Sr</option>
+									<option value="77">I</option>
+									<option value="78">II</option>
+									<option value="79">III</option>
+									<option value="99">IV</option>
+									<option value="100">V</option>
+									</select>
+
+									<div class="help-block"></div>
+
+									</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<label class="control-label"><span>4.1.12&nbsp;&nbsp;&nbsp;DGE's Contact Phone number</span></label> 
+								
+								<div class="form-group field-tblacadesignatedgovtentity-dge_contact_phone_number">
+
+									<input type="text" class="form-control" name="dge_contact_phone_number" [(ngModel)]="model.dge-contact-phone-number" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
+									
+									<div class="help-block"></div>
+
+									</div>
+							</div>
+
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12 plan-div-margin">
+								<label class="control-label">4.1.13&nbsp;&nbsp;&nbsp;What will your DGE be reporting ?</label> 
+								<div>
+									<input type="radio" class="dge-clear-radio" name="TblAcaDesignatedGovtEntity[dge_reporting]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Enrollment Only</span>&nbsp;&nbsp;&nbsp;&nbsp; 
+									<input type="radio" class="dge-clear-radio" name="TblAcaDesignatedGovtEntity[dge_reporting]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Enrollment and Offer of Coverage</span>
+								</div>
+							</div>
+						</div>
+
+
+					</div>							
+			</div>
+					<!-- ./form content -->
+					
+					
 				</div>
 			</div>
-		</div>
+			<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+				<div class="modal-footer-btn padding-15">
+					<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+					<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
+					<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

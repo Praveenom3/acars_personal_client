@@ -125,3 +125,10 @@ app-client-layout .section-container .left-small-box p {
     height: 34px;
     min-height: 35px;
 }
+
+.reporting-checklist-content {
+    width: 70%;
+    margin: 0px auto;
+    background: #FFF;
+    padding: 19px;
+}

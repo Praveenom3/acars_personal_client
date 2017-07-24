@@ -15,82 +15,42 @@ const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: '',        
-        children: [
-            {
-                path: 'manage-brands',
-                loadChildren: 'app/admin/master-data/manage-brands/manage-brands.module#ManageBrandsModule'
-            }
-        ],
+        path: 'manage-brands',
+        loadChildren: 'app/admin/master-data/manage-brands/manage-brands.module#ManageBrandsModule'
     },
     {
-        path: '',        
-        children: [
-            {
-                path: 'lookup-options',
-                loadChildren: 'app/admin/master-data/lookup-options/lookup-options.module#LookupOptionsModule'
-            }
-        ],
-    },
-   {
-        path: '',        
-        children: [
-            {
-                path: 'account-settings',
-                component: AccountSettingsComponent
-            }
-        ],
-    },
-   {
-        path: '',        
-        children: [
-            {
-                path: 'element-master',
-                component: ElementMasterComponent
-            }
-        ],
-    },
-   {
-        path: '',        
-        children: [
-            {
-                path: 'form-pricing',
-                component: FormPricingComponent
-            }
-        ],
+        path: 'lookup-options',
+        loadChildren: 'app/admin/master-data/lookup-options/lookup-options.module#LookupOptionsModule'
     },
     {
-        path: '',        
-        children: [
-            {
-                path: 'code-calculator',
-                loadChildren: 'app/admin/master-data/code-calculator/code-calculator.module#CodeCalculatorModule'
-            }
-        ],
-    },
-   {
-        path: '',        
-        children: [
-            {
-                path: 'videos',
-                component: VideosComponent
-            }
-        ],
+        path: 'account-settings',
+        component: AccountSettingsComponent
     },
     {
-        path: '',        
-        children: [
-            {
-                path: 'products',
-                loadChildren: 'app/admin/master-data/products/products.module#ProductsModule'
-            }
-        ],
+        path: 'element-master',
+        component: ElementMasterComponent
+    },
+    {
+        path: 'form-pricing',
+        component: FormPricingComponent
+    },
+    {
+        path: 'code-calculator',
+        loadChildren: 'app/admin/master-data/code-calculator/code-calculator.module#CodeCalculatorModule'
+    },
+    {
+        path: 'videos',
+        component: VideosComponent
+    },
+    {
+        path: 'products',
+        loadChildren: 'app/admin/master-data/products/products.module#ProductsModule'
     },
     {
         path: 'error-master',     
         component: ErrorMasterComponent   
     },
-     {
+    {
         path: 'email-templates',     
         component: EmailTemplatesComponent   
     },

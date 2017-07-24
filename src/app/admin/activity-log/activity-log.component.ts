@@ -14,7 +14,7 @@ export class ActivityLogComponent implements OnInit {
   ngOnInit() {
         $('.table').dataTable({
             "paging":   false,
-        "searching": false,
+        "searching": true,
         "info":     false
         });
   }

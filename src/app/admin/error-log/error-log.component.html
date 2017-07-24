@@ -18,80 +18,84 @@
 </div>
 
 <!--  Container Start-->
-<div class="section-container">
-    <div class="col-md-12 border-ddd  width-100">
-        <div class="row">
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="blue-grid-head">Error Type</th>
-                        <th class="blue-grid-head">Message</th>
-                        <th class="blue-grid-head">Date Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">yii\base\ErrorException</td>
-                        <td>'Class "app\controllers\ContactsForm" not found' in C:\xampp\htdocs\yii2\controllers\SiteController.php:99</td>
-                        <td class="text-center">2016-12-07 07:06:42</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">yii\base\UnknownPropertyException</td>
-                        <td>'Getting unknown property: app\models\RegisterForm::names' in C:\xampp\htdocs\yii2\vendor\yiisoft\yii2\base\Component.php:144</td>
-                        <td class="text-center">2016-12-07 07:23:21</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">yii\base\UnknownMethodException</td>
-                        <td>Calling unknown method: app\models\RegisterForm::register()' in C:\xampp\htdocs\yii2\vendor\yiisoft\yii2\base\Component.php:285</td>
-                        <td class="text-center">2016-12-07 07:25:21</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">yii\base\ViewNotFoundException</td>
-                        <td>'The view file does not exist: C:\xampp\htdocs\yii2\views\site\newform.php' in C:\xampp\htdocs\yii2\vendor\yiisoft\yii2\base\View.php:227</td>
-                        <td class="text-center">2016-12-07 07:34:27</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-3 padding10">
-                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
+        <div class="col-md-12 border-ddd  width-100">
+            <div class="row">
+                <div class="table-caption-div">
+                </div>
+                <caption class="datatable-caption">Error Log</caption>
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="blue-grid-head">Error Type</th>
+                            <th class="blue-grid-head">Message</th>
+                            <th class="blue-grid-head">Date Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">yii\base\ErrorException</td>
+                            <td>'Class "app\controllers\ContactsForm" not found' in C:\xampp\htdocs\yii2\controllers\SiteController.php:99</td>
+                            <td class="text-center">07/12/2016 07:06:42</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">yii\base\UnknownPropertyException</td>
+                            <td>'Getting unknown property: app\models\RegisterForm::names' in C:\xampp\htdocs\yii2\vendor\yiisoft\yii2\base\Component.php:144</td>
+                            <td class="text-center">07/12/2016 07:23:21</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">yii\base\UnknownMethodException</td>
+                            <td>Calling unknown method: app\models\RegisterForm::register()' in C:\xampp\htdocs\yii2\vendor\yiisoft\yii2\base\Component.php:285</td>
+                            <td class="text-center">07/12/2016 07:25:21</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">yii\base\ViewNotFoundException</td>
+                            <td>'The view file does not exist: C:\xampp\htdocs\yii2\views\site\newform.php' in C:\xampp\htdocs\yii2\vendor\yiisoft\yii2\base\View.php:227</td>
+                            <td class="text-center">07/12/2016 07:34:27</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-9 text-right">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span>First</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span aria-hidden="true">
+            <div class="col-md-12">
+                <div class="col-md-3 padding10">
+                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
+                </div>
+                <div class="col-md-9 text-right">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span>First</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-left"></i>
                                         </span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span aria-hidden="true">
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-right"></i>
                                         </span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span>Last</span>
-                        </a>
-                    </li>
-                </ul>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span>Last</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <!--  Container End-->

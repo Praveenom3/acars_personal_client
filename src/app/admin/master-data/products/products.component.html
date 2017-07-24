@@ -18,107 +18,105 @@
 </div>
 
 <!--  Container Start-->
-<div class="section-container">
-    <div class="col-md-12 border-ddd  width-100">
-        <div class="row">
-            <div class="col-md-4 col-xs-6">
-                <ul class="list-unstyled breadcrumb header-breadcrumb">
-                    <li>
-                        <a href="javascript: void(0);">Master Data</a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">Products</a>
-                    </li>
-                </ul>
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
+        <div class="col-md-12 border-ddd  width-100">
+            <div class="row">
+                <div class="col-md-4 col-xs-6">
+                    <ul class="list-unstyled breadcrumb header-breadcrumb">
+                        <li>
+                            <a href="javascript: void(0);">Master Data</a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">Products</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-8 col-xs-6 pull-right" align="right" style="padding: 14px 5px;">
+                    <a class="btn  btn-modal-blue" href="#add_product_modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i>  &nbsp;Add Product</a>
+                </div>
             </div>
-            <div class="col-md-8 col-xs-6 pull-right" align="right" style="padding: 14px 5px;">
-                <a class="btn  btn-modal-blue" href="#add_product_modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i>  &nbsp;Add Product</a>
+            <div class="row">
+                <caption class="datatable-caption">Manage Products</caption>
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="blue-grid-head" style="width:30%">Product Name</th>
+                            <th class="blue-grid-head">Product Type</th>
+                            <th class="blue-grid-head">Requires Account Manager</th>
+                            <th class="blue-grid-head">Applicable Year</th>
+                            <th class="blue-grid-head">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" href="#add_product_modal" role="button" data-toggle="modal">VHT</td>
+                            <td>Self Service</td>
+                            <td>Yes</td>
+                            <td>2016</td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Enhanced</td>
+                            <td>Enhanced</td>
+                            <td>No</td>
+                            <td>2017</td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Tracking</td>
+                            <td>True Full Service</td>
+                            <td>Yes</td>
+                            <td>2016</td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2017 Self Service</td>
+                            <td>Self Service</td>
+                            <td>No</td>
+                            <td>NA</td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="row">
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="blue-grid-head" style="width:30%">Product Name</th>
-                        <th class="blue-grid-head">Product Type</th>
-                        <th class="blue-grid-head">Requires Account Manager</th>
-                        <th class="blue-grid-head">Requires Aggregated Group Status</th>
-                         <th class="blue-grid-head">Applicable Year</th>
-                        <th class="blue-grid-head">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="tr-text-center">
-                        <td class="link-blue-underline" href="#add_product_modal" role="button" data-toggle="modal">VHT</td>
-                        <td>Self Service</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                          <td>2016</td>
-                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                    </tr>
-                    <tr class="tr-text-center">
-                        <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Enhanced</td>
-                        <td>Enhanced</td>
-                        <td>No</td>
-                        <td>Yes</td>
-                        <td>2017</td>
-                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                    </tr>
-                    <tr class="tr-text-center">
-                        <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Tracking</td>
-                        <td>True Full Service</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                        <td>2016</td>
-                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                    </tr>
-                    <tr class="tr-text-center">
-                        <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2017 Self Service</td>
-                        <td>Self Service</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>NA</td>
-                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-3 padding10">
-                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
-            </div>
-            <div class="col-md-9 text-right">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span>First</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span aria-hidden="true">
+            <div class="col-md-12">
+                <div class="col-md-3 padding10">
+                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
+                </div>
+                <div class="col-md-9 text-right">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span>First</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-left"></i>
                                         </span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span aria-hidden="true">
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-right"></i>
                                         </span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span>Last</span>
-                        </a>
-                    </li>
-                </ul>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span>Last</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -142,12 +140,27 @@
             <div class="modal-body row">
                 <div class="col-md-12">
                     <div class="col-md-6">
+                        <label class="form-control-label">Applicable Year <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">
+                            <select type="text" class="form-control">
+                                <option>Select</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>NA</option>
+                            </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <label class="form-control-label">Product Name <span class="red">*</span></label>
                         <div class="form-group field-adminusers-first_name">
                             <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" aria-required="true">
                             <div class="help-block"></div>
                         </div>
                     </div>
+
+                </div>
+                <div class="col-md-12">
                     <div class="col-md-6">
                         <label class="form-control-label">Product Type </label>
                         <div class="form-group field-adminusers-first_name">
@@ -160,11 +173,9 @@
                             <div class="help-block"></div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
                     <div class="col-md-6">
                         <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-last_name">                            
+                        <div class="form-group field-adminusers-last_name">
                             <label class="radio-inline">
                             <input type="radio" name="optradio">Yes
                             </label>
@@ -174,32 +185,6 @@
                             <div class="help-block"></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-control-label">Requires Aggregated Group Status <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">                         
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio1">Yes
-                            </label>
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio1">No
-                            </label>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <label class="form-control-label">Applicable Year <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <select type="text" class="form-control">
-                                <option>Select</option>
-                                <option>2016</option>
-                                <option>2017</option>
-                                <option>NA</option>
-                            </select>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>                  
                 </div>
             </div>
 
@@ -258,7 +243,7 @@
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-last_name">                            
+                        <div class="form-group field-adminusers-last_name">
                             <label class="radio-inline">
                             <input type="radio" name="optradio2" checked>Yes
                             </label>
@@ -270,7 +255,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Requires Aggregated Group Status <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">                         
+                        <div class="form-group field-adminusers-first_name">
                             <label class="radio-inline">
                             <input type="radio" name="optradio3" checked>Yes
                             </label>
@@ -281,7 +266,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-12">
                     <div class="col-md-6">
                         <label class="form-control-label">Applicable Year <span class="red">*</span></label>
                         <div class="form-group field-adminusers-first_name">
@@ -293,7 +278,7 @@
                             </select>
                             <div class="help-block"></div>
                         </div>
-                    </div>                  
+                    </div>
                 </div>
             </div>
 

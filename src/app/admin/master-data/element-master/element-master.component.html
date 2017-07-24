@@ -19,204 +19,213 @@
 </div>
 
 <!--  Container Start-->
-<div class="section-container">
-    <div class="col-md-12  border-ddd  width-100">
-        <div class="row">
-            <div class="col-md-12" style="padding: 14px 15px;">
-                <form class="form-inline">
-                    <div class="form-group" style="padding-right: 15px;">
-                        <label for="email">Element Section:</label>
-                        <select id="filter_elements" class="form-control">
-                            <option>Select</option>
-                            <option value="TDlBek9sZEZSWGFyamxOU1g5eVltQT09">Basic information</option>
-                            <option value="eVhOcCtzazN4aEkyVThjQ0FlZVVBQT09">Large Employer status </option>
-                            <option value="Um1iUmN1ZnE0d05FR0d2REplRVpnUT09">Plan Offering Criteria</option>
-                            <option value="bGVka1JBVEFIQ1lyS2JTQlRwdVRlQT09">Designated Government Entity</option>
-                            <option value="OExqMkUxcG4vM2FVdmhGUktMMjVLZz09">Aggregated Group</option>
-                            <option value="Qm1IVXRJZ0d1NW5oT3A1N0RQVHozdz09">Anything Else to Tell Us</option>
-                            <option value="SThFUnJxSDhyVXVZdmg4LzR2T3RXdz09">General Plan Information</option>
-                            <option value="S3Q2Z2E4dFNaZlh0Q1h5MDdqcjZuUT09">MEC Coverage</option>
-                            <option value="MFNiQU45ZW9mVUpZOUFycHFMb2xrZz09">Coverage Type and Waiting Period</option>
-                            <option value="M1hnWlFPLzlYTmFEeWNkemdGZ0hMZz09">Type of Coverage Offered</option>
-                            <option value="aE1ZTEJrcmdncEp0dnBTUVFXMTVLUT09">Employee Contributions</option>
-                            <option value="NHhmRUwrOHEyVzlLLytRNW1wUlFsZz09">Test 123</option>
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
+        <div class="col-md-12  border-ddd  width-100">
+            <div class="row" style="padding:13px 0px">
+                <div class="col-md-3">
+                    <h5 class="table-caption">Element Master</h5>
+                </div>
+                <div class="col-md-9">
+                    <form>
+                        <div class="col-md-5 col-md-offset-3">
+                            <div class="form-group" style="padding-right: 15px;">
+                                <label for="email">Element Section:</label>
+                                <select class="form-control" id="filter_elements">
+                            <option >Select</option>
+                            <option  value="TDlBek9sZEZSWGFyamxOU1g5eVltQT09">Basic information</option>
+                            <option  value="eVhOcCtzazN4aEkyVThjQ0FlZVVBQT09">Large Employer status </option>
+                            <option  value="Um1iUmN1ZnE0d05FR0d2REplRVpnUT09">Plan Offering Criteria</option>
+                            <option  value="bGVka1JBVEFIQ1lyS2JTQlRwdVRlQT09">Designated Government Entity</option>
+                            <option  value="OExqMkUxcG4vM2FVdmhGUktMMjVLZz09">Aggregated Group</option>
+                            <option  value="Qm1IVXRJZ0d1NW5oT3A1N0RQVHozdz09">Anything Else to Tell Us</option>
+                            <option  value="SThFUnJxSDhyVXVZdmg4LzR2T3RXdz09">General Plan Information</option>
+                            <option  value="S3Q2Z2E4dFNaZlh0Q1h5MDdqcjZuUT09">MEC Coverage</option>
+                            <option  value="MFNiQU45ZW9mVUpZOUFycHFMb2xrZz09">Coverage Type and Waiting Period</option>
+                            <option  value="M1hnWlFPLzlYTmFEeWNkemdGZ0hMZz09">Type of Coverage Offered</option>
+                            <option  value="aE1ZTEJrcmdncEp0dnBTUVFXMTVLUT09">Employee Contributions</option>
+                            <option  value="NHhmRUwrOHEyVzlLLytRNW1wUlFsZz09">Test 123</option>
 			     	    </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Product:</label>
-                        <select class="form-control">
-                            <option>Select</option>
-                            <option>2016 ACA Report</option>
-                            <option>2017 ACA Report</option>
-                            <option>VHT</option>
-                        </select>
-                    </div>
-                </form>
-                
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="pwd">Product:</label>
+                                <select class="form-control">
+                                    <option >Select</option>
+                                    <option >2016 ACA Report</option>
+                                    <option >2017 ACA Report</option>
+                                    <option >VHT</option>
+                               </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div id="w1-container" class="row">
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="blue-grid-head" style="width:80px;"><a>Element ID</a></th>
-                        <th class="blue-grid-head"><a>Element Section</a></th>
-                        <th class="blue-grid-head"><a>Element Label</a></th>
-                        <th class="blue-grid-head"><a>Update</a></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:center;">1.3</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_0" value="Tax Reporting Year" style="width: 93%;"></td>
+            <div id="w1-container" class="row">
+                <!--<caption class="datatable-caption">Element Master</caption>-->
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="blue-grid-head" style="width:80px;"><a>Element ID</a></th>
+                            <th class="blue-grid-head"><a>Element Section</a></th>
+                            <th class="blue-grid-head"><a>Element Label</a></th>
+                            <th class="blue-grid-head"><a>Update</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;">1.3</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_0" value="Tax Reporting Year" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(3,0);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(3,0);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.4</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_1" value="Contact Person Legal First Name" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.4</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_1" value="Contact Person Legal First Name" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(4,1);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(4,1);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.5</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_2" value="Contact Person Legal Middle Initial" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.5</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_2" value="Contact Person Legal Middle Initial" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(5,2);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(5,2);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.6</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_3" value="Contact Person Legal Last Name" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.6</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_3" value="Contact Person Legal Last Name" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(6,3);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(6,3);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.7</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_4" value="Contact Person Suffix" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.7</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_4" value="Contact Person Suffix" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(7,4);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(7,4);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.8</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_5" value="Title of Contact Person" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.8</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_5" value="Title of Contact Person" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(8,5);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(8,5);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.9</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_6" value="Contact Person Email Address" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.9</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_6" value="Contact Person Email Address" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(9,6);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(9,6);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.10</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_7" value="Contact Telephone Number" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.10</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_7" value="Contact Telephone Number" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(10,7);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(10,7);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.11</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_8" value="Street Address 1" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.11</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_8" value="Street Address 1" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(11,8);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(11,8);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.12</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_9" value="Street Address 2 (Apt #, Suite #)" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.12</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_9" value="Street Address 2 (Apt #, Suite #)" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(14,9);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(14,9);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.13</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_10" value="Country" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.13</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_10" value="Country" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(15,10);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(15,10);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.14</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_11" value="State or Province" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.14</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_11" value="State or Province" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(16,11);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(16,11);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.15</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_12" value=" City or Town" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.15</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_12" value=" City or Town" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(17,12);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(17,12);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                    <tr>
-                        <td style="text-align:center;">1.16</td>
-                        <td>Basic information</td>
-                        <td style="width: 50%;"><input type="text" class="form-control" id="element_label_13" value="ZIP or Foreign Postal Code" style="width: 93%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">1.16</td>
+                            <td>Basic information</td>
+                            <td style="width: 50%;"><input type="text" class="form-control" id="element_label_13" value="ZIP or Foreign Postal Code" style="width: 93%;"></td>
 
-                        <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(18,13);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update element label" onclick="updateElementlabel(18,13);"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-3 padding10">
-                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 10 of 48 entries</div>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-9 text-right">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span>First</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span aria-hidden="true">
+            <div class="col-md-12">
+                <div class="col-md-3 padding10">
+                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 10 of 48 entries</div>
+                </div>
+                <div class="col-md-9 text-right">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span>First</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-left"></i>
                                         </span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span aria-hidden="true">
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-right"></i>
                                         </span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span>Last</span>
-                        </a>
-                    </li>
-                </ul>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span>Last</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

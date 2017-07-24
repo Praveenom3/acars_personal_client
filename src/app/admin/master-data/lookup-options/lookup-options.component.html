@@ -18,152 +18,108 @@
 </div>
 
 <!--  Container Start-->
-<div class="section-container">
-    <div class="col-md-12 border-ddd  width-100">
-        <div class="row" style="padding: 10px 17px;">
-            <div class="pull-right">
-                <!--<a class="btn  btn-modal-blue" href="#add_lookup_name_modal" role="button" data-toggle="modal">Add Lookup Name</a>-->
-                <a class="btn  btn-modal-blue" href="#add_lookup_options_modal" role="button" data-toggle="modal">Add Lookup Options</a>
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
+        <div class="col-md-12 border-ddd  width-100">
+            <div class="row" style="padding: 10px 17px;">
+                <div class="pull-right">
+                    <!--<a class="btn  btn-modal-blue" href="#add_lookup_name_modal" role="button" data-toggle="modal">Add Lookup Name</a>-->
+                    <a class="btn  btn-modal-blue" href="#add_lookup_options_modal" role="button" data-toggle="modal">Add Lookup Options</a>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="blue-grid-head">Lookup Name</th>
-                        <th class="blue-grid-head">Lookup Options</th>
-                        <th class="blue-grid-head">Status</th>
-                        <th class="blue-grid-head">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                        <td>Basic information</td>
-                        <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                        <td class="text-center">
+            <div class="row">
+                <caption class="datatable-caption">Lookup Options</caption>
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="blue-grid-head">Lookup Name</th>
+                            <th class="blue-grid-head">Lookup Options</th>
+                            <th class="blue-grid-head">Status</th>
+                            <th class="blue-grid-head">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
+                            <td>Basic information</td>
+                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
+                            <td class="text-center">
 
-                            <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                        <td>Large Employer Status</td>
-                        <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                        <td class="text-center">
+                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
+                            <td>Large Employer Status</td>
+                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
+                            <td class="text-center">
 
-                            <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                        <td>Plan Offering Criteria</td>
-                        <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                        <td class="text-center">
+                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
+                            <td>Plan Offering Criteria</td>
+                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
+                            <td class="text-center">
 
-                            <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                        <td>Designated Government Entity</td>
-                        <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                        <td class="text-center">
+                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
+                            <td>Designated Government Entity</td>
+                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
+                            <td class="text-center">
 
-                            <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-3 padding10">
-                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
+                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-9 text-right">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span>First</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                            <span aria-hidden="true">
+            <div class="col-md-12">
+                <div class="col-md-3 padding10">
+                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
+                </div>
+                <div class="col-md-9 text-right">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span>First</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-left"></i>
                                         </span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span aria-hidden="true">
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">
                                             <i class="fa fa-arrow-right"></i>
                                         </span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                            <span>Last</span>
-                        </a>
-                    </li>
-                </ul>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span>Last</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!--  Container End-->
-
-<!-- Add Lookup Name Modal -->
-<!--<div class="modal fade" id="add_lookup_name_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header modal-header-color">
-
-                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
-								X
-							</button>
-                <h4 class="modal-title color-white" id="myModalLabel">
-                    Add Lookup Option
-                </h4>
-            </div>
-            <div class="modal-body row">
-
-                <form>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-12">
-                            <div class="">
-                                <div class=" form-group ">
-                                    <label class="form-control-label" for="l0">Lookup Name *</label>
-
-                                    <input type="text" class="form-control" placeholder="Lookup Name" value="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer footer-background">
-
-                <a href="" class="btn btn-modal-blue">
-								Save  
-							</a>
-                <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-            </div>
-        </div>
-
-    </div>
-
-</div>-->
 <!-- ./Add Lookup Name Modal -->
 <!-- Add Lookup options Modal -->
 <div class="modal fade" id="add_lookup_options_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -212,7 +168,6 @@
                                     <button type="button" class="btn btn-sm btn-success" (click)="saveOption()">Save</button>
                                     <button type="button" class="btn btn-sm btn-default" (click)="cancelOption()"><i class="fa fa-times"></i></button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
