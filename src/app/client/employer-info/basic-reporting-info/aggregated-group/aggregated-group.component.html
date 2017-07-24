@@ -1,0 +1,266 @@
+<div class="product-container col-md-12 pull-left width-100">
+
+	<!-- company info -->
+	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
+		<div class="pull-right">
+			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
+		</div>
+		<h5 class="cat__core__title d-block mb-0 pt-3">
+			<span> Name: <span class="text-muted">Cargo Force</span></span>
+			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
+			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
+		</h5>
+	</nav>
+	<!-- ./company info -->
+
+	<div class="">
+		<div class="col-md-12 border-ddd widget padding-0">
+
+      <!-- Main Tabs -->
+			<div class="search-header padding-10">
+				<ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
+					<li class="col-md-1"></li>
+					<li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
+						<p class="font-white margin-0">Basic Reporting Info</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
+						<p class="font-white margin-0">Benefit Plan Info</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
+						<p class="font-white margin-0">Plan Classes</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+						<p class="font-white margin-0 ">Payroll</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+						<p class="font-white margin-0 ">Enrollments</p></li>
+					<li class="col-md-1"></li>
+				</ul>
+			</div>
+      <!-- ./Main Tabs -->
+
+    
+			<div class="tab-content clearfix">
+				<div aria-expanded="true" class="tab-pane active" id="account_setup_block">
+          <!-- Sub category Tabs -->
+					<div class="col-md-12  padding-10 ul-block">
+						<ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                  <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><div class="inner-block-digits pull-left">1</div>
+									<span class="inner-block-text">Basic Info</span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']"><div class="inner-block-digits pull-left">2</div>
+									<span class="inner-block-text">Large Emp. Status & Tracking</span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']"><div class="inner-block-digits pull-left ">3</div>
+									<span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+								</span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']"><div class="inner-block-digits pull-left ">4</div>
+									<span class="inner-block-text">Designated Govt. Entity </span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']"><div class="inner-block-digits pull-left ">5</div>
+									<span class="inner-block-text">Aggregated Group</span></a>
+							</li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']"><div class="inner-block-digits pull-left ">6</div>
+									<span class="inner-block-text">Anything Else</span></a>
+							</li>
+						</ul>
+					</div>
+          <!-- ./Sub category Tabs -->
+
+
+					<div class="col-md-12 padding-0">
+						<div class="tab-content clearfix">
+							<div class="tab-pane active " id="planbasics" role="tabpanel">
+								
+								<form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+									<div class="border-top-bottom-ddd col-md-12 padding-0">
+										<div class="container margin-top-30 margin-bottom-10">
+
+											
+											<!-- form content -->
+											<div class="col-md-12">
+												<div class="form-group row margin-top-10" style="margin-bottom: 20px;">
+													<div class="col-sm-12">
+														<label class="control-label">5.1&nbsp;&nbsp;&nbsp;Will this transmittal be the authoritative transmittal for your company ? </label>
+													</div>
+													<div class="col-sm-6">
+														<input type="radio" [(ngModel)]="is_authoritative_transmittal" name="is_authoritative_transmittal" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="radio" [(ngModel)]="is_authoritative_transmittal" name="is_authoritative_transmittal" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+
+													</div>
+												</div>
+
+
+												<div *ngIf="is_authoritative_transmittal == 2" class="form-group row is-authoritative-transmittal-no" style="margin-top: 10px; margin-bottom: 20px;">
+													<div class="col-sm-12">
+														<label class="control-label">5.1.1&nbsp;&nbsp;&nbsp;Each EIN must have their own authoritative transmittal, contact support for any further clarification</label>
+													</div>
+												</div>
+
+											<div class="form-group row is-authoritative-transmittal-no" style="margin-top: 10px; margin-bottom: 20px;  display: none;">
+													<div class="col-sm-12">
+														<label class="control-label">5.1.1&nbsp;&nbsp;&nbsp;Each EIN must have their own authoritative transmittal, contact support for any further clarification </label>
+													</div>
+												</div>
+
+										<div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
+											<div class="col-sm-12">
+												<label class="control-label">5.2&nbsp;&nbsp;&nbsp;During any month of the year, were you a member of an aggregated applicable large employer (ALE) group ? This may also be referred to as a control group. </label>
+											</div>
+											<div class="col-sm-6">
+												<input type="radio" [(ngModel)]="is_ale_member" name="is_ale_member" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="radio" [(ngModel)]="is_ale_member" name="is_ale_member" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+
+											</div>
+										</div>
+
+
+
+
+										<div class="col-xs-12 filling_forms" *ngIf="is_ale_member == 1">
+											<div class="col-xs-12" style="border: 1px solid #ddd;">
+												<div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
+													<div class="col-sm-12">
+														<label class="control-label">5.2.1&nbsp;&nbsp;&nbsp;Will any other entity be filling 1095 forms on your behalf ?
+														</label>
+													</div>
+													<div class="col-sm-6">
+														<input type="radio" [(ngModel)]="is_other_entity" name="is_other_entity" class="aggregate-clear-radio" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="radio" [(ngModel)]="is_other_entity" name="is_other_entity" value="2" class="aggregate-clear-radio"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+
+													</div>
+												</div>
+
+												<div class="form-group row other_entity_filling_yes" *ngIf="is_other_entity == 1" style="margin-top: 10px; margin-bottom: 20px;">
+													<div class="col-sm-12">
+														<label class="control-label">5.2.1.1&nbsp;&nbsp;&nbsp;If yes, how many 1095 forms will be filed by others on your behalf ? </label>
+													</div>
+													<div class="col-sm-6 padding_left_30">
+													 <div class="form-group field-tblacaaggregatedgroup-total_1095_forms">
+
+
+<input type="text" id="tblacaaggregatedgroup-total_1095_forms" class="form-control form-height aggregate-clear" name="TblAcaAggregatedGroup[total_1095_forms]" maxlength="5" onkeypress="return isNumberKey(event);">
+
+<div class="help-block"></div>
+
+</div>													 
+													
+
+													</div>
+												</div>
+
+
+												<div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
+													<div class="col-sm-12">
+														<label class="control-label">5.2.2&nbsp;&nbsp;&nbsp;How many months of the year were you a part of this aggregated group ? </label>
+													</div>
+													<div class="col-sm-12"></div>
+													<div class="col-sm-3" style="display:grid;">
+																											<div class="checkbox">
+															<label><input type="checkbox" id="entire_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][0]" value="0"><span class="control-checkbox">Entire
+																	Year</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][1]" value="1"><span class="control-checkbox">January</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][2]" value="2"><span class="control-checkbox">February</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][3]" value="3"><span class="control-checkbox">March</span></label>
+														</div>
+
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][4]" value="4"><span class="control-checkbox">April</span></label>
+														</div>
+
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][5]" value="5"><span class="control-checkbox">May</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][6]" value="6"><span class="control-checkbox">June</span></label>
+														</div>
+													</div>
+
+													<div class="col-sm-3" style="display:grid;">
+														<div class="checkbox">
+															<label></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][7]" value="7"><span class="control-checkbox">July</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][8]" value="8"><span class="control-checkbox">August</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][9]" value="9"><span class="control-checkbox">September</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][10]" value="10"><span class="control-checkbox">October</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][11]" value="11"><span class="control-checkbox">November</span></label>
+														</div>
+														<div class="checkbox">
+															<label><input type="checkbox" class="specific_year" name="TblAcaAggregatedGroup[total_aggregated_grp_months][12]" value="12"><span class="control-checkbox">December</span></label>
+														</div>
+
+													</div>
+												</div>
+
+												<div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
+													<div class="col-sm-12">
+														<label class="control-label">5.2.3&nbsp;&nbsp;&nbsp;List the name and EIN for each of the groups with which you are aggregated. Please list the aggregated members below in order from largest number of employees to smallest number of employees. </label>
+													</div>
+													<div class="col-md-12" id="group_div">
+													
+													
+														
+														
+																											
+														<div class="row" id="row_1" style="margin-bottom: 10px;">
+															<div class="col-sm-3 padding-right-0 padding_left_30">
+																<p>Group Name</p>
+																 															 	<input type="text" class="form-control aggregate-clear" name="TblAcaAggregatedGroupList[1][group_name]" maxlength="34" onkeypress="return companyname(event);">
+
+															</div>
+															<div class="col-sm-3 padding-right-0 padding_left_30">
+																<p>Group EIN</p>
+																																  <input type="text" class="form-control aggregate-clear" name="TblAcaAggregatedGroupList[1][group_ein]" data-inputmask="&quot;mask&quot;: &quot;99-9999999&quot;" data-mask="">
+
+															</div>
+															<div class="col-sm-2 padding-left-5">
+																<p>&nbsp;&nbsp;</p>
+																<button class="btn btn-primary no-wrap" type="button" onclick="addnewrow(1);" id="add_more_btn" style="height: 34px;padding-top: 4px;">Add more</button>
+															</div>
+														</div>
+														
+														
+														
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+											<!-- ./form content -->
+											
+											
+										</div>
+									</div>
+									<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+										<div class="modal-footer-btn padding-15">
+											<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+											<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
+											<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

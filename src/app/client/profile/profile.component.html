@@ -1,0 +1,131 @@
+<div class="row section-container">
+    <div class="col-md-12 border-ddd widget padding-15">
+        <form id="w0" action="" method="post " enctype="multipart/form-data ">
+
+            <div class="col-md-12 padding-0 ">
+                <div class="col-md-4 ">
+                    <div class=" ">
+                        <label class="form-control-label ">First Name*</label>
+                        <div class="form-group field-adminusers-first_name required ">
+
+                            <input type="text " id="adminusers-first_name " class="form-control " name="AdminUsers[first_name] " value="Alex " maxlength="15 " onkeypress="return username(event); " aria-required="true ">
+
+                            <div class="help-block "></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class=" ">
+                        <label class="form-control-label ">Last Name*</label>
+                        <div class="form-group field-adminusers-last_name required ">
+
+                            <input type="text " id="adminusers-last_name " class="form-control " name="AdminUsers[last_name] " value="Mark " maxlength="15 " aria-required="true ">
+
+                            <div class="help-block "></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class=" ">
+                        <label class="form-control-label ">Status</label>
+                        <div class="form-group field-adminusers-last_name required ">
+                            <select class="form-control ">
+                                        <option>Active</option>
+                                        <option>Inactive</option>
+                                    </select>
+                            <div class="help-block "></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0 ">
+                <div class="col-md-4 ">
+                    <div class="form-group field-user-username required ">
+                        <label class="form-control-label " for="user-username ">Email Address</label>
+                        <div class="form-control " disabled=" ">alex@gmail.com </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <label class="form-control-label ">Phone*</label>
+                    <div class="form-group field-adminusers-phone required ">
+                        <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
+                        <div class="help-block "></div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 ">
+                    <label class="form-control-label ">Extension</label>
+                    <div class="form-group field-adminusers-extension ">
+                        <input type="text " id="adminusers-extension " class="form-control numbers " name="AdminUsers[extension] " value=" " maxlength="6 ">
+                        <div class="help-block "></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-top-5 padding-left-0 ">
+                <div class="col-md-4 ">
+                    <h6 class="action_head ">
+                        Permissions: <span class="fa fa-info-circle information-icon " title=" " data-container="body " data-toggle="popover-hover " data-placement="right " data-content="Select if you would like for the user to have super administrator
+                privileges in the system to performing all functions including changing the access level of other administrative users.<br>
+                Next, select if this user should be able to access financial performance of theentireapplication." data-original-title="Access Privileges"></span>
+                    </h6>
+                    <div class="md-checkbox-list ">
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+															Billing Contact
+											<input type="checkbox" class="primary-contact-checkbox " checked="">
+						 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+															Sign Business Associate Agreement
+											<input type="checkbox" class="primary-contact-checkbox " checked="">
+						 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+															Purchases 
+											<input type="checkbox" class="primary-contact-checkbox " checked="">
+						 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+														Primary Contact 
+											<input type="checkbox" class="primary-contact-checkbox " checked="">
+						 <span></span>
+										</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
+                <div class="modal-footer-btn padding-15">
+                    <button type="submit" class="btn btn-primary">Save</button> <a class="btn btn-default"> Cancel </a>
+                </div>
+            </div>
+        </form>
+        <div class="col-md-12 padding-15">
+            <a class="btn btn-modal-blue pull-right" href="#add_lookup_options" data-toggle="modal">Add</a>
+        </div>
+        <table id="exampleCompany" class="table table-bordered table-hover">
+            <thead>
+                <tr class="tr-grid-header">
+                    <th class="blue-grid-head">First Name</th>
+                    <th class="blue-grid-head">Last Name</th>
+                    <th class="blue-grid-head">Email</th>
+                    <th class="blue-grid-head">Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Casas</td>
+                    <td>cacas@gmail.com</td>
+                    <td>(305)458-7898</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

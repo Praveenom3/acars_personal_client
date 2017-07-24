@@ -1,0 +1,10 @@
+.section-container {
+    position: relative;
+    top: 132px !important;
+    width: 93%;
+    margin: 0px auto;
+}
+
+body, body.body-blue .back-lightblue{
+    background: #eceff4 !important;
+}

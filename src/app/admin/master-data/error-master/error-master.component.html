@@ -1,0 +1,2042 @@
+<!--  View For Pricing screen-->
+<div class="page-header-band-breadcrumbs">
+    <!--  For Bread Crumb-->
+    <div class="blue-breadcrumb col-md-12 padding-0">
+        <a class="breadcrumb-back-btn cursor-pointer">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <ul class="list-unstyled breadcrumb header-breadcrumb">
+            <li>
+                <a href="javascript: void(0);">Master Data</a>
+            </li>
+            <li>
+                <a href="javascript: void(0);">Error Master</a>
+            </li>
+        </ul>
+    </div>
+    <!-- End For Bread Crumb-->
+</div>
+<div class="section-container">
+    <div class="col-md-12 form-pricing-div">
+        <tabset>
+            <tab heading="Basic Reporting Info">
+                <table id="exampleCompany" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="tr-grid-header">
+
+                            <th class="blue-grid-head" style="width:28%;">Element Name</th>
+                            <th class="blue-grid-head">Error Code</th>
+                            <th class="blue-grid-head" style="width:28%;">Validation</th>
+                            <th class="blue-grid-head">Error Message</th>
+                            <th class="blue-grid-head">Update</th>
+                            <!-- 	<th  class="blue-grid-head">Update</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Employer Name (Legal Name for IRS Filing)</td>
+                            <td>BRI01</td>
+                            <td id="validation_1">Can not be empty value</td>
+                            <td><textarea class="form-control" id="error_1">Invalid Employer Name, can not be empty</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(1)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Employer Name (Legal Name for IRS Filing)</td>
+                            <td>BRI02</td>
+                            <td id="validation_2">Name should be at least 1 char and do not allow special char as 1 char like ($,#,@,% etc)</td>
+                            <td><textarea class="form-control" id="error_2">Invalid Employer Name, can not be a single special character &lt;&lt;Spl charvalue&gt;&gt;</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(2)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Employer Identification Number (EIN)</td>
+                            <td>BRI03</td>
+                            <td id="validation_3">it shold be 9 digit number with format NN-NNNNNNN
+                            </td>
+                            <td><textarea class="form-control" id="error_3">EIN Can not be less than 9 digits</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(3)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Employer Identification Number (EIN)</td>
+                            <td>BRI04</td>
+                            <td id="validation_4">Can not be empty value
+                            </td>
+                            <td><textarea class="form-control" id="error_4">EIN can not be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(4)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Employer Identification Number (EIN)</td>
+                            <td>BRI05</td>
+                            <td id="validation_5">Can not be NN-NNNNNNN
+                            </td>
+                            <td><textarea class="form-control" id="error_5">EIN Can not be all N ( where N = 0..9)</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(5)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Legal First Name</td>
+                            <td>BRI06</td>
+                            <td id="validation_6">Can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_6">The name of the contact Person Legal First Name must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(6)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Legal First Name</td>
+                            <td>BRI07</td>
+                            <td id="validation_7">Can not be "."
+                            </td>
+                            <td><textarea class="form-control" id="error_7">The name of the contact Person Legal First Name can not be a .</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(7)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Legal First Name</td>
+                            <td>BRI08</td>
+                            <td id="validation_8">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_8">The name of the contact Person Legal First Name must be atleast 3 character</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(8)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Legal Last Name</td>
+                            <td>BRI09</td>
+                            <td id="validation_9">Can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_9">The name of the contact Person Legal Last Name must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(9)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Legal Last Name</td>
+                            <td>BRI10</td>
+                            <td id="validation_10">Can not be "."
+                            </td>
+                            <td><textarea class="form-control" id="error_10">The name of the contact Person Legal Last Name can not be a .</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(10)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Legal Last Name</td>
+                            <td>BRI11</td>
+                            <td id="validation_11">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_11">The name of the contact Person Legal Last Name must be atleast 3 character</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(11)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Title of Contact Person</td>
+                            <td>BRI12</td>
+                            <td id="validation_12">Can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_12">The First Name must be atleast 2 character </textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(12)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Title of Contact Person</td>
+                            <td>BRI13</td>
+                            <td id="validation_13">Can not be "."
+                            </td>
+                            <td><textarea class="form-control" id="error_13">The title of the contact person can not be "."</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(13)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Email Address</td>
+                            <td>BRI14</td>
+                            <td id="validation_14">can not be empty value
+                            </td>
+                            <td><textarea class="form-control" id="error_14">The email address of the contact person must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(14)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Person Email Address</td>
+                            <td>BRI15</td>
+                            <td id="validation_15">should be a valid email format
+                            </td>
+                            <td><textarea class="form-control" id="error_15">the email address of the contact person must be a valid email address</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(15)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Telephone Number</td>
+                            <td>BRI16</td>
+                            <td id="validation_16">It can not be empty
+                            </td>
+                            <td><textarea class="form-control" id="error_16">The contact telephone number must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(16)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Contact Telephone Number</td>
+                            <td>BRI17</td>
+                            <td id="validation_17">it should be a valid phone number format (NNN) - NNN-NNNN
+                            </td>
+                            <td><textarea class="form-control" id="error_17">The contact telephone number should be in NNN-NNN-NNNN format</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(17)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Street Address 1</td>
+                            <td>BRI18</td>
+                            <td id="validation_18">Can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_18">Employer Street address can not be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(18)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Street Address 1</td>
+                            <td>BRI19</td>
+                            <td id="validation_19">Can not be single character "."
+                            </td>
+                            <td><textarea class="form-control" id="error_19">Invalid Employer Street Address</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(19)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td>BRI20</td>
+                            <td id="validation_20">Country can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_20">Country can not be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(20)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>State or Province</td>
+                            <td>BRI21</td>
+                            <td id="validation_21">Can not be empty or Select State string
+                            </td>
+                            <td><textarea class="form-control" id="error_21">The employer state must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(21)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td> City or Town</td>
+                            <td>BRI23</td>
+                            <td id="validation_22">Can not be empty or Select string
+                            </td>
+                            <td><textarea class="form-control" id="error_22">The employer City must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(22)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>ZIP or Foreign Postal Code</td>
+                            <td>BRI24</td>
+                            <td id="validation_23">Can not be empty and has to be 5 digits
+                            </td>
+                            <td><textarea class="form-control" id="error_23">The Employer 5 digit zip code must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(23)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Are you an Applicable Large Employer (ALE) ?</td>
+                            <td>ALE01</td>
+                            <td id="validation_24">Yes or no need to be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_24">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(24)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Is this your first year as Applicable Large Employer (ALE) ?</td>
+                            <td>ALE02</td>
+                            <td id="validation_25">Yes or no need to be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_25">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(25)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Which of these two categories applied to your company last year (year prior to this current reporting year) ?</td>
+                            <td>ALE03</td>
+                            <td id="validation_26">Yes or no need to be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_26">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(26)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>There are two different methods which can be used to track hours worked for non-fulltime employees to ensure that they are not in-fact full-time. Please select your method used.</td>
+                            <td>POC01</td>
+                            <td id="validation_27">A selection needs to be made
+                            </td>
+                            <td><textarea class="form-control" id="error_27">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(27)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>What is the length of your initial measurement period (# of days) ?</td>
+                            <td>POC02</td>
+                            <td id="validation_28">If for 3.1 option value is Look-Back Measurement Method,then the value must be between 90-365 days
+                            </td>
+                            <td><textarea class="form-control" id="error_28">Select a length of time between 90-365 days</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(28)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>When does your initial measurement period begins ?</td>
+                            <td>POC03</td>
+                            <td id="validation_29">If for 3.1 option value is Look-Back Measurement Method, Atleast one value must have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_29">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(29)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Since February 9, 2014, can you certify that your company.</td>
+                            <td>POC04</td>
+                            <td id="validation_30">atleast one value must be selected ( for 3.3 a, 3.3 b, 3.3 c)
+                            </td>
+                            <td><textarea class="form-control" id="error_30">A value must be selected</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(30)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Will you be assigning a Designated Governmental Entity (DGE) for reporting purposes ?</td>
+                            <td>DGE01</td>
+                            <td id="validation_31">A value must be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_31">Indicate if you Will be assigning a Designated Governmental Entity (DGE) for reporting purpose</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(31)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Name of Designated Governmental Entity</td>
+                            <td>DGE02</td>
+                            <td id="validation_32">No empty value allowed
+                            </td>
+                            <td><textarea class="form-control" id="error_32">Invalid Employer Name, can not be empty</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(32)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Name of Designated Governmental Entity</td>
+                            <td>DGE03</td>
+                            <td id="validation_33">Name should be atleast 2 char and do not allow special char as 1 char like ($,#,@,% etc)
+                            </td>
+                            <td><textarea class="form-control" id="error_33">Invalid Employer Name, can not be a single special character &lt;&lt;Spl charvalue&gt;&gt;</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(33)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Name of Designated Governmental Entity</td>
+                            <td>DGE04</td>
+                            <td id="validation_34">Allow the pattern ([A?Za?z0?9\?\(\)&amp;'] ?)*[A?Za?z0?9\?\(\)&amp;'] and max length 75 chars
+                            </td>
+                            <td><textarea class="form-control" id="error_34">Invalid Employer Name, can not contain special characters other than &amp; ? -</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(34)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Employer Identification Number (EIN)</td>
+                            <td>DGE05</td>
+                            <td id="validation_35">it shold be 9 digit number with format NN-NNNNNNN
+                            </td>
+                            <td><textarea class="form-control" id="error_35">EIN Can not be less than 9 digits</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(35)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Employer Identification Number (EIN)</td>
+                            <td>DGE06</td>
+                            <td id="validation_36">Can not be empty value
+                            </td>
+                            <td><textarea class="form-control" id="error_36">EIN can not be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(36)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Employer Identification Number (EIN)</td>
+                            <td>DGE07</td>
+                            <td id="validation_37">can not be NN-NNNNNNN
+                            </td>
+                            <td><textarea class="form-control" id="error_37">EIN Can not be all N ( where N = 0..9)</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(37)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Street Address 1</td>
+                            <td>DGE08</td>
+                            <td id="validation_38">Can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_38">Employer Street address can not be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(38)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Street Address 1</td>
+                            <td>DGE09</td>
+                            <td id="validation_39">Can not be single character "."
+                            </td>
+                            <td><textarea class="form-control" id="error_39">Invalid Employer Street Address</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(39)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's State or Province</td>
+                            <td>DGE10</td>
+                            <td id="validation_40">Can not be empty or Select state string
+                            </td>
+                            <td><textarea class="form-control" id="error_40">The employer state must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(40)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's City or Town</td>
+                            <td>DGE11</td>
+                            <td id="validation_41">Can not be empty or Select state string
+                            </td>
+                            <td><textarea class="form-control" id="error_41">The employer City must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(41)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Zip Code</td>
+                            <td>DGE12</td>
+                            <td id="validation_42">Can not be empty and has to be 5 digits
+                            </td>
+                            <td><textarea class="form-control" id="error_42">The Employer 5 digit zip code must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(42)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Person First Name</td>
+                            <td>DGE13</td>
+                            <td id="validation_43">Can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_43">The name of the contact DGE Person Legal First Name must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(43)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Person First Name</td>
+                            <td>DGE14</td>
+                            <td id="validation_44">Can not be "."
+                            </td>
+                            <td><textarea class="form-control" id="error_44">The name of the contact DGE Person Legal First Name can not be a .</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(44)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Person First Name</td>
+                            <td>DGE15</td>
+                            <td id="validation_45">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_45">The name of the contact DGE Person Legal First Name must be atleast 3 character</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(45)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Phone number</td>
+                            <td>DGE19</td>
+                            <td id="validation_46">It can not be empty
+                            </td>
+                            <td><textarea class="form-control" id="error_46">The contact telephone number must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(46)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Phone number</td>
+                            <td>DGE20</td>
+                            <td id="validation_47">it should be a valid phone number format (NNN) - NNN-NNNN
+                            </td>
+                            <td><textarea class="form-control" id="error_47">The contact telephone number should be in NNN-NNN-NNNN format</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(47)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>What will your DGE be reporting ?</td>
+                            <td>DGE21</td>
+                            <td id="validation_48">a value should be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_48">Please make a selection</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(48)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Will this transmittal be the authoritative transmittal for your company ?</td>
+                            <td>AGG01</td>
+                            <td id="validation_49">A value must be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_49">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(49)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>During any month of the year, were you a member of an aggregated applicable large employer (ALE) group ? This may also be referred to as a control group.</td>
+                            <td>AGG02</td>
+                            <td id="validation_50">A value must be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_50">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(50)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>Will any other entity be filling 1095 forms on your behalf ?</td>
+                            <td>AGG03</td>
+                            <td id="validation_51">If answer to 5.2 was yes then a value must be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_51">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(51)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <td>If yes, how many 1095 forms will be filed by others on your behalf ?</td>
+                            <td>AGG04</td>
+                            <td id="validation_52">if answer to 5.2.1 is yes then a numeric value must be entered. Max number can be 1000000
+                            </td>
+                            <td><textarea class="form-control" id="error_52">Enter the number of forms reported by another entity</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(52)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>How many months of the year were you a part of this aggregated group ?</td>
+                            <td>AGG05</td>
+                            <td id="validation_53">A value must be entered
+                            </td>
+                            <td><textarea class="form-control" id="error_53">Please select one or months or select Entire year</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(53)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>List the name and EIN for each of the groups with which you are aggregated. Please list the aggregated members below in order from largest number of employees to smallest number of employees.</td>
+                            <td>AGG06</td>
+                            <td id="validation_54">If the values are entered for company and EIN, then the company name can not be "." or special character other than &amp; and EIN has to be 9 digit XX-XXXXXXX and should have same validations as other EIN place
+                            </td>
+                            <td><textarea class="form-control" id="error_54">The company name can not be less than 2 characters, EIN must be 9 digits.</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(54)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Person Last Name</td>
+                            <td>DGE16</td>
+                            <td id="validation_143">Can not be blank</td>
+                            <td><textarea class="form-control" id="error_143">The name of the contact DGE Person Legal Last Name must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(143)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Person Last Name</td>
+                            <td>DGE17</td>
+                            <td id="validation_144">Can not be "."</td>
+                            <td><textarea class="form-control" id="error_144">The name of the contact DGE Person Legal Last Name can not be a .</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(144)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>DGE's Contact Person Last Name</td>
+                            <td>DGE18</td>
+                            <td id="validation_145">Should be atleast 2 characters</td>
+                            <td><textarea class="form-control" id="error_145">The name of the contact DGE Person Legal Last Name must be atleast 3 character</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update basic reporting info error" onclick="updateErrormessage(145)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tab>
+            <tab heading="Benefit Plan Info">
+                <table id="" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="tr-grid-header">
+                            <th class="blue-grid-head" style="width:28%;">Element Name</th>
+                            <th class="blue-grid-head">Error Code</th>
+                            <th class="blue-grid-head" style="width:28%;">Validation</th>
+                            <th class="blue-grid-head">Error Message</th>
+                            <th class="blue-grid-head">Update</th>
+                            <!-- 	<th  class="blue-grid-head">Update</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Is this your first year Offering Coverage ?</td>
+                            <td>GPI01</td>
+                            <td id="validation_55">At least one value should be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_55">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(55)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>What is your renewal month for your medical plans ? If you have multiple plans/renewals, enter the earliest one of the year. If you did not offer a plan then select "Not Applicable"</td>
+                            <td>GPI02</td>
+                            <td id="validation_56">A value must be selected if the value is not "Not Applicable"
+                            </td>
+                            <td><textarea class="form-control" id="error_56">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(56)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Do you have multiple waiting periods for different employees ?</td>
+                            <td>GPI04</td>
+                            <td id="validation_57">A selection should be made
+                            </td>
+                            <td><textarea class="form-control" id="error_57">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(57)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>If yes, explain</td>
+                            <td>GPI05</td>
+                            <td id="validation_58">If yes was choosen for question 7.4 the the value must be entered. Do not allow Special characters, only allow a-z0-9A-Z
+                            </td>
+                            <td><textarea class="form-control" id="error_58">Describe waiting period</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(58)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Did your company offer a Health Reimbursement Arrangement (HRA) to employees that did NOT require their participation in the medical plan ?</td>
+                            <td>GPI06</td>
+                            <td id="validation_59">A selection should be made
+                            </td>
+                            <td><textarea class="form-control" id="error_59">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(59)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Overall as a company, did you have BOTH Self Insured AND Fully Insured Plans During the reporting year ?</td>
+                            <td>GPI07</td>
+                            <td id="validation_60">A selection should be made
+                            </td>
+                            <td><textarea class="form-control" id="error_60">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(60)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Overall as a company, did you have BOTH Self Insured AND Fully Insured Plans During the reporting year ?</td>
+                            <td>GPI08</td>
+                            <td id="validation_61">If the answer is yes, then atleast a value must be selected for atleast one month
+                            </td>
+                            <td><textarea class="form-control" id="error_61">A plan must be selected for the months</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(61)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Select the months in which you offered Minimum Essential Coverage (MEC) to your employees.</td>
+                            <td>MEC01</td>
+                            <td id="validation_62">Atleast one value must be present
+                            </td>
+                            <td><textarea class="form-control" id="error_62">Select the Month(s) in which you offered MEC to your full time employees</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update benefit plan info error" onclick="updateErrormessage(62)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                    </tbody>
+                </table>
+            </tab>
+            <tab heading="Plan Class">
+                <table id="" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="tr-grid-header">
+                            <th class="blue-grid-head" style="width:28%;">Element Name</th>
+                            <th class="blue-grid-head">Error Code</th>
+                            <th class="blue-grid-head" style="width:28%;">Validation</th>
+                            <th class="blue-grid-head">Error Message</th>
+                            <th class="blue-grid-head">Update</th>
+                            <!-- 	<th  class="blue-grid-head">Update</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>What type of plan did you offer this year for this class of employee ?</td>
+                            <td>PCT01</td>
+                            <td id="validation_63">A value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_63">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(63)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>If an employee terminates their employment prior to the last day of the month while enrolled on this plan, will they still be covered under the medical plan through the end of the month?</td>
+                            <td>PCT02</td>
+                            <td id="validation_64">A value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_64">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(64)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Did you offer Minimum Value (MV) coverage to employees?</td>
+                            <td>PCT03</td>
+                            <td id="validation_65">A value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_65">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(65)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>What months did you offer MV coverage?</td>
+                            <td>PCT04</td>
+                            <td id="validation_66">Atleast one month or entire year should be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_66">What months did you offer MV coverage should have atleast one month selected</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(66)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td> Did you offer Minimum Essential coverage to your Employees during this ACA reporting year?</td>
+                            <td>PCT05</td>
+                            <td id="validation_67">A value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_67">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(67)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Select which months during the year did you offer this coverage?</td>
+                            <td>PCT06</td>
+                            <td id="validation_68">Atleast one month or entire year should be selected
+                            </td>
+                            <td><textarea class="form-control" id="error_68">Select which months during the year did you offer this coverage?</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(68)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Did you offer Minimum Essential coverage to Spouses of your Employees during this ACA reporting year?</td>
+                            <td>PCT07</td>
+                            <td id="validation_69">A value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_69">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(69)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Was this offer of coverage conditional? (Example: An offer of coverage not available to a spouse who is employed and offered coverage at their own place of employment)</td>
+                            <td>PCT08</td>
+                            <td id="validation_70">if for 10.3 a yes was selected then a value for 10.3.1 should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_70">Indicate whether the offer of coverage was conditional</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(70)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Did you offer Minimum Essential Coverage to Dependents of Your Employees during the ACA reporting year?</td>
+                            <td>PCT09</td>
+                            <td id="validation_71">a value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_71">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(71)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Please choose a safe harbor for reporting purposes. This safe harbor will apply for this specific plan class only.</td>
+                            <td>PCT10</td>
+                            <td id="validation_72">a value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_72">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(72)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Were employee plan contributions for this class consistent across all employees, versus specific to each employee based upon age, salary or other criteria?</td>
+                            <td>PCT11</td>
+                            <td id="validation_73">a value should have been selected
+                            </td>
+                            <td><textarea class="form-control" id="error_73">A selection needs to be made</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(73)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>What were the lowest cost employee-only premiums each month for all employees in the class?</td>
+                            <td>PCT12</td>
+                            <td id="validation_74">If the value for 11.2 is yes a value must be entered.
+                            </td>
+                            <td><textarea class="form-control" id="error_74">&nbsp;What were the lowest cost employee-only premiums each month for all employees in the class?</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(74)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>What type of plan did you offer this year for this class of employee ?</td>
+                            <td>PCT13</td>
+                            <td id="validation_148"> If the value selected for the 9.3 question is anything other than No Qualifying plan offered or "Multi employer plan", then the question should have additional answers for DOH range.</td>
+                            <td><textarea class="form-control" id="error_148"> If the value selected for the 9.3 question is anything other than No Qualifying plan offered or "Multi employer plan", then the question should have additional answers for DOH range.</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update plan class error" onclick="updateErrormessage(148)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </tab>
+            <tab heading="Payroll Data">
+                <table id="" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="tr-grid-header">
+                            <th class="blue-grid-head" style="width:28%;">Element Name</th>
+                            <th class="blue-grid-head">Error Code</th>
+                            <th class="blue-grid-head" style="width:28%;">Validation</th>
+                            <th class="blue-grid-head">Error Message</th>
+                            <th class="blue-grid-head">Update</th>
+                            <!-- 	<th  class="blue-grid-head">Update</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First Name
+                            </td>
+                            <td>PRD01</td>
+                            <td id="validation_75">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_75">The First Name must be entered.</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(75)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>First Name
+                            </td>
+                            <td>PRD02</td>
+                            <td id="validation_76">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_76">The First Name can not be a .</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(76)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>First Name
+                            </td>
+                            <td>PRD03</td>
+                            <td id="validation_77">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_77">The First Name must be atleast 2 character</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(77)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Last Name
+                            </td>
+                            <td>PRD04</td>
+                            <td id="validation_78">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_78">The Last Name must be entered</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(78)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Last Name
+                            </td>
+                            <td>PRD05</td>
+                            <td id="validation_79">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_79">The Last Name can not be a .</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(79)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Last Name
+                            </td>
+                            <td>PRD06</td>
+                            <td id="validation_80">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_80">The Last Name must be atleast 2 character</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(80)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>SSN
+                            </td>
+                            <td>PRD07</td>
+                            <td id="validation_81">SSN can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_81">SSN cannot be empty</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(81)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>SSN
+                            </td>
+                            <td>PRD08</td>
+                            <td id="validation_82">SSN has to be a 9 digit number
+                            </td>
+                            <td><textarea class="form-control" id="error_82">SSN should be a 9 digit number</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(82)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>SSN
+                            </td>
+                            <td>PRD09</td>
+                            <td id="validation_83">SSN can not have all numbers same ( eg. 000-00-0000, 111-11-1111 etc)
+                            </td>
+                            <td><textarea class="form-control" id="error_83">Invalid ssn please enter a valid ssn</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(83)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Address1
+                            </td>
+                            <td>PRD10</td>
+                            <td id="validation_84">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_84">Address1 can not be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(84)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Address1
+                            </td>
+                            <td>PRD11</td>
+                            <td id="validation_85">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_85">Address1 value can not be just '.'</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(85)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Address1
+                            </td>
+                            <td>PRD12</td>
+                            <td id="validation_86">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_86">Address1 value should be atleast 2 characters</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(86)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>PRD13</td>
+                            <td id="validation_87">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_87">City cannot be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(87)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>PRD14</td>
+                            <td id="validation_88">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_88">City value can not be just '.'</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(88)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>PRD15</td>
+                            <td id="validation_89">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_89">City name should be atleast 2 characters</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(89)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>PRD16</td>
+                            <td id="validation_90">Do not allow special characters
+                            </td>
+                            <td><textarea class="form-control" id="error_90">No special chacaters are allowed</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(90)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>state
+                            </td>
+                            <td>PRD17</td>
+                            <td id="validation_91">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_91">Value cannot be empty</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(91)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>state
+                            </td>
+                            <td>PRD18</td>
+                            <td id="validation_92">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_92">Can only contain 2 characters state name</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(92)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>state
+                            </td>
+                            <td>PRD19</td>
+                            <td id="validation_93">State code should be a any of the valid 51 states
+                            </td>
+                            <td><textarea class="form-control" id="error_93">Not a valid US State</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(93)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>zip
+                            </td>
+                            <td>PRD20</td>
+                            <td id="validation_94">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_94">Zip code cannot be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(94)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>zip
+                            </td>
+                            <td>PRD21</td>
+                            <td id="validation_95">Cannot be &lt; 5 digits
+                            </td>
+                            <td><textarea class="form-control" id="error_95">Zip code cannot be &lt;5 digits</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(95)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>dob
+                            </td>
+                            <td>PRD22</td>
+                            <td id="validation_96">Cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_96">Cannot be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(96)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>dob
+                            </td>
+                            <td>PRD23</td>
+                            <td id="validation_97">Cannot be a future date
+                            </td>
+                            <td><textarea class="form-control" id="error_97">Cannot be a future date of birth</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(97)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>dob
+                            </td>
+                            <td>PRD24</td>
+                            <td id="validation_98">The age cannot be &lt;15
+                            </td>
+                            <td><textarea class="form-control" id="error_98">Age can not be &lt; 15 years</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(98)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Hire Date
+                            </td>
+                            <td>PRD25</td>
+                            <td id="validation_99">Hire date can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_99">Cannot be blank</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(99)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Hire Date
+                            </td>
+                            <td>PRD26</td>
+                            <td id="validation_100">Hire date can not be greater than 31st dec of the current year
+                            </td>
+                            <td><textarea class="form-control" id="error_100">Cannot be a date beyond current reporting year</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(100)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Termination Date
+                            </td>
+                            <td>PRD27</td>
+                            <td id="validation_101">Cannot be lesser than HireDate
+                            </td>
+                            <td><textarea class="form-control" id="error_101">Cannot be a date prior to hire date</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(101)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Medical Plan Class Name
+                            </td>
+                            <td>PRD28</td>
+                            <td id="validation_102">Cannot be empty
+                            </td>
+                            <td><textarea class="form-control" id="error_102">Cannot be empty, please select from your plan class definition</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(102)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>FT/PT Status
+                            </td>
+                            <td>PRD29</td>
+                            <td id="validation_103">Cannot be empty and valid values are PT/FT
+                            </td>
+                            <td><textarea class="form-control" id="error_103">Cannot be empty and enter either PT or FT only</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(103)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>PRD30</td>
+                            <td id="validation_146">Valid city</td>
+                            <td><textarea class="form-control" id="error_146">City entered is not in the state mentioned</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(146)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Employment Period</td>
+                            <td>PRD31</td>
+                            <td id="validation_147">Payroll Data Employment Period Needed</td>
+                            <td><textarea class="form-control" id="error_147">Atleast one employment period needs to be present for this employee</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(147)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Hire Date
+                            </td>
+                            <td>PRD32</td>
+                            <td id="validation_149">Can not have dupliate hire and termination date for same person</td>
+                            <td><textarea class="form-control" id="error_149">Can not have duplicate hire date</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(149)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Hire Date
+                            </td>
+                            <td>PRD33</td>
+                            <td id="validation_151">Hire date and termination date can not be between a hire date and terminiation date</td>
+                            <td><textarea class="form-control" id="error_151">Can not have hire date between another enrollment period</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update payroll data error" onclick="updateErrormessage(151)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </tab>
+            <tab heading="Medical Data">
+                <table id="" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="tr-grid-header">
+                            <th class="blue-grid-head" style="width:28%;">Element Name</th>
+                            <th class="blue-grid-head">Error Code</th>
+                            <th class="blue-grid-head" style="width:28%;">Validation</th>
+                            <th class="blue-grid-head">Error Message</th>
+                            <th class="blue-grid-head">Update</th>
+                            <!-- 	<th  class="blue-grid-head">Update</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First Name
+                            </td>
+                            <td>MPD01</td>
+                            <td id="validation_104">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_104">The First Name must be entered.
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(104)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>First Name
+                            </td>
+                            <td>MPD02</td>
+                            <td id="validation_105">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_105">The First Name can not be a .
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(105)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>First Name
+                            </td>
+                            <td>MPD03</td>
+                            <td id="validation_106">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_106">The First Name must be atleast 2 character </textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(106)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Last Name
+                            </td>
+                            <td>MPD04</td>
+                            <td id="validation_107">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_107">The Last Name must be entered
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(107)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Last Name
+                            </td>
+                            <td>MPD05</td>
+                            <td id="validation_108">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_108">The Last Name can not be a .
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(108)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Last Name
+                            </td>
+                            <td>MPD06</td>
+                            <td id="validation_109">Should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_109">The Last Name must be atleast 2 character
+ </textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(109)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>SSN
+                            </td>
+                            <td>MPD07</td>
+                            <td id="validation_110">SSN can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_110">SSN cannot be empty
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(110)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>SSN
+                            </td>
+                            <td>MPD08</td>
+                            <td id="validation_111">SSN has to be a 9 digit number
+                            </td>
+                            <td><textarea class="form-control" id="error_111">SSN should be a 9 digit number
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(111)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>SSN
+                            </td>
+                            <td>MPD09</td>
+                            <td id="validation_112">SSN can not have all numbers same ( eg. 000-00-0000, 111-11-1111 etc)
+                            </td>
+                            <td><textarea class="form-control" id="error_112">Invalid ssn please enter a valid ssn
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(112)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Address1
+                            </td>
+                            <td>MPD10</td>
+                            <td id="validation_113">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_113">Address1 can not be blank
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(113)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Address1
+                            </td>
+                            <td>MPD11</td>
+                            <td id="validation_114">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_114">address1 value can not be just '.'
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(114)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Address1
+                            </td>
+                            <td>MPD12</td>
+                            <td id="validation_115">should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_115">address1 value should be atleast 2 characters
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(115)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>MPD13</td>
+                            <td id="validation_116">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_116">City cannot be blank
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(116)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>MPD14</td>
+                            <td id="validation_117">Cannot be a '.'
+                            </td>
+                            <td><textarea class="form-control" id="error_117">City value can not be just '.'
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(117)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>MPD15</td>
+                            <td id="validation_118">should be atleast 2 characters
+                            </td>
+                            <td><textarea class="form-control" id="error_118">City name should be atleast 2 characters
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(118)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>MPD16</td>
+                            <td id="validation_119">Do not allow special characters
+                            </td>
+                            <td><textarea class="form-control" id="error_119">No special characters are allowed
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(119)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>state
+                            </td>
+                            <td>MPD17</td>
+                            <td id="validation_120">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_120">Value cannot be empty
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(120)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>state
+                            </td>
+                            <td>MPD18</td>
+                            <td id="validation_121">Only can be 2 character state
+                            </td>
+                            <td><textarea class="form-control" id="error_121">Can only contain 2 characters state name
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(121)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>state
+                            </td>
+                            <td>MPD19</td>
+                            <td id="validation_122">State code should be a any of the valid 51 states
+                            </td>
+                            <td><textarea class="form-control" id="error_122">Not a valid US State
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(122)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>zip
+                            </td>
+                            <td>MPD20</td>
+                            <td id="validation_123">cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_123">Zip code cannot be blank
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(123)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>zip
+                            </td>
+                            <td>MPD21</td>
+                            <td id="validation_124">Cannot be &lt; 5 digits
+                            </td>
+                            <td><textarea class="form-control" id="error_124">Zip code cannot be &lt;5 digits
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(124)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>dob
+                            </td>
+                            <td>MPD22</td>
+                            <td id="validation_125">Cannot be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_125">Cannot be blank
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(125)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>dob
+                            </td>
+                            <td>MPD23</td>
+                            <td id="validation_126">Cannot be a future date
+                            </td>
+                            <td><textarea class="form-control" id="error_126">Cannot be a future date of birth
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(126)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Coverage Start Date
+                            </td>
+                            <td>MPD24</td>
+                            <td id="validation_127">Cannot be empty
+                            </td>
+                            <td><textarea class="form-control" id="error_127">Cannot be empty
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(127)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Coverage Start Date
+                            </td>
+                            <td>MPD25</td>
+                            <td id="validation_128">Coverage start date can not be greater than 31st dec of the current year
+                            </td>
+                            <td><textarea class="form-control" id="error_128">Cannot be a date beyond current reporting year
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(128)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Coverage Start Date
+                            </td>
+                            <td>MPD26</td>
+                            <td id="validation_129">can not be greater than coverage end date
+                            </td>
+                            <td><textarea class="form-control" id="error_129">can not be beyond coverage end date
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(129)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Coverage Start Date
+                            </td>
+                            <td>MPD27</td>
+                            <td id="validation_130">additional coverage start date can not be between a enrollment Period
+                            </td>
+                            <td><textarea class="form-control" id="error_130">additional coverage start date can not be between a enrollment Period
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(130)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Coverage End Date
+                            </td>
+                            <td>MPD28</td>
+                            <td id="validation_131">A coverage end date can not be between a enrollement period
+                            </td>
+                            <td><textarea class="form-control" id="error_131">A coverage end date can not be between a enrollement period
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(131)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Person Type
+                            </td>
+                            <td>MPD29</td>
+                            <td id="validation_132">Need to be one of "Employee" or "Dependent of Employee" or "Non Employee enrolled", or "Dependent of non employee enrolled"
+                            </td>
+                            <td><textarea class="form-control" id="error_132">Need to be one of "Employee" or "Dependent of Employee" or "Non Employee enrolled", or "Dependent of non employee enrolled"
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(132)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Connected Employee SSN
+                            </td>
+                            <td>MPD30</td>
+                            <td id="validation_133">If person type is anything but employee then this is required
+                            </td>
+                            <td><textarea class="form-control" id="error_133">Please enter a value for SSN
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(133)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Connected Employee SSN
+                            </td>
+                            <td>MPD31</td>
+                            <td id="validation_134">SSN can not be blank
+                            </td>
+                            <td><textarea class="form-control" id="error_134">SSN cannot be empty
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(134)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Connected Employee SSN
+                            </td>
+                            <td>MPD32</td>
+                            <td id="validation_135">SSN has to be a 9 digit number
+                            </td>
+                            <td><textarea class="form-control" id="error_135">SSN should be a 9 digit number
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(135)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Connected Employee SSN
+                            </td>
+                            <td>MPD33</td>
+                            <td id="validation_136">SSN can not have all numbers same ( eg. 000-00-0000, 111-11-1111 etc)
+                            </td>
+                            <td><textarea class="form-control" id="error_136">Invalid ssn please enter a valid ssn
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(136)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Use Dependent DOB
+                            </td>
+                            <td>MPD34</td>
+                            <td id="validation_137">If person type is not employee and social is not entered this is required
+                            </td>
+                            <td><textarea class="form-control" id="error_137">If person type is not employee and social is not entered this is required
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(137)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>DOB
+                            </td>
+                            <td>MPD35</td>
+                            <td id="validation_138">If use dependent dob is selected then DOB cannot be blank, can not give a future date
+                            </td>
+                            <td><textarea class="form-control" id="error_138">DOB cannot be blank
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(138)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>DOB
+                            </td>
+                            <td>MPD36</td>
+                            <td id="validation_139">DOB cannot be a future date
+                            </td>
+                            <td><textarea class="form-control" id="error_139">DOB cannot be a future date
+</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(139)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>Coverage Start Date
+                            </td>
+                            <td>MPD37</td>
+                            <td id="validation_153">Can not have dupliate coverage start and coverage end date for same person</td>
+                            <td><textarea class="form-control" id="error_153">Can not have dupliate coverage start date for same person</textarea></td>
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(153)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+                        <tr>
+                            <td>city
+                            </td>
+                            <td>MPD38</td>
+                            <td id="validation_155">Valid City</td>
+                            <td><textarea class="form-control" id="error_155">City entered is not in the state mentioned</textarea></td>
+
+                            <td style="text-align: center;"><a data-toggle="tooltip" data-placement="bottom" title="Click to update medical data error" onclick="updateErrormessage(155)"><i class="fa fa-floppy-o" style="cursor: pointer;"></i></a></td>
+                            <!-- 		<td style="text-align: center;"><a
+												href="admin/company/editform"><i
+													class="fa fa-edit" style="cursor: pointer;"></i></a></td>
+											-->
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </tab>
+        </tabset>
+    </div>
+</div>

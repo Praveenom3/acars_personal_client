@@ -1,0 +1,130 @@
+.form-control{
+	    height: 34px;
+}
+
+.panel .left-panel-body{
+	padding: 15px;
+}
+
+.menu-dropdown-active > a{
+    background-color: #f7971e;
+    font-size: 14px;
+    border-color: #f7971e;
+    padding: 4px 11px;
+    outline: none !important;
+    line-height: 1.7;
+    border-radius: .2rem;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    color: white !important;
+}
+
+.menu-dropdown-active.dropdown.dropdown-avatar .dropdown-toggle:after{
+	color: #fff;
+}
+
+/* tables css */
+tr.tr-text-center{
+    text-align: center
+}
+
+tr.tr-blue-grid-head{    
+    background-color: #13a9cc;
+    color: #fff !important;
+}
+
+tr.tr-blue-grid-head > th{
+    text-align: center;
+}
+/* ./tables css */
+
+.widget-two .widget-header-11{
+    padding: 11px 25px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 1px solid #eceff4;
+}
+
+.widget-tools{
+    padding-top: 3px;
+}
+
+.widget-tools i:focus, .widget-tools i:hover{
+    font-size: 21px !important;
+    width: unset !important;
+    color: #31B3D1 !important;
+}
+
+.link-blue{
+    color: #31B3D1;
+    cursor: pointer;
+}
+
+.link-blue-underline{
+    color: #31B3D1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+i:focus, i:hover{
+    font-size: unset !important;
+    width: unset !important;
+}
+
+/* icons */
+.excel-icon { 
+    background: url(../images/icons/applications/ms-excel.png);
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    display: block;
+}
+.pdf-icon { 
+    background: url(../images/icons/applications/pdf.png);
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    display: block;
+}
+/* ./icons */
+
+/* header */
+.media-hide-header i.fa-home, .media-hide-header i.fa-home:hover, .media-hide-header i.fa-home:active{
+    font-size: 33px !important;
+}
+
+.home-page-active .fa-home{
+    color: #f7971e;
+}
+
+.menu-user-block.dropdown-menu-active > div > a {
+        background-color: #f7971e;
+    font-size: 14px;
+    border-color: #f7971e;
+    padding: 4px 11px;
+    outline: none !important;
+    line-height: 1.7;
+    border-radius: .2rem;
+    display: inline-block;
+    font-weight: 400;
+    /* text-align: center; */
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    color: white !important;
+}
+
+body.body-blue .dropdown-menu .dropdown-item.page-active{
+    background: #f7971e;
+    color: #fdfdfd;
+    border: 1px solid #ddd;
+}
+
+/* ./header */

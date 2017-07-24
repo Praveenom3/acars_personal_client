@@ -1,0 +1,203 @@
+<!--<nav class="left-menu" left-menu>
+    <div class="logo-container">
+        <a href="#/dashboards/alpha" class="logo">
+            <img src="../assets/common/img/logo.png" alt="Clean UI Admin Template" />
+            <img class="logo-inverse" src="../assets/common/img/logo-inverse.png" alt="Clean UI Admin Template" />
+        </a>
+    </div>
+    <div class="left-menu-inner scroll-pane">
+        <ul class="left-menu-list left-menu-list-root list-unstyled">
+            <li class="left-menu-list-submenu">
+                <a class="left-menu-link" routerLinkActive="active" [routerLink]="['admin/manage-e-file']">
+                    <i class="left-menu-link-icon icmn-cog util-spin-delayed-pseudo"></i>
+                    <span class="menu-top-hidden">Manage E file</span>
+                </a>
+                <li>
+                    <a class="left-menu-link" href="#/documentation/index">
+                        <i class="left-menu-link-icon icmn-books"></i> Documentation
+                    </a>
+                </li>
+                <li>
+                    <a class="left-menu-link" href="#/dashboards/alpha">
+                        <i class="left-menu-link-icon icmn-home2"></i>
+                        <span class="menu-top-hidden">Dashboard</span> Alpha
+                    </a>
+                </li>
+                <li>
+                    <a class="left-menu-link" href="#/dashboards/beta">
+                        <i class="left-menu-link-icon icmn-home2"></i>
+                        <span class="menu-top-hidden">Dashboard</span> Beta
+                    </a>
+                </li>
+                <li class="left-menu-list-submenu">
+                    <a class="left-menu-link" href="javascript: void(0);">
+                        <i class="left-menu-link-icon icmn-files-empty2"></i> Default Pages
+                    </a>
+                </li>
+        </ul>
+    </div>
+</nav>
+<!-- left scroll menu start(in tab size)-->
+<nav class="left-menu media-hide" left-menu>
+    <!--logo image start -->
+    <div class="logo-container">
+        <a href="#" class="logo" style="max-width:none;height:auto;">
+            <img src="/assets/images/client_logo.png" alt="Benefits Client Template" style="height:44px;" />
+            <img class="logo-inverse" src="" alt="Clean UI Admin Template" />
+        </a>
+    </div>
+    <!--logo image end -->
+
+    <div class="left-menu-inner scroll-pane">
+        <ul class="left-menu-list left-menu-list-root list-unstyled">
+            <li>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="['/client/dashboard']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+            </li>
+            <li>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/client/search']"><b>Search</b></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- left scroll menu start(in tab size)-->
+<!-- left end header start-->
+
+<nav class="top-menu transistion top-nav">
+    <div class="menu-icon-container items-class hidden-md-up">
+        <div class="animate-menu-button left-menu-toggle">
+        </div>
+    </div>
+    <div class="menu-icon-container image-class hidden-md-up margin-15">
+        <div class="">
+            <img src="/assets/images/client_logo.png" class="max-width-140" alt="Benefits Client Template">
+        </div>
+    </div>
+    <div class="menu transistion-menu header-top col-md-10 masterhead padding-left-0  media-hide-header">
+        <div class="logo-container col-md-2  media-hide-header">
+            <a href="#" class="logo" style="max-width:none;height:auto;">
+                <img src="/assets/images/client_logo.png" style="height:44px;" class="width-198 img-transistion" alt="Benefits Client Template" />
+
+            </a>
+        </div>
+        <ul class="actions  media-hide-header">
+            <li>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="['/client/aca16/companies']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+            </li>
+            <li>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/client/search']"><b>Search</b></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile" id="profile_details">
+        <div class="menu-user-block col-md-12">
+            <div class="dropdown dropdown-avatar pull-right">
+                <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false"> <span class="header-name media-hide-profilename"><span class="font-14">Welcome</span> Alex<span class="font-14"></span></span>
+                </a>
+                <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:16px !important;">
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/profile']"><i
+						class="dropdown-icon icmn-user"></i> Profile</a>
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/messages']"><i
+						class="dropdown-icon fa fa-comments-o"></i> Messages</a>
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/purchases']"><i
+						class="dropdown-icon fa fa-shopping-cart"></i> Purchases</a>
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/activity-log']"><i
+						class="dropdown-icon fa fa-list"></i> Activity Log</a>
+                    <a class="dropdown-item dropdown-a color-white" href="#change_password_modal" role="button" data-toggle="modal"><i
+						class="dropdown-icon fa fa-repeat"></i> Change Password</a>
+                    <div class="dropdown-divider margin-0"></div>
+                    <a class="dropdown-item dropdown-a color-white" href="#"><i
+						class="dropdown-icon icmn-exit"></i> Logout</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</nav>
+<section class="page-content-lg page-content-0-lg padding-0 back-lightblue">
+    <div class="page-content-inner">
+        <div class="col-md-12 blue-breadcrumb-plans" align="center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
+                <div class="nav-tabs-horizontal">
+                    <ul class="nav nav-tabs border-bottom display-inblock" role="tablist">
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " [ngClass]="vht" (click)="changeStyle('vht')" [routerLink]="['/client/vht']">Variable Hour Tracking</a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " [ngClass]="aca16" (click)="changeStyle('aca16')" [routerLink]="['/client/aca16/companies']">2016 ACA Reporting</a></li>
+
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white dropdown-icon-li no-wrap " [ngClass]="aca17" (click)="changeStyle('aca17')" [routerLink]="['/client/aca17/companies']">2017 ACA Reporting</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</section>
+
+<!-- change password modal -->
+
+<div class="modal fade" id="change_password_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Change Password
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">Email:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <span class="form-control">alex@gmail.com</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">Current Password:<span class="red">*</span></label>
+                    </div>
+                    <div class="col-sm-8">
+
+                        <input type="password" class="form-control add-member-input" placeholder="Current Password.." id="current-password" name="oldpass"> <span class="error-msg red" id="current-password-error"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">New Password:<span class="red">*</span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control add-member-input" placeholder="New Password.." id="new-password" name="newpass"> <span class="error-msg red" id="new-password-error"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control add-member-input" placeholder="Confirm Password.." id="new-confirm-password" name="repeatnewpass"> <span class="error-msg red" id="confirm-password-error"></span> <label class="error-msg"
+                            id="display-password-error"></label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer footer-background">
+
+                <a href="" class="btn btn-modal-blue">
+								Save  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./change password modal -->

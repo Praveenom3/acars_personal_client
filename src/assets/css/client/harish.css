@@ -1,0 +1,127 @@
+body.body-blue nav.top-menu+.page-content-0-lg {
+    margin-top: 64px !important;
+}
+
+nav.left-menu+*+.page-content-lg {
+    margin-left: 0px;
+}
+
+.page-content-lg {
+    padding: 25px;
+    -webkit-transition: opacity 0s ease-in-out;
+    -o-transition: opacity 0s ease-in-out;
+    transition: opacity 0s ease-in-out;
+    opacity: 1;
+}
+
+.blue-breadcrumb-plans {
+    background-color: #13a9cc;
+    height: 51px;
+    z-index: 90;
+    position: fixed;
+    width: 100%;
+}
+
+.nav-tabs-horizontal .nav-tabs .nav-item .plan-link.active {
+    background: none !important;
+}
+
+body.body-blue .plan-link.active,
+.plan-link:hover {
+    color: white !important;
+}
+
+.nav-tabs-horizontal .nav-tabs .nav-item .nav-link.active:hover {
+    border-bottom-color: #FFF !important;
+}
+
+.nav-tabs-horizontal .nav-tabs .nav-item .nav-link:hover {
+    color: #FFF !important;
+}
+
+.page-header-band-search-client {
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    top: 115px;
+    z-index: 99;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 13px;
+    padding-top: 12px;
+}
+
+.categoryButton-client {
+    display: inline-block;
+    font: 13.3333px Arial;
+    letter-spacing: .3px !important;
+}
+
+.categoryButton-client {
+    font-size: 13px !important;
+    line-height: 26px !important;
+    height: 27px !important;
+    width: 29px !important;
+    min-width: 29px !important;
+    border-radius: 2px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    margin: 1px;
+    border: none;
+    background-color: #13a9cc!important;
+}
+
+.categoryButton-client:hover {
+    background-color: #003083 !important;
+}
+
+app-client-layout.section-container {
+    position: relative;
+    top: 73px;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.nav-tabs-horizontal .nav-tabs .nav-item .nav-link.active,
+.nav-tabs-horizontal .nav-tabs .nav-item .nav-link:focus {
+    border-bottom-color: #FFF !important;
+}
+
+.nav-tabs-horizontal .nav-tabs .nav-item .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+.padding41 {
+    padding: 23px 0px 39px 18px;
+}
+
+app-client-layout .section-container .left-small-box p {
+    font-size: 14px;
+}
+
+.paddingTopBottom35 {
+    padding: 35px 0px 35px 0px;
+}
+
+.paddingTopBottom10 {
+    padding: 10px 0px 10px 0px;
+}
+
+.padding-left-10 {
+    padding-left: 10px;
+}
+
+.mar-top-bottom {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.plan-div-margin {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+}
+
+.select2 .select2-selection--multiple {
+    height: 34px;
+    min-height: 35px;
+}

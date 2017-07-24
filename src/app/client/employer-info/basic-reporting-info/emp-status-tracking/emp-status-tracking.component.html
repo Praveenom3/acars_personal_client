@@ -1,0 +1,136 @@
+<div class="product-container col-md-12 pull-left width-100">
+
+	<!-- company info -->
+	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
+		<div class="pull-right">
+			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
+		</div>
+		<h5 class="cat__core__title d-block mb-0 pt-3">
+			<span> Name: <span class="text-muted">Cargo Force</span></span>
+			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
+			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
+		</h5>
+	</nav>
+	<!-- ./company info -->
+
+	<div class="">
+		<div class="col-md-12 border-ddd widget padding-0">
+
+      <!-- Main Tabs -->
+			<div class="search-header padding-10">
+				<ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
+					<li class="col-md-1"></li>
+					<li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
+						<p class="font-white margin-0">Basic Reporting Info</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
+						<p class="font-white margin-0">Benefit Plan Info</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
+						<p class="font-white margin-0">Plan Classes</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+						<p class="font-white margin-0 ">Payroll</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+						<p class="font-white margin-0 ">Enrollments</p></li>
+					<li class="col-md-1"></li>
+				</ul>
+			</div>
+      <!-- ./Main Tabs -->
+
+    
+			<div class="tab-content clearfix">
+				<div aria-expanded="true" class="tab-pane active" id="account_setup_block">
+          <!-- Sub category Tabs -->
+					<div class="col-md-12  padding-10 ul-block">
+						<ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                  <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><div class="inner-block-digits pull-left">1</div>
+									<span class="inner-block-text">Basic Info</span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']"><div class="inner-block-digits pull-left">2</div>
+									<span class="inner-block-text">Large Emp. Status & Tracking</span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']"><div class="inner-block-digits pull-left ">3</div>
+									<span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+								</span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']"><div class="inner-block-digits pull-left ">4</div>
+									<span class="inner-block-text">Designated Govt. Entity </span></a></li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']"><div class="inner-block-digits pull-left ">5</div>
+									<span class="inner-block-text">Aggregated Group</span></a>
+							</li>
+							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']"><div class="inner-block-digits pull-left ">6</div>
+									<span class="inner-block-text">Anything Else</span></a>
+							</li>
+						</ul>
+					</div>
+          <!-- ./Sub category Tabs -->
+
+
+					<div class="col-md-12 padding-0">
+						<div class="tab-content clearfix">
+							<div class="tab-pane active " id="planbasics" role="tabpanel">
+								
+								<form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+									<div class="border-top-bottom-ddd col-md-12 padding-0">
+										<div class="container margin-top-30 margin-bottom-10">
+
+											<!-- form content -->
+											<div class="col-md-12">
+										
+											<div class="col-xs-12">
+												<div class="form-group">
+													<span class="control-label"><div><label>2.1&nbsp;&nbsp;&nbsp;Are you an Applicable Large Employer (ALE) ?</label></div> <input type="radio" name="TblAcaEmpStatusTrack[ale_applicable]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+
+														<input type="radio" name="TblAcaEmpStatusTrack[ale_applicable]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+													</span>
+												</div>
+											</div>
+												
+											<div class="col-sm-6">
+												<div class="form-group">
+													<span class="control-label"><div><label>2.2&nbsp;&nbsp;&nbsp;Is this your first year as Applicable Large Employer (ALE) ?</label></div>
+														<input type="radio" name="TblAcaEmpStatusTrack[ale_first_applicable]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="radio" name="TblAcaEmpStatusTrack[ale_first_applicable]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+													</span>
+												</div>
+											</div>
+
+											<div class="col-sm-12">
+												<div class="form-group">
+													<span class="control-label"><label>2.3&nbsp;&nbsp;&nbsp;Which of these two categories applied to your company last year (year prior to this current reporting year) ?</label>
+														<div style="margin-bottom: 0px;">
+															<input type="radio" name="TblAcaEmpStatusTrack[ale_category]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;An ALE
+																with fewer than 100 full time employees (including full
+																time equivalent employees).</span>
+														</div>
+														<div style="margin-top: 0px;">
+															<input type="radio" name="TblAcaEmpStatusTrack[ale_category]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;An ALE
+																with more than 100 full time employees (including full
+																time equivalent employees).</span>
+														</div> </span>
+
+												</div>
+											</div>
+									</div>
+											<!-- ./form content -->
+											
+											
+										</div>
+									</div>
+									<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+										<div class="modal-footer-btn padding-15">
+											<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+											<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
+											<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

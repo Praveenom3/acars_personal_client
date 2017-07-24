@@ -1,0 +1,209 @@
+<!--<nav class="left-menu left-small-nav" id="left-nav">
+    <div class="left-menu-inner scroll-pane">
+        <ul class="left-menu-list left-menu-list-root list-unstyled left-small-nav-ul">
+            <li class="text-center">
+                <a class="left-menu-link" [routerLink]="['/admin/orders']" [routerLinkActive]="['left-nav-active']">
+                    <i class="left-menu-link-icon fa fa-list-alt"></i><br>Orders
+                </a>
+            </li>
+            <li class="text-center">
+                <a class="left-menu-link" [routerLink]="['/admin/manage-e-files']" [routerLinkActive]="['left-nav-active']">
+                    <i class="left-menu-link-icon fa fa-television"></i><br>Manage E Files
+                </a>
+            </li>
+            <li class="text-center">
+                <a class="left-menu-link" [routerLink]="['/admin/jobs']" [routerLinkActive]="['left-nav-active']">
+                    <i class="left-menu-link-icon fa fa-tasks"></i><br>Scheduled Jobs
+                </a>
+            </li>
+            <li class="text-center" style="min-height: 254px;border-right:1px solid #DDD;">
+            </li>
+        </ul>   
+    </div>
+</nav>-->
+
+av>
+<!-- left scroll menu start(in tab size)-->
+<!-- left end header start-->
+
+<nav class="top-menu transistion top-nav">
+    <div class="menu-icon-container items-class hidden-md-up">
+        <div class="animate-menu-button left-menu-toggle" [class.active]="isLinkActive" (click)="toggleClass()">
+            <div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-icon-container image-class hidden-md-up margin-15">
+        <div class="">
+            <img src="/assets/images/ACA-Reporting-Logo.png" class="max-width-140" alt="">
+        </div>
+    </div>
+
+    <div class="menu transistion-menu header-top col-md-10 masterhead padding-left-0  media-hide-header">
+        <div class="logo-container col-md-2  media-hide-header">
+            <a href="#" class="logo" style="max-width:none;height:auto;">
+                <img src="/assets/images/ACA-Reporting-Logo.png" style="height:44px;" class="width-198 img-transistion" alt="" />
+            </a>
+        </div>
+        <ul class="actions media-hide-header">
+            <li>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/dashboard']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+            </li>
+            <li>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/admin/search']"><b>Search</b></a>
+            </li>
+              <li>
+                <div class="menu-user-block" [routerLinkActive]="['dropdown-menu-active']">
+                    <div class="dropdown">
+                        <a href="javascript: void(0);" class="dropdown-toggle disable-hover" data-toggle="dropdown" aria-expanded="false"><b>Actions</b>
+				         </a>
+
+                        <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0" aria-labelledby="" role="menu">
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/orders']" [routerLinkActive]="['page-active']">
+                           Orders
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/manage-e-files']" [routerLinkActive]="['page-active']">
+                            Manage E-files
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/jobs']" [routerLinkActive]="['page-active']">
+                            Scheduled Jobs
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/error-log']" [routerLinkActive]="['page-active']">
+                            Error Log
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/activity-log']" [routerLinkActive]="['page-active']">
+                            Activity Log
+                        </a>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="menu-user-block" [routerLinkActive]="['dropdown-menu-active']">
+                    <div class="dropdown">
+                        <a href="javascript: void(0);" class="dropdown-toggle disable-hover" data-toggle="dropdown" aria-expanded="false"><b> Master Data</b>
+				         </a>
+
+                        <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0" aria-labelledby="" role="menu">
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/manage-brands']" [routerLinkActive]="['page-active']">
+                           Manage Brands
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/products']" [routerLinkActive]="['page-active']">
+                            Manage Products
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/lookup-options']" [routerLinkActive]="['page-active']">
+                            Lookup Options
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/account-settings']" [routerLinkActive]="['page-active']">
+                           Account Settings
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/element-master']" [routerLinkActive]="['page-active']">
+                         Element Master
+                        </a>
+
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/code-calculator']" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
+                         Code Calculator
+                        </a>
+                           <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/error-master']" [routerLinkActive]="['page-active']">
+                      Error Master
+                       </a>
+                         
+
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
+
+                          Form Pricing
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/email-templates']" [routerLinkActive]="['page-active']">
+                            Email Templates
+                        </a>
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/videos']" [routerLinkActive]="['page-active']">
+                       Videos
+                        </a>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile" id="profile_details">
+        <div class="menu-user-block col-md-12">
+            <div class="dropdown dropdown-avatar pull-right">
+                <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false"> <span class="header-name media-hide-profilename"><span class="font-14">Welcome</span> Admin<span class="font-14"></span></span>
+                </a>
+                <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:15px !important;">
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/profile']"><i
+						class="dropdown-icon icmn-user"></i> Profile</a>
+                    <div class="dropdown-divider margin-0"></div>
+                    <a class="dropdown-item dropdown-a color-white cursor-pointer" (click)="staticModal.show()"><i
+						class="dropdown-icon fa fa-repeat"></i> Change Password</a>
+                    <div class="dropdown-divider margin-0"></div>
+                    <a class="dropdown-item dropdown-a color-white" href="#"><i
+						class="dropdown-icon icmn-exit"></i> Logout</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</nav>
+<section class="page-content page-content-0 padding-0 back-lightblue">
+    <div class="page-content-inner">
+        <router-outlet></router-outlet>
+    </div>
+</section>
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"  role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+                <h4 class="modal-title pull-left color-white">Change Password</h4>
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="staticModal.hide()" aria-hidden="true">×</button>
+                <!--<button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+            </div>
+            <div class="modal-body row">
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">Email:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <span class="form-control">admin@aca.com</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">Current Password:<span class="red">*</span></label>
+                    </div>
+                    <div class="col-sm-8">
+
+                        <input type="password" class="form-control add-member-input" placeholder="Current Password.." id="current-password" name="oldpass"> <span class="error-msg red" id="current-password-error"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">New Password:<span class="red">*</span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control add-member-input" placeholder="New Password.." id="new-password" name="newpass"> <span class="error-msg red" id="new-password-error"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-sm-4 add-mem">
+                        <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control add-member-input" placeholder="Confirm Password.." id="new-confirm-password" name="repeatnewpass"> <span class="error-msg red" id="confirm-password-error"></span> <label class="error-msg"
+                            id="display-password-error"></label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="border-top: none;">
+                <button type="button" class="btn btn-primary" id="chng_pwd_btn">Save
+					Changes</button>
+                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

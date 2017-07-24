@@ -1,0 +1,370 @@
+<div class="product-container col-md-12 pull-left width-100">
+
+	<!-- company info -->
+	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
+		<div class="pull-right">
+			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
+		</div>
+		<h5 class="cat__core__title d-block mb-0 pt-3">
+			<span> Name: <span class="text-muted">Cargo Force</span></span>
+			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
+			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
+		</h5>
+	</nav>
+	<!-- ./company info -->
+
+	<div class="">
+		<div class="col-md-12 border-ddd widget padding-0">
+
+      <!-- Main Tabs -->
+			<div class="search-header padding-10">
+				<ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
+					<li class="col-md-1"></li>
+					<li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
+						<p class="font-white margin-0">Basic Reporting Info</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
+						<p class="font-white margin-0">Benefit Plan Info</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
+						<p class="font-white margin-0">Plan Classes</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+						<p class="font-white margin-0 ">Payroll</p></li>
+					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+						<p class="font-white margin-0 ">Enrollments</p></li>
+					<li class="col-md-1"></li>
+				</ul>
+			</div>
+      <!-- ./Main Tabs -->
+
+    
+			<div class="tab-content clearfix">
+				<div aria-expanded="true" class="tab-pane active" id="account_setup_block">
+					
+					<div class="col-md-12 padding-0">
+						<div class="tab-content clearfix">
+							<div class="tab-pane active " id="planbasics" role="tabpanel">
+								
+								<!-- Page Content -->
+								 <div class="col-md-12 padding-0">
+                                    <div class="row pull-right" style="padding: 10px 17px;">
+										<a class="btn btn-modal-blue "><i class="fa fa-download"></i> Download Payroll Template</a>
+										<a class="btn btn-modal-blue" href="#upload_payroll_modal" role="button" data-toggle="modal"><i class="fa fa-upload"></i> Upload Payroll Template</a>
+                                        <!--<a class="btn btn-modal-blue" [routerLink]="['/client/employer-info/payroll/add-payroll']" ><i class="fa fa-plus"></i> Add Payroll Data</a>-->
+                                    </div>
+                                    <div class="panel panel-primary">
+                                        <div class="table-responsive kv-grid-container" style="overflow: auto">
+                                            <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="blue-grid-head"><a>First Name</a></th>
+                                                        <th class="blue-grid-head"><a>Last Name</a></th>
+                                                        <th class="blue-grid-head"><a>SSN</a></th>
+                                                        <th class="blue-grid-head"><a>Address 1</a></th>
+                                                        <th class="blue-grid-head"><a>Address 2</a></th>
+                                                        <th class="blue-grid-head"><a>City</a></th>
+                                                        <th class="blue-grid-head"><a>State</a></th>
+                                                        <th class="blue-grid-head"><a>ZIP</a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mark</td>
+                                                        <td>Combs</td>
+                                                        <td>111-44-5555</td>
+                                                        <td><a class="link-blue-underline">14 Animal Drive</a></td>
+                                                        <td>Suite 7</td>
+                                                        <td>Greenville</td>
+                                                        <td>SC</td>
+                                                        <td>11114</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-3 padding10">
+                                                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 10 of 55 entries</div>
+                                            </div>
+                                            <div class="col-md-9 text-right">
+                                                <ul class="pagination">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                                            <span>First</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                                            <span aria-hidden="true">
+                                                                        <i class="fa fa-arrow-left"></i>
+                                                                    </span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                                            <span aria-hidden="true">
+                                                                        <i class="fa fa-arrow-right"></i>
+                                                                    </span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                                            <span>Last</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<!-- ./Page Content -->
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+    .my-drop-zone { border: dotted 3px lightgray; }
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+</style>
+
+
+
+
+<!-- Payroll modal -->
+
+<div class="modal fade" id="upload_payroll_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                   Upload Payroll Data
+                </h4>
+            </div>
+            <div class="modal-body row">
+               
+      
+ 
+ 
+    
+ 
+        <div class="col-md-12">
+ 
+            
+ 
+            <div ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                            Drop Files
+            </div>
+ <input type="file" ng2FileSelect [uploader]="uploader" />
+            <!--<div ng2FileDrop
+                 [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
+                 (fileOver)="fileOverAnother($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                Another drop zone
+            </div>
+ 
+            Multiple
+            <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+ 
+            Single
+            <input type="file" ng2FileSelect [uploader]="uploader" /> -->
+        </div>
+ 
+        <!--<div class="col-md-12" style="margin-bottom: 40px">
+ 
+            <h3>Upload queue</h3>
+            <p>Queue length: {{ uploader?.queue?.length }}</p>
+ 
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th>Size</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+                    <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                    <td *ngIf="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs"
+                                (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+ 
+            <div>
+                <div>
+                    Queue progress:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>
+            </div>
+ 
+        </div>-->
+ 
+   
+ 
+
+
+            
+ 
+            </div>
+            <div class="modal-footer footer-background">
+
+                <a href="" class="btn btn-modal-blue">
+								Submit  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./payroll modal -->

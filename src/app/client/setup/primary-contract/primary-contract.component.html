@@ -1,0 +1,69 @@
+<div class="row section-container">
+    <div class="col-md-8 col-md-offset-2  border-ddd widget padding-15 box-shadow widget-six">
+        <h1 class="fontcolor-blue margin-bottom-20">Welcome Mark Combs</h1>
+        <div class="row">
+            <div class="col-md-8 font-18">
+                <p class="margin-bottom-5">Help us setup your account..</p>
+                <p>Are you the Primary Contact?</p>
+            </div>
+            <div class="col-md-4 padding-top-14" align="right">
+                <a [routerLink]="['/client/setup/agreement']" class="btn btn-primary btn-blue">Yes</a>
+                <a (click)="setup()" class="btn btn-default">No</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2  border-ddd widget padding-15" *ngIf="isSetup">
+         <div class="col-md-12">
+            <h6 class="action_head">Please enter the primary contact information: </h6>
+            <hr>
+         </div>
+        <form action="" enctype="multipart/form-data " id="w0" method="post ">
+            <div class="col-md-12 padding-0 ">
+                <div class="col-md-4 ">
+                    <label class="form-control-label ">First Name <span class="red">*</span></label>
+                    <div class="form-group field-adminusers-first_name ">
+                        <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] " onkeypress="return username(event); " type="text ">
+                        <div class="help-block "></div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <label class="form-control-label ">Last Name <span class="red">*</span></label>
+                    <div class="form-group field-adminusers-last_name ">
+                        <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] " type="text ">
+                        <div class="help-block "></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0 ">
+                <div class="col-md-4 ">
+                    <div class="form-group field-user-username ">
+                        <label class="form-control-label " for="user-username ">Email Address <span class="red">*</span></label>
+                        <input type="email" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <label class="form-control-label ">Phone <span class="red">*</span></label>
+                    <div class="form-group field-adminusers-phone ">
+                        <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] " placeholder="(___) ___-____ " type="text ">
+                        <div class="help-block "></div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <label class="form-control-label ">Extension <span class="red">*</span></label>
+                    <div class="form-group field-adminusers-extension ">
+                        <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text " value=" ">
+                        <div class="help-block "></div>
+                    </div>
+                </div>
+            </div>
+            <div align="right" class="col-md-12 padding-0 bg-sky-blue border-ddd" style="border-top: none;">
+                <div class="modal-footer-btn padding-15">
+                    <button class="btn btn-primary btn-blue" [routerLink]="['/client/setup/agreement']">Save</button> <a class="btn btn-default" (click)="close()"> Cancel </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+        <button class="btn btn-primary btn-blue pull-right" [routerLink]="['/client/setup/contract-signor']"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</button>
+    </div>
+</div>

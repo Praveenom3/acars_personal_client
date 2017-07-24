@@ -1,0 +1,69 @@
+.product-container{
+    top:51px;
+    padding: 16px;
+}
+
+.margin-top-30{
+    margin-top: 30px;
+}
+
+.margin-top-5{
+    margin-top: 5px;
+}
+
+label{
+    font-weight: 400;
+}
+
+.vertical-checkbox .checkbox{
+    display:block;
+}
+
+.link-bg-blue{
+    background-color: #31B3D1;
+    color: #fff;
+    padding: 3px 5px;
+}
+
+.btn.btn-outline-primary, .show>.btn.btn-outline-primary {
+    border-color: #13a9cc;
+    color: #13a9cc;
+}
+
+.btn.btn-outline-primary:active, .btn.btn-outline-primary:hover, .show>.btn.btn-outline-primary:active, .show>.btn.btn-outline-primary:hover {
+    background-color: #13a9cc;
+    border-color: #13a9cc;
+    color: #fff;
+}
+
+.mb-0{
+    margin-bottom: 0px;
+}
+
+.pt-3{
+    padding-top: 3px; 
+}
+
+body.body-blue nav.top-menu+.page-content-0-lg {
+    margin-top:0px !important;
+    top: 64px !important;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.font-18{
+    font-size: 18px;
+}
+
+.left-small-box tbody:before {
+    content: "-";
+    display: block;
+    line-height: 0.2em;
+    color: transparent;
+}
+
+.companies-list-acc .panel .panel-heading{
+    line-height: 1;
+}

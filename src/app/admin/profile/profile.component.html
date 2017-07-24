@@ -1,0 +1,133 @@
+<!--  View For Lookup screen-->
+<div class="page-header-band-breadcrumbs">
+    <!--  For Bread Crumb-->
+    <div class="blue-breadcrumb col-md-12 padding-0">
+        <a class="breadcrumb-back-btn cursor-pointer">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <ul class="list-unstyled breadcrumb header-breadcrumb">
+            <li>
+                <a href="javascript: void(0);">Home</a>
+            </li>
+            <li>
+                <a href="javascript: void(0);">Profile</a>
+            </li>
+        </ul>
+    </div>
+    <!-- End For Bread Crumb-->
+</div>
+
+<div class="section-container">
+    <!--  <div class="form-group" align="right">
+        <a class="btn  btn-modal-blue" [routerLink]="['/admin/profile/add-admin-user']"><i class="fa fa-plus" aria-hidden="true"></i> Add Admin User</a>
+    </div> -->
+    <div class="col-md-12  padding-0 alert-div">
+    </div>
+    <form id="w0" method="post" enctype="multipart/form-data">
+        <div class="col-md-12 border-ddd widget padding-15">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-4">
+                    <div class="">
+                        <label class="form-control-label">First Name*</label>
+                        <div class="form-group field-adminusers-first_name required">
+
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" value="Admin" maxlength="15" onkeypress="return username(event);" aria-required="true">
+
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="">
+                        <label class="form-control-label">Last Name*</label>
+                        <div class="form-group field-adminusers-last_name required">
+
+                            <input type="text" id="adminusers-last_name" class="form-control" name="AdminUsers[last_name]" value="users" maxlength="15" aria-required="true">
+
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="">
+                        <label class="form-control-label">Status</label>
+                        <div class="form-group field-adminusers-last_name required">
+                            <select class="form-control">
+                                        <option>Active</option>
+                                        <option>Inactive</option>
+                                    </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0">
+                <div class="col-md-4">
+                    <div class="form-group field-user-username required ">
+                        <label class="form-control-label" for="user-username">Email Address</label>
+                        <div class="form-control" disabled="">admin@bc.com </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-control-label">Phone*</label>
+                    <div class="form-group field-adminusers-phone required">
+                        <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
+                        <div class="help-block"></div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <label class="form-control-label">Extension</label>
+                    <div class="form-group field-adminusers-extension">
+                        <input type="text" id="adminusers-extension" class="form-control numbers" name="AdminUsers[extension]" value="" maxlength="6">
+                        <div class="help-block"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-top-5  padding-left-0">
+                <div class="col-md-4">
+                    <h6 class="action_head">
+                        Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
+										Next, select if this user should be able to access financial
+										performance of theentireapplication." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
+                    </h6>
+                    <div class="md-checkbox-list ">
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">
+															Financials
+											<input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
+						 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">
+															Administrator
+											<input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
+						 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">
+																Billing & Contracts
+											<input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
+						 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">
+															Master Data
+											<input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
+						 <span></span>
+										</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
+                <div class="modal-footer-btn padding-15">
+                    <button type="submit" class="btn btn-primary">Save</button> <a class="btn btn-default"> Cancel </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

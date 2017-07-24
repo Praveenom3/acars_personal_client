@@ -1,0 +1,60 @@
+
+<div class="col-sm-12 page-header-band-search">
+    <div class="col-xs-12 dashboard-links">
+        <ul class="top-sub-navigation">
+            <li [routerLink]="['/admin/dashboard']" [routerLinkActive]="['active']"><a>Summary</a></li>
+            <li [routerLink]="['/admin/financials']" [routerLinkActive]="['active']"><a>New Purchases</a></li>
+            <li [routerLink]="['/admin/new-sales']" [routerLinkActive]="['active']"><a>New Sales</a></li>
+            <li [routerLink]="['/admin/admin-users']" [routerLinkActive]="['active']"><a>Admin Users</a></li>
+            <li [routerLink]="['/admin/processing']" [routerLinkActive]="['active']"><a>Processing</a></li>
+            <li [routerLink]="['/admin/aca-forms']" [routerLinkActive]="['active']"><a>ACA Forms</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <div class="col-md-12">
+        <div class="col-xs-12">
+            <div class="col-xs-12 widget widget-two no-padding">
+                <div class="clearfix" style="position:relative">
+                    <div class="col-xs-12 col-md-6"><caption class="datatable-caption">Outstanding Invoices</caption></div>
+                    <div class="col-xs-12 col-md-6 form-inline">
+                        <div class="dataTables_filter"><label>Search:<input class="form-control mr-left-5" [(ngModel)]="filterQuery"/></label></div>
+                    </div>
+                    
+                    <table class="table table-hover table-bordered table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th><mfDefaultSorter by="id">ID</mfDefaultSorter></th>
+                                <th><mfDefaultSorter by="name">Name</mfDefaultSorter></th>
+                                <th><mfDefaultSorter [by]="sortByWordLength">Username</mfDefaultSorter></th>
+                                <th><mfDefaultSorter by="email">Email</mfDefaultSorter></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-text-center" *ngFor="let item of mf.data">
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td class="text-right">{{item.username}}</td>
+                                <td>{{item.email | uppercase}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+

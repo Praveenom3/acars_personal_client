@@ -1,0 +1,111 @@
+<div class="page-header-band col-md-12 padding-0">
+
+</div>
+<div class="section-container">
+    <form id="w0" action="/bclients/profile" method="post" enctype="multipart/form-data">
+        <div class="col-md-12 border-ddd widget padding-15">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-4">
+                    <div class="">
+                        <label class="form-control-label">First Name*</label>
+                        <div class="form-group field-adminusers-first_name required">
+
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="">
+                        <label class="form-control-label">Last Name*</label>
+                        <div class="form-group field-adminusers-last_name required">
+                            <input type="text" id="adminusers-last_name" class="form-control" name="AdminUsers[last_name]" maxlength="15" aria-required="true">
+
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="">
+                        <label class="form-control-label">Status</label>
+                        <div class="form-group field-adminusers-last_name required">
+                            <select class="form-control">
+                                        <option>Active</option>
+                                        <option>Inactive</option>
+                                    </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0">
+                <div class="col-md-4">
+                    <div class="form-group field-user-username required ">
+                        <label class="form-control-label" for="user-username">Email Address</label>
+                        <input type="text" id="adminusers-email" class="form-control" aria-required="true">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-control-label">Phone*</label>
+                    <div class="form-group field-adminusers-phone required">
+                        <input type="text" id="adminusers-phone" class="form-control us-phone-mask-input" name="AdminUsers[phone]" aria-required="true" placeholder="(___) ___-____" maxlength="14">
+                        <div class="help-block"></div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <label class="form-control-label">Extension</label>
+                    <div class="form-group field-adminusers-extension">
+                        <input type="text" id="adminusers-extension" class="form-control numbers" name="AdminUsers[extension]" value="" maxlength="6">
+                        <div class="help-block"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-top-5  padding-left-0">
+                <div class="col-md-4">
+                    <h6 class="action_head">
+                        Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
+										Next, select if this user should be able to access financial
+										performance of theentireapplication." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
+                    </h6>
+                    <div class="md-checkbox-list ">
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+															Financials
+											<input type="checkbox" class="primary-contact-checkbox " >
+						                 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+															Administrator
+											<input type="checkbox" class="primary-contact-checkbox " >
+						               <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+																Billing & Contracts
+											<input type="checkbox" class="primary-contact-checkbox " >
+					            	 <span></span>
+										</label>
+                        </div>
+                        <div class="width-100 pull-left">
+                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+															Master Data
+											<input type="checkbox" class="primary-contact-checkbox " >
+						                  <span></span>
+										</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
+                <div class="modal-footer-btn padding-15">
+                    <button type="submit" class="btn btn-primary">Save</button> <a [routerLink]="['/admin/profile']" class="btn btn-default"> Cancel </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,208 @@
+<!--  View For Pricing screen-->
+
+<div class="page-header-band-breadcrumbs">
+    <!--  For Bread Crumb-->
+    <div class="blue-breadcrumb col-md-12 padding-0">
+        <a class="breadcrumb-back-btn cursor-pointer">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <ul class="list-unstyled breadcrumb header-breadcrumb">
+            <li>
+                <a href="javascript: void(0);">Master Data</a>
+            </li>
+            <li>
+                <a href="javascript: void(0);">Manage Brands</a>
+            </li>
+        </ul>
+    </div>
+    <!-- End For Bread Crumb-->
+</div>
+
+<!--  Container Start-->
+<div class="section-container">
+    <div class="col-md-12 padding-0 border-ddd margin-btm34">
+        <div class="row " style="padding: 10px 17px;">
+            <a class="btn btn-modal-blue pull-right" (click)="staticModal.show()"><i class="fa fa-plus"></i> Add Brand</a>
+        </div>
+        <div class="panel panel-primary">
+            <div class="table-responsive kv-grid-container" style="overflow: auto">
+                <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
+                    <thead>
+                        <tr>
+                            <th class="blue-grid-head" data-col-seq="0" style="width: 18.89%;"><a>Logo</a></th>
+                            <th class="blue-grid-head" data-col-seq="1" style="width: 26.24%;"><a>Brand Name</a></th>
+                            <th class="blue-grid-head" data-col-seq="2" style="width: 25.95%;"><a>Support Email</a></th>
+                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Support Phone Number</a></th>
+                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Terms and Condition URL</a></th>
+                            <!--<th class="blue-grid-head" data-col-seq="3"><a>Share File URL</a></th> -->
+                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Status</a></th>
+                            <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Delete</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                            <td><a (click)="staticModal.show()" class="tbl-col-link">testing</a></td>
+                            <td>testing@acars.com</td>
+                            <td>(999) 999-9999</td>
+                            <td>https://acareportingservice.com/terms-and-conditions/</td>
+                            <!-- <td>http:googl/SDxdsd</td> -->
+                            <td><a>Active</a></td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                            <td><a (click)="staticModal.show()" class="tbl-col-link">AKY ACA</a></td>
+                            <td>testing@acars.com</td>
+                            <td>(999) 999-9999</td>
+                            <td>https://acareportingservice.com/terms-and-conditions/</td>
+                            <!-- <td>http:googl/SDxdsd</td> -->
+                            <td><a>Active</a></td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                            <td><a (click)="staticModal.show()" class="tbl-col-link">ABY ACA</a></td>
+                            <td>testing@acars.com</td>
+                            <td>(999) 999-9999</td>
+                            <td>https://acareportingservice.com/terms-and-conditions/</td>
+                            <!-- <td>http:googl/SDxdsd</td> -->
+                            <td><a>Active</a></td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                            <td><a (click)="staticModal.show()" class="tbl-col-link">ACA</a></td>
+                            <td>testing@acars.com</td>
+                            <td>(999) 999-9999</td>
+                            <td>https://acareportingservice.com/terms-and-conditions/</td>
+                            <!-- <td>http:googl/SDxdsd</td> -->
+                            <td><a>Active</a></td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
+                            <td><a (click)="staticModal.show()" class="tbl-col-link">PRO ACA</a></td>
+                            <td>testing@acars.com</td>
+                            <td>(999) 999-9999</td>
+                            <td>https://acareportingservice.com/terms-and-conditions/</td>
+                            <!-- <td>http:googl/SDxdsd</td> -->
+                            <td><a>Active</a></td>
+                            <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-3 padding10">
+                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 5 of 48 entries</div>
+                </div>
+                <div class="col-md-9 text-right">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span>First</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span>Last</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add modal start-->
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"  role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+                <h4 class="modal-title pull-left color-white">Add Brand</h4>
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="staticModal.hide()" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <div class="col-md-6 required">
+                        <label class="form-control-label">Brand Name</label>
+                        <div class="form-group field-adminusers-first_name required">
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 required">
+                        <label class="form-control-label">Choose logo</label>
+                        <div class="form-group field-adminusers-last_name required">
+                            <input type="file" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6 required">
+                        <label class="form-control-label">Support Email</label>
+                        <div class="form-group field-adminusers-first_name required">
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 required">
+                        <label class="form-control-label">Support Phone</label>
+                        <div class="form-group field-adminusers-last_name required">
+                            <input type="text"  id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6 required">
+                        <label class="form-control-label">Terms & Condition URL</label>
+                        <div class="form-group field-adminusers-first_name required">
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label">Status <span style="color:#a94442;">*</span></label>
+                        <div class="form-group field-adminusers-last_name">
+                            <label class="radio-inline">
+                                      <input type="radio"  name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="1"> Active
+                             </label>
+                            <label class="radio-inline">
+                                  <input type="radio"   name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="2"> Inactive
+                             </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: none;">
+                <button type="button" class="btn btn-primary btn-blue" id="chng_pwd_btn">Save
+					Changes</button>
+                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

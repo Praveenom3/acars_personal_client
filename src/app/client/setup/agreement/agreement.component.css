@@ -1,0 +1,32 @@
+.mt-checkbox.mt-checkbox-outline:hover>input:not([disabled]):checked~span,
+.mt-checkbox.mt-checkbox-outline:hover>input:not([disabled])~span,
+.mt-checkbox.mt-checkbox-outline>input:checked~span,
+.mt-checkbox.mt-checkbox-outline>input:focus~span,
+.mt-checkbox.mt-checkbox-outline>span,
+.mt-checkbox.mt-radio-outline:hover>input:not([disabled]):checked~span,
+.mt-checkbox.mt-radio-outline:hover>input:not([disabled])~span,
+.mt-checkbox.mt-radio-outline>input:checked~span,
+.mt-checkbox.mt-radio-outline>input:focus~span,
+.mt-checkbox.mt-radio-outline>span,
+.mt-radio.mt-checkbox-outline:hover>input:not([disabled]):checked~span,
+.mt-radio.mt-checkbox-outline:hover>input:not([disabled])~span,
+.mt-radio.mt-checkbox-outline>input:checked~span,
+.mt-radio.mt-checkbox-outline>input:focus~span,
+.mt-radio.mt-checkbox-outline>span,
+.mt-radio.mt-radio-outline:hover>input:not([disabled]):checked~span,
+.mt-radio.mt-radio-outline:hover>input:not([disabled])~span,
+.mt-radio.mt-radio-outline>input:checked~span,
+.mt-radio.mt-radio-outline>input:focus~span,
+.mt-radio.mt-radio-outline>span {
+    border: 1px solid black;
+}
+
+.mt-checkbox>span:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}

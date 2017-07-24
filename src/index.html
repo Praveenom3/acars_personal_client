@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ACA Reporting">
+
+    <title>ACA Reporting</title>
+    <link rel="icon" href="assets/images/acars_logo.png">
+    <!-- Vendors Styles -->
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- v1.0.0 -->
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/jscrollpane/style/jquery.jscrollpane.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/ladda/dist/ladda-themeless.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap-sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/summernote/dist/summernote.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/ionrangeslider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/datatables/media/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/c3/c3.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/chartist/dist/chartist.min.css">
+    <!-- v1.4.0 -->
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/nprogress/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/jquery-steps/demo/css/jquery.steps.css">
+    <!-- v1.4.2 -->
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <!-- v1.7.0 -->
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/dropify/dist/css/dropify.min.css">
+
+    <link href="assets/common/css/source/main.css" rel="stylesheet">
+
+    <link href="assets/css/site.css" rel="stylesheet">
+    <link href="assets/css/admin.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/harish.css" rel="stylesheet">
+
+    <link href="assets/css/naveen.css" rel="stylesheet">
+    <link href="assets/css/client/harish.css" rel="stylesheet">
+    <link href="assets/css/client/naveen.css" rel="stylesheet">
+
+
+<!-- Vendors Scripts -->
+<!-- v1.0.0 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+-->
+<script src="../assets/vendors/jquery/jquery.min.js"></script>
+<script src="../assets/vendors/tether/dist/js/tether.min.js"></script>
+<script src="../assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/vendors/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+<script src="../assets/vendors/jscrollpane/script/jquery.jscrollpane.min.js"></script>
+<script src="../assets/vendors/spin.js/spin.js"></script>
+<script src="../assets/vendors/ladda/dist/ladda.min.js"></script>
+<script src="../assets/vendors/select2/dist/js/select2.full.min.js"></script>
+<script src="../assets/vendors/html5-form-validation/dist/jquery.validation.min.js"></script>
+<script src="../assets/vendors/jquery-typeahead/dist/jquery.typeahead.min.js"></script>
+<script src="../assets/vendors/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="../assets/vendors/autosize/dist/autosize.min.js"></script>
+<script src="../assets/vendors/bootstrap-show-password/bootstrap-show-password.min.js"></script>
+<script src="../assets/vendors/moment/min/moment.min.js"></script>
+<script src="../assets/vendors/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../assets/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="../assets/vendors/cleanhtmlaudioplayer/src/jquery.cleanaudioplayer.js"></script>
+<script src="../assets/vendors/cleanhtmlvideoplayer/src/jquery.cleanvideoplayer.js"></script>
+<script src="../assets/vendors/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+<script src="../assets/vendors/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="../assets/vendors/summernote/dist/summernote.min.js"></script>
+<script src="../assets/vendors/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="../assets/vendors/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="../assets/vendors/nestable/jquery.nestable.js"></script>
+<script src="../assets/vendors/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../assets/vendors/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/vendors/datatables-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+<script src="../assets/vendors/datatables-responsive/js/dataTables.responsive.js"></script>
+<script src="../assets/vendors/editable-table/mindmup-editabletable.js"></script>
+<script src="../assets/vendors/d3/d3.min.js"></script>
+<script src="../assets/vendors/c3/c3.min.js"></script>
+<script src="../assets/vendors/chartist/dist/chartist.min.js"></script>
+<script src="../assets/vendors/peity/jquery.peity.min.js"></script>
+<!-- v1.0.1 -->
+<script src="../assets/vendors/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+<!-- v1.1.1 -->
+<script src="../assets/vendors/gsap/src/minified/TweenMax.min.js"></script>
+<script src="../assets/vendors/hackertyper/hackertyper.js"></script>
+<script src="../assets/vendors/jquery-countTo/jquery.countTo.js"></script>
+<!-- v1.4.0 -->
+<script src="../assets/vendors/nprogress/nprogress.js"></script>
+<script src="../assets/vendors/jquery-steps/build/jquery.steps.min.js"></script>
+<!-- v1.4.2 -->
+<script src="../assets/vendors/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../assets/vendors/chart.js/src/Chart.bundle.min.js"></script>
+<!-- v1.7.0 -->
+<script src="../assets/vendors/dropify/dist/js/dropify.min.js"></script>
+
+
+<!-- Angular Version Scripts -->
+<script src="../assets/vendors/angular/angular.min.js"></script>
+<script src="../assets/vendors/angular-route/angular-route.min.js"></script>
+<script src="../assets/common/js/version_angular/app.js"></script>
+
+<!-- Angular Version Controllers 
+    <script src="pages/register.ctrl.js"></script>
+    <script src="pages/login.ctrl.js"></script>
+    <script src="pages/lockscreen.ctrl.js"></script> -->
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
+<!-- Clean UI Scripts -->
+<script src="../assets/common/js/common.js"></script>
+<script src="../assets/common/js/demo.temp.js"></script>
+
+</head>
+
+<!-- BODY options, add following classes to body to change options
+    1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
+    2. 'sidebar-nav'		  - Navigation on the left
+        2.1. 'sidebar-off-canvas'	- Off-Canvas
+            2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
+            2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
+    3. 'fixed-nav'			  - Fixed navigation
+    4. 'navbar-fixed'		  - Fixed navbar
+    5. 'footer-fixed'		  - Fixed navbar
+-->
+
+<body class="navbar-fixed sidebar-nav fixed-nav theme-default body-blue login-single-page">
+    <!-- App Loading... -->
+    <!--<router-outlet></router-outlet>-->
+</body>
+
+</html>

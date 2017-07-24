@@ -1,0 +1,315 @@
+<!--  View For Lookup screen-->
+<div class="page-header-band-breadcrumbs">
+    <!--  For Bread Crumb-->
+    <div class="blue-breadcrumb col-md-12 padding-0">
+        <a class="breadcrumb-back-btn cursor-pointer">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <ul class="list-unstyled breadcrumb header-breadcrumb">
+            <li>
+                <a href="javascript: void(0);">Master Data</a>
+            </li>
+            <li>
+                <a href="javascript: void(0);">Products</a>
+            </li>
+        </ul>
+    </div>
+    <!-- End For Bread Crumb-->
+</div>
+
+<!--  Container Start-->
+<div class="section-container">
+    <div class="col-md-12 border-ddd  width-100">
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+                <ul class="list-unstyled breadcrumb header-breadcrumb">
+                    <li>
+                        <a href="javascript: void(0);">Master Data</a>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);">Products</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8 col-xs-6 pull-right" align="right" style="padding: 14px 5px;">
+                <a class="btn  btn-modal-blue" href="#add_product_modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i>  &nbsp;Add Product</a>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="blue-grid-head" style="width:30%">Product Name</th>
+                        <th class="blue-grid-head">Product Type</th>
+                        <th class="blue-grid-head">Requires Account Manager</th>
+                        <th class="blue-grid-head">Requires Aggregated Group Status</th>
+                         <th class="blue-grid-head">Applicable Year</th>
+                        <th class="blue-grid-head">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-text-center">
+                        <td class="link-blue-underline" href="#add_product_modal" role="button" data-toggle="modal">VHT</td>
+                        <td>Self Service</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                          <td>2016</td>
+                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr class="tr-text-center">
+                        <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Enhanced</td>
+                        <td>Enhanced</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>2017</td>
+                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr class="tr-text-center">
+                        <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Tracking</td>
+                        <td>True Full Service</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>2016</td>
+                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr class="tr-text-center">
+                        <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2017 Self Service</td>
+                        <td>Self Service</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>NA</td>
+                        <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-3 padding10">
+                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
+            </div>
+            <div class="col-md-9 text-right">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                            <span>First</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                            <span aria-hidden="true">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                            <span aria-hidden="true">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                            <span>Last</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  Container End-->
+
+<!-- Add product Modal -->
+<div class="modal fade" id="add_product_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Add Product
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="form-control-label">Product Name <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" aria-required="true">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label">Product Type </label>
+                        <div class="form-group field-adminusers-first_name">
+                            <select type="text" class="form-control">
+                                <option>Select</option>
+                                <option>Self Service</option>
+                                <option>Enhanced</option>
+                                <option>True Full Service</option>
+                            </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-last_name">                            
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio">Yes
+                            </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio">No
+                            </label>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label">Requires Aggregated Group Status <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">                         
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio1">Yes
+                            </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio1">No
+                            </label>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="form-control-label">Applicable Year <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">
+                            <select type="text" class="form-control">
+                                <option>Select</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>NA</option>
+                            </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+
+            <div class="modal-footer footer-background">
+
+                <a href="#" class="btn btn-modal-blue" data-dismiss="modal">
+								Save  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- ./Add Product Modal -->
+
+<!-- Update product Modal -->
+<div class="modal fade" id="update_product_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Update Product
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="form-control-label">Product Name <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">
+                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" aria-required="true" value="2016 Enhanced">
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label">Product Type </label>
+                        <div class="form-group field-adminusers-first_name">
+                            <select type="text" class="form-control">
+                                <option>Select</option>
+                                <option>Self Service</option>
+                                <option selected>Enhanced</option>
+                                <option>True Full Service</option>
+                            </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-last_name">                            
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio2" checked>Yes
+                            </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio2">No
+                            </label>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control-label">Requires Aggregated Group Status <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">                         
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio3" checked>Yes
+                            </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio3">No
+                            </label>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="form-control-label">Applicable Year <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">
+                            <select type="text" class="form-control">
+                                <option>Select</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>NA</option>
+                            </select>
+                            <div class="help-block"></div>
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+
+            <div class="modal-footer footer-background">
+
+                <a href="#" class="btn btn-modal-blue" data-dismiss="modal">
+								Save  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- ./Update Product Modal -->

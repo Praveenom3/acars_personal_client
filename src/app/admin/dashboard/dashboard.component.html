@@ -1,0 +1,361 @@
+<div class="col-sm-12 page-header-band-search">
+    <div class="col-xs-12 dashboard-links">
+        <ul class="top-sub-navigation">
+            <li [routerLink]="['/admin/dashboard']" [routerLinkActive]="['active']"><a>Summary</a></li>
+            <li [routerLink]="['/admin/financials']" [routerLinkActive]="['active']"><a>New Purchases</a></li>
+            <li [routerLink]="['/admin/new-sales']" [routerLinkActive]="['active']"><a>New Sales</a></li>
+            <li [routerLink]="['/admin/admin-users']" [routerLinkActive]="['active']"><a>Admin Users</a></li>
+            <li [routerLink]="['/admin/processing']" [routerLinkActive]="['active']"><a>Processing</a></li>
+            <li [routerLink]="['/admin/aca-forms']" [routerLinkActive]="['active']"><a>ACA Forms</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-container">
+
+    <div class="col-md-12">
+        <div class="col-xs-12">
+            <div class="col-xs-12 widget widget-two no-padding">
+                <div class="clearfix" style="position:relative">
+                    <caption class="datatable-caption">Outstanding Invoices</caption>
+                    <table class="table table-hover table-bordered table-striped">
+                        
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Brand</th>
+                                <th>Purchase</th>
+                                <th>Account Manager</th>
+                                <th>Amount</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-text-center">
+                                <td>1/1/2017</td>
+                                <td><a class="link-blue-underline">Client Name One</a></td>
+                                <td>Brand Name One</td>
+                                <td>Product One</td>
+                                <td>Account Manager One</td>
+                                <td>$999</td>
+                                <td><a class="link-blue-underline">Paid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/2/2017</td>
+                                <td><a class="link-blue-underline">Client Name Two</a></td>
+                                <td>Brand Name Two</td>
+                                <td>Product Two</td>
+                                <td>Account Manager Two</td>
+                                <td>$1000</td>
+                                <td><a class="link-blue-underline">Unpaid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/3/2017</td>
+                                <td><a class="link-blue-underline">Client Name Three</a></td>
+                                <td>Brand Name Three</td>
+                                <td>Product Three</td>
+                                <td>Account Manager Three</td>
+                                <td>$1001</td>
+                                <td><a class="link-blue-underline">Unpaid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/4/2017</td>
+                                <td><a class="link-blue-underline">Client Name Four</a></td>
+                                <td>Brand Name Four</td>
+                                <td>Product Four</td>
+                                <td>Account Manager Four</td>
+                                <td>$1002</td>
+                                <td><a class="link-blue-underline">Paid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/5/2017</td>
+                                <td><a class="link-blue-underline">Client Name Five</a></td>
+                                <td>Brand Name Five</td>
+                                <td>Product Five</td>
+                                <td>Account Manager Five</td>
+                                <td>$1003</td>
+                                <td><a class="link-blue-underline">Unpaid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/6/2017</td>
+                                <td><a class="link-blue-underline">Client Name Six</a></td>
+                                <td>Brand Name Six</td>
+                                <td>Product Six</td>
+                                <td>Account Manager Six</td>
+                                <td>$1004</td>
+                                <td><a class="link-blue-underline">Paid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/7/2017</td>
+                                <td><a class="link-blue-underline">Client Name Seven</a></td>
+                                <td>Brand Name Seven</td>
+                                <td>Product Seven</td>
+                                <td>Account Manager Seven</td>
+                                <td>$1005</td>
+                                <td><a class="link-blue-underline">Paid</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/8/2017</td>
+                                <td><a class="link-blue-underline">Client Name Eight</a></td>
+                                <td>Brand Name Eight</td>
+                                <td>Product Eight</td>
+                                <td>Account Manager Eight</td>
+                                <td>$1006</td>
+                                <td><a class="link-blue-underline">Unpaid</a></td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="col-md-12">
+                        <div class="col-md-3 padding10">
+                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                        </div>
+                        <div class="col-md-9 text-right">
+
+                            <ul class="pagination">
+                                <li class="first disabled"><span>first</span></li>
+                                <li class="prev disabled"><span>previous</span></li>
+                                <li class="active"><a data-page="0">1</a></li>
+                                <li><a data-page="1">2</a></li>
+                                <li><a data-page="2">3</a></li>
+                                <li><a data-page="3">4</a></li>
+                                <li><a data-page="4">5</a></li>
+                                <li class="next"><a data-page="1">next</a></li>
+                                <li class="last"><a data-page="8">last</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="col-xs-12 widget widget-two no-padding">
+                <div class="clearfix" style="position:relative">
+                    <caption class="datatable-caption">Outstanding Contracts</caption>
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Brand</th>
+                                <th>Purchase</th>
+                                <th>Account Manager</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-text-center">
+                                <td>1/1/2017</td>
+                                <td><a class="link-blue-underline">Client Name One</a></td>
+                                <td>Brand Name One</td>
+                                <td>Product One</td>
+                                <td>Account Manager One</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/2/2017</td>
+                                <td><a class="link-blue-underline">Client Name Two</a></td>
+                                <td>Brand Name Two</td>
+                                <td>Product Two</td>
+                                <td>Account Manager Two</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/3/2017</td>
+                                <td><a class="link-blue-underline">Client Name Three</a></td>
+                                <td>Brand Name Three</td>
+                                <td>Product Three</td>
+                                <td>Account Manager Three</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/4/2017</td>
+                                <td><a class="link-blue-underline">Client Name Four</a></td>
+                                <td>Brand Name Four</td>
+                                <td>Product Four</td>
+                                <td>Account Manager Four</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/5/2017</td>
+                                <td><a class="link-blue-underline">Client Name Five</a></td>
+                                <td>Brand Name Five</td>
+                                <td>Product Five</td>
+                                <td>Account Manager Five</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/6/2017</td>
+                                <td><a class="link-blue-underline">Client Name Six</a></td>
+                                <td>Brand Name Six</td>
+                                <td>Product Six</td>
+                                <td>Account Manager Six</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/7/2017</td>
+                                <td><a class="link-blue-underline">Client Name Seven</a></td>
+                                <td>Brand Name Seven</td>
+                                <td>Product Seven</td>
+                                <td>Account Manager Seven</td>
+                                <td>Received</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/8/2017</td>
+                                <td><a class="link-blue-underline">Client Name Eight</a></td>
+                                <td>Brand Name Eight</td>
+                                <td>Product Eight</td>
+                                <td>Account Manager Eight</td>
+                                <td>Received</td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+
+                    <div class="col-md-12">
+                        <div class="col-md-3 padding10">
+                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                        </div>
+                        <div class="col-md-9 text-right">
+
+                            <ul class="pagination">
+                                <li class="first disabled"><span>first</span></li>
+                                <li class="prev disabled"><span>previous</span></li>
+                                <li class="active"><a data-page="0">1</a></li>
+                                <li><a data-page="1">2</a></li>
+                                <li><a data-page="2">3</a></li>
+                                <li><a data-page="3">4</a></li>
+                                <li><a data-page="4">5</a></li>
+                                <li class="next"><a data-page="1">next</a></li>
+                                <li class="last"><a data-page="8">last</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="col-xs-12 widget widget-two no-padding">
+                <div class="clearfix" style="position:relative">
+                    <caption class="datatable-caption">Discovery Calls Due</caption>
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Brand</th>
+                                <th>Purchase</th>
+                                <th>Account Manager</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-text-center">
+                                <td>1/1/2017</td>
+                                <td><a class="link-blue-underline">Client Name One</a></td>
+                                <td>Brand Name One</td>
+                                <td>Product One</td>
+                                <td>Account Manager One</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/2/2017</td>
+                                <td><a class="link-blue-underline">Client Name Two</a></td>
+                                <td>Brand Name Two</td>
+                                <td>Product Two</td>
+                                <td>Account Manager Two</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/3/2017</td>
+                                <td><a class="link-blue-underline">Client Name Three</a></td>
+                                <td>Brand Name Three</td>
+                                <td>Product Three</td>
+                                <td>Account Manager Three</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/4/2017</td>
+                                <td><a class="link-blue-underline">Client Name Four</a></td>
+                                <td>Brand Name Four</td>
+                                <td>Product Four</td>
+                                <td>Account Manager Four</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/5/2017</td>
+                                <td><a class="link-blue-underline">Client Name Five</a></td>
+                                <td>Brand Name Five</td>
+                                <td>Product Five</td>
+                                <td>Account Manager Five</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/6/2017</td>
+                                <td><a class="link-blue-underline">Client Name Six</a></td>
+                                <td>Brand Name Six</td>
+                                <td>Product Six</td>
+                                <td>Account Manager Six</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/7/2017</td>
+                                <td><a class="link-blue-underline">Client Name Seven</a></td>
+                                <td>Brand Name Seven</td>
+                                <td>Product Seven</td>
+                                <td>Account Manager Seven</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/8/2017</td>
+                                <td><a class="link-blue-underline">Client Name Eight</a></td>
+                                <td>Brand Name Eight</td>
+                                <td>Product Eight</td>
+                                <td>Account Manager Eight</td>
+                                <td>Completed</td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+
+                    <div class="col-md-12">
+                        <div class="col-md-3 padding10">
+                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                        </div>
+                        <div class="col-md-9 text-right">
+
+                            <ul class="pagination">
+                                <li class="first disabled"><span>first</span></li>
+                                <li class="prev disabled"><span>previous</span></li>
+                                <li class="active"><a data-page="0">1</a></li>
+                                <li><a data-page="1">2</a></li>
+                                <li><a data-page="2">3</a></li>
+                                <li><a data-page="3">4</a></li>
+                                <li><a data-page="4">5</a></li>
+                                <li class="next"><a data-page="1">next</a></li>
+                                <li class="last"><a data-page="8">last</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

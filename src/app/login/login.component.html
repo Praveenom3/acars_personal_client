@@ -1,0 +1,153 @@
+<section class="page-content page-content-0 padding-0 back-lightblue page-content-inner login-content">
+    <div class="page-content-inner single-page-login-alpha" style="background-image: url(/assets/images/login_bg.jpg);background-position:0px 0px;">
+        <!-- Login Alpha Page -->
+        <div class="col-md-11 margin-top-20 alert-div">
+
+        </div>
+        <div class="single-page-block login padding-0">
+            <div class="row" style="margin-left:0px;margin-right:0px;">
+                <div class="login-responisve-div">
+                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="padding:0px;">
+                        <img src="/assets/images/login_bg_leftside.png" style="height:400px;width:100%">
+
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 login-form-div">
+                        <h3 style="text-align:right;color:#3276B7;" class="login-heading">LOGIN</h3>
+                        <form [formGroup]="_loginForm" (ngSubmit)="onSubmit(_loginForm.value)">                              
+                                <div class="form-group row" [ngClass]="{'has-danger': !_isValid('username')}">
+                                    <div class="col-md-12">
+                                          <label class="form-label" for="validation-email">Email ID / User ID</label>    
+                                        <div class="input-group" style="width:100%">                                            
+                                            <input class="form-control" type="text" placeholder="Username" [formControl]="_loginForm.controls['username']" [ngClass]="{'form-control-danger': !_isValid('username')}">
+                                        </div>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.username.valid">{{_formErrors.username.message}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row" [ngClass]="{'has-danger': !_isValid('password')}">
+                                    <div class="col-md-12">
+                                         <label class="form-label" for="validation-password">Password</label>
+                                        <div class="input-group" style="width:100%">                                          
+                                            <input class="form-control" type="password" placeholder="Password" [formControl]="_loginForm.controls['password']" [ngClass]="{'form-control-danger': !_isValid('password')}">
+                                        </div>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.password.valid">{{_formErrors.password.message}}</span>
+                                    </div>
+                                </div>
+<div class="col-md-12  padding-0">
+                                <div class="col-md-6 col-xs-6 padding-0">
+                                    <div class="form-group field-loginform-rememberme has-success">
+                                        <label class="mt-checkbox mt-checkbox-outline color-black">
+										Remember Me
+										<input type="hidden" name="LoginForm[rememberMe]" value="0"><input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked="" aria-invalid="false">
+										<span></span>
+										</label>
+                                        <p class="help-block help-block-error"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-6 pull-right  padding-0">
+                                    <p class="pull-right color-blue-link  cursor-pointer" id="forgot_password_link" (click)="staticModal.show()"><u>Forgot Password</u></p>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-xs-12">                                        
+                                        <button type="submit" style="margin-top: 20px;color:#fff" class="btn btn-primary col-xs-12 login-btn" [disabled]="!_loginForm.valid || _submitted == true">SIGN IN</button>
+                                        <div class="spinner mt-4" *ngIf="_submitted"></div>
+                                    </div>
+                                   
+                                    <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
+                                        <div class="alert alert-danger">{{_errorMessage}}</div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            
+                        <!--<form id="email-form-validation" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                            <div class="form-group field-validation-email required ">
+                                <label class="form-label" for="validation-email">Email ID / User ID</label>                               
+                                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                                <p class="help-block help-block-error"></p>
+                            </div>
+                            <div class="form-group field-validation-password required">
+                                <label class="form-label" for="validation-password">Password</label>
+                                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                                
+                                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                                <p class="help-block help-block-error"></p>
+                            </div>
+                            <div class="col-md-12  padding-0">
+                                <div class="col-md-6 col-xs-6 padding-0">
+                                    <div class="form-group field-loginform-rememberme has-success">
+                                        <label class="mt-checkbox mt-checkbox-outline color-black">
+										Remember Me
+										<input type="hidden" name="LoginForm[rememberMe]" value="0"><input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked="" aria-invalid="false">
+										<span></span>
+										</label>
+                                        <p class="help-block help-block-error"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-6 pull-right  padding-0">
+                                    <p class="pull-right color-blue-link  cursor-pointer" id="forgot_password_link" (click)="staticModal.show()"><u>Forgot Password</u></p>
+                                </div>
+                            </div>
+                            <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
+                                        <div class="alert alert-danger">{{_errorMessage}}</div>
+                                    </div>
+                            <div class="form-group login-btn-form-grp">
+                                <button class="btn btn-primary col-xs-12 login-btn" id="login_button" name="login-button" [disabled]="loading" style="color:#fff">SIGN IN</button>
+                            </div>
+                        </form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-page-desc">
+            <span class="single-page-desc-text">ACA Reporting and Tracking Made Simple</span>
+        </div>
+        <div class="single-page-block-footer text-center">
+            <ul class="list-unstyled list-inline">
+                <li><a href="javascript: void(0);">18 Interchange Blvd, Greenville SC 29615</a></li>
+                <li><a href="javascript: void(0);">User Agreement</a></li>
+                <li><a href="javascript: void(0);">Privacy Policy</a></li>
+                <li><a href="javascript: void(0);">Contact Us</a></li>
+                <li><a href="javascript: void(0);">Help</a></li>
+                <li><a href="javascript: void(0);">Subscribe</a></li>
+            </ul>
+            <div class="single-page-copyright">
+                Copyright © 2017 Sky Tech Analytics
+            </div>
+        </div>
+        <!-- End Login Alpha Page -->
+
+        <!-- Forgot Password modal starts -->
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-color">
+                        <h4 class="modal-title pull-left color-white">Forgot Password</h4>
+                        <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="staticModal.hide()" aria-hidden="true">×</button>
+                        <!--<button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+	          <span aria-hidden="true">&times;</span>
+	        </button>-->
+                    </div>
+                    <div class="modal-body row">
+                        <div class="form-group col-md-12">
+                            <div class="col-sm-10 col-sm-offset-1 add-mem">
+                                <label class="add-member-label">Email <span class="red">*</span></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top: none;">
+                        <button type="button" class="btn btn-primary" id="chng_pwd_btn">Submit
+						</button>
+                        <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Forgot password ends -->
+
+
+    <!-- End Page Scripts -->
+</section>
