@@ -1,339 +1,328 @@
-<div class="col-sm-12 page-header-band-search">
-    <div class="col-xs-12 dashboard-links">
-        <ul class="top-sub-navigation">
-            <li [routerLink]="['/admin/dashboard']" [routerLinkActive]="['active']"><a>Summary</a></li>
-            <li [routerLink]="['/admin/financials']" [routerLinkActive]="['active']"><a>New Purchases</a></li>
-            <li [routerLink]="['/admin/new-sales']" [routerLinkActive]="['active']"><a>New Sales</a></li>
-            <li [routerLink]="['/admin/admin-users']" [routerLinkActive]="['active']"><a>Admin Users</a></li>
-            <li [routerLink]="['/admin/processing']" [routerLinkActive]="['active']"><a>Processing</a></li>
-            <li [routerLink]="['/admin/aca-forms']" [routerLinkActive]="['active']"><a>ACA Forms</a></li>
-        </ul>
-    </div>
-</div>
+<app-admin-dashboard-nav></app-admin-dashboard-nav>
 
-<div class="section-container">
-
-    <div class="col-md-12">
-        <div class="col-xs-12">
-            <div class="col-xs-12 widget widget-two no-padding">
-                <div class="widget-header-11">
-                    <strong>Variable Hour Payrolls</strong>
-                </div>
-                <div class="clearfix">
-
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr class="tr-blue-grid-head">
-                                <th>Date</th>
-                                <th>Client</th>
-                                <th>Account Manager</th>
-                                <th>File</th>
-                                <th>Reject File</th>
-                                <th>Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tr-text-center">
-                                <td>1/1/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/2/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/3/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/4/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/5/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/6/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/7/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/8/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Uploaded</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="col-md-12">
-                        <div class="col-md-3 padding10">
-                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
-                        </div>
-                        <div class="col-md-9 text-right">
-
-                            <ul class="pagination">
-                                <li class="first disabled"><span>first</span></li>
-                                <li class="prev disabled"><span>previous</span></li>
-                                <li class="active"><a data-page="0">1</a></li>
-                                <li><a data-page="1">2</a></li>
-                                <li><a data-page="2">3</a></li>
-                                <li><a data-page="3">4</a></li>
-                                <li><a data-page="4">5</a></li>
-                                <li class="next"><a data-page="1">next</a></li>
-                                <li class="last"><a data-page="8">last</a></li>
-                            </ul>
-                        </div>
+<div class="page-content col-md-12 dashboard-page-content">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col-xs-12">
+                <div class="col-xs-12 widget widget-two no-padding">
+                    <div class="widget-header-11">
+                        <strong>Variable Hour Payrolls</strong>
                     </div>
+                    <div class="clearfix">
 
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr class="tr-blue-grid-head">
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Account Manager</th>
+                                    <th>File</th>
+                                    <th>Reject File</th>
+                                    <th>Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-text-center">
+                                    <td>1/1/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/2/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/3/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/4/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/5/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/6/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/7/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/8/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Uploaded</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="col-md-12">
+                            <div class="col-md-3 padding10">
+                                <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                            </div>
+                            <div class="col-md-9 text-right">
+
+                                <ul class="pagination">
+                                    <li class="first disabled"><span>first</span></li>
+                                    <li class="prev disabled"><span>previous</span></li>
+                                    <li class="active"><a data-page="0">1</a></li>
+                                    <li><a data-page="1">2</a></li>
+                                    <li><a data-page="2">3</a></li>
+                                    <li><a data-page="3">4</a></li>
+                                    <li><a data-page="4">5</a></li>
+                                    <li class="next"><a data-page="1">next</a></li>
+                                    <li class="last"><a data-page="8">last</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="col-xs-12 widget widget-two no-padding">
-                <div class="widget-header-11">
-                    <strong>ACA Pre-Upload Documents</strong>
-                </div>
-                <div class="clearfix">
-
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr class="tr-blue-grid-head">
-                                <th>Date</th>
-                                <th>Client</th>
-                                <th>Account Manager</th>
-                                <th>File</th>
-                                <th>Reject File</th>
-                                <th>Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tr-text-center">
-                                <td>1/1/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/2/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/3/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/4/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/5/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/6/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/7/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/8/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Notes</a></td>
-                                <td><a class="link-blue-underline">Approved</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                    <div class="col-md-12">
-                        <div class="col-md-3 padding10">
-                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
-                        </div>
-                        <div class="col-md-9 text-right">
-
-                            <ul class="pagination">
-                                <li class="first disabled"><span>first</span></li>
-                                <li class="prev disabled"><span>previous</span></li>
-                                <li class="active"><a data-page="0">1</a></li>
-                                <li><a data-page="1">2</a></li>
-                                <li><a data-page="2">3</a></li>
-                                <li><a data-page="3">4</a></li>
-                                <li><a data-page="4">5</a></li>
-                                <li class="next"><a data-page="1">next</a></li>
-                                <li class="last"><a data-page="8">last</a></li>
-                            </ul>
-                        </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12 widget widget-two no-padding">
+                    <div class="widget-header-11">
+                        <strong>ACA Pre-Upload Documents</strong>
                     </div>
+                    <div class="clearfix">
 
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr class="tr-blue-grid-head">
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Account Manager</th>
+                                    <th>File</th>
+                                    <th>Reject File</th>
+                                    <th>Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-text-center">
+                                    <td>1/1/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/2/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/3/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/4/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/5/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/6/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/7/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/8/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Notes</a></td>
+                                    <td><a class="link-blue-underline">Approved</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-3 padding10">
+                                <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                            </div>
+                            <div class="col-md-9 text-right">
+
+                                <ul class="pagination">
+                                    <li class="first disabled"><span>first</span></li>
+                                    <li class="prev disabled"><span>previous</span></li>
+                                    <li class="active"><a data-page="0">1</a></li>
+                                    <li><a data-page="1">2</a></li>
+                                    <li><a data-page="2">3</a></li>
+                                    <li><a data-page="3">4</a></li>
+                                    <li><a data-page="4">5</a></li>
+                                    <li class="next"><a data-page="1">next</a></li>
+                                    <li class="last"><a data-page="8">last</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="col-xs-12 widget widget-two no-padding">
-                <div class="widget-header-11">
-                    <strong>ACA Documents Uploaded</strong>
-                </div>
-                <div class="clearfix">
-
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr class="tr-blue-grid-head">
-                                <th>Date</th>
-                                <th>Client</th>
-                                <th>Account Manager</th>
-                                <th>File</th>
-                                <th>Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tr-text-center">
-                                <td>1/1/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/2/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/3/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/4/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/5/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/6/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/7/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/8/2017</td>
-                                <td class="link-blue-underline">ABC Engineering</td>
-                                <td>Mark Combs</td>
-                                <td><a class="link-blue-underline">File name.. Link download</a></td>
-                                <td><a class="link-blue-underline">Completed & Notes</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="col-md-12">
-                        <div class="col-md-3 padding10">
-                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
-                        </div>
-                        <div class="col-md-9 text-right">
-
-                            <ul class="pagination">
-                                <li class="first disabled"><span>first</span></li>
-                                <li class="prev disabled"><span>previous</span></li>
-                                <li class="active"><a data-page="0">1</a></li>
-                                <li><a data-page="1">2</a></li>
-                                <li><a data-page="2">3</a></li>
-                                <li><a data-page="3">4</a></li>
-                                <li><a data-page="4">5</a></li>
-                                <li class="next"><a data-page="1">next</a></li>
-                                <li class="last"><a data-page="8">last</a></li>
-                            </ul>
-                        </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12 widget widget-two no-padding">
+                    <div class="widget-header-11">
+                        <strong>ACA Documents Uploaded</strong>
                     </div>
+                    <div class="clearfix">
 
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr class="tr-blue-grid-head">
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Account Manager</th>
+                                    <th>File</th>
+                                    <th>Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-text-center">
+                                    <td>1/1/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/2/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/3/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/4/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/5/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/6/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/7/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td>1/8/2017</td>
+                                    <td class="link-blue-underline">ABC Engineering</td>
+                                    <td>Mark Combs</td>
+                                    <td><a class="link-blue-underline">File name.. Link download</a></td>
+                                    <td><a class="link-blue-underline">Completed & Notes</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="col-md-12">
+                            <div class="col-md-3 padding10">
+                                <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                            </div>
+                            <div class="col-md-9 text-right">
+
+                                <ul class="pagination">
+                                    <li class="first disabled"><span>first</span></li>
+                                    <li class="prev disabled"><span>previous</span></li>
+                                    <li class="active"><a data-page="0">1</a></li>
+                                    <li><a data-page="1">2</a></li>
+                                    <li><a data-page="2">3</a></li>
+                                    <li><a data-page="3">4</a></li>
+                                    <li><a data-page="4">5</a></li>
+                                    <li class="next"><a data-page="1">next</a></li>
+                                    <li class="last"><a data-page="8">last</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
         </div>
-
-
     </div>
 </div>

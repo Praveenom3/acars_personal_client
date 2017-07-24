@@ -1,19 +1,9 @@
-<div class="product-container col-md-12 pull-left width-100">
-
     <!-- company info -->
-    <nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-        <div class="pull-right">
-            <a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-        </div>
-        <h5 class="cat__core__title d-block mb-0 pt-3">
-            <span> Name: <span class="text-muted">Cargo Force</span></span>
-            <span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-            <span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-        </h5>
-    </nav>
+    <client-company-info></client-company-info>
     <!-- ./company info -->
 
-    <div class="col-xs-12">
+<div class="client-user-container col-md-12">
+    <div class="container">
         <div class="col-xs-12 widget widget-two no-padding">
             <div class="col-xs-12 widget-header-11">
                 <div class="col-xs-5 no-padding">
@@ -181,7 +171,7 @@
                                         <div class="help-block"></div>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group field-user-username">
                                     <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>

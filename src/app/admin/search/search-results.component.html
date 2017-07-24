@@ -1,54 +1,6 @@
-<div class="page-header-band-search search-ht-color">
-    <div class="page-header-band-search-div">
-        <div class="col-lg-12 search-header-inner">
-            <div class="col-md-3 div-search ">
-                <div class="search-block">
-                    <div class="form-input-icon form-input-icon-right">
-                        <i class="icmn-search"></i>
-                        <form>
-                            <input type="text" class="form-control form-control-sm search-input" name="search" maxlength="20" id="textsearch" placeholder="Search">
+<search-band></search-band>
 
-                            <button type="submit" class="search-block-submit "></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9 aplhabets-div  ">
-                <ul class="categoryList  font-white">
-                    <li><a type="button" class="btn-info categoryButton all" placement="top" value="All" data-original-title="Total Records : 120" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'All'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">All</a></li>
-                    <li><a type="button" class="btn-info categoryButton a" placement="top" value="A" data-original-title="Total Records : 18" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'A'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">A</a></li>
-                    <li><a type="button" class="btn-info categoryButton b" placement="top" value="B" data-original-title="Total Records : 3" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'B'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">B</a></li>
-                    <li><a type="button" class="btn-info categoryButton c" placement="top" value="C" data-original-title="Total Records : 8" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'C'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">C</a></li>
-                    <li><a type="button" class="btn-info categoryButton d" placement="top" value="D" data-original-title="Total Records : 30" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'D'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">D</a></li>
-                    <li><a type="button" class="btn-info categoryButton e" placement="top" value="E" data-original-title="Total Records : 3" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'E'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">E</a></li>
-                    <li><a type="button" class="btn-info categoryButton f" placement="top" value="F" data-original-title="Total Records : 23" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'F'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">F</a></li>
-                    <li><a type="button" class="btn-info categoryButton g" placement="top" value="G" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'G'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">G</a></li>
-                    <li><a type="button" class="btn-info categoryButton h" placement="top" value="H" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'H'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">H</a></li>
-                    <li><a type="button" class="btn-info categoryButton i" placement="top" value="I" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'I'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">I</a></li>
-                    <li><a type="button" class="btn-info categoryButton j" placement="top" value="J" data-original-title="Total Records : 1" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'J'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">J</a></li>
-                    <li><a type="button" class="btn-info categoryButton k" placement="top" value="K" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'K'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">K</a></li>
-                    <li><a type="button" class="btn-info categoryButton l" placement="top" value="L" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'L'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">L</a></li>
-                    <li><a type="button" class="btn-info categoryButton m" placement="top" value="M" data-original-title="Total Records : 4" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'M'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">M</a></li>
-                    <li><a type="button" class="btn-info categoryButton n" placement="top" value="N" data-original-title="Total Records : 5" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'N'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">N</a></li>
-                    <li><a type="button" class="btn-info categoryButton o" placement="top" value="O" data-original-title="Total Records : 3" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'O'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">O</a></li>
-                    <li><a type="button" class="btn-info categoryButton p" placement="top" value="P" data-original-title="Total Records : 15" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'P'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">P</a></li>
-                    <li><a type="button" class="btn-info categoryButton q" placement="top" value="Q" data-original-title="Total Records : 1" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'Q'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Q</a></li>
-                    <li><a type="button" class="btn-info categoryButton r" placement="top" value="R" data-original-title="Total Records : 10" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'R'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">R</a></li>
-                    <li><a type="button" class="btn-info categoryButton s" placement="top" value="S" data-original-title="Total Records : 14" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'S'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">S</a></li>
-                    <li><a type="button" class="btn-info categoryButton t" placement="top" value="T" data-original-title="Total Records : 34" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'T'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">T</a></li>
-                    <li><a type="button" class="btn-info categoryButton u" placement="top" value="U" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'U'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">U</a></li>
-                    <li><a type="button" class="btn-info categoryButton v" placement="top" value="V" data-original-title="Total Records : 1" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'V'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">V</a></li>
-                    <li><a type="button" class="btn-info categoryButton w" placement="top" value="W" data-original-title="Total Records : 5" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'W'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">W</a></li>
-                    <li><a type="button" class="btn-info categoryButton x" placement="top" value="X" data-original-title="Total Records : 2" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'X'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">X</a></li>
-                    <li><a type="button" class="btn-info categoryButton y" placement="top" value="Y" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'Y'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Y</a></li>
-                    <li><a type="button" class="btn-info categoryButton z" placement="top" value="Z" data-original-title="Total Records : 0" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'Z'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Z</a></li>
-                    <li><a type="button" class="btn-info categoryButton num" value="#" [routerLink]="['/admin/search/search-results']" [queryParams]="{key:'#'}" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">#</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="section-container">
+<div class="page-content col-md-12 section-page-content">
     <div class="container">
         <div class="col-md-12  padding-0 ">
             <div class="col-md-6 padding-0 margin-top-10" align="left">

@@ -1,59 +1,83 @@
-.product-container{
-    top:51px;
+.product-container {
+    top: 178px;
     padding: 16px;
+    background: #ECEFF4;
 }
 
-.margin-top-30{
+.client-reporting-band-fixed{	
+    position: fixed;
+    padding: 0 16px;
+    top: 179px;
+    z-index: 100;
+}
+
+.client-company-info-band-fixed{
+	padding: 17px;position: fixed;top: 115px;z-index: 100;background-color: #eceff4;
+}
+
+.client-user-container {
+    top: 99px;
+    padding: 16px;
+    background: #ECEFF4;
+}
+
+.margin-top-30 {
     margin-top: 30px;
 }
 
-.margin-top-5{
+.margin-top-5 {
     margin-top: 5px;
 }
 
-label{
+label {
     font-weight: 400;
 }
 
-.vertical-checkbox .checkbox{
-    display:block;
+.vertical-checkbox .checkbox {
+    display: block;
 }
 
-.link-bg-blue{
+.link-bg-blue {
     background-color: #31B3D1;
     color: #fff;
     padding: 3px 5px;
 }
 
-.btn.btn-outline-primary, .show>.btn.btn-outline-primary {
+.btn.btn-outline-primary,
+.show>.btn.btn-outline-primary {
     border-color: #13a9cc;
-    color: #13a9cc;
+    color: #FFF;
+    background: #13a9cc;
 }
 
-.btn.btn-outline-primary:active, .btn.btn-outline-primary:hover, .show>.btn.btn-outline-primary:active, .show>.btn.btn-outline-primary:hover {
+.btn.btn-outline-primary:active,
+.btn.btn-outline-primary:hover,
+.show>.btn.btn-outline-primary:active,
+.show>.btn.btn-outline-primary:hover {
     background-color: #13a9cc;
     border-color: #13a9cc;
     color: #fff;
 }
 
-.mb-0{
+.mb-0 {
     margin-bottom: 0px;
 }
 
-.pt-3{
-    padding-top: 3px; 
+.pt-3 {
+    padding-top: 3px;
 }
 
 body.body-blue nav.top-menu+.page-content-0-lg {
-    margin-top:0px !important;
+    margin-top: 0px !important;
     top: 64px !important;
-    height: auto;
+    height: 100%;
     width: 100%;
     position: absolute;
     bottom: 0;
+    background: #ECEFF4;
 }
 
-.font-18{
+.font-18 {
     font-size: 18px;
 }
 
@@ -64,6 +88,85 @@ body.body-blue nav.top-menu+.page-content-0-lg {
     color: transparent;
 }
 
-.companies-list-acc .panel .panel-heading{
+.companies-list-acc .panel .panel-heading {
     line-height: 1;
+}
+
+.mb-14 {
+    margin-bottom: 14px;
+}
+
+.client-reporting-subTabs-band-fixed{
+position: fixed;
+    top: 258px;
+    z-index: 100;
+    padding: 0 16px;
+}
+
+.client-reporting-subTabs-band-fixed > div{
+ margin-bottom: 0px;
+ background: white;
+    border: 1px solid #ddd;
+}
+
+.product-container-with-sub-tabs{
+    top: 262px;
+    padding: 0 16px 16px 16px;
+    background: #eceff4;
+}
+
+.product-container-with-sub-tabs > div{
+    background: #fff;     
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.blue-breadcrumb-plans{
+    height: 47px;
+}
+
+.client-company-info-band-fixed{
+    top: 104px;
+    padding: 15px 17px;
+}
+
+.client-reporting-band-fixed{
+    top: 163px;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+}
+
+.search-header{
+        padding: 5px 10px !important;   
+}
+
+.main-pills>li:after{
+        bottom: -7px;
+}
+
+.client-reporting-subTabs-band-fixed{
+    top: 229px;
+}
+
+.product-container-with-sub-tabs{
+    top: 233px;
+}
+
+body.body-blue nav.top-menu{
+        height: 58px;
+}
+
+body.body-blue nav.top-menu+.page-content-0-lg{
+        top: 58px !important;
+}
+
+body.body-blue nav.top-menu .menu{
+    height:57px;
+}
+
+.product-container{
+    top: 155px;
 }

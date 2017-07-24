@@ -18,6 +18,7 @@ import { InputMaskModule } from "app/_shared/input-mask.module";
 import { DataTableModule } from "angular2-datatable";
 import { HttpModule } from "@angular/http";
 import { DataFilterPipe } from "app/client/dashboard/data-filter.pipe";
+import { PartialViews } from "app/_partial-views/partial-views.module";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DataFilterPipe } from "app/client/dashboard/data-filter.pipe";
     InputMaskModule,
     FormsModule,
     HttpModule,
-    DataTableModule
+    DataTableModule,
+    PartialViews
   ],
   declarations: [DashboardComponent,DataFilterPipe, ProfileComponent,UsersComponent, PurchaseComponent, MessagesComponent, ActivityLogComponent, CompaniesComponent, ReportingCheckListComponent, VhtComponent]
 })

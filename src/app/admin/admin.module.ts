@@ -7,7 +7,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import {AdminRoutingModule} from './admin.routing';
-import { DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, SummaryComponent } from './dashboard/dashboard.component';
 import { JobsComponent } from "app/admin/jobs/jobs.component";
 import { ProfileComponent } from "app/admin/profile/profile.component";
 import { AddAdminUserComponent } from "app/admin/profile/add-admin-user.component";
@@ -16,17 +16,19 @@ import { ActivityLogComponent } from "app/admin/activity-log/activity-log.compon
 import { ErrorLogComponent } from './error-log/error-log.component';
 
 import { InputMaskModule } from "app/_shared/input-mask.module";
+import { PartialViews } from "app/_partial-views/partial-views.module";
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-	 FormsModule,
-     TabsModule.forRoot(),
-     TooltipModule.forRoot(),
-     PopoverModule.forRoot(),
-	      InputMaskModule
+    FormsModule,
+    TabsModule.forRoot(),
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot(),
+    InputMaskModule,
+    PartialViews
   ],
-  declarations: [ DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent ],
+  declarations: [ SummaryComponent,DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent ],
 })
 export class AdminModule { }

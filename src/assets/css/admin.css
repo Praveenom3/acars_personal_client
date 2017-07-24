@@ -38,6 +38,7 @@ body {
     top: 103px;
     width: 97%;
     margin: 0px auto;
+    min-height: 100%;
 }
 
 .page-header-band {
@@ -2210,17 +2211,17 @@ body.body-blue .modal-header-color {
 .blue-breadcrumb {
     /*background-color: #2559b2;*/
     background-color: #13a9cc;
-    height: 67px;
+    height: 45px;
     color: #fff;
 }
 
 .breadcrumb-back-btn {
-    padding-top: 19px;
+    padding-top: 6px;
     width: 45px;
     float: left;
     background-color: #f7971e;
     color: #fff;
-    height: 67px;
+    height: 45px;
     text-align: center;
 }
 

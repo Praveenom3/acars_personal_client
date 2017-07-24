@@ -1,206 +1,172 @@
-<div class="product-container col-md-12 pull-left width-100">
+<!-- company info -->
+    <client-company-info></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+    <client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
 
-	<!-- company info -->
-	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-		<div class="pull-right">
-			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-		</div>
-		<h5 class="cat__core__title d-block mb-0 pt-3">
-			<span> Name: <span class="text-muted">Cargo Force</span></span>
-			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-		</h5>
-	</nav>
-	<!-- ./company info -->
+<!-- Sub Tabs -->
+    <div class="col-xs-12 client-reporting-subTabs-band-fixed">
+        <div class="col-md-12 padding-10 ul-block">
+            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']">
+                        <div class="inner-block-digits pull-left">1</div>
+                        <span class="inner-block-text">Basic Info</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']">
+                        <div class="inner-block-digits pull-left">2</div>
+                        <span class="inner-block-text">Large Emp. Status & Tracking</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
+                        <div class="inner-block-digits pull-left ">3</div>
+                        <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+                    </span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']">
+                        <div class="inner-block-digits pull-left ">4</div>
+                        <span class="inner-block-text">Designated Govt. Entity </span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']">
+                        <div class="inner-block-digits pull-left ">5</div>
+                        <span class="inner-block-text">Aggregated Group</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']">
+                        <div class="inner-block-digits pull-left ">6</div>
+                        <span class="inner-block-text">Anything Else</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!-- ./Sub Tabs -->
 
-	<div class="">
-		<div class="col-md-12 border-ddd widget padding-0">
+<div class="product-container-with-sub-tabs col-md-12">
+	<div class="col-md-12 padding-0">
+		<form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+			<div class="col-md-12 padding-0">
+				<div class="container margin-top-10 margin-bottom-10">
 
-      <!-- Main Tabs -->
-			<div class="search-header padding-10">
-				<ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-					<li class="col-md-1"></li>
-					<li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-						<p class="font-white margin-0">Basic Reporting Info</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-						<p class="font-white margin-0">Benefit Plan Info</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-						<p class="font-white margin-0">Plan Classes</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-						<p class="font-white margin-0 ">Payroll</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-						<p class="font-white margin-0 ">Enrollments</p></li>
-					<li class="col-md-1"></li>
-				</ul>
-			</div>
-      <!-- ./Main Tabs -->
-
-    
-			<div class="tab-content clearfix">
-				<div aria-expanded="true" class="tab-pane active" id="account_setup_block">
-          <!-- Sub category Tabs -->
-					<div class="col-md-12  padding-10 ul-block">
-						<ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                  <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><div class="inner-block-digits pull-left">1</div>
-									<span class="inner-block-text">Basic Info</span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']"><div class="inner-block-digits pull-left">2</div>
-									<span class="inner-block-text">Large Emp. Status & Tracking</span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']"><div class="inner-block-digits pull-left ">3</div>
-									<span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
-								</span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']"><div class="inner-block-digits pull-left ">4</div>
-									<span class="inner-block-text">Designated Govt. Entity </span></a></li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']"><div class="inner-block-digits pull-left ">5</div>
-									<span class="inner-block-text">Aggregated Group</span></a>
-							</li>
-							<li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-              <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']"><div class="inner-block-digits pull-left ">6</div>
-									<span class="inner-block-text">Anything Else</span></a>
-							</li>
-						</ul>
-					</div>
-          <!-- ./Sub category Tabs -->
-
-
-					<div class="col-md-12 padding-0">
-						<div class="tab-content clearfix">
-							<div class="tab-pane active " id="planbasics" role="tabpanel">
+					<!-- form content -->
+					<div class="col-md-12">
+				
+						<span class="fontcolor-blue box-head">Variable Hour Measuring</span>
+						<hr class="margin-top-5">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label span-label">3.1&nbsp;&nbsp;&nbsp;There are two different methods which can be used to track hours worked for non-fulltime employees to ensure that they are not in-fact full-time. Please select your method used.</label> 
 								
-								<form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
-									<div class="border-top-bottom-ddd col-md-12 padding-0">
-										<div class="container margin-top-10 margin-bottom-10">
+								<input [(ngModel)]="hours_tracking_method" name="hours_tracking_method" type="radio" value="1">&nbsp;&nbsp;&nbsp;&nbsp; <span class="control-checkbox">Look-Back Measurement Method</span>&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input [(ngModel)]="hours_tracking_method" name="hours_tracking_method" type="radio" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">Monthly Measurement Method</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input [(ngModel)]="hours_tracking_method" name="hours_tracking_method" type="radio" value="3">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">Not Currently Measuring Hours</span>
+								
+							</div>
 
-											
-											<!-- form content -->
-											<div class="col-md-12">
-										
-											<div>
-												<span class="fontcolor-blue box-head">Variable Hour Measuring</span>
-												<hr class="margin-top-5">
-												<div class="col-sm-12">
-													<div class="form-group">
-														<label class="control-label span-label">3.1&nbsp;&nbsp;&nbsp;There are two different methods which can be used to track hours worked for non-fulltime employees to ensure that they are not in-fact full-time. Please select your method used.</label> 
-														
-														<input [(ngModel)]="hours_tracking_method" name="hours_tracking_method" type="radio" value="1">&nbsp;&nbsp;&nbsp;&nbsp; <span class="control-checkbox">Look-Back Measurement Method</span>&nbsp;&nbsp;&nbsp;&nbsp; 
-														<input [(ngModel)]="hours_tracking_method" name="hours_tracking_method" type="radio" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">Monthly Measurement Method</span>&nbsp;&nbsp;&nbsp;&nbsp;
-														<input [(ngModel)]="hours_tracking_method" name="hours_tracking_method" type="radio" value="3">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">Not Currently Measuring Hours</span>
-														
-													</div>
-
-													<div id="hours_tracking_method_div" *ngIf="hours_tracking_method == 1">
-														<div class="col-sm-12">
-															<div class="form-group">
-																<label class="control-label"><span>3.1.1&nbsp;&nbsp;&nbsp;What is the length of your initial measurement period (# of days) ?</span></label> 
-																<div class="form-group field-tblacaplancriteria-initial_measurement_period">
-																	<input type="text" id="tblacaplancriteria-initial_measurement_period" class="form-control form-height numbers" name="TblAcaPlanCriteria[initial_measurement_period]" maxlength="5" style="width:50%">
-																	<div class="help-block"></div>
-																</div>													
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<label class="control-label">3.1.2&nbsp;&nbsp;&nbsp;When does your initial measurement period begins ?</label>
-																<div>
-																	<input type="radio" name="TblAcaPlanCriteria[initial_measurment_period_begin]" value="1" class="initialmeasurement-period-begin"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Date of Hire (DOH)</span>&nbsp;&nbsp;&nbsp;&nbsp; 
-																	<input type="radio" name="TblAcaPlanCriteria[initial_measurment_period_begin]" value="2" class="initialmeasurement-period-begin"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st of Month After DOH</span>
-																</div>
-															</div>
-														</div>
-													</div>
-
-												</div>
-											</div>
-
-
-											<div class="col-sm-12 padding-left-0 padding-right-0">
-												<span class="fontcolor-blue box-head">Plan Offering Criteria</span>
-												<hr class="margin-top-5">
-												<div class="col-sm-12">
-													<div class="form-group">
-														<div>
-														<label class="control-label">3.2&nbsp;&nbsp;&nbsp;What type of plan offering criteria did you meet this year ? (select any that apply).</label>
-														</div>
-															<div class="checkbox">
-															<label> <input type="checkbox" name="TblAcaPlanCriteria[plan_offering_criteria_type][1]" value="1">
-															<span class="margin-0">Qualifying Offer Method</span>
-															</label>
-														</div>
-
-														
-														<div class="checkbox">
-															<label> <input type="checkbox" name="TblAcaPlanCriteria[plan_offering_criteria_type][2]" value="2">
-															<span class="margin-0">98% Offer Method</span>
-															</label>
-														</div>
-
-													</div>
-												</div>
-
-
-												<div class="col-sm-12">
-													<div class="form-group">
-														<label class="control-label"><span>3.3&nbsp;&nbsp;&nbsp;Since February 9, 2014, can you certify that your company.</span>
-														</label>
-
-														<div class="col-sm-12">
-															
-															<label class="control-label">
-																<div><span>(a)&nbsp;&nbsp;&nbsp;Hasn't changed workforce size to ensure that you are under 100 employees.</span> </div>
-																<input class="company_certify company_certify_yes" type="radio" name="TblAcaPlanCriteria[company_certification_workforce]" value="1">&nbsp;&nbsp;&nbsp;&nbsp; <span class="control-checkbox">Yes</span>
-																&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" class="company_certify company_certify_no" name="TblAcaPlanCriteria[company_certification_workforce]" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">No</span>&nbsp;&nbsp;&nbsp;&nbsp;
-															</label>
-														</div>
-														<div class="col-sm-12">
-															<label class="control-label">
-																<div><span>(b) &nbsp;&nbsp;&nbsp;Hasn't narrowed eligibility</span> </div>
-																
-																<input type="radio" class="company_certify company_certify_yes" name="TblAcaPlanCriteria[company_certification_medical_eligibility]" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
-																<span class="control-checkbox">Yes</span>
-																&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" class="company_certify company_certify_no" name="TblAcaPlanCriteria[company_certification_medical_eligibility]" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">No</span>&nbsp;&nbsp;&nbsp;&nbsp;
-															</label>
-														</div>
-														<div class="col-sm-12">
-															<label class="control-label">
-																<div><span>(c) &nbsp;&nbsp;&nbsp;Has maintained the same or higher % employer contribution to your medical plan costs.</span></div>
-																 <input type="radio" class="company_certify company_certify_yes" name="TblAcaPlanCriteria[company_certification_employer_contribution]" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
-																<span class="control-checkbox">Yes</span>
-																&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" class="company_certify company_certify_no" name="TblAcaPlanCriteria[company_certification_employer_contribution]" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">No</span>&nbsp;&nbsp;&nbsp;&nbsp;
-															</label>
-														</div>
-													</div>
-												</div>
-
-
-
-
-											</div>
-
-
-									
+							<div id="hours_tracking_method_div" *ngIf="hours_tracking_method == 1">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="control-label"><span>3.1.1&nbsp;&nbsp;&nbsp;What is the length of your initial measurement period (# of days) ?</span></label> 
+										<div class="form-group field-tblacaplancriteria-initial_measurement_period">
+											<input type="text" id="tblacaplancriteria-initial_measurement_period" class="form-control form-height numbers" name="TblAcaPlanCriteria[initial_measurement_period]" maxlength="5" style="width:50%">
+											<div class="help-block"></div>
+										</div>													
 									</div>
-											<!-- ./form content -->
-											
-											
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="control-label">3.1.2&nbsp;&nbsp;&nbsp;When does your initial measurement period begins ?</label>
+										<div>
+											<input type="radio" name="TblAcaPlanCriteria[initial_measurment_period_begin]" value="1" class="initialmeasurement-period-begin"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Date of Hire (DOH)</span>&nbsp;&nbsp;&nbsp;&nbsp; 
+											<input type="radio" name="TblAcaPlanCriteria[initial_measurment_period_begin]" value="2" class="initialmeasurement-period-begin"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st of Month After DOH</span>
 										</div>
 									</div>
-									<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
-										<div class="modal-footer-btn padding-15">
-											<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-											<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-											<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
-										</div>
-									</div>
-								</form>
+								</div>
+							</div>
+
+						</div>
+
+					<div class="col-sm-12 padding-left-0 padding-right-0">
+						<span class="fontcolor-blue box-head">Plan Offering Criteria</span>
+						<hr class="margin-top-5">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<div>
+								<label class="control-label">3.2&nbsp;&nbsp;&nbsp;What type of plan offering criteria did you meet this year ? (select any that apply).</label>
+								</div>
+									<div class="checkbox">
+									<label> <input type="checkbox" name="TblAcaPlanCriteria[plan_offering_criteria_type][1]" value="1">
+									<span class="margin-0">Qualifying Offer Method</span>
+									</label>
+								</div>
+
+								
+								<div class="checkbox">
+									<label> <input type="checkbox" name="TblAcaPlanCriteria[plan_offering_criteria_type][2]" value="2">
+									<span class="margin-0">98% Offer Method</span>
+									</label>
+								</div>
+
 							</div>
 						</div>
+
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label"><span>3.3&nbsp;&nbsp;&nbsp;Since February 9, 2014, can you certify that your company.</span>
+								</label>
+
+								<div class="col-sm-12">
+									
+									<label class="control-label">
+										<div><span>(a)&nbsp;&nbsp;&nbsp;Hasn't changed workforce size to ensure that you are under 100 employees.</span> </div>
+										<input class="company_certify company_certify_yes" type="radio" name="TblAcaPlanCriteria[company_certification_workforce]" value="1">&nbsp;&nbsp;&nbsp;&nbsp; <span class="control-checkbox">Yes</span>
+										&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" class="company_certify company_certify_no" name="TblAcaPlanCriteria[company_certification_workforce]" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">No</span>&nbsp;&nbsp;&nbsp;&nbsp;
+									</label>
+								</div>
+								<div class="col-sm-12">
+									<label class="control-label">
+										<div><span>(b) &nbsp;&nbsp;&nbsp;Hasn't narrowed eligibility</span> </div>
+										
+										<input type="radio" class="company_certify company_certify_yes" name="TblAcaPlanCriteria[company_certification_medical_eligibility]" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
+										<span class="control-checkbox">Yes</span>
+										&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" class="company_certify company_certify_no" name="TblAcaPlanCriteria[company_certification_medical_eligibility]" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">No</span>&nbsp;&nbsp;&nbsp;&nbsp;
+									</label>
+								</div>
+								<div class="col-sm-12">
+									<label class="control-label">
+										<div><span>(c) &nbsp;&nbsp;&nbsp;Has maintained the same or higher % employer contribution to your medical plan costs.</span></div>
+											<input type="radio" class="company_certify company_certify_yes" name="TblAcaPlanCriteria[company_certification_employer_contribution]" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
+										<span class="control-checkbox">Yes</span>
+										&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" class="company_certify company_certify_no" name="TblAcaPlanCriteria[company_certification_employer_contribution]" value="2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="control-checkbox">No</span>&nbsp;&nbsp;&nbsp;&nbsp;
+									</label>
+								</div>
+							</div>
+						</div>
+
+
+
+
 					</div>
+
+
+			
+			</div>
+					<!-- ./form content -->
+					
+					
 				</div>
 			</div>
-		</div>
+			<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+				<div class="modal-footer-btn padding-15">
+					<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+					<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
+					<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

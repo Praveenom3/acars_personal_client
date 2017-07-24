@@ -16,82 +16,87 @@
 
 </div>
 
-<div class="section-container">
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
 
-    <div class="col-md-12">
-        <div class="col-xs-12">
-            <div class="col-xs-12 widget widget-two no-padding">
-                <div class="widget-header-11" style="height:59px;">
-                    <div style="float: left;margin-top: 9px;">
-                        <strong>Clients</strong>
-                    </div>
-                    <div style="float: right;">
-                        <a class="btn btn-modal-blue pull-right" href="#add-client-modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i> Add Client</a>
-                    </div>
-                </div>
-
-                <div class="clearfix">
-
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th class="blue-grid-head" width="40%">Client Name</th>
-                                <th class="blue-grid-head" width="30%">Brand</th>
-                                <th class="blue-grid-head" width="30%">Client #</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tr-text-center">
-                                <td><a class="link-blue-underline" href="#update-client-modal" role="button" data-toggle="modal">Cargo Force</a></td>
-                                <td>Acars</td>
-                                <td>11465-1</td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td><a class="link-blue-underline" href="#update-client-modal" role="button" data-toggle="modal">ABC Engineering</a></td>
-                                <td>Pro Sky</td>
-                                <td>14465-2</td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td><a class="link-blue-underline" href="#update-client-modal" role="button" data-toggle="modal">Sky works</a></td>
-                                <td>Acars</td>
-                                <td>12665-1</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-
-
-                    <div class="col-md-12">
-                        <div class="col-md-3 padding10">
-                            <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+        <div class="col-md-12">
+            <div class="col-xs-12">
+                <div class="col-xs-12 widget widget-two no-padding">
+                    <div class="widget-header-11" style="height:59px;">
+                        <div style="float: left;margin-top: 9px;">
+                            <strong>Clients</strong>
                         </div>
-                        <div class="col-md-9 text-right">
-
-                            <ul class="pagination">
-                                <li class="first disabled"><span>first</span></li>
-                                <li class="prev disabled"><span>previous</span></li>
-                                <li class="active"><a data-page="0">1</a></li>
-                                <li><a data-page="1">2</a></li>
-                                <li><a data-page="2">3</a></li>
-                                <li><a data-page="3">4</a></li>
-                                <li><a data-page="4">5</a></li>
-                                <li class="next"><a data-page="1">next</a></li>
-                                <li class="last"><a data-page="8">last</a></li>
-                            </ul>
+                        <div style="float: right;">
+                            <a class="btn btn-modal-blue pull-right" href="#add-client-modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i> Add Client</a>
                         </div>
                     </div>
 
+                    <div class="clearfix">
+
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="blue-grid-head" width="25%">Client #</th>
+                                    <th class="blue-grid-head" width="25%">Client Name</th>
+                                    <th class="blue-grid-head" width="25%">Brand</th>
+                                    <th class="blue-grid-head" width="25%"># of Purchases</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-text-center">
+                                    <td><a class="link-blue-underline" [routerLink]="['/client/aca16/companies']">45878</a></td>
+                                    <td><a class="link-blue-underline" href="#update-client-modal" data-toggle="modal">Acars</a></td>
+                                    <td>11465-1</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td><a class="link-blue-underline" [routerLink]="['/client/aca16/companies']">45787</a></td>
+                                    <td><a class="link-blue-underline" href="#update-client-modal" data-toggle="modal">Pro Sky</a></td>
+                                    <td>14465-2</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr class="tr-text-center">
+                                    <td><a class="link-blue-underline" [routerLink]="['/client/aca16/companies']">45778</a></td>
+                                    <td><a class="link-blue-underline" href="#update-client-modal" data-toggle="modal">Acars</a></td>
+                                    <td>12665-1</td>
+                                    <td>3</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
 
 
+                        <div class="col-md-12">
+                            <div class="col-md-3 padding10">
+                                <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                            </div>
+                            <div class="col-md-9 text-right">
+
+                                <ul class="pagination">
+                                    <li class="first disabled"><span>first</span></li>
+                                    <li class="prev disabled"><span>previous</span></li>
+                                    <li class="active"><a data-page="0">1</a></li>
+                                    <li><a data-page="1">2</a></li>
+                                    <li><a data-page="2">3</a></li>
+                                    <li><a data-page="3">4</a></li>
+                                    <li><a data-page="4">5</a></li>
+                                    <li class="next"><a data-page="1">next</a></li>
+                                    <li class="last"><a data-page="8">last</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Add Client Modal -->
-<div class="modal fade" id="add-client-modal" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="add-client-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="width:76%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
                 <h4 class="modal-title pull-left color-white">Add Client Details</h4>
@@ -99,12 +104,6 @@
             </div>
             <div class="modal-body">
                 <form class="col-xs-12 form-inline" style="margin-top:10px;">
-                    <div class="col-xs-5">
-                        <label class="control-label col-xs-4 padding-top-5" for="client_name">Client Name <span class="red">*</span></label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client Name">
-                        </div>
-                    </div>
                     <div class="col-xs-4">
                         <label class="control-label col-xs-5 padding-top-5" for="brand">Select Brand<span class="red">*</span></label>
                         <div class="col-xs-7">
@@ -121,6 +120,13 @@
                             <span class="form-control" id="client_name" placeholder="Enter Client #" readonly>11465-1</span>
                         </div>
                     </div>
+                    <div class="col-xs-5">
+                        <label class="control-label col-xs-4 padding-top-5" for="client_name">Client Name <span class="red">*</span></label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client Name">
+                        </div>
+                    </div>
+
                 </form>
 
                 <!-- Purchase history -->
@@ -147,11 +153,15 @@
                                         <th class="blue-grid-head">Last Name</th>
                                         <th class="blue-grid-head">Email</th>
                                         <th class="blue-grid-head">Contact #</th>
+                                        <th class="blue-grid-head">Invoice #</th>
                                         <th class="blue-grid-head">Invoice paid</th>
+                                        <th class="blue-grid-head">Invoice Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="tr-text-center">
+                                        <td>--</td>
+                                        <td>--</td>
                                         <td>--</td>
                                         <td>--</td>
                                         <td>--</td>
@@ -199,8 +209,8 @@
 
 
 <!-- Update Client Modal -->
-<div class="modal fade" id="update-client-modal" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="update-client-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="width:76%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
                 <h4 class="modal-title pull-left color-white">Client Details</h4>
@@ -211,12 +221,6 @@
                         <tab heading="Client Details">  -->
 
                 <form class="col-xs-12 form-inline" style="margin-top:10px;">
-                    <div class="col-xs-5">
-                        <label class="control-label col-xs-4 padding-top-5" for="client_name">Client Name <span class="red">*</span></label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client Name">
-                        </div>
-                    </div>
                     <div class="col-xs-4">
                         <label class="control-label col-xs-5 padding-top-5" for="brand">Select Brand<span class="red">*</span></label>
                         <div class="col-xs-7">
@@ -233,6 +237,13 @@
                             <span class="form-control" id="client_name" placeholder="Enter Client #" readonly>11465-1</span>
                         </div>
                     </div>
+                    <div class="col-xs-5">
+                        <label class="control-label col-xs-4 padding-top-5" for="client_name">Client Name <span class="red">*</span></label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client Name">
+                        </div>
+                    </div>
+
                 </form>
                 <!--    </tab>
                         <tab heading="Purchase History"> -->
@@ -259,7 +270,9 @@
                                         <th class="blue-grid-head">Last Name</th>
                                         <th class="blue-grid-head">Email</th>
                                         <th class="blue-grid-head">Contact #</th>
+                                        <th class="blue-grid-head">Invoice #</th>
                                         <th class="blue-grid-head">Invoice paid</th>
+                                        <th class="blue-grid-head">Invoice Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -270,7 +283,9 @@
                                         <td>Combs</td>
                                         <td><a class="link-blue-underline">combs@combs.com</a></td>
                                         <td>888-845-4878</td>
+                                        <td class="text-center">47578</td>
                                         <td class="text-center">N/A</td>
+                                        <td class="text-center">05/24/2017</td>
                                     </tr>
                                     <tr class="tr-text-center">
                                         <td>9/1/2017</td>
@@ -279,7 +294,9 @@
                                         <td>Combs</td>
                                         <td><a class="link-blue-underline">combs@combs.com</a></td>
                                         <td>888-845-4878</td>
-                                        <td class="text-center">Yes</td>
+                                        <td class="text-center">47878</td>
+                                        <td class="text-center">N/A</td>
+                                        <td class="text-center">05/24/2017</td>
                                     </tr>
                                     <tr class="tr-text-center">
                                         <td>3/1/2017</td>
@@ -288,7 +305,9 @@
                                         <td>Combs</td>
                                         <td><a class="link-blue-underline">combs@combs.com</a></td>
                                         <td>888-845-4878</td>
-                                        <td class="text-center">No</td>
+                                        <td class="text-center">47578</td>
+                                        <td class="text-center">N/A</td>
+                                        <td class="text-center">05/24/2017</td>
                                     </tr>
                                 </tbody>
 
@@ -337,8 +356,8 @@
 
 
 <!-- Add Purchase Modal -->
-<div class="modal fade" id="add-purchase-modal" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="add-purchase-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="width:80%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
                 <h4 class="modal-title pull-left color-white">Add Purchase Details</h4>
@@ -364,25 +383,43 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-control-label">Total # of Forms</label>
-                            <div class="form-group field-adminusers-last_name">
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option>1000</option>
-                                                <option>2000</option>
-                                                </select>
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-4">
                             <label class="form-control-label">Total # of Eins</label>
                             <div class="form-group field-adminusers-extension">
                                 <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
                                 <div class="help-block"></div>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Total # of Forms</label>
+                            <div class="form-group field-adminusers-last_name">
+                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Brand <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-extension">
+                                <span class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value=""></span>
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group field-user-username ">
+                                <label class="form-control-label" for="user-username">Product</label>
+                                <select class="form-control">
+                                                <option>Select</option>
+                                                <option>ACA Reporting 2016</option>
+                                                <option>ACA Reporting 2017</option>
+                                                <option>VHT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 padding-0">
+
                         <div class="col-md-4">
                             <div class="form-group field-user-username ">
                                 <label class="form-control-label" for="user-username">Purchaser First Name <span class="red">*</span></label>
@@ -396,14 +433,16 @@
                                 <div class="help-block"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 padding-0">
                         <div class="col-md-4">
                             <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser Email</label>
+                                <label class="form-control-label" for="user-username">Purchaser Email <span class="red">*</span></label>
                                 <input aria-required="true" class="form-control" id="adminusers-email" type="text">
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12 padding-0">
+
+
                         <div class="col-md-4">
                             <label class="form-control-label">Purchaser Phone <span class="red">*</span></label>
                             <div class="form-group field-adminusers-phone">
@@ -422,19 +461,29 @@
                                 <div class="help-block"></div>
                             </div>
                         </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group field-user-username ">
+                                <label class="form-control-label" for="user-username">Amount</label>
+                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="col-md-12 padding-0">
                         <div class="col-md-4">
-                            <label class="form-control-label">Brand <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-extension">
-                                <span class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value=""></span>
+                            <label class="form-control-label">Assign Account Manager</label>
+                            <div class="form-group field-adminusers-last_name">
+                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Product</label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            <label class="form-control-label">Date of Purchase</label>
+                            <div class="form-group field-adminusers-extension">
+                                <input class="form-control" type="date" value="">
+                                <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -450,27 +499,20 @@
                                 <div class="help-block"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-4">
-                            <label class="form-control-label">Assign Account Manager</label>
-                            <div class="form-group field-adminusers-last_name">
-                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
-                                <div class="help-block"></div>
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
+                                <label class="form-control-label">Invoice #</label>
+                                <div class="form-group field-adminusers-extension">
+                                    <input class="form-control numbers" id="adminusers-extension" name="AdminUsers[extension]" type="text" value="">
+                                    <div class="help-block"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Aggregated group status</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
-                            <label class="form-control-label">Invoice #</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control numbers" id="adminusers-extension" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
+                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
+                                <label class="form-control-label">Invoice Date</label>
+                                <div class="form-group field-adminusers-extension">
+                                    <input class="form-control" type="date" value="">
+                                    <div class="help-block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -487,8 +529,8 @@
 <!-- ./Add Purchase Modal -->
 
 <!-- Update Purchase Modal -->
-<div class="modal fade" id="update-purchase-modal" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="update-purchase-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="width:80%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
                 <h4 class="modal-title pull-left color-white">Update Purchase History</h4>
@@ -499,128 +541,160 @@
                     <div class="col-md-12 padding-0">
 
                         <div class="col-md-4">
+                            <label class="form-control-label">Client #</label>
                             <div class="form-group field-adminusers-phone">
-                                <label class="form-control-label">Client #</label>
-                                <span aria-required="true" class="form-control" id="adminusers-first_name" maxlength="15" name="AdminUsers[first_name]" type="text" value="11465-1">11465-1</span>
+                                <span class="form-control">7845</span>
                                 <div class="help-block"></div>
                             </div>
                         </div>
 
                         <div class="col-md-4">
+                            <label class="form-control-label">Client Name <span class="red">*</span></label>
                             <div class="form-group field-adminusers-first_name">
-                                <label class="form-control-label">Client Name <span class="red">*</span></label>
-                                <span aria-required="true" class="form-control" id="adminusers-first_name" maxlength="15" name="AdminUsers[first_name]" type="text" value="Cargo Force">Cargo Force</span>
+                                <span aria-required="true" class="form-control" id="adminusers-first_name" maxlength="15" name="AdminUsers[first_name]" type="text"></span>
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
+                            <label class="form-control-label">Total # of Eins</label>
+                            <div class="form-group field-adminusers-extension">
+                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Total # of Forms</label>
                             <div class="form-group field-adminusers-last_name">
-                                <label class="form-control-label">Total # of Forms</label>
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option selected>1000</option>
-                                                <option>2000</option>
-                                                </select>
+                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
                                 <div class="help-block"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 padding-0">
                         <div class="col-md-4">
+                            <label class="form-control-label">Brand <span class="red">*</span></label>
                             <div class="form-group field-adminusers-extension">
-                                <label class="form-control-label">Total # of Eins</label>
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="10">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser First Name <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text" value="Marcus">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-adminusers-phone">
-                                <label class="form-control-label">Purchaser Last Name <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control us-phone-mask-input" id="adminusers-phone" maxlength="14" name="AdminUsers[phone]" type="text" value="Combs">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser Email</label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text" value="mark@cargo.com">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-adminusers-phone">
-                                <label class="form-control-label">Purchaser Phone <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control us-phone-mask-input" id="adminusers-phone" maxlength="14" name="AdminUsers[phone]" type="text" value="(877) 999-9989">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-adminusers-extension">
-                                <label class="form-control-label">Purchaser Status</label>
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option selected>Active</option>
-                                                <option>Inactive</option>
-                                                </select>
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-4">
-                            <div class="form-group field-adminusers-extension">
-                                <label class="form-control-label">Brand <span class="red">*</span></label>
-                                <span class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="Sky ACA Reporting">Sky ACA Reporting</span>
+                                <span class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value=""></span>
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group field-user-username ">
                                 <label class="form-control-label" for="user-username">Product</label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text" value="2017 Enhanced ACA Reporting">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-adminusers-last_name">
-                                <label class="form-control-label">Invoice</label>
-                                <div style="height:34px; padding-top:5px;">
-                                    <label class="radio-inline">
-      <input type="radio"[(ngModel)]="editPurchaseInvoiceRadio" name="editPurchaseInvoiceRadio" value="yes" [checked]="false">Yes
-    </label>
-                                    <label class="radio-inline">
-      <input type="radio"[(ngModel)]="editPurchaseInvoiceRadio" name="editPurchaseInvoiceRadio" value="no" [checked]="true">No
-    </label></div>
-                                <div class="help-block"></div>
+                                <select class="form-control">
+                                                <option>Select</option>
+                                                <option>ACA Reporting 2016</option>
+                                                <option>ACA Reporting 2017</option>
+                                                <option>VHT</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 padding-0">
+
                         <div class="col-md-4">
+                            <div class="form-group field-user-username ">
+                                <label class="form-control-label" for="user-username">Purchaser First Name <span class="red">*</span></label>
+                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Purchaser Last Name <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-phone">
+                                <input aria-required="true" class="form-control us-phone-mask-input" id="adminusers-phone" maxlength="14" name="AdminUsers[phone]" type="text">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group field-user-username ">
+                                <label class="form-control-label" for="user-username">Purchaser Email <span class="red">*</span></label>
+                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 padding-0">
+
+
+                        <div class="col-md-4">
+                            <label class="form-control-label">Purchaser Phone <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-phone">
+                                <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Purchaser Status</label>
+                            <div class="form-group field-adminusers-extension">
+                                <select class="form-control">
+                                                <option>Select</option>
+                                                <option>Active</option>
+                                                <option>Inactive</option>
+                                                </select>
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group field-user-username ">
+                                <label class="form-control-label" for="user-username">Amount</label>
+                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Assign Account Manager</label>
                             <div class="form-group field-adminusers-last_name">
-                                <label class="form-control-label">Assign Account Manager</label>
-                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text" value="Ashley Duckett">
+                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
+                            <label class="form-control-label">Aggregated group status</label>
                             <div class="form-group field-adminusers-extension">
-                                <label class="form-control-label">Aggregated group status</label>
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="Yes">
+                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
                                 <div class="help-block"></div>
                             </div>
                         </div>
-                        <div class="col-md-4" *ngIf="editPurchaseInvoiceRadio == 'yes'">
-                            <label class="form-control-label">Invoice #</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control numbers" id="adminusers-extension" name="AdminUsers[extension]" type="text" value="">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Invoice</label>
+                            <div class="form-group field-adminusers-last_name">
+                                <div style="height:34px; padding-top:5px;">
+                                    <label class="radio-inline">
+      <input type="radio"[(ngModel)]="addPurchaseInvoiceRadio" name="addPurchaseInvoiceRadio" value="yes">Yes
+    </label>
+                                    <label class="radio-inline">
+      <input type="radio"[(ngModel)]="addPurchaseInvoiceRadio" name="addPurchaseInvoiceRadio" value="no" checked>No
+    </label></div>
                                 <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-0">
+
+                            <div class="col-md-4">
+                                <label class="form-control-label">Date of Purchase</label>
+                                <div class="form-group field-adminusers-extension">
+                                    <input class="form-control" type="date" value="">
+                                    <div class="help-block"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
+                                <label class="form-control-label">Invoice #</label>
+                                <div class="form-group field-adminusers-extension">
+                                    <input class="form-control numbers" id="adminusers-extension" name="AdminUsers[extension]" type="text" value="">
+                                    <div class="help-block"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
+                                <label class="form-control-label">Invoice Date</label>
+                                <div class="form-group field-adminusers-extension">
+                                    <input class="form-control" type="date" value="">
+                                    <div class="help-block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

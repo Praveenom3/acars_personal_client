@@ -1,371 +1,326 @@
-<div class="product-container col-md-12 pull-left width-100">
+<!-- company info -->
+    <client-company-info></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+    <client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
 
-	<!-- company info -->
-	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-		<div class="pull-right">
-			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-		</div>
-		<h5 class="cat__core__title d-block mb-0 pt-3">
-			<span> Name: <span class="text-muted">Cargo Force</span></span>
-			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-		</h5>
-	</nav>
-	<!-- ./company info -->
+<!-- Sub Tabs -->
+    <div class="col-xs-12 client-reporting-subTabs-band-fixed">
+        <div class="col-md-12 padding-10 ul-block">
+            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                    <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']">
+                        <div class="inner-block-digits pull-left">1</div>
+                        <span class="inner-block-text">General Plan Information</span></a>
+                </li>
+                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                    <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info','mec-coverage']">
+                        <div class="inner-block-digits pull-left">2</div>
+                        <span class="inner-block-text">MEC Coverage</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!-- ./Sub Tabs -->
 
-    <div class="">
-        <div class="col-md-12 border-ddd widget padding-0">
+<div class="product-container-with-sub-tabs col-md-12">
+    <div class="col-md-12 padding-0">
+        <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+            <div class="col-md-12 padding-0">
+                <div class="container margin-top-30 margin-bottom-10">
 
-            <!-- Main Tabs -->
-            <div class="search-header padding-10">
-                <ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-                    <li class="col-md-1"></li>
-                    <li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-                        <p class="font-white margin-0">Basic Reporting Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-                        <p class="font-white margin-0">Benefit Plan Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-                        <p class="font-white margin-0">Plan Classes</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Payroll</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Enrollments</p>
-                    </li>
-                    <li class="col-md-1"></li>
-                </ul>
-            </div>
-            <!-- ./Main Tabs -->
-
-
-            <div class="tab-content clearfix">
-                <div aria-expanded="true" class="tab-pane active" id="account_setup_block">
-                    <!-- Sub category Tabs -->
-                    <div class="col-md-12  padding-10 ul-block">
-                        <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                                <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']">
-                                    <div class="inner-block-digits pull-left">1</div>
-                                    <span class="inner-block-text">General Plan Information</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-                                <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info','mec-coverage']">
-                                    <div class="inner-block-digits pull-left">2</div>
-                                    <span class="inner-block-text">MEC Coverage</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- ./Sub category Tabs -->
-
-
-                    <div class="col-md-12 padding-0">
-                        <div class="tab-content clearfix">
-                            <div class="tab-pane active " id="planbasics" role="tabpanel">
-
-                                <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
-                                    <div class="border-top-bottom-ddd col-md-12 padding-0">
-                                        <div class="container margin-top-30 margin-bottom-10">
-
-                                            <!-- form content -->
-                                            <div class="col-md-12">
-                                                <div class="form-group row">
-                                                    <label class="form-control-label">7.1&nbsp;&nbsp;&nbsp;Is this your first year Offering Coverage ?</label>
-                                                    <div class="padding-left-25">
-                                                        <label class="radio-inline">
-                                                               <input type="radio" name="TblAcaGeneralPlanInfo[is_first_year]" value="1"> Yes
-                                                            </label>
-                                                        <label class="radio-inline">
-                                                             <input type="radio" name="TblAcaGeneralPlanInfo[is_first_year]" value="2"> No
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="form-control-label">7.2&nbsp;&nbsp;&nbsp;What is your renewal month for your medical plans ? If you have multiple plans/renewals, enter the earliest one of the year. If you did not offer a plan then select "Not Applicable" </label>
-                                                    <div class="col-sm-5 padding-left-25">
-                                                        <select class="form-control form-height" name="TblAcaGeneralPlanInfo[renewal_month]">
-                                                            <option value="">Select a Value</option>
-                                                            <option value="1">January</option>
-                                                            <option value="2">February</option>
-                                                            <option value="3">March</option>
-                                                            <option value="4">April</option>
-                                                            <option value="5">May</option>
-                                                            <option value="6">June</option>
-                                                            <option value="7">July</option>
-                                                            <option value="8">August</option>
-                                                            <option value="9">September</option>
-                                                            <option value="10">October</option>
-                                                            <option value="11">November</option>
-                                                            <option value="12">December</option>
-                                                            <option value="13">Not Applicable</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="form-control-label">7.3&nbsp;&nbsp;&nbsp;Enter a short description of the type of plans you offer, insurance carriers, and any other relevant information</label>
-                                                    <div class="col-sm-5 padding-left-25 field-tblacageneralplaninfo-plan_type_description">
-                                                        <textarea id="tblacageneralplaninfo-plan_type_description" class="form-control form-height" name="TblAcaGeneralPlanInfo[plan_type_description]" maxlength="100" rows="2" cols="4"></textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="form-control-label">7.4&nbsp;&nbsp;&nbsp;Do you have multiple waiting periods for different employees ?</label>
-                                                    <div class="padding-left-25">
-                                                        <label class="radio-inline">
-                                                               <input type="radio" [(ngModel)]="sevenpfour" name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="1"> Yes
-                                                            </label>
-                                                        <label class="radio-inline">
-                                                             <input type="radio" [(ngModel)]="sevenpfour"  name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="2"> No
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                                <!--<div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <label class="form-control-label"><div>7.4&nbsp;&nbsp;&nbsp;Do you have multiple waiting periods for different employees ?</div></label>
-                                                        <br>
-                                                        <input type="radio" [(ngModel)]="sevenpfour" name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <input type="radio" [(ngModel)]="sevenpfour" name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-                                                    </div>
-                                                </div>-->
-                                                <div class="form-group col-sm-5" *ngIf="sevenpfour == '1'">
-                                                    <label class="form-control-label">7.4.1 If yes, explain</label>
-                                                    <textarea class="form-control"></textarea>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="form-control-label">7.5&nbsp;&nbsp;&nbsp;Did your company offer a Health Reimbursement Arrangement (HRA) to employees that did NOT require their participation in the medical plan ?</label>
-                                                    <div class="padding-left-25">
-                                                        <label class="radio-inline">
-                                                               <input type="radio" [(ngModel)]="sevenpfive" name="TblAcaGeneralPlanInfo[is_employees_hra]" value="1"> Yes
-                                                            </label>
-                                                        <label class="radio-inline">
-                                                             <input type="radio" [(ngModel)]="sevenpfive"  name="TblAcaGeneralPlanInfo[is_employees_hra]" value="2"> No
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                                <!--<div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <label class="form-control-label"><div>7.5&nbsp;&nbsp;&nbsp;Did your company offer a Health Reimbursement Arrangement (HRA) to employees that did NOT require their participation in the medical plan ?</div>
-																		<input type="radio" [(ngModel)]="sevenpfive" name="TblAcaGeneralPlanInfo[is_employees_hra]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-																		<input type="radio" checked [(ngModel)]="sevenpfive" name="TblAcaGeneralPlanInfo[is_employees_hra]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-																	</label>
-                                                    </div>
-                                                </div>-->
-                                                <div class="form-group text_hra " *ngIf="sevenpfive == '1'">
-                                                    <div class="col-sm-12">
-                                                        <label class="form-control-label"><div>7.5.1&nbsp;&nbsp;&nbsp;Please contact customer service for additional information</div></label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="form-control-label">7.6&nbsp;&nbsp;&nbsp;Overall as a company, did you have BOTH Self Insured AND Fully Insured Plans During the reporting year ?</label>
-                                                    <div class="padding-left-25">
-                                                        <label class="radio-inline">
-                                                               <input type="radio" [(ngModel)]="sevenpsix" name="TblAcaGeneralPlanInfo[offer_type]" value="1"> Yes
-                                                            </label>
-                                                        <label class="radio-inline">
-                                                             <input type="radio" [(ngModel)]="sevenpsix"  name="TblAcaGeneralPlanInfo[offer_type]" value="2"> No
-                                                        </label>
-                                                    </div>
-
-                                                    <!--<div class="col-sm-12">
-                                                        <label class="form-control-label"><div>7.6&nbsp;&nbsp;&nbsp;Overall as a company, did you have BOTH Self Insured AND Fully Insured Plans During the reporting year ?</div>
-																		<input type="radio" [(ngModel)]="sevenpsix" name="TblAcaGeneralPlanInfo[offer_type]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-																		<input type="radio" checked [(ngModel)]="sevenpsix" name="TblAcaGeneralPlanInfo[offer_type]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-																	</label>
-                                                    </div>-->
-
-                                                    <div class="col-sm-12" *ngIf="sevenpsix == '1'" id="combination_div1" style="margin-top: 15px;">
-                                                        <div class="col-xs-12 padding-left-0 padding-right-0" style="border: 1px solid #ddd;">
-                                                            <div class="col-sm-4">
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">January</div>
-
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][1]">
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																														
-																						</select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">April</div>
-                                                                    <div class="col-sm-9">
-
-
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][2]">
-
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">July</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][3]">
-																						<option value="0">Select a Plan</option>																					
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																														</select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">October</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][4]">
-
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																														
-																						</select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 padding-left-0">
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">February</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][5]">
-																						<option value="0">Select a Plan</option>																					
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																														</select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">May</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][6]">
-
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">August</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][7]">
-
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																														
-																						</select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">November</div>
-                                                                    <div class="col-sm-9">
-
-
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][8]">
-
-																						<option value="0">Select a Plan</option>
-																																															<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 padding-left-0">
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">March</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value " name="TblAcaGeneralPlanMonths[plan_value][9]">
-
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">June</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][10]">
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">September</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][11]">
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row mar-top-bottom">
-                                                                    <div class="col-sm-3">December</div>
-                                                                    <div class="col-sm-9">
-
-                                                                        <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][12]">
-																						<option value="0">Select a Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <!-- ./form content -->
-
-                                        </div>
-                                    </div>
-                                    <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
-                                        <div class="modal-footer-btn padding-15">
-                                            <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-                                            <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-                                            <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
-                                        </div>
-                                    </div>
-                                </form>
+                    <!-- form content -->
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="form-control-label">7.1&nbsp;&nbsp;&nbsp;Is this your first year Offering Coverage ?</label>
+                            <div class="padding-left-25">
+                                <label class="radio-inline">
+                                        <input type="radio" name="TblAcaGeneralPlanInfo[is_first_year]" value="1"> Yes
+                                    </label>
+                                <label class="radio-inline">
+                                        <input type="radio" name="TblAcaGeneralPlanInfo[is_first_year]" value="2"> No
+                                </label>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="form-control-label">7.2&nbsp;&nbsp;&nbsp;What is your renewal month for your medical plans ? If you have multiple plans/renewals, enter the earliest one of the year. If you did not offer a plan then select "Not Applicable" </label>
+                            <div class="col-sm-5 padding-left-25">
+                                <select class="form-control form-height" name="TblAcaGeneralPlanInfo[renewal_month]">
+                                    <option value="">Select a Value</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                    <option value="13">Not Applicable</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="form-control-label">7.3&nbsp;&nbsp;&nbsp;Enter a short description of the type of plans you offer, insurance carriers, and any other relevant information</label>
+                            <div class="col-sm-5 padding-left-25 field-tblacageneralplaninfo-plan_type_description">
+                                <textarea id="tblacageneralplaninfo-plan_type_description" class="form-control form-height" name="TblAcaGeneralPlanInfo[plan_type_description]" maxlength="100" rows="2" cols="4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="form-control-label">7.4&nbsp;&nbsp;&nbsp;Do you have multiple waiting periods for different employees ?</label>
+                            <div class="padding-left-25">
+                                <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="sevenpfour" name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="1"> Yes
+                                    </label>
+                                <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="sevenpfour"  name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="2"> No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group row">
+                            <div class="col-sm-12">
+                                <label class="form-control-label"><div>7.4&nbsp;&nbsp;&nbsp;Do you have multiple waiting periods for different employees ?</div></label>
+                                <br>
+                                <input type="radio" [(ngModel)]="sevenpfour" name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" [(ngModel)]="sevenpfour" name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+                            </div>
+                        </div>-->
+                        <div class="form-group col-sm-5" *ngIf="sevenpfour == '1'">
+                            <label class="form-control-label">7.4.1 If yes, explain</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="form-control-label">7.5&nbsp;&nbsp;&nbsp;Did your company offer a Health Reimbursement Arrangement (HRA) to employees that did NOT require their participation in the medical plan ?</label>
+                            <div class="padding-left-25">
+                                <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="sevenpfive" name="TblAcaGeneralPlanInfo[is_employees_hra]" value="1"> Yes
+                                    </label>
+                                <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="sevenpfive"  name="TblAcaGeneralPlanInfo[is_employees_hra]" value="2"> No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group row">
+                            <div class="col-sm-12">
+                                <label class="form-control-label"><div>7.5&nbsp;&nbsp;&nbsp;Did your company offer a Health Reimbursement Arrangement (HRA) to employees that did NOT require their participation in the medical plan ?</div>
+                                                <input type="radio" [(ngModel)]="sevenpfive" name="TblAcaGeneralPlanInfo[is_employees_hra]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" checked [(ngModel)]="sevenpfive" name="TblAcaGeneralPlanInfo[is_employees_hra]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+                                            </label>
+                            </div>
+                        </div>-->
+                        <div class="form-group text_hra " *ngIf="sevenpfive == '1'">
+                            <div class="col-sm-12">
+                                <label class="form-control-label"><div>7.5.1&nbsp;&nbsp;&nbsp;Please contact customer service for additional information</div></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="form-control-label">7.6&nbsp;&nbsp;&nbsp;Overall as a company, did you have BOTH Self Insured AND Fully Insured Plans During the reporting year ?</label>
+                            <div class="padding-left-25">
+                                <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="sevenpsix" name="TblAcaGeneralPlanInfo[offer_type]" value="1"> Yes
+                                    </label>
+                                <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="sevenpsix"  name="TblAcaGeneralPlanInfo[offer_type]" value="2"> No
+                                </label>
+                            </div>
+
+                            <!--<div class="col-sm-12">
+                                <label class="form-control-label"><div>7.6&nbsp;&nbsp;&nbsp;Overall as a company, did you have BOTH Self Insured AND Fully Insured Plans During the reporting year ?</div>
+                                                <input type="radio" [(ngModel)]="sevenpsix" name="TblAcaGeneralPlanInfo[offer_type]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" checked [(ngModel)]="sevenpsix" name="TblAcaGeneralPlanInfo[offer_type]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
+                                            </label>
+                            </div>-->
+
+                            <div class="col-sm-12" *ngIf="sevenpsix == '1'" id="combination_div1" style="margin-top: 15px;">
+                                <div class="col-xs-12 padding-left-0 padding-right-0" style="border: 1px solid #ddd;">
+                                    <div class="col-sm-4">
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">January</div>
+
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][1]">
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                                
+                                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">April</div>
+                                            <div class="col-sm-9">
+
+
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][2]">
+
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">July</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][3]">
+                                                                <option value="0">Select a Plan</option>																					
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">October</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][4]">
+
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                                
+                                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 padding-left-0">
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">February</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][5]">
+                                                                <option value="0">Select a Plan</option>																					
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">May</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][6]">
+
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">August</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][7]">
+
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                                
+                                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">November</div>
+                                            <div class="col-sm-9">
+
+
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][8]">
+
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                    <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 padding-left-0">
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">March</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value " name="TblAcaGeneralPlanMonths[plan_value][9]">
+
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">June</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][10]">
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">September</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][11]">
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top-bottom">
+                                            <div class="col-sm-3">December</div>
+                                            <div class="col-sm-9">
+
+                                                <select class="form-control plan_value" name="TblAcaGeneralPlanMonths[plan_value][12]">
+                                                                <option value="0">Select a Plan</option>
+                                                                                                                                                                <option value="63">Self Insured</option>
+                                                                                                                                                                <option value="64">Fully Insured</option>
+                                                                                                                                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
+                    <!-- ./form content -->
+
                 </div>
             </div>
-        </div>
+            <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+                <div class="modal-footer-btn padding-15">
+                    <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+                    <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
+                    <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

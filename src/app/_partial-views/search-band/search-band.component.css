@@ -1,0 +1,19 @@
+  @media (max-width: 1079px) {
+      .page-header-band-search {
+          padding-bottom: 0px;
+          padding-top: 0px;
+      }
+  }
+  
+  @media (max-width: 1200px) {
+      .page-header-band-search {
+          left: 0px !important;
+          z-index: 100;
+          width: 100%;
+      }
+  }
+
+.client-search-band>.page-header-band-search{
+    top:115px;
+    border: 1px solid #dfe4ed;
+}

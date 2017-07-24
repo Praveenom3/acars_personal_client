@@ -1,4 +1,4 @@
-<div class="section-container">
+<div class="row section-container">
     <div class="col-lg-3 col-md-3">
         <div class="border-ddd widget padding41 box-shadow widget-six left-small-box">
             <h6 class="text-left">
@@ -13,15 +13,14 @@
         </div>
 
         <div class="border-ddd widget box-shadow widget-six left-small-box companies-list-acc">
-            
+
             <accordion [closeOthers]="true">
                 <accordion-group #client1>
                     <div accordion-heading>
-                    Client 1
-                    <i class="pull-right float-xs-right fa"
-                        [ngClass]="{'fa-chevron-down': client1?.isOpen, 'fa-chevron-right': !client1?.isOpen}"></i>
+                        Client 1
+                        <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': client1?.isOpen, 'fa-chevron-right': !client1?.isOpen}"></i>
                     </div>
-                    
+
                     <!-- accordion content-1 -->
                     <div class="row">
                         <div class="col-md-12 margin-bottom-10">
@@ -54,16 +53,15 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- ./accordion content-1 --> 
+                    <!-- ./accordion content-1 -->
 
                 </accordion-group>
                 <accordion-group #client2>
                     <div accordion-heading>
-                    Client 2
-                    <i class="pull-right float-xs-right fa"
-                        [ngClass]="{'fa-chevron-down': client2?.isOpen, 'fa-chevron-right': !client2?.isOpen}"></i>
+                        Client 2
+                        <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': client2?.isOpen, 'fa-chevron-right': !client2?.isOpen}"></i>
                     </div>
-                    
+
                     <!-- accordion content-2 -->
                     <div class="row">
                         <div class="col-md-12 margin-bottom-10">
@@ -101,11 +99,10 @@
                 </accordion-group>
                 <accordion-group #client3>
                     <div accordion-heading>
-                    Client 3
-                    <i class="pull-right float-xs-right fa"
-                        [ngClass]="{'fa-chevron-down': client3?.isOpen, 'fa-chevron-right': !client3?.isOpen}"></i>
+                        Client 3
+                        <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': client3?.isOpen, 'fa-chevron-right': !client3?.isOpen}"></i>
                     </div>
-                    
+
                     <!-- accordion content-3 -->
                     <div class="row">
                         <div class="col-md-12 margin-bottom-10">
@@ -144,63 +141,66 @@
         </div>
     </div>
     <div class="col-lg-8 col-md-8 right-box" align="left">
-        <div class="col-md-9 col-md-offset-3">
-            <h4 class="text-left">Reporting Check List - Cargo Force <small>(EIN : 15-90010)</small></h4>
-            <br>
-            <ul>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">Invoice Paid
-                        <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                        <span *ngIf="isInvoicePaid === true"></span>
-                    </label>
-                    <a class="label label-success" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === true" title="Click to toggle">Paid</a><a class="label label-danger" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === false" title="Click to toggle">Unpaid</a>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">Sign Business Associate Agreement
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                        <span *ngIf="isAgreementSigned === true"></span>
-                    </label>
-                    <a class="label label-success" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === true" title="Click to toggle">Done</a><a class="label label-danger" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === false" title="Click to toggle">Pending</a>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10 pointer-disable ">Discovery Interview Call
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                        <span *ngIf="isDiscoveryCallDone === true"></span>
-                    </label>
-                    <a class="label label-success" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true" title="Click to toggle">Done</a><a class="label label-danger" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false" title="Click to toggle">Pending</a>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10"><a class="right-box-links" [routerLink]="['/client/',product,company,'users']">Users</a>
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                    </label>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info']">Employer Information</a>
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                    </label>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']">Benefit Plans</a>
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                    </label>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','plan-classes']">Plan Classes</a>
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                    </label>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','payroll']">Payroll</a>
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                    </label>
-                </li>
-                <li>
-                    <label class="mt-checkbox mt-checkbox-outline margin-bottom-10"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','enrollments']">Enrollments</a>
-                    <input type="checkbox" class="primary-contact-checkbox pointer-disable" checked="">
-                    </label>
-                </li>
-            </ul>
+        <div class="col-md-12">
+            <div class="col-md-9 col-md-offset-3">
+
+            </div>
         </div>
+        <div class="col-md-12">
+            <div class="reporting-checklist-content row border-ddd box-shadow">
+                <h4 class="text-center">Reporting Check List - Cargo Force <small>(EIN : 15-90010)</small></h4>
+                <br>
+                <div class="col-md-3">
+                    <ul class="text-right">
+                        <li class="mb-14">
+                            <a class="label label-success" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === true" title="Click to toggle">Paid</a><a class="label label-danger" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === false"
+                                title="Click to toggle">Unpaid</a>
+                        </li>
+                        <li class="mb-14">
+                            <a class="label label-success" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === true" title="Click to toggle">Done</a><a class="label label-danger" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === false"
+                                title="Click to toggle">Pending</a>
+                        </li>
+                        <li class="mb-14">
+                            <a class="label label-success" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true" title="Click to toggle">Done</a><a class="label label-danger" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false"
+                                title="Click to toggle">Pending</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-md-9">
+                    <ul>
+                        <li>
+                            <label class="mt-checkbox padding-left-0 pointer-disable ">Invoice Paid</label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0 pointer-disable ">Sign Business Associate Agreement</label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0 pointer-disable ">Discovery Interview Call</label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0"><a class="right-box-links" [routerLink]="['/client/',product,company,'users']">Users</a></label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info']">Employer Information</a></label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']">Benefit Plans</a></label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','plan-classes']">Plan Classes</a></label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','payroll']">Payroll</a></label>
+                        </li>
+                        <li>
+                            <label class="mt-checkbox padding-left-0"><a class="right-box-links" [routerLink]="['/client/',product,company,'employer-info','enrollments']">Enrollments</a></label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -244,7 +244,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                 </form>
             </div>

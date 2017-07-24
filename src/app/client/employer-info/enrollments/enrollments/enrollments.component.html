@@ -1,54 +1,25 @@
-<div class="product-container col-md-12 pull-left width-100">
+<!-- company info -->
+    <client-company-info></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+    <client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
 
-	<!-- company info -->
-	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-		<div class="pull-right">
-			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-		</div>
-		<h5 class="cat__core__title d-block mb-0 pt-3">
-			<span> Name: <span class="text-muted">Cargo Force</span></span>
-			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-		</h5>
-	</nav>
-	<!-- ./company info -->
+<div class="product-container col-md-12">
+    <div class="">
+        <div class="col-md-12 border-ddd widget padding-0">
+            <div class="tab-content clearfix">
+                <div aria-expanded="true" class="tab-pane active" id="account_setup_block">
 
-	<div class="">
-		<div class="col-md-12 border-ddd widget padding-0">
+                    <div class="container padding-0">
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active " id="planbasics" role="tabpanel">
 
-      <!-- Main Tabs -->
-			<div class="search-header padding-10">
-				<ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-					<li class="col-md-1"></li>
-					<li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-						<p class="font-white margin-0">Basic Reporting Info</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-						<p class="font-white margin-0">Benefit Plan Info</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-						<p class="font-white margin-0">Plan Classes</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-						<p class="font-white margin-0 ">Payroll</p></li>
-					<li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-						<p class="font-white margin-0 ">Enrollments</p></li>
-					<li class="col-md-1"></li>
-				</ul>
-			</div>
-      <!-- ./Main Tabs -->
-
-    
-    
-			<div class="tab-content clearfix">
-				<div aria-expanded="true" class="tab-pane active" id="account_setup_block">
-					
-					<div class="col-md-12 padding-0">
-						<div class="tab-content clearfix">
-							<div class="tab-pane active " id="planbasics" role="tabpanel">
-								
-								<!-- Page Content -->
-								 <div class="col-md-12 padding-0">
+                                <!-- Page Content -->
+                                <div class="col-md-12 padding-0">
                                     <div class="row pull-right" style="padding: 10px 17px;">
-										<a class="btn btn-modal-blue "><i class="fa fa-download"></i> Download Medical Plan Data Template</a>
-										<a class="btn btn-modal-blue" href="#upload_enrollment_modal" role="button" data-toggle="modal" ><i class="fa fa-upload"></i> Upload Medical Plan Data Template</a>
+                                        <a class="btn btn-modal-blue "><i class="fa fa-download"></i> Download Medical Plan Data Template</a>
+                                        <a class="btn btn-modal-blue" href="#upload_enrollment_modal" role="button" data-toggle="modal"><i class="fa fa-upload"></i> Upload Medical Plan Data Template</a>
                                         <!-- <a class="btn btn-modal-blue" [routerLink]="['/client/employer-info/enrollments/add-enrollment']" ><i class="fa fa-plus"></i> Add Medical Plan Data</a> -->
                                     </div>
                                     <div class="panel panel-primary">
@@ -211,20 +182,26 @@
                                         </div>
                                     </div>
                                 </div>
-								<!-- ./Page Content -->
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                <!-- ./Page Content -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-    .my-drop-zone { border: dotted 3px lightgray; }
-    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .my-drop-zone {
+        border: dotted 3px lightgray;
+    }
+    
+    .nv-file-over {
+        border: dotted 3px red;
+    }
+    /* Default class applied to drop zones on over */
 </style>
 
 
@@ -239,29 +216,25 @@
 								X
 							</button>
                 <h4 class="modal-title color-white" id="myModalLabel">
-                   Upload Medical Data
+                    Upload Medical Data
                 </h4>
             </div>
             <div class="modal-body row">
-               
-      
- 
- 
-    
- 
-        <div class="col-md-12">
- 
-            
- 
-            <div ng2FileDrop
-                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-                 (fileOver)="fileOverBase($event)"
-                 [uploader]="uploader"
-                 class="well my-drop-zone">
-                            Drop Files
-            </div>
- <input type="file" ng2FileSelect [uploader]="uploader" />
-            <!--<div ng2FileDrop
+
+
+
+
+
+
+                <div class="col-md-12">
+
+
+
+                    <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
+                        Drop Files
+                    </div>
+                    <input type="file" ng2FileSelect [uploader]="uploader" />
+                    <!--<div ng2FileDrop
                  [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
                  (fileOver)="fileOverAnother($event)"
                  [uploader]="uploader"
@@ -274,9 +247,9 @@
  
             Single
             <input type="file" ng2FileSelect [uploader]="uploader" /> -->
-        </div>
- 
-        <!--<div class="col-md-12" style="margin-bottom: 40px">
+                </div>
+
+                <!--<div class="col-md-12" style="margin-bottom: 40px">
  
             <h3>Upload queue</h3>
             <p>Queue length: {{ uploader?.queue?.length }}</p>
@@ -345,13 +318,13 @@
             </div>
  
         </div>-->
- 
-   
- 
 
 
-            
- 
+
+
+
+
+
             </div>
             <div class="modal-footer footer-background">
 

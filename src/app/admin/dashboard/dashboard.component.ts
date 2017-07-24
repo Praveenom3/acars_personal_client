@@ -4,19 +4,52 @@ import { ToastrService } from 'ngx-toastr';
 declare var $:any;
 
 @Component({
+ selector: 'app-summary',
+  templateUrl: './summary.component.html', 
+})
+export class SummaryComponent implements OnInit {
+
+  ngOnInit() {
+     
+    }
+}
+
+@Component({
  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html', 
 })
 export class DashboardComponent implements OnInit {
-constructor(private toastrService: ToastrService) {}
+public showLable = true;
+public showTextbox = false;
+
+    constructor(private toastrService: ToastrService) {}
   
   showSuccess() {
     this.toastrService.success('Hello world!');
   }
 
+  editBalance()
+  {
+     this.showLable = false;
+     this.showTextbox = true;
+  }
+
+  saveBalance()
+  {
+     this.showLable = true;
+     this.showTextbox = false;
+  }
+
+  cancelBalance()
+  {
+      this.showLable = true;
+      this.showTextbox = false;
+  }
+
   showError() {
     this.toastrService.error('Some error found');
   }
+
   ngOnInit() {
         $('.table').dataTable({
             "paging":   false,

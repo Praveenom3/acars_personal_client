@@ -15,14 +15,19 @@
     </div>
     <!-- End For Bread Crumb-->
 </div>
-<div class="section-container">
-    <form id="w0" action="/bclients/profile" method="post" enctype="multipart/form-data">
-        <div class="col-md-12 border-ddd widget padding-15">
-            <div class="col-md-12">
-                <div class="col-md-6 padding-0">
-                    <label class="form-control-label">Email Type <span class="red">*</span></label>
-                    <div class="form-group field-adminusers-first_name">
-                        <select id="emailtypes-email_type_id" class="form-control" name="EmailTypes[email_type_id]" onchange=" changeemail(this.value);">
+<div class="page-content col-md-12 section-page-content">
+    <div class="container">
+        <form id="w0" action="/bclients/profile" method="post" enctype="multipart/form-data">
+
+            <div class="col-md-12 border-ddd widget padding-15">
+                <div class="table-caption-div-email">
+                    <h5 class="table-caption-email">Email Templates</h5>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6 padding-0">
+                        <label class="form-control-label">Email Type <span class="red">*</span></label>
+                        <div class="form-group field-adminusers-first_name">
+                            <select id="emailtypes-email_type_id" class="form-control" name="EmailTypes[email_type_id]" onchange=" changeemail(this.value);">
                             <option value="">Select</option>
                             <option value="TDlBek9sZEZSWGFyamxOU1g5eVltQT09">Forgot Password Mail</option>
                             <option value="eVhOcCtzazN4aEkyVThjQ0FlZVVBQT09">Email Address Verification Mail</option>
@@ -30,28 +35,29 @@
                             <option value="bGVka1JBVEFIQ1lyS2JTQlRwdVRlQT09">Deactivate User Mail</option>
                             <option value="OExqMkUxcG4vM2FVdmhGUktMMjVLZz09">Password Change Mail</option>
                         </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6 padding-0">
+                        <div class="form-group field-user-username">
+                            <label class="form-control-label" for="user-username">Email Subject <span class="red">*</span></label>
+                            <input type="text" id="adminusers-email" class="form-control" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-top-5">
+                    <div class="form-group ">
+                        <label class="form-control-label" for="l0">Email Body <span class="red">*</span></label>
+                        <textarea id="email_description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
+                    <div class="modal-footer-btn padding-15">
+                        <button type="submit" class="btn btn-primary">Save</button> <a class="btn btn-default"> Cancel </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-6 padding-0">
-                    <div class="form-group field-user-username">
-                        <label class="form-control-label" for="user-username">Email Subject <span class="red">*</span></label>
-                        <input type="text" id="adminusers-email" class="form-control" aria-required="true">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 padding-top-5">
-                <div class="form-group ">
-                    <label class="form-control-label" for="l0">Email Body <span class="red">*</span></label>
-                    <textarea id="email_description"></textarea>
-                </div>
-            </div>
-            <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
-                <div class="modal-footer-btn padding-15">
-                    <button type="submit" class="btn btn-primary">Save</button> <a class="btn btn-default"> Cancel </a>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
