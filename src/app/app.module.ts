@@ -46,10 +46,11 @@ import { ToastrModule } from 'ngx-toastr';
    AccordionModule.forRoot(),
    ToastrModule.forRoot(),
   ],
-  providers: [{
+  providers: [
+    /*{
             provide: LocationStrategy,
             useClass: HashLocationStrategy
-        },
+        },*/
         AuthGuard,
         AccessGuard,
         GlobalService],
