@@ -19,8 +19,8 @@ export class SummaryComponent implements OnInit {
   templateUrl: './dashboard.component.html', 
 })
 export class DashboardComponent implements OnInit {
-public showLable = true;
-public showTextbox = false;
+/*public showLable = true;
+public showTextbox = false;*/
 
     constructor(private toastrService: ToastrService) {}
   
@@ -28,7 +28,7 @@ public showTextbox = false;
     this.toastrService.success('Hello world!');
   }
 
-  editBalance()
+/*  editBalance()
   {
      this.showLable = false;
      this.showTextbox = true;
@@ -44,7 +44,7 @@ public showTextbox = false;
   {
       this.showLable = true;
       this.showTextbox = false;
-  }
+  }*/
 
   showError() {
     this.toastrService.error('Some error found');
