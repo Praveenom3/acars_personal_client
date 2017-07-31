@@ -56,10 +56,10 @@ import { CookieModule } from 'ngx-cookie';
     PartialViews
   ],
   providers: [
-    /*{
+    {
             provide: LocationStrategy,
             useClass: HashLocationStrategy
-        },*/
+        },
         AuthGuard,
         AccessGuard,
         GlobalService,
