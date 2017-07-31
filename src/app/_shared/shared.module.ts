@@ -9,4 +9,4 @@ import { PhoneMaskDirective } from "app/directives/phone-mask.directive";
   declarations: [PhoneMaskDirective],
      exports: [PhoneMaskDirective],
 })
-export class InputMaskModule { }
+export class SharedModule { }

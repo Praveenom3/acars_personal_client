@@ -9,15 +9,15 @@ import { DesignatedGovtEntityComponent } from './designated-govt-entity/designat
 import { AggregatedGroupComponent } from './aggregated-group/aggregated-group.component';
 import { AnythingElseComponent } from './anything-else/anything-else.component';
 import { FormsModule } from "@angular/forms";
-import { InputMaskModule } from "app/_shared/input-mask.module";
 import { PartialViews } from "app/_partial-views/partial-views.module";
+import { SharedModule } from "app/_shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     BasicReportingInfoRoutingModule,
     FormsModule,
-    InputMaskModule,
+    SharedModule,
     PartialViews
   ],
   declarations: [BasicInfoComponent, EmpStatusTrackingComponent, PlanOfferingCriteriaComponent, DesignatedGovtEntityComponent, AggregatedGroupComponent, AnythingElseComponent]

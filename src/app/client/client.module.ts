@@ -12,13 +12,13 @@ import { CompaniesComponent } from "app/client/companies/companies.component";
 import { UsersComponent } from "app/client/users/users.component";
 import { AccordionModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
-import { InputMaskModule } from "app/_shared/input-mask.module";
 
 
 import { DataTableModule } from "angular2-datatable";
 import { HttpModule } from "@angular/http";
 import { DataFilterPipe } from "app/client/dashboard/data-filter.pipe";
 import { PartialViews } from "app/_partial-views/partial-views.module";
+import { SharedModule } from "app/_shared/shared.module";
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
     CommonModule,
     ClientRoutingModule,
     AccordionModule,
-    InputMaskModule,
+    SharedModule,
     FormsModule,
     HttpModule,
     DataTableModule,
