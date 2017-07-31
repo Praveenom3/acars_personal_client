@@ -303,6 +303,6 @@ body.body-blue nav.admin-nav {
     height: 64px !important;
 }
 
-body.body-blue nav.top-menu .menu {
-    height: 63px !important;
+body.body-blue nav.admin-nav .menu{
+    height: 64px !important;
 }
