@@ -1,3 +1,4 @@
+
 import { FormGroup } from "@angular/forms";
 
 export class ValidationService {
@@ -9,6 +10,7 @@ export class ValidationService {
             'invalidEmailAddress': 'Invalid email address',
             'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
             'minlength': `Minimum length ${validatorValue.requiredLength}`
+
         };
 
         return config[validatorName];
@@ -25,12 +27,14 @@ export class ValidationService {
 
     static emailValidator(control) {
         // RFC 2822 compliant regex
+
         if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
             return null;
         } else {
             return { 'invalidEmailAddress': true };
         }
     }
+
 
     static confirmPassword(form: FormGroup, field) {
         
@@ -59,6 +63,7 @@ export class ValidationService {
             return null;
         } else {
             return { 'invalidPassword': true };
+
         }
     }
 }
