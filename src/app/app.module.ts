@@ -18,14 +18,19 @@ import {LoginModule} from './login/login.module';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Model & Services
 import {GlobalService} from './_services/_global.service';
 import {AuthGuard} from './_services/_auth.guard';
 import {AccessGuard} from './_services/_access.guard';
 
+import { ValidationService } from "app/_services/_validation.service";
 
 import { ToastrModule } from 'ngx-toastr';
+import { PartialViews } from "app/_partial-views/partial-views.module";
+
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -41,10 +46,14 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,   
     HttpModule,    
     LoginModule,
-   TabsModule.forRoot(),
-   ModalModule.forRoot(),
-   AccordionModule.forRoot(),
-   ToastrModule.forRoot(),
+    TabsModule.forRoot(),
+    ModalModule.forRoot(),
+    AccordionModule.forRoot(),
+    ToastrModule.forRoot(),
+    CookieModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    PartialViews
   ],
   providers: [
     /*{
@@ -53,7 +62,8 @@ import { ToastrModule } from 'ngx-toastr';
         },*/
         AuthGuard,
         AccessGuard,
-        GlobalService],
+        GlobalService,
+        ValidationService],
         
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,16 @@
+
+import { FormGroup } from "@angular/forms";
+
 export class ValidationService {
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
-     //   console.log(validatorValue);
+        
         let config = {
-            'required': 'Required',
+            'required': 'Field cannot be blank.',
             'invalidCreditCard': 'Is invalid credit card number',
             'invalidEmailAddress': 'Invalid email address',
             'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
-            'minlength': `Minimum length ${validatorValue.requiredLength}`,
-            'invalidUrl':'Invalid URL Format.'
+            'minlength': `Minimum length ${validatorValue.requiredLength}`
+
         };
 
         return config[validatorName];
@@ -24,12 +27,33 @@ export class ValidationService {
 
     static emailValidator(control) {
         // RFC 2822 compliant regex
-        console.log(control);
+
         if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
             return null;
         } else {
             return { 'invalidEmailAddress': true };
         }
+    }
+
+
+    static confirmPassword(form: FormGroup, field) {
+        
+        console.log(field);
+      let fieldChanges = false;
+      return function innerFunction(control) {
+        if (!fieldChanges) {
+          form.get(field).valueChanges
+            .subscribe(() => {
+              control.updateValueAndValidity();
+            });
+          fieldChanges = true;
+        }
+        if (control.value === form.get(field).value) {
+          return null;
+        } else {
+          return { not_matching: true };
+        }
+      };
     }
 
     static passwordValidator(control) {
@@ -39,16 +63,7 @@ export class ValidationService {
             return null;
         } else {
             return { 'invalidPassword': true };
-        }
-    }
 
-        static urlValidator(control) {
-        // {6,100}           - Assert password is between 6 and 100 characters
-        // (?=.*[0-9])       - Assert a string has at least one number
-        if (control.value.match(/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/g)) {
-            return null;
-        } else {
-            return { 'invalidUrl': true };
         }
     }
 }
