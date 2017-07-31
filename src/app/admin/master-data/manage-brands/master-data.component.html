@@ -23,189 +23,148 @@
     <div class="container">
         <div class="col-md-12 padding-0 border-ddd margin-btm34">
             <div class="row " style="padding: 10px 17px;">
-                <a class="btn btn-modal-blue pull-right" (click)="staticModal.show()"><i class="fa fa-plus"></i> Add Brand</a>
+                <a class="btn btn-modal-blue pull-right" (click)="newBrand()"><i class="fa fa-plus"></i> Add Brand</a>
             </div>
             <div class="panel panel-primary">
                 <div class="table-responsive kv-grid-container" style="overflow: auto">
                     <caption class="datatable-caption">Manage Brands</caption>
-                    <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
+ <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+
                         <thead>
-                            <tr>
-                                <th class="blue-grid-head" data-col-seq="0" style="width: 18.89%;"><a>Logo</a></th>
-                                <th class="blue-grid-head" data-col-seq="1" style="width: 26.24%;"><a>Brand Name</a></th>
-                                <th class="blue-grid-head" data-col-seq="2" style="width: 25.95%;"><a>Support Email</a></th>
-                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Support Phone Number</a></th>
-                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Terms and Condition URL</a></th>
-                                <!--<th class="blue-grid-head" data-col-seq="3"><a>Share File URL</a></th> -->
-                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Status</a></th>
-                                <th class="blue-grid-head" data-col-seq="3" style="width: 28.91%;"><a>Delete</a></th>
+                            <tr class="tr-blue-grid-head">
+                                <th>
+                                    <mfDefaultSorter by="brand_logo">Brand Logo</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="brand_name">Brand Name</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="support_email">Support Email</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="support_phone">Support Phone</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="terms_conditions_url">Terms and Conditions URL</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="brand_status">Brand Status</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter>Actions</mfDefaultSorter>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                                <td><a (click)="staticModal.show()" class="tbl-col-link">testing</a></td>
-                                <td>testing@acars.com</td>
-                                <td>(999) 999-9999</td>
-                                <td>https://acareportingservice.com/terms-and-conditions/</td>
-                                <!-- <td>http:googl/SDxdsd</td> -->
-                                <td><a>Active</a></td>
-                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                                <td><a (click)="staticModal.show()" class="tbl-col-link">AKY ACA</a></td>
-                                <td>testing@acars.com</td>
-                                <td>(999) 999-9999</td>
-                                <td>https://acareportingservice.com/terms-and-conditions/</td>
-                                <!-- <td>http:googl/SDxdsd</td> -->
-                                <td><a>Active</a></td>
-                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                                <td><a (click)="staticModal.show()" class="tbl-col-link">ABY ACA</a></td>
-                                <td>testing@acars.com</td>
-                                <td>(999) 999-9999</td>
-                                <td>https://acareportingservice.com/terms-and-conditions/</td>
-                                <!-- <td>http:googl/SDxdsd</td> -->
-                                <td><a>Active</a></td>
-                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                                <td><a (click)="staticModal.show()" class="tbl-col-link">ACA</a></td>
-                                <td>testing@acars.com</td>
-                                <td>(999) 999-9999</td>
-                                <td>https://acareportingservice.com/terms-and-conditions/</td>
-                                <!-- <td>http:googl/SDxdsd</td> -->
-                                <td><a>Active</a></td>
-                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><img style="height:25px;" src="http://198.90.21.28/Images/profile_image/brand_logo/man-with-tick-png-400x500_1_20876.png"></td>
-                                <td><a (click)="staticModal.show()" class="tbl-col-link">PRO ACA</a></td>
-                                <td>testing@acars.com</td>
-                                <td>(999) 999-9999</td>
-                                <td>https://acareportingservice.com/terms-and-conditions/</td>
-                                <!-- <td>http:googl/SDxdsd</td> -->
-                                <td><a>Active</a></td>
-                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="confirm()" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            <tr *ngFor="let brand of mf.data">
+                                <td style="text-align: center;"><img src="{{brandImgPath}}{{brand.brand_logo}}" style="width:100px;height:60px;"></td>
+                                <td><a (click)="updateBrand(brand)" class="tbl-col-link">{{brand.brand_name}}</a></td>
+                                <td>{{brand.support_email}}</td>
+                                <td>{{brand.support_phone}}</td>
+                                <td>{{brand.terms_conditions_url}}</td>
+                                <td><a style="cursor:pointer" (click)="statusChange(brand)">{{(brand.brand_status) == 1 ? "Active" : "Inactive"}}</a></td>
+                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="deleteBrand(brand)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
-
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-3 padding10">
-                        <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 5 of 48 entries</div>
-                    </div>
-                    <div class="col-md-9 text-right">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                    <span>First</span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                            <i class="fa fa-arrow-left"></i>
-                                        </span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                    <span aria-hidden="true">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                    <span>Last</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                </div>              
             </div>
         </div>
     </div>
 </div>
 
+
 <!-- Add modal start-->
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #BrandsModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
-                <h4 class="modal-title pull-left color-white">Add Brand</h4>
-                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="staticModal.hide()" aria-hidden="true">×</button>
+                <h4 class="modal-title pull-left color-white">{{modalTitle}}</h4>
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="BrandsModal.hide()" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body row">
-                <div class="col-md-12">
-                    <div class="col-md-6 required">
-                        <label class="form-control-label">Brand Name</label>
-                        <div class="form-group field-adminusers-first_name required">
-                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
-                            <div class="help-block"></div>
+            <form [formGroup]="_addBrandForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
+                    <div class="col-md-12">
+                        <div class="col-md-6 required">
+                            <label class="form-control-label">Brand Name</label>
+                            <div class="form-group field-adminusers-first_name required" [ngClass]="{'has-danger': !_isValid('brand_name')}">
+                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['brand_name']"  [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}">
+                                <!--<control-messages [control]="_addBrandForm.controls.brand_name"></control-messages>-->
+                                <!--<span class="help-block help-block-error" *ngIf="!_isValid('brand_name')">{{_isValidField('brand_name')}}</span>-->
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.brand_name.valid">{{_formErrors.brand_name.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 required">
+                            <label class="form-control-label">Choose logo</label>
+                            <div class="form-group field-adminusers-last_name required"  [ngClass]="{'has-danger': !_isValid('brand_logo')}">
+                                <input type="file" #brandLogo (change)="handleFileSelect($event)" [formControl]="_addBrandForm.controls['brand_logo']" class="form-control" name="image" id="image" accept="image/*">
+                                <!--<control-messages [control]="_addBrandForm.controls.brand_logo"></control-messages>-->
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.brand_logo.valid">{{_formErrors.brand_logo.message}}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 required">
-                        <label class="form-control-label">Choose logo</label>
-                        <div class="form-group field-adminusers-last_name required">
-                            <input type="file" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]">
-                            <div class="help-block"></div>
+                    <div class="col-md-12">
+                        <div class="col-md-6 required">
+                            <label class="form-control-label">Support Email</label>
+                            <div class="form-group field-adminusers-first_name required"  [ngClass]="{'has-danger': !_isValid('support_email')}">
+                                <input type="text" class="form-control"  [formControl]="_addBrandForm.controls['support_email']"  [(ngModel)]="brandSelected.support_email" [ngClass]="{'form-control-danger': !_isValid('support_email')}">
+                                <!--<control-messages [control]="_addBrandForm.controls.support_email"></control-messages>-->
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.support_email.valid">{{_formErrors.support_email.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 required">
+                            <label class="form-control-label">Support Phone</label>
+                            <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('support_phone')}">
+                                <input type="text" [textMask]="{mask: mask}" [formControl]="_addBrandForm.controls['support_phone']"   class="form-control" [(ngModel)]="brandSelected.support_phone" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid('support_phone')}">
+                                <!--<control-messages [control]="_addBrandForm.controls.support_phone"></control-messages>-->
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.support_phone.valid">{{_formErrors.support_phone.message}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6 required">
-                        <label class="form-control-label">Support Email</label>
-                        <div class="form-group field-adminusers-first_name required">
-                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
-                            <div class="help-block"></div>
+                    <div class="col-md-12">
+                        <div class="col-md-6 required">
+                            <label class="form-control-label">Terms & Condition URL</label>
+                            <div class="form-group field-adminusers-first_name required" [ngClass]="{'has-danger': !_isValid('terms_conditions_url')}">
+                                <input type="text" class="form-control"  [formControl]="_addBrandForm.controls['terms_conditions_url']"   [(ngModel)]="brandSelected.terms_conditions_url" [ngClass]="{'form-control-danger': !_isValid('terms_conditions_url')}">
+                                <!--<control-messages [control]="_addBrandForm.controls.terms_conditions_url"></control-messages>-->
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.terms_conditions_url.valid">{{_formErrors.terms_conditions_url.message}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 required">
-                        <label class="form-control-label">Support Phone</label>
-                        <div class="form-group field-adminusers-last_name required">
-                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6 required">
-                        <label class="form-control-label">Terms & Condition URL</label>
-                        <div class="form-group field-adminusers-first_name required">
-                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]">
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-control-label">Status <span style="color:#a94442;">*</span></label>
-                        <div class="form-group field-adminusers-last_name">
-                            <label class="radio-inline">
-                                      <input type="radio"  name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="1"> Active
+                        <div class="col-md-6">
+                            <label class="form-control-label">Status <span style="color:#a94442;">*</span></label>
+                            <div class="form-group field-adminusers-last_name">
+                                <label class="radio-inline">
+                                      <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 1" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"  value="active"> Active
                              </label>
-                            <label class="radio-inline">
-                                  <input type="radio"   name="TblAcaGeneralPlanInfo[is_multiple_waiting_periods]" value="2"> Inactive
+                                <label class="radio-inline">
+                                  <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 0" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"   value="inactive"> Inactive
                              </label>
+                            </div>
+                            <!--<control-messages [control]="_addBrandForm.controls.brand_status"></control-messages>-->
+                            <span class="help-block help-block-error" *ngIf="!_formErrors.brand_status.valid">{{_formErrors.brand_status.message}}</span>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer" style="border-top: none;">
-                <button type="button" class="btn btn-primary btn-blue" id="chng_pwd_btn">Save
-					Changes</button>
-                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
-            </div>
+                <div class="modal-footer" style="border-top: none;">
+                    <button type="submit" class="btn btn-primary btn-blue" id="chng_pwd_btn" [disabled]="!_addBrandForm.valid || _submitted == true">
+                         <!--<button type="submit" class="btn btn-primary btn-blue" id="chng_pwd_btn" >Save-->
+					Save Changes</button>
+                    <button type="button" class="btn btn-default" (click)="BrandsModal.hide()">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

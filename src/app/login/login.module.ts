@@ -8,6 +8,7 @@ import {LoginRoutingModule} from './login.routing';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import{AuthenticationService} from '../_services/_authentication.service';
+import { PartialViews } from "app/_partial-views/partial-views.module";
 
 @NgModule({
     imports: [
@@ -15,13 +16,14 @@ import{AuthenticationService} from '../_services/_authentication.service';
         FormsModule,
         ReactiveFormsModule,
         LoginRoutingModule,
-           ModalModule.forRoot(),
+        ModalModule.forRoot(),
+        PartialViews
     ],
     declarations: [
         LoginComponent,
     ],
       providers: [     
-        AuthenticationService,
+        AuthenticationService
       ]
 })
 export class LoginModule {

@@ -9,6 +9,7 @@ import {tokenNotExpired} from 'angular2-jwt';
 import {AuthHttp, JwtHelper} from 'angular2-jwt';
 
 import {GlobalService} from './_global.service';
+import { CookieService } from "ngx-cookie";
 
 @Injectable()
 export class AuthenticationService {
@@ -20,11 +21,12 @@ export class AuthenticationService {
 
    constructor(private _globalService: GlobalService,
                 private _router: Router,
-                private _authHttp: Http) {
+                private _authHttp: Http,
+            private _cookieService:CookieService) {
           this.loggedIn = this.isLoggedIn();
     }
 
-   public login(username, password) :Observable<any> {
+   public login(username, password, rememberMe) :Observable<any> {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json; charset=UTF-8');
@@ -33,17 +35,24 @@ export class AuthenticationService {
                 JSON.stringify({
                     "LoginForm": {
                         "username": username,
-                        "password": password
+                        "password": password,
+                        "rememberMe": rememberMe
                     }
                 }),
                 {headers: headers}
             ).map(response => response.json())
             .map((response) => {
-               
                 if (response.success) {
                     localStorage.setItem('authtoken', response.data.access_token);
                     localStorage.setItem('usertype', response.data.user_type);
+                    localStorage.setItem('useremail', response.data.user_email);
                     this.loggedIn = true;
+
+                    if(rememberMe == 1){
+                        this._cookieService.put(response.data.cookie_key, response.data.cookie_value);
+                        console.log(this._cookieService.get(response.data.cookie_key));
+                    }
+
                 } else {
                     this.removeLocalstorage();
                     this.loggedIn = false;
@@ -57,7 +66,100 @@ export class AuthenticationService {
     public logout(): void {       
         this.removeLocalstorage();
         this.loggedIn = false;
+        if(this._cookieService.get('rememberMe')){
+            this._cookieService.remove('rememberMe');            
+        }
     }
+
+    /* Function to call the rest api to change the password */
+    public changePassword(username, currentPassword, newPassword, retypePassword) :Observable<any> {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=UTF-8');
+
+        return this._authHttp.post( this._globalService.apiHost + '/user/change-password',
+                JSON.stringify({
+                    "ChangePasswordForm": {
+                        "username": username,
+                        "currentPassword": currentPassword,
+                        "newPassword": newPassword,
+                        "retypePassword": retypePassword
+                    }
+                }),
+                {headers: headers}
+            ).map(response => response.json())
+            .map((response) => {      
+                return response;
+            })
+            .catch(this.handleError);
+    }
+    /* ./Function to call the rest api to change the password */
+
+/* Function to call the rest api to change the password */
+    public passwordResetRequest(username) :Observable<any> {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=UTF-8');
+
+        return this._authHttp.post( this._globalService.apiHost + '/user/password-reset-request',
+                JSON.stringify({
+                    "PasswordResetRequestForm": {
+                        "username": username
+                    }
+                }),
+                {headers: headers}
+            ).map(response => response.json())
+            .map((response) => {    
+                return response;
+            })
+            .catch(this.handleError);
+    }
+    /* ./Function to call the rest api to change the password */
+
+
+/* Function to call the rest api to change the password */
+    public verifyPasswordResetToken(token) :Observable<any> {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=UTF-8');
+
+        return this._authHttp.post( this._globalService.apiHost + '/user/password-reset-token-verification',
+                JSON.stringify({
+                    "PasswordResetTokenVerificationForm": {
+                        "token": token
+                    }
+                }),
+                {headers: headers}
+            ).map(response => response.json())
+            .map((response) => { 
+                return response;
+            })
+            .catch(this.handleError);
+    }
+    /* ./Function to call the rest api to change the password */
+
+    /* Function to call the rest api to set the password */
+    public setPassword(token, newPassword, retypePassword) :Observable<any> {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=UTF-8');
+
+        return this._authHttp.post( this._globalService.apiHost + '/user/password-reset',
+                JSON.stringify({
+                    "PasswordResetForm": {
+                        "token": token,
+                        "newPassword": newPassword,
+                        "retypePassword": retypePassword
+                    }
+                }),
+                {headers: headers}
+            ).map(response => response.json())
+            .map((response) => { 
+                return response;
+            })
+            .catch(this.handleError);
+    }
+    /* ./Function to call the rest api to set the password */
 
     public checkAccess(url: string): boolean{
        

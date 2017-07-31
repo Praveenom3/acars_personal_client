@@ -1,29 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { MasterDataComponent, AddBrandComponent, EditBrandComponent } from './master-data.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MasterDataComponent} from './master-data.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MasterDataComponent
-     //pathMatch: 'full',
-  },
-  {
-    path: 'add-brand',
-    component: AddBrandComponent
-     //pathMatch: 'full',
-  },
-  {
-    path: 'edit-brand',
-    component: EditBrandComponent
-     //pathMatch: 'full',
+    component: MasterDataComponent    
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
+  ],
+  exports: [FormsModule,ReactiveFormsModule,RouterModule],
   providers: []
 })
 export class ManageBrandsRoutingModule { }

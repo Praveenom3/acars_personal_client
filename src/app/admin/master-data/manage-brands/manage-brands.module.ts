@@ -1,17 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { MasterDataComponent} from './master-data.component';
+//import { ControlMessagesComponent } from "app/control-message.component";
+import { ValidationService } from "app/_services/_validation.service";
+import { BrandsService } from "app/_services/_brands.service";
+import { DataTableModule } from "angular2-datatable";
+import { DataFilterPipe } from "app/_filters/data-filter.pipe";
+
 import { ManageBrandsRoutingModule } from './manage-brands-routing.module';
 
-import { MasterDataComponent, AddBrandComponent, EditBrandComponent } from './master-data.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   imports: [
     CommonModule,
     ManageBrandsRoutingModule,
      ModalModule.forRoot(),
+     DataTableModule,
+     TextMaskModule
   ],
-  declarations: [MasterDataComponent, AddBrandComponent, EditBrandComponent]
+  declarations: [DataFilterPipe,MasterDataComponent],
+  providers: [ ValidationService,BrandsService ],
 })
 export class ManageBrandsModule { }

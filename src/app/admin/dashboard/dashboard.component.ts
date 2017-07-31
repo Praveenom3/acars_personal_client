@@ -24,6 +24,15 @@ public showTextbox = false;*/
 
     constructor(private toastrService: ToastrService) {}
   
+      ngOnInit() {
+        $('.table').dataTable({
+            "paging":   false,
+        "searching": true,
+        "info":     false
+        });
+    this.showSuccess();
+    }
+
   showSuccess() {
     this.toastrService.success('Hello world!');
   }
@@ -50,14 +59,7 @@ public showTextbox = false;*/
     this.toastrService.error('Some error found');
   }
 
-  ngOnInit() {
-        $('.table').dataTable({
-            "paging":   false,
-        "searching": true,
-        "info":     false
-        });
-    this.showSuccess();
-    }
+
 }
 
 @Component({
