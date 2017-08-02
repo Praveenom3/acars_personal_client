@@ -5,7 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { ProductsService } from "app/_services/_products.service";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
-import { Products } from "app/_models/Products";
+import { Products } from "app/_models/products";
 
 @Component({
     selector: 'app-products',
