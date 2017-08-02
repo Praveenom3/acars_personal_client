@@ -36,7 +36,7 @@
                     <a class="btn  btn-modal-blue" role="button" (click)="newProduct()"><i class="fa fa-plus"></i>  &nbsp;Add Product</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row panel">
                 <caption class="datatable-caption">Manage Products</caption>
                 <div class="form-inline">
                     <div class="form-group pull-right padding-10">
@@ -68,7 +68,7 @@
                     <tbody>
                         <ng-container *ngIf="prod.data?.length">
                             <tr *ngFor="let product of prod.data">
-                                <td class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_name}}</a></td>
+                                <td class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_name | uppercase}}</a></td>
                                 <td class="text-center">{{(product.product_type) == 1 ? "Full Service" : ((product.product_type) == 2 ? "Self Service" : ((product.product_type)== 3 ? "Enhanced" : ""))}}</td>
                                 <td class="text-center"><a class="color-blue-link" (click)="accountManagerStatus(product)">{{(product.account_manager) == 1 ? "Yes" : "No"}}</a></td>
                                 <td class="text-center">{{product.applicable_year}}</td>
