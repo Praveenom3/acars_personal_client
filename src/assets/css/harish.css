@@ -17,6 +17,7 @@
 
 .color-blue-link {
     color: #105BDB;
+    cursor: pointer;
 }
 
 h3.login-heading::after {
@@ -303,6 +304,15 @@ body.body-blue nav.admin-nav {
     height: 64px !important;
 }
 
-body.body-blue nav.admin-nav .menu{
+body.body-blue nav.admin-nav .menu {
     height: 64px !important;
+}
+
+.checkbox input[type=checkbox],
+.checkbox-inline input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=radio] {
+    position: absolute;
+    margin-top: .50rem;
+    margin-left: -1.25rem;
 }

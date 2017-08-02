@@ -28,13 +28,13 @@
             <div class="panel panel-primary">
                 <div class="table-responsive kv-grid-container" style="overflow: auto">
                     <caption class="datatable-caption">Manage Brands</caption>
- <div class="form-inline">
+                    <div class="form-inline">
                         <div class="form-group pull-right padding-10">
                             <label for="email"><b>Search:</b></label>
                             <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table class="table table-hover table-bordered table-striped" [mfData]="brands | dataFilter : filterQuery" #brandObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                         <thead>
                             <tr class="tr-blue-grid-head">
@@ -62,14 +62,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let brand of mf.data">
-                                <td style="text-align: center;"><img src="{{brandImgPath}}{{brand.brand_logo}}" style="width:100px;height:60px;"></td>
-                                <td><a (click)="updateBrand(brand)" class="tbl-col-link">{{brand.brand_name}}</a></td>
-                                <td>{{brand.support_email}}</td>
-                                <td>{{brand.support_phone}}</td>
-                                <td>{{brand.terms_conditions_url}}</td>
-                                <td><a style="cursor:pointer" (click)="statusChange(brand)">{{(brand.brand_status) == 1 ? "Active" : "Inactive"}}</a></td>
-                                <td class="text-center"><a title="delete" data-toggle="confirmation" (click)="deleteBrand(brand)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            <ng-container *ngIf="brandObj.data?.length">
+                                <tr *ngFor="let brand of brandObj.data">
+                                    <td style="text-align: center;"><img src="{{brandImgPath}}{{brand.brand_logo}}" style="width:100px;height:60px;"></td>
+                                    <td><a (click)="updateBrand(brand)" class="tbl-col-link">{{brand.brand_name}}</a></td>
+                                    <td>{{brand.support_email}}</td>
+                                    <td>{{brand.support_phone}}</td>
+                                    <td>{{brand.terms_conditions_url}}</td>
+                                    <td><a style="cursor:pointer" (click)="statusChange(brand)">{{(brand.brand_status) == 1 ? "Active" : "Inactive"}}</a></td>
+                                    <td class="text-center"><a title="delete" (click)="deleteBrand(brand)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!brandObj.data?.length>
+                                <td colspan="7">
+                                    No records are found
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -80,7 +87,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                </div>              
+                </div>
             </div>
         </div>
     </div>
@@ -93,25 +100,22 @@
         <div class="modal-content">
             <div class="modal-header modal-header-color">
                 <h4 class="modal-title pull-left color-white">{{modalTitle}}</h4>
-                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="BrandsModal.hide()" aria-hidden="true">×</button>
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()" aria-hidden="true">×</button>
             </div>
             <form [formGroup]="_addBrandForm" (ngSubmit)="onSubmit()">
                 <div class="modal-body row">
                     <div class="col-md-12">
                         <div class="col-md-6 required">
                             <label class="form-control-label">Brand Name</label>
-                            <div class="form-group field-adminusers-first_name required" [ngClass]="{'has-danger': !_isValid('brand_name')}">
-                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['brand_name']"  [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}">
-                                <!--<control-messages [control]="_addBrandForm.controls.brand_name"></control-messages>-->
-                                <!--<span class="help-block help-block-error" *ngIf="!_isValid('brand_name')">{{_isValidField('brand_name')}}</span>-->
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('brand_name')}">
+                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['brand_name']" [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.brand_name.valid">{{_formErrors.brand_name.message}}</span>
                             </div>
                         </div>
                         <div class="col-md-6 required">
                             <label class="form-control-label">Choose logo</label>
-                            <div class="form-group field-adminusers-last_name required"  [ngClass]="{'has-danger': !_isValid('brand_logo')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('brand_logo')}">
                                 <input type="file" #brandLogo (change)="handleFileSelect($event)" [formControl]="_addBrandForm.controls['brand_logo']" class="form-control" name="image" id="image" accept="image/*">
-                                <!--<control-messages [control]="_addBrandForm.controls.brand_logo"></control-messages>-->
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.brand_logo.valid">{{_formErrors.brand_logo.message}}</span>
                             </div>
                         </div>
@@ -119,17 +123,15 @@
                     <div class="col-md-12">
                         <div class="col-md-6 required">
                             <label class="form-control-label">Support Email</label>
-                            <div class="form-group field-adminusers-first_name required"  [ngClass]="{'has-danger': !_isValid('support_email')}">
-                                <input type="text" class="form-control"  [formControl]="_addBrandForm.controls['support_email']"  [(ngModel)]="brandSelected.support_email" [ngClass]="{'form-control-danger': !_isValid('support_email')}">
-                                <!--<control-messages [control]="_addBrandForm.controls.support_email"></control-messages>-->
+                            <div class="form-group  required" [ngClass]="{'has-danger': !_isValid('support_email')}">
+                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['support_email']" [(ngModel)]="brandSelected.support_email" [ngClass]="{'form-control-danger': !_isValid('support_email')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.support_email.valid">{{_formErrors.support_email.message}}</span>
                             </div>
                         </div>
                         <div class="col-md-6 required">
                             <label class="form-control-label">Support Phone</label>
                             <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('support_phone')}">
-                                <input type="text" [textMask]="{mask: mask}" [formControl]="_addBrandForm.controls['support_phone']"   class="form-control" [(ngModel)]="brandSelected.support_phone" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid('support_phone')}">
-                                <!--<control-messages [control]="_addBrandForm.controls.support_phone"></control-messages>-->
+                                <input type="text" [textMask]="{mask: mask}" [formControl]="_addBrandForm.controls['support_phone']" class="form-control" [(ngModel)]="brandSelected.support_phone" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid('support_phone')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.support_phone.valid">{{_formErrors.support_phone.message}}</span>
                             </div>
                         </div>
@@ -137,9 +139,8 @@
                     <div class="col-md-12">
                         <div class="col-md-6 required">
                             <label class="form-control-label">Terms & Condition URL</label>
-                            <div class="form-group field-adminusers-first_name required" [ngClass]="{'has-danger': !_isValid('terms_conditions_url')}">
-                                <input type="text" class="form-control"  [formControl]="_addBrandForm.controls['terms_conditions_url']"   [(ngModel)]="brandSelected.terms_conditions_url" [ngClass]="{'form-control-danger': !_isValid('terms_conditions_url')}">
-                                <!--<control-messages [control]="_addBrandForm.controls.terms_conditions_url"></control-messages>-->
+                            <div class="form-group  required" [ngClass]="{'has-danger': !_isValid('terms_conditions_url')}">
+                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['terms_conditions_url']" [(ngModel)]="brandSelected.terms_conditions_url" [ngClass]="{'form-control-danger': !_isValid('terms_conditions_url')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.terms_conditions_url.valid">{{_formErrors.terms_conditions_url.message}}</span>
                             </div>
                         </div>
@@ -153,16 +154,14 @@
                                   <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 0" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"   value="inactive"> Inactive
                              </label>
                             </div>
-                            <!--<control-messages [control]="_addBrandForm.controls.brand_status"></control-messages>-->
                             <span class="help-block help-block-error" *ngIf="!_formErrors.brand_status.valid">{{_formErrors.brand_status.message}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer" style="border-top: none;">
                     <button type="submit" class="btn btn-primary btn-blue" id="chng_pwd_btn" [disabled]="!_addBrandForm.valid || _submitted == true">
-                         <!--<button type="submit" class="btn btn-primary btn-blue" id="chng_pwd_btn" >Save-->
-					Save Changes</button>
-                    <button type="button" class="btn btn-default" (click)="BrandsModal.hide()">Close</button>
+                        	Save Changes</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
                 </div>
             </form>
         </div>
