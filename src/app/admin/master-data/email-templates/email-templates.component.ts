@@ -207,10 +207,12 @@ export class EmailTemplatesComponent implements OnInit {
                      for (const key in control.errors) {                        
                          this._formErrors[field].message=  messages[key];
                      }
-                   isValid = false;           
-                }else{
-                     isValid = true;
-                }
+                    isValid = false;
+                    this._formErrors.body.message = 'Email body is required';      
+                 }else{
+                      isValid = true;
+                      this._formErrors.body.message = '';  
+                 }
             } else if(this._emailTemplatesForm.controls[field].touched == false) {// If the field is not touched and invalid, it is considered as initial loaded form. Thus set as true
                   isValid = true;
               }
