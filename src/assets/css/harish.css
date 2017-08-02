@@ -316,3 +316,12 @@ body.body-blue nav.admin-nav .menu {
     margin-top: .50rem;
     margin-left: -1.25rem;
 }
+
+.spinnerimg {
+    width: 35px;
+    height: 33px;
+    position: relative;
+    top: 0px;
+    margin: 0px auto;
+    display: block;
+}
