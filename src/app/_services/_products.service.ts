@@ -9,7 +9,7 @@ import {tokenNotExpired} from 'angular2-jwt';
 import {AuthHttp, JwtHelper} from 'angular2-jwt';
 
 
-import { Products } from "app/_models/Products";
+import { Products } from "app/_models/products";
 import {GlobalService} from './_global.service';
 
 
