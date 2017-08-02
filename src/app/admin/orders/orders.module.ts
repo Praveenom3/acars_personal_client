@@ -6,8 +6,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { OrdersRoutingModule } from "./orders.routing";
 import { OrdersComponent } from './orders.component';
-import { InputMaskModule } from "app/_shared/input-mask.module";
 import { PartialViews } from "app/_partial-views/partial-views.module";
+import { SharedModule } from "app/_shared/shared.module";
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
     OrdersRoutingModule,
      TabsModule.forRoot(),
      FormsModule,
-     InputMaskModule,
+     SharedModule,
      PartialViews
   ],
   declarations: [OrdersComponent]

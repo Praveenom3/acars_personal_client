@@ -15,8 +15,8 @@ import { SearchComponent, SearchResultsComponent } from './search/search.compone
 import { ActivityLogComponent } from "app/admin/activity-log/activity-log.component";
 import { ErrorLogComponent } from './error-log/error-log.component';
 
-import { InputMaskModule } from "app/_shared/input-mask.module";
 import { PartialViews } from "app/_partial-views/partial-views.module";
+import { SharedModule } from "app/_shared/shared.module";
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
-    InputMaskModule,
+    SharedModule,
     PartialViews
   ],
   declarations: [ SummaryComponent,DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent ],

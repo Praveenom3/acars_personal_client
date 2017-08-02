@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { MasterDataComponent} from './master-data.component';
-//import { ControlMessagesComponent } from "app/control-message.component";
 import { ValidationService } from "app/_services/_validation.service";
 import { BrandsService } from "app/_services/_brands.service";
 import { DataTableModule } from "angular2-datatable";
@@ -23,6 +22,6 @@ import { TextMaskModule } from 'angular2-text-mask';
      TextMaskModule
   ],
   declarations: [DataFilterPipe,MasterDataComponent],
-  providers: [ ValidationService,BrandsService ],
+  providers: [ BrandsService ],
 })
 export class ManageBrandsModule { }

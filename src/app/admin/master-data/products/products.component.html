@@ -33,90 +33,62 @@
                     </ul>
                 </div>
                 <div class="col-md-8 col-xs-6 pull-right" align="right" style="padding: 14px 5px;">
-                    <a class="btn  btn-modal-blue" href="#add_product_modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i>  &nbsp;Add Product</a>
+                    <a class="btn  btn-modal-blue" role="button" (click)="newProduct()"><i class="fa fa-plus"></i>  &nbsp;Add Product</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row panel">
                 <caption class="datatable-caption">Manage Products</caption>
-                <table class="table table-hover table-bordered table-striped">
+                <div class="form-inline">
+                    <div class="form-group pull-right padding-10">
+                        <label for="email"><b>Search:</b></label>
+                        <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
+                    </div>
+                </div>
+                <table class="table table-hover table-bordered table-striped" [mfData]="products | productsFilter : filterQuery" #prod="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+
                     <thead>
-                        <tr>
-                            <th class="blue-grid-head" style="width:30%">Product Name</th>
-                            <th class="blue-grid-head">Product Type</th>
-                            <th class="blue-grid-head">Requires Account Manager</th>
-                            <th class="blue-grid-head">Applicable Year</th>
-                            <th class="blue-grid-head">Delete</th>
+                        <tr class="tr-blue-grid-head">
+                            <th class="text-center">
+                                <mfDefaultSorter by="product_name">Product Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="product_type">Product Type</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="account_manager">Requires Account Manager</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="applicable_year">Applicable Year</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter>Actions</mfDefaultSorter>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tr-text-center">
-                            <td class="link-blue-underline" href="#add_product_modal" role="button" data-toggle="modal">VHT</td>
-                            <td>Self Service</td>
-                            <td>Yes</td>
-                            <td>2016</td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr class="tr-text-center">
-                            <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Enhanced</td>
-                            <td>Enhanced</td>
-                            <td>No</td>
-                            <td>2017</td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr class="tr-text-center">
-                            <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2016 Tracking</td>
-                            <td>True Full Service</td>
-                            <td>Yes</td>
-                            <td>2016</td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                        </tr>
-                        <tr class="tr-text-center">
-                            <td class="link-blue-underline" href="#update_product_modal" role="button" data-toggle="modal">2017 Self Service</td>
-                            <td>Self Service</td>
-                            <td>No</td>
-                            <td>NA</td>
-                            <td class="text-center"><a title="delete" data-toggle="confirmation" onclick="deleteModal(9);" href="#" style="color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        <ng-container *ngIf="prod.data?.length">
+                            <tr *ngFor="let product of prod.data">
+                                <td class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_name | uppercase}}</a></td>
+                                <td class="text-center">{{(product.product_type) == 1 ? "Full Service" : ((product.product_type) == 2 ? "Self Service" : ((product.product_type)== 3 ? "Enhanced" : ""))}}</td>
+                                <td class="text-center"><a class="color-blue-link" (click)="accountManagerStatus(product)">{{(product.account_manager) == 1 ? "Yes" : "No"}}</a></td>
+                                <td class="text-center">{{product.applicable_year}}</td>
+                                <td class="text-center"><a title="delete" (click)="deleteProduct(product)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </ng-container>
+                        <tr class="tr-text-center" *ngIf=!prod.data?.length>
+                            <td colspan="7">
+                                No records are found
+                            </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
-            </div>
-            <div class="col-md-12">
-                <div class="col-md-3 padding10">
-                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
-                </div>
-                <div class="col-md-9 text-right">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                <span>First</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                <span aria-hidden="true">
-                                            <i class="fa fa-arrow-left"></i>
-                                        </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                <span aria-hidden="true">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                <span>Last</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -125,176 +97,73 @@
 <!--  Container End-->
 
 <!-- Add product Modal -->
-<div class="modal fade" id="add_product_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" bsModal #ProductsModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
 
-                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">
 								X
 							</button>
                 <h4 class="modal-title color-white" id="myModalLabel">
-                    Add Product
+                    {{modalTitle}}
                 </h4>
             </div>
-            <div class="modal-body row">
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <label class="form-control-label">Applicable Year <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <select type="text" class="form-control">
-                                <option>Select</option>
-                                <option>2016</option>
-                                <option>2017</option>
-                                <option>NA</option>
+            <form [formGroup]="_productForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label class="form-control-label">Applicable Year <span class="red">*</span></label>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('applicable_year')}">
+                                <select class="form-control" [formControl]="_productForm.controls['applicable_year']" [(ngModel)]="productSelected.applicable_year" [ngClass]="{'form-control-danger': !_isValid('applicable_year')}">
+                                   <option  disabled [value]="null">Select</option>
+                                    <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                                </select>
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.applicable_year.valid">{{_formErrors.applicable_year.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-control-label">Product Name <span class="red">*</span></label>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('product_name')}">
+                                <input type="text" class="form-control" [formControl]="_productForm.controls['product_name']" [(ngModel)]="productSelected.product_name" [ngClass]="{'form-control-danger': !_isValid('product_name')}">
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.product_name.valid">{{_formErrors.product_name.message}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label class="form-control-label">Product Type </label>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('product_type')}">
+                                <select class="form-control" [formControl]="_productForm.controls['product_type']" [(ngModel)]="productSelected.product_type" [ngClass]="{'form-control-danger': !_isValid('product_type')}">
+                                <option disabled [value]="null">Select</option>
+                                <option *ngFor="let productType of productTypes" [value]="productType.id">{{productType.service}}</option>
                             </select>
-                            <div class="help-block"></div>
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.product_type.valid">{{_formErrors.product_type.message}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-control-label">Product Name <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" aria-required="true">
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <label class="form-control-label">Product Type </label>
-                        <div class="form-group field-adminusers-first_name">
-                            <select type="text" class="form-control">
-                                <option>Select</option>
-                                <option>Self Service</option>
-                                <option>Enhanced</option>
-                                <option>True Full Service</option>
-                            </select>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-last_name">
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio">Yes
+                        <div class="col-md-6">
+                            <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid('account_manager')}">
+                                <label class="radio-inline">
+                            <input type="radio" [value]="1" [formControl]="_productForm.controls['account_manager']" [(ngModel)]="productSelected.account_manager" [ngClass]="{'form-control-danger': !_isValid('account_manager')}">Yes
                             </label>
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio">No
+                                <label class="radio-inline">
+                            <input type="radio" [value]="0" [formControl]="_productForm.controls['account_manager']" [(ngModel)]="productSelected.account_manager" [ngClass]="{'form-control-danger': !_isValid('account_manager')}">No
                             </label>
-                            <div class="help-block"></div>
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.account_manager.valid">{{_formErrors.account_manager.message}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="modal-footer footer-background">
-
-                <a href="#" class="btn btn-modal-blue" data-dismiss="modal">
-								Save  
-							</a>
-                <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-            </div>
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_productForm.valid || _submitted == true">
+				  Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                </div>
+            </form>
         </div>
 
     </div>
 
 </div>
 <!-- ./Add Product Modal -->
-
-<!-- Update product Modal -->
-<div class="modal fade" id="update_product_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header modal-header-color">
-
-                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
-								X
-							</button>
-                <h4 class="modal-title color-white" id="myModalLabel">
-                    Update Product
-                </h4>
-            </div>
-            <div class="modal-body row">
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <label class="form-control-label">Product Name <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" aria-required="true" value="2016 Enhanced">
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-control-label">Product Type </label>
-                        <div class="form-group field-adminusers-first_name">
-                            <select type="text" class="form-control">
-                                <option>Select</option>
-                                <option>Self Service</option>
-                                <option selected>Enhanced</option>
-                                <option>True Full Service</option>
-                            </select>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <label class="form-control-label">Requires Account Manager <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-last_name">
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio2" checked>Yes
-                            </label>
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio2">No
-                            </label>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-control-label">Requires Aggregated Group Status <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio3" checked>Yes
-                            </label>
-                            <label class="radio-inline">
-                            <input type="radio" name="optradio3">No
-                            </label>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <label class="form-control-label">Applicable Year <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <select type="text" class="form-control">
-                                <option>Select</option>
-                                <option>2016</option>
-                                <option>2017</option>
-                                <option>NA</option>
-                            </select>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer footer-background">
-
-                <a href="#" class="btn btn-modal-blue" data-dismiss="modal">
-								Save  
-							</a>
-                <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<!-- ./Update Product Modal -->
