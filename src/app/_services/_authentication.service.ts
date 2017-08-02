@@ -49,8 +49,10 @@ export class AuthenticationService {
                     this.loggedIn = true;
 
                     if(rememberMe == 1){
-                        this._cookieService.put(response.data.cookie_key, response.data.cookie_value);
-                        console.log(this._cookieService.get(response.data.cookie_key));
+                        const expireDays = 30; //default expiry date is 30 days from today
+                        let d:Date = new Date();
+                        d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
+                        this._cookieService.put(response.data.cookie_key, response.data.cookie_value, {expires:d.toUTCString()});
                     }
 
                 } else {

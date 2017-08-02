@@ -17,44 +17,49 @@
 </div>
 <div class="page-content col-md-12 section-page-content">
     <div class="container">
-        <form id="w0" action="/bclients/profile" method="post" enctype="multipart/form-data">
+        <form [formGroup]="_emailTemplatesForm" (ngSubmit)="onSubmit()">
 
             <div class="col-md-12 border-ddd widget padding-15">
                 <div class="table-caption-div-email">
                     <h5 class="table-caption-email">Email Templates</h5>
                 </div>
-                <div class="col-md-12">
+               <div class="col-md-12">
                     <div class="col-md-6 padding-0">
-                        <label class="form-control-label">Email Type <span class="red">*</span></label>
-                        <div class="form-group field-adminusers-first_name">
-                            <select id="emailtypes-email_type_id" class="form-control" name="EmailTypes[email_type_id]" onchange=" changeemail(this.value);">
-                            <option value="">Select</option>
-                            <option value="TDlBek9sZEZSWGFyamxOU1g5eVltQT09">Forgot Password Mail</option>
-                            <option value="eVhOcCtzazN4aEkyVThjQ0FlZVVBQT09">Email Address Verification Mail</option>
-                            <option value="Um1iUmN1ZnE0d05FR0d2REplRVpnUT09">Resend Password Mail</option>
-                            <option value="bGVka1JBVEFIQ1lyS2JTQlRwdVRlQT09">Deactivate User Mail</option>
-                            <option value="OExqMkUxcG4vM2FVdmhGUktMMjVLZz09">Password Change Mail</option>
-                        </select>
+                        <label class="form-control-label">Email Type</label>
+                        <div class="form-group required" [ngClass]="{'has-danger': !_isValid('email_type')}">
+                            <select class="form-control" [formControl]="_emailTemplatesForm.controls['email_type']"  [(ngModel)]="temp_email_type" [ngClass]="{'form-control-danger': !_isValid('email_type')}" (ngModelChange)="updateEmailTemplates()">
+                                <option value="">Select</option>
+                                <option *ngFor="let et of emailTemplates" [ngValue]="et.email_type" >{{et.email_type}}</option>
+                            </select>
+                           <control-messages [control]="_emailTemplatesForm.controls.email_type"></control-messages>
+                            <span class="help-block help-block-error" *ngIf="!_formErrors.email_type.valid">{{_formErrors.email_type.message}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-6 padding-0">
-                        <div class="form-group field-user-username">
-                            <label class="form-control-label" for="user-username">Email Subject <span class="red">*</span></label>
-                            <input type="text" id="adminusers-email" class="form-control" aria-required="true">
+                        <div class="form-group required" [ngClass]="{'has-danger': !_isValid('subject')}">
+                            <label class="form-control-label" for="user-username">Email Subject</label>
+                            <input type="text" class="form-control" [formControl]="_emailTemplatesForm.controls['subject']"  [(ngModel)]="emailTemplateSelected.subject" [ngClass]="{'form-control-danger': !_isValid('subject')}">
+                            <control-messages [control]="_emailTemplatesForm.controls.subject"></control-messages>
+                            <span class="help-block help-block-error" *ngIf="!_formErrors.subject.valid">{{_formErrors.subject.message}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 padding-top-5">
-                    <div class="form-group ">
-                        <label class="form-control-label" for="l0">Email Body <span class="red">*</span></label>
-                        <textarea id="email_description"></textarea>
+                    <div class="form-group required" [ngClass]="{'has-danger': !_isValid('body')}">
+                        <label class="form-control-label" for="l0">Email Body</label>
+                        <textarea id="email_description" [formControl]="_emailTemplatesForm.controls['body']" [(ngModel)]="emailTemplateSelected.body" [ngClass]="{'form-control-danger': !_isValid('body')}"></textarea>
+                        <control-messages [control]="_emailTemplatesForm.controls.body"></control-messages>
+                        <span class="help-block help-block-error" *ngIf="!_formErrors.body.valid">{{_formErrors.body.message}}</span>
+                    </div>
+                    <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
+                        <div class="alert alert-danger">{{_errorMessage}}</div>
                     </div>
                 </div>
                 <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
                     <div class="modal-footer-btn padding-15">
-                        <button type="submit" class="btn btn-primary">Save</button> <a class="btn btn-default"> Cancel </a>
+                        <button type="submit" class="btn btn-primary" [disabled]="!_emailTemplatesForm.valid || _submitted == true">Save</button> <a class="btn btn-default"> Cancel </a>
                     </div>
                 </div>
             </div>

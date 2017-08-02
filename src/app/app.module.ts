@@ -49,7 +49,7 @@ import { CookieModule } from 'ngx-cookie';
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({timeOut: 3000}),
     CookieModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
