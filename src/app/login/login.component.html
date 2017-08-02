@@ -13,26 +13,26 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 login-form-div">
                         <h3 style="text-align:right;color:#3276B7;" class="login-heading">LOGIN</h3>
-                        <form [formGroup]="_loginForm" (ngSubmit)="onSubmit(_loginForm.value)">                              
-                                <div class="form-group row" [ngClass]="{'has-danger': !_isValid('_loginForm','username')}">
-                                    <div class="col-md-12">
-                                          <label class="form-label" for="validation-email">Email ID / User ID</label>    
-                                        <div class="input-group" style="width:100%">                                            
-                                            <input class="form-control" type="text" placeholder="Username" [formControl]="_loginForm.controls['username']" [ngClass]="{'form-control-danger': !_isValid('_loginForm','username')}">
-                                        </div>
-                                        <span class="help-block help-block-error" *ngIf="!_formErrors.username.valid">{{_formErrors.username.message}}</span>
+                        <form [formGroup]="_loginForm" (ngSubmit)="onSubmit(_loginForm.value)">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('_loginForm','username')}">
+                                <div class="col-md-12">
+                                    <label class="form-label" for="validation-email">Email ID / User ID</label>
+                                    <div class="input-group" style="width:100%">
+                                        <input class="form-control" type="text" placeholder="Username" [formControl]="_loginForm.controls['username']" [ngClass]="{'form-control-danger': !_isValid('_loginForm','username')}">
                                     </div>
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.username.valid">{{_formErrors.username.message}}</span>
                                 </div>
-                                <div class="form-group row" [ngClass]="{'has-danger': !_isValid('_loginForm','password')}">
-                                    <div class="col-md-12">
-                                         <label class="form-label" for="validation-password">Password</label>
-                                        <div class="input-group" style="width:100%">                                          
-                                            <input class="form-control" type="password" placeholder="Password" [formControl]="_loginForm.controls['password']" [ngClass]="{'form-control-danger': !_isValid('_loginForm','password')}">
-                                        </div>
-                                        <span class="help-block help-block-error" *ngIf="!_formErrors.password.valid">{{_formErrors.password.message}}</span>
+                            </div>
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('_loginForm','password')}">
+                                <div class="col-md-12">
+                                    <label class="form-label" for="validation-password">Password</label>
+                                    <div class="input-group" style="width:100%">
+                                        <input class="form-control" type="password" placeholder="Password" [formControl]="_loginForm.controls['password']" [ngClass]="{'form-control-danger': !_isValid('_loginForm','password')}">
                                     </div>
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.password.valid">{{_formErrors.password.message}}</span>
                                 </div>
-<div class="col-md-12  padding-0">
+                            </div>
+                            <div class="col-md-12  padding-0">
                                 <div class="col-md-6 col-xs-6 padding-0">
                                     <div class="form-group field-loginform-rememberme has-success">
                                         <label class="mt-checkbox mt-checkbox-outline color-black">
@@ -47,19 +47,20 @@
                                     <p class="pull-right color-blue-link  cursor-pointer" id="forgot_password_link" (click)="forgotPwdModal.show()"><u>Forgot Password</u></p>
                                 </div>
                             </div>
-                                <div class="row">
-                                    <div class="col-xs-12">                                        
-                                        <button type="submit" style="margin-top: 20px;color:#fff" class="btn btn-primary col-xs-12 login-btn" [disabled]="!_loginForm.valid || _submitted == true">SIGN IN</button>
-                                        <div class="spinner mt-4" *ngIf="_submitted"></div>
-                                    </div>
-                                   
-                                    <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
-                                        <div class="alert alert-danger">{{_errorMessage}}</div>
-                                    </div>
+                            <div class="row">
+                                <img *ngIf="_submitted" src="../assets/images/icons/loader.gif" class="spinnerimg">
+                                <div class="col-xs-12">
+                                    <button type="submit" style="margin-top: 20px;color:#fff" class="btn btn-primary col-xs-12 login-btn" [disabled]="!_loginForm.valid || _submitted == true">SIGN IN</button>
+                                    <div class="spinner mt-4" *ngIf="_submitted"></div>
                                 </div>
-                            </form>
 
-                            
+                                <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
+                                    <div class="alert alert-danger">{{_errorMessage}}</div>
+                                </div>
+                            </div>
+                        </form>
+
+
                         <!--<form id="email-form-validation" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                             <div class="form-group field-validation-email required ">
                                 <label class="form-label" for="validation-email">Email ID / User ID</label>                               
@@ -126,22 +127,22 @@
                         <h4 class="modal-title pull-left color-white">Forgot Password</h4>
                         <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="forgotPwdModal.hide()" aria-hidden="true">×</button>
                     </div>
-                <form [formGroup]="_forgotPwdForm" (ngSubmit)="forgotPwd()">
-                    <div class="modal-body row">
-                        <div class="form-group col-md-12" [ngClass]="{'has-danger': !_isValid('_forgotPwdForm','username')}">
-                            <div class="col-sm-10 col-sm-offset-1 add-mem">
-                                <label class="add-member-label">Email <span class="red">*</span></label>
-                                <input type="text" class="form-control" placeholder="Email Address" name="username" formControlName="username" [ngClass]="{'form-control-danger': !_isValid('_forgotPwdForm','username')}">
-                                <control-messages [control]="_forgotPwdForm.controls.username"></control-messages>
-                                <span class="help-block help-block-error" *ngIf="!_forgotPwdFormErrors.username.valid">{{_forgotPwdFormErrors.username.message}}</span>
-                                <span *ngIf="_errorMessageForgotPwd" class="help-block help-block-error">{{_errorMessageForgotPwd}}</span>
+                    <form [formGroup]="_forgotPwdForm" (ngSubmit)="forgotPwd()">
+                        <div class="modal-body row">
+                            <div class="form-group col-md-12" [ngClass]="{'has-danger': !_isValid('_forgotPwdForm','username')}">
+                                <div class="col-sm-10 col-sm-offset-1 add-mem">
+                                    <label class="add-member-label">Email <span class="red">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Email Address" name="username" formControlName="username" [ngClass]="{'form-control-danger': !_isValid('_forgotPwdForm','username')}">
+                                    <control-messages [control]="_forgotPwdForm.controls.username"></control-messages>
+                                    <span class="help-block help-block-error" *ngIf="!_forgotPwdFormErrors.username.valid">{{_forgotPwdFormErrors.username.message}}</span>
+                                    <span *ngIf="_errorMessageForgotPwd" class="help-block help-block-error">{{_errorMessageForgotPwd}}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer" style="border-top: none;">
-                        <button  type="submit" [disabled]="!_forgotPwdForm.valid" class="btn btn-primary" id="chng_pwd_btn">Submit</button>
-                        <button type="button" class="btn btn-default" (click)="forgotPwdModal.hide()">Close</button>
-                    </div>
+                        <div class="modal-footer" style="border-top: none;">
+                            <button type="submit" [disabled]="!_forgotPwdForm.valid" class="btn btn-primary" id="chng_pwd_btn">Submit</button>
+                            <button type="button" class="btn btn-default" (click)="forgotPwdModal.hide()">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
