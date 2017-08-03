@@ -7,7 +7,7 @@ import { MasterDataComponent} from './master-data.component';
 import { ValidationService } from "app/_services/_validation.service";
 import { BrandsService } from "app/_services/_brands.service";
 import { DataTableModule } from "angular2-datatable";
-import { DataFilterPipe } from "app/_filters/data-filter.pipe";
+import { BrandsFilterPipe } from "app/_filters/brands-filter.pipe";
 
 import { ManageBrandsRoutingModule } from './manage-brands-routing.module';
 
@@ -21,7 +21,7 @@ import { TextMaskModule } from 'angular2-text-mask';
      DataTableModule,
      TextMaskModule
   ],
-  declarations: [DataFilterPipe,MasterDataComponent],
+  declarations: [BrandsFilterPipe,MasterDataComponent],
   providers: [ BrandsService ],
 })
 export class ManageBrandsModule { }
