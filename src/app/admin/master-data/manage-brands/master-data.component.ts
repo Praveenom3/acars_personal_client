@@ -1,4 +1,3 @@
-//import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import {
     Component, OnInit, OnDestroy, Input, Output,
     ViewContainerRef, EventEmitter, ViewChild, trigger, AfterViewInit
@@ -6,14 +5,12 @@ import {
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-//import { ValidationService } from "app/_services/_validation.service";
 import { BrandsService } from "app/_services/_brands.service";
 import { ModalDirective } from "ngx-bootstrap";
 import { Brands } from "app/_models/brands";
 import { ToastrService } from "ngx-toastr";
 import { GlobalService } from "app/_services/_global.service";
 import { Http, Headers, Response } from '@angular/http';
-
 
 @Component({
     moduleId: module.id,
@@ -23,6 +20,7 @@ import { Http, Headers, Response } from '@angular/http';
 
 
 export class MasterDataComponent implements OnInit {
+
     data: Brands[];
 
     @ViewChild('BrandsModal') public BrandsModal: ModalDirective;
@@ -61,6 +59,8 @@ export class MasterDataComponent implements OnInit {
         private brandsService: BrandsService,
         private toastrService: ToastrService,
         private http: Http) {
+    
+
 
         this._addBrandForm = _formBuilder.group({
             brand_name: ['', Validators.compose([Validators.required])],
@@ -82,7 +82,6 @@ export class MasterDataComponent implements OnInit {
         this.brandSelected = this.createNewBrand();
         this._resetFormErrors();
     }
-
 
     public validationMessages = {
         'brand_name': {

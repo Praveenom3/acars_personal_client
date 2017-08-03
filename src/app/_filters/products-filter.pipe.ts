@@ -4,7 +4,7 @@ import { Products } from "app/_models/products";
 
 @Pipe({
     name: "productsFilter"
-})
+})   
 
 export class ProductsFilterPipe implements PipeTransform {
   status: number;
