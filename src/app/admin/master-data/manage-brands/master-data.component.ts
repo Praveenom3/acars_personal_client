@@ -66,7 +66,7 @@ export class MasterDataComponent implements OnInit {
             brand_name: ['', Validators.compose([Validators.required])],
             support_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             support_phone: ['', Validators.compose([Validators.required])],
-            terms_conditions_url: ['', Validators.compose([Validators.required, Validators.pattern(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/)])],
+            terms_conditions_url: ['', Validators.compose([Validators.required])],
             brand_logo: ['', Validators.compose([])],
             brand_status: ['', Validators.compose([Validators.required])]
         });
@@ -89,7 +89,7 @@ export class MasterDataComponent implements OnInit {
             'required': 'Brand is required.'
         },
         'support_email': {
-            'required': 'Brand email is required.',
+            'required': 'Support Email is required.',
             'pattern': 'Support Email is invalid'
         },
         'support_phone': {
@@ -99,11 +99,10 @@ export class MasterDataComponent implements OnInit {
             'required': 'Logo is required.',
         },
         'terms_conditions_url': {
-            'required': 'Required.',
-            'pattern': 'Url is invalid'
+            'required': 'URL is required.'
         },
         'brand_status': {
-            'required': 'Required.',
+            'required': 'Brand status id required.',
         },
     };
 
@@ -130,8 +129,6 @@ export class MasterDataComponent implements OnInit {
     // Calls when the Add Brand buton is pressed
     newBrand() {
         this.brandLogoVariable.nativeElement.value = "";
-         /*this._addBrandForm.reset();
-        this._resetFormErrors();*/
         this.brandSelected = this.createNewBrand();   // Set brandSelected to a new Product
         this.base64textString = '';
         this._submitted = false;
