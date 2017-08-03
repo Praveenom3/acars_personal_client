@@ -120,7 +120,8 @@ export class EmailTemplatesComponent implements OnInit {
         if(this.emailTemplates && this.temp_email_type!==''){
             for (var i=0; i < this.emailTemplates.length; i++) {
                 if (this.emailTemplates[i].email_type === this.temp_email_type) {
-                  this.emailTemplateSelected = this.emailTemplates[i];
+                  //this.emailTemplateSelected = this.emailTemplates[i];
+                  this.emailTemplateSelected = Object.assign({}, this.emailTemplates[i]);
                    if (this.emailTemplateSelected.body) {
                         tinymce.activeEditor.setContent(this.emailTemplateSelected.body, { format: 'raw' });
                     }
