@@ -32,6 +32,12 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
 
 import { CookieModule } from 'ngx-cookie';
 
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
+
+import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
+import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +59,8 @@ import { CookieModule } from 'ngx-cookie';
     CookieModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    MomentModule,
+    NgIdleKeepaliveModule.forRoot(),
     PartialViews
   ],
   providers: [
@@ -60,6 +68,7 @@ import { CookieModule } from 'ngx-cookie';
             provide: LocationStrategy,
             useClass: HashLocationStrategy
         },
+        IdleTimeoutService,
         AuthGuard,
         AccessGuard,
         GlobalService,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 @Component({
   selector: 'app-client-layout',
@@ -9,6 +10,13 @@ export class ClientLayoutComponent implements OnInit {
 vht:string = '';
 aca16:string ='';
 aca17:string ='';
+
+constructor(private _idleTimeout: IdleTimeoutService) { 
+   _idleTimeout.init();
+}
+
+  ngOnInit() {
+  }
 
 changeStyle(arg){
   if(arg=='aca16')
@@ -31,9 +39,5 @@ changeStyle(arg){
   }
 }
 
-constructor() { }
-
-  ngOnInit() {
-  }
 
 }
