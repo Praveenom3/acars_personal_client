@@ -188,7 +188,6 @@ export class EmailTemplatesComponent implements OnInit {
             this.emailTemplateSelected = this.createNewEmailTemplate();
             //var tinyInstance = tinymce.get('#email_description');
             if (tinymce.activeEditor.getContent()) {
-                console.log(tinymce.activeEditor.getContent());
                 tinymce.activeEditor.setContent('', { format: 'raw' });
             }
         }
