@@ -325,3 +325,17 @@ body.body-blue nav.admin-nav .menu {
     margin: 0px auto;
     display: block;
 }
+
+.updateBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.disabled-btn {
+    cursor: not-allowed !important;
+}
+
+.bordorTop {
+    border-top: 1px solid #ddd;
+}
