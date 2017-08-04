@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../_services/_authentication.service';
 import { ValidationService } from "../../_services/_validation.service";
 import { ModalDirective } from "ngx-bootstrap";
 import { ToastrService } from "ngx-toastr";
+import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 declare var $: any;
 
@@ -38,7 +39,10 @@ export class AdminLayoutComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private toastrService: ToastrService) {
+        private toastrService: ToastrService,
+        private _idleTimeout: IdleTimeoutService) {
+
+            _idleTimeout.init();
 
     this.useremail = localStorage.getItem('useremail');
 
