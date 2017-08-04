@@ -75,7 +75,7 @@
                                 <tr *ngFor="let element of elem.data">
                                     <td style="text-align:center;">{{element.element_serial_id}}</td>
                                     <td>
-                                        {{ (element.section_id) == 1 ? "Basic Information" : ( (element.section_id) == 2 ? "Large Emplpoyee Status" : ( (element.section_id)== 3 ? "Plan Offering Criteria" : "" ))}}
+                                        {{sections[(element.section_id)-1]['section']}}
                                     </td>
                                     <td style="width: 50%;">
                                         <input type="text" class="form-control" #model="ngModel" [(ngModel)]="element.element_label" style="width: 93%;" required>
