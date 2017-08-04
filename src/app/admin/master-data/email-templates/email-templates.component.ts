@@ -177,12 +177,20 @@ export class EmailTemplatesComponent implements OnInit {
                 subject: {valid: true, message: ''},
                 body: {valid: true, message: ''},
             };
-            this._errorMessage = '';
+            this._errorMessage = '';            
+        }
+
+        private _resetFormValues():void{
+            
+            this._emailTemplatesForm.reset();
+            this.temp_email_type='';
+            
+            this.emailTemplateSelected = this.createNewEmailTemplate();
             //var tinyInstance = tinymce.get('#email_description');
-            if (this.emailTemplateSelected.body) {
+            if (tinymce.activeEditor.getContent()) {
+                console.log(tinymce.activeEditor.getContent());
                 tinymce.activeEditor.setContent('', { format: 'raw' });
             }
-            
         }
 
         private _setFormErrors(errorFields:any):void{
@@ -239,4 +247,9 @@ export class EmailTemplatesComponent implements OnInit {
             }
         }
 
+onReset() {
+    this._resetFormErrors();
+    this._resetFormValues();
+    return false;
+  }
 }
