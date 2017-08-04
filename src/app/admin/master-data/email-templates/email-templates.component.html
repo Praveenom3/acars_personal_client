@@ -25,8 +25,8 @@
                 </div>
                <div class="col-md-12">
                     <div class="col-md-6 padding-0">
-                        <label class="form-control-label">Email Type</label>
                         <div class="form-group required" [ngClass]="{'has-danger': !_isValid('email_type')}">
+                            <label class="form-control-label">Email Type</label>
                             <select class="form-control" [formControl]="_emailTemplatesForm.controls['email_type']"  [(ngModel)]="temp_email_type" [ngClass]="{'form-control-danger': !_isValid('email_type')}" (ngModelChange)="updateEmailTemplates()">
                                 <option value="">Select</option>
                                 <option *ngFor="let et of emailTemplates" [ngValue]="et.email_type" >{{et.email_type}}</option>
@@ -59,7 +59,8 @@
                 </div>
                 <div class="col-md-12 padding-0 bg-sky-blue border-ddd" align="right" style="border-top: none;">
                     <div class="modal-footer-btn padding-15">
-                        <button type="submit" class="btn btn-primary" [disabled]="!_emailTemplatesForm.valid || _submitted == true">Save</button> <a class="btn btn-default"> Cancel </a>
+                        <button type="submit" class="btn btn-primary" [disabled]="!_emailTemplatesForm.valid || _submitted == true">Save</button> 
+                        <button class="btn btn-primary" (click)="onReset()">Cancel</button>
                     </div>
                 </div>
             </div>
