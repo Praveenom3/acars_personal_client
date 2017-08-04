@@ -2,7 +2,7 @@
 <div class="page-header-band-breadcrumbs">
     <!--  For Bread Crumb-->
     <div class="blue-breadcrumb col-md-12 padding-0">
-        <a class="breadcrumb-back-btn cursor-pointer">
+        <a class="breadcrumb-back-btn cursor-pointer" [routerLink]="['/admin/summary']">
             <i class="fa fa-angle-left" aria-hidden="true"></i>
         </a>
         <ul class="list-unstyled breadcrumb header-breadcrumb">
@@ -68,7 +68,7 @@
                     <tbody>
                         <ng-container *ngIf="prod.data?.length">
                             <tr *ngFor="let product of prod.data">
-                                <td class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_name | uppercase}}</a></td>
+                                <td class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_name}}</a></td>
                                 <td class="text-center">{{(product.product_type) == 1 ? "Full Service" : ((product.product_type) == 2 ? "Self Service" : ((product.product_type)== 3 ? "Enhanced" : ""))}}</td>
                                 <td class="text-center"><a class="color-blue-link" (click)="accountManagerStatus(product)">{{(product.account_manager) == 1 ? "Yes" : "No"}}</a></td>
                                 <td class="text-center">{{product.applicable_year}}</td>

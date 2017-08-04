@@ -3,7 +3,7 @@
 <div class="page-header-band-breadcrumbs">
     <!--  For Bread Crumb-->
     <div class="blue-breadcrumb col-md-12 padding-0">
-        <a class="breadcrumb-back-btn cursor-pointer">
+        <a class="breadcrumb-back-btn cursor-pointer" [routerLink]="['/admin/summary']">
             <i class="fa fa-angle-left" aria-hidden="true"></i>
         </a>
         <ul class="list-unstyled breadcrumb header-breadcrumb">
@@ -35,7 +35,6 @@
                         </div>
                     </div>
                     <table class="table table-hover table-bordered table-striped" [mfData]="brands | dataFilter : filterQuery" #brandObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
-
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
