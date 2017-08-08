@@ -45,11 +45,11 @@
                     </thead>
                     <tbody>
                         <ng-container *ngIf="log.data?.length">
-                            <tr *ngFor="let errorMsg of log.data">
-                                <td class="text-center">{{errorMsg.category}}</td>
-                                <td class="text-center">{{errorMsg.log_time}}</td>
-                                <td class="text-center">{{errorMsg.prefix}}</td>
-                                <td class="text-center">{{errorMsg.message}}</td>
+                            <tr *ngFor="let errorMsg of log.data" width='100%'>
+                                <td class="text-center" width='24%'>{{errorMsg.category}}</td>
+                                <td class="text-center" width='19%'>{{errorMsg.log_time}}</td>
+                                <td class="text-center" width='27%'>{{errorMsg.prefix}}</td>
+                                <td class="text-center" width='30%'>{{errorMsg.message}}</td>
                               
                             </tr>
                         </ng-container>
