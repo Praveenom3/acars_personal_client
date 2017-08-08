@@ -31,18 +31,18 @@
                     <div class="col-md-4 col-md-offset-3">
                         <div class="form-group">
                             <label for="pwd">Product:</label>
-                            <select class="form-control" [ngModel]="selectedProduct" (ngModelChange)="onChangeProduct($event)" name="sel2">
-                                <option disabled [value]="null">Select</option>
-                                <option [value]="product.id" *ngFor="let product of products">{{product.product_name}}</option>
+                            <select class="form-control" [(ngModel)]="selectedProduct" (ngModelChange)="onChangeProduct($event)" name="sel1">
+                                <option  value="">Select</option>
+                                <option [ngValue]="product.id" *ngFor="let product of products">{{product.product_name}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group" style="padding-right: 15px;">
                             <label for="email">Element Section:</label>
-                            <select class="form-control" [ngModel]="selectedSection" (ngModelChange)="onChangeSection($event)" name="sel2">
-                                <option disabled [value]="null">Select</option>
-                                <option [value]="section.id" *ngFor="let section of sections">{{section.section}}</option>
+                            <select class="form-control" [(ngModel)]="selectedSection" [disabled]="isSelectSection" (ngModelChange)="onChangeSection($event)" name="sel2">
+                                <option  value="">Select</option>
+                                <option [ngValue]="section.id" *ngFor="let section of sections">{{section.section}}</option>
                             </select>
                         </div>
                     </div>
@@ -91,16 +91,11 @@
                             </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="5">
-                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
-                                </td>
-                            </tr>
                         </tfoot>
                     </table>
                 </ng-container>
-                <div class="text-center padding-20 bordorTop" *ngIf=!selectedSectionElements?.length>
-                    <h5>To view the records, please select Product and Section.</h5>
+                <div class="text-center padding-40 bordorTop font-20 color-blue" *ngIf=!selectedSectionElements?.length>
+                    <h5 class="font-20 color-blue">To view the records, Please select Product and Element Section.</h5>
                 </div>
             </div>
         </div>
