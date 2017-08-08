@@ -12,6 +12,7 @@ import { Elements } from "app/_models/elements";
     styleUrls: ['./element-master.component.css']
 })
 export class ElementMasterComponent implements OnInit {
+
     section_id: any;
     _submitted: boolean;
     elementSelected: Elements;
@@ -29,8 +30,9 @@ export class ElementMasterComponent implements OnInit {
         { id: 2, product_name: 'ACA 2017' }
     ];
 
-    public selectedProduct = null;
-    public selectedSection = null;
+    public selectedProduct = '';
+    public selectedSection='';
+    public isSelectSection = true;
 
     public sections: any[] = [
         { id: 1, section: 'Basic Information' },
@@ -89,7 +91,6 @@ export class ElementMasterComponent implements OnInit {
 
 
     onChangeSection(section_id) {
-        console.log(section_id);
         this.section_id = section_id;
         this.selectedSectionElements = [];
         if (this.product_id && section_id) {
@@ -99,12 +100,16 @@ export class ElementMasterComponent implements OnInit {
                 }
             }
         }
-        else {
-            this.toastrService.error('Please Select Product and Section.');
-        }
     }
 
     onChangeProduct(product_id) {
+        if (product_id !== "") {
+            this.isSelectSection = false;
+        }else{
+            this.isSelectSection = true;
+        }
+        this.selectedSectionElements = [];
+        this.selectedSection = '';
         this.product_id = product_id;
     }
 
