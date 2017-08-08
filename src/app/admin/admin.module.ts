@@ -17,6 +17,8 @@ import { ErrorLogComponent } from './error-log/error-log.component';
 
 import { PartialViews } from "app/_partial-views/partial-views.module";
 import { SharedModule } from "app/_shared/shared.module";
+import { ErrorLogService } from "app/_services/_error-log.service";
+import { DataTableModule } from "angular2-datatable";
 
 @NgModule({
   imports: [
@@ -27,8 +29,10 @@ import { SharedModule } from "app/_shared/shared.module";
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
     SharedModule,
+    DataTableModule,
     PartialViews
   ],
   declarations: [ SummaryComponent,DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent ],
+  providers: [ ErrorLogService ]
 })
 export class AdminModule { }

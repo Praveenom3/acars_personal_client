@@ -25,7 +25,49 @@
                 <div class="table-caption-div">
                 </div>
                 <caption class="datatable-caption">Error Log</caption>
-                <table class="table table-hover table-bordered table-striped">
+                <table class="table table-hover table-bordered table-striped" [mfData]="errorLogs" #log="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th class="text-center">
+                                <mfDefaultSorter by="category">Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="log_time">Log Time</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="prefix">Requested Url</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="message">Message</mfDefaultSorter>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="log.data?.length">
+                            <tr *ngFor="let errorMsg of log.data">
+                                <td class="text-center">{{errorMsg.category}}</td>
+                                <td class="text-center">{{errorMsg.log_time}}</td>
+                                <td class="text-center">{{errorMsg.prefix}}</td>
+                                <td class="text-center">{{errorMsg.message}}</td>
+                              
+                            </tr>
+                        </ng-container>
+                        <tr class="tr-text-center" *ngIf=!log.data?.length>
+                            <td colspan="7">
+                                No records are found
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            <!--    <table class="table table-hover table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="blue-grid-head">Error Type</th>
@@ -55,9 +97,9 @@
                             <td class="text-center">07/12/2016 07:34:27</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </div>
-            <div class="col-md-12">
+         <!--   <div class="col-md-12">
                 <div class="col-md-3 padding10">
                     <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
                 </div>
@@ -94,7 +136,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
