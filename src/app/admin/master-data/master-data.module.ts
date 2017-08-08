@@ -13,8 +13,10 @@ import { ErrorMasterComponent } from './error-master/error-master.component';
 import { EmailTemplatesComponent } from './email-templates/email-templates.component';
 import { ValidationService } from "app/_services/_validation.service";
 import { EmailTemplatesService } from "app/_services/_email-templates.service";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PartialViews } from "app/_partial-views/partial-views.module";
+import { DataTableModule } from "angular2-datatable";
+import { ElementMasterService } from "app/_services/_element-master.service";
 
 @NgModule({
   imports: [
@@ -23,10 +25,12 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
      TabsModule.forRoot(),
       ModalModule.forRoot(),
       ReactiveFormsModule,
+      DataTableModule,
+      FormsModule,
       PartialViews
   ],
   declarations: [AccountSettingsComponent, ElementMasterComponent, VideosComponent, FormPricingComponent, ErrorMasterComponent, EmailTemplatesComponent,],  
-  providers: [ ValidationService,EmailTemplatesService ],
+  providers: [ ValidationService,EmailTemplatesService, ElementMasterService ],
 })
 export class MasterDataModule {
  }
