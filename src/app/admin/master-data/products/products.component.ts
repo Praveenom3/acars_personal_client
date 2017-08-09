@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
 
 
     public filterQuery = "";
-    public rowsOnPage = 10;
+    public rowsOnPage = 5;
     public sortOrder = "";
     public sortBy = "";
 
