@@ -48,7 +48,7 @@ export class MasterDataComponent implements OnInit {
     public brandImgPath = this._globalService.apiRoot + '/images/uploads/brands/';
 
     public filterQuery = "";
-    public rowsOnPage = 10;
+    public rowsOnPage = 5;
     public sortOrder = "";
     public sortBy = "";
 

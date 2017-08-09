@@ -402,3 +402,14 @@ body.body-blue .single-page-block-footer ul li:not(:first-child):before {
 .form-control[readonly] {
     background-color: #dfe4ed;
 }
+
+
+/**** Css For Hiding Pagination *****************/
+
+.pagination{
+    float : right;
+} 
+
+.pagination.pull-right{
+    display: none;
+}
