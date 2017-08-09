@@ -52,8 +52,16 @@ export class EmailTemplatesComponent implements OnInit {
   editor;
 
   ngOnInit() {
-    tinymce.init({
-      selector: '#email_description',
+    this.initWysiwyg('#email_description');
+    
+    this.emailTemplatesList();
+    this.emailTemplateSelected = this.createNewEmailTemplate();
+    this._resetFormErrors(); 
+  }
+
+  private initWysiwyg(selector){
+      tinymce.init({
+      selector: selector,
       plugins: ['link', 'paste', 'table','textcolor','textpattern','advlist','autolink', 'autosave', 'link', 'image' ,'lists', 'charmap', 'print', 'preview', 'hr', 'anchor','pagebreak','searchreplace', 'wordcount', 'visualblocks' ,'visualchars', 'code' ,'fullscreen', 'insertdatetime' ,'media', 'nonbreaking'],
       toolbar1:'undo redo insert styleselect bold italic alignleft aligncenter alignright alignjustify',
       toolbar2:' bullist numlist outdent indent link image forecolor backcolor emoticons fontselect fontsizeselect codesample help',
@@ -67,10 +75,6 @@ export class EmailTemplatesComponent implements OnInit {
         });
       },   
     });
-    
-    this.emailTemplatesList();
-    this.emailTemplateSelected = this.createNewEmailTemplate();
-    this._resetFormErrors(); 
   }
 
   public validationMessages = {
@@ -177,21 +181,30 @@ export class EmailTemplatesComponent implements OnInit {
                 subject: {valid: true, message: ''},
                 body: {valid: true, message: ''},
             };
-            this._errorMessage = '';            
+            this._errorMessage = '';    
+            
         }
 
         private _resetFormValues():void{
-            
-            this._emailTemplatesForm.reset();
-            this.temp_email_type='';
-            
-            this.emailTemplateSelected = this.createNewEmailTemplate();
-            //var tinyInstance = tinymce.get('#email_description');
-            if (tinymce.activeEditor.getContent()) {
+            /* Reset wysiwyg */
+             if (tinymce.activeEditor.getContent()) {
                 tinymce.activeEditor.setContent('', { format: 'raw' });
             }
-        }
+            tinymce.remove(this.editor);
+            this.initWysiwyg('#email_description');
+            /* ./Reset wysiwyg */
+            this._emailTemplatesForm.reset();
+            
+            this.temp_email_type='';
+            this._emailTemplatesForm.controls.email_type.setValue('');
+            this._emailTemplatesForm.controls.body.setValue(''); 
 
+            this.emailTemplateSelected = this.createNewEmailTemplate();
+            
+            
+           
+        }
+        
         private _setFormErrors(errorFields:any):void{
             for (let key in errorFields) {
                 // skip loop if the property is from prototype
@@ -247,8 +260,8 @@ export class EmailTemplatesComponent implements OnInit {
         }
 
 onReset() {
-    this._resetFormErrors();
     this._resetFormValues();
+    this._resetFormErrors();
     return false;
   }
 }
