@@ -307,7 +307,11 @@ export class LookupOptionsComponent implements OnInit {
     this.tempLookupNameGroup.reset();
     this.lookupSelected = this.createNewLookupName();
     this.addLookupNameBtnActive = true;
-    this.LookUpModal.show();
+    this.LookUpModal.show(); 
+    this._submitted = false;
+    this.modalTitle = "Add Lookup Option";  
+    
+    
   }
 
 }
