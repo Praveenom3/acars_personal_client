@@ -20,6 +20,7 @@ import { DataFilterPipe } from "app/client/dashboard/data-filter.pipe";
 import { PartialViews } from "app/_partial-views/partial-views.module";
 import { SharedModule } from "app/_shared/shared.module";
 
+import { PurchaseService } from "app/_services/_purchase.service";
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { SharedModule } from "app/_shared/shared.module";
     DataTableModule,
     PartialViews
   ],
-  declarations: [DashboardComponent,DataFilterPipe, ProfileComponent,UsersComponent, PurchaseComponent, MessagesComponent, ActivityLogComponent, CompaniesComponent, ReportingCheckListComponent, VhtComponent]
+  declarations: [DashboardComponent,DataFilterPipe, ProfileComponent,UsersComponent, PurchaseComponent, MessagesComponent, ActivityLogComponent, CompaniesComponent, ReportingCheckListComponent, VhtComponent],
+  providers: [ PurchaseService ]
 })
 
 export class ClientModule { }
