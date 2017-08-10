@@ -23,98 +23,57 @@
         <div class="col-md-12 border-ddd  width-100">
             <div class="row" style="padding: 10px 17px;">
                 <div class="pull-right">
-                    <!--<a class="btn  btn-modal-blue" href="#add_lookup_name_modal" role="button" data-toggle="modal">Add Lookup Name</a>-->
-                    <a class="btn  btn-modal-blue" href="#add_lookup_options_modal" role="button" data-toggle="modal">Add Lookup Options</a>
+                    <a class="btn  btn-modal-blue" (click)="OpenModal()">Add Lookup Option</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row panel">
                 <caption class="datatable-caption">Lookup Options</caption>
-                <table class="table table-hover table-bordered table-striped">
+                <div class="form-inline">
+                    <div class="form-group pull-right padding-10">
+                        <label for="email"><b>Search:</b></label>
+                        <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
+                    </div>
+                </div>
+                <table class="table table-hover table-bordered table-striped" [mfData]="lookupOptions | lookupFilter : filterQuery" #lookup="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                     <thead>
-                        <tr>
-                            <th class="blue-grid-head">Lookup Name</th>
-                            <th class="blue-grid-head">Lookup Options</th>
-                            <th class="blue-grid-head">Status</th>
-                            <th class="blue-grid-head">Delete</th>
+                        <tr class="tr-blue-grid-head">
+                            <th class="text-center">
+                                <mfDefaultSorter by="lookup_name">Lookup Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="lookup_option">Lookup Options</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter>Delete</mfDefaultSorter>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                            <td>Basic information</td>
-                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                            <td class="text-center">
-
-                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                            <td>Large Employer Status</td>
-                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                            <td class="text-center">
-
-                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                            <td>Plan Offering Criteria</td>
-                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                            <td class="text-center">
-
-                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="link-blue-underline" href="#add_lookup_options_modal" role="button" data-toggle="modal">Element Section</td>
-                            <td>Designated Government Entity</td>
-                            <td class="text-center"><a data-toggle="modal" class="color-blue"><u>Active</u></a></td>
-                            <td class="text-center">
-
-                                <a class="cursor-pointer" (click)="confirm()"><span class="fa fa-trash-o" tooltip="Update" placement="top"></span></a>
+                        <ng-container *ngIf="lookup.data?.length">
+                            <tr *ngFor="let optionData of lookup.data">
+                                <td class="text-center"><a (click)="updateLookupOption(optionData)" class="tbl-col-link">{{optionData.lookup_name}}</a></td>
+                                <td class="text-center">{{optionData.lookup_option}}</td>
+                                <td class="text-center"><a class="color-blue-link" (click)="lookupOptionStatus(optionData)">{{(optionData.status) == 1 ? "Active" : "Inactive"}}</a></td>
+                                <td class="text-center"><a title="delete" (click)="deleteLookupOption(optionData)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </ng-container>
+                        <tr class="tr-text-center" *ngIf=!lookup.data?.length>
+                            <td colspan="4">
+                                No records are found
                             </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
-            </div>
-            <div class="col-md-12">
-                <div class="col-md-3 padding10">
-                    <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 1 to 4 of 48 entries</div>
-                </div>
-                <div class="col-md-9 text-right">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                <span>First</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                <span aria-hidden="true">
-                                            <i class="fa fa-arrow-left"></i>
-                                        </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">...</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                <span aria-hidden="true">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                <span>Last</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -122,80 +81,75 @@
 
 <!-- ./Add Lookup Name Modal -->
 <!-- Add Lookup options Modal -->
-<div class="modal fade" id="add_lookup_options_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" bsModal #LookUpModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
 
-                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">
 								X
 							</button>
                 <h4 class="modal-title color-white" id="myModalLabel">
-                    Add Lookup Option
+                    {{modalTitle}}
                 </h4>
             </div>
-            <div class="modal-body row">
-
-                <form>
+            <form [formGroup]="_lookupNameForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
                     <div class="col-md-12 padding-0">
                         <div class="col-md-12">
                             <div *ngIf="dropdownActive" class=" form-group ">
                                 <div class="col-md-10">
                                     <label class="form-control-label" for="l0">Lookup Name *</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <select class="form-control">
-                                             <option value="">Select</option>
-                                            <option value="0">Package Type</option> 
-                                            <option value="1">Element Section</option> 
-                                           <option value="2">Product</option> 
-                                            <option value="3">Person Suffix</option> 
+                                <div class="col-md-6 form-group required" [ngClass]="{'has-danger': !_isValid('lookup_name')}">
+                                    <select class="form-control" [formControl]="_lookupNameForm.controls['lookup_name']" [(ngModel)]="lookupSelected.lookup_name" [ngClass]="{'form-control-danger': !_isValid('lookup_name')}">
+                                             <option disabled [value]="null">Select</option>
+                                           <option *ngFor="let lookupName of lookupNames" [value]="lookupName.lookup_master_id">{{lookupName.lookup_name}}</option>
                                      </select>
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.lookup_name.valid">{{_formErrors.lookup_name.message}}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" *ngIf="addLookupNameBtnActive">
                                     <button type="button" class="btn btn-sm btn-success" (click)="addOption()"> <i class="fa fa-plus"></i>   Add</button>
                                 </div>
                             </div>
-
+                            <!--add lookup name start -->
                             <div *ngIf="textboxActive" class=" form-group ">
                                 <div class="col-md-10">
                                     <label class="form-control-label" for="l0">Lookup Name *</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Lookup Name" value="">
+                                <div class="col-md-6 form-group required" [formGroup]="tempLookupNameGroup">
+                                    <input type="text" class="form-control" formControlName="lookup_name">
+                                    <p *ngIf="tempLookupNameGroup.controls.lookup_name.errors?.required && tempLookupNameGroup.controls.lookup_name.touched" style="color:red;">Lookup Name is required</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-sm btn-success" (click)="saveOption()">Save</button>
+                                    <button type="button" class="btn btn-sm btn-success" [disabled]="!tempLookupNameGroup.controls.lookup_name.valid" (click)="saveLookupName(tempLookupNameGroup.value)">Save</button>
                                     <button type="button" class="btn btn-sm btn-default" (click)="cancelOption()"><i class="fa fa-times"></i></button>
                                 </div>
                             </div>
+                            <!--add lookup name end -->
                         </div>
                     </div>
 
                     <div class="col-md-12">
-
                         <div class=" form-group ">
                             <div class="col-md-10">
                                 <label class="form-control-label">Options *</label>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Options" value="">
+                            <div class="col-md-6 form-group required" [ngClass]="{'has-danger': !_isValid('lookup_option')}">
+                                <input type="text" class="form-control" [formControl]="_lookupNameForm.controls['lookup_option']" [(ngModel)]="lookupSelected.lookup_option" [ngClass]="{'form-control-danger': !_isValid('lookup_option')}">
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.lookup_option.valid">{{_formErrors.lookup_option.message}}</span>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-
-            <div class="modal-footer footer-background">
-
-                <a href="" class="btn btn-modal-blue">
-								Save  
-							</a>
-                <a href="#" class="btn btn-default" data-dismiss="modal">
+                </div>
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-modal-blue" [disabled]="!_lookupNameForm.valid || _submitted == true">Save</button>
+                    <a class="btn btn-default" data-dismiss="modal" (click)="closeModal()">
 								Cancel
 							</a>
 
-            </div>
+                </div>
+            </form>
         </div>
 
     </div>
