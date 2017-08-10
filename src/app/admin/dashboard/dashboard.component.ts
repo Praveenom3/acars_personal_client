@@ -92,19 +92,7 @@ export class NewSalesComponent implements OnInit {
     }
 }
 
-@Component({
- selector: 'app-dashboard',
-  templateUrl: './admin-users.component.html', 
-})
-export class AdminUsersComponent implements OnInit {
- model: any = {};
-  ngOnInit() { $('.table').dataTable({
-            "paging":   false,
-        "searching": false,
-        "info":     false
-        });
-    }
-}
+
 
 @Component({
  selector: 'app-dashboard',

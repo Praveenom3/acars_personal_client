@@ -1,170 +1,285 @@
 <app-admin-dashboard-nav></app-admin-dashboard-nav>
 
-<div class="page-content col-md-12 dashboard-page-content">
+
+
+
+<!--  Container Start-->
+<div class="page-content col-md-12 section-page-content">
     <div class="container">
-        <div class="col-md-12">
-            <div class="col-xs-12">
-                <div class="col-xs-12 widget widget-two no-padding">
-                    <div class="col-xs-12 widget-header-11">
-                        <div class="col-xs-5 no-padding">
-                            <div style="padding-top:10px;"><strong>Admin Users</strong></div>
-                        </div>
-                        <div class="col-xs-7">
-                            <div class="pull-right">
-                                <a class="btn  btn-modal-blue" data-toggle="modal" href="#add_admin_user_modal" role="button">Add Admin User</a>
-                            </div>
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="row " style="padding: 10px 17px;">
+                <a class="btn btn-modal-blue pull-right" (click)="newAdminUser()"><i class="fa fa-plus"></i> Add Admin User</a>
+            </div>
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Admin Users</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
                         </div>
                     </div>
-                    <div class="clearfix">
 
-                        <table class="table table-hover table-bordered table-striped">
-                            <thead>
-                                <tr class="tr-blue-grid-head">
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Extension</th>
-                                    <th>Status</th>
-                                    <th>Activity</th>
+
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                        <tr class="tr-blue-grid-head">
+                                <th>
+                                    First Name
+                                </th>
+                                <th>
+                                  Last Name
+                                </th>
+                                <th>
+                                  Email
+                                </th>
+                                <th>
+                                  Phone
+                                </th>
+                                <th>
+                                  Extension
+                                </th>
+                                <th>
+                                 Status
+                                </th>
+                                <th>
+                                 Activity
+                                </th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                              <tr *ngFor="let adminUser of adminUsers">                                  
+                                    <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
+                                    <td>{{adminUser.last_name}}</td>
+                                    <td>{{adminUser.email_address}}</td>
+                                    <td>{{adminUser.phone}}</td>
+                                     <td>{{adminUser.extension}}</td>
+                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
+                                    <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
+                          
+                        </tbody>
+                    </table>
 
+
+                    <!--<table class="table table-hover table-bordered table-striped" [mfData]="adminUsers" #adminUsersObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>
+                                    <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="email_address">Email</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="phone">Phone</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="extension">Extension</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter>Activity</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let adminUser of adminUsersObj.data">                                  
+                                    <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
+                                    <td>{{adminUser.last_name}}</td>
+                                    <td>{{adminUser.email_address}}</td>
+                                    <td>{{adminUser.phone}}</td>
+                                     <td>{{adminUser.extension}}</td>
+                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
+                                    <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                 </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>-->
 
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
-
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
-
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
-
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
-
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
-
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td class="link-blue-underline" data-toggle="modal" href="#add_admin_user_modal">Mark</td>
-                                    <td>Combs</td>
-                                    <td><a class="link-blue-underline" href="mailto:john@combs.com">John@combs.com</a></td>
-                                    <td>(555) 888-5555</td>
-                                    <td>234</td>
-                                    <td>Active</td>
-                                    <td><a class="link-blue-underline">View</a></td>
-
-                                </tr>
-
-
-                            </tbody>
-
-                        </table>
-
-
-                        <div class="col-md-12">
-                            <div class="col-md-3 padding10">
-                                <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
-                            </div>
-                            <div class="col-md-9 text-right">
-
-                                <ul class="pagination">
-                                    <li class="first disabled"><span>first</span></li>
-                                    <li class="prev disabled"><span>previous</span></li>
-                                    <li class="active"><a data-page="0">1</a></li>
-                                    <li><a data-page="1">2</a></li>
-                                    <li><a data-page="2">3</a></li>
-                                    <li><a data-page="3">4</a></li>
-                                    <li><a data-page="4">5</a></li>
-                                    <li class="next"><a data-page="1">next</a></li>
-                                    <li class="last"><a data-page="8">last</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<!--<tr *ngFor="let adminUser of adminUsers">                                  
+                                    <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
+                                    <td>{{adminUser.last_name}}</td>
+                                    <td>{{adminUser.email_address}}</td>
+                                    <td>{{adminUser.phone}}</td>
+                                     <td>{{adminUser.extension}}</td>
+                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
+                                    <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                </tr>-->
 
 
-    <!-- Add Admin User Modal -->
-    <div class="modal fade" id="add_admin_user_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header modal-header-color">
 
-                    <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
-								X
-							</button>
-                    <h4 class="modal-title color-white" id="myModalLabel">
-                        Add Admin User
-                    </h4>
-                </div>
-                <div class="modal-body row">
-                    <form id="w0" method="post" enctype="multipart/form-data">
-                        <div class="col-md-12 border-ddd widget padding-15">
+<!-- Add Admin User Modal -->
+<div class="modal fade" bsModal #AdminUsersModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()" aria-hidden="true">×</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Add Admin User
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <form [formGroup]="_adminUserForm" (ngSubmit)="onSubmit()">
+
+
+                    <div class="col-md-12 border-ddd widget padding-15">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-4">
+                                <div class="">
+                                    <label class="form-control-label">First Name <span class="red">*</span></label>
+                                    <div class="form-group required" [ngClass]="{'has-danger': !_isValid('first_name')}">
+                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name"
+                                            [ngClass]="{'form-control-danger': !_isValid('first_name')}">
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.first_name.valid">{{_formErrors.first_name.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="">
+                                    <label class="form-control-label">Last Name <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('last_name')}">
+                                        <input type="text" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']" [(ngModel)]="adminUserSelected.last_name"
+                                            [ngClass]="{'form-control-danger': !_isValid('last_name')}" maxlength="15" aria-required="true">
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.last_name.valid">{{_formErrors.last_name.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="">
+                                    <label class="form-control-label">Status</label>
+                                    <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('status')}">
+                                        <select class="form-control" [formControl]="_adminUserForm.controls['status']" [(ngModel)]="adminUserSelected.status" [ngClass]="{'form-control-danger': !_isValid('status')}">
+                                                    <option>Active</option>
+                                                    <option>Inactive</option>
+                                                </select>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.status.valid">{{_formErrors.status.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-4">
+                                <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
+                                <div class="form-group field-user-username" [ngClass]="{'has-danger': !_isValid('email_address')}">
+                                    <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['email_address']"
+                                        [(ngModel)]="adminUserSelected.email_address" [ngClass]="{'form-control-danger': !_isValid('email_address')}">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.email_address.valid">{{_formErrors.email_address.message}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-control-label">Phone <span class="red">*</span></label>
+                                <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !_isValid('phone')}">
+                                    <input type="text" id="adminusers-phone" class="form-control" [formControl]="_adminUserForm.controls['phone']" [(ngModel)]="adminUserSelected.phone"
+                                        [ngClass]="{'form-control-danger': !_isValid('phone')}" aria-required="true" placeholder="(___) ___-____">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.phone.valid">{{_formErrors.phone.message}}</span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-control-label">Extension</label>
+                                <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !_isValid('extension')}">
+                                    <input type="text" id="adminusers-extension" class="form-control numbers" [formControl]="_adminUserForm.controls['extension']"
+                                        [(ngModel)]="adminUserSelected.extension" [ngClass]="{'form-control-danger': !_isValid('extension')}"
+                                        value="" maxlength="6">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.extension.valid">{{_formErrors.extension.message}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-top-5  padding-left-0">
+                            <div class="col-md-4">
+                                <h6 class="action_head">
+                                    Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
+                                                    Next, select if this user should be able to access financial
+                                                    performance of theentireapplication." popoverTitle="Access Privileges"
+                                        placement="right" triggers="mouseenter:mouseleave"></span>
+                                </h6>
+                                <div class="md-checkbox-list ">
+
+                                    <div class="width-100 pull-left" *ngFor="let permission of PermissionsSet">
+                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                                                       {{permission.permission_name}}
+                                                        <input type="checkbox" class="primary-contact-checkbox" >
+                                                    <span></span>
+                                                    </label>
+                                        </div>
+                                    <!--<div class="width-100 pull-left">
+                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                                                        Administrator
+                                                        <input type="checkbox" class="primary-contact-checkbox " >
+                                                <span></span>
+                                                    </label>
+                                        </div>
+                                        <div class="width-100 pull-left">
+                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                                                            Billing & Contracts
+                                                        <input type="checkbox" class="primary-contact-checkbox " >
+                                                <span></span>
+                                                    </label>
+                                        </div>
+                                        <div class="width-100 pull-left">
+                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                                                        Master Data
+                                                        <input type="checkbox" class="primary-contact-checkbox " >
+                                                    <span></span>
+                                                    </label>
+                                        </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer footer-background">
+
+                <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_adminUserForm.valid || _submitted == true">
+                        	Save Changes</button>
+                <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ./Add Admin User Modal -->
+
+<!--
+ <div class="col-md-12 border-ddd widget padding-15">
                             <div class="col-md-12 padding-0">
                                 <div class="col-md-4">
                                     <div class="">
                                         <label class="form-control-label">First Name <span class="red">*</span></label>
-                                        <div class="form-group field-adminusers-first_name required">
+
+                                         <div class="form-group required" [ngClass]="{'has-danger': !_isValid('first_name')}">
+                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name" [ngClass]="{'form-control-danger': !_isValid('first_name')}">
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.first_name.valid">{{_formErrors.first_name.message}}</span>
+                                    </div>
+
+                                       <div class="form-group field-adminusers-first_name required">
 
                                             <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
 
@@ -257,23 +372,4 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="modal-footer footer-background">
-
-                    <a href="" class="btn btn-modal-blue">
-								Save  
-							</a>
-                    <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- ./Add Admin User Modal -->
+                        </div> -->
