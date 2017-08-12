@@ -13,10 +13,10 @@ export class AdminUserFilterPipe implements PipeTransform {
         value.filter(adminuser =>
            (adminuser.first_name.toLocaleLowerCase().indexOf(filter) !== -1) ||
            (adminuser.last_name.toLocaleLowerCase().indexOf(filter) !== -1) ||
-           (adminuser.email_address.toLocaleLowerCase().indexOf(filter) !== -1) ||
-           (adminuser.status.toLocaleLowerCase().indexOf(filter) !== -1) ||
-           (adminuser.extension.indexOf(filter) !== -1) ||
-           (adminuser.phone.indexOf(filter) !== -1) 
+           (adminuser.username.toLocaleLowerCase().indexOf(filter) !== -1) ||
+           (adminuser.is_active.toLocaleLowerCase().indexOf(filter) !== -1) ||
+           (adminuser.phone_extension.indexOf(filter) !== -1) ||
+           (adminuser.mobile.indexOf(filter) !== -1) 
           
         ) :
         value;
