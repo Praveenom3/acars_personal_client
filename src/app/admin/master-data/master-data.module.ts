@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PartialViews } from "app/_partial-views/partial-views.module";
 import { DataTableModule } from "angular2-datatable";
 import { ElementMasterService } from "app/_services/_element-master.service";
+import {SettingsService} from "app/_services/_setting.service";
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { ElementMasterService } from "app/_services/_element-master.service";
       PartialViews
   ],
   declarations: [AccountSettingsComponent, ElementMasterComponent, VideosComponent, FormPricingComponent, ErrorMasterComponent, EmailTemplatesComponent,],  
-  providers: [ ValidationService,EmailTemplatesService, ElementMasterService ],
+  providers: [ ValidationService,EmailTemplatesService, ElementMasterService , SettingsService],
 })
 export class MasterDataModule {
  }
