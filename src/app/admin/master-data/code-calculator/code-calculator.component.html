@@ -1,0 +1,183 @@
+<div class="col-md-12">
+    <!--  View For Pricing screen-->
+    <div class="page-header-band-breadcrumbs">
+        <!--  For Bread Crumb-->
+        <div class="blue-breadcrumb col-md-12 padding-0">
+            <a class="breadcrumb-back-btn cursor-pointer">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+            <ul class="list-unstyled breadcrumb header-breadcrumb">
+                <li>
+                    <a href="javascript: void(0);">Master Data</a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">Code Calculator</a>
+                </li>
+            </ul>
+        </div>
+        <!-- End For Bread Crumb-->
+    </div>
+
+    <!--  Container Start-->
+    <div class="page-content col-md-12 section-page-content">
+        <div class="container">
+            <div class="col-md-12 border-ddd  width-100">
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <ul class="list-unstyled breadcrumb header-breadcrumb">
+                            <li>
+                                <a href="javascript: void(0);">Master Data</a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);">Code Calculator</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8 col-xs-6 pull-right" align="right" style="padding: 14px 5px;">
+                        <a class="btn  btn-modal-blue" (click)="newCode()"><i class="fa fa-plus"></i> &nbsp; Add Code</a>
+                    </div>
+                </div>
+                <div class="row panel">
+                    <caption class="datatable-caption">Code Calculator</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped" [mfData]="codes | codeFilter : filterQuery" #codesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th class="text-center">
+                                    <mfDefaultSorter by="line_14">Line 14</mfDefaultSorter>
+                                </th>
+                                <th class="text-center">
+                                    <mfDefaultSorter by="line_16">Line 16</mfDefaultSorter>
+                                </th>
+                                <th class="text-center">
+                                    <mfDefaultSorter by="code_combination">Code Combination</mfDefaultSorter>
+                                </th>
+                                <th class="text-center">
+                                    <mfDefaultSorter by="employers_organizations">Meaning to Employers</mfDefaultSorter>
+                                </th>
+                                <th class="text-center">
+                                    <mfDefaultSorter by="individuals_families">Meaning to Individuals and Families</mfDefaultSorter>
+                                </th>
+                                <th class="text-center">
+                                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                </th>
+                                <th class="text-center">
+                                    <mfDefaultSorter>Actions</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="codesObj.data?.length">
+                                <tr *ngFor="let code of codesObj.data">
+                                    <td style="text-align:center;">{{code.line_14_text}}</td>
+                                    <td>{{code.line_16_text}}</td>
+                                    <td><span>{{code.code_combination}}</span></td>
+                                    <td><span>{{code.employers_organizations}}</span></td>
+                                    <td><span>{{code.individuals_families}}</span></td>
+                                    <td class="color-blue-link" (click)="changeStatus(code)">{{(code.status) == 1 ? "Active" : "Inactive"}}</td>
+                                    <td style="text-align:center;"><a class="color-blue-link cursor" (click)="updateCode(code)"><i class="fa fa-pencil"></i></a></td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!codesObj.data?.length>
+                                <td colspan="7">
+                                    No records are found
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Container End-->
+
+    <!-- Code Modal -->
+    <div class="modal fade" bsModal #CodeModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">>
+								X
+							</button>
+                    <h4 class="modal-title color-white" id="myModalLabel">
+                        {{modalTitle}}
+                    </h4>
+                </div>
+                <form [formGroup]="_codeForm" (ngSubmit)="onSubmit()">
+                    <div class="modal-body row">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class=" form-group " [ngClass]="{'has-danger': !_isValid('line_14')}">
+                                        <label class="form-control-label" for="l0">Line 14</label>
+                                        <select class="form-control" [formControl]="_codeForm.controls['line_14']" [(ngModel)]="codeSelected.line_14" [ngClass]="{'form-control-danger': !_isValid('line_14')}">
+                                            <option  disabled [value]="null">Select</option>
+                                               <option *ngFor="let lin14option of line14Options" [value]="lin14option.lookup_option_id">{{lin14option.lookup_option}}</option>
+                                        </select>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.line_14.valid">{{_formErrors.line_14.message}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class=" form-group" [ngClass]="{'has-danger': !_isValid('line_16')}">
+                                        <label class="form-control-label" for="l0">Line 16</label>
+                                        <select class="form-control" [formControl]="_codeForm.controls['line_16']" [(ngModel)]="codeSelected.line_16" [ngClass]="{'form-control-danger': !_isValid('line_16')}">
+                                            <option  disabled [value]="null">Select</option>
+                                              <option *ngFor="let lin16option of line16Options" [value]="lin16option.lookup_option_id">{{lin16option.lookup_option}}</option>
+                                        </select>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.line_16.valid">{{_formErrors.line_16.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class=" form-group " [ngClass]="{'has-danger': !_isValid('code_combination')}">
+                                        <label class="form-control-label" for="l0">Code Combination</label>
+                                        <textarea class="form-control" placeholder="Code Combination" [formControl]="_codeForm.controls['code_combination']" [(ngModel)]="codeSelected.code_combination" [ngClass]="{'form-control-danger': !_isValid('code_combination')}"></textarea>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.code_combination.valid">{{_formErrors.code_combination.message}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class=" form-group " [ngClass]="{'has-danger': !_isValid('employers_organizations')}">
+                                        <label class="form-control-label" for="l0">Meaning to Employers</label>
+                                        <textarea class="form-control" placeholder="Code Combination" [formControl]="_codeForm.controls['employers_organizations']" [(ngModel)]="codeSelected.employers_organizations" [ngClass]="{'form-control-danger': !_isValid('employers_organizations')}"></textarea>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.employers_organizations.valid">{{_formErrors.employers_organizations.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class=" form-group " [ngClass]="{'has-danger': !_isValid('individuals_families')}">
+                                        <label class="form-control-label" for="l0">Meaning to Individuals and Families</label>
+                                        <textarea class="form-control" placeholder="Code Combination" [formControl]="_codeForm.controls['individuals_families']" [(ngModel)]="codeSelected.individuals_families" [ngClass]="{'form-control-danger': !_isValid('individuals_families')}"></textarea>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.individuals_families.valid">{{_formErrors.individuals_families.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer footer-background">
+                        <button type="submit" class="btn btn-modal-blue" [disabled]="!_codeForm.valid || _submitted == true">
+								Save  
+							</button>
+                        <a class="btn btn-default" (click)="closeModal()">
+								Cancel
+							</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ./Code Modal -->
