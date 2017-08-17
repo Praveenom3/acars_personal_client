@@ -1,8 +1,5 @@
 <app-admin-dashboard-nav></app-admin-dashboard-nav>
 
-
-
-
 <!--  Container Start-->
 <div class="page-content col-md-12 section-page-content">
     <div class="container">
@@ -20,50 +17,7 @@
                         </div>
                     </div>
 
-
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                        <tr class="tr-blue-grid-head">
-                                <th>
-                                    First Name
-                                </th>
-                                <th>
-                                  Last Name
-                                </th>
-                                <th>
-                                  Email
-                                </th>
-                                <th>
-                                  Phone
-                                </th>
-                                <th>
-                                  Extension
-                                </th>
-                                <th>
-                                 Status
-                                </th>
-                                <th>
-                                 Activity
-                                </th>
-                            </tr>
-
-                        </thead>
-                        <tbody>
-                              <tr *ngFor="let adminUser of adminUsers">                                  
-                                    <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
-                                    <td>{{adminUser.last_name}}</td>
-                                    <td>{{adminUser.email_address}}</td>
-                                    <td>{{adminUser.phone}}</td>
-                                     <td>{{adminUser.extension}}</td>
-                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
-                                    <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                </tr>
-                          
-                        </tbody>
-                    </table>
-
-
-                    <!--<table class="table table-hover table-bordered table-striped" [mfData]="adminUsers" #adminUsersObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table class="table table-hover table-bordered table-striped" [mfData]="adminUsers | dataFilter : filterQuery" #adminUserObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
@@ -73,16 +27,16 @@
                                     <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
                                 </th>
                                 <th>
-                                    <mfDefaultSorter by="email_address">Email</mfDefaultSorter>
+                                    <mfDefaultSorter by="username">Email</mfDefaultSorter>
                                 </th>
                                 <th>
-                                    <mfDefaultSorter by="phone">Phone</mfDefaultSorter>
+                                    <mfDefaultSorter by="mobile">Phone</mfDefaultSorter>
                                 </th>
                                 <th>
-                                    <mfDefaultSorter by="extension">Extension</mfDefaultSorter>
+                                    <mfDefaultSorter by="phone_extension">Extension</mfDefaultSorter>
                                 </th>
                                 <th>
-                                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                    <mfDefaultSorter by="is_active">Status</mfDefaultSorter>
                                 </th>
                                 <th>
                                     <mfDefaultSorter>Activity</mfDefaultSorter>
@@ -90,15 +44,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                                <tr *ngFor="let adminUser of adminUsersObj.data">                                  
-                                    <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
-                                    <td>{{adminUser.last_name}}</td>
-                                    <td>{{adminUser.email_address}}</td>
-                                    <td>{{adminUser.phone}}</td>
-                                     <td>{{adminUser.extension}}</td>
-                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
-                                    <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                </tr>
+                            <tr *ngFor="let adminUser of adminUserObj.data">
+                                <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
+                                <td>{{adminUser.last_name}}</td>
+                                <td>{{adminUser.username}}</td>
+                                <td>{{adminUser.mobile}}</td>
+                                <td>{{adminUser.phone_extension}}</td>
+                                <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.is_active) == 1 ? "Active" : "Inactive"}}</a></td>
+                                <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -107,8 +61,7 @@
                                 </td>
                             </tr>
                         </tfoot>
-                    </table>-->
-
+                    </table>
                 </div>
             </div>
         </div>
@@ -123,12 +76,8 @@
                                     <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
                                     <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                 </tr>-->
-
-
-
 <!-- Add Admin User Modal -->
-<div class="modal fade" bsModal #AdminUsersModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-    aria-hidden="true">
+<div class="modal fade" bsModal #AdminUsersModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -138,18 +87,15 @@
                     Add Admin User
                 </h4>
             </div>
-            <div class="modal-body row">
-                <form [formGroup]="_adminUserForm" (ngSubmit)="onSubmit()">
-
-
+            <form [formGroup]="_adminUserForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
                     <div class="col-md-12 border-ddd widget padding-15">
                         <div class="col-md-12 padding-0">
                             <div class="col-md-4">
                                 <div class="">
                                     <label class="form-control-label">First Name <span class="red">*</span></label>
                                     <div class="form-group required" [ngClass]="{'has-danger': !_isValid('first_name')}">
-                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name"
-                                            [ngClass]="{'form-control-danger': !_isValid('first_name')}">
+                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name" [ngClass]="{'form-control-danger': !_isValid('first_name')}">
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.first_name.valid">{{_formErrors.first_name.message}}</span>
                                     </div>
                                 </div>
@@ -158,8 +104,7 @@
                                 <div class="">
                                     <label class="form-control-label">Last Name <span class="red">*</span></label>
                                     <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('last_name')}">
-                                        <input type="text" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']" [(ngModel)]="adminUserSelected.last_name"
-                                            [ngClass]="{'form-control-danger': !_isValid('last_name')}" maxlength="15" aria-required="true">
+                                        <input type="text" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']" [(ngModel)]="adminUserSelected.last_name" [ngClass]="{'form-control-danger': !_isValid('last_name')}" maxlength="15" aria-required="true">
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.last_name.valid">{{_formErrors.last_name.message}}</span>
                                     </div>
                                 </div>
@@ -167,12 +112,13 @@
                             <div class="col-md-4">
                                 <div class="">
                                     <label class="form-control-label">Status</label>
-                                    <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('status')}">
-                                        <select class="form-control" [formControl]="_adminUserForm.controls['status']" [(ngModel)]="adminUserSelected.status" [ngClass]="{'form-control-danger': !_isValid('status')}">
-                                                    <option>Active</option>
-                                                    <option>Inactive</option>
+                                    <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('is_active')}">
+                                        <select class="form-control" [formControl]="_adminUserForm.controls['is_active']" [(ngModel)]="adminUserSelected.is_active" [ngClass]="{'form-control-danger': !_isValid('is_active')}">
+                                                    <option disabled value='null'>Select</option>
+                                                    <option [value]='1'>Active</option>
+                                                    <option [value]='0'>Inactive</option>
                                                 </select>
-                                        <span class="help-block help-block-error" *ngIf="!_formErrors.status.valid">{{_formErrors.status.message}}</span>
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.is_active.valid">{{_formErrors.is_active.message}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -180,196 +126,59 @@
                         <div class="col-md-12 padding-0">
                             <div class="col-md-4">
                                 <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
-                                <div class="form-group field-user-username" [ngClass]="{'has-danger': !_isValid('email_address')}">
-                                    <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['email_address']"
-                                        [(ngModel)]="adminUserSelected.email_address" [ngClass]="{'form-control-danger': !_isValid('email_address')}">
-                                    <span class="help-block help-block-error" *ngIf="!_formErrors.email_address.valid">{{_formErrors.email_address.message}}</span>
+                                <div class="form-group field-user-username" [ngClass]="{'has-danger': !_isValid('username')}">
+                                    <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['username']" [(ngModel)]="adminUserSelected.username" [ngClass]="{'form-control-danger': !_isValid('username')}" maxlength="34">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.username.valid">{{_formErrors.username.message}}</span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-control-label">Phone <span class="red">*</span></label>
-                                <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !_isValid('phone')}">
-                                    <input type="text" id="adminusers-phone" class="form-control" [formControl]="_adminUserForm.controls['phone']" [(ngModel)]="adminUserSelected.phone"
-                                        [ngClass]="{'form-control-danger': !_isValid('phone')}" aria-required="true" placeholder="(___) ___-____">
-                                    <span class="help-block help-block-error" *ngIf="!_formErrors.phone.valid">{{_formErrors.phone.message}}</span>
+                                <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !_isValid('mobile')}">
+                                    <input type="text" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="_adminUserForm.controls['mobile']" [(ngModel)]="adminUserSelected.mobile" [ngClass]="{'form-control-danger': !_isValid('mobile')}" aria-required="true"
+                                        placeholder="(___) ___-____" maxlength="34">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.mobile.valid">{{_formErrors.mobile.message}}</span>
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <label class="form-control-label">Extension</label>
-                                <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !_isValid('extension')}">
-                                    <input type="text" id="adminusers-extension" class="form-control numbers" [formControl]="_adminUserForm.controls['extension']"
-                                        [(ngModel)]="adminUserSelected.extension" [ngClass]="{'form-control-danger': !_isValid('extension')}"
-                                        value="" maxlength="6">
-                                    <span class="help-block help-block-error" *ngIf="!_formErrors.extension.valid">{{_formErrors.extension.message}}</span>
+                                <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !_isValid('phone_extension')}">
+                                    <input type="text" id="adminusers-extension" class="form-control numbers" [formControl]="_adminUserForm.controls['phone_extension']" [(ngModel)]="adminUserSelected.phone_extension" [ngClass]="{'form-control-danger': !_isValid('phone_extension')}" value=""
+                                        maxlength="6">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.phone_extension.valid">{{_formErrors.phone_extension.message}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 padding-top-5  padding-left-0">
                             <div class="col-md-4">
                                 <h6 class="action_head">
-                                    Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
+                                    Permissions:
+                                    <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
                                                     Next, select if this user should be able to access financial
-                                                    performance of theentireapplication." popoverTitle="Access Privileges"
-                                        placement="right" triggers="mouseenter:mouseleave"></span>
+                                                    performance of theentireapplication." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
                                 </h6>
                                 <div class="md-checkbox-list ">
-
                                     <div class="width-100 pull-left" *ngFor="let permission of PermissionsSet">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                       {{permission.permission_name}}
-                                                        <input type="checkbox" class="primary-contact-checkbox" >
-                                                    <span></span>
-                                                    </label>
-                                        </div>
-                                    <!--<div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                        Administrator
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                <span></span>
-                                                    </label>
-                                        </div>
-                                        <div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                            Billing & Contracts
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                <span></span>
-                                                    </label>
-                                        </div>
-                                        <div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                        Master Data
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                    <span></span>
-                                                    </label>
-                                        </div>-->
+                                        <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                             {{permission.permission_name}}
+                                         <input type="checkbox" [checked]="adminUserSelected.permissions[permission.permission_id]" (change)="updateChecked2(permission.permission_id,$event)">
+                                              <span></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                </form>
-            </div>
+                </div>
 
-            <div class="modal-footer footer-background">
-
-                <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_adminUserForm.valid || _submitted == true">
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_adminUserForm.valid || _submitted == true">
                         	Save Changes</button>
-                <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
-
-
-
-            </div>
+                    <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                </div>
+            </form>
         </div>
 
     </div>
 </div>
-
-<!-- ./Add Admin User Modal -->
-
-<!--
- <div class="col-md-12 border-ddd widget padding-15">
-                            <div class="col-md-12 padding-0">
-                                <div class="col-md-4">
-                                    <div class="">
-                                        <label class="form-control-label">First Name <span class="red">*</span></label>
-
-                                         <div class="form-group required" [ngClass]="{'has-danger': !_isValid('first_name')}">
-                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name" [ngClass]="{'form-control-danger': !_isValid('first_name')}">
-                                        <span class="help-block help-block-error" *ngIf="!_formErrors.first_name.valid">{{_formErrors.first_name.message}}</span>
-                                    </div>
-
-                                       <div class="form-group field-adminusers-first_name required">
-
-                                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
-
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="">
-                                        <label class="form-control-label">Last Name <span class="red">*</span></label>
-                                        <div class="form-group field-adminusers-last_name required">
-                                            <input type="text" id="adminusers-last_name" class="form-control" name="AdminUsers[last_name]" maxlength="15" aria-required="true">
-
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="">
-                                        <label class="form-control-label">Status</label>
-                                        <div class="form-group field-adminusers-last_name required">
-                                            <select class="form-control">
-                                                    <option>Active</option>
-                                                    <option>Inactive</option>
-                                                </select>
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 padding-0">
-                                <div class="col-md-4">
-                                    <div class="form-group field-user-username">
-                                        <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
-                                        <input type="text" id="adminusers-email" class="form-control" aria-required="true">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-control-label">Phone <span class="red">*</span></label>
-                                    <div class="form-group field-adminusers-phone required">
-                                        <input type="text" id="adminusers-phone" class="form-control" name="AdminUsers[phone]" aria-required="true" placeholder="(___) ___-____">
-                                        <div class="help-block"></div>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-control-label">Extension</label>
-                                    <div class="form-group field-adminusers-extension">
-                                        <input type="text" id="adminusers-extension" class="form-control numbers" name="AdminUsers[extension]" value="" maxlength="6">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 padding-top-5  padding-left-0">
-                                <div class="col-md-4">
-                                    <h6 class="action_head">
-                                        Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
-                                                    Next, select if this user should be able to access financial
-                                                    performance of theentireapplication." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
-                                    </h6>
-                                    <div class="md-checkbox-list ">
-                                        <div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                        Financials
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                    <span></span>
-                                                    </label>
-                                        </div>
-                                        <div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                        Administrator
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                <span></span>
-                                                    </label>
-                                        </div>
-                                        <div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                            Billing & Contracts
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                <span></span>
-                                                    </label>
-                                        </div>
-                                        <div class="width-100 pull-left">
-                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
-                                                                        Master Data
-                                                        <input type="checkbox" class="primary-contact-checkbox " >
-                                                    <span></span>
-                                                    </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->

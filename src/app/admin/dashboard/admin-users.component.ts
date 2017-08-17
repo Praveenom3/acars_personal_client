@@ -1,45 +1,51 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+    Component, OnInit, OnDestroy, Input, Output,
+    ViewContainerRef, EventEmitter, ViewChild, trigger, AfterViewInit
+} from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { GlobalService } from "app/_services/_global.service";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
-
-
-
 import { AdminUserService } from "app/_services/_admin-user.service";
 import { AdminUser } from "app/_models/admin-user";
 
-
-
-
 @Component({
- selector: 'app-dashboard',
-  templateUrl: './admin-users.component.html', 
+    selector: 'app-dashboard',
+    templateUrl: './admin-users.component.html',
 })
-
 
 export class AdminUsersComponent implements OnInit {
 
+    data: AdminUser[];
+    etype: AdminUser;
 
+    ids: any;
+    results: any;
+    
+    public filterQuery = "";
+    public rowsOnPage = 5;
+    public sortOrder = "";
+    public sortBy = "";
 
-    public adminUsers : AdminUser[];
+    public permissionArray: FormArray;
+
+    public adminUsers: AdminUser[];
     // public adminUsers : any[];
-    public adminUserSelected : AdminUser;
+    public adminUserSelected: AdminUser;
     public PermissionsSet: any;
-
-
     private _formErrors: any;
     private _errorMessage: string;
     private modalTitle: string;
     private _submitted: boolean;
-
-
     public _adminUserForm: FormGroup;
+    public checkbox: any;
+    public demoChk = [];
+    public serverChk = [];
 
- @ViewChild('AdminUsersModal') public AdminUsersModal: ModalDirective;
-
-
+    @ViewChild('AdminUsersModal') public AdminUsersModal: ModalDirective;
+    public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
     constructor(private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
@@ -47,12 +53,12 @@ export class AdminUsersComponent implements OnInit {
         private toastrService: ToastrService,
         private _http: Http) {
         this._adminUserForm = _formBuilder.group({
-             first_name: ['', Validators.compose([Validators.required])],
-            last_name: ['', Validators.compose([Validators.required])],
-            status: ['', Validators.compose([Validators.required])],
-            email_address: ['', Validators.compose([Validators.required])],
-            phone: ['', Validators.compose([Validators.required])],
-            extension: ['', Validators.compose([Validators.required])],
+            first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+            last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+            is_active: ['', Validators.compose([Validators.required])],
+            username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+            mobile: ['', Validators.compose([Validators.required])],
+            phone_extension: ['', Validators.compose([Validators.required])]
         });
 
         this._adminUserForm.valueChanges
@@ -60,72 +66,129 @@ export class AdminUsersComponent implements OnInit {
     }
 
 
-      /*calls when page on load*/
+    /*calls when page on load*/
     ngOnInit() {
         this.getAdminUsers();
         this.adminUserSelected = this.createNewAdminUser();
         this._resetFormErrors();
     }
 
-
-    private createNewAdminUser(){
-              // Create a new AdminUser
+    private createNewAdminUser() {
+        // Create a new AdminUser
         let newAdminUser: AdminUser = {
-            user_id:0,
-            admin_user_id: 0,        
-            first_name :'',
-            last_name:'',
-            status:'',
-            email_address:'',
-            phone:'',
-            extension:'',
-            permissions:[],
+            user_id: 0,
+            admin_user_id: 0,
+            first_name: '',
+            last_name: '',
+            is_active: null,
+            username: '',
+            mobile: '',
+            phone_extension: '',
+            permissions: [],
+
         }
         return newAdminUser;
 
     }
 
-
-
- // Calls when the add Admin User buton is pressed
+    // Calls when the add Admin User buton is pressed
     newAdminUser() {
+        this.serverChk = [];
+        this._adminUserForm.reset();
+        this._resetFormErrors();
         this.adminUserSelected = this.createNewAdminUser();   // Set adminUserSelected to a new Product      
         this._submitted = false;
-        this.modalTitle = "Add Admin User";       
-        this.AdminUsersModal.show();       // Open the Popup  
+        this.modalTitle = "Add Admin User";
+        this.AdminUsersModal.show();       // Open the Popup
+
+        console.log(this.adminUserSelected.permissions);
     }
 
 
-    private getAdminUsers(){
-
+    private getAdminUsers() {
         this.adminUserService.getAdminUsers()
             .subscribe((adminUsers) => {
-             // this.adminUsers =  JSON.parse(adminUsers);
                 this.adminUsers = adminUsers.users;
-                //  private years = ["2016", "2017"];
-                this.PermissionsSet  = adminUsers.permissionsList;
-               // this.PermissionsSet  = ['Financials','Master Data'];
-                 console.log(this.PermissionsSet);
-              console.log(adminUsers.permissionsList);
+                this.PermissionsSet = adminUsers.permissionsList;
+                console.log(this.adminUsers);
             },
             error => { this._errorMessage = error.data }
             );
     }
 
 
-  /*updating product*/
+    updateChecked2(value, event) {
+        // console.log(value);
+        // console.log(this.serverChk.indexOf(value) > -1);
+        //  this.serverChk=[];
+        if (event.target.checked) {
+            if (!(this.serverChk.indexOf(value) > -1)) {
+                this.serverChk.push(value);
+            }
+            // this.demoChk.push(value);
+        }
+        else if (!event.target.checked) {
+            if (this.serverChk.indexOf(value) > -1) {
+                let index = this.serverChk.indexOf(value);
+                this.serverChk.splice(index, 1);
+                //    this.serverChk.push(value);
+            }
+            // let indexx = this.demoChk.indexOf(value);
+            // this.demoChk.splice(indexx, 1);
+        }
+        let mappingObject = {};
+
+        for (let message of this.serverChk) {
+            mappingObject[message] = true;
+        }
+        this.adminUserSelected.permissions = mappingObject;
+
+        console.log(this.serverChk);
+    }
+
+    /*updating product*/
     public updateAdminUser(adminuser: AdminUser) {
-        this.adminUserSelected = Object.assign({}, adminuser);     
+        this.adminUserSelected = this.createNewAdminUser();
+        this._adminUserForm.reset();
+        this._resetFormErrors();
+        this.serverChk = [];
+        console.log(this.serverChk);
+        this.adminUserSelected.permissions = [];
+        console.log('admin eprm');
+        console.log(adminuser.permissions);
+        console.log(this.adminUserSelected.permissions);
+        this.serverChk = adminuser.permissions;
+        //    console.log(this.serverChk);
+
+
+
+        let mappingObject = {};
+        for (let message of adminuser.permissions) {
+            mappingObject[message] = true;
+        }
+        //    console.log(mappingObject);
+
+
+
+        this.adminUserSelected = Object.assign({}, adminuser);
+        let userPermissionSet = Object.assign({}, adminuser.permissions);
+        this.adminUserSelected.permissions = Object.assign({}, userPermissionSet);
+        this.adminUserSelected.permissions = mappingObject;
+
+        console.log(mappingObject);
+
+
         this._submitted = false;
         this.modalTitle = "Edit Admin User";
         this.AdminUsersModal.show();
-    }
- 
 
- /*To delete a particular Admin User*/
+    }
+
+
+    /*To delete a particular Admin User*/
     public deleteAdminUser(adminUser) {
         if (confirm("Are you sure want to delete this User?")) {
-            this.adminUserService.deleteAdminUser(adminUser.adminUserId)
+            this.adminUserService.deleteAdminUser(adminUser.user_id)
                 .subscribe(() => {
                     this.getAdminUsers();
                     this.toastrService.success('Admin User Deleted Succesfully .');
@@ -136,23 +199,39 @@ export class AdminUsersComponent implements OnInit {
         }
     }
 
-public closeModal()
-{
+    public statusChange(adminUser) {
+        this.adminUserService.statusChange(adminUser).subscribe(
+            result => {
+                if (result.success) {
+                    this.getAdminUsers();
+                    this.toastrService.success('Status Updated Succesfully.');
+                } else {
+                    this._errorMessage = 'Status not Updated.';
+                }
+            },
+            error => {
+                this._errorMessage = error.data;
+            });
+    }
+
+    public closeModal() {
         this._adminUserForm.reset();
         this._resetFormErrors();
         this.AdminUsersModal.hide();
-}
+    }
 
-  /*on submit sending form data to service.It is for both add and update*/
+    /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
         this._submitted = true;
         if (this.adminUserSelected.admin_user_id > 0) {
+            this.adminUserSelected.permissions = this.serverChk;
+
             this.adminUserService.updateAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
                         this.getAdminUsers();
                         this.closeModal();
-                        this.toastrService.success('Adminn User Updated Successfully.');
+                        this.toastrService.success('Admin User Updated Successfully.');
                     } else {
                         this._errorMessage = 'Record not Updated';
                         this._submitted = false;
@@ -171,7 +250,8 @@ public closeModal()
                 });
 
         } else {
-
+            this.adminUserSelected.permissions = this.serverChk;
+            // console.log(this.permissionArray);
             this.adminUserService.addAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
@@ -197,42 +277,32 @@ public closeModal()
     }
 
 
-
-
-//  model: any = {};
-//   ngOnInit() { $('.table').dataTable({
-//             "paging":   false,
-//         "searching": false,
-//         "info":     false
-//         });
-//     }
-
-
-public validationMessages = {
+    public validationMessages = {
         'first_name': {
-            'required': 'First Name is required.'
+            'required': 'First Name is required.',
+            'pattern': 'No special characters are allowed.'
         },
         'last_name': {
-            'required': 'Last Name is required.'
+            'required': 'Last Name is required.',
+            'pattern': 'No special characters are allowed.'
         },
-        'email_address': {
-            'required': 'Email Address is required.'
+        'username': {
+            'required': 'Email Address is required.',
+            'pattern': 'Invalid Email Address.'
         },
-        'status': {
+        'is_active': {
             'required': 'Status is required.',
         },
-        'phone': {
+        'mobile': {
             'required': 'phone is required.',
         },
-        'extension': {
+        'phone_extension': {
             'required': 'Extension is required.',
         }
     };
 
 
-
-
-   private _setFormErrors(errorFields: any): void {
+    private _setFormErrors(errorFields: any): void {
         for (let key in errorFields) {
             // skip loop if the property is from prototype
             if (!errorFields.hasOwnProperty(key)) continue;
@@ -267,22 +337,18 @@ public validationMessages = {
         return isValid;
     }
 
-
-
- private _resetFormErrors(): void {
+    private _resetFormErrors(): void {
         this._formErrors = {
             first_name: { valid: true, message: '' },
             last_name: { valid: true, message: '' },
-            status: { valid: true, message: '' },
-            email_address: { valid: true, message: '' },
-            phone: { valid: true, message: '' },
-            extension: { valid: true, message: '' },
-            permissions: { valid: true, message: '' },
+            is_active: { valid: true, message: '' },
+            username: { valid: true, message: '' },
+            mobile: { valid: true, message: '' },
+            phone_extension: { valid: true, message: '' }
         };
-
     }
 
-public onValueChanged(data?: any) {
+    public onValueChanged(data?: any) {
         if (!this._adminUserForm) { return; }
         const form = this._adminUserForm;
         for (let field in this._formErrors) {
