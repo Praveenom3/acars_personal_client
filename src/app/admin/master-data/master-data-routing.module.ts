@@ -5,8 +5,8 @@ import { AccountSettingsComponent } from "./account-settings/account-settings.co
 import { ElementMasterComponent } from "./element-master/element-master.component";
 import { VideosComponent } from "app/admin/master-data/videos/videos.component";
 import { FormPricingComponent } from "app/admin/master-data/form-pricing/form-pricing.component";
-import {ErrorMasterComponent } from './error-master/error-master.component';
-import {EmailTemplatesComponent} from './email-templates/email-templates.component';
+import { ErrorMasterComponent } from './error-master/error-master.component';
+import { EmailTemplatesComponent } from './email-templates/email-templates.component';
 
 const routes: Routes = [
     {
@@ -47,18 +47,18 @@ const routes: Routes = [
         loadChildren: 'app/admin/master-data/products/products.module#ProductsModule'
     },
     {
-        path: 'error-master',     
-        component: ErrorMasterComponent   
+        path: 'error-master',
+        component: ErrorMasterComponent
     },
     {
-        path: 'email-templates',     
-        component: EmailTemplatesComponent   
+        path: 'email-templates',
+        component: EmailTemplatesComponent
     },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: []
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+    providers: []
 })
 export class MasterDataRoutingModule { }
