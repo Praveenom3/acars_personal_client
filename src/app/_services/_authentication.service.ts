@@ -47,6 +47,7 @@ export class AuthenticationService {
                     localStorage.setItem('authtoken', response.data.access_token);
                     localStorage.setItem('usertype', response.data.user_type);
                     localStorage.setItem('useremail', response.data.user_email);
+                     localStorage.setItem('user_id', response.data.id);
                     localStorage.setItem('clientsAndCompanies', JSON.stringify(response.data.clientsAndCompanies));
                     this.loggedIn = true;
 
