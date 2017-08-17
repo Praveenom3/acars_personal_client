@@ -28,6 +28,7 @@ import { AdminUserService } from "app/_services/_admin-user.service";
 import { AdminUserFilterPipe } from "app/_filters/admin-users-filter.pipe";
 import { ModalModule } from "ngx-bootstrap";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
+import { inputFilterDirective } from "app/_directives/input-filter.directive";
 
 @NgModule({
   imports: [
@@ -44,7 +45,7 @@ import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
     PartialViews,
     TextMaskModule
   ],
-  declarations: [ AdminUserFilterPipe, SummaryComponent,DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent ],
+  declarations: [ AdminUserFilterPipe, SummaryComponent,DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent,inputFilterDirective ],
   providers: [ ErrorLogService, AdminUserService ]
    
 })

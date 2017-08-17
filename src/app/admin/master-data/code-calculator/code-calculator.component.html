@@ -109,7 +109,7 @@
             <div class="modal-content">
                 <div class="modal-header modal-header-color">
 
-                    <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">>
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">
 								X
 							</button>
                     <h4 class="modal-title color-white" id="myModalLabel">
@@ -145,14 +145,14 @@
                                 <div class="col-md-6">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('code_combination')}">
                                         <label class="form-control-label" for="l0">Code Combination</label>
-                                        <textarea class="form-control" placeholder="Code Combination" [formControl]="_codeForm.controls['code_combination']" [(ngModel)]="codeSelected.code_combination" [ngClass]="{'form-control-danger': !_isValid('code_combination')}"></textarea>
+                                        <textarea class="form-control" [formControl]="_codeForm.controls['code_combination']" [(ngModel)]="codeSelected.code_combination" [ngClass]="{'form-control-danger': !_isValid('code_combination')}" maxlength="250"></textarea>
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.code_combination.valid">{{_formErrors.code_combination.message}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('employers_organizations')}">
                                         <label class="form-control-label" for="l0">Meaning to Employers</label>
-                                        <textarea class="form-control" placeholder="Code Combination" [formControl]="_codeForm.controls['employers_organizations']" [(ngModel)]="codeSelected.employers_organizations" [ngClass]="{'form-control-danger': !_isValid('employers_organizations')}"></textarea>
+                                        <textarea class="form-control" [formControl]="_codeForm.controls['employers_organizations']" [(ngModel)]="codeSelected.employers_organizations" [ngClass]="{'form-control-danger': !_isValid('employers_organizations')}" maxlength="250"></textarea>
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.employers_organizations.valid">{{_formErrors.employers_organizations.message}}</span>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                                 <div class="col-md-12">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('individuals_families')}">
                                         <label class="form-control-label" for="l0">Meaning to Individuals and Families</label>
-                                        <textarea class="form-control" placeholder="Code Combination" [formControl]="_codeForm.controls['individuals_families']" [(ngModel)]="codeSelected.individuals_families" [ngClass]="{'form-control-danger': !_isValid('individuals_families')}"></textarea>
+                                        <textarea class="form-control" [formControl]="_codeForm.controls['individuals_families']" [(ngModel)]="codeSelected.individuals_families" [ngClass]="{'form-control-danger': !_isValid('individuals_families')}" maxlength="250"></textarea>
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.individuals_families.valid">{{_formErrors.individuals_families.message}}</span>
                                     </div>
                                 </div>

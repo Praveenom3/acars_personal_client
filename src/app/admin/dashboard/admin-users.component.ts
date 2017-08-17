@@ -100,8 +100,6 @@ export class AdminUsersComponent implements OnInit {
         this._submitted = false;
         this.modalTitle = "Add Admin User";
         this.AdminUsersModal.show();       // Open the Popup
-
-        console.log(this.adminUserSelected.permissions);
     }
 
 
@@ -110,7 +108,6 @@ export class AdminUsersComponent implements OnInit {
             .subscribe((adminUsers) => {
                 this.adminUsers = adminUsers.users;
                 this.PermissionsSet = adminUsers.permissionsList;
-                console.log(this.adminUsers);
             },
             error => { this._errorMessage = error.data }
             );
@@ -118,23 +115,16 @@ export class AdminUsersComponent implements OnInit {
 
 
     updateChecked2(value, event) {
-        // console.log(value);
-        // console.log(this.serverChk.indexOf(value) > -1);
-        //  this.serverChk=[];
         if (event.target.checked) {
             if (!(this.serverChk.indexOf(value) > -1)) {
                 this.serverChk.push(value);
             }
-            // this.demoChk.push(value);
         }
         else if (!event.target.checked) {
             if (this.serverChk.indexOf(value) > -1) {
                 let index = this.serverChk.indexOf(value);
                 this.serverChk.splice(index, 1);
-                //    this.serverChk.push(value);
             }
-            // let indexx = this.demoChk.indexOf(value);
-            // this.demoChk.splice(indexx, 1);
         }
         let mappingObject = {};
 
@@ -142,8 +132,6 @@ export class AdminUsersComponent implements OnInit {
             mappingObject[message] = true;
         }
         this.adminUserSelected.permissions = mappingObject;
-
-        console.log(this.serverChk);
     }
 
     /*updating product*/
@@ -154,30 +142,15 @@ export class AdminUsersComponent implements OnInit {
         this.serverChk = [];
         console.log(this.serverChk);
         this.adminUserSelected.permissions = [];
-        console.log('admin eprm');
-        console.log(adminuser.permissions);
-        console.log(this.adminUserSelected.permissions);
         this.serverChk = adminuser.permissions;
-        //    console.log(this.serverChk);
-
-
-
         let mappingObject = {};
         for (let message of adminuser.permissions) {
             mappingObject[message] = true;
         }
-        //    console.log(mappingObject);
-
-
-
         this.adminUserSelected = Object.assign({}, adminuser);
         let userPermissionSet = Object.assign({}, adminuser.permissions);
         this.adminUserSelected.permissions = Object.assign({}, userPermissionSet);
         this.adminUserSelected.permissions = mappingObject;
-
-        console.log(mappingObject);
-
-
         this._submitted = false;
         this.modalTitle = "Edit Admin User";
         this.AdminUsersModal.show();
@@ -188,7 +161,7 @@ export class AdminUsersComponent implements OnInit {
     /*To delete a particular Admin User*/
     public deleteAdminUser(adminUser) {
         if (confirm("Are you sure want to delete this User?")) {
-            this.adminUserService.deleteAdminUser(adminUser.user_id)
+            this.adminUserService.deleteAdminUser(adminUser.admin_user_id)
                 .subscribe(() => {
                     this.getAdminUsers();
                     this.toastrService.success('Admin User Deleted Succesfully .');
