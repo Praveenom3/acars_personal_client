@@ -41,6 +41,9 @@ export class GlobalService{
         return localStorage.getItem('authtoken');
     }
 
+    public getUserId(): any {
+        return localStorage.getItem('user_id');
+    }
 
     public handleError(error: Response | any) {
 
