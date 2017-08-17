@@ -34,8 +34,8 @@ export class ProfileComponent implements OnInit {
     this._currentUserForm = _formBuilder.group({
       first_name: ['', Validators.compose([Validators.required])],
       last_name: ['', Validators.compose([Validators.required])],
-      mobile: ['', Validators.compose([Validators.required,Validators.minLength(14)])],
-      phone_extension: ['', Validators.compose([Validators.required,Validators.maxLength(6)])]
+      mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
+      phone_extension: ['', Validators.compose([Validators.required, Validators.maxLength(6)])]
     });
 
     this._currentUserForm.valueChanges
@@ -69,12 +69,11 @@ export class ProfileComponent implements OnInit {
   }
 
   private getAdminUsers() {
-    this.adminUserService.getAdminUsers()
+    this.adminUserService.getAdminUser(this.user_id)
       .subscribe((adminUsers) => {
         this.adminUsers = adminUsers.users;
         this.PermissionsSet = adminUsers.permissionsList;
         for (let user of this.adminUsers) {
-          if (user.user_id == this.user_id) {
             this.currentProfile = user;
             let mappingObject = {};
             for (let message of user.permissions) {
@@ -82,7 +81,6 @@ export class ProfileComponent implements OnInit {
             }
             this.permissionArr = user.permissions;
             this.currentProfile.permissions = mappingObject;
-          }
         }
       },
       error => { this._errorMessage = error.data }
@@ -128,11 +126,11 @@ export class ProfileComponent implements OnInit {
     },
     'mobile': {
       'required': 'phone is required.',
-      'minlength':'Phone number should be 10 digits.'
+      'minlength': 'Phone number should be 10 digits.'
     },
     'phone_extension': {
       'required': 'Extension is required.',
-       'maxlength':'Maximum limit for Extension is 6 digits.'
+      'maxlength': 'Maximum limit for Extension is 6 digits.'
     }
   };
 
