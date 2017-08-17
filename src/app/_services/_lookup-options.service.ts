@@ -74,7 +74,6 @@ export class LookupOptionsService {
             .catch(this._globalService.handleError);
     }
 
-
     public updateLookupStatus(lookupData): Observable<any> {
         return this._http.put(
             this._lookupURL + '/update-status/' + lookupData.lookup_option_id,
@@ -84,5 +83,12 @@ export class LookupOptionsService {
     }
 
 
+    public getLookupOptions(lookup_master_id): Observable<Lookup[]> {
+        return this._http.get(
+            this._lookupURL + '/get-lookup-options/'+lookup_master_id,
+            { headers: this._globalService.getHeaders() }
+        ).map((response: Response) => <Lookup[]>response.json().data)
+            .catch(this._globalService.handleError);
+    }
 
 }
