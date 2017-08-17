@@ -7,9 +7,12 @@ import {Pipe, PipeTransform} from "@angular/core";
 export class OrdersFilterPipe implements PipeTransform {
 
     transform(array: any[], query: string): any {
-        if (query) {
-            return _.filter(array, row=>row.client_name.indexOf(query) > -1);
-        }
-        return array;
+        query = query ? query.toLocaleLowerCase() : '';
+        return query && array ?
+        array.filter(client =>
+           (client.client_number.toLocaleLowerCase().indexOf(query) !== -1) ||
+           (client.client_name.toLocaleLowerCase().indexOf(query) !== -1)
+        ) :
+        array;
     }
 }
