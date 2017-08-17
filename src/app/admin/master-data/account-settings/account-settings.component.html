@@ -49,7 +49,7 @@
                                             <input  type="text" 
                                                 class="form-control"
                                                 id ="changed_value_{{setting.setting_id}}" 
-                                                pattern="setting.setting_validation == 'email' ^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+                                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
                                                 [(ngModel)] = "setting.setting_revised_value" 
                                                 #settingModel = "ngModel"  
                                                 required>

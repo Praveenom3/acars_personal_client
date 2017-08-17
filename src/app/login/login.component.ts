@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     private _submitted:boolean = false;
     private _errorMessage:string = '';
     private _errorMessageForgotPwd:string = '';
-
+    
   constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -202,7 +202,8 @@ export class LoginComponent implements OnInit {
                             if(result.data.user_type == 1 || result.data.user_type == 2){
                                 this.router.navigate(['/admin/dashboard']);
                             }else if(result.data.user_type == 3 || result.data.user_type == 4){
-                                this.router.navigate(['/client/dashboard']);     
+                                //this.router.navigate(['/client/dashboard']);  
+                                this.router.navigate(['/client/aca16/companies']);      
                             }    
                         }                     
                     } else {
@@ -225,7 +226,7 @@ export class LoginComponent implements OnInit {
                 }); 
     }
 
-        
+     
     forgotPwd() {
      if (this._forgotPwdForm.dirty && this._forgotPwdForm.valid) {
          this.authenticationService.passwordResetRequest(

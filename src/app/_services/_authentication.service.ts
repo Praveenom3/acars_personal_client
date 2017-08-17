@@ -43,9 +43,11 @@ export class AuthenticationService {
             ).map(response => response.json())
             .map((response) => {
                 if (response.success) {
+                    
                     localStorage.setItem('authtoken', response.data.access_token);
                     localStorage.setItem('usertype', response.data.user_type);
                     localStorage.setItem('useremail', response.data.user_email);
+                    localStorage.setItem('clientsAndCompanies', JSON.stringify(response.data.clientsAndCompanies));
                     this.loggedIn = true;
 
                     if(rememberMe == 1){
@@ -181,6 +183,7 @@ export class AuthenticationService {
     public removeLocalstorage():void{
          localStorage.removeItem('authtoken');
          localStorage.removeItem('usertype'); 
+         localStorage.removeItem('clientsAndCompanies'); 
     }
      public getToken(): any {
         return localStorage.getItem('authtoken');
