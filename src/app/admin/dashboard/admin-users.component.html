@@ -67,15 +67,7 @@
         </div>
     </div>
 </div>
-<!--<tr *ngFor="let adminUser of adminUsers">                                  
-                                    <td><a (click)="updateAdminUser(adminUser)" class="tbl-col-link">{{adminUser.first_name}}</a></td>
-                                    <td>{{adminUser.last_name}}</td>
-                                    <td>{{adminUser.email_address}}</td>
-                                    <td>{{adminUser.phone}}</td>
-                                     <td>{{adminUser.extension}}</td>
-                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.status) == 1 ? "Active" : "Inactive"}}</a></td>
-                                    <td class="text-center"><a title="delete" (click)="deleteAdminUser(adminUser)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                </tr>-->
+
 <!-- Add Admin User Modal -->
 <div class="modal fade" bsModal #AdminUsersModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -95,7 +87,7 @@
                                 <div class="">
                                     <label class="form-control-label">First Name <span class="red">*</span></label>
                                     <div class="form-group required" [ngClass]="{'has-danger': !_isValid('first_name')}">
-                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name" [ngClass]="{'form-control-danger': !_isValid('first_name')}">
+                                        <input type="text" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name" [ngClass]="{'form-control-danger': !_isValid('first_name')}" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.first_name.valid">{{_formErrors.first_name.message}}</span>
                                     </div>
                                 </div>
@@ -104,7 +96,7 @@
                                 <div class="">
                                     <label class="form-control-label">Last Name <span class="red">*</span></label>
                                     <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('last_name')}">
-                                        <input type="text" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']" [(ngModel)]="adminUserSelected.last_name" [ngClass]="{'form-control-danger': !_isValid('last_name')}" maxlength="15" aria-required="true">
+                                        <input type="text" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']" [(ngModel)]="adminUserSelected.last_name" [ngClass]="{'form-control-danger': !_isValid('last_name')}" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.last_name.valid">{{_formErrors.last_name.message}}</span>
                                     </div>
                                 </div>
@@ -143,8 +135,8 @@
                             <div class="col-md-4">
                                 <label class="form-control-label">Extension</label>
                                 <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !_isValid('phone_extension')}">
-                                    <input type="text" id="adminusers-extension" class="form-control numbers" [formControl]="_adminUserForm.controls['phone_extension']" [(ngModel)]="adminUserSelected.phone_extension" [ngClass]="{'form-control-danger': !_isValid('phone_extension')}" value=""
-                                        maxlength="6">
+                                    <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_adminUserForm.controls['phone_extension']" [(ngModel)]="adminUserSelected.phone_extension" [ngClass]="{'form-control-danger': !_isValid('phone_extension')}"
+                                        value="" maxlength="6">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.phone_extension.valid">{{_formErrors.phone_extension.message}}</span>
                                 </div>
                             </div>
