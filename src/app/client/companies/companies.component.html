@@ -35,7 +35,7 @@
                                 <tbody>
                                     <tr *ngFor=" let company of client.value.companies ">
                                         <td><a class="link-blue" [routerLink]="['/client/',product,company.company_id,'reporting-check-list']"
-                                                [routerLinkActive]="['link-bg-blue']">{{company.company_client_number}}</a></td>
+                                                [routerLinkActive]="['link-bg-blue']">{{company.company_name}}</a></td>
                                         <td class="text-center">{{company.company_ein}}</td>
                                         <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
                                     </tr>
