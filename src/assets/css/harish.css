@@ -339,3 +339,7 @@ body.body-blue nav.admin-nav .menu {
 .bordorTop {
     border-top: 1px solid #ddd;
 }
+
+.table-word-break {
+    word-break: break-all;
+}
