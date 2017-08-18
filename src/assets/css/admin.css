@@ -271,7 +271,7 @@ h4 {
 }
 
 .red {
-    color: red;
+    color: #d9534f;
 }
 
 .margin-top-7 {
@@ -1723,7 +1723,7 @@ padding: 20px 25px 35px;
 }
 
 .help-block-error {
-    color: red;
+    color: #d9534f;
 }
 
 .select-border-color {
@@ -1775,7 +1775,7 @@ div.help-block {
 }
 
 body.blue {
-    //background: url(http://192.241.236.31/themes/preview/smartadmin/1.8.x/ajax/img/glass.jpg) no-repeat center top fixed;
+    /* background: url(http://192.241.236.31/themes/preview/smartadmin/1.8.x/ajax/img/glass.jpg) no-repeat center top fixed; */
     background-size: cover !important;
     color: #000!important;
     background-color: white!important;
@@ -2869,4 +2869,14 @@ ul.top-sub-navigation li.active {
 ul.top-sub-navigation li a {
     color: white;
     cursor: pointer;
+}
+
+div.required label.radio-inline:after {
+    content: unset;
+    color: unset;
+    font-size: unset;
+}
+
+label.radio-inline input[type=radio]{
+    margin-top: 5px;
 }

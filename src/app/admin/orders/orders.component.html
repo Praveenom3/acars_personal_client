@@ -27,66 +27,59 @@
                             <strong>Clients</strong>
                         </div>
                         <div style="float: right;">
-                            <a class="btn btn-modal-blue pull-right" href="#add-client-modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i> Add Client</a>
+                            <a class="btn btn-modal-blue" role="button" (click)="openModal('addClientModal')"><i class="fa fa-plus"></i> Add Client</a>
                         </div>
                     </div>
 
                     <div class="clearfix">
-
-                        <table class="table table-hover table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="blue-grid-head" width="25%">Client #</th>
-                                    <th class="blue-grid-head" width="25%">Client Name</th>
-                                    <th class="blue-grid-head" width="25%">Brand</th>
-                                    <th class="blue-grid-head" width="25%"># of Purchases</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="tr-text-center">
-                                    <td><a class="link-blue-underline" [routerLink]="['/client/aca16/companies']">45878</a></td>
-                                    <td><a class="link-blue-underline" href="#update-client-modal" data-toggle="modal">Acars</a></td>
-                                    <td>11465-1</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td><a class="link-blue-underline" [routerLink]="['/client/aca16/companies']">45787</a></td>
-                                    <td><a class="link-blue-underline" href="#update-client-modal" data-toggle="modal">Pro Sky</a></td>
-                                    <td>14465-2</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr class="tr-text-center">
-                                    <td><a class="link-blue-underline" [routerLink]="['/client/aca16/companies']">45778</a></td>
-                                    <td><a class="link-blue-underline" href="#update-client-modal" data-toggle="modal">Acars</a></td>
-                                    <td>12665-1</td>
-                                    <td>3</td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-
-
-                        <div class="col-md-12">
-                            <div class="col-md-3 padding10">
-                                <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
-                            </div>
-                            <div class="col-md-9 text-right">
-
-                                <ul class="pagination">
-                                    <li class="first disabled"><span>first</span></li>
-                                    <li class="prev disabled"><span>previous</span></li>
-                                    <li class="active"><a data-page="0">1</a></li>
-                                    <li><a data-page="1">2</a></li>
-                                    <li><a data-page="2">3</a></li>
-                                    <li><a data-page="3">4</a></li>
-                                    <li><a data-page="4">5</a></li>
-                                    <li class="next"><a data-page="1">next</a></li>
-                                    <li class="last"><a data-page="8">last</a></li>
-                                </ul>
-                            </div>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
                         </div>
+                    </div> 
+                <table class="table table-hover table-bordered table-striped" [mfData]="clientsTableData | ordersFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
-
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th class="text-center">
+                                <mfDefaultSorter by="client_number">Client #</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="client_name">Client Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="brand_id">Brand</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="totalPurchaseCount"># of Purchases</mfDefaultSorter>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="mf.data?.length">
+                            
+                            <tr *ngFor="let item of mf.data">
+                                <td class="text-center">{{item.client_number}}</td> 
+                                <td class="text-center"><a class="link-blue-underline"  (click)="openModal('updateClientModal', item)">{{item.client_name}}</a></td> 
+                                <td class="text-center">{{item.brand_id}}</td> 
+                                <td class="text-center">{{item.totalPurchaseCount}}</td>
+                            </tr>
+                      </ng-container>
+                      <tr class="tr-text-center" *ngIf=!mf.data?.length>
+                            <td colspan="4">
+                                No records are found
+                            </td>
+                        </tr>
+                    </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot> 
+                </table>
 
                     </div>
                 </div>
@@ -94,618 +87,779 @@
         </div>
     </div>
 </div>
+
 <!-- Add Client Modal -->
-<div class="modal fade" id="add-client-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" style="width:76%;">
+
+<div class="modal fade" bsModal #addClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addClientDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
-                <h4 class="modal-title pull-left color-white">Add Client Details</h4>
-                <button aria-hidden="true" class="close-modal modal-opacity close-modal-blue" type="button" data-dismiss="modal">×</button>
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal('addClientModal')">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                   Add Client Details
+                </h4>
             </div>
-            <div class="modal-body">
-                <form class="col-xs-12 form-inline" style="margin-top:10px;">
-                    <div class="col-xs-4">
-                        <label class="control-label col-xs-5 padding-top-5" for="brand">Select Brand<span class="red">*</span></label>
-                        <div class="col-xs-7">
-                            <select class="form-control" id="brand" style="width:100%;">
-                                            <option>Select</option>
-                                            <option>ACARS</option>
-                                            <option>ACA</option>
-                                        </select>
-                        </div>
+            <form [formGroup]="_addClientForm" (ngSubmit)="onSubmit(this._addClientForm)">
+                <div class="modal-body row">
+                    <div class="col-xs-12">
+                        {{_errorMessage}}
+                        <table class="col-xs-12">
+                            <tr>
+                                <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}"><label class="form-control-label">Client Name : <span class="red">*</span></label></td>
+                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}"><input type="text" class="form-control" style="width: 90%;" [(ngModel)]="temp_client_name"  [formControl]="_addClientForm.controls['client_name']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}" placeholder="Enter Client Name"></td>
+                                <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}"><label class="form-control-label">Select Brand : <span class="red">*</span></label></td>
+                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}">
+                                   
+                                    <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_addClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}" (ngModelChange)="onBrandChange(this._addClientForm, $event)" style="width:90%;">
+                                        <option value='' [ngValue]='' selected>Select</option>
+                                        <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
+                                    </select>
+                                <td style="width:10%;"><label class="control-label">Client # :</label></td>
+                                <td style="width:20%;">
+                                    <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_addClientForm.controls['client_number']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_number')}" placeholder="Client #">
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                     <span class="help-block help-block-error" *ngIf="!_addClientFormErrors.client_name.valid">{{_addClientFormErrors.client_name.message}}</span> 
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span class="help-block help-block-error" *ngIf="!_addClientFormErrors.brand_id.valid">{{_addClientFormErrors.brand_id.message}}</span>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span class="help-block help-block-error" *ngIf="!_addClientFormErrors.client_number.valid">{{_addClientFormErrors.client_number.message}}</span>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col-xs-3">
-                        <label class="control-label col-xs-5 padding-top-5" for="client_name">Client #</label>
-                        <div class="col-xs-7">
-                            <span class="form-control" id="client_name" placeholder="Enter Client #" readonly>11465-1</span>
-                        </div>
-                    </div>
-                    <div class="col-xs-5">
-                        <label class="control-label col-xs-4 padding-top-5" for="client_name">Client Name <span class="red">*</span></label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client Name">
-                        </div>
-                    </div>
+                    
+                    <!-- Purchase history -->
+                    <div class="col-xs-12 padding-top-20">
 
-                </form>
-
-                <!-- Purchase history -->
-                <div class="col-xs-12" style="margin-top:10px;">
-
-                    <div class="col-xs-12 widget widget-two no-padding">
-                        <div class="widget-header-11" style="height:59px;">
-                            <div style="float: left;margin-top: 9px;">
-                                <strong>Purchase History</strong>
-                            </div>
-                            <div style="float: right;">
-                                <a class="btn btn-modal-blue pull-right" href="#add-purchase-modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i> Add Purchase</a>
-                            </div>
-                        </div>
-
-                        <div class="clearfix">
-
-                            <table class="table table-hover table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="blue-grid-head">Date</th>
-                                        <th class="blue-grid-head">Product</th>
-                                        <th class="blue-grid-head">First Name</th>
-                                        <th class="blue-grid-head">Last Name</th>
-                                        <th class="blue-grid-head">Email</th>
-                                        <th class="blue-grid-head">Contact #</th>
-                                        <th class="blue-grid-head">Invoice #</th>
-                                        <th class="blue-grid-head">Invoice paid</th>
-                                        <th class="blue-grid-head">Invoice Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="tr-text-center">
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-
-                            <div class="col-md-12">
-                                <div class="col-md-3 padding10">
-                                    <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 0 to 0 of 0 entries</div>
+                        <div class="col-xs-12 widget widget-two no-padding">
+                            <div class="widget-header-11" style="height:59px;">
+                                <div style="float: left;margin-top: 9px;">
+                                    <strong>Purchase History</strong>
                                 </div>
-                                <div class="col-md-9 text-right">
-
-                                    <ul class="pagination">
-                                        <li class="first disabled"><span>first</span></li>
-                                        <li class="prev disabled"><span>previous</span></li>
-                                        <li class="active"><a data-page="0">1</a></li>
-                                        <li class="next"><a data-page="1">next</a></li>
-                                        <li class="last"><a data-page="8">last</a></li>
-                                    </ul>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-modal-blue pull-right" (click)="openModal('addPurchaseModal')" [disabled]="!_addClientForm.valid || _addClientFormSubmitted == true"><i class="fa fa-plus"></i> Add Purchase</button>
                                 </div>
                             </div>
+
+                            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped" [mfData]="totalPurchases" #addPurchaseHist="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th class="text-center">
+                                <mfDefaultSorter by="date">Date</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="product">Product</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="contact_num">Contact #</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="invoice_num">Invoice #</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="invoice_paid">Invoice paid</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="invoice_created_at">Invoice Date</mfDefaultSorter>
+                            </th>
+                            <!-- <th class="text-center">
+                                <mfDefaultSorter>Actions</mfDefaultSorter>
+                            </th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="addPurchaseHist.data?.length">                           
+                            <tr *ngFor="let item of addPurchaseHist.data">
+                                <td class="text-center">{{item.purchase_date}}</td> 
+                                <!-- <td class="text-center">{{item.product}}</td>  -->
+                                <td class="text-center">{{getItemName("product", item.product_id)}}</td>
+                                <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td> 
+                                <td class="text-center">{{item.purchaser_last_name}}</td>
+                                <td class="text-center">{{item.purchaser_email}}</td> 
+                                <td class="text-center">{{item.purchaser_mobile}}</td> 
+                                <td class="text-center">{{item.invoice_no}}</td> 
+                                <td class="text-center">{{item.amount}}</td>
+                                <td class="text-center">{{item.invoice_created_at}}</td>
+                                <!-- <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td> -->
+                                
+                            </tr>
+                        </ng-container>
+                        <tr class="tr-text-center" *ngIf=!addPurchaseHist.data?.length>
+                            <td colspan="10">
+                                No records are found
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                            </div>
                         </div>
                     </div>
-
-
+                    <!-- ./Purchase history -->
                 </div>
-                <!-- ./Purchase history -->
-            </div>
-            <div class="modal-footer" style="border-top: none;">
-                <button class="btn btn-primary" type="button" data-dismiss="modal">Save Changes</button>
-                <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-            </div>
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_addClientForm.valid || _addClientFormSubmitted == true">Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal('addClientModal')">Close</button>
+                </div>
+            </form>
         </div>
-
     </div>
 </div>
 <!-- Add Client Modal -->
 
 
 <!-- Update Client Modal -->
-<div class="modal fade" id="update-client-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" style="width:76%;">
+<div class="modal fade" bsModal #updateClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updateClientDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
-                <h4 class="modal-title pull-left color-white">Client Details</h4>
-                <button aria-hidden="true" class="close-modal modal-opacity close-modal-blue" type="button" data-dismiss="modal">×</button>
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal('updateClientModal')">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                   Update Client Details
+                </h4>
             </div>
-            <div class="modal-body">
-                <!--    <tabset>
-                        <tab heading="Client Details">  -->
-
-                <form class="col-xs-12 form-inline" style="margin-top:10px;">
-                    <div class="col-xs-4">
-                        <label class="control-label col-xs-5 padding-top-5" for="brand">Select Brand<span class="red">*</span></label>
-                        <div class="col-xs-7">
-                            <select class="form-control" id="brand" style="width:100%;">
-                                            <option>Select</option>
-                                            <option>ACARS</option>
-                                            <option>ACA</option>
-                                        </select>
-                        </div>
+            <form [formGroup]="_updateClientForm" (ngSubmit)="onSubmit(this._updateClientForm)">
+                <div class="modal-body row">
+                    <div class="col-xs-12">
+                        {{_errorMessage}}
+                        <table class="col-xs-12">
+                            <tr>
+                                <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}"><label class="form-control-label">Client Name : <span class="red">*</span></label></td>
+                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}"><input type="text" class="form-control" style="width: 90%;"  [(ngModel)]="temp_client_name"  [formControl]="_updateClientForm.controls['client_name']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}" placeholder="Enter Client Name"></td>
+                                <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}"><label class="form-control-label">Select Brand : <span class="red">*</span></label></td>
+                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}">
+                                   
+                                    <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}" (ngModelChange)="onBrandChange(this._updateClientForm, $event)" style="width:90%;">
+                                        <option value='' [ngValue]='' selected>Select</option>
+                                        <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
+                                    </select>
+                                <td style="width:10%;"><label class="control-label">Client # :</label></td>
+                                <td style="width:20%;">
+                                    <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_updateClientForm.controls['client_number']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_number')}" placeholder="Client #">
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                     <span class="help-block help-block-error" *ngIf="!_updateClientFormErrors.client_name.valid">{{_updateClientFormErrors.client_name.message}}</span> 
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span class="help-block help-block-error" *ngIf="!_updateClientFormErrors.brand_id.valid">{{_updateClientFormErrors.brand_id.message}}</span>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span class="help-block help-block-error" *ngIf="!_updateClientFormErrors.client_number.valid">{{_updateClientFormErrors.client_number.message}}</span>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col-xs-3">
-                        <label class="control-label col-xs-5 padding-top-5" for="client_name">Client #</label>
-                        <div class="col-xs-7">
-                            <span class="form-control" id="client_name" placeholder="Enter Client #" readonly>11465-1</span>
-                        </div>
-                    </div>
-                    <div class="col-xs-5">
-                        <label class="control-label col-xs-4 padding-top-5" for="client_name">Client Name <span class="red">*</span></label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client Name">
-                        </div>
-                    </div>
+                    
+                    <!-- Purchase history -->
+                    <div class="col-xs-12 padding-top-20">
 
-                </form>
-                <!--    </tab>
-                        <tab heading="Purchase History"> -->
-                <div class="col-xs-12" style="margin-top:10px;">
-
-                    <div class="col-xs-12 widget widget-two no-padding">
-                        <div class="widget-header-11" style="height:59px;">
-                            <div style="float: left;margin-top: 9px;">
-                                <strong>Purchase History</strong>
-                            </div>
-                            <div style="float: right;">
-                                <a class="btn btn-modal-blue pull-right" href="#add-purchase-modal" role="button" data-toggle="modal"><i class="fa fa-plus"></i> Add Purchase</a>
-                            </div>
-                        </div>
-
-                        <div class="clearfix">
-
-                            <table class="table table-hover table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="blue-grid-head">Date</th>
-                                        <th class="blue-grid-head">Product</th>
-                                        <th class="blue-grid-head">First Name</th>
-                                        <th class="blue-grid-head">Last Name</th>
-                                        <th class="blue-grid-head">Email</th>
-                                        <th class="blue-grid-head">Contact #</th>
-                                        <th class="blue-grid-head">Invoice #</th>
-                                        <th class="blue-grid-head">Invoice paid</th>
-                                        <th class="blue-grid-head">Invoice Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="tr-text-center">
-                                        <td>1/1/2017</td>
-                                        <td><a class="link-blue-underline" href="#update-purchase-modal" role="button" data-toggle="modal">Cargo Force</a></td>
-                                        <td>Mark</td>
-                                        <td>Combs</td>
-                                        <td><a class="link-blue-underline">combs@combs.com</a></td>
-                                        <td>888-845-4878</td>
-                                        <td class="text-center">47578</td>
-                                        <td class="text-center">N/A</td>
-                                        <td class="text-center">05/24/2017</td>
-                                    </tr>
-                                    <tr class="tr-text-center">
-                                        <td>9/1/2017</td>
-                                        <td><a class="link-blue-underline" href="#update-purchase-modal" role="button" data-toggle="modal">2016 Enhanced</a></td>
-                                        <td>Mark</td>
-                                        <td>Combs</td>
-                                        <td><a class="link-blue-underline">combs@combs.com</a></td>
-                                        <td>888-845-4878</td>
-                                        <td class="text-center">47878</td>
-                                        <td class="text-center">N/A</td>
-                                        <td class="text-center">05/24/2017</td>
-                                    </tr>
-                                    <tr class="tr-text-center">
-                                        <td>3/1/2017</td>
-                                        <td><a class="link-blue-underline" href="#update-purchase-modal" role="button" data-toggle="modal">2017 Self Service Reporting</a></td>
-                                        <td>Mark</td>
-                                        <td>Combs</td>
-                                        <td><a class="link-blue-underline">combs@combs.com</a></td>
-                                        <td>888-845-4878</td>
-                                        <td class="text-center">47578</td>
-                                        <td class="text-center">N/A</td>
-                                        <td class="text-center">05/24/2017</td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-
-                            <div class="col-md-12">
-                                <div class="col-md-3 padding10">
-                                    <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                        <div class="col-xs-12 widget widget-two no-padding">
+                            <div class="widget-header-11" style="height:59px;">
+                                <div style="float: left;margin-top: 9px;">
+                                    <strong>Purchase History</strong>
                                 </div>
-                                <div class="col-md-9 text-right">
-
-                                    <ul class="pagination">
-                                        <li class="first disabled"><span>first</span></li>
-                                        <li class="prev disabled"><span>previous</span></li>
-                                        <li class="active"><a data-page="0">1</a></li>
-                                        <li><a data-page="1">2</a></li>
-                                        <li><a data-page="2">3</a></li>
-                                        <li><a data-page="3">4</a></li>
-                                        <li><a data-page="4">5</a></li>
-                                        <li class="next"><a data-page="1">next</a></li>
-                                        <li class="last"><a data-page="8">last</a></li>
-                                    </ul>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-modal-blue pull-right" (click)="openModal('addPurchaseModal')" [disabled]="!_updateClientForm.valid || _updateClientFormSubmitted == true"><i class="fa fa-plus"></i> Add Purchase</button>
                                 </div>
                             </div>
 
+                            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped" [mfData]="totalPurchases" #updatePurchaseHist="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
-
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th class="text-center">
+                                <mfDefaultSorter by="date">Date</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="product">Product</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="contact_num">Contact #</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="invoice_num">Invoice #</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="invoice_paid">Invoice paid</mfDefaultSorter>
+                            </th>
+                            <th class="text-center">
+                                <mfDefaultSorter by="invoice_created_at">Invoice Date</mfDefaultSorter>
+                            </th>
+                            <!-- <th class="text-center">
+                                <mfDefaultSorter>Actions</mfDefaultSorter>
+                            </th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="updatePurchaseHist.data?.length">                           
+                            <tr *ngFor="let item of updatePurchaseHist.data">
+                                <td class="text-center">{{item.purchase_date}}</td> 
+                                <!-- <td class="text-center">{{item.product}}</td>  -->
+                                <td class="text-center">{{getItemName("product", item.product_id)}}</td>
+                                <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td> 
+                                <td class="text-center">{{item.purchaser_last_name}}</td>
+                                <td class="text-center">{{item.purchaser_email}}</td> 
+                                <td class="text-center">{{item.purchaser_mobile}}</td> 
+                                <td class="text-center">{{item.invoice_no}}</td> 
+                                <td class="text-center">{{item.amount}}</td>
+                                <td class="text-center">{{item.invoice_created_at}}</td>
+                                <!-- <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td> -->
+                                
+                            </tr>
+                        </ng-container>
+                        <tr class="tr-text-center" *ngIf=!updatePurchaseHist.data?.length>
+                            <td colspan="10">
+                                No records are found
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                            </div>
                         </div>
                     </div>
-
-
+                    <!-- ./Purchase history -->
                 </div>
-                <!--    </tab>
-                    </tabset> -->
-            </div>
-            <div class="modal-footer" style="border-top: none;">
-                <button class="btn btn-primary" type="button" data-dismiss="modal">Save Changes</button>
-                <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-            </div>
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_updateClientForm.valid || _updateClientFormSubmitted == true">Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal('updateClientModal')">Close</button>
+                </div>
+            </form>
         </div>
-
     </div>
 </div>
 <!-- Update Client Modal -->
 
 
 <!-- Add Purchase Modal -->
-<div class="modal fade" id="add-purchase-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" style="width:80%;">
+<div class="modal fade" bsModal #addPurchaseModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addPurchaseDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 80%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
-                <h4 class="modal-title pull-left color-white">Add Purchase Details</h4>
-                <button aria-hidden="true" class="close-modal modal-opacity close-modal-blue" type="button" data-dismiss="modal">×</button>
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal('addPurchaseModal')">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                   Add Purchase Details
+                </h4>
             </div>
-            <div class="modal-body">
-                <form class="col-xs-12" style="margin-top:10px;" enctype="multipart/form-data" method="post">
+            <form [formGroup]="_addPurchaseForm" (ngSubmit)="onSubmit(this._addPurchaseForm)" style="margin-top:10px;">
+
+            <div class="modal-body row">
+                {{_errorMessage}}
                     <div class="col-md-12 padding-0">
-
                         <div class="col-md-4">
-                            <label class="form-control-label">Client #</label>
-                            <div class="form-group field-adminusers-phone">
-                                <span class="form-control">7845</span>
-                                <div class="help-block"></div>
+                            <div class="form-group required">
+                                <label class="form-control-label">Client Name</label>
+                                <span class="form-control" readOnly>{{temp_client_name}}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group required">
+                            <label class="form-control-label">Brand</label>
+                                <span class="form-control" readOnly>{{temp_brand}}</span>
                             </div>
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-control-label">Client Name <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-first_name">
-                                <span aria-required="true" class="form-control" id="adminusers-first_name" maxlength="15" name="AdminUsers[first_name]" type="text"></span>
-                                <div class="help-block"></div>
+                            <div class="form-group required">
+                                <label class="form-control-label">Client #</label>
+                                <span class="form-control" readOnly>{{temp_client_number}}</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Total # of Eins</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-
+                        
                     </div>
                     <div class="col-md-12 padding-0">
+                        
                         <div class="col-md-4">
-                            <label class="form-control-label">Total # of Forms</label>
-                            <div class="form-group field-adminusers-last_name">
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Brand <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-extension">
-                                <span class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value=""></span>
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Product</label>
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option>ACA Reporting 2016</option>
-                                                <option>ACA Reporting 2017</option>
-                                                <option>VHT</option>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
+                                <label class="form-control-label">Product</label>
+                                <select class="form-control" [formControl]="_addPurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
+                                    <option value='' [ngValue]='' selected>Select</option>
+                                    <option *ngFor="let ap of availableProducts" [value]="ap.product_id" >{{ap.product_name}}</option>
                                 </select>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.product_id.valid">{{_addPurchaseFormErrors.product_id.message}}</span>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
+                                <label class="form-control-label">Total # of Eins</label>
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_eins']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}" placeholder="Total No. of EIN's">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.total_no_eins.valid">{{_addPurchaseFormErrors.total_no_eins.message}}</span>
+                            
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}">
+                                
+                                <label class="form-control-label">Total # of Forms</label>
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="5" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}" placeholder="Total No. of Forms">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.total_no_forms.valid">{{_addPurchaseFormErrors.total_no_forms.message}}</span>
+                            
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 padding-0">
 
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser First Name <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_first_name')}">
+                                <label class="form-control-label">Purchaser First Name</label>
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_first_name']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_first_name')}" placeholder="Purchaser First Name">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_first_name.valid">{{_addPurchaseFormErrors.purchaser_first_name.message}}</span>
+                            
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-control-label">Purchaser Last Name <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-phone">
-                                <input aria-required="true" class="form-control us-phone-mask-input" id="adminusers-phone" maxlength="14" name="AdminUsers[phone]" type="text">
-                                <div class="help-block"></div>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_last_name')}">
+                                <label class="form-control-label">Purchaser Last Name</label>
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_last_name']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_last_name')}" placeholder="Purchaser Last Name">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_last_name.valid">{{_addPurchaseFormErrors.purchaser_last_name.message}}</span>
+                            
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser Email <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_email')}">
+                                <label class="form-control-label">Purchaser Email</label>
+                                <input type="text" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_email']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_email')}" placeholder="Purchaser Email">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_email.valid">{{_addPurchaseFormErrors.purchaser_email.message}}</span>
+                            
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 padding-0">
 
-
                         <div class="col-md-4">
-                            <label class="form-control-label">Purchaser Phone <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-phone">
-                                <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Purchaser Status</label>
-                            <div class="form-group field-adminusers-extension">
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
-                                                </select>
-                                <div class="help-block"></div>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_mobile')}">
+                                
+                                <label class="form-control-label">Purchaser Phone</label>
+                                <input type="text" [textMask]="{mask: mask}" [formControl]="_addPurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_mobile')}">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_mobile.valid">{{_addPurchaseFormErrors.purchaser_mobile.message}}</span>
+                            
                             </div>
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Amount</label>
-                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-4">
-                            <label class="form-control-label">Assign Account Manager</label>
-                            <div class="form-group field-adminusers-last_name">
-                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Date of Purchase</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control" type="date" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Invoice</label>
-                            <div class="form-group field-adminusers-last_name">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">
+                                
+                                <label class="form-control-label">Purchased Status</label>
                                 <div style="height:34px; padding-top:5px;">
                                     <label class="radio-inline">
-      <input type="radio"[(ngModel)]="addPurchaseInvoiceRadio" name="addPurchaseInvoiceRadio" value="yes">Yes
-    </label>
+                                        <input type="radio" name="purchasedStatus" [value]="1" [checked]="_addPurchaseForm.controls['purchase_status'].value==='1'" [formControl]="_addPurchaseForm.controls['purchase_status']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">Active
+                                    </label>
                                     <label class="radio-inline">
-      <input type="radio"[(ngModel)]="addPurchaseInvoiceRadio" name="addPurchaseInvoiceRadio" value="no" checked>No
-    </label></div>
-                                <div class="help-block"></div>
+                                        <input type="radio" name="purchasedStatus" [value]="0" [checked]="_addPurchaseForm.controls['purchase_status'].value==='0'" [formControl]="_addPurchaseForm.controls['purchase_status']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">Inactive
+                                    </label>
+                                </div>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchase_status.valid">{{_addPurchaseFormErrors.purchase_status.message}}</span>
+                            
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
+                                <label class="form-control-label">Amount</label>
+                                <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" class="form-control" [formControl]="_addPurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}" placeholder="Amount">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.amount.valid">{{_addPurchaseFormErrors.amount.message}}</span>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4" *ngIf="show_account_manager == '1'">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'account_manager')}">
+                                
+                                <label class="form-control-label">Assign Account Manager</label>
+                                <select class="form-control" [formControl]="_addPurchaseForm.controls['account_manager']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'account_manager')}">
+                                    <option value='' [ngValue]='' selected>Select</option>
+                                    <option *ngFor="let am of availableAcctManagers" [value]="am.admin_user_id" >{{am.first_name}} {{am.last_name}}</option>
+                                </select>
+
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.account_manager.valid">{{_addPurchaseFormErrors.account_manager.message}}</span>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
+                                
+                                <label class="form-control-label">Date of Purchase</label>
+                                <input type="date" class="form-control" [formControl]="_addPurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}" placeholder="Date of Purchase">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchase_date.valid">{{_addPurchaseFormErrors.purchase_date.message}}</span>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice')}">
+                                
+                                <label class="form-control-label">Invoice</label>
+                                <div style="height:34px; padding-top:5px;">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoice" [value]="1" (click)="toggleInvoiceFieldsValidator(this._addPurchaseForm, true)" [checked]="_addPurchaseForm.controls['is_invoice'].value==='1'" [formControl]="_addPurchaseForm.controls['is_invoice']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice')}">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoice" [value]="0" (click)="toggleInvoiceFieldsValidator(this._addPurchaseForm, false)" [checked]="_addPurchaseForm.controls['is_invoice'].value==='0'" [formControl]="_addPurchaseForm.controls['is_invoice']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice')}">No
+                                    </label>
+                                </div>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.is_invoice.valid">{{_addPurchaseFormErrors.is_invoice.message}}</span>
+                            
                             </div>
                         </div>
                         <div class="col-md-12 padding-0">
-                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
-                                <label class="form-control-label">Invoice #</label>
-                                <div class="form-group field-adminusers-extension">
-                                    <input class="form-control numbers" id="adminusers-extension" name="AdminUsers[extension]" type="text" value="">
-                                    <div class="help-block"></div>
+                            <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_no')}">
+                                    <label class="form-control-label">Invoice #</label>
+                                    <input type="text" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_no']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_no')}" placeholder="Invoice #">
+                                    
+                                    <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.invoice_no.valid">{{_addPurchaseFormErrors.invoice_no.message}}</span>
+                            
                                 </div>
                             </div>
-                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
-                                <label class="form-control-label">Invoice Date</label>
-                                <div class="form-group field-adminusers-extension">
-                                    <input class="form-control" type="date" value="">
-                                    <div class="help-block"></div>
+                            <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">
+                                    <label class="form-control-label">Invoice Date</label>
+                                    <input type="date" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}" placeholder="Invoice Date">
+                                    
+                                    <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.invoice_created_at.valid">{{_addPurchaseFormErrors.invoice_created_at.message}}</span>
+                            
+                                </div>
+                            </div>
+                            
+                        <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice_paid')}">
+                                
+                                <label class="form-control-label">Invoice Paid</label>
+                                <div style="height:34px; padding-top:5px;">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoicePaid" [value]="1" [checked]="_addPurchaseForm.controls['is_invoice_paid'].value==='1'" [formControl]="_addPurchaseForm.controls['is_invoice_paid']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice_paid')}">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoicePaid" [value]="0" [checked]="_addPurchaseForm.controls['is_invoice_paid'].value==='0'" [formControl]="_addPurchaseForm.controls['is_invoice_paid']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice_paid')}">No
+                                    </label>
+                                </div>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.is_invoice_paid.valid">{{_addPurchaseFormErrors.is_invoice_paid.message}}</span>
+                            
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer" style="border-top: none;">
-                <button class="btn btn-primary" type="button" data-dismiss="modal">Save Changes</button>
-                <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-            </div>
+                </div>
+            
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_addPurchaseForm.valid || _addPurchaseFormSubmitted == true">Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal('addPurchaseModal')">Close</button>
+                </div>
+            </form>
         </div>
-
     </div>
 </div>
 <!-- ./Add Purchase Modal -->
 
 <!-- Update Purchase Modal -->
-<div class="modal fade" id="update-purchase-modal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" style="width:80%;">
+<div class="modal fade" bsModal #updatePurchaseModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updatePurchaseDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 80%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
-                <h4 class="modal-title pull-left color-white">Update Purchase History</h4>
-                <button aria-hidden="true" class="close-modal modal-opacity close-modal-blue" type="button" data-dismiss="modal">×</button>
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal('updatePurchaseModal')">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                   Update Purchase Details
+                </h4>
             </div>
-            <div class="modal-body">
-                <form class="col-xs-12" style="margin-top:10px;" enctype="multipart/form-data" method="post">
+            <form [formGroup]="_updatePurchaseForm" (ngSubmit)="onSubmit(this._updatePurchaseForm)" style="margin-top:10px;">
+
+            <div class="modal-body row">
+                {{_errorMessage}}
                     <div class="col-md-12 padding-0">
-
                         <div class="col-md-4">
-                            <label class="form-control-label">Client #</label>
-                            <div class="form-group field-adminusers-phone">
-                                <span class="form-control">7845</span>
-                                <div class="help-block"></div>
+                            <div class="form-group required">
+                                <label class="form-control-label">Client Name</label>
+                                <span class="form-control" readOnly>{{temp_client_name}}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group required">
+                            <label class="form-control-label">Brand</label>
+                                <span class="form-control" readOnly>{{temp_brand}}</span>
                             </div>
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-control-label">Client Name <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-first_name">
-                                <span aria-required="true" class="form-control" id="adminusers-first_name" maxlength="15" name="AdminUsers[first_name]" type="text"></span>
-                                <div class="help-block"></div>
+                            <div class="form-group required">
+                                <label class="form-control-label">Client #</label>
+                                <span class="form-control" readOnly>{{temp_client_number}}</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Total # of Eins</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-
+                        
                     </div>
                     <div class="col-md-12 padding-0">
+                        
                         <div class="col-md-4">
-                            <label class="form-control-label">Total # of Forms</label>
-                            <div class="form-group field-adminusers-last_name">
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Brand <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-extension">
-                                <span class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value=""></span>
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Product</label>
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option>ACA Reporting 2016</option>
-                                                <option>ACA Reporting 2017</option>
-                                                <option>VHT</option>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
+                                <label class="form-control-label">Product</label>
+                                <select class="form-control" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
+                                    <option value='' [ngValue]='' selected>Select</option>
+                                    <option *ngFor="let ap of availableProducts" [value]="ap.product_id" >{{ap.product_name}}</option>
                                 </select>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.product_id.valid">{{_updatePurchaseFormErrors.product_id.message}}</span>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_eins')}">
+                                <label class="form-control-label">Total # of Eins</label>
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_eins']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_eins')}" placeholder="Total No. of EIN's">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.total_no_eins.valid">{{_updatePurchaseFormErrors.total_no_eins.message}}</span>
+                            
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}">
+                                
+                                <label class="form-control-label">Total # of Forms</label>
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="5" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}" placeholder="Total No. of Forms">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.total_no_forms.valid">{{_updatePurchaseFormErrors.total_no_forms.message}}</span>
+                            
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 padding-0">
 
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser First Name <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_first_name')}">
+                                <label class="form-control-label">Purchaser First Name</label>
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_first_name']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_first_name')}" placeholder="Purchaser First Name">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_first_name.valid">{{_updatePurchaseFormErrors.purchaser_first_name.message}}</span>
+                            
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-control-label">Purchaser Last Name <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-phone">
-                                <input aria-required="true" class="form-control us-phone-mask-input" id="adminusers-phone" maxlength="14" name="AdminUsers[phone]" type="text">
-                                <div class="help-block"></div>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_last_name')}">
+                                <label class="form-control-label">Purchaser Last Name</label>
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_last_name']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_last_name')}" placeholder="Purchaser Last Name">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_last_name.valid">{{_updatePurchaseFormErrors.purchaser_last_name.message}}</span>
+                            
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Purchaser Email <span class="red">*</span></label>
-                                <input aria-required="true" class="form-control" id="adminusers-email" type="text">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_email')}">
+                                <label class="form-control-label">Purchaser Email</label>
+                                <input type="text" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_email']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_email')}" placeholder="Purchaser Email">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_email.valid">{{_updatePurchaseFormErrors.purchaser_email.message}}</span>
+                            
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 padding-0">
 
-
                         <div class="col-md-4">
-                            <label class="form-control-label">Purchaser Phone <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-phone">
-                                <input type="text" name="mobile" class="form-control" [(ngModel)]="model.mobile" PhoneMask="(999) 999-9999" placeholder="(___) ___-____">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Purchaser Status</label>
-                            <div class="form-group field-adminusers-extension">
-                                <select class="form-control">
-                                                <option>Select</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
-                                                </select>
-                                <div class="help-block"></div>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
+                                
+                                <label class="form-control-label">Purchaser Phone</label>
+                                <input type="text" [textMask]="{mask: mask}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_mobile.valid">{{_updatePurchaseFormErrors.purchaser_mobile.message}}</span>
+                            
                             </div>
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label" for="user-username">Amount</label>
-                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-4">
-                            <label class="form-control-label">Assign Account Manager</label>
-                            <div class="form-group field-adminusers-last_name">
-                                <input aria-required="true" class="form-control" id="adminusers-first_name" name="AdminUsers[first_name]" type="text">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Aggregated group status</label>
-                            <div class="form-group field-adminusers-extension">
-                                <input class="form-control numbers" id="adminusers-extension" maxlength="6" name="AdminUsers[extension]" type="text" value="">
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-control-label">Invoice</label>
-                            <div class="form-group field-adminusers-last_name">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">
+                                
+                                <label class="form-control-label">Purchased Status</label>
                                 <div style="height:34px; padding-top:5px;">
                                     <label class="radio-inline">
-      <input type="radio"[(ngModel)]="addPurchaseInvoiceRadio" name="addPurchaseInvoiceRadio" value="yes">Yes
-    </label>
+                                        <input type="radio" name="purchasedStatus" [value]="1" [checked]="_updatePurchaseForm.controls['purchase_status'].value==='1'" [formControl]="_updatePurchaseForm.controls['purchase_status']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">Active
+                                    </label>
                                     <label class="radio-inline">
-      <input type="radio"[(ngModel)]="addPurchaseInvoiceRadio" name="addPurchaseInvoiceRadio" value="no" checked>No
-    </label></div>
-                                <div class="help-block"></div>
+                                        <input type="radio" name="purchasedStatus" [value]="0" [checked]="_updatePurchaseForm.controls['purchase_status'].value==='0'" [formControl]="_updatePurchaseForm.controls['purchase_status']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">Inactive
+                                    </label>
+                                </div>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchase_status.valid">{{_updatePurchaseFormErrors.purchase_status.message}}</span>
+                            
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
+                                <label class="form-control-label">Amount</label>
+                                <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}" placeholder="Amount">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.amount.valid">{{_updatePurchaseFormErrors.amount.message}}</span>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4" *ngIf="show_account_manager == '1'">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'account_manager')}">
+                                
+                                <label class="form-control-label">Assign Account Manager</label>
+                                <select class="form-control" [formControl]="_updatePurchaseForm.controls['account_manager']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'account_manager')}">
+                                    <option value='' [ngValue]='' selected>Select</option>
+                                    <option *ngFor="let am of availableAcctManagers" [value]="am.admin_user_id" >{{am.first_name}} {{am.last_name}}</option>
+                                </select>
+
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.account_manager.valid">{{_updatePurchaseFormErrors.account_manager.message}}</span>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
+                                
+                                <label class="form-control-label">Date of Purchase</label>
+                                <input type="date" class="form-control" [formControl]="_updatePurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}" placeholder="Date of Purchase">
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchase_date.valid">{{_updatePurchaseFormErrors.purchase_date.message}}</span>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice')}">
+                                
+                                <label class="form-control-label">Invoice</label>
+                                <div style="height:34px; padding-top:5px;">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoice" [value]="1" (click)="toggleInvoiceFieldsValidator(this._updatePurchaseForm, true)" [checked]="_updatePurchaseForm.controls['is_invoice'].value==='1'" [formControl]="_updatePurchaseForm.controls['is_invoice']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice')}">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoice" [value]="0" (click)="toggleInvoiceFieldsValidator(this._updatePurchaseForm, false)" [checked]="_updatePurchaseForm.controls['is_invoice'].value==='0'" [formControl]="_updatePurchaseForm.controls['is_invoice']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice')}">No
+                                    </label>
+                                </div>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.is_invoice.valid">{{_updatePurchaseFormErrors.is_invoice.message}}</span>
+                            
                             </div>
                         </div>
                         <div class="col-md-12 padding-0">
-
-                            <div class="col-md-4">
-                                <label class="form-control-label">Date of Purchase</label>
-                                <div class="form-group field-adminusers-extension">
-                                    <input class="form-control" type="date" value="">
-                                    <div class="help-block"></div>
+                            <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_no')}">
+                                    <label class="form-control-label">Invoice #</label>
+                                    <input type="text" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_no']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_no')}" placeholder="Invoice #">
+                                    
+                                    <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.invoice_no.valid">{{_updatePurchaseFormErrors.invoice_no.message}}</span>
+                            
                                 </div>
                             </div>
-
-                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
-                                <label class="form-control-label">Invoice #</label>
-                                <div class="form-group field-adminusers-extension">
-                                    <input class="form-control numbers" id="adminusers-extension" name="AdminUsers[extension]" type="text" value="">
-                                    <div class="help-block"></div>
+                            <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">
+                                    <label class="form-control-label">Invoice Date</label>
+                                    <input type="date" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}" placeholder="Invoice Date">
+                                    
+                                    <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.invoice_created_at.valid">{{_updatePurchaseFormErrors.invoice_created_at.message}}</span>
+                            
                                 </div>
                             </div>
-                            <div class="col-md-4" *ngIf="addPurchaseInvoiceRadio == 'yes'">
-                                <label class="form-control-label">Invoice Date</label>
-                                <div class="form-group field-adminusers-extension">
-                                    <input class="form-control" type="date" value="">
-                                    <div class="help-block"></div>
+                            
+                        <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice_paid')}">
+                                
+                                <label class="form-control-label">Invoice Paid</label>
+                                <div style="height:34px; padding-top:5px;">
+
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoicePaid" [value]="1" [checked]="_updatePurchaseForm.controls['is_invoice_paid'].value==='1'" [formControl]="_updatePurchaseForm.controls['is_invoice_paid']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice_paid')}">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="isInvoicePaid" [value]="0" [checked]="_updatePurchaseForm.controls['is_invoice_paid'].value==='0'" [formControl]="_updatePurchaseForm.controls['is_invoice_paid']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice_paid')}">No
+                                    </label>
+                                </div>
+                                
+                                <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.is_invoice_paid.valid">{{_updatePurchaseFormErrors.is_invoice_paid.message}}</span>
+                            
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer" style="border-top: none;">
-                <button class="btn btn-primary" type="button" data-dismiss="modal">Save Changes</button>
-                <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-            </div>
+                </div>
+            
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_updatePurchaseForm.valid || _updatePurchaseFormSubmitted == true">Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal('updatePurchaseModal')">Close</button>
+                </div>
+            </form>
         </div>
-
     </div>
 </div>
 <!-- ./Update Purchase Modal -->

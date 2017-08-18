@@ -11,15 +11,16 @@ export class inputFilterDirective {
   @Input() OnlyNumber: any;
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
+    
     let e = <KeyboardEvent>event;
     if (this.inputFilter) {
-      if (!e.key.match(/^([a-zA-Z0-9 @-]+)$/)) {
+      if (!e.key.match(/^([a-zA-Z0-9 @-]+)$/) && e.key !="Backspace") {
         e.preventDefault();
       }
     }
     else if (this.OnlyNumber) {
-      if (!e.key.match(/^([0-9]+)$/)) {
-        e.preventDefault();
+      if (!e.key.match(/^([0-9])/) && e.key !="Backspace") {
+         e.preventDefault();
       }
     }
 
