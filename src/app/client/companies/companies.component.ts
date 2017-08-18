@@ -32,6 +32,5 @@ export class CompaniesComponent implements OnInit {
     this.clients = clients[this.productId]['clients'];
     this.clients = Object.keys(this.clients)
       .map((key) => ({ 'key': key, 'value': this.clients[key] }));
-    console.log(this.clients);
   }
 }
