@@ -182,11 +182,15 @@ export class OrdersComponent implements OnInit {
         this._errorMessage = '';
 
         if(modal=='addClientModal'){
+            this._addClientFormSubmitted = false;
+
             this.totalPurchases = [];
             this.newPurchases = [];
             this.addClientModal.show();
 
         }else if(modal=='updateClientModal'){
+            this._updateClientFormSubmitted = false;
+
             this.totalPurchases = [];
             this.newPurchases = [];
 
@@ -207,10 +211,13 @@ export class OrdersComponent implements OnInit {
             this.updateClientModal.show();
             this.cdr.detectChanges();
         }else if(modal=='addPurchaseModal'){
+            this._addPurchaseFormSubmitted = false;
 
             this.addPurchaseModal.show();
 
         }else if(modal=='updatePurchaseModal'){
+            this._updatePurchaseFormSubmitted = false;
+
             this.temp_index = this.totalPurchases.indexOf(data);
             this.patchValue(this._updatePurchaseForm, data);
             
@@ -242,7 +249,6 @@ export class OrdersComponent implements OnInit {
             this._resetFormValues(this._updateClientForm);
 
         }else if(modal=='addPurchaseModal'){
-
             this.addPurchaseModal.hide();
             this._resetFormValues(this._addPurchaseForm);
 

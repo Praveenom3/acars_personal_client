@@ -91,7 +91,7 @@
 <!-- Add Client Modal -->
 
 <div class="modal fade" bsModal #addClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addClientDetails" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="width:75%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
 
@@ -227,7 +227,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
-                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_addClientForm.valid || _addClientFormSubmitted == true">Save</button>
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_addClientForm.valid && totalPurchases.length > 0 ) || _addClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('addClientModal')">Close</button>
                 </div>
             </form>
@@ -239,7 +239,7 @@
 
 <!-- Update Client Modal -->
 <div class="modal fade" bsModal #updateClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updateClientDetails" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="width:75%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
 
@@ -375,7 +375,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
-                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_updateClientForm.valid || _updateClientFormSubmitted == true">Save</button>
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('updateClientModal')">Close</button>
                 </div>
             </form>
