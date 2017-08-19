@@ -140,7 +140,6 @@ export class AdminUsersComponent implements OnInit {
         this._adminUserForm.reset();
         this._resetFormErrors();
         this.serverChk = [];
-        console.log(this.serverChk);
         this.adminUserSelected.permissions = [];
         this.serverChk = adminuser.permissions;
         let mappingObject = {};
@@ -152,7 +151,7 @@ export class AdminUsersComponent implements OnInit {
         this.adminUserSelected.permissions = Object.assign({}, userPermissionSet);
         this.adminUserSelected.permissions = mappingObject;
         this._submitted = false;
-        this.modalTitle = "Edit Admin User";
+        this.modalTitle = "Edit : "+adminuser.first_name;
         this.AdminUsersModal.show();
 
     }
@@ -197,8 +196,6 @@ export class AdminUsersComponent implements OnInit {
     public onSubmit() {
         this._submitted = true;
         if (this.adminUserSelected.admin_user_id > 0) {
-            this.adminUserSelected.permissions = this.serverChk;
-
             this.adminUserService.updateAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
@@ -223,8 +220,7 @@ export class AdminUsersComponent implements OnInit {
                 });
 
         } else {
-            this.adminUserSelected.permissions = this.serverChk;
-            // console.log(this.permissionArray);
+            
             this.adminUserService.addAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {

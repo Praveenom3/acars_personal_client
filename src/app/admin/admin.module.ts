@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
-
-
-import {AdminRoutingModule} from './admin.routing';
+import { AdminRoutingModule } from './admin.routing';
 import { DashboardComponent, FinancialsComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent, SummaryComponent } from './dashboard/dashboard.component';
 import { AdminUsersComponent } from "app/admin/dashboard/admin-users.component";
 import { JobsComponent } from "app/admin/jobs/jobs.component";
@@ -45,8 +43,18 @@ import { inputFilterDirective } from "app/_directives/input-filter.directive";
     PartialViews,
     TextMaskModule
   ],
-  declarations: [ AdminUserFilterPipe, SummaryComponent,DashboardComponent, FinancialsComponent, NewSalesComponent, AdminUsersComponent, ProcessingComponent, ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent, SearchComponent, SearchResultsComponent, ActivityLogComponent, ErrorLogComponent,inputFilterDirective ],
-  providers: [ ErrorLogService, AdminUserService ]
-   
+  declarations: [
+    AdminUserFilterPipe, 
+    SummaryComponent, 
+    DashboardComponent, 
+    FinancialsComponent, 
+    NewSalesComponent, 
+    AdminUsersComponent, ProcessingComponent, 
+    ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent,
+    SearchComponent, SearchResultsComponent, ActivityLogComponent, 
+    ErrorLogComponent, inputFilterDirective
+  ],
+  providers: [ErrorLogService, AdminUserService]
+
 })
 export class AdminModule { }
