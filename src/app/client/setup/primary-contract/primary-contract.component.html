@@ -1,69 +1,82 @@
-<div class="row section-container">
-    <div class="col-md-8 col-md-offset-2  border-ddd widget padding-15 box-shadow widget-six">
-        <h1 class="fontcolor-blue margin-bottom-20">Welcome Mark Combs</h1>
-        <div class="row">
-            <div class="col-md-8 font-18">
-                <p class="margin-bottom-5">Help us setup your account..</p>
-                <p>Are you the Primary Contact?</p>
+<div class="row client-section-container">
+    <div class="col-md-4 col-md-offset-4">
+        <h3 class="fontcolor-blue margin-bottom-5 text-center">WELCOME</h3>
+        <div class="row header-border-btm-blue"></div>
+        <div class="row border-ddd widget box-shadow widget-six">
+            <img src='../src/assets/images/setupimg1.png' class="setupImg">
+            <p class="setup-text-band">Please help us setup your account:</p>
+            <div align="center">
+                <p class="gray-text">Will you be signing the primary contact completing the report?</p>
             </div>
-            <div class="col-md-4 padding-top-14" align="right">
-                <a [routerLink]="['/client/setup/agreement']" class="btn btn-primary btn-blue">Yes</a>
-                <a (click)="setup()" class="btn btn-default">No</a>
+            <div class="padding-15">
+                <ul class="ul-inline">
+                    <li class="previous-link">
+                        <a [routerLink]="['/client/setup/contract-signor']">&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
+                    </li>
+                    <li style="padding-left: 23%;">
+                        <a [routerLink]="['/client/setup/agreement']" class="btn btn-primary btn-blue">Yes</a>
+                        <a (click)="setup()" class="btn btn-default">No</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="col-md-8 col-md-offset-2  border-ddd widget padding-15" *ngIf="isSetup">
-         <div class="col-md-12">
-            <h6 class="action_head">Please enter the primary contact information: </h6>
-            <hr>
-         </div>
-        <form action="" enctype="multipart/form-data " id="w0" method="post ">
-            <div class="col-md-12 padding-0 ">
-                <div class="col-md-4 ">
-                    <label class="form-control-label ">First Name <span class="red">*</span></label>
-                    <div class="form-group field-adminusers-first_name ">
-                        <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] " onkeypress="return username(event); " type="text ">
-                        <div class="help-block "></div>
-                    </div>
-                </div>
-                <div class="col-md-4 ">
-                    <label class="form-control-label ">Last Name <span class="red">*</span></label>
-                    <div class="form-group field-adminusers-last_name ">
-                        <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] " type="text ">
-                        <div class="help-block "></div>
-                    </div>
-                </div>
+    <div class="col-md-8 col-md-offset-2 margin-bottom-35" *ngIf="isSetup">
+        <div class="modal-content setup-no-option-div">
+            <div class="modal-header modal-header-color">
+                <button aria-hidden="true" class="close-modal modal-opacity close-modal-blue" (click)="close()">
+                                                        X
+                                                    </button>
+                <h5 class="modal-title color-white" id="myModalLabel">
+                    Please Enter the Primay Contact Information
+                </h5>
             </div>
-            <div class="col-md-12 padding-0 ">
-                <div class="col-md-4 ">
-                    <div class="form-group field-user-username ">
-                        <label class="form-control-label " for="user-username ">Email Address <span class="red">*</span></label>
-                        <input type="email" class="form-control">
+            <div class="modal-body row">
+                <form action="" enctype="multipart/form-data " id="w0" method="post ">
+                    <div class="col-md-12 padding-0 ">
+                        <div class="col-md-4 ">
+                            <label class="form-control-label ">First Name <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-first_name ">
+                                <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] " onkeypress="return username(event); " type="text ">
+                                <div class="help-block "></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label class="form-control-label ">Last Name <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-last_name ">
+                                <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] " type="text ">
+                                <div class="help-block "></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 ">
-                    <label class="form-control-label ">Phone <span class="red">*</span></label>
-                    <div class="form-group field-adminusers-phone ">
-                        <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] " placeholder="(___) ___-____ " type="text ">
-                        <div class="help-block "></div>
+                    <div class="col-md-12 padding-0 ">
+                        <div class="col-md-4 ">
+                            <div class="form-group field-user-username ">
+                                <label class="form-control-label " for="user-username ">Email Address <span class="red">*</span></label>
+                                <input type="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label class="form-control-label ">Phone <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-phone ">
+                                <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] " placeholder="(___) ___-____ " type="text ">
+                                <div class="help-block "></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label class="form-control-label ">Extension <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-extension ">
+                                <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text " value=" ">
+                                <div class="help-block "></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 ">
-                    <label class="form-control-label ">Extension <span class="red">*</span></label>
-                    <div class="form-group field-adminusers-extension ">
-                        <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text " value=" ">
-                        <div class="help-block "></div>
-                    </div>
-                </div>
+                </form>
             </div>
-            <div align="right" class="col-md-12 padding-0 bg-sky-blue border-ddd" style="border-top: none;">
-                <div class="modal-footer-btn padding-15">
-                    <button class="btn btn-primary btn-blue" [routerLink]="['/client/setup/agreement']">Save</button> <a class="btn btn-default" (click)="close()"> Cancel </a>
-                </div>
+            <div class="modal-footer">
+                <a class="btn btn-modal-blue" [routerLink]="['/client/setup/agreement']"> Save</a>
+                <a class="btn btn-default" (click)="close()">Cancel</a>
             </div>
-        </form>
-    </div>
-    <div class="col-md-8 col-md-offset-2">
-        <button class="btn btn-primary btn-blue pull-right" [routerLink]="['/client/setup/contract-signor']"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</button>
+        </div>
     </div>
 </div>

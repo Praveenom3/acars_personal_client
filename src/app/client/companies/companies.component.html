@@ -1,64 +1,261 @@
-<div class="section-container">
-    <div class="col-lg-3 col-md-3">
-        <div class="border-ddd widget padding41 box-shadow widget-six left-small-box">
-            <h6 class="text-left">
-                Self Service ACA Reporting
-            </h6>
-            <div class="col-xs-6 col-md-6">
-                <p>Support :</p>
-            </div>
-            <div class="col-xs-6 col-md-6">
-                <p>(888) 900100</p>
+<div class="row company-section-container">
+    <section class="padding-0">
+        <div class="col-md-12 blue-breadcrumb-plans" align="center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
+                <div class="nav-tabs-horizontal">
+                    <ul class="nav nav-tabs border-bottom display-inblock company-details-nav" role="tablist">
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; Cargo Force</a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap no-border">EIN: &nbsp; 15-20087</a></li>
+
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp; 2016</a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Package: &nbsp; Self Service</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="border-ddd widget box-shadow widget-six left-small-box companies-list-acc">
+    </section>
+    <div class="col-md-12" style="margin-top:77px;">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-md-6">
+                <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12 padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; COMPANIES LIST</h4>
+                        <input type="text" class="form-control margin-bottom-15">
 
-            <accordion [closeOthers]="true">
-                <ng-container *ngFor="let client of clients; let i=index;">
-                    <accordion-group [isOpen]="i == 0 ? true : false" #clientOpen>
-                        <div accordion-heading>
-                            {{client.value.client_name}}
-                            <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': clientOpen?.isOpen, 'fa-chevron-right': !clientOpen?.isOpen}"></i>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 margin-bottom-10">
-                                <a class="link-blue-underline pull-right" data-toggle="modal" href="#copy_modal">Copy</a>
+                        <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientsTableData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <mfDefaultSorter by="company">Companies</mfDefaultSorter>
+                                    </th>
+                                    <th class="text-center">
+                                        <mfDefaultSorter by="EIN">EIN</mfDefaultSorter>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf="mf.data?.length">
+                                    <tr *ngFor="let item of mf.data">
+                                        <td class="text-center">{{item.company}}</td>
+                                        <td class="text-center"><a class="link-blue-underline">{{item.EIN}}</a></td>
+
+                                    </tr>
+                                </ng-container>
+                                <tr class="tr-text-center" *ngIf=!mf.data?.length>
+                                    <td colspan="2">
+                                        No records are found
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; CONTACT US</h4>
+                        <p class=" setup-text-band">Managed Account - Assigned Agent</p>
+                        <div class="addres-block">
+                            <p><b>Amanda Combs</b></p>
+                            <i>Account Manager</i>
+                            <div class="padding-top-5">
+                                <p>Direct: <span>(142) 12454</span></p>
+                                <p>Email: <span>abcd@gmail.com</span></p>
+                                <p>Support Line: <span>(142) 12454</span></p>
+                                <a class="link-blue"> Contact My Manager</a>
                             </div>
-                            <table class="col-xs-12">
-                                <thead>
-                                    <tr>
-                                        <th>Companies</th>
-                                        <th class="text-center">EIN</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor=" let company of client.value.companies ">
-                                        <td><a class="link-blue" [routerLink]="['/client/',product,company.company_id,'reporting-check-list']"
-                                                [routerLinkActive]="['link-bg-blue']">{{company.company_name}}</a></td>
-                                        <td class="text-center">{{company.company_ein}}</td>
-                                        <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
-                    </accordion-group>
-                </ng-container>
-            </accordion>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; IRS DEADLINES</h4>
+                        <p class=" setup-text-band">Please note these important dates</p>
+                        <table class="col-xs-12">
+                            <thead>
+                                <tr>
+                                    <th>Compliance item</th>
+                                    <th>Days Remaining</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="padding-5"><a class="link-blue">105C to employees</a></td>
+                                    <td class="text-center padding-5">85</td>
+                                </tr>
+                                <tr>
+                                    <td class="padding-5"><a class="link-blue">EFile to IRS</a></td>
+                                    <td class="text-center padding-5">145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <div class="btn-primary upload-download-block cursor-pointer" style="background-color:#13a9cc">
+                            <ul class="ul-inline download-upload-ul">
+                                <li>
+                                    <img src='../src/assets/images/upload.png'>
+                                </li>
+                                <li>
+                                    <h6>UPLOAD</h6>
+                                    <h6>DATAFILES</h6>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="btn-default upload-download-block cursor-pointer" style="background-color:#5ad1ed">
+                            <ul class="ul-inline download-upload-ul">
+                                <li>
+                                    <img src='../src/assets/images/download.png'>
+                                </li>
+                                <li>
+                                    <h6>DOWNLOAD</h6>
+                                    <h6>DOCUMENTS</h6>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="col-lg-8 col-md-8 right-box" align="left">
-        <div class="col-md-11 col-md-offset-1">
-            <div class="col-md-12 widget width-100 padding-50 color-blue text-center">Please select a company from the left panel to get the reporting check list.
+        <div class="col-lg-10 col-lg-offset-1">
+            <h3 class="fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h3>
+            <div class="header-border-btm-blue"></div>
+            <div class="col-md-3">
+                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <h4 class="text-center dark-blue-text "> STEP 1</h4>
+                    <p class=" setup-text-band">On-boarding</p>
+                    <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>Invoice</td>
+                                <td class="padding-5">
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === true" title="Click to toggle">Not paid</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === false" title="Click to toggle">Paid</span>
+                                    <!--<span class="alert alert-danger confirmation-box">Not paid</span>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Client Agreement</td>
+                                <td class=" padding-5">
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === true" title="Click to toggle">Needed</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === false" title="Click to toggle">Completed</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Discovery Session</td>
+                                <td class="padding-5">
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true" title="Click to toggle">Needed</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false" title="Click to toggle">Completed</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-danger status-btn">Incomplete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <h4 class="text-center dark-blue-text "> STEP 2</h4>
+                    <p class=" setup-text-band">Company Data</p>
+                    <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>Basic Reporting Info</td>
+                                <td class="padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
+                            </tr>
+                            <tr>
+                                <td>Basic Plan Info</td>
+                                <td class=" padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
+                            </tr>
+                            <tr>
+                                <td>Plan Classes</td>
+                                <td class=" padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-danger status-btn">Incomplete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <h4 class="text-center dark-blue-text "> STEP 3</h4>
+                    <p class=" setup-text-band">Employee Data</p>
+                    <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>Payroll Data</td>
+                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>Medical Plan Data</td>
+                                <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <h4 class="text-center dark-blue-text "> STEP 4</h4>
+                    <p class=" setup-text-band">Request & Review Forms</p>
+                    <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>Form 1094</td>
+                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>Form 1095</td>
+                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-3">
+                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <h4 class="text-center dark-blue-text "> STEP 5</h4>
+                    <p class=" setup-text-band">Approval & Print and Mail</p>
+                    <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>E-File</td>
+                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>IRS Corrections</td>
+                                <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Edit Company Details Modal -->
-<div class="modal fade" id="edit_company_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
-    data-keyboard="false">
+<div class="modal fade" id="edit_company_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -119,8 +316,7 @@
 <!-- ./Edit Company Details Modal -->
 
 <!-- CopyModal -->
-<div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
-    data-keyboard="false">
+<div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
