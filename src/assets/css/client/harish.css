@@ -132,3 +132,165 @@ app-client-layout .section-container .left-small-box p {
     background: #FFF;
     padding: 19px;
 }
+
+.header-border-btm-blue {
+    height: 10px;
+    background-color: #13a9cc;
+    margin-bottom: 12px;
+    border-radius: 16px;
+}
+
+.setupImg {
+    width: 25%;
+    margin: 0px auto;
+    display: block;
+    margin-bottom: 5px;
+    padding: 20px 0px;
+}
+
+.setup-text-band {
+    background: #13a9cc;
+    padding: 3px;
+    text-align: center;
+    color: white;
+}
+
+.gray-text {
+    color: #7f8286;
+}
+
+.btn-blue {
+    border-color: #13a9cc!important;
+    background: #13a9cc !important;
+}
+
+.client-section-container {
+    position: relative;
+    top: 103px;
+    width: 100%;
+    min-height: 100%;
+    margin: 0px auto;
+    background: #ECEFF4;
+}
+
+.company-section-container {
+    position: relative;
+    top: 48px;
+    width: 100%;
+    min-height: 100%;
+    margin: 0px auto;
+    background: #ECEFF4;
+}
+
+.setup-no-option-div {
+    -webkit-box-shadow: unset !important;
+    box-shadow: unset !important;
+    border: none !important;
+}
+
+.margin-bottom-35 {
+    margin-bottom: 35px;
+}
+
+.ul-inline {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.ul-inline li {
+    display: inline-block;
+}
+
+.previous-link {
+    margin: 11px 5px;
+}
+
+.ul-inline li:first-child a {
+    color: #13a9cc;
+    font-size: 14px;
+}
+
+.circle-icon {
+    background: #13a9cc;
+    color: white;
+    font-size: 22px;
+    border-radius: 50%;
+}
+
+.dark-blue-text {
+    color: #13a9cc;
+}
+
+.margin-left-right-pull {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.addres-block p {
+    margin-bottom: 1px;
+}
+
+.confirmation-box {
+    font-size: 13px;
+    padding: 3px 6px;
+    cursor: pointer;
+    color: white;
+}
+
+.comp-dash-divs {
+    min-height: 258px;
+}
+
+.status-btn {
+    margin-top: 14px;
+    padding: 5px 0px;
+    width: 100%;
+}
+
+.upload-download-block {
+    padding: 29px;
+    text-align: center;
+}
+
+.download-upload-ul li:nth-child(1) img {
+    width: 40px;
+    height: 40xp;
+}
+
+.download-upload-ul li:nth-child(2) {
+    position: relative;
+    top: 11px;
+}
+
+.download-upload-ul li:nth-child(2) h6 {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.margin-top-42 {
+    margin-top: 42px;
+}
+
+.table-company-dashboard th {
+    border-bottom: none !important;
+}
+
+.table-company-dashboard th a {
+    color: black;
+}
+
+.table-company-dashboard tbody tr td {
+    padding: 3px;
+    border: none;
+}
+
+.no-border,
+.no-border:hover,
+.no-border:focus,
+.no-border:active {
+    border: none !important;
+    border-bottom: none !important;
+    cursor: default;
+}
