@@ -36,3 +36,8 @@
     text-decoration: underline;
     font-size: 17px;
 }
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+    background-color: none;
+}

@@ -7,12 +7,14 @@ import { ContractSignorComponent } from './contract-signor/contract-signor.compo
 import { PrimaryContractComponent } from './primary-contract/primary-contract.component';
 import { SetupRoutingModule } from "app/client/setup/setup.routing";
 import { AgreementComponent } from './agreement/agreement.component';
+import { DataTableModule } from "angular2-datatable";
 
 @NgModule({
   imports: [
     CommonModule,
     SetupRoutingModule,
-    FormsModule
+    FormsModule,
+    DataTableModule
   ],
   declarations: [BillingContractComponent, ContractSignorComponent, PrimaryContractComponent, AgreementComponent]
 })
