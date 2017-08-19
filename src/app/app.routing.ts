@@ -1,24 +1,25 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {P404Component} from './pages/404.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { P404Component } from './pages/404.component';
 
-import {LoginComponent} from './login/login.component'
+import { LoginComponent } from './login/login.component'
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './login/login-layout.component';
 import { ClientLayoutComponent } from "app/client/client-layout/client-layout.component";
 import { SetPasswordComponent } from './login/set-password.component';
+import { ActivateUserComponent } from './admin/activate-user/activate-user.component';
 
-import {AuthGuard} from './_services/_auth.guard';
+import { AuthGuard } from './_services/_auth.guard';
 
 export const routes: Routes = [
-     {
+    {
         path: '',
         redirectTo: '/login',
         pathMatch: 'full',
     },
-     {
+    {
         path: '',
-        component:LoginLayoutComponent,
+        component: LoginLayoutComponent,
         children: [
             {
                 path: 'login',
@@ -28,11 +29,15 @@ export const routes: Routes = [
     },
     {
         path: 'set-password',
-        component:SetPasswordComponent,
+        component: SetPasswordComponent,
+    },
+    {
+        path: 'activate-user',
+        component: ActivateUserComponent,
     },
     {
         path: '',
-        component:AdminLayoutComponent,
+        component: AdminLayoutComponent,
         canActivate: [AuthGuard],
         children: [
             {
@@ -43,7 +48,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        component:ClientLayoutComponent,
+        component: ClientLayoutComponent,
         canActivate: [AuthGuard],
         children: [
             {
@@ -52,11 +57,11 @@ export const routes: Routes = [
             }
         ],
     },
-   
+
     // otherwise redirect to home
     { path: '**', component: P404Component }
-    
-    ];
+
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

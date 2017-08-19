@@ -10,6 +10,7 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { ClientLayoutComponent } from "app/client/client-layout/client-layout.component";
 import { LoginLayoutComponent } from './login/login-layout.component';
 import { SetPasswordComponent } from './login/set-password.component';
+import { ActivateUserComponent } from "app/admin/activate-user/activate-user.component";
 
 import { AppComponent } from './app.component';
 import {P404Component} from './pages/404.component';
@@ -45,7 +46,8 @@ import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
     LoginLayoutComponent,
     AdminLayoutComponent,
     ClientLayoutComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
+    ActivateUserComponent
   ],
   imports: [
     BrowserModule,
