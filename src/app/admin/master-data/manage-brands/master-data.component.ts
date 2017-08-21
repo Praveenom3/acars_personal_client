@@ -20,11 +20,13 @@ import { Http, Headers, Response } from '@angular/http';
 
 
 export class MasterDataComponent implements OnInit {
+    brandIDSelected: any;
 
     data: Brands[];
 
     @ViewChild('BrandsModal') public BrandsModal: ModalDirective;
     @ViewChild('brandLogo') public brandLogoVariable: any;
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
     // public myModel = ''
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
@@ -59,11 +61,11 @@ export class MasterDataComponent implements OnInit {
         private brandsService: BrandsService,
         private toastrService: ToastrService,
         private http: Http) {
-    
+
 
 
         this._addBrandForm = _formBuilder.group({
-            brand_name: ['', Validators.compose([Validators.required,Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+            brand_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
             support_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             support_phone: ['', Validators.compose([Validators.required])],
             terms_conditions_url: ['', Validators.compose([Validators.required])],
@@ -86,7 +88,7 @@ export class MasterDataComponent implements OnInit {
     public validationMessages = {
         'brand_name': {
             'required': 'Brand is required.',
-            'pattern':'No special characters are allowed.'
+            'pattern': 'No special characters are allowed.'
         },
         'support_email': {
             'required': 'Support Email is required.',
@@ -162,23 +164,30 @@ export class MasterDataComponent implements OnInit {
             });
     }
 
-    /*To delete a particular brand*/
+
+
+    /*To delete a particular Brand*/
     public deleteBrand(brand) {
-        if (confirm("Are you sure want to delete this brand?")) {
-            this.brandsService.deleteBrand(brand.brand_id)
-                .subscribe(() => {
-                    this.brandsList();
-                    this.toastrService.success('Brand Deleted Succesfully .');
-                },
-                error => {
-                    this._errorMessage = error.data;
-                });
-        }
+        this.brandIDSelected = brand.brand_id;
+        this.deleteModal.show();
+    }
+
+    public okDelete() {
+        this.brandsService.deleteBrand(this.brandIDSelected)
+            .subscribe(() => {
+                this.brandsList();
+                this.toastrService.success('Brand Deleted Succesfully .');
+                this.deleteModal.hide();
+            },
+            error => {
+                this._errorMessage = error.data;
+            });
+
     }
 
     /*updating brand*/
     public updateBrand(brand: Brands) {
-        
+
         this.brandSelected = Object.assign({}, brand);
         this.base64textString = '';
         this._submitted = false;
@@ -187,12 +196,11 @@ export class MasterDataComponent implements OnInit {
         this.BrandsModal.show();
     }
 
-public closeModal()
-{
+    public closeModal() {
         this._addBrandForm.reset();
         this._resetFormErrors();
         this.BrandsModal.hide();
-}
+    }
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
         this._submitted = true;
@@ -231,7 +239,7 @@ public closeModal()
                 result => {
                     if (result.success) {
                         this.brandsList();
-                         this.closeModal();
+                        this.closeModal();
                         this.toastrService.success('Brand Added Succesfully.');
                     } else {
                         this._errorMessage = 'Record not added.';

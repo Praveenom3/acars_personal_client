@@ -1,0 +1,24 @@
+<div class="modal delete-modal fade" bsModal #deleteModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm confirmation-modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="deleteModal.hide()" aria-hidden="true">×</button>
+                <h5 class="modal-title color-white" id="myModalLabel">
+                    Delete
+                </h5>
+            </div>
+
+            <div class="modal-body row">
+                Are you sure want to delete this record?
+            </div>
+
+            <div class="modal-footer footer-background">
+                <button type="submit" class="btn btn-primary btn-blue" (click)="onClick($event)">
+                        	Ok</button>
+                <button type="button" class="btn btn-default" (click)="deleteModal.hide()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>

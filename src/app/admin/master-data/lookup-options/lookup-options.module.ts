@@ -9,6 +9,7 @@ import { ModalModule } from "ngx-bootstrap";
 import { DataTableModule } from "angular2-datatable";
 import { LookupOptionsService } from "app/_services/_lookup-options.service";
 import { LookupFilterPipe } from "app/_filters/lookup-filter.pipe";
+import { PartialViews } from "app/_partial-views/partial-views.module";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { LookupFilterPipe } from "app/_filters/lookup-filter.pipe";
      ModalModule.forRoot(),
      FormsModule,
      DataTableModule,
-     ReactiveFormsModule
+     ReactiveFormsModule,
+     PartialViews
   ],
   declarations: [LookupOptionsComponent,LookupFilterPipe],
   providers:[LookupOptionsService]

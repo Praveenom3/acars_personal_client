@@ -10,6 +10,7 @@ import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
 import { AdminUserService } from "app/_services/_admin-user.service";
 import { AdminUser } from "app/_models/admin-user";
+import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmation/delete-confirmation.component";
 
 @Component({
     selector: 'app-dashboard',
@@ -17,13 +18,14 @@ import { AdminUser } from "app/_models/admin-user";
 })
 
 export class AdminUsersComponent implements OnInit {
+    adminUserIDSelected: any;
 
     data: AdminUser[];
     etype: AdminUser;
 
     ids: any;
     results: any;
-    
+
     public filterQuery = "";
     public rowsOnPage = 5;
     public sortOrder = "";
@@ -45,6 +47,8 @@ export class AdminUsersComponent implements OnInit {
     public serverChk = [];
 
     @ViewChild('AdminUsersModal') public AdminUsersModal: ModalDirective;
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
+
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
     constructor(private _globalService: GlobalService,
@@ -96,7 +100,8 @@ export class AdminUsersComponent implements OnInit {
         this.serverChk = [];
         this._adminUserForm.reset();
         this._resetFormErrors();
-        this.adminUserSelected = this.createNewAdminUser();   // Set adminUserSelected to a new Product      
+        this.adminUserSelected = this.createNewAdminUser(); 
+          // Set adminUserSelected to a new Product      
         this._submitted = false;
         this.modalTitle = "Add Admin User";
         this.AdminUsersModal.show();       // Open the Popup
@@ -151,26 +156,30 @@ export class AdminUsersComponent implements OnInit {
         this.adminUserSelected.permissions = Object.assign({}, userPermissionSet);
         this.adminUserSelected.permissions = mappingObject;
         this._submitted = false;
-        this.modalTitle = "Edit : "+adminuser.first_name;
+        this.modalTitle = "Edit : " + adminuser.first_name;
         this.AdminUsersModal.show();
 
     }
 
 
     /*To delete a particular Admin User*/
-    public deleteAdminUser(adminUser) {
-        if (confirm("Are you sure want to delete this User?")) {
-            this.adminUserService.deleteAdminUser(adminUser.admin_user_id)
-                .subscribe(() => {
-                    this.getAdminUsers();
-                    this.toastrService.success('Admin User Deleted Succesfully .');
-                },
-                error => {
-                    this._errorMessage = error.data;
-                });
-        }
+    public deleteAdminUser(AdminuserId) {
+        this.adminUserIDSelected = AdminuserId;
+        this.deleteModal.show();
     }
 
+    public okDelete() {
+        this.adminUserService.deleteAdminUser(this.adminUserIDSelected)
+            .subscribe(() => {
+                this.getAdminUsers();
+                this.toastrService.success('Admin User Deleted Succesfully .');
+            },
+            error => {
+                this._errorMessage = error.data;
+            });
+        this.deleteModal.hide();
+    }
+    
     public statusChange(adminUser) {
         this.adminUserService.statusChange(adminUser).subscribe(
             result => {
@@ -220,7 +229,7 @@ export class AdminUsersComponent implements OnInit {
                 });
 
         } else {
-            
+
             this.adminUserService.addAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
