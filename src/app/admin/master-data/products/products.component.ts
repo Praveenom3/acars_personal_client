@@ -13,11 +13,12 @@ import { Products } from "app/_models/products";
     styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+    productIDSelected: any;
     etype: Products;
     data: Products[];
 
     @ViewChild('ProductsModal') public ProductsModal: ModalDirective;
-
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
     public filterQuery = "";
     public rowsOnPage = 5;
@@ -103,7 +104,7 @@ export class ProductsComponent implements OnInit {
         this.productSelected = this.createNewProduct();   // Set productSelected to a new Product
         this.base64textString = '';
         this._submitted = false;
-        this.modalTitle = "Add Product";       
+        this.modalTitle = "Add Product";
         this.ProductsModal.show();       // Open the Popup  
     }
 
@@ -135,16 +136,21 @@ export class ProductsComponent implements OnInit {
 
     /*To delete a particular product*/
     public deleteProduct(product) {
-        if (confirm("Are you sure want to delete this product?")) {
-            this.productsService.deleteProduct(product.product_id)
-                .subscribe(() => {
-                    this.getProducts();
-                    this.toastrService.success('Product Deleted Succesfully .');
-                },
-                error => {
-                    this._errorMessage = error.data;
-                });
-        }
+        this.productIDSelected = product.product_id;
+        this.deleteModal.show();
+    }
+
+    public okDelete() {
+        this.productsService.deleteProduct(this.productIDSelected)
+            .subscribe(() => {
+                this.getProducts();
+                this.toastrService.success('Product Deleted Succesfully .');
+                this.deleteModal.hide();
+            },
+            error => {
+                this._errorMessage = error.data;
+            });
+
     }
 
     /*updating product*/
@@ -156,12 +162,11 @@ export class ProductsComponent implements OnInit {
         this.ProductsModal.show();
     }
 
-public closeModal()
-{
+    public closeModal() {
         this._productForm.reset();
         this._resetFormErrors();
         this.ProductsModal.hide();
-}
+    }
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
         this._submitted = true;

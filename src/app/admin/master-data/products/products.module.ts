@@ -9,6 +9,7 @@ import { DataTableModule } from "angular2-datatable";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductsService } from "app/_services/_products.service";
 import { ProductsFilterPipe } from "app/_filters/products-filter.pipe";
+import { PartialViews } from "app/_partial-views/partial-views.module";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ProductsFilterPipe } from "app/_filters/products-filter.pipe";
      ModalModule.forRoot(),
      FormsModule,
      DataTableModule,
-     ReactiveFormsModule
+     ReactiveFormsModule,
+     PartialViews
   ],
   declarations: [ProductsComponent,ProductsFilterPipe],
   providers: [ ProductsService ]

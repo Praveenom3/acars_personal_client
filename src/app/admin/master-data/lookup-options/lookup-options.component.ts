@@ -13,6 +13,7 @@ import { LookupOptionsService } from "app/_services/_lookup-options.service";
   styleUrls: ['./lookup-options.component.css']
 })
 export class LookupOptionsComponent implements OnInit {
+  lookupOptionIDSelected: any;
 
   tempLookupNameGroup: FormGroup;
   addLookupNameBtnActive: boolean;
@@ -24,6 +25,7 @@ export class LookupOptionsComponent implements OnInit {
   _lookupNameForm: FormGroup;
 
   @ViewChild('LookUpModal') public LookUpModal: ModalDirective;
+  @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
   public dropdownActive = true;
   public textboxActive = false;
@@ -45,7 +47,7 @@ export class LookupOptionsComponent implements OnInit {
     private _http: Http) {
     this._lookupNameForm = _formBuilder.group({
       lookup_name: ['', Validators.compose([Validators.required])],
-      lookup_option: ['', Validators.compose([Validators.required,Validators.maxLength(34),Validators.pattern(/^[a-zA-Z0-9& -]+$/)])]
+      lookup_option: ['', Validators.compose([Validators.required, Validators.maxLength(34), Validators.pattern(/^[a-zA-Z0-9& -]+$/)])]
     });
 
     this._lookupNameForm.valueChanges
@@ -145,14 +147,22 @@ export class LookupOptionsComponent implements OnInit {
     this.LookUpModal.show();
   }
 
+  /*To delete a particular Lookup Option*/
   public deleteLookupOption(opionData) {
-    this.lookupService.deleteLookupOption(opionData).subscribe(() => {
+    this.lookupOptionIDSelected = opionData.lookup_option_id;
+    this.deleteModal.show();
+  }
+
+  public okDelete() {
+    this.lookupService.deleteLookupOption(this.lookupOptionIDSelected).subscribe(() => {
       this.getLookupData();
       this.toastrService.success('Lookup Option Deleted Succesfully .');
+      this.deleteModal.hide();
     },
       error => {
         this._errorMessage = error.data;
       });
+
   }
 
   public onSubmit() {
@@ -245,8 +255,8 @@ export class LookupOptionsComponent implements OnInit {
     },
     'lookup_option': {
       'required': 'Lookup Option is required.',
-      'maxlength':'Maximum 34 characters are allowed.',
-      'pattern':'No Special characters are allowed.'
+      'maxlength': 'Maximum 34 characters are allowed.',
+      'pattern': 'No Special characters are allowed.'
     }
   };
 
@@ -307,11 +317,11 @@ export class LookupOptionsComponent implements OnInit {
     this.tempLookupNameGroup.reset();
     this.lookupSelected = this.createNewLookupName();
     this.addLookupNameBtnActive = true;
-    this.LookUpModal.show(); 
+    this.LookUpModal.show();
     this._submitted = false;
-    this.modalTitle = "Add Lookup Option";  
-    
-    
+    this.modalTitle = "Add Lookup Option";
+
+
   }
 
 }
