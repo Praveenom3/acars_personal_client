@@ -164,8 +164,6 @@ export class OrdersComponent implements OnInit {
         if(mode == 'clientAddPurchase'){
             //before submit
             //for the update client scenario
-            console.log('before client values:');
-            console.log(this.selectableProducts)
             if(client_id){
                 //getting the purchases already saved in the db and assigning is_deleted to 1
                 this.clientsTableData.forEach(clientElement => {
@@ -186,8 +184,6 @@ export class OrdersComponent implements OnInit {
                     }
                 });
             }
-            console.log('after client values:');
-            console.log(this.selectableProducts)
             
             //returning the already made purchases is_deleted status to 1 which have been toggled in the update purchase scenario
             if(this.temp_arr){
@@ -352,7 +348,7 @@ export class OrdersComponent implements OnInit {
             }else{
                 this.getSelectableProducts('', '', 'clientAddPurchase');
             }
-            
+
             this._updatePurchaseFormSubmitted = false;
 
             this.temp_index = this.totalPurchases.indexOf(data);
@@ -572,16 +568,31 @@ export class OrdersComponent implements OnInit {
 
     public onBrandChange(form, value){
         if(form == this._addClientForm){
-            if(value && value.hasOwnProperty('brand_name')){
-            this.temp_brand = value.brand_name;
-
-            this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+            if(value){
+                if(value.hasOwnProperty('brand_name')){
+                    this.temp_brand = value.brand_name;
+        
+                    this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+                    }else{
+        
+                        this.temp_brand = this.getItemName('brand', value);
+        
+                        if(this.temp_brand !== 'NA'){
+                            this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+                        }else{
+                            this.temp_client_number = '';
+                            this.temp_brand = '';
+                        }
+                    }
             }else{
                 this.temp_client_number = '';
                 this.temp_brand = '';
             }
-        }else if(form == this._updateClientForm){
             
+
+
+
+        }else if(form == this._updateClientForm){
             if(value && value.hasOwnProperty('brand_name')){
                 this.temp_brand = value.brand_name;
                 }else{
