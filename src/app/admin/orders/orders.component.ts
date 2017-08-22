@@ -164,6 +164,8 @@ export class OrdersComponent implements OnInit {
         if(mode == 'clientAddPurchase'){
             //before submit
             //for the update client scenario
+            console.log('before client values:');
+            console.log(this.selectableProducts)
             if(client_id){
                 //getting the purchases already saved in the db and assigning is_deleted to 1
                 this.clientsTableData.forEach(clientElement => {
@@ -184,6 +186,8 @@ export class OrdersComponent implements OnInit {
                     }
                 });
             }
+            console.log('after client values:');
+            console.log(this.selectableProducts)
             
             //returning the already made purchases is_deleted status to 1 which have been toggled in the update purchase scenario
             if(this.temp_arr){
@@ -343,6 +347,12 @@ export class OrdersComponent implements OnInit {
 
         }else if(modal=='updatePurchaseModal'){
 
+            if(this._updateClientForm.value.client_id){
+                this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
+            }else{
+                this.getSelectableProducts('', '', 'clientAddPurchase');
+            }
+            
             this._updatePurchaseFormSubmitted = false;
 
             this.temp_index = this.totalPurchases.indexOf(data);
@@ -424,7 +434,7 @@ export class OrdersComponent implements OnInit {
             
             let data = {
                 "Clients": this._addClientForm.value,
-                "purchases": this.newPurchases
+                "purchases": this.totalPurchases
             };
 
             this._addClientFormSubmitted = true;
