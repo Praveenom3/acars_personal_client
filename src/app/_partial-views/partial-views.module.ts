@@ -10,6 +10,7 @@ import { ClientReportingBandComponent } from './client-reporting-band/client-rep
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { ModalModule } from "ngx-bootstrap";
 import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmation/delete-confirmation.component";
+import { CloseModalConfirmationComponent } from "app/_partial-views/close-modal-confirmation/close-modal-confirmation.component";
 
 @NgModule({
    imports: [
@@ -17,7 +18,7 @@ import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmat
     RouterModule,
     ModalModule.forRoot()
   ],
-  declarations: [DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent],
-  exports: [DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent]
+  declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent],
+  exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent]
 })
 export class PartialViews { }

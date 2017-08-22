@@ -14,7 +14,10 @@ import * as Globals from 'app/_shared/_globals';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-    public temp_arr=[];
+    formToReset: any;
+    askConfirm:boolean = false;
+    tempModal: any;
+    public temp_arr = [];
     tempAvailableProducts: any;
 
     _addClientFormSubmitted = false;
@@ -26,6 +29,8 @@ export class OrdersComponent implements OnInit {
     @ViewChild('updateClientModal') public updateClientModal: ModalDirective;
     @ViewChild('addPurchaseModal') public addPurchaseModal: ModalDirective;
     @ViewChild('updatePurchaseModal') public updatePurchaseModal: ModalDirective;
+    
+    @ViewChild('closeConfirmationModal') public closeConfirmationModal: ModalDirective;
 
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
@@ -380,20 +385,29 @@ export class OrdersComponent implements OnInit {
     public closeModal(modal)
     {
         if(modal=='addClientModal'){
-
-            this.addClientModal.hide();
-            this._resetFormValues(this._addClientForm);
+            if(this.askConfirm == true){       
+                this.tempModal = this.addClientModal;
+                this.closeConfirmationModal.show();
+                this.formToReset = this._addClientForm;
+            }else{
+                this.addClientModal.hide();
+                this._resetFormValues(this._addClientForm);
+            }
         }else if(modal=='updateClientModal'){
-
-            this.updateClientModal.hide();
-            this._resetFormValues(this._updateClientForm);
+            if(this.askConfirm == true){
+                this.tempModal = this.updateClientModal;
+                this.closeConfirmationModal.show();
+                this.formToReset = this._updateClientForm;
+            }else{
+                this.updateClientModal.hide();
+                this._resetFormValues(this._updateClientForm);
+            }
 
         }else if(modal=='addPurchaseModal'){
             this.addPurchaseModal.hide();
             this._resetFormValues(this._addPurchaseForm);
 
         }else if(modal=='updatePurchaseModal'){
-
             this.updatePurchaseModal.hide();
             this._resetFormValues(this._updatePurchaseForm);
         }
@@ -439,6 +453,7 @@ export class OrdersComponent implements OnInit {
                 result => {
                     if (result.success) {
                         this.orders = this.getOrders();
+                        this.askConfirm = false;
                         this.closeModal('addClientModal');
                         this.toastrService.success('Client and Purchases Added Succesfully.');
                     } else {
@@ -487,6 +502,7 @@ export class OrdersComponent implements OnInit {
                 result => {
                     if (result.success) {                        
                         this.orders = this.getOrders();
+                        this.askConfirm = false;
                         this.closeModal('updateClientModal');
                         this.toastrService.success('Client updated Succesfully.');
                     } else {
@@ -508,6 +524,7 @@ export class OrdersComponent implements OnInit {
                 });
 
         }else if(form==this._addPurchaseForm){
+
             //removing spl chars from purchaser mobile
              form.value.purchaser_mobile = form.value.purchaser_mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
 
@@ -546,7 +563,10 @@ export class OrdersComponent implements OnInit {
                 }
             });
 
+            this.askConfirm = true;
+
         }else if(form==this._updatePurchaseForm){
+            
             this.updatePurchases = [];
             //removing spl chars from purchaser mobile
             form.value.purchaser_mobile = form.value.purchaser_mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
@@ -562,6 +582,7 @@ export class OrdersComponent implements OnInit {
             this.getSelectableProducts('', form.value.product_id, 'clientUpdatePurchaseAfterSubmit');
 
             this.closeModal('updatePurchaseModal');
+            this.askConfirm = true;
 
         }
     }
@@ -825,4 +846,12 @@ export class OrdersComponent implements OnInit {
             'required': 'Invoice Paid is required.'
         }
     };
+
+    /*To close a modal with confirmation*/    
+    public okClose() {
+        this.tempModal.hide();
+        this.closeConfirmationModal.hide();
+        this._resetFormValues(this.formToReset);
+        this.tempModal = '';
+    }
 }
