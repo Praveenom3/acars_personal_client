@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { AppheaderComponent } from './layouts/appheader/appheader.component';
 import { ManageEFilesComponent } from './manage-e-files/manage-e-files.component';
-import { DashboardComponent, FinancialsComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent, SummaryComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, FinancialsComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent } from './dashboard/dashboard.component';
+import { SummaryComponent } from './dashboard/summary.component';
 import { AdminUsersComponent } from "app/admin/dashboard/admin-users.component";
 import { JobsComponent } from "app/admin/jobs/jobs.component";
 import { ProfileComponent } from "app/admin/profile/profile.component";
@@ -12,6 +13,7 @@ import { AddAdminUserComponent } from "app/admin/profile/add-admin-user.componen
 import { SearchComponent, SearchResultsComponent } from "app/admin/search/search.component";
 import { ActivityLogComponent } from "app/admin/activity-log/activity-log.component";
 import { ErrorLogComponent } from "app/admin/error-log/error-log.component";
+import { AuthGuard } from "app/_services/_auth.guard";
 
 const routes: Routes = [
     {
@@ -21,23 +23,28 @@ const routes: Routes = [
     },
     {
         path: 'summary',        
-        component: SummaryComponent
+        component: SummaryComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'dashboard',        
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'financials',        
-        component: FinancialsComponent
+        component: FinancialsComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'new-sales',        
-        component: NewSalesComponent
+        component: NewSalesComponent,
+        canActivate: [AuthGuard],
     }, 
     {
         path: 'admin-users',        
-        component: AdminUsersComponent
+        component: AdminUsersComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'processing',        
@@ -61,7 +68,8 @@ const routes: Routes = [
     },
     {
         path: 'master-data',
-        loadChildren: 'app/admin/master-data/master-data.module#MasterDataModule'
+        loadChildren: 'app/admin/master-data/master-data.module#MasterDataModule',
+        canActivate: [AuthGuard],
     },
     {
         path: 'orders',
@@ -69,7 +77,8 @@ const routes: Routes = [
     },
     {
         path: 'jobs',        
-        component: JobsComponent
+        component: JobsComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'profile',        
@@ -77,11 +86,13 @@ const routes: Routes = [
     },
     {
         path: 'activity-log',        
-        component: ActivityLogComponent
+        component: ActivityLogComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'error-log',        
-        component: ErrorLogComponent
+        component: ErrorLogComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'profile/add-admin-user',        
