@@ -20,11 +20,13 @@ import { Http, Headers, Response } from '@angular/http';
 
 
 export class MasterDataComponent implements OnInit {
+    brandIDSelected: any;
 
     data: Brands[];
 
     @ViewChild('BrandsModal') public BrandsModal: ModalDirective;
     @ViewChild('brandLogo') public brandLogoVariable: any;
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
     // public myModel = ''
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
@@ -162,19 +164,26 @@ export class MasterDataComponent implements OnInit {
             });
     }
 
-    /*To delete a particular brand*/
+
+
+    /*To delete a particular Brand*/
     public deleteBrand(brand) {
-        if (confirm("Are you sure want to delete this brand?")) {
-            this.brandsService.deleteBrand(brand.brand_id)
-                .subscribe(() => {
-                    this.brandsList();
-                    this.toastrService.success('Brand Deleted Succesfully .');
-                },
-                error => {
-                    this._errorMessage = error.data;
-                    this.toastrService.error(error.data.message);
-                });
-        }
+        this.brandIDSelected = brand.brand_id;
+        this.deleteModal.show();
+    }
+
+    public okDelete() {
+        this.brandsService.deleteBrand(this.brandIDSelected)
+            .subscribe(() => {
+                this.brandsList();
+                this.toastrService.success('Brand Deleted Succesfully .');
+                this.deleteModal.hide();
+            },
+            error => {
+                this._errorMessage = error.data;
+                this.toastrService.error(error.data.message);
+            });
+
     }
 
     /*updating brand*/

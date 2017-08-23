@@ -12,6 +12,7 @@ import { BrandsFilterPipe } from "app/_filters/brands-filter.pipe";
 import { ManageBrandsRoutingModule } from './manage-brands-routing.module';
 
 import { TextMaskModule } from 'angular2-text-mask';
+import { PartialViews } from "app/_partial-views/partial-views.module";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     ManageBrandsRoutingModule,
      ModalModule.forRoot(),
      DataTableModule,
-     TextMaskModule
+     TextMaskModule,
+     PartialViews
   ],
   declarations: [BrandsFilterPipe,MasterDataComponent],
   providers: [ BrandsService ],

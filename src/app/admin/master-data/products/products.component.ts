@@ -13,11 +13,12 @@ import { Products } from "app/_models/products";
     styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+    productIDSelected: any;
     etype: Products;
     data: Products[];
 
     @ViewChild('ProductsModal') public ProductsModal: ModalDirective;
-
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
     public filterQuery = "";
     public rowsOnPage = 5;
@@ -134,17 +135,22 @@ export class ProductsComponent implements OnInit {
 
     /*To delete a particular product*/
     public deleteProduct(product) {
-        if (confirm("Are you sure want to delete this product?")) {
-            this.productsService.deleteProduct(product.product_id)
-                .subscribe(() => {
-                    this.getProducts();
-                    this.toastrService.success('Product Deleted Succesfully .');
-                },
-                error => {
-                    this._errorMessage = error.data;
-                    this.toastrService.error(error.data.message);
-                });
-        }
+        this.productIDSelected = product.product_id;
+        this.deleteModal.show();
+    }
+
+    public okDelete() {
+        this.productsService.deleteProduct(this.productIDSelected)
+            .subscribe(() => {
+                this.getProducts();
+                this.toastrService.success('Product Deleted Succesfully .');
+                this.deleteModal.hide();
+            },
+            error => {
+                this._errorMessage = error.data;
+                this.toastrService.error(error.data.message);
+            });
+
     }
 
     /*updating product*/

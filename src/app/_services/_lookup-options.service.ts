@@ -53,7 +53,7 @@ export class LookupOptionsService {
 
     public deleteLookupOption(lookupData): Observable<void> {
         return this._http.delete(
-            this._lookupURL + '/' + lookupData.lookup_option_id,
+            this._lookupURL + '/' + lookupData,
             { headers: this._globalService.getHeaders() }
         ).catch(this._globalService.handleError);
     }

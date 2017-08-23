@@ -1,18 +1,24 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { OrdersService } from "app/_services/_orders.service";
 import { ToastrService } from "ngx-toastr";
 import { Clients } from "app/_models/clients";
 import { Brands } from "app/_models/brands";
 import { ModalDirective } from "ngx-bootstrap";
+import { NumberValidationService } from "app/_services/_number-validation.service";
+import * as Globals from 'app/_shared/_globals';
 
 @Component({
-  //  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+    formToReset: any;
+    askConfirm:boolean = false;
+    tempModal: any;
+    public temp_arr = [];
+    tempAvailableProducts: any;
 
     _addClientFormSubmitted = false;
     _addPurchaseFormSubmitted = false;
@@ -23,6 +29,8 @@ export class OrdersComponent implements OnInit {
     @ViewChild('updateClientModal') public updateClientModal: ModalDirective;
     @ViewChild('addPurchaseModal') public addPurchaseModal: ModalDirective;
     @ViewChild('updatePurchaseModal') public updatePurchaseModal: ModalDirective;
+    
+    @ViewChild('closeConfirmationModal') public closeConfirmationModal: ModalDirective;
 
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
@@ -37,6 +45,7 @@ export class OrdersComponent implements OnInit {
     public clientsTableData;
     maxClientNumber: any;
     availableProducts: any;
+    selectableProducts: any[];
     public availableBrands: Brands[];
     public availableAcctManagers: any[];
     public totalPurchases=[];
@@ -62,7 +71,6 @@ export class OrdersComponent implements OnInit {
     _clearFormErrors: any;
 
     constructor(
-        private cdr: ChangeDetectorRef,
         private _formBuilder: FormBuilder,
         private ordersService: OrdersService,
         private toastrService: ToastrService) {
@@ -82,16 +90,16 @@ export class OrdersComponent implements OnInit {
 
         this._addPurchaseForm = _formBuilder.group({
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(2)])],
-            total_no_forms: ['', Validators.compose([Validators.required, Validators.maxLength(2)])],   
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3)])],
+            total_no_forms: ['', Validators.compose([Validators.maxLength(6)])],   
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             purchaser_mobile: ['', Validators.compose([Validators.required])],
-            purchase_status: ['', Validators.compose([Validators.required])],
-            amount: ['', Validators.compose([Validators.required, Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
+            purchase_status: [''],
+            amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
             account_manager: [''],
-            purchase_date: ['', Validators.compose([Validators.required])],
+            purchase_date: [''],
             is_invoice: ['', Validators.compose([Validators.required])],            
             invoice_no: [''],
             invoice_created_at: [''],
@@ -102,16 +110,16 @@ export class OrdersComponent implements OnInit {
             purchase_user_id:[''],
             purchase_id:[''],
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(2)])],
-            total_no_forms: ['', Validators.compose([Validators.required, Validators.maxLength(2)])],      
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3)])],
+            total_no_forms: ['', Validators.compose([Validators.maxLength(6)])],      
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             purchaser_mobile: ['', Validators.compose([Validators.required])],
-            purchase_status: ['', Validators.compose([Validators.required])],
-            amount: ['', Validators.compose([Validators.required])],
+            purchase_status: [''],
+            amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
             account_manager: [''],
-            purchase_date: ['', Validators.compose([Validators.required])],
+            purchase_date: [''],
             is_invoice: ['', Validators.compose([Validators.required])],            
             invoice_no: [''],
             invoice_created_at: [''],
@@ -135,7 +143,6 @@ export class OrdersComponent implements OnInit {
     ngOnInit() {        
         this.orders = this.getOrders();
         this._resetFormErrors();
-        this.cdr.detectChanges();
     }
 
      /*getting orders from service*/
@@ -146,11 +153,124 @@ export class OrdersComponent implements OnInit {
                 this.clientsTableData = orders.clientsInformation;
                 this.maxClientNumber = orders.maxClientNumber;
                 this.availableBrands = orders.brandsInformation;
-                this.availableProducts = orders.productsInformation;
                 this.availableAcctManagers = orders.accountManagerInformation;
+                
+                this.availableProducts = JSON.parse(JSON.stringify(orders.productsInformation));
+                this.tempAvailableProducts = JSON.parse(JSON.stringify(orders.productsInformation));
+        
+               this.getSelectableProducts();
             },
             error => { this._errorMessage = error.data }
             );
+    }
+
+    public getSelectableProducts(client_id?, product_id?, mode?){
+
+        if(mode == 'clientAddPurchase'){
+            //before submit
+            //for the update client scenario
+            if(client_id){
+                //getting the purchases already saved in the db and assigning is_deleted to 1
+                this.clientsTableData.forEach(clientElement => {
+                    if(clientElement.client_id == client_id){
+                        clientElement.clientPurchases.forEach(purchaseElement => {
+                            let product_name = this.getItemName('product', purchaseElement.product_id);
+                            
+                            this.selectableProducts.forEach((selectableProductElement, index) => {
+                                Globals.products_keywords.forEach(product_key => {
+                                    if(product_name.indexOf(product_key) !== -1){
+                                        if(selectableProductElement.product_name.indexOf(product_key) !== -1){
+                                            this.selectableProducts[index].is_deleted=1;
+                                        }
+                                    }
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+            
+            //returning the already made purchases is_deleted status to 1 which have been toggled in the update purchase scenario
+            if(this.temp_arr){
+                this.temp_arr.forEach(tempArrElement => {
+                    this.selectableProducts.forEach((selectableProductElement, index) => {
+                        if(selectableProductElement.product_name == tempArrElement.product_name){
+                            this.selectableProducts[index].is_deleted=1;
+                        }
+                    });
+                });
+                this.temp_arr = [];
+            }
+
+            //after submit
+            if(product_id){
+                let product_name = this.getItemName('product', product_id); 
+    
+                this.selectableProducts.forEach((selectableProductElement, index) => {
+                    Globals.products_keywords.forEach(product_key => {                    
+                        if(product_name.indexOf(product_key) !== -1){
+                            if(selectableProductElement.product_name.indexOf(product_key) !== -1){
+                                this.selectableProducts[index].is_deleted=1;
+                            }
+                        }
+                    });                
+                });
+            }
+
+        }else if(mode == 'clientUpdatePurchaseBeforeSubmit'){
+
+            //returning the already made purchases is_deleted status to 1 which have been toggled in the update purchase scenario
+            if(this.temp_arr){
+                this.temp_arr.forEach(tempArrElement => {
+                    this.selectableProducts.forEach((selectableProductElement, index) => {
+                        if(selectableProductElement.product_name == tempArrElement.product_name){
+                            this.selectableProducts[index].is_deleted=1;
+                        }
+                    });
+                });
+                this.temp_arr = [];
+            }
+            
+            //get all selectable products from available
+            if(product_id){
+                let product_name = this.getItemName('product', product_id); 
+                
+                Globals.products_keywords.forEach(product_key => {     
+                    if(product_name.indexOf(product_key) !== -1){
+                        this.availableProducts.forEach((availableProductElement, index) => {
+                            if(availableProductElement.product_name.indexOf(product_key) !== -1){
+                                if(availableProductElement.is_deleted == 0 ){
+                                    this.temp_arr.push(this.availableProducts[index]);
+                                    this.selectableProducts[index].is_deleted = 0;
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+        }else if(mode == 'clientUpdatePurchaseAfterSubmit'){
+
+            if(product_id){
+                let product_name = this.getItemName('product', product_id); 
+                
+                //if product_id exists in previously selected products package
+                Globals.products_keywords.forEach(product_key => {     
+                    if(product_name.indexOf(product_key) !== -1){
+                        this.availableProducts.forEach((availableProductElement, index) => {
+                            if(availableProductElement.product_name.indexOf(product_key) !== -1){
+                                this.selectableProducts[index].is_deleted = 1;
+                            }
+                        });
+                    }
+                });
+            }
+            this.temp_arr = [];
+        }else{
+            //getting all the available products.. This stmt alone can be used in the freshly adding client scenario also
+            this.selectableProducts = JSON.parse(JSON.stringify(this.availableProducts));
+            this.temp_arr = [];
+        }
     }
 
     public toggleInvoiceFieldsValidator(form, status){
@@ -186,9 +306,12 @@ export class OrdersComponent implements OnInit {
 
             this.totalPurchases = [];
             this.newPurchases = [];
+            this.getSelectableProducts();
+
             this.addClientModal.show();
 
         }else if(modal=='updateClientModal'){
+
             this._updateClientFormSubmitted = false;
 
             this.totalPurchases = [];
@@ -205,25 +328,47 @@ export class OrdersComponent implements OnInit {
                 });
             });
 
+            this.getSelectableProducts();
+
             this.temp_brand = this.getItemName('brand',this._updateClientForm.value.brand_id);
             this.temp_client_number = this._updateClientForm.value.client_number;
 
             this.updateClientModal.show();
-            this.cdr.detectChanges();
         }else if(modal=='addPurchaseModal'){
+
+            if(this._updateClientForm.value.client_id){
+                this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
+            }else{
+                this.getSelectableProducts('', '', 'clientAddPurchase');
+            }
+
             this._addPurchaseFormSubmitted = false;
 
             this.addPurchaseModal.show();
 
         }else if(modal=='updatePurchaseModal'){
+
+            if(this._updateClientForm.value.client_id){
+                this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
+            }else{
+                this.getSelectableProducts('', '', 'clientAddPurchase');
+            }
+
             this._updatePurchaseFormSubmitted = false;
 
             this.temp_index = this.totalPurchases.indexOf(data);
             this.patchValue(this._updatePurchaseForm, data);
-            
-        this.cdr.detectChanges();
+
+            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
+            this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
+
+            if(this._updateClientForm.value.client_id){
+                this.getSelectableProducts('', this._updatePurchaseForm.value.product_id, 'clientUpdatePurchaseBeforeSubmit');
+            }else{
+                this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
+                this.getSelectableProducts('', this._updatePurchaseForm.value.product_id, 'clientUpdatePurchaseBeforeSubmit');
+            }
             this.updatePurchaseModal.show();
-            this.cdr.detectChanges();
         }
     }
 
@@ -240,20 +385,29 @@ export class OrdersComponent implements OnInit {
     public closeModal(modal)
     {
         if(modal=='addClientModal'){
-
-            this.addClientModal.hide();
-            this._resetFormValues(this._addClientForm);
+            if(this.askConfirm == true){       
+                this.tempModal = this.addClientModal;
+                this.closeConfirmationModal.show();
+                this.formToReset = this._addClientForm;
+            }else{
+                this.addClientModal.hide();
+                this._resetFormValues(this._addClientForm);
+            }
         }else if(modal=='updateClientModal'){
-
-            this.updateClientModal.hide();
-            this._resetFormValues(this._updateClientForm);
+            if(this.askConfirm == true){
+                this.tempModal = this.updateClientModal;
+                this.closeConfirmationModal.show();
+                this.formToReset = this._updateClientForm;
+            }else{
+                this.updateClientModal.hide();
+                this._resetFormValues(this._updateClientForm);
+            }
 
         }else if(modal=='addPurchaseModal'){
             this.addPurchaseModal.hide();
             this._resetFormValues(this._addPurchaseForm);
 
         }else if(modal=='updatePurchaseModal'){
-
             this.updatePurchaseModal.hide();
             this._resetFormValues(this._updatePurchaseForm);
         }
@@ -261,7 +415,9 @@ export class OrdersComponent implements OnInit {
     }
 
     public getItemName(item_type, item_value){
+        
         if(item_type == 'product'){
+
             for (var i = 0; i < this.availableProducts.length; i++) {
                 if(this.availableProducts[i].product_id == item_value){
                     return this.availableProducts[i].product_name;
@@ -288,7 +444,7 @@ export class OrdersComponent implements OnInit {
             
             let data = {
                 "Clients": this._addClientForm.value,
-                "purchases": this.newPurchases
+                "purchases": this.totalPurchases
             };
 
             this._addClientFormSubmitted = true;
@@ -297,6 +453,7 @@ export class OrdersComponent implements OnInit {
                 result => {
                     if (result.success) {
                         this.orders = this.getOrders();
+                        this.askConfirm = false;
                         this.closeModal('addClientModal');
                         this.toastrService.success('Client and Purchases Added Succesfully.');
                     } else {
@@ -326,11 +483,9 @@ export class OrdersComponent implements OnInit {
             
             let allPurchases = [];
             if(this.newPurchases.length > 0){
-                //allPurchases.push(this.newPurchases);
                 allPurchases = this.newPurchases;
             }
             if(this.updatePurchases.length > 0){
-                //allPurchases.push(this.updatePurchases);
                 allPurchases = allPurchases.concat(this.updatePurchases);
             }
             
@@ -347,6 +502,7 @@ export class OrdersComponent implements OnInit {
                 result => {
                     if (result.success) {                        
                         this.orders = this.getOrders();
+                        this.askConfirm = false;
                         this.closeModal('updateClientModal');
                         this.toastrService.success('Client updated Succesfully.');
                     } else {
@@ -368,6 +524,7 @@ export class OrdersComponent implements OnInit {
                 });
 
         }else if(form==this._addPurchaseForm){
+
             //removing spl chars from purchaser mobile
              form.value.purchaser_mobile = form.value.purchaser_mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
 
@@ -383,6 +540,8 @@ export class OrdersComponent implements OnInit {
                     
                     this.newPurchases.push(form.value);
                     this.totalPurchases.push(form.value);
+
+                    this.getSelectableProducts('', form.value.product_id, 'clientAddPurchase');
 
                     this.closeModal('addPurchaseModal');
                     
@@ -404,7 +563,10 @@ export class OrdersComponent implements OnInit {
                 }
             });
 
+            this.askConfirm = true;
+
         }else if(form==this._updatePurchaseForm){
+            
             this.updatePurchases = [];
             //removing spl chars from purchaser mobile
             form.value.purchaser_mobile = form.value.purchaser_mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
@@ -416,23 +578,42 @@ export class OrdersComponent implements OnInit {
             this.temp_index = -1;
 
             this.updatePurchases.push(form.value);
+            
+            this.getSelectableProducts('', form.value.product_id, 'clientUpdatePurchaseAfterSubmit');
+
             this.closeModal('updatePurchaseModal');
+            this.askConfirm = true;
 
         }
     }
 
     public onBrandChange(form, value){
         if(form == this._addClientForm){
-            if(value && value.hasOwnProperty('brand_name')){
-            this.temp_brand = value.brand_name;
-
-            this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+            if(value){
+                if(value.hasOwnProperty('brand_name')){
+                    this.temp_brand = value.brand_name;
+        
+                    this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+                    }else{
+        
+                        this.temp_brand = this.getItemName('brand', value);
+        
+                        if(this.temp_brand !== 'NA'){
+                            this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+                        }else{
+                            this.temp_client_number = '';
+                            this.temp_brand = '';
+                        }
+                    }
             }else{
                 this.temp_client_number = '';
                 this.temp_brand = '';
             }
-        }else if(form == this._updateClientForm){
             
+
+
+
+        }else if(form == this._updateClientForm){
             if(value && value.hasOwnProperty('brand_name')){
                 this.temp_brand = value.brand_name;
                 }else{
@@ -460,7 +641,7 @@ export class OrdersComponent implements OnInit {
         }  
     }
 
-    public onValueChanged(form, formErrors, data?: any) {                       
+    public onValueChanged(form, formErrors, data?: any) {                   
         this._errorMessage = '';
 
         if (form) {
@@ -618,7 +799,8 @@ export class OrdersComponent implements OnInit {
             'required': 'Product ID is required.'
         },
         'total_no_eins': {
-            'required': 'Total No. of EIN\'s is required.'
+            'required': 'Total No. of EIN\'s is required.',
+            'min': 'Min value can\'t be less than already provided value'
         },
         'total_no_forms': {
             'required': 'Total No. of Form\'s is required.'
@@ -664,4 +846,12 @@ export class OrdersComponent implements OnInit {
             'required': 'Invoice Paid is required.'
         }
     };
+
+    /*To close a modal with confirmation*/    
+    public okClose() {
+        this.tempModal.hide();
+        this.closeConfirmationModal.hide();
+        this._resetFormValues(this.formToReset);
+        this.tempModal = '';
+    }
 }
