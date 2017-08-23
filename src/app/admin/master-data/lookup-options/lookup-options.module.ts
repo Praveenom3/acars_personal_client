@@ -10,6 +10,7 @@ import { DataTableModule } from "angular2-datatable";
 import { LookupOptionsService } from "app/_services/_lookup-options.service";
 import { LookupFilterPipe } from "app/_filters/lookup-filter.pipe";
 import { PartialViews } from "app/_partial-views/partial-views.module";
+import { SharedModule } from "app/_shared/shared.module";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
      FormsModule,
      DataTableModule,
      ReactiveFormsModule,
-     PartialViews
+     PartialViews,
+     SharedModule
   ],
   declarations: [LookupOptionsComponent,LookupFilterPipe],
   providers:[LookupOptionsService]
