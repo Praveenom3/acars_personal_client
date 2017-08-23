@@ -14,6 +14,7 @@ import * as Globals from 'app/_shared/_globals';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+    hasFinancialRights: boolean = false;
     formToReset: any;
     askConfirm:boolean = false;
     tempModal: any;
@@ -140,7 +141,21 @@ export class OrdersComponent implements OnInit {
    
     }
 
-    ngOnInit() {        
+    ngOnInit() {
+        //checking if the user has the financial rights
+        for (var key in Globals.admin_permissions) {
+            if (Globals.admin_permissions.hasOwnProperty(key)) {
+                if(Globals.admin_permissions[key] == 'Financials'){
+                    let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
+                    admin_permissions.forEach(element => {
+                        if(element == key){
+                            this.hasFinancialRights = true;
+                        }
+                    });
+                }
+            }
+        }
+
         this.orders = this.getOrders();
         this._resetFormErrors();
     }
