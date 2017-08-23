@@ -444,7 +444,7 @@
                                 <select class="form-control" [formControl]="_addPurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._addPurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
                                     <ng-container *ngFor="let sp of selectableProducts">
-                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_name}}</option>
+                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
                                 
@@ -686,10 +686,10 @@
                                 <label class="form-control-label">Product</label>
                                 <select class="form-control" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
-                                    <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_name}}</option> -->
+                                    <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_full_name}}</option> -->
                                     
                                     <ng-container *ngFor="let sp of selectableProducts">
-                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_name}}</option>
+                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
                                 
