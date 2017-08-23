@@ -9,7 +9,7 @@
                 <p class="gray-text">Will you be the billing contact for this purchase?</p>
             </div>
             <div class="padding-15" align="center">
-                <a [routerLink]="['/client/setup/contract-signor']" class="btn btn-primary btn-blue">Yes</a>
+                <a [routerLink]="" (click)="setBillingContract()" class="btn btn-primary btn-blue">Yes</a>
                 <a (click)="setup()" class="btn btn-default">No</a>
             </div>
         </div>
@@ -32,14 +32,16 @@
                         <div class="col-md-4 ">
                             <label class="form-control-label ">First Name <span  class="red">*</span></label>
                             <div class="form-group field-adminusers-first_name ">
-                                <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] " onkeypress="return username(event); " type="text ">
+                                <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] "
+                                    onkeypress="return username(event); " type="text ">
                                 <div class="help-block "></div>
                             </div>
                         </div>
                         <div class="col-md-4 ">
                             <label class="form-control-label ">Last Name <span  class="red">*</span></label>
                             <div class="form-group field-adminusers-last_name ">
-                                <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] " type="text ">
+                                <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] "
+                                    type="text ">
                                 <div class="help-block "></div>
                             </div>
                         </div>
@@ -54,14 +56,16 @@
                         <div class="col-md-4 ">
                             <label class="form-control-label ">Phone <span  class="red">*</span></label>
                             <div class="form-group field-adminusers-phone ">
-                                <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] " placeholder="(___) ___-____ " type="text ">
+                                <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] "
+                                    placeholder="(___) ___-____ " type="text ">
                                 <div class="help-block "></div>
                             </div>
                         </div>
                         <div class="col-md-4 ">
                             <label class="form-control-label ">Extension <span  class="red">*</span></label>
                             <div class="form-group field-adminusers-extension ">
-                                <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text " value=" ">
+                                <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text "
+                                    value=" ">
                                 <div class="help-block "></div>
                             </div>
                         </div>
@@ -69,7 +73,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-modal-blue" [routerLink]="['/client/setup/contract-signor']"> Save</a>
+                <a class="btn btn-modal-blue" (click)="setBillingContract()"> Save</a>
                 <a class="btn btn-default" (click)="close()">Cancel</a>
             </div>
         </div>

@@ -59,11 +59,11 @@ export class MasterDataComponent implements OnInit {
         private brandsService: BrandsService,
         private toastrService: ToastrService,
         private http: Http) {
-    
+
 
 
         this._addBrandForm = _formBuilder.group({
-            brand_name: ['', Validators.compose([Validators.required,Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+            brand_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
             support_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             support_phone: ['', Validators.compose([Validators.required])],
             terms_conditions_url: ['', Validators.compose([Validators.required])],
@@ -86,7 +86,7 @@ export class MasterDataComponent implements OnInit {
     public validationMessages = {
         'brand_name': {
             'required': 'Brand is required.',
-            'pattern':'No special characters are allowed.'
+            'pattern': 'No special characters are allowed.'
         },
         'support_email': {
             'required': 'Support Email is required.',
@@ -172,13 +172,14 @@ export class MasterDataComponent implements OnInit {
                 },
                 error => {
                     this._errorMessage = error.data;
+                    this.toastrService.error(error.data.message);
                 });
         }
     }
 
     /*updating brand*/
     public updateBrand(brand: Brands) {
-        
+
         this.brandSelected = Object.assign({}, brand);
         this.base64textString = '';
         this._submitted = false;
@@ -187,12 +188,11 @@ export class MasterDataComponent implements OnInit {
         this.BrandsModal.show();
     }
 
-public closeModal()
-{
+    public closeModal() {
         this._addBrandForm.reset();
         this._resetFormErrors();
         this.BrandsModal.hide();
-}
+    }
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
         this._submitted = true;
@@ -231,7 +231,7 @@ public closeModal()
                 result => {
                     if (result.success) {
                         this.brandsList();
-                         this.closeModal();
+                        this.closeModal();
                         this.toastrService.success('Brand Added Succesfully.');
                     } else {
                         this._errorMessage = 'Record not added.';

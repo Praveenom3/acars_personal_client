@@ -89,7 +89,8 @@
         </ul>
     </div>
 
-    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile" id="profile_details">
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile"
+        id="profile_details">
         <div class="menu-user-block col-md-12">
             <div class="dropdown dropdown-avatar pull-right">
                 <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false"> <span class="header-name media-hide-profilename"><span class="font-14">Welcome</span> Alex<span class="font-14"></span></span>
@@ -120,19 +121,18 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
                 <div class="nav-tabs-horizontal">
                     <ul class="nav nav-tabs border-bottom display-inblock" role="tablist">
-                       
-                        <li *ngIf = "vhtStatus" class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap " [ngClass]="vht" (click)="changeStyle('vht')" [routerLink]="['/client/vht']">Variable Hour Tracking</a>
+                        <li *ngIf="vhtStatus" class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " [ngClass]='dashBoardService.vht' (click)="setInformation(productsData.vht)"
+                                [routerLink]="productsData.vht">Variable Hour Tracking</a>
                         </li>
-                        
-                        <li *ngIf = "aca16Status"class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap " [ngClass]="aca16" (click)="changeStyle('aca16')" [routerLink]="['/client/aca16/companies']">2016 ACA Reporting</a>
+                        <li *ngIf="aca16Status" class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " [ngClass]='dashBoardService.aca16' (click)="setInformation(productsData.aca16)"
+                                [routerLink]='productsData.aca16'>2016 ACA Reporting</a>
                         </li>
-
-                        <li *ngIf = "aca17Status" class="nav-item hover">
-                            <a class="nav-link plan-link color-white dropdown-icon-li no-wrap " [ngClass]="aca17" (click)="changeStyle('aca17')" [routerLink]="['/client/aca17/companies']">2017 ACA Reporting</a>
+                        <li *ngIf="aca17Status" class="nav-item hover">
+                            <a class="nav-link plan-link color-white dropdown-icon-li no-wrap " [ngClass]='dashBoardService.aca17' (click)="setInformation(productsData.aca17)"
+                                [routerLink]="productsData.aca17">2017 ACA Reporting</a>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
@@ -143,7 +143,8 @@
 
 <!-- change password modal -->
 
-<div class="modal fade" id="change_password_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="change_password_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -170,7 +171,7 @@
                     </div>
                     <div class="col-sm-8">
 
-                        <input type="password" class="form-control add-member-input" placeholder="Current Password.." id="current-password" name="oldpass"> <span class="error-msg red" id="current-password-error"></span>
+                        <input type="password" class="form-control add-member-input" placeholder="Current Password.." id="current-password" name="oldpass">                        <span class="error-msg red" id="current-password-error"></span>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
@@ -178,7 +179,7 @@
                         <label class="add-member-label">New Password:<span class="red">*</span></label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control add-member-input" placeholder="New Password.." id="new-password" name="newpass"> <span class="error-msg red" id="new-password-error"></span>
+                        <input type="password" class="form-control add-member-input" placeholder="New Password.." id="new-password" name="newpass">                        <span class="error-msg red" id="new-password-error"></span>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
@@ -186,8 +187,7 @@
                         <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control add-member-input" placeholder="Confirm Password.." id="new-confirm-password" name="repeatnewpass"> <span class="error-msg red" id="confirm-password-error"></span> <label class="error-msg"
-                            id="display-password-error"></label>
+                        <input type="password" class="form-control add-member-input" placeholder="Confirm Password.." id="new-confirm-password" name="repeatnewpass">                        <span class="error-msg red" id="confirm-password-error"></span> <label class="error-msg" id="display-password-error"></label>
                     </div>
                 </div>
 

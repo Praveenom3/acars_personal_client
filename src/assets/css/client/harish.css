@@ -153,6 +153,7 @@ app-client-layout .section-container .left-small-box p {
     padding: 3px;
     text-align: center;
     color: white;
+    font-size: 12px;
 }
 
 .gray-text {
@@ -239,7 +240,8 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .comp-dash-divs {
-    min-height: 258px;
+    height: 258px;
+    overflow-x: auto;
 }
 
 .status-btn {

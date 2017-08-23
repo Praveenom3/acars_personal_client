@@ -12,7 +12,13 @@ export class GlobalService {
     public apiHost: string;
     public apiRoot: string;
     public setting: any = {};
-
+    public years = ["2016", "2017"];
+    public productTypes: any[] = [
+        { id: 1, service: 'Full Service' },
+        { id: 2, service: 'Self Service' },
+        { id: 3, service: 'Enhanced' }
+    ];
+    public globalVariable = 'sssss';
     constructor() {
         if (environment.production == true) {
             this.apiHost = 'http://acars.localhost/v1';

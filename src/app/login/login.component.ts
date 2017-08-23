@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
     private _errorMessage: string = '';
     private _errorMessageForgotPwd: string = '';
 
+    public maxApplicableYear: number = 0;
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -202,7 +204,7 @@ export class LoginComponent implements OnInit {
                         if (result.data.user_type == 1 || result.data.user_type == 2) {
                             this.router.navigate(['/admin/dashboard']);
                         } else if (result.data.user_type == 3 || result.data.user_type == 4) {
-                            this.navigateUser();
+                            this.navigateUser(result.data.user_type);
                         }
                     }
                 } else {
@@ -265,27 +267,27 @@ export class LoginComponent implements OnInit {
     /**
      * Redirecting User
      */
-    navigateUser() {
-        let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
-        let productIds: any[] = (products) ? Object.keys(products) : [];
-        let maxProductId: any = productIds.reduce(function (previous, current) {
-            return previous > current ? previous : current;
-        });
-        let navigateProduct:string;
-        switch(maxProductId)
-        {
-            case '1':
-                navigateProduct = 'aca16';
-                break;
-            case '2':
-                navigateProduct = 'aca17';
-                break;
-            case '2':
-                navigateProduct = 'vht';
-                break;
-        }
-        //   this.router.navigate(['/client/dashboard']);  
-         this.router.navigate(['/client/'+navigateProduct+'/companies']);
-    }
+    navigateUser(userType) {
 
+        let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+        let productsList = Object.keys(products).map(function (key) {
+            return products[key]
+        })
+        let product;
+        productsList.forEach(element => {
+            if (element.applicableYear > this.maxApplicableYear) {
+                this.maxApplicableYear = element.applicableYear
+                product = element;
+            }
+        });
+
+        let clientKeys: any[] = Object.keys(product.clients);
+        let client = clientKeys[0];
+        let clientInfo = product['clients'][client];
+        let clientId: number = clientInfo['client_id'];
+        let clientName: string = clientInfo['client_name'];
+        clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
+        let productName: string = product.productName.toLocaleLowerCase().replace(/\s+/g, "-");
+        this.router.navigate(['/client/' + clientId + '-' + clientName + '/' + product.productId + '-' + productName + '-' + product.applicableYear + '/companies']);
+    }
 }

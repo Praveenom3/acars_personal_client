@@ -46,7 +46,9 @@ export class AdminLayoutComponent implements OnInit {
 
         this.useremail = localStorage.getItem('useremail');
         this.userFirstName = localStorage.getItem('firstName');
+        this.userFirstName = (this.userFirstName === 'undefined') ? '' : this.userFirstName;
         this.userLastName = localStorage.getItem('lastName');
+        this.userLastName = (this.userLastName != 'undefined') ? this.userLastName : '';
 
         this.chngPwdForm = this.formBuilder.group({
             'currentPassword': ['', Validators.required],
