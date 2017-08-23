@@ -18,14 +18,14 @@ export class GlobalService {
         { id: 2, service: 'Self Service' },
         { id: 3, service: 'Enhanced' }
     ];
-    public globalVariable = 'sssss';
+   
     constructor() {
         if (environment.production == true) {
-            this.apiHost = 'http://acars.localhost/v1';
-            this.apiRoot = 'http://acars.localhost/v1';
+            this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
+            this.apiRoot = 'http://services.acadev.acareportingsoftware.com/';
         } else {
-            this.apiHost = 'http://acars.localhost/v1';
-            this.apiRoot = 'http://acars.localhost/v1';
+            this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
+            this.apiRoot = 'http://services.acadev.acareportingsoftware.com/';
         }
     }
 
