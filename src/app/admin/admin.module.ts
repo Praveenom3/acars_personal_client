@@ -52,7 +52,7 @@ import { inputFilterDirective } from "app/_directives/input-filter.directive";
     AdminUsersComponent, ProcessingComponent, 
     ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent,
     SearchComponent, SearchResultsComponent, ActivityLogComponent, 
-    ErrorLogComponent, inputFilterDirective
+    ErrorLogComponent
   ],
   providers: [ErrorLogService, AdminUserService]
 
