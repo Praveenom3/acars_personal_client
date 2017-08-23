@@ -118,7 +118,7 @@
                                     <label class="form-control-label" for="l0">Lookup Name *</label>
                                 </div>
                                 <div class="col-md-6 form-group required" [formGroup]="tempLookupNameGroup">
-                                    <input type="text" class="form-control" formControlName="lookup_name">
+                                    <input type="text" class="form-control" inputFilter="true" formControlName="lookup_name">
                                     <p *ngIf="tempLookupNameGroup.controls.lookup_name.errors?.required && tempLookupNameGroup.controls.lookup_name.touched" style="color:red;">Lookup Name is required</p>
                                 </div>
                                 <div class="col-md-6">
@@ -136,7 +136,7 @@
                                 <label class="form-control-label">Options *</label>
                             </div>
                             <div class="col-md-6 form-group required" [ngClass]="{'has-danger': !_isValid('lookup_option')}">
-                                <input type="text" class="form-control" [formControl]="_lookupNameForm.controls['lookup_option']" [(ngModel)]="lookupSelected.lookup_option" [ngClass]="{'form-control-danger': !_isValid('lookup_option')}">
+                                <input type="text" class="form-control"  inputFilter="true" [formControl]="_lookupNameForm.controls['lookup_option']" [(ngModel)]="lookupSelected.lookup_option" [ngClass]="{'form-control-danger': !_isValid('lookup_option')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.lookup_option.valid">{{_formErrors.lookup_option.message}}</span>
                             </div>
                         </div>
