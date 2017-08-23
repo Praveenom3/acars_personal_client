@@ -51,6 +51,8 @@ export class AuthenticationService {
                     localStorage.setItem('firstName', response.data.firstName);
                     localStorage.setItem('lastName', response.data.lastName);
                     localStorage.setItem('clientsAndCompanies', JSON.stringify(response.data.clientsAndCompanies));
+                    localStorage.setItem('admin_permissions', JSON.stringify(response.data.admin_permissions));
+                    localStorage.setItem('client_permissions', JSON.stringify(response.data.client_permissions));
                     this.loggedIn = true;
 
                     if (rememberMe == 1) {
@@ -187,7 +189,14 @@ export class AuthenticationService {
         localStorage.removeItem('authtoken');
         localStorage.removeItem('usertype');
         localStorage.removeItem('clientsAndCompanies');
+        localStorage.removeItem('useremail');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
+        localStorage.removeItem('admin_permissions');
+        localStorage.removeItem('client_permissions');
     }
+
     public getToken(): any {
         return localStorage.getItem('authtoken');
     }
