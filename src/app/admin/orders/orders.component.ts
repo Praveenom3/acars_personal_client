@@ -189,12 +189,12 @@ export class OrdersComponent implements OnInit {
                 this.clientsTableData.forEach(clientElement => {
                     if(clientElement.client_id == client_id){
                         clientElement.clientPurchases.forEach(purchaseElement => {
-                            let product_name = this.getItemName('product', purchaseElement.product_id);
+                            let product_full_name = this.getItemName('product', purchaseElement.product_id);
                             
                             this.selectableProducts.forEach((selectableProductElement, index) => {
                                 Globals.products_keywords.forEach(product_key => {
-                                    if(product_name.indexOf(product_key) !== -1){
-                                        if(selectableProductElement.product_name.indexOf(product_key) !== -1){
+                                    if(product_full_name.indexOf(product_key) !== -1){
+                                        if(selectableProductElement.product_full_name.indexOf(product_key) !== -1){
                                             this.selectableProducts[index].is_deleted=1;
                                         }
                                     }
@@ -209,7 +209,7 @@ export class OrdersComponent implements OnInit {
             if(this.temp_arr){
                 this.temp_arr.forEach(tempArrElement => {
                     this.selectableProducts.forEach((selectableProductElement, index) => {
-                        if(selectableProductElement.product_name == tempArrElement.product_name){
+                        if(selectableProductElement.product_full_name == tempArrElement.product_full_name){
                             this.selectableProducts[index].is_deleted=1;
                         }
                     });
@@ -219,12 +219,12 @@ export class OrdersComponent implements OnInit {
 
             //after submit
             if(product_id){
-                let product_name = this.getItemName('product', product_id); 
+                let product_full_name = this.getItemName('product', product_id); 
     
                 this.selectableProducts.forEach((selectableProductElement, index) => {
                     Globals.products_keywords.forEach(product_key => {                    
-                        if(product_name.indexOf(product_key) !== -1){
-                            if(selectableProductElement.product_name.indexOf(product_key) !== -1){
+                        if(product_full_name.indexOf(product_key) !== -1){
+                            if(selectableProductElement.product_full_name.indexOf(product_key) !== -1){
                                 this.selectableProducts[index].is_deleted=1;
                             }
                         }
@@ -238,7 +238,7 @@ export class OrdersComponent implements OnInit {
             if(this.temp_arr){
                 this.temp_arr.forEach(tempArrElement => {
                     this.selectableProducts.forEach((selectableProductElement, index) => {
-                        if(selectableProductElement.product_name == tempArrElement.product_name){
+                        if(selectableProductElement.product_full_name == tempArrElement.product_full_name){
                             this.selectableProducts[index].is_deleted=1;
                         }
                     });
@@ -248,12 +248,12 @@ export class OrdersComponent implements OnInit {
             
             //get all selectable products from available
             if(product_id){
-                let product_name = this.getItemName('product', product_id); 
+                let product_full_name = this.getItemName('product', product_id); 
                 
                 Globals.products_keywords.forEach(product_key => {     
-                    if(product_name.indexOf(product_key) !== -1){
+                    if(product_full_name.indexOf(product_key) !== -1){
                         this.availableProducts.forEach((availableProductElement, index) => {
-                            if(availableProductElement.product_name.indexOf(product_key) !== -1){
+                            if(availableProductElement.product_full_name.indexOf(product_key) !== -1){
                                 if(availableProductElement.is_deleted == 0 ){
                                     this.temp_arr.push(this.availableProducts[index]);
                                     this.selectableProducts[index].is_deleted = 0;
@@ -267,13 +267,13 @@ export class OrdersComponent implements OnInit {
         }else if(mode == 'clientUpdatePurchaseAfterSubmit'){
 
             if(product_id){
-                let product_name = this.getItemName('product', product_id); 
+                let product_full_name = this.getItemName('product', product_id); 
                 
                 //if product_id exists in previously selected products package
                 Globals.products_keywords.forEach(product_key => {     
-                    if(product_name.indexOf(product_key) !== -1){
+                    if(product_full_name.indexOf(product_key) !== -1){
                         this.availableProducts.forEach((availableProductElement, index) => {
-                            if(availableProductElement.product_name.indexOf(product_key) !== -1){
+                            if(availableProductElement.product_full_name.indexOf(product_key) !== -1){
                                 this.selectableProducts[index].is_deleted = 1;
                             }
                         });
@@ -435,7 +435,7 @@ export class OrdersComponent implements OnInit {
 
             for (var i = 0; i < this.availableProducts.length; i++) {
                 if(this.availableProducts[i].product_id == item_value){
-                    return this.availableProducts[i].product_name;
+                    return this.availableProducts[i].product_full_name;
                 }
             }
         }else if(item_type == 'brand'){
@@ -625,9 +625,6 @@ export class OrdersComponent implements OnInit {
                 this.temp_brand = '';
             }
             
-
-
-
         }else if(form == this._updateClientForm){
             if(value && value.hasOwnProperty('brand_name')){
                 this.temp_brand = value.brand_name;
@@ -648,11 +645,11 @@ export class OrdersComponent implements OnInit {
         }
 
         if(this.show_account_manager == 1){
-            form.controls['is_invoice_paid'].setValidators(Validators.compose([Validators.required]));
-            form.controls['invoice_no'].updateValueAndValidity();
+            form.controls['account_manager'].setValidators(Validators.compose([Validators.required]));
+            form.controls['account_manager'].updateValueAndValidity();
         }else{
-            form.controls['is_invoice_paid'].setValidators(null);
-            form.controls['invoice_no'].updateValueAndValidity();
+            form.controls['account_manager'].setValidators(null);
+            form.controls['account_manager'].updateValueAndValidity();
         }  
     }
 
