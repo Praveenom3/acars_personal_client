@@ -14,7 +14,7 @@ export class inputFilterDirective {
     
     let e = <KeyboardEvent>event;
     if (this.inputFilter) {
-      if (!e.key.match(/^([a-zA-Z0-9 @-,.&]+)$/) && e.key !="Backspace") {
+      if (!e.key.match(/^([a-zA-Z0-9 ,.&@-]+)$/) && e.key !="Backspace") {
         e.preventDefault();
       }
     }

@@ -132,7 +132,7 @@
                         <div class="col-md-6">
                             <label class="form-control-label">Product Name <span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('product_name')}">
-                                <input type="text" class="form-control" [formControl]="_productForm.controls['product_name']" [(ngModel)]="productSelected.product_name"
+                                <input type="text" inputFilter="true" class="form-control" [formControl]="_productForm.controls['product_name']" [(ngModel)]="productSelected.product_name"
                                     [ngClass]="{'form-control-danger': !_isValid('product_name')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.product_name.valid">{{_formErrors.product_name.message}}</span>
                             </div>
@@ -140,7 +140,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <label class="form-control-label">Product Type </label>
+                            <label class="form-control-label">Product Type <span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('product_type')}">
                                 <select class="form-control" [formControl]="_productForm.controls['product_type']" [(ngModel)]="productSelected.product_type"
                                     [ngClass]="{'form-control-danger': !_isValid('product_type')}">

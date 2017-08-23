@@ -14,6 +14,8 @@ import { ManageBrandsRoutingModule } from './manage-brands-routing.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { PartialViews } from "app/_partial-views/partial-views.module";
 
+import { SharedModule } from "app/_shared/shared.module";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
      ModalModule.forRoot(),
      DataTableModule,
      TextMaskModule,
-     PartialViews
+     PartialViews,
+	 SharedModule
   ],
   declarations: [BrandsFilterPipe,MasterDataComponent],
   providers: [ BrandsService ],

@@ -122,7 +122,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('line_14')}">
-                                        <label class="form-control-label" for="l0">Line 14</label>
+                                        <label class="form-control-label" for="l0">Line 14  <span class="red">*</span></label>
                                         <select class="form-control" [formControl]="_codeForm.controls['line_14']" [(ngModel)]="codeSelected.line_14" [ngClass]="{'form-control-danger': !_isValid('line_14')}">
                                             <option  disabled [value]="null">Select</option>
                                                <option *ngFor="let lin14option of line14Options" [value]="lin14option.lookup_option_id">{{lin14option.lookup_option}}</option>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class=" form-group" [ngClass]="{'has-danger': !_isValid('line_16')}">
-                                        <label class="form-control-label" for="l0">Line 16</label>
+                                        <label class="form-control-label" for="l0">Line 16  <span class="red">*</span></label>
                                         <select class="form-control" [formControl]="_codeForm.controls['line_16']" [(ngModel)]="codeSelected.line_16" [ngClass]="{'form-control-danger': !_isValid('line_16')}">
                                             <option  disabled [value]="null">Select</option>
                                               <option *ngFor="let lin16option of line16Options" [value]="lin16option.lookup_option_id">{{lin16option.lookup_option}}</option>
@@ -144,14 +144,14 @@
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('code_combination')}">
-                                        <label class="form-control-label" for="l0">Code Combination</label>
+                                        <label class="form-control-label" for="l0">Code Combination  <span class="red">*</span></label>
                                         <textarea class="form-control" [formControl]="_codeForm.controls['code_combination']" [(ngModel)]="codeSelected.code_combination" [ngClass]="{'form-control-danger': !_isValid('code_combination')}" maxlength="250"></textarea>
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.code_combination.valid">{{_formErrors.code_combination.message}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('employers_organizations')}">
-                                        <label class="form-control-label" for="l0">Meaning to Employers</label>
+                                        <label class="form-control-label" for="l0">Meaning to Employers  <span class="red">*</span></label>
                                         <textarea class="form-control" [formControl]="_codeForm.controls['employers_organizations']" [(ngModel)]="codeSelected.employers_organizations" [ngClass]="{'form-control-danger': !_isValid('employers_organizations')}" maxlength="250"></textarea>
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.employers_organizations.valid">{{_formErrors.employers_organizations.message}}</span>
                                     </div>
@@ -160,7 +160,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div class=" form-group " [ngClass]="{'has-danger': !_isValid('individuals_families')}">
-                                        <label class="form-control-label" for="l0">Meaning to Individuals and Families</label>
+                                        <label class="form-control-label" for="l0">Meaning to Individuals and Families  <span class="red">*</span></label>
                                         <textarea class="form-control" [formControl]="_codeForm.controls['individuals_families']" [(ngModel)]="codeSelected.individuals_families" [ngClass]="{'form-control-danger': !_isValid('individuals_families')}" maxlength="250"></textarea>
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.individuals_families.valid">{{_formErrors.individuals_families.message}}</span>
                                     </div>
