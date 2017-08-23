@@ -78,7 +78,7 @@
                                         {{sections[(element.section_id)-1]['section']}}
                                     </td>
                                     <td style="width: 50%;">
-                                        <input type="text" class="form-control" #model="ngModel" [(ngModel)]="element.element_label" style="width: 93%;" required>
+                                        <input type="text" inputFilter="true" class="form-control" #model="ngModel" [(ngModel)]="element.element_label" style="width: 93%;" required>
                                         <div *ngIf="model.invalid" style="color: red">Required</div>
                                     </td>
                                     <td style="text-align: center;"><button [disabled]="!model.valid" [ngClass]="!model.valid ?'disabled-btn' : ''" (click)="updateProduct(element)" class="updateBtn"><i class="fa fa-floppy-o"></i></button></td>
