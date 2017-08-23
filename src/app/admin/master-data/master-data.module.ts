@@ -18,6 +18,7 @@ import { PartialViews } from "app/_partial-views/partial-views.module";
 import { DataTableModule } from "angular2-datatable";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import {SettingsService} from "app/_services/_setting.service";
+import { SharedModule } from "app/_shared/shared.module";
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {SettingsService} from "app/_services/_setting.service";
       ReactiveFormsModule,
       DataTableModule,
       FormsModule,
-      PartialViews
+      PartialViews,
+      SharedModule
   ],
   declarations: [AccountSettingsComponent, ElementMasterComponent, VideosComponent, FormPricingComponent, ErrorMasterComponent, EmailTemplatesComponent,],  
   providers: [ ValidationService,EmailTemplatesService, ElementMasterService , SettingsService],
