@@ -37,18 +37,16 @@ export class ProductsComponent implements OnInit {
 
     public _productForm: FormGroup;
 
-    private years = ["2016", "2017"];
-    public productTypes: any[] = [
-        { id: 1, service: 'Full Service' },
-        { id: 2, service: 'Self Service' },
-        { id: 3, service: 'Enhanced' }
-    ];
+    public years = [];
+    public productTypes: any[] = [];
 
     constructor(private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private productsService: ProductsService,
         private toastrService: ToastrService,
         private _http: Http) {
+        this.productTypes = this._globalService.productTypes;
+        this.years = this._globalService.years;
         this._productForm = _formBuilder.group({
             product_name: ['', Validators.compose([Validators.required])],
             applicable_year: ['', Validators.compose([Validators.required])],
@@ -65,6 +63,7 @@ export class ProductsComponent implements OnInit {
         this.getProducts();
         this.productSelected = this.createNewProduct();
         this._resetFormErrors();
+
     }
 
     public validationMessages = {
@@ -149,6 +148,7 @@ export class ProductsComponent implements OnInit {
             },
             error => {
                 this._errorMessage = error.data;
+                this.toastrService.error(error.data.message);
             });
 
     }

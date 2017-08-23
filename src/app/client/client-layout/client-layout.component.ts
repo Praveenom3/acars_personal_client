@@ -1,62 +1,86 @@
 import { Component, OnInit } from '@angular/core';
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
-import {RouterStateSnapshot} from '@angular/router';
+import { RouterStateSnapshot } from '@angular/router';
+import { LoginComponent } from "../../login/login.component";
+import { Router, ActivatedRoute, Params } from "@angular/router";
+import { CompaniesComponent } from "../../client/companies/companies.component";
+import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
+
 @Component({
   selector: 'app-client-layout',
   templateUrl: './client-layout.component.html',
 })
 export class ClientLayoutComponent implements OnInit {
 
-  vht: string = '';
-  aca16: string = '';
-  aca17: string = '';
+  public product: any;
+  public productsData: any[] = [];
 
+  public vhtStatus: boolean = false;
   public aca16Status: boolean = false;
   public aca17Status: boolean = false;
-  public vhtStatus: boolean = false;
 
-  constructor(private _idleTimeout: IdleTimeoutService) {
+
+  constructor(private router: Router,
+    route: ActivatedRoute,
+    private _idleTimeout: IdleTimeoutService,
+    public dashBoardService: ClientDashBoardService,
+  ) {
     _idleTimeout.init();
-    this._setClientProducts();
+    this.displayClientProducts();
   }
 
   ngOnInit() {
+
   }
 
-  changeStyle(arg) {
+  setInformation(url = '') {
+    this.dashBoardService.splitUrl = url;
+    this.dashBoardService.setInformation()
+  }
 
-      this.vht = '';
-      this.aca16 = '';
-      this.aca17 = '';
-      switch(arg){
-        case 'aca16' :
-          this.aca16 = 'active';
-          break;
-        case 'aca17' :
-          this.aca17 = 'active';
-          break;
-        case 'vht' :
-          this.vht = 'active';
-          break;
+  displayClientProducts() {
+
+    let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+    let clientObject: ClientLayoutComponent = this;
+
+    let productsList = Object.keys(products).map(function (key) {
+      return products[key]
+    })
+    let maxYear = 0;
+    let selectedProduct;
+
+    productsList.forEach(element => {
+      let currentValue = element.applicableYear;
+      if (currentValue > maxYear) {
+        maxYear = currentValue;
       }
-  }
-  /**
-   *  Setting product status to diplay the products in the view page
-   */
-  private _setClientProducts() {
-    let data = JSON.parse(localStorage.getItem('clientsAndCompanies'));
-    let products:any[] = Object.keys(data);
-    let clientObject:ClientLayoutComponent = this;
-    products.forEach(function (currentValue) {
+      let productInfo = {};
+
+      let clientKeys: any[] = Object.keys(element.clients);
+      let client = clientKeys[0];
+      let clientId: number = element['clients'][client]['client_id'];
+      let clientName: string = element['clients'][client]['client_name'];
+      clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
+      let productName: string = element.productName.toLocaleLowerCase().replace(/\s+/g, "-");
+      let productUrl: string = '/client/' + clientId + '-' + clientName + '/' + element.productId + '-' + productName + '-' + element.applicableYear + '/companies';
       switch (currentValue) {
-        case '1':
-          clientObject.aca16Status = true;
+        case '2016':
+          productInfo['className'] = 'aca16';
+          productInfo['productName'] = '2016 ACA Reporting';
+          this.aca16Status = true
+          this.productsData['aca16'] = productUrl;
           break;
-        case '2':
-          clientObject.aca17Status = true;
+        case '2017':
+          productInfo['className'] = 'aca17';
+          productInfo['productName'] = '2017 ACA Reporting';
+          this.productsData['aca17'] = productUrl;
+          this.aca17Status = true
           break;
         case '3':
-          clientObject.vhtStatus = true;
+          productInfo['className'] = 'vht';
+          productInfo['productName'] = 'Variable Hour Tracking';
+          this.aca17Status = true;
+          this.productsData['vht'] = productUrl;
           break;
       }
     });

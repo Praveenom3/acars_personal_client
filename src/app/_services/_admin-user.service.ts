@@ -69,7 +69,7 @@ export class AdminUserService {
 
     public getAdminUser(user_id): Observable<any> {
         return this._http.get(
-            this._apiUrl+'/get-user-data/'+user_id,
+            this._apiUrl + '/get-user-data/' + user_id,
             { headers: this._globalService.getHeaders() }
         ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
@@ -82,7 +82,6 @@ export class AdminUserService {
         ).map(response => response.json())
             .catch(this._globalService.handleError);
     }
-
 }
 
 

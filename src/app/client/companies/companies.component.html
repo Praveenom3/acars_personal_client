@@ -5,16 +5,16 @@
                 <div class="nav-tabs-horizontal">
                     <ul class="nav nav-tabs border-bottom display-inblock company-details-nav" role="tablist">
                         <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; Cargo Force</a>
+                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; {{clientDashBoardService.company.company_ein}}</a>
                         </li>
                         <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap no-border">EIN: &nbsp; 15-20087</a></li>
+                            <a class="nav-link plan-link color-white no-wrap no-border">EIN: &nbsp; {{clientDashBoardService.company.company_ein}}</a></li>
 
                         <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp; 2016</a>
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp; {{clientDashBoardService.product.applicableYear}}</a>
                         </li>
                         <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-border no-wrap ">Package: &nbsp; Self Service</a>
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Package: &nbsp; {{clientDashBoardService.productService}}</a>
                         </li>
                     </ul>
                 </div>
@@ -30,25 +30,35 @@
                     <div class="widget col-md-12 padding-15 comp-dash-divs">
                         <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; COMPANIES LIST</h4>
                         <input type="text" class="form-control margin-bottom-15">
-
-                        <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientsTableData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies" #mf="mfDataTable"
+                            [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                             <thead>
                                 <tr>
+                                    <th class="text-center">
+                                        <mfDefaultSorter by="company">Client Name</mfDefaultSorter>
+                                    </th>
                                     <th class="text-center">
                                         <mfDefaultSorter by="company">Companies</mfDefaultSorter>
                                     </th>
                                     <th class="text-center">
                                         <mfDefaultSorter by="EIN">EIN</mfDefaultSorter>
                                     </th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <ng-container *ngIf="mf.data?.length">
-                                    <tr *ngFor="let item of mf.data">
-                                        <td class="text-center">{{item.company}}</td>
-                                        <td class="text-center"><a class="link-blue-underline">{{item.EIN}}</a></td>
 
+                                    <tr *ngFor="let company of mf.data">
+                                        <td class="text-center">{{clientDashBoardService.client.client_name}}</td>
+                                        <td class="text-center">{{company.company_name}}</td>
+                                        <td class="text-center">{{company.company_ein}}</td>
+                                        <td class="text-center"><a class="link-blue-underline" (click)="updateCompanyInfo(company)">
+                                            <i class="fa fa-edit"></i>
+                                                </a>
+                                        </td>
                                     </tr>
+
                                 </ng-container>
                                 <tr class="tr-text-center" *ngIf=!mf.data?.length>
                                     <td colspan="2">
@@ -159,8 +169,10 @@
                             <tr>
                                 <td>Discovery Session</td>
                                 <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true" title="Click to toggle">Needed</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false" title="Click to toggle">Completed</span>
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true"
+                                        title="Click to toggle">Needed</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false"
+                                        title="Click to toggle">Completed</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -255,68 +267,61 @@
 </div>
 
 <!-- Edit Company Details Modal -->
-<div class="modal fade" id="edit_company_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+<div class="modal fade" bsModal #companyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+
+
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
 
-                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">
 								X
 							</button>
                 <h4 class="modal-title color-white" id="myModalLabel">
-                    Edit Company Details
+                    {{modalTitle}}
                 </h4>
             </div>
-            <div class="modal-body row">
-                <form id="w0" method="post" enctype="multipart/form-data">
-                    <div class="col-md-12 border-ddd widget padding-15">
-                        <div class="col-md-12 padding-0">
-                            <div class="col-md-6">
-                                <div class="">
-                                    <label class="form-control-label">Company Name <span class="red">*</span></label>
-                                    <div class="form-group field-companies-company_name required">
 
-                                        <input type="text" id="companies-company_name" class="form-control" name="Companies[company_name]" value="Cargo Force">
-
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="">
-                                    <label class="form-control-label">EIN <span class="red">*</span></label>
-                                    <div class="form-group field-companies-company_ein required">
-                                        <input type="text" id="companies-company_ein" class="form-control" name="Companies[company_ein]" value="15-90010">
-
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
+            <form [formGroup]="_companyForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label class="form-control-label">Company Name</label>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
+                                <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
+                                    [ngClass]="{'form-control-danger': !_isValid('company_name')}">
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.company_name.valid">{{_formErrors.company_name.message}}</span>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-control-label">EIN</label>
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
+                                <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
+                                    [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true" placeholder="(__)-_______"
+                                    maxlength="34">
+                                <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
+                            </div>
+                        </div>
+
                     </div>
-                </form>
-            </div>
-
-            <div class="modal-footer footer-background">
-
-                <a href="" class="btn btn-modal-blue">
-								Save  
-							</a>
-                <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-            </div>
+                </div>
+                <div class="modal-footer footer-background">
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyForm.valid || _submitted == true">
+				  Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                </div>
+            </form>
         </div>
-
     </div>
-
 </div>
 
 <!-- ./Edit Company Details Modal -->
 
 <!-- CopyModal -->
-<div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">

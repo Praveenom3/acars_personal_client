@@ -181,6 +181,7 @@ export class MasterDataComponent implements OnInit {
             },
             error => {
                 this._errorMessage = error.data;
+                this.toastrService.error(error.data.message);
             });
 
     }
