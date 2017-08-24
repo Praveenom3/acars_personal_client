@@ -19,6 +19,8 @@ export class ClientLayoutComponent implements OnInit {
   public aca16Status: boolean = false;
   public aca17Status: boolean = false;
 
+  public userFirstName: string;
+  public userLastName: string;
 
   constructor(private router: Router,
     route: ActivatedRoute,
@@ -26,6 +28,12 @@ export class ClientLayoutComponent implements OnInit {
     public dashBoardService: ClientDashBoardService,
   ) {
     _idleTimeout.init();
+    this.dashBoardService.initDashBoardVaraibles();
+    this.userFirstName = localStorage.getItem('firstName');
+    this.userFirstName = (this.userFirstName === 'undefined') ? '' : this.userFirstName;
+    this.userLastName = localStorage.getItem('lastName');
+    this.userLastName = (this.userLastName != 'undefined') ? this.userLastName : '';
+
     this.displayClientProducts();
   }
 
@@ -34,6 +42,7 @@ export class ClientLayoutComponent implements OnInit {
   }
 
   setInformation(url = '') {
+    this.dashBoardService.initDashBoardVaraibles();
     this.dashBoardService.splitUrl = url;
     this.dashBoardService.setInformation()
   }

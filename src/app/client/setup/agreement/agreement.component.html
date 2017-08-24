@@ -11,10 +11,10 @@
             <div class="padding-15">
                 <ul class="ul-inline">
                     <li class="previous-link">
-                        <a [routerLink]="['/client/setup/primary-contract']">&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
+                        <a [routerLink]="" (click)="backToPrimaryContract()">&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
                     </li>
                     <li style="padding-left: 23%;">
-                        <a [routerLink]="['/client/aca16/companies']" class="btn btn-primary btn-blue">Yes</a>
+                        <a [routerLink]="" (click)="finalStep()" class="btn btn-primary btn-blue">Yes</a>
                         <a class="btn btn-default">No</a>
                     </li>
                 </ul>

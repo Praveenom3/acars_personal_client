@@ -18,64 +18,79 @@
     <div *ngIf="isSetup" class="col-md-8 col-md-offset-2 margin-bottom-35">
         <div class="modal-content setup-no-option-div">
             <div class="modal-header modal-header-color">
-
                 <button aria-hidden="true" class="close-modal modal-opacity close-modal-blue" (click)="close()">
-                                        X
-                                    </button>
+                                                X
+                                            </button>
                 <h5 class="modal-title color-white" id="myModalLabel">
-                    Please Enter Primary Billing Contact Info
+                    Please Enter Contact Info for the Authorized Signer
                 </h5>
             </div>
-            <div class="modal-body row">
-                <form action="" enctype="multipart/form-data " id="w0" method="post " class="ng-untouched ng-pristine ng-valid">
-                    <div class="col-md-12 padding-0 ">
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">First Name <span  class="red">*</span></label>
-                            <div class="form-group field-adminusers-first_name ">
-                                <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] "
-                                    onkeypress="return username(event); " type="text ">
-                                <div class="help-block "></div>
+
+            <form [formGroup]="_billingContractForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4">
+                            <div class="">
+                                <label class="form-control-label">First Name <span class="red">*</span></label>
+                                <div class="form-group required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'first_name')}">
+                                    <input type="text" class="form-control" [formControl]="_billingContractForm.controls['first_name']" [(ngModel)]="clientDashBoardService.billingContractModel.first_name"
+                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'first_name')}"
+                                        maxlength="34">
+                                    <span class="help-block help-block-error" *ngIf="!_billingFormErrors.first_name.valid">{{_billingFormErrors.first_name.message}}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">Last Name <span  class="red">*</span></label>
-                            <div class="form-group field-adminusers-last_name ">
-                                <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] "
-                                    type="text ">
-                                <div class="help-block "></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 padding-0 ">
-                        <div class="col-md-4 ">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label " for="user-username ">Email Address <span  class="red">*</span></label>
-                                <input class="form-control" type="email">
-                            </div>
-                        </div>
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">Phone <span  class="red">*</span></label>
-                            <div class="form-group field-adminusers-phone ">
-                                <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] "
-                                    placeholder="(___) ___-____ " type="text ">
-                                <div class="help-block "></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">Extension <span  class="red">*</span></label>
-                            <div class="form-group field-adminusers-extension ">
-                                <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text "
-                                    value=" ">
-                                <div class="help-block "></div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <label class="form-control-label">Last Name <span class="red">*</span></label>
+                                <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'last_name')}">
+                                    <input type="text" class="form-control" [formControl]="_billingContractForm.controls['last_name']" [(ngModel)]="clientDashBoardService.billingContractModel.last_name"
+                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'last_name')}"
+                                        maxlength="34">
+                                    <span class="help-block help-block-error" *ngIf="!_billingFormErrors.last_name.valid">{{_billingFormErrors.last_name.message}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-modal-blue" (click)="setBillingContract()"> Save</a>
-                <a class="btn btn-default" (click)="close()">Cancel</a>
-            </div>
+                    <div class="col-md-12 padding-0 ">
+                        <div class="col-md-4">
+                            <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
+                            <div class="form-group field-user-username" [ngClass]="{'has-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'email_id')}">
+                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_billingContractForm.controls['email_id']"
+                                    [(ngModel)]="clientDashBoardService.billingContractModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'email_id')}"
+                                    maxlength="34">
+                                <span class="help-block help-block-error" *ngIf="!_billingFormErrors.email_id.valid">{{_billingFormErrors.email_id.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Phone <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'mobile_number')}">
+                                <input type="text" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="_billingContractForm.controls['mobile_number']"
+                                    [(ngModel)]="clientDashBoardService.billingContractModel.mobile_number" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'mobile_number')}"
+                                    aria-required="true" placeholder="(___) ___-____" maxlength="34">
+                                <span class="help-block help-block-error" *ngIf="!_billingFormErrors.mobile_number.valid">{{_billingFormErrors.mobile_number.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Extension</label>
+                            <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'phone_extension')}">
+                                <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_billingContractForm.controls['phone_extension']"
+                                    [(ngModel)]="clientDashBoardService.billingContractModel.phone_extension" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(_billingContractForm,_billingFormErrors,'phone_extension')}"
+                                    value="" maxlength="6">
+                                <span class="help-block help-block-error" *ngIf="!_billingFormErrors.phone_extension.valid">{{_billingFormErrors.phone_extension.message}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-modal-blue" [disabled]="!_billingContractForm.valid || submitted == true">
+                        	Save </button>
+                        <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
 </div>
