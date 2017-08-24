@@ -11,10 +11,10 @@
             <div class="padding-15">
                 <ul class="ul-inline">
                     <li class="previous-link">
-                        <a [routerLink]="['/client/setup/contract-signor']">&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
+                        <a [routerLink]="" (click)="backToContractSignStep()">&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
                     </li>
                     <li style="padding-left: 23%;">
-                        <a [routerLink]="['/client/setup/agreement']" class="btn btn-primary btn-blue">Yes</a>
+                        <a [routerLink]="" (click)="nextAgreementStep()" class="btn btn-primary btn-blue">Yes</a>
                         <a (click)="setup()" class="btn btn-default">No</a>
                     </li>
                 </ul>
@@ -31,52 +31,70 @@
                     Please Enter the Primay Contact Information
                 </h5>
             </div>
-            <div class="modal-body row">
-                <form action="" enctype="multipart/form-data " id="w0" method="post ">
-                    <div class="col-md-12 padding-0 ">
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">First Name <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-first_name ">
-                                <input aria-required="true " class="form-control " id="adminusers-first_name " maxlength="15 " name="AdminUsers[first_name] " onkeypress="return username(event); " type="text ">
-                                <div class="help-block "></div>
+            <form [formGroup]="primaryContractForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body row">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4">
+                            <div class="">
+                                <label class="form-control-label">First Name <span class="red">*</span></label>
+                                <div class="form-group required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'first_name')}">
+                                    <input type="text" class="form-control" [formControl]="primaryContractForm.controls['first_name']" [(ngModel)]="clientDashBoardService.primaryContractModel.first_name"
+                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'first_name')}"
+                                        maxlength="34">
+                                    <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.first_name.valid">{{primaryContractFormErrors.first_name.message}}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">Last Name <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-last_name ">
-                                <input aria-required="true " class="form-control " id="adminusers-last_name " maxlength="15 " name="AdminUsers[last_name] " type="text ">
-                                <div class="help-block "></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 padding-0 ">
-                        <div class="col-md-4 ">
-                            <div class="form-group field-user-username ">
-                                <label class="form-control-label " for="user-username ">Email Address <span class="red">*</span></label>
-                                <input type="email" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">Phone <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-phone ">
-                                <input aria-required="true " class="form-control us-phone-mask-input " id="adminusers-phone " maxlength="14 " name="AdminUsers[phone] " placeholder="(___) ___-____ " type="text ">
-                                <div class="help-block "></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 ">
-                            <label class="form-control-label ">Extension <span class="red">*</span></label>
-                            <div class="form-group field-adminusers-extension ">
-                                <input class="form-control numbers " id="adminusers-extension " maxlength="6 " name="AdminUsers[extension] " type="text " value=" ">
-                                <div class="help-block "></div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <label class="form-control-label">Last Name <span class="red">*</span></label>
+                                <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'last_name')}">
+                                    <input type="text" class="form-control" [formControl]="primaryContractForm.controls['last_name']" [(ngModel)]="clientDashBoardService.primaryContractModel.last_name"
+                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'last_name')}"
+                                        maxlength="34">
+                                    <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.last_name.valid">{{primaryContractFormErrors.last_name.message}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-modal-blue" [routerLink]="['/client/setup/agreement']"> Save</a>
-                <a class="btn btn-default" (click)="close()">Cancel</a>
-            </div>
+                    <div class="col-md-12 padding-0 ">
+                        <div class="col-md-4">
+                            <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
+                            <div class="form-group field-user-username" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}">
+                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="primaryContractForm.controls['email_id']"
+                                    [(ngModel)]="clientDashBoardService.primaryContractModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}"
+                                    maxlength="34">
+                                <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.email_id.valid">{{primaryContractFormErrors.email_id.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Phone <span class="red">*</span></label>
+                            <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'mobile_number')}">
+                                <input type="text" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="primaryContractForm.controls['mobile_number']"
+                                    [(ngModel)]="clientDashBoardService.primaryContractModel.mobile_number" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'mobile_number')}"
+                                    aria-required="true" placeholder="(___) ___-____" maxlength="34">
+                                <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.mobile_number.valid">{{primaryContractFormErrors.mobile_number.message}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Extension</label>
+                            <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'phone_extension')}">
+                                <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="primaryContractForm.controls['phone_extension']"
+                                    [(ngModel)]="clientDashBoardService.primaryContractModel.phone_extension" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'phone_extension')}"
+                                    value="" maxlength="6">
+                                <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.phone_extension.valid">{{primaryContractFormErrors.phone_extension.message}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-modal-blue" [disabled]="!primaryContractForm.valid || submitted == true">
+                        	Save </button>
+                        <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

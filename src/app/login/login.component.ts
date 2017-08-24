@@ -77,15 +77,15 @@ export class LoginComponent implements OnInit {
         this._resetFormErrors();
 
         if (this._cookieService.get('rememberMe')) {
-            if (localStorage.getItem("usertype") == '1') {
-                console.log('admin navigation');
+            let userType: any = localStorage.getItem("usertype");
+            if (userType == 1 || userType == 2) {
                 this.router.navigate(['/admin/dashboard']);
-            } else if (localStorage.getItem("usertype") == '2') {
-                console.log('client navigation');
-                this.router.navigate(['/client/dashboard']);
+            } else if (userType == 3 || userType == 4) {
+                this.navigateUser(userType);
             } else {
                 this.authenticationService.logout();
             }
+
         } else {
             this.authenticationService.logout();
         }

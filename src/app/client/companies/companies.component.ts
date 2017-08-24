@@ -37,7 +37,6 @@ export class CompaniesComponent implements OnInit {
   private _errorMessage: string;
   private _submitted: boolean;
 
-  public globalVariable;
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,

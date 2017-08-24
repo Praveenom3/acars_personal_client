@@ -10,7 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { AdminUser } from "app/_models/admin-user";
 import { GlobalService } from './_global.service';
-
+import { ClientSetupDetails } from 'app/_models/client-setup-details';
 
 @Injectable()
 
@@ -31,16 +31,28 @@ export class ClientDashBoardService {
 
     public splitUrl: string = '';
 
-    public contractSignUrl: string;
-
     public clientAsDefaultBilling: boolean = false;
+    public clientAsDefaultContractSign: boolean = false;
+    public clientAsDefaultPrimaryContract: boolean = false;
+    public clientAsDefaultAgreement: boolean = false;
+
+    public billingStep: boolean = false;
+    public contractSignStep: boolean = false;
+    public primaryContractStep: boolean = false;
+    public agreementStep: boolean = false;
 
     public isBillingContractSet: boolean = false;
     public isContractSignorSet: boolean = false;
     public isPrimaryContractSet: boolean = false;
     public isAgreementSet: boolean = false;
 
-    public contractSignorBackTriggerd: boolean = false;
+
+    public billingContractModel: ClientSetupDetails;
+    public contractSignorModel: ClientSetupDetails;
+    public primaryContractModel: ClientSetupDetails;
+    public agreementModel: ClientSetupDetails;
+
+    public primaryData: boolean = false;
 
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
@@ -48,6 +60,28 @@ export class ClientDashBoardService {
     constructor(private _globalService: GlobalService,
         private _router: Router,
         private _http: Http) {
+    }
+
+    initDashBoardVaraibles() {
+
+        this.clientAsDefaultBilling = false;
+        this.clientAsDefaultContractSign = false;
+        this.clientAsDefaultPrimaryContract = false;
+        this.clientAsDefaultAgreement = false;
+
+        this.billingStep = false;
+        this.contractSignStep = false;
+        this.primaryContractStep = false;
+        this.agreementStep = false;
+
+        this.isBillingContractSet = false;
+        this.isContractSignorSet = false;
+        this.isPrimaryContractSet = false;
+        this.isAgreementSet = false;
+
+        this.billingContractModel = this.createNewModel();
+        this.contractSignorModel = this.createNewModel();
+        this.primaryContractModel = this.createNewModel();
     }
     /**
       * Setting Client information used in dash board for displaying clients and companies
@@ -102,12 +136,20 @@ export class ClientDashBoardService {
                 let defaultUrl: string;
                 let navigateUrl: string;
                 defaultUrl = '/client/' + clientId + '-' + clientName + '/' + this.product.productId + '-' + productName + '-' + this.product.applicableYear + '/setup';
-                console.log(this.contractSignorBackTriggerd)
                 if (this.isBillingContractSet) {
-                    navigateUrl = defaultUrl + '/' + 'contract-signor';
-                    if (this.contractSignorBackTriggerd == true) {
-                        this.contractSignorBackTriggerd = false;
+
+                    if (this.billingStep) {
                         navigateUrl = defaultUrl + '/' + 'billing-contract';
+                    }
+                    if (this.contractSignStep) {
+                        navigateUrl = defaultUrl + '/' + 'contract-signor';
+                    }
+
+                    if (this.isContractSignorSet && this.primaryContractStep) {
+                        navigateUrl = defaultUrl + '/' + 'primary-contract';
+                    }
+                    if (this.isPrimaryContractSet && this.agreementStep) {
+                        navigateUrl = defaultUrl + '/' + 'agreement';
                     }
                 }
                 if (!navigateUrl) {
@@ -115,7 +157,7 @@ export class ClientDashBoardService {
                 }
                 this._router.navigate([navigateUrl]);
             }
-
+            this.primaryData = true;
             this.companies = this.client.companies;
             let companyKeys: any[] = Object.keys(this.companies);
             this.company = this.companies[companyKeys[0]];
@@ -154,6 +196,89 @@ export class ClientDashBoardService {
             }
         });
     }
+
+    /**
+     * 
+     */
+    public validationMessages = {
+        'first_name': {
+            'required': 'First Name is required.',
+            'minlength': 'First Name should be a minimum 3 chars.',
+            'pattern': 'Please enter valid First Name',
+        },
+        'last_name': {
+            'required': 'Last Name is required.',
+            'minlength': 'Last Name should be a minimum 3 chars.',
+            'pattern': 'Please enter valid Last Name',
+        },
+        'email_id': {
+            'required': 'Email Address is required.',
+            'pattern': 'Please enter valid Email Address',
+        },
+        'mobile_number': {
+            'required': 'Mobile Number is required.'
+        },
+    };
+
+    /**
+     * 
+     * @param form 
+     * @param formErrors 
+     * @param field 
+     */
+    public isValid(form, formErrors, field): boolean {
+
+        let isValid: boolean = false;
+
+        // If the field is not touched and invalid, it is considered as initial loaded form. Thus set as true
+        if (form.controls[field].touched == false) {
+            isValid = true;
+        }
+
+        // If the field is touched and valid value, then it is considered as valid.
+        else if (form.controls[field].touched == true && form.controls[field].valid == true) {
+            isValid = true;
+
+        } else if (form.controls[field].touched == true && form.controls[field].valid == false) {
+            let control = form.get(field);
+            const messages = this.validationMessages[field];
+
+            formErrors[field].valid = false;
+            for (const key in control.errors) {
+                formErrors[field].message = messages[key];
+            }
+            isValid = false;
+        }
+        return isValid;
+    }
+    /**
+     * 
+     */
+    public createNewModel() {
+
+        let model: ClientSetupDetails = {
+            first_name: '',
+            last_name: '',
+            email_id: '',
+            mobile_number: '',
+            phone_extension: '',
+        }
+        return model;
+    }
+    /**
+     * 
+     * @param details 
+     */
+    public savePrimaryDetailsOfClient(details): Observable<any> {
+        console.log(details);
+        return this._http.post(
+            this._apiUrl + '/save-client-primary-details', details,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
+
 }
 
 
