@@ -4,7 +4,7 @@
 export const admin_permissions:any = { 
     1 : "Financials",
     3 : "System Admin",
-    5 : "Master Data"
+    2 : "Master Data"
 };
 
 export const route_permissions:any = { 
@@ -16,7 +16,7 @@ export const route_permissions:any = {
             '/admin/error-log',
             '/admin/activity-log'
         ],
-    5 : ['admin/master-data']
+    2 : ['admin/master-data']
 };
 
 export const vht_product_keyword: string="VHT";
