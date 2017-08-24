@@ -26,7 +26,7 @@
                         <div style="float: left;margin-top: 9px;">
                             <strong>Clients</strong>
                         </div>
-                        <div style="float: right;">
+                        <div style="float: right;" *ngIf="hasFinancialRights">
                             <a class="btn btn-modal-blue" role="button" (click)="openModal('addClientModal')"><i class="fa fa-plus"></i> Add Client</a>
                         </div>
                     </div>
@@ -261,14 +261,18 @@
                         <table class="col-xs-12">
                             <tr>
                                 <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}"><label class="form-control-label">Client Name : <span class="red">*</span></label></td>
-                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}"><input type="text" class="form-control" style="width: 90%;" oninput="this.value=this.value.replace(/[^A-Za-z&,. ]/g, '')" [(ngModel)]="temp_client_name"  [formControl]="_updateClientForm.controls['client_name']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}"></td>
+                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}">
+                                    <input type="text" class="form-control" style="width: 90%;" *ngIf="hasFinancialRights" oninput="this.value=this.value.replace(/[^A-Za-z&,. ]/g, '')" [(ngModel)]="temp_client_name"  [formControl]="_updateClientForm.controls['client_name']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}">
+                                    <span *ngIf="!hasFinancialRights" class="form-control" style="width: 90%;" readOnly>{{_updateClientForm.controls['client_name'].value}}</span>
+                                </td>
                                 <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}"><label class="form-control-label">Select Brand : <span class="red">*</span></label></td>
                                 <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}">
                                    
-                                    <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}" (ngModelChange)="onBrandChange(this._updateClientForm, $event)" style="width:90%;">
+                                    <select class="form-control" *ngIf="hasFinancialRights" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}" (ngModelChange)="onBrandChange(this._updateClientForm, $event)" style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
                                         <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
+                                    <span *ngIf="!hasFinancialRights" class="form-control" style="width: 90%;" readOnly>{{this.temp_brand}}</span>
                                 <td style="width:10%;"><label class="control-label">Client # :</label></td>
                                 <td style="width:20%;">
                                     <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_updateClientForm.controls['client_number']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_number')}">
@@ -300,7 +304,7 @@
                                 <div style="float: left;margin-top: 9px;">
                                     <strong>Purchase History</strong>
                                 </div>
-                                <div style="float: right;">
+                                <div style="float: right;" *ngIf="hasFinancialRights">
                                     <button type="button" class="btn btn-modal-blue pull-right" (click)="openModal('addPurchaseModal')" [disabled]="!_updateClientForm.valid || _updateClientFormSubmitted == true"><i class="fa fa-plus"></i> Add Purchase</button>
                                 </div>
                             </div>
@@ -379,7 +383,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
-                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">Save</button>
+                    <button type="submit" class="btn btn-primary btn-blue" *ngIf="hasFinancialRights" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('updateClientModal')">Close</button>
                 </div>
             </form>
@@ -437,10 +441,10 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
                                 <label class="form-control-label">Product</label>
-                                <select class="form-control" [formControl]="_addPurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
+                                <select class="form-control" [formControl]="_addPurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._addPurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
                                     <ng-container *ngFor="let sp of selectableProducts">
-                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_name}}</option>
+                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
                                 
@@ -682,10 +686,10 @@
                                 <label class="form-control-label">Product</label>
                                 <select class="form-control" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
-                                    <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_name}}</option> -->
+                                    <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_full_name}}</option> -->
                                     
                                     <ng-container *ngFor="let sp of selectableProducts">
-                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_name}}</option>
+                                        <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
                                 

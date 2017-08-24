@@ -7,7 +7,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { AdminRoutingModule } from './admin.routing';
-import { DashboardComponent, FinancialsComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent, SummaryComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, FinancialsComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent } from './dashboard/dashboard.component';
+import { SummaryComponent } from './dashboard/summary.component';
 import { AdminUsersComponent } from "app/admin/dashboard/admin-users.component";
 import { JobsComponent } from "app/admin/jobs/jobs.component";
 
@@ -52,7 +53,7 @@ import { inputFilterDirective } from "app/_directives/input-filter.directive";
     AdminUsersComponent, ProcessingComponent, 
     ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent,
     SearchComponent, SearchResultsComponent, ActivityLogComponent, 
-    ErrorLogComponent, inputFilterDirective
+    ErrorLogComponent
   ],
   providers: [ErrorLogService, AdminUserService]
 

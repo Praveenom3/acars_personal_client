@@ -58,8 +58,8 @@ export class CodeCalculatorComponent implements OnInit {
   /*calls when page on load*/
   ngOnInit() {
     this.getCodes();
-    this.getLookupOptions("24");
-    this.getLookupOptions("25");
+    this.getLookupOptions("1");
+    this.getLookupOptions("2");
     this.codeSelected = this.createNewCode();
     this._resetFormErrors();
   }
@@ -129,9 +129,9 @@ export class CodeCalculatorComponent implements OnInit {
     return this.lookupService.getLookupOptions(id)
       .subscribe((lookup_options) => {
         this.lookup_options = lookup_options;
-        if (id == "24") {
+        if (id == "1") {
           this.line14Options = lookup_options;
-        } else if (id == "25") {
+        } else if (id == "2") {
           this.line16Options = lookup_options;
         }
       },

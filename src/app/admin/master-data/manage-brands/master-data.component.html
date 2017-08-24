@@ -107,7 +107,7 @@
                         <div class="col-md-6 required">
                             <label class="form-control-label">Brand Name</label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('brand_name')}">
-                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['brand_name']" [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}">
+                                <input type="text"  inputFilter="true" class="form-control" [formControl]="_addBrandForm.controls['brand_name']" [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.brand_name.valid">{{_formErrors.brand_name.message}}</span>
                             </div>
                         </div>
@@ -147,10 +147,10 @@
                             <label class="form-control-label">Status <span style="color:#a94442;">*</span></label>
                             <div class="form-group field-adminusers-last_name">
                                 <label class="radio-inline">
-                                      <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 1" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"  value="active"> Active
+                                      <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 1" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"  value="1"> Active
                              </label>
                                 <label class="radio-inline">
-                                  <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 0" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"   value="inactive"> Inactive
+                                  <input type="radio" [checked]="_addBrandForm.controls['brand_status'].value === 0" [(ngModel)]="brandSelected.brand_status" [formControl]="_addBrandForm.controls['brand_status']"   value="0"> Inactive
                              </label>
                             </div>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.brand_status.valid">{{_formErrors.brand_status.message}}</span>

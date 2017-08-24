@@ -1,64 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import * as Globals from 'app/_shared/_globals';
 
 declare var $:any;
-
-@Component({
- selector: 'app-summary',
-  templateUrl: './summary.component.html', 
-})
-export class SummaryComponent implements OnInit {
-
-  ngOnInit() {
-     
-    }
-}
 
 @Component({
  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html', 
 })
 export class DashboardComponent implements OnInit {
-/*public showLable = true;
-public showTextbox = false;*/
 
-    constructor(private toastrService: ToastrService) {}
+  public hasFinancialRights:boolean = false;
+
+  constructor() {}
   
-      ngOnInit() {
-        $('.table').dataTable({
-            "paging":   false,
-        "searching": true,
-        "info":     false
-        });
-    this.showSuccess();
+  ngOnInit() {
+    $('.table').dataTable({
+      "paging":   false,
+      "searching": true,
+      "info":     false
+    });
+
+    for (var key in Globals.admin_permissions) {
+      if (Globals.admin_permissions.hasOwnProperty(key)) {
+        if(Globals.admin_permissions[key] == 'Financials'){
+          let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
+          admin_permissions.forEach(element => {
+            if(element == key){
+              this.hasFinancialRights = true;
+            }
+          });
+        }
+      }
     }
-
-  showSuccess() {
-    this.toastrService.success('Hello world!');
   }
-
-/*  editBalance()
-  {
-     this.showLable = false;
-     this.showTextbox = true;
-  }
-
-  saveBalance()
-  {
-     this.showLable = true;
-     this.showTextbox = false;
-  }
-
-  cancelBalance()
-  {
-      this.showLable = true;
-      this.showTextbox = false;
-  }*/
-
-  showError() {
-    this.toastrService.error('Some error found');
-  }
-
 
 }
 
