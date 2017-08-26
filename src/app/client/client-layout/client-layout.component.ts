@@ -71,7 +71,7 @@ export class ClientLayoutComponent implements OnInit {
       let clientName: string = element['clients'][client]['client_name'];
       clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
       let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productUrl: string = '/client/' + element.product_id + '-' + productName + '-' + element.applicable_year + '/' + clientId + '-' + clientName + '/dashboard';
+      let productUrl: string = '/client/' + element.product_id + '/' + clientId + '/dashboard';
       switch (currentValue) {
         case '2016':
           productInfo['className'] = 'aca16';

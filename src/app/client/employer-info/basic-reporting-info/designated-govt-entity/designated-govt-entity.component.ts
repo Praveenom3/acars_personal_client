@@ -33,10 +33,10 @@ export class DesignatedGovtEntityComponent implements OnInit {
     private _designatedGovtEntity: DesignatedGovtEntityService,
     private _briBasicInfoService: BriBasicInfoService,
     private _elementMasterService: ElementMasterService) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
+    this.product_id = this.product = route.snapshot.params['product'];
+    this.company_id = this.company = route.snapshot.params['company'];
 
-    let splittedProduct: any[] = [];
+    /* let splittedProduct: any[] = [];
     let splittedCompany: any[] = [];
 
     if (this.product) {
@@ -47,7 +47,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
     if (this.company) {
       splittedCompany = this.company.split("-");
       this.company_id = splittedCompany[0];
-    }
+    } */
   }
 
   ngOnInit() {

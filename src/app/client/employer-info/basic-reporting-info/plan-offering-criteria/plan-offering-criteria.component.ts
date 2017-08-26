@@ -30,21 +30,21 @@ export class PlanOfferingCriteriaComponent implements OnInit {
     private toastrService: ToastrService,
     private _planOfferingCriteriaService: PlanOfferingCriteriaService,
     private _elementMasterService: ElementMasterService) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
+    this.product_id = this.product = route.snapshot.params['product'];
+    this.company_id = this.company = route.snapshot.params['company'];
 
-    let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
-
-    if (this.product) {
-      splittedProduct = this.product.split("-");
-      this.product_id = splittedProduct[0];
-    }
-
-    if (this.company) {
-      splittedCompany = this.company.split("-");
-      this.company_id = splittedCompany[0];
-    }
+    /*  let splittedProduct: any[] = [];
+     let splittedCompany: any[] = [];
+ 
+     if (this.product) {
+       splittedProduct = this.product.split("-");
+       this.product_id = splittedProduct[0];
+     }
+ 
+     if (this.company) {
+       splittedCompany = this.company.split("-");
+       this.company_id = splittedCompany[0];
+     } */
   }
 
   ngOnInit() {

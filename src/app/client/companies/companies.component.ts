@@ -36,6 +36,10 @@ export class CompaniesComponent implements OnInit {
   private _errorMessage: string;
   private _submitted: boolean;
 
+  public basicReportingLink: string;
+  public benefitPlanLink: string;
+  public planClassesLink: string;
+
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -100,6 +104,7 @@ export class CompaniesComponent implements OnInit {
    */
   public updateCompanyInfo(companyInfo: Company) {
     this.companyEdit = Object.assign({}, companyInfo);
+    //this.companyEdit.company_ein = '';
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
     this.companyModal.show();
   }

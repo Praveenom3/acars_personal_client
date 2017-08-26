@@ -31,10 +31,10 @@ export class AnythingElseComponent implements OnInit {
     private _anythingElseService: AnythingElseService,
     private _elementMasterService: ElementMasterService
   ) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
+    this.product_id = this.product = route.snapshot.params['product'];
+    this.company_id = this.company = route.snapshot.params['company'];
 
-    let splittedProduct: any[] = [];
+    /* let splittedProduct: any[] = [];
     let splittedCompany: any[] = [];
 
     if (this.product) {
@@ -45,7 +45,7 @@ export class AnythingElseComponent implements OnInit {
     if (this.company) {
       splittedCompany = this.company.split("-");
       this.company_id = splittedCompany[0];
-    }
+    } */
   }
 
   ngOnInit() {

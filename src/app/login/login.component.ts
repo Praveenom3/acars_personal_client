@@ -285,9 +285,6 @@ export class LoginComponent implements OnInit {
         let client = clientKeys[0];
         let clientInfo = product['clients'][client];
         let clientId: number = clientInfo['client_id'];
-        let clientName: string = clientInfo['client_name'];
-        clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-        let productName: string = product.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
-        this.router.navigate(['/client/' + product.product_id + '-' + productName + '-' + product.applicable_year + '/' + clientId + '-' + clientName + '/dashboard']);
+        this.router.navigate(['/client/' + product.product_id + '/' + clientId + '/dashboard']);
     }
 }

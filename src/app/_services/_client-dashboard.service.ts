@@ -58,6 +58,11 @@ export class ClientDashBoardService {
 
     public primaryData: boolean = false;
 
+
+    public basicReportingLink: string;
+    public benefitPlanLink: string;
+    public planClassesLink: string;
+
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
 
@@ -95,25 +100,14 @@ export class ClientDashBoardService {
         let clientId;
         if (this.splitUrl) {
             let reversedUrl = this.splitUrl.split('/').reverse();
-           clientId = reversedUrl[1].split('-');
-             productId= reversedUrl[2].split('-');
+            clientId = reversedUrl[1];
+            productId = reversedUrl[2];
 
         } else {
-            if (this.productParams) {
-                productId = this.productParams.split('-');
-            }
-            if (this.clientParams) {
-                clientId = this.clientParams.split('-');// getting client from url
-            }
+            productId = this.productParams;
+            clientId = this.clientParams
         }
 
-        if (typeof productId[0] != 'undefined') {
-            productId = productId[0]
-        }
-
-        if (typeof clientId[0] != 'undefined') {
-            clientId = clientId[0]
-        }
         this.setInfo(productId, clientId);
     }
 
@@ -155,6 +149,11 @@ export class ClientDashBoardService {
                             this.companies = result.data.companiesList;
                             this.rowsOnPage = this.companies.length;
                             this.company = result.data.defaultCompanyInformation;
+                            let url: string = '/client/' + this.product.product_id + '/' + this.company.company_id;
+                            console.log(this.company);
+                            this.basicReportingLink = url + '/employer-info/basic-reporting-info';
+                            this.benefitPlanLink = url + '/employer-info/benefit-plan-info';
+                            this.planClassesLink = url + '/employer-info/plan-classes';
                         }
                     },
                     error => {
