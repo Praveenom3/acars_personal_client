@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { OrdersService } from "app/_services/_orders.service";
 @Component({
   selector: 'app-contract-signor',
   templateUrl: './contract-signor.component.html',
@@ -16,6 +17,7 @@ export class ContractSignorComponent implements OnInit {
 
   constructor(public route: ActivatedRoute,
     private _formBuilder: FormBuilder,
+    private ordersService: OrdersService,
     public clientDashBoardService: ClientDashBoardService,
   ) {
     this.clientDashBoardService.productParams = route.snapshot.params['product'];
@@ -99,9 +101,25 @@ export class ContractSignorComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-    this.setup();
     this.clientDashBoardService.contractSignorModel.mobile_number = this.clientDashBoardService.contractSignorModel.mobile_number.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
+    this.setup();
     this.nextPrimaryContractStep(false);
+    
+    /*let data = {
+      "client_email": this.clientDashBoardService.contractSignorModel.email_id
+    };
+
+    this.ordersService.validateClientEmail(data).subscribe(
+      result => {
+        if (result.success) {
+
+        }
+      },
+      error => {
+        this.contractSignFormErrors['email_id'].valid = false;
+        this.contractSignFormErrors['email_id'].message = error.data.message;
+        this.submitted = false;
+      });*/
   }
 
   public isSetup = false;

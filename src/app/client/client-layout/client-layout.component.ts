@@ -27,13 +27,13 @@ export class ClientLayoutComponent implements OnInit {
     private _idleTimeout: IdleTimeoutService,
     public dashBoardService: ClientDashBoardService,
   ) {
+
     _idleTimeout.init();
     this.dashBoardService.initDashBoardVaraibles();
     this.userFirstName = localStorage.getItem('firstName');
     this.userFirstName = (this.userFirstName === 'undefined') ? '' : this.userFirstName;
     this.userLastName = localStorage.getItem('lastName');
     this.userLastName = (this.userLastName != 'undefined') ? this.userLastName : '';
-
     this.displayClientProducts();
   }
 
@@ -49,7 +49,7 @@ export class ClientLayoutComponent implements OnInit {
 
   displayClientProducts() {
 
-    let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
     let clientObject: ClientLayoutComponent = this;
 
     let productsList = Object.keys(products).map(function (key) {
@@ -59,7 +59,7 @@ export class ClientLayoutComponent implements OnInit {
     let selectedProduct;
 
     productsList.forEach(element => {
-      let currentValue = element.applicableYear;
+      let currentValue = element.applicable_year;
       if (currentValue > maxYear) {
         maxYear = currentValue;
       }
@@ -70,8 +70,8 @@ export class ClientLayoutComponent implements OnInit {
       let clientId: number = element['clients'][client]['client_id'];
       let clientName: string = element['clients'][client]['client_name'];
       clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productName: string = element.productName.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productUrl: string = '/client/' + clientId + '-' + clientName + '/' + element.productId + '-' + productName + '-' + element.applicableYear + '/companies';
+      let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
+      let productUrl: string = '/client/' + element.product_id + '-' + productName + '-' + element.applicable_year + '/' + clientId + '-' + clientName + '/dashboard';
       switch (currentValue) {
         case '2016':
           productInfo['className'] = 'aca16';

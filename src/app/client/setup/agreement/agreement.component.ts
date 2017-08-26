@@ -71,12 +71,10 @@ export class AgreementComponent implements OnInit {
         if (result.success) {
           this.setClientDetails(result.data);
         } else {
-          console.log('rsssss')
           this.toastrService.error('Trouble in updating primary details');
         }
       },
       error => {
-        console.log('errrrs')
         console.log(error);
       });
 
@@ -87,20 +85,20 @@ export class AgreementComponent implements OnInit {
    */
   setClientDetails(result) {
 
-    let products: any = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+    let products: any = JSON.parse(localStorage.getItem('productsAndClients'));
     let product = products[this.productId];
     if (product) {
       product['clients'][this.clientId]['primaryData'] = result[this.clientId];
       products[this.productId] = product;
-      localStorage.setItem('clientsAndCompanies', JSON.stringify(products));
-      localStorage.getItem('clientsAndCompanies')
+      localStorage.setItem('productsAndClients', JSON.stringify(products));
+      localStorage.getItem('productsAndClients')
     }
     let clientInfo = product['clients'][this.clientId];
     let clientId: number = clientInfo['client_id'];
     let clientName: string = clientInfo['client_name'];
     clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-    let productName: string = product.productName.toLocaleLowerCase().replace(/\s+/g, "-");
+    let productName: string = product.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
     this.toastrService.success('Client purchase primary data updated successfully');
-    this.router.navigate(['/client/' + this.clientId + '-' + clientName + '/' + product.productId + '-' + productName + '-' + product.applicableYear + '/companies']);
+    this.router.navigate(['/client/' + product.product_id + '-' + productName + '-' + product.applicable_year + '/' + this.clientId + '-' + clientName + '/dashboard']);
   }
 }

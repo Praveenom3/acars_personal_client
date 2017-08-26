@@ -11,6 +11,8 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { AdminUser } from "app/_models/admin-user";
 import { GlobalService } from './_global.service';
 import { ClientSetupDetails } from 'app/_models/client-setup-details';
+import { Company } from 'app/_models/company';
+import { Products } from 'app/_models/products';
 
 @Injectable()
 
@@ -20,9 +22,11 @@ export class ClientDashBoardService {
     aca16: string = '';
     aca17: string = '';
 
-    public product: any;
+    public rowsOnPage = 10;
+
+    public product: Products;
     public client: any;
-    public company: any;
+    public company: Company;
     public companies: any;
     public productService: string;
 
@@ -89,11 +93,10 @@ export class ClientDashBoardService {
     public setInformation() {
         let productId;
         let clientId;
-
         if (this.splitUrl) {
             let reversedUrl = this.splitUrl.split('/').reverse();
-            productId = reversedUrl[1].split('-');
-            clientId = reversedUrl[2].split('-');
+           clientId = reversedUrl[1].split('-');
+             productId= reversedUrl[2].split('-');
 
         } else {
             if (this.productParams) {
@@ -123,46 +126,88 @@ export class ClientDashBoardService {
      */
     public setInfo(productId: any, clientId: any, companyId: any = 0) {
 
-        let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        this.product = Object.assign({});
         this.product = products[productId];
         if (this.product) {
+
             this.client = this.product['clients'][clientId]
             let clientName: string = this.client['client_name'];
             clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-            let productName: string = this.product.productName.toLocaleLowerCase().replace(/\s+/g, "-");
+            let productName: string = this.product.product_name;
+            productName = productName.toLocaleLowerCase().replace(/\s+/g, "-");
             let userType = localStorage.getItem('usertype');
             this.changeStyle();
-            if (userType == '3' && (this.client['primaryData']) == null) {
-                let defaultUrl: string;
-                let navigateUrl: string;
-                defaultUrl = '/client/' + clientId + '-' + clientName + '/' + this.product.productId + '-' + productName + '-' + this.product.applicableYear + '/setup';
-                if (this.isBillingContractSet) {
+            this.company = Object.assign({});
+            if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
+                this.redirectClientToWelcomeScreens();
+            } else {
 
-                    if (this.billingStep) {
-                        navigateUrl = defaultUrl + '/' + 'billing-contract';
-                    }
-                    if (this.contractSignStep) {
-                        navigateUrl = defaultUrl + '/' + 'contract-signor';
-                    }
+                let clientsKeys: any[] = Object.keys(this.product['clients']);
+                let data = {
+                    "productId": productId,
+                    "clients": clientsKeys,
+                    "companyId": companyId
+                }
+                this.getClientCompanies(data).subscribe(
+                    result => {
+                        if (result.success) {
+                            this.companies = result.data.companiesList;
+                            this.rowsOnPage = this.companies.length;
+                            this.company = result.data.defaultCompanyInformation;
+                        }
+                    },
+                    error => {
 
-                    if (this.isContractSignorSet && this.primaryContractStep) {
-                        navigateUrl = defaultUrl + '/' + 'primary-contract';
-                    }
-                    if (this.isPrimaryContractSet && this.agreementStep) {
-                        navigateUrl = defaultUrl + '/' + 'agreement';
-                    }
-                }
-                if (!navigateUrl) {
-                    navigateUrl = defaultUrl;
-                }
-                this._router.navigate([navigateUrl]);
+                    });
+                this.primaryData = true;
             }
-            this.primaryData = true;
-            this.companies = this.client.companies;
-            let companyKeys: any[] = Object.keys(this.companies);
-            this.company = this.companies[companyKeys[0]];
-            this.getProductServiceName(this.product.productType);
+            this.getProductServiceName(this.product.product_type);
         }
+    }
+    /**
+     * 
+     */
+    public redirectClientToWelcomeScreens() {
+        let defaultUrl: string;
+        let navigateUrl: string;
+        let clientId = this.client['client_id'];
+        let clientName: string = this.client['client_name'];
+        let productName: string = this.product.product_name;
+
+        productName = productName.toLocaleLowerCase().replace(/\s+/g, "-");
+        defaultUrl = '/client/' + this.product.product_id + '-' + productName + '-' + this.product.applicable_year + '/' + clientId + '-' + clientName + '/setup';
+        if (this.isBillingContractSet) {
+            if (this.billingStep) {
+                navigateUrl = defaultUrl + '/' + 'billing-contract';
+            }
+            if (this.contractSignStep) {
+                navigateUrl = defaultUrl + '/' + 'contract-signor';
+            }
+
+            if (this.isContractSignorSet && this.primaryContractStep) {
+                navigateUrl = defaultUrl + '/' + 'primary-contract';
+            }
+            if (this.isPrimaryContractSet && this.agreementStep) {
+                navigateUrl = defaultUrl + '/' + 'agreement';
+            }
+        }
+        if (!navigateUrl) {
+            navigateUrl = defaultUrl;
+        }
+        this._router.navigate([navigateUrl]);
+    }
+    /**
+     * 
+     * @param data 
+     */
+    public getClientCompanies(data) {
+        return this._http.post(
+            this._apiUrl + '/get-companies-of-clients', data,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
     }
 
     changeStyle() {
@@ -170,7 +215,7 @@ export class ClientDashBoardService {
         this.vht = '';
         this.aca16 = '';
         this.aca17 = '';
-        switch (this.product.applicableYear) {
+        switch (this.product.applicable_year) {
             case '2016':
                 this.aca16 = 'active';
                 break;
@@ -277,6 +322,13 @@ export class ClientDashBoardService {
                 headers: this._globalService.getHeaders()
             }).map(response => response.json())
             .catch(this._globalService.handleError);
+    }
+    /**
+     * 
+     * @param company 
+     */
+    public setCompany(company: Company) {
+        this.setInfo
     }
 
 }

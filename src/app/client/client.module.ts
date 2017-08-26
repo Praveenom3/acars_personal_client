@@ -22,7 +22,6 @@ import { ModalModule } from "ngx-bootstrap";
 import { PurchaseService } from "app/_services/_purchase.service";
 import { ClientUserService } from "app/_services/_client-user.service";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
-
 @NgModule({
   imports: [
     CommonModule,

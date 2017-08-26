@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-
+import { OrdersService } from "app/_services/_orders.service";
 @Component({
   selector: 'app-primary-contract',
   templateUrl: './primary-contract.component.html',
@@ -18,6 +18,7 @@ export class PrimaryContractComponent implements OnInit {
   constructor(public route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     public clientDashBoardService: ClientDashBoardService,
+    private ordersService: OrdersService,
   ) {
     this.clientDashBoardService.productParams = route.snapshot.params['product'];
     this.clientDashBoardService.clientParams = route.snapshot.params['client'];
@@ -43,7 +44,6 @@ export class PrimaryContractComponent implements OnInit {
     } else if (this.clientDashBoardService.primaryContractModel.first_name != null &&
       this.clientDashBoardService.primaryContractModel.first_name != '' &&
       this.clientDashBoardService.primaryContractModel.first_name) {
-        console.log(this.clientDashBoardService.primaryContractModel.first_name)
       this.setup();
     }
 
@@ -105,6 +105,24 @@ export class PrimaryContractComponent implements OnInit {
     this.setup();
     this.clientDashBoardService.primaryContractModel.mobile_number = this.clientDashBoardService.primaryContractModel.mobile_number.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
     this.nextAgreementStep(false);
+
+   /* let data = {
+      "client_email": this.clientDashBoardService.primaryContractModel.email_id
+    };
+
+    this.ordersService.validateClientEmail(data).subscribe(
+      result => {
+        if (result.success) {
+          this.setup();
+          this.nextAgreementStep(false);
+        }
+      },
+      error => {
+        this.primaryContractFormErrors['email_id'].valid = false;
+        this.primaryContractFormErrors['email_id'].message = error.data.message;
+        this.submitted = false;
+      });*/
+
   }
 
   public isSetup = false;

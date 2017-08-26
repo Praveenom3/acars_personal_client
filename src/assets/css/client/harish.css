@@ -239,9 +239,41 @@ app-client-layout .section-container .left-small-box p {
     color: white;
 }
 
-.comp-dash-divs {
-    height: 258px;
-    overflow-x: auto;
+.table-company-dashboard thead {
+  display: block;
+}
+
+.table-company-dashboard tbody {
+  display: block;
+  overflow: auto;
+  height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.table-company-dashboard th, td {
+  font-size: 12px;
+}
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.company-search .glyphicon {
+  position: absolute;
+  padding: 65px 0px 0px 21px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { 
+    left:  0px;
+}
+
+.company-search-text-box{
+    background-color: #f2f4f8
 }
 
 .status-btn {

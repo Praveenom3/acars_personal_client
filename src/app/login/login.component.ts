@@ -269,14 +269,14 @@ export class LoginComponent implements OnInit {
      */
     navigateUser(userType) {
 
-        let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
         let productsList = Object.keys(products).map(function (key) {
             return products[key]
         })
         let product;
         productsList.forEach(element => {
-            if (element.applicableYear > this.maxApplicableYear) {
-                this.maxApplicableYear = element.applicableYear
+            if (element.applicable_year > this.maxApplicableYear) {
+                this.maxApplicableYear = element.applicable_year
                 product = element;
             }
         });
@@ -287,7 +287,7 @@ export class LoginComponent implements OnInit {
         let clientId: number = clientInfo['client_id'];
         let clientName: string = clientInfo['client_name'];
         clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-        let productName: string = product.productName.toLocaleLowerCase().replace(/\s+/g, "-");
-        this.router.navigate(['/client/' + clientId + '-' + clientName + '/' + product.productId + '-' + productName + '-' + product.applicableYear + '/companies']);
+        let productName: string = product.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
+        this.router.navigate(['/client/' + product.product_id + '-' + productName + '-' + product.applicable_year + '/' + clientId + '-' + clientName + '/dashboard']);
     }
 }

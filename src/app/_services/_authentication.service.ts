@@ -50,7 +50,7 @@ export class AuthenticationService {
                     localStorage.setItem('user_id', response.data.id);
                     localStorage.setItem('firstName', response.data.firstName);
                     localStorage.setItem('lastName', response.data.lastName);
-                    localStorage.setItem('clientsAndCompanies', JSON.stringify(response.data.clientsAndCompanies));
+                    localStorage.setItem('productsAndClients', JSON.stringify(response.data.productsAndClients));
                     localStorage.setItem('admin_permissions', JSON.stringify(response.data.admin_permissions));
                     localStorage.setItem('client_permissions', JSON.stringify(response.data.client_permissions));
                     this.loggedIn = true;
