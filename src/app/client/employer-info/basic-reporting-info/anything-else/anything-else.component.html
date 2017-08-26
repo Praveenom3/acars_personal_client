@@ -1,132 +1,112 @@
 <!-- company info -->
-    <client-company-info></client-company-info>
+<client-company-info></client-company-info>
 <!-- ./company info -->
 <!-- Main Tabs -->
-    <client-reporting-band></client-reporting-band>
+<client-reporting-band></client-reporting-band>
 <!-- ./Main Tabs -->
 
 <!-- Sub Tabs -->
-    <div class="col-xs-12 client-reporting-subTabs-band-fixed">
-        <div class="col-md-12 padding-10 ul-block">
-            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']">
-                        <div class="inner-block-digits pull-left">1</div>
-                        <span class="inner-block-text">Basic Info</span></a>
-                </li>
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']">
-                        <div class="inner-block-digits pull-left">2</div>
-                        <span class="inner-block-text">Large Emp. Status & Tracking</span></a>
-                </li>
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
-                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
-                        <div class="inner-block-digits pull-left ">3</div>
-                        <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+<div class="col-xs-12 client-reporting-subTabs-band-fixed">
+    <div class="col-md-12 padding-10 ul-block">
+        <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs">
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']">
+                    <div class="inner-block-digits pull-left">1</div>
+                    <span class="inner-block-text">Basic Info</span></a>
+            </li>
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','emp-status-tracking']">
+                    <div class="inner-block-digits pull-left">2</div>
+                    <span class="inner-block-text">Large Emp. Status & Tracking</span></a>
+            </li>
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
+                    <div class="inner-block-digits pull-left ">3</div>
+                    <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
                     </span></a>
-                </li>
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
-                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']">
-                        <div class="inner-block-digits pull-left ">4</div>
-                        <span class="inner-block-text">Designated Govt. Entity </span></a>
-                </li>
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']">
-                        <div class="inner-block-digits pull-left ">5</div>
-                        <span class="inner-block-text">Aggregated Group</span></a>
-                </li>
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
-                    <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']">
-                        <div class="inner-block-digits pull-left ">6</div>
-                        <span class="inner-block-text">Anything Else</span></a>
-                </li>
-            </ul>
-        </div>
+            </li>
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
+                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','designated-govt-entity']">
+                    <div class="inner-block-digits pull-left ">4</div>
+                    <span class="inner-block-text">Designated Govt. Entity </span></a>
+            </li>
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','aggregated-group']">
+                    <div class="inner-block-digits pull-left ">5</div>
+                    <span class="inner-block-text">Aggregated Group</span></a>
+            </li>
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-5">
+                <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','anything-else']">
+                    <div class="inner-block-digits pull-left ">6</div>
+                    <span class="inner-block-text">Anything Else</span></a>
+            </li>
+        </ul>
     </div>
+</div>
 <!-- ./Sub Tabs -->
 
 <div class="product-container-with-sub-tabs col-md-12">
-	<div class="col-md-12 padding-0">
-		<form action="/firm-plan/save-plan-basics" enctype="multipart/form-data" id="planbasics_form" method="post">
-			<div class="col-md-12 padding-0">
-				<div class="container margin-top-30 margin-bottom-10">
-					
-					<!-- form content -->
-					<div class="col-md-12">
-
-				<div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
-					<div class="col-sm-12">
-						<label class="control-label mb-0">6.1&nbsp;&nbsp;&nbsp;If you don't mind us asking, how did you hear about us ? </label>
-					</div>
-																		
-					<div class="col-sm-12 vertical-checkbox">
-						<div class="checkbox">
-							<label> <input type="checkbox" class="specific_heard" [checked]="saveUsername1" name="TblAcaBasicAdditionalDetail[hear_about_us][0]" value="0"><span class="control-checkbox">Referred by a friend</span></label>
-						</div>
-						<div class="checkbox">
-							<label> <input type="checkbox" class="specific_heard" [checked]="saveUsername2" name="TblAcaBasicAdditionalDetail[hear_about_us][1]" value="1"><span class="control-checkbox">Internet Search</span></label>
-						</div>
-						<div class="checkbox">
-							<label> <input type="checkbox" class="specific_heard" [checked]="saveUsername3" name="TblAcaBasicAdditionalDetail[hear_about_us][2]" value="2"><span class="control-checkbox">Attended our conference</span></label>
-						</div>
-						<div class="checkbox">
-							<label> <input type="checkbox" class="specific_heard" #angularcb (change)="angular = angularcb.checked" name="TblAcaBasicAdditionalDetail[hear_about_us][3]" value="3"><span class="control-checkbox">Others</span></label>
-						</div>
-
-					</div>
-		
-					<div class="col-sm-6 padding_left_30 others_comments" *ngIf="angular">
-						
-						<div class="field-tblacabasicadditionaldetail-others">
-
-
-<textarea id="tblacabasicadditionaldetail-others" class="form-control form-height" name="TblAcaBasicAdditionalDetail[others]" maxlength="49" rows="4" cols="6" onkeypress="return lookupoption(event);"></textarea>
-
-<div class="help-block"></div>
-
-</div>												<!--<textarea class="form-control form-height"></textarea>-->
-					</div>
-					
-
-				</div>
-
-
-
-				<div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
-					<div class="col-sm-12">
-						<label class="control-label">6.2&nbsp;&nbsp;&nbsp;Finally, is there anything else that we should know that pertains to your group or plan set up that you believe is important, and that wasn't mentioned in the previous forms?</label>
-					</div>
-					<div class="col-sm-6 ">
-					
-					<input type="radio" [(ngModel)]="anything_else" name="TblAcaBasicAdditionalDetail[anything_else]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" [(ngModel)]="anything_else" name="TblAcaBasicAdditionalDetail[anything_else]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-							
-						
-					</div>
-						<div class="text-anything-else" *ngIf="anything_else == 1">
-			<div class="col-sm-12">
-				<label class="control-label">Please contact the help desk for more information</label>
-				
-				</div>
-			</div>
-
-				</div>
-				
-				
-
-			</div>
-					<!-- ./form content -->
-					
-					
-				</div>
-			</div>
-			<div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
-				<div class="modal-footer-btn padding-15">
-					<a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-					<a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-					<a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
-				</div>
-			</div>
-		</form>
-	</div>
+    <div class="col-md-12 padding-0">
+        <form>
+            <div class="col-md-12 padding-0">
+                <div class="container margin-top-30 margin-bottom-10">
+                    <!-- form content -->
+                    <div class="col-md-12">
+                        <div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
+                            <div class="col-sm-12">
+                                <label class="control-label mb-0">{{labels[0]}} </label>
+                            </div>
+                            <div class="col-sm-12 vertical-checkbox">
+                                <div class="checkbox">
+                                    <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[0]" name="hear_about_us[0]" value="0"><span class="control-checkbox">Referred by a friend</span></label>
+                                </div>
+                                <div class="checkbox">
+                                    <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[1]" name="hear_about_us[1]" value="1"><span class="control-checkbox">Internet Search</span></label>
+                                </div>
+                                <div class="checkbox">
+                                    <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[2]" name="hear_about_us[2]" value="2"><span class="control-checkbox">Attended our conference</span></label>
+                                </div>
+                                <div class="checkbox">
+                                    <label> <input type="checkbox" class="specific_heard" (change)="handleChange($event)" [(ngModel)]="anythingElseData.hear_about_us[3]" name="hear_about_us[3]"  value="3"><span class="control-checkbox">Others</span></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 padding_left_30 others_comments" *ngIf="anythingElseData.hear_about_us[3]==true">
+                                <div class="field-tblacabasicadditionaldetail-others">
+                                    <textarea class="form-control form-height" [(ngModel)]="anythingElseData.others" name="others" inputFilter="true" maxlength="49" rows="4" cols="6"></textarea>
+                                    <div class="help-block"></div>
+                                </div>
+                                <!--<textarea class="form-control form-height"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
+                            <div class="col-sm-12">
+                                <label class="control-label">{{labels[1]}}</label>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <label class="radio-inline">
+                                     <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="1">Yes
+								</label>
+                                <label class="radio-inline">
+                                   <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="2">No
+								</label>
+                            </div>
+                            <div class="text-anything-else" *ngIf="anythingElseData.anything_else == 1">
+                                <div class="col-sm-12">
+                                    <label class="control-label">Please contact the help desk for more information</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./form content -->
+                </div>
+            </div>
+            <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+                <div class="modal-footer-btn padding-15">
+                    <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+                    <button class="btn btn-modal-blue" (click)="formSubmit('exit')">Save & Exit</button> &nbsp;
+                    <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')">Save & Continue</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

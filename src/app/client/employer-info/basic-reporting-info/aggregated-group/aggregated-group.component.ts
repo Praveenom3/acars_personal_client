@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { ElementMasterService } from "app/_services/_element-master.service";
+import { AggregatedGroup } from "app/_models/aggregated-group";
+import { AggregatedGroupService } from "app/_services/_aggregated-group.service";
 
 @Component({
   selector: 'app-aggregated-group',
@@ -7,14 +11,211 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./aggregated-group.component.css']
 })
 export class AggregatedGroupComponent implements OnInit {
+  groupListsData: any;
+  lengb: number;
+  aggregatedGroupData: AggregatedGroup;
   company: string;
   product: string;
-  constructor(route: ActivatedRoute) { 
+
+  label: string;
+  section_id: any = 5;
+  product_id: any;
+  company_id: any;
+  public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+
+  public labels: any[] = [];
+  _errorMessage: any;
+  inputs = [{ name: "", ein: "" }];
+
+  public totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  constructor(route: ActivatedRoute,
+    private router: Router,
+    private toastrService: ToastrService,
+    private _aggregateGroupService: AggregatedGroupService,
+    private _elementMasterService: ElementMasterService) {
     this.product = route.snapshot.params['product'];
     this.company = route.snapshot.params['company'];
+
+    let splittedProduct: any[] = [];
+    let splittedCompany: any[] = [];
+
+    if (this.product) {
+      splittedProduct = this.product.split("-");
+      this.product_id = splittedProduct[0];
+    }
+
+    if (this.company) {
+      splittedCompany = this.company.split("-");
+      this.company_id = splittedCompany[0];
+    }
   }
 
   ngOnInit() {
+    this.lengb = this.inputs.length;
+    this.ElementLabelsList();
+    this.aggregatedGroupData = this.createNewAggregatedGroup();
+    this.getAggregatedGroupData();
+  }
+
+  handleChange(value) {
+    let aggregated_group_id = this.aggregatedGroupData.aggregated_group_id;
+    let is_authoritative_transmittal = this.aggregatedGroupData.is_authoritative_transmittal;
+    let is_ale_member = this.aggregatedGroupData.is_ale_member;
+    let created_at = this.aggregatedGroupData.created_at;
+    let created_by = this.aggregatedGroupData.created_by;
+    if (value != 1) {
+      this.aggregatedGroupData = this.createNewAggregatedGroup();
+      this.aggregatedGroupData.is_authoritative_transmittal = is_authoritative_transmittal;
+      this.aggregatedGroupData.aggregated_group_id = aggregated_group_id;
+      this.aggregatedGroupData.is_ale_member = is_ale_member;
+      this.aggregatedGroupData.created_at = created_at;
+      this.aggregatedGroupData.created_by = created_by;
+      this.inputs = [{ name: "", ein: "" }];
+      this.lengb = this.inputs.length;
+    }
+  }
+
+  isOtherEntityChange(value) {
+    if (value != 1) {
+      this.aggregatedGroupData.total_1095_forms = '';
+    }
+  }
+
+  addInput() {
+    this.inputs.push({ name: '', ein: '' });
+    this.lengb = this.inputs.length;
+  }
+
+  remove(input) {
+    this.inputs.splice(input, 1);
+    this.lengb = this.inputs.length;
+  }
+
+  createNewAggregatedGroup() {
+    // Create a new BasicInfo
+    let newAggregatedGroup: AggregatedGroup = {
+      aggregated_group_id: 0,
+      company_id: 0,
+      purchase_id: 0,
+      is_authoritative_transmittal: '',
+      is_ale_member: '',
+      is_other_entity: '',
+      total_1095_forms: '',
+      total_aggregated_grp_months: [],
+      group_list: [],
+      entireYear: '',
+      created_at: '',
+      created_by: '',
+      updated_at: '',
+      updated_by: ''
+    }
+    return newAggregatedGroup;
+  }
+
+  /*getting labels from service*/
+  private ElementLabelsList() {
+    this._elementMasterService.getLabels(this.section_id, this.product_id)
+      .subscribe((labels) => {
+        for (let label of labels) {
+          this.label = label.element_serial_id + ' ' + label.element_label;
+          this.labels.push(this.label);
+        }
+      },
+      error => { this._errorMessage = error.data }
+      );
+  }
+
+  /*getting data from service*/
+  private getAggregatedGroupData() {
+    this._aggregateGroupService.getAggregatedGroupData(this.company_id)
+      .subscribe((planOfferData) => {
+        if (planOfferData) {
+          this.aggregatedGroupData = planOfferData;
+          if (planOfferData.briAggregatedGroupLists.length != 0) {
+            this.inputs = [];
+            this.groupListsData = planOfferData.briAggregatedGroupLists;
+            for (let tempData of this.groupListsData) {
+              this.inputs.push({ name: tempData.group_name, ein: tempData.group_ein });
+              this.lengb = this.inputs.length;
+            }
+          }
+
+          if (this.aggregatedGroupData.total_aggregated_grp_months) {
+            this.aggregatedGroupData.total_aggregated_grp_months = JSON.parse(this.aggregatedGroupData.total_aggregated_grp_months);
+            if (this.aggregatedGroupData.total_aggregated_grp_months.length == 12) {
+              this.aggregatedGroupData.entireYear = true;
+              this.aggregatedGroupData.total_aggregated_grp_months = [];
+            } else {
+              let MonthFields: any[] = [];
+              this.aggregatedGroupData.total_aggregated_grp_months.forEach((monthSelected, index) => {
+                MonthFields[monthSelected] = true;
+              });
+              this.aggregatedGroupData.total_aggregated_grp_months = [];
+              this.aggregatedGroupData.total_aggregated_grp_months = MonthFields;
+            }
+          }
+
+        }
+      },
+      error => { this._errorMessage = error.data }
+      );
+  }
+
+  private formSubmit(param) {
+    this.aggregatedGroupData['purchase_id'] = this.product_id;
+    this.aggregatedGroupData['company_id'] = this.company_id;
+    let customArray = [];
+    if (this.aggregatedGroupData.entireYear == true) {
+      this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(this.totalYear);
+    } else {
+      this.aggregatedGroupData.total_aggregated_grp_months.forEach((eachSelectedMonth, index) => {
+        if (eachSelectedMonth == true) {
+          customArray.push(index);
+        }
+      });
+      this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(customArray);
+    }
+
+    this.aggregatedGroupData.group_list = this.inputs;
+    console.log(this.aggregatedGroupData);
+    if (this.aggregatedGroupData.aggregated_group_id > 0) {
+      this._aggregateGroupService.updateAggregatedGroup(this.aggregatedGroupData).subscribe(
+        result => {
+          if (result.success) {
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this.company]);
+            } else {
+              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/anything-else']);
+            }
+            // this.getAggregatedGroupData();
+            this.aggregatedGroupData = this.createNewAggregatedGroup();
+            this.toastrService.success('Basic Info record added succesfully.');
+          } else {
+            this._errorMessage = 'Not Updated.';
+          }
+        },
+        error => {
+        });
+    } else {
+      this._aggregateGroupService.addAggregatedGroup(this.aggregatedGroupData).subscribe(
+        result => {
+          if (result.success) {
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this.company]);
+            } else {
+              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/anything-else']);
+            }
+            //this.getAggregatedGroupData();
+            this.aggregatedGroupData = this.createNewAggregatedGroup();
+            this.toastrService.success('Basic Info record added succesfully.');
+          } else {
+            this._errorMessage = 'Not Updated.';
+          }
+        },
+        error => {
+        });
+    }
   }
 
 }

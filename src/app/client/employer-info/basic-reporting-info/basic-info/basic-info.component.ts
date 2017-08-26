@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ElementMasterService } from "app/_services/_element-master.service";
+import { BriBasicInfo } from "app/_models/bri-basic-info";
+import { BriBasicInfoService } from "app/_services/_bri-basic-info.service";
+import { ToastrService } from "ngx-toastr";
+import { ROUTER_PROVIDERS } from "@angular/router/src/router_module";
 
 @Component({
   selector: 'app-basic-info',
@@ -7,15 +12,156 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
-   model: any = {};
+  states: any;
+
+  basicInfoData: BriBasicInfo;
+  label: string;
+  abccd: string;
+  element_label: string;
+  section_id: any = 1;
+  product_id: any;
+  company_id: any;
+  public labels: any[] = [];
+  _errorMessage: any;
+
+  model: any = {};
   company: string;
   product: string;
-  constructor(route: ActivatedRoute) { 
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+
+  constructor(route: ActivatedRoute,
+    private router: Router,
+    private toastrService: ToastrService,
+    private _elementMasterService: ElementMasterService,
+    private _briBasicInfoService: BriBasicInfoService) {
     this.product = route.snapshot.params['product'];
     this.company = route.snapshot.params['company'];
+
+    let splittedProduct: any[] = [];
+    let splittedCompany: any[] = [];
+
+    if (this.product) {
+      splittedProduct = this.product.split("-");
+      this.product_id = splittedProduct[0];
+    }
+    if (this.company) {
+      splittedCompany = this.company.split("-");
+      this.company_id = splittedCompany[0];
+    }
   }
 
   ngOnInit() {
+    this.basicInfoData = this.createNewBasicInfo();
+    this.ElementLabelsList();
+    this.getStates();
+    this.getBasicInfoData();
+  }
+
+  createNewBasicInfo() {
+    // Create a new BasicInfo
+    let newBasicInfo: BriBasicInfo = {
+      basic_info_id: 0,
+      company_id: 0,
+      purchase_id: 0,
+      contact_first_name: '',
+      contact_middle_name: '',
+      contact_last_name: '',
+      contact_person_suffix: '',
+      contact_person_title: '',
+      contact_person_email: '',
+      contact_phone_number: '',
+      street_address_1: '',
+      street_address_2: '',
+      contact_country: 1,
+      contact_state: null,
+      contact_city: '',
+      contact_zip: '',
+      emp_benefit_broker_name: '',
+      emp_benefit_broker_email: '',
+      emp_benefit_phone_number: '',
+      created_at: '',
+      created_by: '',
+      updated_at: '',
+      updated_by: ''
+    }
+    return newBasicInfo;
+  }
+
+  /*getting labels from service*/
+  private ElementLabelsList() {
+    this._elementMasterService.getLabels(this.section_id, this.product_id)
+      .subscribe((labels) => {
+        for (let label of labels) {
+          this.label = label.element_serial_id + ' ' + label.element_label;
+          this.labels.push(this.label);
+        }
+      },
+      error => { this._errorMessage = error.data }
+      );
+  }
+
+  // getStates
+  private getStates() {
+    this._briBasicInfoService.getStates()
+      .subscribe((states) => {
+        this.states = states;
+      },
+      error => { this._errorMessage = error.data }
+      );
+  }
+
+  /*getting data from service*/
+  private getBasicInfoData() {
+    this._briBasicInfoService.getbasicInfoData(this.company_id)
+      .subscribe((basicData) => {
+        if (basicData) {
+          this.basicInfoData = basicData;
+        }
+      },
+      error => { this._errorMessage = error.data }
+      );
+  }
+
+
+  private formSubmit(param) {
+    if (this.basicInfoData.basic_info_id > 0) {
+      this.basicInfoData['purchase_id'] = this.product_id;
+      this.basicInfoData['company_id'] = this.company_id;
+      this._briBasicInfoService.updateBriBasicInfo(this.basicInfoData).subscribe(
+        result => {
+          if (result.success) {
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this.company]);
+            } else {
+              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
+            }
+            this.toastrService.success('Basic Info record updated succesfully.');
+          } else {
+            this._errorMessage = 'Not Updated.';
+          }
+        },
+        error => {
+        });
+    } else {
+      this.basicInfoData['purchase_id'] = '1';
+      this.basicInfoData['company_id'] = '1';
+      this._briBasicInfoService.addBasicInfo(this.basicInfoData).subscribe(
+        result => {
+          // console.log(result.success);
+          if (result.success) {
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this.company]);
+            } else {
+              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
+            }
+            this.toastrService.success('Basic Info record added succesfully.');
+          } else {
+            this._errorMessage = 'Not Updated.';
+          }
+        },
+        error => {
+        });
+    }
   }
 
 }

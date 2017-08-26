@@ -11,6 +11,14 @@ import { AnythingElseComponent } from './anything-else/anything-else.component';
 import { FormsModule } from "@angular/forms";
 import { PartialViews } from "app/_partial-views/partial-views.module";
 import { SharedModule } from "app/_shared/shared.module";
+import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
+import { ElementMasterService } from "app/_services/_element-master.service";
+import { BriBasicInfoService } from "app/_services/_bri-basic-info.service";
+import { EmpStatusTrackingService } from "app/_services/_emp-status-tracking.service";
+import { PlanOfferingCriteriaService } from "app/_services/_plan-offering-criterial.service";
+import { DesignatedGovtEntityService } from "app/_services/_designated-govt-entity.service";
+import { AggregatedGroupService } from "app/_services/_aggregated-group.service";
+import { AnythingElseService } from "app/_services/_anything-else.service";
 
 @NgModule({
   imports: [
@@ -18,8 +26,10 @@ import { SharedModule } from "app/_shared/shared.module";
     BasicReportingInfoRoutingModule,
     FormsModule,
     SharedModule,
-    PartialViews
+    PartialViews,
+    TextMaskModule,
   ],
-  declarations: [BasicInfoComponent, EmpStatusTrackingComponent, PlanOfferingCriteriaComponent, DesignatedGovtEntityComponent, AggregatedGroupComponent, AnythingElseComponent]
+  declarations: [BasicInfoComponent, EmpStatusTrackingComponent, PlanOfferingCriteriaComponent, DesignatedGovtEntityComponent, AggregatedGroupComponent, AnythingElseComponent],
+  providers:[AnythingElseService,AggregatedGroupService,DesignatedGovtEntityService,ElementMasterService,BriBasicInfoService,EmpStatusTrackingService,PlanOfferingCriteriaService]
 })
 export class BasicReportingInfoModule { }
