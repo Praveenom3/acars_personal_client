@@ -1,41 +1,39 @@
 <!-- company info -->
-    <client-company-info></client-company-info>
+<client-company-info></client-company-info>
 <!-- ./company info -->
 <!-- Main Tabs -->
-    <client-reporting-band></client-reporting-band>
+<client-reporting-band></client-reporting-band>
 <!-- ./Main Tabs -->
 
 <!-- Sub Tabs -->
-    <div class="col-xs-12 client-reporting-subTabs-band-fixed">
-        <div class="col-md-12 padding-10 ul-block">
-            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                    <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']">
-                        <div class="inner-block-digits pull-left">1</div>
-                        <span class="inner-block-text">General Plan Information</span></a>
-                </li>
-                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-                    <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info','mec-coverage']">
-                        <div class="inner-block-digits pull-left">2</div>
-                        <span class="inner-block-text">MEC Coverage</span></a>
-                </li>
-            </ul>
-        </div>
+<div class="col-xs-12 client-reporting-subTabs-band-fixed">
+    <div class="col-md-12 padding-10 ul-block">
+        <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']">
+                    <div class="inner-block-digits pull-left">1</div>
+                    <span class="inner-block-text">General Plan Information</span></a>
+            </li>
+            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                <a [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info','mec-coverage']">
+                    <div class="inner-block-digits pull-left">2</div>
+                    <span class="inner-block-text">MEC Coverage</span></a>
+            </li>
+        </ul>
     </div>
+</div>
 <!-- ./Sub Tabs -->
 
 <div class="product-container-with-sub-tabs col-md-12">
     <div class="col-md-12 padding-0">
-        <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+        <form>
             <div class="col-md-12 padding-0">
                 <div class="container margin-top-30 margin-bottom-10">
-
                     <!-- form content -->
                     <div class="col-md-12">
-
                         <div class="form-group">
                             <div class="col-sm-12 padding-right-0 padding_left-0">
-                                <label class="form-control-label"><div class="margin">8.1&nbsp;&nbsp;&nbsp;Select the months in which you offered Minimum Essential Coverage (MEC) to your employees.</div>
+                                <label class="form-control-label"><div class="margin">{{labels[0]}}</div>
                                             </label>
                                 <ul>
                                     <li>
@@ -45,70 +43,65 @@
                                         <div class="margin form-control-label bullet2">For 2016 reporting, you must have offered MEC to at least 95% of your full time employees during the month</div>
                                     </li>
                                 </ul>
-                                <div class="col-sm-12">
-                                    <div class="">
-                                        <input type="checkbox" [(ngModel)]="disableMonths" id="entire_year" name="TblAcaMecCoverage[mec_months][0]" value="1"> Entire Year
+                                <div class="col-sm-3" style="display:grid;">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="entireYear"  [(ngModel)]="mecCoverageData.entireYear" value="1"><span class="control-checkbox">Entire
+                                    Year</span></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[1]" name="mec_months[1]" value="1"><span class="control-checkbox">January</span></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[2]" name="mec_months[2]"  value="2"><span class="control-checkbox">February</span></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1"  [(ngModel)]="mecCoverageData.mec_months[3]" name="mec_months[3]" value="3"><span class="control-checkbox">March</span></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[4]" name="mec_months[4]"  value="4"><span class="control-checkbox">April</span></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[5]" name="mec_months[5]"  value="5"><span class="control-checkbox">May</span></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[6]" name="mec_months[6]"  value="6"><span class="control-checkbox">June</span></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3" style="display:grid;">
-                                    <div class="checkbox" style="margin-top:5px;">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][1]" value="1"><span class="control-checkbox">January</span></label>
+                                    <div class="checkbox">
+                                        <label></label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][2]" value="2"><span class="control-checkbox">February</span></label>
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[7]" name="mec_months[7]"  value="7"><span class="control-checkbox">July</span></label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][3]" value="3"><span class="control-checkbox">March</span></label>
-                                    </div>
-
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][4]" value="4"><span class="control-checkbox">April</span></label>
-                                    </div>
-
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][5]" value="5"><span class="control-checkbox">May</span></label>
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1"  [(ngModel)]="mecCoverageData.mec_months[8]" name="mec_months[8]"  value="8"><span class="control-checkbox">August</span></label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][6]" value="6"><span class="control-checkbox">June</span></label>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3" style="display:grid;">
-                                    <div class="checkbox" style="margin-top:5px;">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][7]" value="7"><span class="control-checkbox">July</span></label>
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[9]" name="mec_months[9]"  value="9"><span class="control-checkbox">September</span></label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][8]" value="8"><span class="control-checkbox">August</span></label>
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[10]" name="mec_months[10]"  value="10"><span class="control-checkbox">October</span></label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][9]" value="9"><span class="control-checkbox">September</span></label>
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[11]" name="mec_months[11]"  value="11"><span class="control-checkbox">November</span></label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][10]" value="10"><span class="control-checkbox">October</span></label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][11]" value="11"><span class="control-checkbox">November</span></label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" [disabled]="disableMonths == 1" class="specific_year" name="TblAcaMecCoverage[mec_months][12]" value="12"><span class="control-checkbox">December</span></label>
+                                        <label><input type="checkbox" class="specific_year" [disabled]="mecCoverageData.entireYear == 1" [(ngModel)]="mecCoverageData.mec_months[12]" name="mec_months[12]"  value="12"><span class="control-checkbox">December</span></label>
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
-
-
                     </div>
                     <!-- ./form content -->
-
                 </div>
             </div>
             <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
                 <div class="modal-footer-btn padding-15">
                     <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-                    <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-                    <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+                    <button class="btn btn-modal-blue" (click)="formSubmit('exit')">Save & Exit</button> &nbsp;
+                    <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')">Save & Continue</button>
                 </div>
             </div>
         </form>
