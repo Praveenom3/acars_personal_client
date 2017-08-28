@@ -12,6 +12,9 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./aggregated-group.component.css']
 })
 export class AggregatedGroupComponent implements OnInit {
+  purchase_id: any;
+  client_id: any;
+  companyDetails: any;
   groupListsData: any;
   lengb: number;
   aggregatedGroupData: AggregatedGroup;
@@ -36,11 +39,10 @@ export class AggregatedGroupComponent implements OnInit {
     public globalService: GlobalService,
     private _aggregateGroupService: AggregatedGroupService,
     private _elementMasterService: ElementMasterService) {
-    this.product_id = this.product = globalService.decode(route.snapshot.params['product']);
-    this.company_id = this.company = globalService.decode(route.snapshot.params['company']);
-
-    let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
+    this.product_id = globalService.decode(route.snapshot.params['product']);
+    this.company_id = globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
   }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class AggregatedGroupComponent implements OnInit {
     this.ElementLabelsList();
     this.aggregatedGroupData = this.createNewAggregatedGroup();
     this.getAggregatedGroupData();
+    this.getCompany();
   }
 
   handleChange(value) {
@@ -103,6 +106,19 @@ export class AggregatedGroupComponent implements OnInit {
       updated_by: ''
     }
     return newAggregatedGroup;
+  }
+
+  /*GET COMPANY DETAILS AND PRODUCT YEAR*/
+  getCompany() {
+    let companyDet = this.globalService.getCompany();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let productYear = products[this.product_id]['applicable_year'];
+    if (companyDet) {
+      this.companyDetails = JSON.parse(companyDet);
+      this.companyDetails.productYear = productYear;
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
+    }
   }
 
   /*getting labels from service*/
@@ -170,17 +186,17 @@ export class AggregatedGroupComponent implements OnInit {
     }
 
     this.aggregatedGroupData.group_list = this.inputs;
-    console.log(this.aggregatedGroupData);
     if (this.aggregatedGroupData.aggregated_group_id > 0) {
       this._aggregateGroupService.updateAggregatedGroup(this.aggregatedGroupData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this.globalService.encode(this.product) + '/' + this.globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
+
             // this.getAggregatedGroupData();
             this.aggregatedGroupData = this.createNewAggregatedGroup();
             this.toastrService.success('Basic Info record added succesfully.');
@@ -194,9 +210,9 @@ export class AggregatedGroupComponent implements OnInit {
       this._aggregateGroupService.addAggregatedGroup(this.aggregatedGroupData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this.globalService.encode(this.product) + '/' + this.globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }

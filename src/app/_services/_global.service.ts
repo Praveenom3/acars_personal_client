@@ -51,6 +51,11 @@ export class GlobalService {
     public getUserId(): any {
         return localStorage.getItem('user_id');
     }
+	
+	public getCompany(): any {
+        return localStorage.getItem('company');
+    }
+	
     /**
      * Encodes and returns
      * @param param 
