@@ -3,6 +3,7 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { OrdersService } from "app/_services/_orders.service";
+import { GlobalService } from "app/_services/_global.service";
 @Component({
   selector: 'app-billing-contract',
   templateUrl: './billing-contract.component.html',
@@ -19,10 +20,11 @@ export class BillingContractComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private ordersService: OrdersService,
+    public globalService: GlobalService,
     public clientDashBoardService: ClientDashBoardService) {
 
-    this.clientDashBoardService.productParams = activatedRoute.snapshot.params['product'];
-    this.clientDashBoardService.clientParams = activatedRoute.snapshot.params['client'];
+    this.clientDashBoardService.productParams = globalService.decode(this.activatedRoute.snapshot.params['product']);
+    this.clientDashBoardService.clientParams = globalService.decode(activatedRoute.snapshot.params['client']);
     this.clientDashBoardService.billingStep = true;
     this.clientDashBoardService.setInformation()
 
@@ -136,6 +138,7 @@ export class BillingContractComponent implements OnInit {
    * 
    */
   setBillingContract(clientAsDefaultBilling = true) {
+
 
     this.clientDashBoardService.primaryContractStep = false;
     this.clientDashBoardService.contractSignStep = false;

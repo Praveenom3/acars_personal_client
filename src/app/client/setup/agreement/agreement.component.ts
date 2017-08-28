@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-
+import { GlobalService } from "app/_services/_global.service";
 @Component({
   selector: 'app-agreement',
   templateUrl: './agreement.component.html',
@@ -14,13 +14,16 @@ export class AgreementComponent implements OnInit {
   public clientId: any
   constructor(public route: ActivatedRoute,
     public clientDashBoardService: ClientDashBoardService,
+    public globalService: GlobalService,
     private toastrService: ToastrService,
     private router: Router,
   ) {
-    this.clientDashBoardService.productParams = route.snapshot.params['product'];
-    this.clientDashBoardService.clientParams = route.snapshot.params['client'];
+    this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
+    this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
     this.clientDashBoardService.agreementStep = true;
     this.clientDashBoardService.setInformation()
+    console.log(this.clientDashBoardService.productParams);
+    console.log(this.clientDashBoardService.clientParams);
   }
 
   ngOnInit() {
@@ -38,24 +41,10 @@ export class AgreementComponent implements OnInit {
    */
   finalStep() {
 
-    let productId: any;
-    let clientId: any;
-    if (this.clientDashBoardService.productParams) {
-      productId = this.clientDashBoardService.productParams.split('-');
-      if (typeof productId[0] != 'undefined') {
-        this.productId = productId[0]
-      }
-    }
-    if (this.clientDashBoardService.clientParams) {
-      clientId = this.clientDashBoardService.clientParams.split('-');// getting client from url
-      if (typeof clientId[0] != 'undefined') {
-        this.clientId = clientId[0]
-      }
-    }
     let postData = {
       "userId": localStorage.getItem('user_id'),
-      "clientId": this.clientId,
-      "productId": this.productId,
+      "clientId": this.clientDashBoardService.clientParams,
+      "productId": this.clientDashBoardService.productParams,
       "defaultBilling": this.clientDashBoardService.clientAsDefaultBilling,
       "billingModel": this.clientDashBoardService.billingContractModel,
       "defaultContractSign": this.clientDashBoardService.clientAsDefaultContractSign,
@@ -85,15 +74,17 @@ export class AgreementComponent implements OnInit {
     console.log(result)
     this.clientDashBoardService.initDashBoardVaraibles();
     let products: any = JSON.parse(localStorage.getItem('productsAndClients'));
-    let product = products[this.productId];
+    let productId = this.clientDashBoardService.productParams;
+    let product = products[productId];
+    let clientId = this.clientDashBoardService.clientParams;
+
     if (product) {
-      product['clients'][this.clientId]['primaryData'] = result[this.clientId];
-      products[this.productId] = product;
+      product['clients'][clientId]['primaryData'] = result[clientId];
+      products[productId] = product;
       localStorage.setItem('productsAndClients', JSON.stringify(products));
     }
-    let clientInfo = product['clients'][this.clientId];
-    let clientId: number = clientInfo['client_id'];
+    
     this.toastrService.success('Client purchase primary data updated successfully');
-    this.router.navigate(['/client/' + product.product_id + '/' + this.clientId + '/dashboard']);
+    this.router.navigate(['/client/' + this.globalService.encode(productId) + '/' + this.globalService.encode(clientId) + '/dashboard']);
   }
 }

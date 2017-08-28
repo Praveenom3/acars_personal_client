@@ -188,7 +188,7 @@ export class AuthenticationService {
     public removeLocalstorage(): void {
         localStorage.removeItem('authtoken');
         localStorage.removeItem('usertype');
-        localStorage.removeItem('clientsAndCompanies');
+        localStorage.removeItem('productsAndClients');
         localStorage.removeItem('useremail');
         localStorage.removeItem('user_id');
         localStorage.removeItem('firstName');

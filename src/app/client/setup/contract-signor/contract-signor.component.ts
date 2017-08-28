@@ -3,6 +3,8 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { OrdersService } from "app/_services/_orders.service";
+import { GlobalService } from "app/_services/_global.service";
+
 @Component({
   selector: 'app-contract-signor',
   templateUrl: './contract-signor.component.html',
@@ -18,10 +20,11 @@ export class ContractSignorComponent implements OnInit {
   constructor(public route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private ordersService: OrdersService,
+    public globalService: GlobalService,
     public clientDashBoardService: ClientDashBoardService,
   ) {
-    this.clientDashBoardService.productParams = route.snapshot.params['product'];
-    this.clientDashBoardService.clientParams = route.snapshot.params['client'];
+    this.clientDashBoardService.productParams = globalService.decode(route.snapshot.params['product']);
+    this.clientDashBoardService.clientParams = globalService.decode(route.snapshot.params['client']);
     this.clientDashBoardService.contractSignStep = true;
     this.clientDashBoardService.setInformation()
 
