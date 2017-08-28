@@ -8,6 +8,8 @@ import { ToastrService } from "ngx-toastr";
 import { ModalDirective } from "ngx-bootstrap";
 import { CookieService } from "ngx-cookie";
 
+import { GlobalService } from "../_services/_global.service";
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private _formBuilder: FormBuilder,
         private toastrService: ToastrService,
+        private globalService: GlobalService,
         private _cookieService: CookieService) {
 
         /* login form */
@@ -269,14 +272,14 @@ export class LoginComponent implements OnInit {
      */
     navigateUser(userType) {
 
-        let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
         let productsList = Object.keys(products).map(function (key) {
             return products[key]
         })
         let product;
         productsList.forEach(element => {
-            if (element.applicableYear > this.maxApplicableYear) {
-                this.maxApplicableYear = element.applicableYear
+            if (element.applicable_year > this.maxApplicableYear) {
+                this.maxApplicableYear = element.applicable_year
                 product = element;
             }
         });
@@ -284,10 +287,8 @@ export class LoginComponent implements OnInit {
         let clientKeys: any[] = Object.keys(product.clients);
         let client = clientKeys[0];
         let clientInfo = product['clients'][client];
-        let clientId: number = clientInfo['client_id'];
-        let clientName: string = clientInfo['client_name'];
-        clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-        let productName: string = product.productName.toLocaleLowerCase().replace(/\s+/g, "-");
-        this.router.navigate(['/client/' + clientId + '-' + clientName + '/' + product.productId + '-' + productName + '-' + product.applicableYear + '/companies']);
+        let clientId: number = this.globalService.encode(clientInfo['client_id']);
+        let productId: any = this.globalService.encode(product.product_id);
+        this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
     }
 }

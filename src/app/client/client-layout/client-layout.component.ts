@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 import { RouterStateSnapshot } from '@angular/router';
 import { LoginComponent } from "../../login/login.component";
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { CompaniesComponent } from "../../client/companies/companies.component";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-client-layout',
@@ -26,14 +27,15 @@ export class ClientLayoutComponent implements OnInit {
     route: ActivatedRoute,
     private _idleTimeout: IdleTimeoutService,
     public dashBoardService: ClientDashBoardService,
+    private _globalService: GlobalService,
   ) {
+
     _idleTimeout.init();
     this.dashBoardService.initDashBoardVaraibles();
     this.userFirstName = localStorage.getItem('firstName');
     this.userFirstName = (this.userFirstName === 'undefined') ? '' : this.userFirstName;
     this.userLastName = localStorage.getItem('lastName');
     this.userLastName = (this.userLastName != 'undefined') ? this.userLastName : '';
-
     this.displayClientProducts();
   }
 
@@ -49,7 +51,7 @@ export class ClientLayoutComponent implements OnInit {
 
   displayClientProducts() {
 
-    let products = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
     let clientObject: ClientLayoutComponent = this;
 
     let productsList = Object.keys(products).map(function (key) {
@@ -59,7 +61,7 @@ export class ClientLayoutComponent implements OnInit {
     let selectedProduct;
 
     productsList.forEach(element => {
-      let currentValue = element.applicableYear;
+      let currentValue = element.applicable_year;
       if (currentValue > maxYear) {
         maxYear = currentValue;
       }
@@ -70,8 +72,8 @@ export class ClientLayoutComponent implements OnInit {
       let clientId: number = element['clients'][client]['client_id'];
       let clientName: string = element['clients'][client]['client_name'];
       clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productName: string = element.productName.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productUrl: string = '/client/' + clientId + '-' + clientName + '/' + element.productId + '-' + productName + '-' + element.applicableYear + '/companies';
+      let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
+      let productUrl: string = '/client/' + this._globalService.encode(element.product_id) + '/' + this._globalService.encode(clientId) + '/dashboard';
       switch (currentValue) {
         case '2016':
           productInfo['className'] = 'aca16';

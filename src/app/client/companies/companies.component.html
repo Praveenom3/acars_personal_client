@@ -1,17 +1,17 @@
 <div class="row company-section-container">
-    <section class="padding-0">
+    <!-- <section class="padding-0">
         <div class="col-md-12 blue-breadcrumb-plans" align="center">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
                 <div class="nav-tabs-horizontal">
                     <ul class="nav nav-tabs border-bottom display-inblock company-details-nav" role="tablist">
                         <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; {{clientDashBoardService.company.company_ein}}</a>
+                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; {{clientDashBoardService.company.company_name}}</a>
                         </li>
                         <li class="nav-item hover">
                             <a class="nav-link plan-link color-white no-wrap no-border">EIN: &nbsp; {{clientDashBoardService.company.company_ein}}</a></li>
 
                         <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp; {{clientDashBoardService.product.applicableYear}}</a>
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}</a>
                         </li>
                         <li class="nav-item hover">
                             <a class="nav-link plan-link color-white no-border no-wrap ">Package: &nbsp; {{clientDashBoardService.productService}}</a>
@@ -20,43 +20,54 @@
                 </div>
             </div>
         </div>
-    </section>
-    <div class="col-md-12" style="margin-top:77px;">
+        </section> -->
+    <div class="col-md-12" style="margin-top:25px;">
         <div class="col-lg-10 col-lg-offset-1">
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
                 <div class="header-border-btm-blue"></div>
                 <div class="col-md-6">
-                    <div class="widget col-md-12 padding-15 comp-dash-divs">
-                        <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; COMPANIES LIST</h4>
-                        <input type="text" class="form-control margin-bottom-15">
+                    <div class="widget col-md-12 padding-15 block-one comp-dash-divs">
+                        <h4 class="text-center dark-blue-text ">
+                            <i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; COMPANIES LIST
+                        </h4>
+
+                        <div class="company-search left-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                            <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15">
+                        </div>
+
                         <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies" #mf="mfDataTable"
-                            [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                            [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                             <thead>
                                 <tr>
-                                    <th class="text-center">
+                                    <th class="">
                                         <mfDefaultSorter by="company">Client Name</mfDefaultSorter>
                                     </th>
-                                    <th class="text-center">
-                                        <mfDefaultSorter by="company">Companies</mfDefaultSorter>
+                                    <th class="">
+                                        <mfDefaultSorter by="company">Company Name</mfDefaultSorter>
                                     </th>
-                                    <th class="text-center">
-                                        <mfDefaultSorter by="EIN">EIN</mfDefaultSorter>
+                                    <th class="">
+                                        <mfDefaultSorter by="companyId">ID</mfDefaultSorter>
                                     </th>
-                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <ng-container *ngIf="mf.data?.length">
-
                                     <tr *ngFor="let company of mf.data">
-                                        <td class="text-center">{{clientDashBoardService.client.client_name}}</td>
-                                        <td class="text-center">{{company.company_name}}</td>
-                                        <td class="text-center">{{company.company_ein}}</td>
-                                        <td class="text-center"><a class="link-blue-underline" (click)="updateCompanyInfo(company)">
+                                        <td class="">{{company.client_name}}</td>
+                                        <td class="">
+                                            {{company.company_name}}
+                                        </td>
+                                        <td class="">
+                                            <a class="link-blue-underline" (click)="setCompany(company)">
+                                                {{company.company_client_number}}
+                                                 </a>
+                                        </td>
+                                        <!-- <td class="text-center"><a class="link-blue-underline" (click)="updateCompanyInfo(company)">
                                             <i class="fa fa-edit"></i>
                                                 </a>
-                                        </td>
+                                        </td> -->
                                     </tr>
 
                                 </ng-container>
@@ -69,8 +80,9 @@
                         </table>
                     </div>
                 </div>
+
                 <div class="col-md-6">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
                         <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; CONTACT US</h4>
                         <p class=" setup-text-band">Managed Account - Assigned Agent</p>
                         <div class="addres-block">
@@ -86,11 +98,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-md-5">
                 <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
                 <div class="header-border-btm-blue"></div>
-                <div class="col-md-6">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="col-md-7">
+                    <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
                         <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; IRS DEADLINES</h4>
                         <p class=" setup-text-band">Please note these important dates</p>
                         <table class="col-xs-12">
@@ -113,7 +126,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="widget col-md-12  padding-15 comp-dash-divs">
                         <div class="btn-primary upload-download-block cursor-pointer" style="background-color:#13a9cc">
                             <ul class="ul-inline download-upload-ul">
@@ -141,11 +154,76 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-md-6">
+                <h3 class="fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h3>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-12">
+                    <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
+                        <div class="col-md-6">
+                            <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> {{clientDashBoardService.company.company_name}}</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> ID: {{clientDashBoardService.company.company_client_number}}</h4>
+                            <a class="link-blue-underline company-edit-block" (click)="updateCompanyInfo(clientDashBoardService.company)">
+                                            <i class="fa fa-edit"></i>
+                                    </a>
+                        </div>
+
+                        <div class="company-details-display">
+                            EIN : &nbsp; {{clientDashBoardService.company.company_ein}} | Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}
+                            | Package: &nbsp; {{clientDashBoardService.productService}}
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="authorized-main-header">
+                    <h3 class="fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h3>
+                    <!-- <div class="add-authorised-user">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        <button class="add-authorised-user btn btn-primary btn-blue">Add User</button>
+                    </div> -->
+                </div>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-12">
+                    <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
+                        <div class="col-md-12">
+                            <table class="col-xs-12 authorized-users">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Details & Activity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="padding-5">xxxxx</td>
+                                        <td class="padding-5">xxxxx</td>
+                                        <td class="padding-5">xxxxx</td>
+                                        <td class="padding-5"><a class="link-blue-underline">view</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="col-lg-10 col-lg-offset-1">
             <h3 class="fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h3>
             <div class="header-border-btm-blue"></div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="widget col-md-12  padding-15 comp-dash-divs">
                     <h4 class="text-center dark-blue-text "> STEP 1</h4>
                     <p class=" setup-text-band">On-boarding</p>
@@ -154,9 +232,10 @@
                             <tr>
                                 <td>Invoice</td>
                                 <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === true" title="Click to toggle">Not paid</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === false" title="Click to toggle">Paid</span>
-                                    <!--<span class="alert alert-danger confirmation-box">Not paid</span>-->
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment();" *ngIf="clientDashBoardService.company.is_invoice_paid == false"
+                                        title="Click to toggle">Not Paid</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment();" *ngIf="clientDashBoardService.company.is_invoice_paid == true"
+                                        title="Click to toggle">Paid</span>
                                 </td>
                             </tr>
                             <tr>
@@ -180,41 +259,50 @@
                     <button class="btn btn-danger status-btn">Incomplete</button>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="widget col-md-12  padding-15 comp-dash-divs">
                     <h4 class="text-center dark-blue-text "> STEP 2</h4>
                     <p class=" setup-text-band">Company Data</p>
                     <table class="col-xs-12">
                         <tbody>
                             <tr>
-                                <td>Basic Reporting Info</td>
+                                <td>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink">Confirm EIN</a>
+                                </td>
+                                <td class="padding-5">
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.company_ein"
+                                        title="Click to toggle">Required</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.company_ein"
+                                        title="Click to toggle">Completed</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink">Basic Plan Information</a>
+                                </td>
                                 <td class="padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
                             </tr>
                             <tr>
-                                <td>Basic Plan Info</td>
-                                <td class=" padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
-                            </tr>
-                            <tr>
-                                <td>Plan Classes</td>
-                                <td class=" padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
+                                <td> <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink">Benefit Plan & Plan Classes</a></td>
+                                <td class=" padding-5"><span class="pull-right alert alert-danger confirmation-box">Required</span></td>
                             </tr>
                         </tbody>
                     </table>
                     <button class="btn btn-danger status-btn">Incomplete</button>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="widget col-md-12  padding-15 comp-dash-divs">
                     <h4 class="text-center dark-blue-text "> STEP 3</h4>
                     <p class=" setup-text-band">Employee Data</p>
                     <table class="col-xs-12">
                         <tbody>
                             <tr>
-                                <td>Payroll Data</td>
+                                <td><a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.payRollDataLink">Payroll Data</a></td>
                                 <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
                             </tr>
                             <tr>
-                                <td>Medical Plan Data</td>
+                                <td><a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.medicalPlanDataLink">Medical Plan Data</a></td>
                                 <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
                             </tr>
                         </tbody>
@@ -222,7 +310,10 @@
                     <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
                 </div>
             </div>
-            <div class="col-md-3">
+
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-4">
                 <div class="widget col-md-12  padding-15 comp-dash-divs">
                     <h4 class="text-center dark-blue-text "> STEP 4</h4>
                     <p class=" setup-text-band">Request & Review Forms</p>
@@ -241,12 +332,30 @@
                     <button class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
                 </div>
             </div>
-        </div>
-        <div class="col-md-10 col-md-offset-1">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="widget col-md-12  padding-15 comp-dash-divs">
                     <h4 class="text-center dark-blue-text "> STEP 5</h4>
                     <p class=" setup-text-band">Approval & Print and Mail</p>
+                    <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>Final Form Approval</td>
+                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>Print & Mail Requested</td>
+                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                    <h4 class="text-center dark-blue-text "> STEP 6</h4>
+                    <p class=" setup-text-band">IRS Fillings</p>
                     <table class="col-xs-12">
                         <tbody>
                             <tr>
@@ -259,9 +368,10 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -288,7 +398,7 @@
                 <div class="modal-body row">
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <label class="form-control-label">Company Name</label>
+                            <label class="form-control-label">Company Name<span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
                                 <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
                                     [ngClass]="{'form-control-danger': !_isValid('company_name')}">
@@ -296,7 +406,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-control-label">EIN</label>
+                            <label class="form-control-label">EIN<span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                 <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
                                     [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true" placeholder="(__)-_______"

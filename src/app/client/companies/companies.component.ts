@@ -29,13 +29,16 @@ export class CompaniesComponent implements OnInit {
   public isDiscoveryCallDone: boolean = true;
 
   public filterQuery = "";
-  public rowsOnPage = 10;
   public sortOrder = "asc";
   public sortBy = "";
 
   public productService: string;
   private _errorMessage: string;
   private _submitted: boolean;
+
+  public basicReportingLink: string;
+  public benefitPlanLink: string;
+  public planClassesLink: string;
 
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
@@ -51,9 +54,8 @@ export class CompaniesComponent implements OnInit {
       company_ein: ['', Validators.compose([Validators.required])],
 
     });
-    this.clientDashBoardService.productParams = route.snapshot.params['product'];
-    this.clientDashBoardService.clientParams = route.snapshot.params['client'];
-    this.clientDashBoardService.setInformation()
+    this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
+    this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
     this._companyForm.valueChanges
       .subscribe(companyData => this.onValueChanged(companyData));
   }
@@ -72,6 +74,7 @@ export class CompaniesComponent implements OnInit {
    *  Initialiazes component
    */
   ngOnInit() {
+    this.clientDashBoardService.setInformation()
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
   }
@@ -80,6 +83,7 @@ export class CompaniesComponent implements OnInit {
    */
   toggleInvoicePayment() {
     this.isInvoicePaid = !this.isInvoicePaid;
+    this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
   }
   /**
    * 
@@ -99,8 +103,8 @@ export class CompaniesComponent implements OnInit {
    * @param companyInfo 
    */
   public updateCompanyInfo(companyInfo: Company) {
-    console.log(companyInfo);
     this.companyEdit = Object.assign({}, companyInfo);
+    //this.companyEdit.company_ein = '';
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
     this.companyModal.show();
   }
@@ -136,12 +140,14 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   onSubmit() {
-    console.log(this.companyEdit);
+    this.companyEdit.company_ein = this.companyEdit.company_ein.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
     this._submitted = true;
     this.clientUserService.updateClientCompanyInfo(this.companyEdit).subscribe(
       result => {
         if (result.success) {
           this.closeModal();
+          this.resetCompanyInfo(result);
+          this._submitted = false;
           this.toastrService.success('Company Details Updated Successfully.');
         } else {
           this._errorMessage = 'Record not Updated';
@@ -158,6 +164,25 @@ export class CompaniesComponent implements OnInit {
           this._errorMessage = error.data;
         }
       });
+  }
+  /**
+   * 
+   * @param result 
+   */
+  resetCompanyInfo(result) {
+    let updatedCompany = result.data;
+    let companies = this.clientDashBoardService.companies;
+
+    companies.forEach(element => {
+      if (element.company_id == updatedCompany.company_id) {
+        element.company_name = updatedCompany.company_name;
+        element.company_ein = updatedCompany.company_ein;
+      }
+      if (this.clientDashBoardService.company.company_id == updatedCompany.company_id) {
+        this.clientDashBoardService.company.company_name = updatedCompany.company_name;
+        this.clientDashBoardService.company.company_ein = updatedCompany.company_ein;
+      }
+    });
   }
   /**
    * 
@@ -202,5 +227,11 @@ export class CompaniesComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * 
+   * @param company 
+   */
+  public setCompany(company: Company) {
+    this.clientDashBoardService.setCompany(company);
+  }
 }

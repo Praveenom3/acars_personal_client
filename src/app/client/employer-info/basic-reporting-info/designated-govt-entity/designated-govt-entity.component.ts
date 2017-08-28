@@ -5,6 +5,7 @@ import { ElementMasterService } from "app/_services/_element-master.service";
 import { GovtEntity } from "app/_models/govt-entity";
 import { DesignatedGovtEntityService } from "app/_services/_designated-govt-entity.service";
 import { BriBasicInfoService } from "app/_services/_bri-basic-info.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-designated-govt-entity',
@@ -32,22 +33,11 @@ export class DesignatedGovtEntityComponent implements OnInit {
     private router: Router,
     private _designatedGovtEntity: DesignatedGovtEntityService,
     private _briBasicInfoService: BriBasicInfoService,
+    private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
+    this.product_id = this.product = route.snapshot.params['product'];
+    this.company_id = this.company = route.snapshot.params['company'];
 
-    let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
-
-    if (this.product) {
-      splittedProduct = this.product.split("-");
-      this.product_id = splittedProduct[0];
-    }
-
-    if (this.company) {
-      splittedCompany = this.company.split("-");
-      this.company_id = splittedCompany[0];
-    }
   }
 
   ngOnInit() {
@@ -145,10 +135,11 @@ export class DesignatedGovtEntityComponent implements OnInit {
       this._designatedGovtEntity.updateGovtEntity(this.govtEntityData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/aggregated-group']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/aggregated-group']);
             }
             //this.getDesignatedGovtEntityData();
             this.toastrService.success('Employee status tracking record added succesfully.');

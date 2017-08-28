@@ -43,7 +43,7 @@ const routes: Routes = [
                 component: ActivityLogComponent
             },
             {
-                path: ':client/:product/companies',
+                path: ':product/:client/dashboard',
                 component: CompaniesComponent
             },
             {
@@ -67,7 +67,7 @@ const routes: Routes = [
                 loadChildren: 'app/client/employer-info/employer-info.module#EmployerInfoModule'
             },
             {
-                path: ':client/:product/setup',
+                path: ':product/:client/setup',
                 loadChildren: 'app/client/setup/setup.module#SetupModule'
             },
             {

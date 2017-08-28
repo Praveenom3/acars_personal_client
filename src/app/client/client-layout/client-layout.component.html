@@ -81,10 +81,14 @@
         </div>
         <ul class="actions  media-hide-header">
             <li>
-                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="['/client/aca16/companies']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="dashBoardService.clientHomeUrl">
+                    <b><i class="fa fa-home" aria-hidden="true"></i></b>
+                </a>
             </li>
             <li>
-                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/client/search']"><b>Search</b></a>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/client/search']">
+                    <b>Search</b>
+                </a>
             </li>
         </ul>
     </div>
@@ -95,7 +99,7 @@
             <div class="dropdown dropdown-avatar pull-right">
                 <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false">
                      <span class="header-name media-hide-profilename">
-                         <span class="font-14">Welcome</span> {{userFirstName}} {{userLastName}}<span class="font-14"></span></span>
+                         <span class="font-14">Welcome</span> {{userFirstName}}<span class="font-14"></span></span>
                 </a>
                 <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:16px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/profile']"><i

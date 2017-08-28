@@ -4,6 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { GeneralPlanInfo } from "app/_models/general-plan-info";
 import { GeneralPlanInfoService } from "app/_services/_general-plan-info.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-general-plan-information',
@@ -26,22 +27,10 @@ export class GeneralPlanInformationComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private _generalPlanInfoService: GeneralPlanInfoService,
+    private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
-
-    let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
-
-    if (this.product) {
-      splittedProduct = this.product.split("-");
-      this.product_id = splittedProduct[0];
-    }
-
-    if (this.company) {
-      splittedCompany = this.company.split("-");
-      this.company_id = splittedCompany[0];
-    }
+    this.product_id = this.product = _globalService.decode(route.snapshot.params['product']);
+    this.company_id = this.company = _globalService.decode(route.snapshot.params['company']);
 
   }
 
@@ -143,10 +132,11 @@ export class GeneralPlanInformationComponent implements OnInit {
       this._generalPlanInfoService.updateGeneralPlanInfo(this.generalPlanInfoData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
+              this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
             //this.getGeneralPlanInfoData();
             this.toastrService.success('General Plan Information record added succesfully.');

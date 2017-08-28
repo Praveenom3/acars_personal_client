@@ -86,6 +86,7 @@ export class ProductsComponent implements OnInit {
         let newProduct: Products = {
             product_id: 0,
             product_name: '',
+            product_full_name: '',
             product_type: null,
             account_manager: '',
             applicable_year: null,

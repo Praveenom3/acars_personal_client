@@ -4,6 +4,7 @@ import { PlanOfferingCriteria } from "app/_models/plan-offering-criteria";
 import { ToastrService } from "ngx-toastr";
 import { PlanOfferingCriteriaService } from "app/_services/_plan-offering-criterial.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-plan-offering-criteria',
@@ -29,22 +30,10 @@ export class PlanOfferingCriteriaComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private _planOfferingCriteriaService: PlanOfferingCriteriaService,
+    private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
-
-    let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
-
-    if (this.product) {
-      splittedProduct = this.product.split("-");
-      this.product_id = splittedProduct[0];
-    }
-
-    if (this.company) {
-      splittedCompany = this.company.split("-");
-      this.company_id = splittedCompany[0];
-    }
+    this.product_id = this.product = route.snapshot.params['product'];
+    this.company_id = this.company = route.snapshot.params['company'];
   }
 
   ngOnInit() {
@@ -132,10 +121,11 @@ export class PlanOfferingCriteriaComponent implements OnInit {
       this._planOfferingCriteriaService.updatePlanOfferingCriteria(this.planOfferingData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
             }
             //this.getPlanOfferData();
             this.planOfferingData = this.createNewPlanOfferingCriteria();
@@ -151,10 +141,11 @@ export class PlanOfferingCriteriaComponent implements OnInit {
       this._planOfferingCriteriaService.addPlanOfferingCriteria(this.planOfferingData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
             }
             //this.getPlanOfferData();
             this.planOfferingData = this.createNewPlanOfferingCriteria();

@@ -4,6 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { MecCoverage } from "app/_models/mec-coverage";
 import { MecCoverageService } from "app/_services/_mec-coverage.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-mec-coverage',
@@ -28,22 +29,10 @@ export class MecCoverageComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private _mecService: MecCoverageService,
+    private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product = route.snapshot.params['product'];
-    this.company = route.snapshot.params['company'];
-
-    let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
-
-    if (this.product) {
-      splittedProduct = this.product.split("-");
-      this.product_id = splittedProduct[0];
-    }
-
-    if (this.company) {
-      splittedCompany = this.company.split("-");
-      this.company_id = splittedCompany[0];
-    }
+    this.product_id = this.product = _globalService.decode(route.snapshot.params['product']);
+    this.company_id = this.company = _globalService.decode(route.snapshot.params['company']);
 
   }
 

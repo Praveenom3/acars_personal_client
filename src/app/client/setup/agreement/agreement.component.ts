@@ -37,8 +37,7 @@ export class AgreementComponent implements OnInit {
    * 
    */
   finalStep() {
-    this.clientDashBoardService.agreementStep = false;
-    this.clientDashBoardService.clientAsDefaultAgreement = true;
+
     let productId: any;
     let clientId: any;
     if (this.clientDashBoardService.productParams) {
@@ -67,16 +66,13 @@ export class AgreementComponent implements OnInit {
 
     this.clientDashBoardService.savePrimaryDetailsOfClient(postData).subscribe(
       result => {
-        console.log(result);
         if (result.success) {
           this.setClientDetails(result.data);
         } else {
-          console.log('rsssss')
           this.toastrService.error('Trouble in updating primary details');
         }
       },
       error => {
-        console.log('errrrs')
         console.log(error);
       });
 
@@ -86,21 +82,18 @@ export class AgreementComponent implements OnInit {
    * @param result 
    */
   setClientDetails(result) {
-
-    let products: any = JSON.parse(localStorage.getItem('clientsAndCompanies'));
+    console.log(result)
+    this.clientDashBoardService.initDashBoardVaraibles();
+    let products: any = JSON.parse(localStorage.getItem('productsAndClients'));
     let product = products[this.productId];
     if (product) {
       product['clients'][this.clientId]['primaryData'] = result[this.clientId];
       products[this.productId] = product;
-      localStorage.setItem('clientsAndCompanies', JSON.stringify(products));
-      localStorage.getItem('clientsAndCompanies')
+      localStorage.setItem('productsAndClients', JSON.stringify(products));
     }
     let clientInfo = product['clients'][this.clientId];
     let clientId: number = clientInfo['client_id'];
-    let clientName: string = clientInfo['client_name'];
-    clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-    let productName: string = product.productName.toLocaleLowerCase().replace(/\s+/g, "-");
     this.toastrService.success('Client purchase primary data updated successfully');
-    this.router.navigate(['/client/' + this.clientId + '-' + clientName + '/' + product.productId + '-' + productName + '-' + product.applicableYear + '/companies']);
+    this.router.navigate(['/client/' + product.product_id + '/' + this.clientId + '/dashboard']);
   }
 }
