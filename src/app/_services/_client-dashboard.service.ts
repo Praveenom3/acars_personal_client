@@ -62,7 +62,9 @@ export class ClientDashBoardService {
     public basicReportingLink: string;
     public benefitPlanLink: string;
     public planClassesLink: string;
-
+    public payRollDataLink: string;
+    public medicalPlanDataLink: string;
+    public clientHomeUrl: string;
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
 
@@ -100,8 +102,8 @@ export class ClientDashBoardService {
         let clientId;
         if (this.splitUrl) {
             let reversedUrl = this.splitUrl.split('/').reverse();
-            clientId = reversedUrl[1];
-            productId = reversedUrl[2];
+            clientId = this._globalService.decode(reversedUrl[1]);
+            productId = this._globalService.decode(reversedUrl[2]);
 
         } else {
             productId = this.productParams;
@@ -123,11 +125,10 @@ export class ClientDashBoardService {
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
         this.product = Object.assign({});
         this.product = products[productId];
+        this.clientHomeUrl = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(clientId) + '/dashboard';
         if (this.product) {
 
             this.client = this.product['clients'][clientId]
-            let clientName: string = this.client['client_name'];
-            clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
             let productName: string = this.product.product_name;
             productName = productName.toLocaleLowerCase().replace(/\s+/g, "-");
             let userType = localStorage.getItem('usertype');
@@ -149,11 +150,12 @@ export class ClientDashBoardService {
                             this.companies = result.data.companiesList;
                             this.rowsOnPage = this.companies.length;
                             this.company = result.data.defaultCompanyInformation;
-                            let url: string = '/client/' + this.product.product_id + '/' + this.company.company_id;
-                            console.log(this.company);
+                            let url: string = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(this.company.company_id);
                             this.basicReportingLink = url + '/employer-info/basic-reporting-info';
                             this.benefitPlanLink = url + '/employer-info/benefit-plan-info';
                             this.planClassesLink = url + '/employer-info/plan-classes';
+                            this.payRollDataLink = url + '/employer-info/payroll';
+                            this.medicalPlanDataLink = url + '/employer-info/enrollments';
                         }
                     },
                     error => {
@@ -168,14 +170,13 @@ export class ClientDashBoardService {
      * 
      */
     public redirectClientToWelcomeScreens() {
+
         let defaultUrl: string;
         let navigateUrl: string;
-        let clientId = this.client['client_id'];
-        let clientName: string = this.client['client_name'];
-        let productName: string = this.product.product_name;
+        let clientId = this._globalService.encode(this.client['client_id']);
+        let productId: any = this._globalService.encode(this.product.product_id)
+        defaultUrl = '/client/' + productId + '/' + clientId + '/setup';
 
-        productName = productName.toLocaleLowerCase().replace(/\s+/g, "-");
-        defaultUrl = '/client/' + this.product.product_id + '-' + productName + '-' + this.product.applicable_year + '/' + clientId + '-' + clientName + '/setup';
         if (this.isBillingContractSet) {
             if (this.billingStep) {
                 navigateUrl = defaultUrl + '/' + 'billing-contract';
@@ -327,9 +328,18 @@ export class ClientDashBoardService {
      * @param company 
      */
     public setCompany(company: Company) {
-        this.setInfo
-    }
 
+        console.log(company)
+        this.changeStyle();
+        this.client = this.product['clients'][company.client_id]
+        let userType = localStorage.getItem('usertype');
+        this.changeStyle();
+        this.company = company;
+
+        if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
+            this.redirectClientToWelcomeScreens();
+        }
+    }
 }
 
 

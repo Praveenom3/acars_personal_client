@@ -54,8 +54,8 @@ export class CompaniesComponent implements OnInit {
       company_ein: ['', Validators.compose([Validators.required])],
 
     });
-    this.clientDashBoardService.productParams = route.snapshot.params['product'];
-    this.clientDashBoardService.clientParams = route.snapshot.params['client'];
+    this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
+    this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
     this._companyForm.valueChanges
       .subscribe(companyData => this.onValueChanged(companyData));
   }
@@ -227,7 +227,10 @@ export class CompaniesComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * 
+   * @param company 
+   */
   public setCompany(company: Company) {
     this.clientDashBoardService.setCompany(company);
   }

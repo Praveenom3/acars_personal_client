@@ -150,7 +150,7 @@ app-client-layout .section-container .left-small-box p {
 
 .setup-text-band {
     background: #13a9cc;
-    padding: 3px;
+    padding: 5px;
     text-align: center;
     color: white;
     font-size: 12px;
@@ -251,9 +251,9 @@ app-client-layout .section-container .left-small-box p {
   overflow-x: hidden;
 }
 
-.table-company-dashboard th, td {
+/* .table-company-dashboard th, td {
   font-size: 12px;
-}
+} */
 
 /* enable absolute positioning */
 .inner-addon { 
@@ -263,10 +263,30 @@ app-client-layout .section-container .left-small-box p {
 /* style icon */
 .company-search .glyphicon {
   position: absolute;
-  padding: 65px 0px 0px 21px;
+  padding: 77px 0px 0px 27px;
   pointer-events: none;
 }
-
+.company-edit-block{
+    top: 3px;
+    padding-left: 235px;
+    position: absolute;
+}
+.company-details-display{
+    padding-left: 18px;
+    text-align: center;
+}
+.company-details-main-block{
+    height: 101px;
+    padding: 15px;
+}
+.authorized-users-block {
+    height: 101px;
+}
+.add-authorised-user {
+    position: absolute;
+    top: 0px;
+    padding-left: 440px;
+}
 /* align icon */
 .left-addon .glyphicon  { 
     left:  0px;
@@ -283,8 +303,13 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .upload-download-block {
-    padding: 29px;
+    padding: 20px;
     text-align: center;
+}
+
+.block-one{
+    height: 275px;
+    padding: 24px;
 }
 
 .download-upload-ul li:nth-child(1) img {
@@ -354,3 +379,14 @@ app-client-layout .section-container .left-small-box p {
     transform: translate3d(0, -300px, 0);
     opacity: 1;
 }
+/* .company-navigation-link:hover{
+  background-color:#e0e0df;
+  text-decoration:none;
+  cursor:pointer;
+  display:block;
+  text-align:center;
+  width:210px;
+  border-radius:18px;
+  padding: 3px 6px;
+} */
+

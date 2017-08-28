@@ -8,6 +8,8 @@ import { ToastrService } from "ngx-toastr";
 import { ModalDirective } from "ngx-bootstrap";
 import { CookieService } from "ngx-cookie";
 
+import { GlobalService } from "../_services/_global.service";
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private _formBuilder: FormBuilder,
         private toastrService: ToastrService,
+        private globalService: GlobalService,
         private _cookieService: CookieService) {
 
         /* login form */
@@ -284,7 +287,8 @@ export class LoginComponent implements OnInit {
         let clientKeys: any[] = Object.keys(product.clients);
         let client = clientKeys[0];
         let clientInfo = product['clients'][client];
-        let clientId: number = clientInfo['client_id'];
-        this.router.navigate(['/client/' + product.product_id + '/' + clientId + '/dashboard']);
+        let clientId: number = this.globalService.encode(clientInfo['client_id']);
+        let productId: any = this.globalService.encode(product.product_id);
+        this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
     }
 }

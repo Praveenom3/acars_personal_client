@@ -4,6 +4,7 @@ import { ElementMasterService } from "app/_services/_element-master.service";
 import { EmpStatusTracking } from "app/_models/emp-status-tracking";
 import { ToastrService } from "ngx-toastr";
 import { EmpStatusTrackingService } from "app/_services/_emp-status-tracking.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-emp-status-tracking',
@@ -28,23 +29,11 @@ export class EmpStatusTrackingComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private _empStatusTrackingService: EmpStatusTrackingService,
+    private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService
   ) {
     this.product_id = this.product = route.snapshot.params['product'];
     this.company_id = this.company = route.snapshot.params['company'];
-
-    /* let splittedProduct: any[] = [];
-    let splittedCompany: any[] = [];
-
-    if (this.product) {
-      splittedProduct = this.product.split("-");
-      this.product_id = splittedProduct[0];
-    }
-
-    if (this.company) {
-      splittedCompany = this.company.split("-");
-      this.company_id = splittedCompany[0];
-    } */
   }
 
   ngOnInit() {
@@ -102,10 +91,11 @@ export class EmpStatusTrackingComponent implements OnInit {
       this._empStatusTrackingService.updateEmpStatusTracking(this.empStatusData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
             }
             //this.getEmpStatusTrackingData();    
             this.toastrService.success('Employee status tracking record updated succesfully.');
@@ -119,10 +109,11 @@ export class EmpStatusTrackingComponent implements OnInit {
       this._empStatusTrackingService.addEmpStatusTracking(this.empStatusData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
             }
             //this.getEmpStatusTrackingData();
             this.empStatusData = this.createNewEmpStatus();

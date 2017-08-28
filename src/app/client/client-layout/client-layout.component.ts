@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 import { RouterStateSnapshot } from '@angular/router';
 import { LoginComponent } from "../../login/login.component";
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { CompaniesComponent } from "../../client/companies/companies.component";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-client-layout',
@@ -26,6 +27,7 @@ export class ClientLayoutComponent implements OnInit {
     route: ActivatedRoute,
     private _idleTimeout: IdleTimeoutService,
     public dashBoardService: ClientDashBoardService,
+    private _globalService: GlobalService,
   ) {
 
     _idleTimeout.init();
@@ -71,7 +73,7 @@ export class ClientLayoutComponent implements OnInit {
       let clientName: string = element['clients'][client]['client_name'];
       clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
       let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productUrl: string = '/client/' + element.product_id + '/' + clientId + '/dashboard';
+      let productUrl: string = '/client/' + this._globalService.encode(element.product_id) + '/' + this._globalService.encode(clientId) + '/dashboard';
       switch (currentValue) {
         case '2016':
           productInfo['className'] = 'aca16';

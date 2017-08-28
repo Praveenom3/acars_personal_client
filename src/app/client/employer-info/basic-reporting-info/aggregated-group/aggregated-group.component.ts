@@ -4,6 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { AggregatedGroup } from "app/_models/aggregated-group";
 import { AggregatedGroupService } from "app/_services/_aggregated-group.service";
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-aggregated-group',
@@ -32,23 +33,14 @@ export class AggregatedGroupComponent implements OnInit {
   constructor(route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
+    public globalService: GlobalService,
     private _aggregateGroupService: AggregatedGroupService,
     private _elementMasterService: ElementMasterService) {
-    this.product_id = this.product = route.snapshot.params['product'];
-    this.company_id = this.company = route.snapshot.params['company'];
+    this.product_id = this.product = globalService.decode(route.snapshot.params['product']);
+    this.company_id = this.company = globalService.decode(route.snapshot.params['company']);
 
     let splittedProduct: any[] = [];
     let splittedCompany: any[] = [];
-
-    /*   if (this.product) {
-        splittedProduct = this.product.split("-");
-        this.product_id = splittedProduct[0];
-      }
-  
-      if (this.company) {
-        splittedCompany = this.company.split("-");
-        this.company_id = splittedCompany[0];
-      } */
   }
 
   ngOnInit() {
@@ -183,10 +175,11 @@ export class AggregatedGroupComponent implements OnInit {
       this._aggregateGroupService.updateAggregatedGroup(this.aggregatedGroupData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this.globalService.encode(this.product) + '/' + this.globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/anything-else']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
             // this.getAggregatedGroupData();
             this.aggregatedGroupData = this.createNewAggregatedGroup();
@@ -201,10 +194,11 @@ export class AggregatedGroupComponent implements OnInit {
       this._aggregateGroupService.addAggregatedGroup(this.aggregatedGroupData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this.globalService.encode(this.product) + '/' + this.globalService.encode(this.company);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate([url]);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/anything-else']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
             //this.getAggregatedGroupData();
             this.aggregatedGroupData = this.createNewAggregatedGroup();

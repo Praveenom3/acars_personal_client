@@ -13,12 +13,13 @@ export class GlobalService {
     public apiRoot: string;
     public setting: any = {};
     public years = ["2016", "2017"];
+    URL_STRING = '00eeaa';
     public productTypes: any[] = [
         { id: 1, service: 'Full Service' },
         { id: 2, service: 'Self Service' },
         { id: 3, service: 'Enhanced' }
     ];
-   
+
     constructor() {
         if (environment.production == true) {
             this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
@@ -50,7 +51,23 @@ export class GlobalService {
     public getUserId(): any {
         return localStorage.getItem('user_id');
     }
-
+    /**
+     * Encodes and returns
+     * @param param 
+     */
+    public encode(param): any {
+        return this.URL_STRING + btoa(param);
+    }
+    /**
+     * decodes and returns
+     * 
+     * @param param 
+     */
+    public decode(param): any {
+        let splittedString = param.split(this.URL_STRING);
+        console.log(splittedString)
+        return atob(splittedString[1]);
+    }
     public handleError(error: Response | any) {
 
         let errorMessage: any = {};
