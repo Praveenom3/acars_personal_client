@@ -3,6 +3,8 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { OrdersService } from "app/_services/_orders.service";
+import { GlobalService } from "app/_services/_global.service";
+
 @Component({
   selector: 'app-primary-contract',
   templateUrl: './primary-contract.component.html',
@@ -19,9 +21,10 @@ export class PrimaryContractComponent implements OnInit {
     private _formBuilder: FormBuilder,
     public clientDashBoardService: ClientDashBoardService,
     private ordersService: OrdersService,
+    public globalService: GlobalService,
   ) {
-    this.clientDashBoardService.productParams = route.snapshot.params['product'];
-    this.clientDashBoardService.clientParams = route.snapshot.params['client'];
+    this.clientDashBoardService.productParams = globalService.decode(route.snapshot.params['product']);
+    this.clientDashBoardService.clientParams = globalService.decode(route.snapshot.params['client']);
     this.clientDashBoardService.primaryContractStep = true;
     this.clientDashBoardService.setInformation()
 
@@ -106,22 +109,22 @@ export class PrimaryContractComponent implements OnInit {
     this.clientDashBoardService.primaryContractModel.mobile_number = this.clientDashBoardService.primaryContractModel.mobile_number.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
     this.nextAgreementStep(false);
 
-   /* let data = {
-      "client_email": this.clientDashBoardService.primaryContractModel.email_id
-    };
-
-    this.ordersService.validateClientEmail(data).subscribe(
-      result => {
-        if (result.success) {
-          this.setup();
-          this.nextAgreementStep(false);
-        }
-      },
-      error => {
-        this.primaryContractFormErrors['email_id'].valid = false;
-        this.primaryContractFormErrors['email_id'].message = error.data.message;
-        this.submitted = false;
-      });*/
+    /* let data = {
+       "client_email": this.clientDashBoardService.primaryContractModel.email_id
+     };
+ 
+     this.ordersService.validateClientEmail(data).subscribe(
+       result => {
+         if (result.success) {
+           this.setup();
+           this.nextAgreementStep(false);
+         }
+       },
+       error => {
+         this.primaryContractFormErrors['email_id'].valid = false;
+         this.primaryContractFormErrors['email_id'].message = error.data.message;
+         this.submitted = false;
+       });*/
 
   }
 

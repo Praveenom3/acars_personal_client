@@ -176,7 +176,7 @@ export class ClientDashBoardService {
         let clientId = this._globalService.encode(this.client['client_id']);
         let productId: any = this._globalService.encode(this.product.product_id)
         defaultUrl = '/client/' + productId + '/' + clientId + '/setup';
-
+        
         if (this.isBillingContractSet) {
             if (this.billingStep) {
                 navigateUrl = defaultUrl + '/' + 'billing-contract';
@@ -329,7 +329,6 @@ export class ClientDashBoardService {
      */
     public setCompany(company: Company) {
 
-        console.log(company)
         this.changeStyle();
         this.client = this.product['clients'][company.client_id]
         let userType = localStorage.getItem('usertype');
