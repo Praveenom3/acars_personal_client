@@ -5,8 +5,6 @@ import { ToastrService } from "ngx-toastr";
 import { Http } from "@angular/http";
 import { GlobalService } from "app/_services/_global.service";
 import { OutstandingsService } from "app/_services/_outstandings.service";
-import { OutstandingInvoice } from "app/_models/oustandingInvoice";
-import { NewPurchases } from "app/_models/new-purchases";
 
 @Component({
     selector: 'app-dashboard',
