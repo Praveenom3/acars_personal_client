@@ -250,10 +250,9 @@ app-client-layout .section-container .left-small-box p {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
-/* .table-company-dashboard th, td {
-  font-size: 12px;
-} */
+.content-header{
+    padding: 10px 22px;
+}
 
 /* enable absolute positioning */
 .inner-addon { 
@@ -261,40 +260,6 @@ app-client-layout .section-container .left-small-box p {
 }
 
 /* style icon */
-.company-search .glyphicon {
-  position: absolute;
-  padding: 77px 0px 0px 27px;
-  pointer-events: none;
-}
-.company-edit-block{
-    top: 3px;
-    padding-left: 235px;
-    position: absolute;
-}
-.company-details-display{
-    padding-left: 18px;
-    text-align: center;
-}
-.company-details-main-block{
-    height: 101px;
-    padding: 15px;
-}
-.authorized-users-block {
-    height: 101px;
-}
-.add-authorised-user {
-    position: absolute;
-    top: 0px;
-    padding-left: 440px;
-}
-/* align icon */
-.left-addon .glyphicon  { 
-    left:  0px;
-}
-
-.company-search-text-box{
-    background-color: #f2f4f8
-}
 
 .status-btn {
     margin-top: 14px;
@@ -308,8 +273,8 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .block-one{
-    height: 275px;
-    padding: 24px;
+     height: 254px;
+     padding: 0px; 
 }
 
 .download-upload-ul li:nth-child(1) img {
@@ -379,14 +344,96 @@ app-client-layout .section-container .left-small-box p {
     transform: translate3d(0, -300px, 0);
     opacity: 1;
 }
-/* .company-navigation-link:hover{
-  background-color:#e0e0df;
-  text-decoration:none;
-  cursor:pointer;
-  display:block;
-  text-align:center;
-  width:210px;
-  border-radius:18px;
-  padding: 3px 6px;
-} */
+.dashboard-images{
+    width: 14%;
+}
 
+.content-header-text{
+    top: 11px;
+    position: absolute;
+    left: 57px;
+    font-size: 21px;
+}
+.company-search-text-box{
+    background-color: #f2f4f8;
+    text-indent: 17px
+}
+
+.company-search{
+    padding: 1px 33px 0px 20px
+}
+.company-search .glyphicon {
+  position: absolute;
+  padding: 63px 0px 0px 22px;
+  pointer-events: none;
+  width: 36px;
+  top: 0px;
+  color: #b9b9b4;
+  left: 7px;
+  font-size: 20px;
+}
+
+.company-edit-block{
+    top: 3px;
+    padding-left: 235px;
+    position: absolute;
+}
+.company-details-display{
+    padding-left: 36px;
+    text-align: center;
+}
+.company-details-main-block{
+    height: 101px;
+    padding: 15px;
+}
+.authorized-users-block {
+    height: 101px;
+}
+.add-authorised-user {
+    position: absolute;
+    top: 0px;
+    margin-left: 230px;
+}
+
+.content-div{
+    padding-left: 22px;
+}
+.content-div-managed-account {
+    padding: 19px;
+}
+.content-div-dead-line {
+    padding: 22px;
+}
+
+.irs-count , .employees-count{
+  
+    border-radius: 5px;
+    border: 1px solid;
+    height: 39px;
+    text-align: center;
+    border-color: #31B3D1;
+    font-weight: 600;
+    font-size: 18px;
+    color: #31B3D1;
+    width: 108px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.employees-text, .irs-text{
+    font-size: 12px;
+    padding: 2px;
+    text-align: center;
+    color: #898d94;
+    font-style: italic;
+}
+
+.employee-inner-text, .irs-inner-text{
+    color: #898d94;
+}
+.irs-main-block{
+    height: 254px;
+}
+   

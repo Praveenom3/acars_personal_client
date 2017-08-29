@@ -1,93 +1,78 @@
 <div class="row company-section-container">
-    <!-- <section class="padding-0">
-        <div class="col-md-12 blue-breadcrumb-plans" align="center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
-                <div class="nav-tabs-horizontal">
-                    <ul class="nav nav-tabs border-bottom display-inblock company-details-nav" role="tablist">
-                        <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; {{clientDashBoardService.company.company_name}}</a>
-                        </li>
-                        <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap no-border">EIN: &nbsp; {{clientDashBoardService.company.company_ein}}</a></li>
 
-                        <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}</a>
-                        </li>
-                        <li class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-border no-wrap ">Package: &nbsp; {{clientDashBoardService.productService}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </section> -->
     <div class="col-md-12" style="margin-top:25px;">
         <div class="col-lg-10 col-lg-offset-1">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
                 <div class="header-border-btm-blue"></div>
                 <div class="col-md-6">
                     <div class="widget col-md-12 padding-15 block-one comp-dash-divs">
-                        <h4 class="text-center dark-blue-text ">
-                            <i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; COMPANIES LIST
-                        </h4>
+
+                        <div class="content-header dark-blue-text">
+                            <div class="content-header-image">
+                                <img src='../src/assets/images/client-dashboard/companies list-icon.png' class="dashboard-images">
+                            </div>
+                            <div class="content-header-text">
+                                &nbsp; COMPANIES LIST
+                            </div>
+                        </div>
 
                         <div class="company-search left-addon">
                             <i class="glyphicon glyphicon-search"></i>
                             <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15">
                         </div>
 
-                        <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies" #mf="mfDataTable"
-                            [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
-                            <thead>
-                                <tr>
-                                    <th class="">
-                                        <mfDefaultSorter by="company">Client Name</mfDefaultSorter>
-                                    </th>
-                                    <th class="">
-                                        <mfDefaultSorter by="company">Company Name</mfDefaultSorter>
-                                    </th>
-                                    <th class="">
-                                        <mfDefaultSorter by="companyId">ID</mfDefaultSorter>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ng-container *ngIf="mf.data?.length">
-                                    <tr *ngFor="let company of mf.data">
-                                        <td class="">{{company.client_name}}</td>
-                                        <td class="">
-                                            {{company.company_name}}
-                                        </td>
-                                        <td class="">
-                                            <a class="link-blue-underline" (click)="setCompany(company)">
+                        <div class="content-div">
+                            <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies" #mf="mfDataTable"
+                                [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <mfDefaultSorter by="company">Client Name</mfDefaultSorter>
+                                        </th>
+                                        <th class="text-center">
+                                            <mfDefaultSorter by="companyId">Company ID</mfDefaultSorter>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="mf.data?.length">
+                                        <tr *ngFor="let company of mf.data">
+                                            <td class="text-center">{{company.client_name}}</td>
+                                            <td class="text-center">
+                                                <a class="link-blue-underline" (click)="setCompany(company)">
                                                 {{company.company_client_number}}
                                                  </a>
-                                        </td>
-                                        <!-- <td class="text-center"><a class="link-blue-underline" (click)="updateCompanyInfo(company)">
-                                            <i class="fa fa-edit"></i>
-                                                </a>
-                                        </td> -->
-                                    </tr>
+                                            </td>
+                                        </tr>
 
-                                </ng-container>
-                                <tr class="tr-text-center" *ngIf=!mf.data?.length>
-                                    <td colspan="2">
-                                        No records are found
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </ng-container>
+                                    <tr class="tr-text-center" *ngIf=!mf.data?.length>
+                                        <td colspan="2">
+                                            No records are found
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
-                        <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; CONTACT US</h4>
+
+                        <div class="content-header dark-blue-text">
+                            <div class="content-header-image">
+                                <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
+                            </div>
+                            <div class="content-header-text">
+                                &nbsp; &nbsp; CONTACT US
+                            </div>
+                        </div>
+
                         <p class=" setup-text-band">Managed Account - Assigned Agent</p>
-                        <div class="addres-block">
-                            <p><b>Amanda Combs</b></p>
-                            <i>Account Manager</i>
+                        <div class="content-div-managed-account addres-block">
+                            <b>Amanda Combs</b>, <i>Account Manager</i>
                             <div class="padding-top-5">
                                 <p>Direct: <span>(142) 12454</span></p>
                                 <p>Email: <span>abcd@gmail.com</span></p>
@@ -99,36 +84,48 @@
                 </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
                 <div class="header-border-btm-blue"></div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
-                        <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> &nbsp; IRS DEADLINES</h4>
+                        <div class="content-header dark-blue-text">
+                            <div class="content-header-image">
+                                <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
+                            </div>
+                            <div class="content-header-text">
+                                &nbsp; IRS DEADLINES
+                            </div>
+                        </div>
+
                         <p class=" setup-text-band">Please note these important dates</p>
-                        <table class="col-xs-12">
-                            <thead>
-                                <tr>
-                                    <th>Compliance item</th>
-                                    <th>Days Remaining</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="padding-5"><a class="link-blue">105C to employees</a></td>
-                                    <td class="text-center padding-5">85</td>
-                                </tr>
-                                <tr>
-                                    <td class="padding-5"><a class="link-blue">EFile to IRS</a></td>
-                                    <td class="text-center padding-5">145</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="content-div-dead-line">
+                            <div class="col-md-6">
+                                <span class="employee-inner-text"> 1095C TO EMPLOYEES</span>
+                                <div class="employees-count">
+                                    100
+                                </div>
+                                <div class="employees-text">
+                                    Days Remaining
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="irs-inner-text">
+                                    E-FILE DATA TO IRS
+                                </span>
+                                <div class="irs-count">
+                                    100
+                                </div>
+                                <div class="irs-text">
+                                    Days Remaining
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs">
-                        <div class="btn-primary upload-download-block cursor-pointer" style="background-color:#13a9cc">
+                <div class="col-md-6">
+                    <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
+                        <div class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
                             <ul class="ul-inline download-upload-ul">
                                 <li>
                                     <img src='../src/assets/images/upload.png'>
@@ -140,7 +137,7 @@
                             </ul>
                         </div>
                         <br>
-                        <div class="btn-default upload-download-block cursor-pointer" style="background-color:#5ad1ed">
+                        <div class="btn-default upload-download-block cursor-pointer" style="padding:29px;background-color:#5ad1ed">
                             <ul class="ul-inline download-upload-ul">
                                 <li>
                                     <img src='../src/assets/images/download.png'>
@@ -164,20 +161,25 @@
                 <div class="col-md-12">
                     <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
                         <div class="col-md-6">
-                            <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> {{clientDashBoardService.company.company_name}}</h4>
+                            <h4 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images">                                {{clientDashBoardService.company.company_name}}
+                            </h4>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="text-center dark-blue-text "><i class="fa fa-list-ul circle-icon" aria-hidden="true"></i> ID: {{clientDashBoardService.company.company_client_number}}</h4>
+                            <h4 class="text-center dark-blue-text ">
+                                ID: {{clientDashBoardService.company.company_client_number}}
+                            </h4>
                             <a class="link-blue-underline company-edit-block" (click)="updateCompanyInfo(clientDashBoardService.company)">
                                             <i class="fa fa-edit"></i>
                                     </a>
                         </div>
 
-                        <div class="company-details-display">
-                            EIN : &nbsp; {{clientDashBoardService.company.company_ein}} | Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}
-                            | Package: &nbsp; {{clientDashBoardService.productService}}
+                        <div class="col-md-12 company-details-display">
+                            EIN : &nbsp;
+                            <span class="company-eins-block" *ngIf="!clientDashBoardService.company.company_ein">
+                                _ _-_ _ _ _ _ _ _
+                            </span> {{clientDashBoardService.company.company_ein}} | Reporting
+                            Year: &nbsp; {{clientDashBoardService.product.applicable_year}} | Package: &nbsp; {{clientDashBoardService.productService}}
                         </div>
-
 
                     </div>
                 </div>
@@ -186,10 +188,10 @@
             <div class="col-md-6">
                 <div class="authorized-main-header">
                     <h3 class="fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h3>
-                    <!-- <div class="add-authorised-user">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <div class="add-authorised-user">
+                        <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
                         <button class="add-authorised-user btn btn-primary btn-blue">Add User</button>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="header-border-btm-blue"></div>
                 <div class="col-md-12">
@@ -232,67 +234,85 @@
                             <tr>
                                 <td>Invoice</td>
                                 <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment();" *ngIf="clientDashBoardService.company.is_invoice_paid == false"
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid"
                                         title="Click to toggle">Not Paid</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment();" *ngIf="clientDashBoardService.company.is_invoice_paid == true"
+                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid"
                                         title="Click to toggle">Paid</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Client Agreement</td>
                                 <td class=" padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === true" title="Click to toggle">Needed</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === false" title="Click to toggle">Completed</span>
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement"
+                                        title="Click to toggle">Needed</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement"
+                                        title="Click to toggle">Completed</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Discovery Session</td>
                                 <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true"
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session"
                                         title="Click to toggle">Needed</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false"
+                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session"
                                         title="Click to toggle">Completed</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-danger status-btn">Incomplete</button>
+                    <button class="btn btn-danger status-btn " *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
+                    <button class="btn btn-success status-btn " *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepTwoDisabled'>
                     <h4 class="text-center dark-blue-text "> STEP 2</h4>
                     <p class=" setup-text-band">Company Data</p>
                     <table class="col-xs-12">
                         <tbody>
                             <tr>
                                 <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink">Confirm EIN</a>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
                                 </td>
                                 <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.company_ein"
-                                        title="Click to toggle">Required</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.company_ein"
-                                        title="Click to toggle">Completed</span>
+                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" title="Click to toggle" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.company_ein" title="Click to toggle" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink">Basic Plan Information</a>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink"
+                                        *ngIf="clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
                                 </td>
-                                <td class="padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
+                                <td class="padding-5">
+
+                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+
+                                </td>
                             </tr>
                             <tr>
-                                <td> <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink">Benefit Plan & Plan Classes</a></td>
-                                <td class=" padding-5"><span class="alert alert-danger confirmation-box">Required</span></td>
+                                <td>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink"
+                                        *ngIf="clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
+                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
+                                </td>
+                                <td class=" padding-5">
+
+                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-danger status-btn">Incomplete</button>
+                    <button class="btn status-btn " *ngIf="!clientDashBoardService.company.onBoarding_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
+                    <button class="btn status-btn " *ngIf="clientDashBoardService.company.onBoarding_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepThreeDisabled'>
                     <h4 class="text-center dark-blue-text "> STEP 3</h4>
                     <p class=" setup-text-band">Employee Data</p>
                     <table class="col-xs-12">
@@ -314,7 +334,7 @@
         </div>
         <div class="col-md-10 col-md-offset-1">
             <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFourDisabled'>
                     <h4 class="text-center dark-blue-text "> STEP 4</h4>
                     <p class=" setup-text-band">Request & Review Forms</p>
                     <table class="col-xs-12">
@@ -333,7 +353,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFiveDisabled'>
                     <h4 class="text-center dark-blue-text "> STEP 5</h4>
                     <p class=" setup-text-band">Approval & Print and Mail</p>
                     <table class="col-xs-12">
@@ -353,7 +373,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepSixDisabled'>
                     <h4 class="text-center dark-blue-text "> STEP 6</h4>
                     <p class=" setup-text-band">IRS Fillings</p>
                     <table class="col-xs-12">

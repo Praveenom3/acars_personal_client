@@ -24,7 +24,6 @@ export class CompaniesComponent implements OnInit {
   private _formErrors: any;
   public _companyForm: FormGroup;
 
-  public isInvoicePaid: boolean = true;
   public isAgreementSigned: boolean = true;
   public isDiscoveryCallDone: boolean = true;
 
@@ -58,6 +57,7 @@ export class CompaniesComponent implements OnInit {
     this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
     this._companyForm.valueChanges
       .subscribe(companyData => this.onValueChanged(companyData));
+
   }
 
   public validationMessages = {
@@ -74,28 +74,47 @@ export class CompaniesComponent implements OnInit {
    *  Initialiazes component
    */
   ngOnInit() {
-    this.clientDashBoardService.setInformation()
+    this.clientDashBoardService.setInformation();
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
   }
   /**
    * 
    */
-  toggleInvoicePayment() {
-    this.isInvoicePaid = !this.isInvoicePaid;
+  toggleInvoicePayment(company) {
     this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
+    this.clientUserService.updateClientPurchaseInvoice(this.clientDashBoardService.company).subscribe(
+      result => {
+        if (result.success) {
+          this.clientDashBoardService.setCompanyKeyParams();
+          this.toastrService.success('Company Details Updated Successfully.');
+        } else {
+          this._errorMessage = 'Record not Updated';
+          this._submitted = false;
+        }
+      },
+      error => {
+        console.log(error);
+        this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
+        if (error.status == 422) {
+
+        } else {
+        }
+      });
   }
   /**
    * 
    */
   toggleAgreementSign() {
-    this.isAgreementSigned = !this.isAgreementSigned;
+    this.clientDashBoardService.company.client_agreement = !this.clientDashBoardService.company.client_agreement;
+    this.clientDashBoardService.setCompanyKeyParams();
   }
   /**
    * 
    */
   toggleDiscoveryCallStatus() {
-    this.isDiscoveryCallDone = !this.isDiscoveryCallDone;
+    this.clientDashBoardService.company.discovery_session = !this.clientDashBoardService.company.discovery_session;
+    this.clientDashBoardService.setCompanyKeyParams();
   }
 
   /**
@@ -233,5 +252,12 @@ export class CompaniesComponent implements OnInit {
    */
   public setCompany(company: Company) {
     this.clientDashBoardService.setCompany(company);
+  }
+
+  /**
+   * 
+   */
+  public enableNextSteps() {
+
   }
 }

@@ -6,6 +6,7 @@ import { BriBasicInfoService } from "app/_services/_bri-basic-info.service";
 import { ToastrService } from "ngx-toastr";
 import { ROUTER_PROVIDERS } from "@angular/router/src/router_module";
 import { GlobalService } from "app/_services/_global.service";
+import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 @Component({
   selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
@@ -34,9 +35,11 @@ export class BasicInfoComponent implements OnInit {
     private toastrService: ToastrService,
     private globalService: GlobalService,
     private _elementMasterService: ElementMasterService,
+    public clientDashBoardService: ClientDashBoardService,
     private _briBasicInfoService: BriBasicInfoService) {
     this.product_id = this.product = globalService.decode(route.snapshot.params['product']);
     this.company_id = this.company = globalService.decode(route.snapshot.params['company']);
+
   }
 
   ngOnInit() {
