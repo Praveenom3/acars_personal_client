@@ -31,7 +31,16 @@ export class ClientUserService {
      */
     public updateClientCompanyInfo(company): Observable<any> {
         return this._http.post(
-            this._apiUrl + '/update-company-info',company,
+            this._apiUrl + '/update-company-info', company,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
+
+    public updateClientPurchaseInvoice(company): Observable<any> {
+        return this._http.post(
+            this._apiUrl + '/update-client-purchase-invoice-status', company,
             {
                 headers: this._globalService.getHeaders()
             }).map(response => response.json())

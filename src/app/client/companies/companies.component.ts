@@ -24,21 +24,16 @@ export class CompaniesComponent implements OnInit {
   private _formErrors: any;
   public _companyForm: FormGroup;
 
-  public isInvoicePaid: boolean = true;
-  public isAgreementSigned: boolean = true;
-  public isDiscoveryCallDone: boolean = true;
-
   public filterQuery = "";
   public sortOrder = "asc";
   public sortBy = "";
 
-  public productService: string;
   private _errorMessage: string;
   private _submitted: boolean;
 
-  public basicReportingLink: string;
-  public benefitPlanLink: string;
-  public planClassesLink: string;
+  public accountManager: string;
+  public accountManagerNumber: string;
+  public brandInformation: any = {};
 
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
@@ -58,6 +53,7 @@ export class CompaniesComponent implements OnInit {
     this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
     this._companyForm.valueChanges
       .subscribe(companyData => this.onValueChanged(companyData));
+
   }
 
   public validationMessages = {
@@ -74,28 +70,48 @@ export class CompaniesComponent implements OnInit {
    *  Initialiazes component
    */
   ngOnInit() {
-    this.clientDashBoardService.setInformation()
+    this.clientDashBoardService.setInformation();
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
+    this.setContactUsData();
   }
   /**
    * 
    */
-  toggleInvoicePayment() {
-    this.isInvoicePaid = !this.isInvoicePaid;
+  toggleInvoicePayment(company) {
     this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
+    this.clientUserService.updateClientPurchaseInvoice(this.clientDashBoardService.company).subscribe(
+      result => {
+        if (result.success) {
+          this.clientDashBoardService.setCompanyKeyParams();
+          this.toastrService.success('Company Details Updated Successfully.');
+        } else {
+          this._errorMessage = 'Record not Updated';
+          this._submitted = false;
+        }
+      },
+      error => {
+
+        this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
+        if (error.status == 422) {
+
+        } else {
+        }
+      });
   }
   /**
    * 
    */
   toggleAgreementSign() {
-    this.isAgreementSigned = !this.isAgreementSigned;
+    this.clientDashBoardService.company.client_agreement = !this.clientDashBoardService.company.client_agreement;
+    this.clientDashBoardService.setCompanyKeyParams();
   }
   /**
    * 
    */
   toggleDiscoveryCallStatus() {
-    this.isDiscoveryCallDone = !this.isDiscoveryCallDone;
+    this.clientDashBoardService.company.discovery_session = !this.clientDashBoardService.company.discovery_session;
+    this.clientDashBoardService.setCompanyKeyParams();
   }
 
   /**
@@ -235,5 +251,21 @@ export class CompaniesComponent implements OnInit {
     this.clientDashBoardService.setCompany(company);
     localStorage.setItem('company', '');
     localStorage.setItem('company', JSON.stringify(company));
+    this.setContactUsData();
+  }
+
+  /**
+   * 
+   */
+  public setContactUsData() {
+    let productId = this.clientDashBoardService.productParams
+    let product = this.clientDashBoardService.getProductFieldFromSession(productId);
+    if (product['account_manager_name'] != 'null' && product['account_manager_name'] != '') {
+      this.accountManager = product['account_manager_name'];
+    }
+    if (product['account_manager_number'] != 'null' && product['account_manager_number'] != '') {
+      this.accountManagerNumber = product['account_manager_number'];
+    }
+    //this.clientDashBoardService
   }
 }

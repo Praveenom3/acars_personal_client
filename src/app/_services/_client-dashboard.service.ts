@@ -60,13 +60,22 @@ export class ClientDashBoardService {
 
     public primaryData: boolean = false;
 
-
     public basicReportingLink: string;
     public benefitPlanLink: string;
     public planClassesLink: string;
     public payRollDataLink: string;
     public medicalPlanDataLink: string;
     public clientHomeUrl: string;
+    public clientLogo: string = this._globalService.apiRoot + '/images/uploads/brands/';
+
+    public stepTwoDisabled: string = 'disable-process-steps';
+    public stepThreeDisabled: string = 'disable-process-steps';
+    public stepFourDisabled: string = 'disable-process-steps';
+    public stepFiveDisabled: string = 'disable-process-steps';
+    public stepSixDisabled: string = 'disable-process-steps';
+
+    public brandInformation: any = {};
+
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
 
@@ -162,8 +171,18 @@ export class ClientDashBoardService {
                             this.companies = result.data.companiesList;
                             this.rowsOnPage = this.companies.length;
                             this.company = result.data.defaultCompanyInformation;
+                            this.company.client_agreement = true;
+                            this.company.discovery_session = true;
+
+                            this.setCompanyKeyParams();
+
                             localStorage.setItem('company', '');
                             localStorage.setItem('company', JSON.stringify(this.company));
+                            localStorage.setItem('defaultBrand', '');
+                            localStorage.setItem('defaultBrand', JSON.stringify(result.data.defaultBrandInformation));
+
+                            this.setContactUsData(productId, clientId);
+
                             this.setCompanyUrls(productId, this.company.company_id);
                         }
                     },
@@ -175,14 +194,13 @@ export class ClientDashBoardService {
             this.getProductServiceName(this.product.product_type);
         }
     }
-
-
     /**
      * 
      * @param productId 
      * @param company_id 
      */
     public setCompanyUrls(productId, company_id) {
+
         let url: string = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(company_id);
 
         this.basicReportingLink = url + '/employer-info/basic-reporting-info';
@@ -191,7 +209,32 @@ export class ClientDashBoardService {
         this.payRollDataLink = url + '/employer-info/payroll';
         this.medicalPlanDataLink = url + '/employer-info/enrollments';
     }
+    /**
+     * 
+     * @param productId 
+     * @param clientId 
+     */
+    public setContactUsData(productId, clientId) {
+        let product = this.getProductFieldFromSession(productId, 'clients');
+        let client = product[clientId];
+        let clientsCount = this.getProductFieldFromSession(productId, 'clientsCount');
+        let brand: any;
+        let mobile: string;
+        if (clientsCount > 1) {
+            brand = JSON.parse(localStorage.getItem('defaultBrand'));
+            mobile = brand.support_phone
+        } else {
+            let brand: any = client.brand
+            let mobile: string = brand.support_phone
 
+        }
+        this.brandInformation = {
+            'brand_logo': brand.brand_logo,
+            "support_email": brand.support_email,
+            "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+        }
+        this.clientLogo = this.clientLogo + brand.brand_logo;
+    }
     /**
      * 
      */
@@ -360,10 +403,75 @@ export class ClientDashBoardService {
         let userType = localStorage.getItem('usertype');
         this.changeStyle();
         this.company = company;
+        this.company.client_agreement = true;
+        this.company.discovery_session = true;
+        this.setCompanyKeyParams();
         this.setCompanyUrls(this.product.product_id, this.company.company_id);
         if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
             this.redirectClientToWelcomeScreens();
         }
+    }
+    /**
+     * 
+     */
+    public setCompanyKeyParams() {
+        if (this.company.is_invoice_paid) {
+            this.company.is_invoice_paid = !!JSON.parse(String(this.company.is_invoice_paid).toLowerCase());
+        }
+        this.company.primary_data = true;
+        this.company.onBoarding_data = this.checkOnBoaringData(this.company);
+        this.company.company_data = this.checkCompanyData(this.company);
+    }
+    /**
+     * 
+     * @param company 
+     */
+    public checkOnBoaringData(company): boolean {
+
+        if (!company.is_invoice_paid) {
+            return false;
+        }
+        if (!company.client_agreement) {
+            return false;
+        }
+        if (!company.discovery_session) {
+            return false;
+        }
+
+        return true
+    }
+    /**
+     * 
+     * @param company 
+     */
+    public checkCompanyData(company): boolean {
+        if (!company.company_ein) {
+            return false;
+        }
+        if (!company.basic_plan_information) {
+            return false;
+        }
+        if (!company.benefitPlan_planClasses) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 
+     * @param productId 
+     * @param field 
+     */
+    public getProductFieldFromSession(productId: number, field: any = null) {
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        let product = products[productId];
+        if (product) {
+            if (field) {
+                return product[field];
+            }
+            return product;
+        }
+        return false;
     }
 }
 

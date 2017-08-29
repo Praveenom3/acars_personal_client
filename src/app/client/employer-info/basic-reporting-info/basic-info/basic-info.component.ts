@@ -42,7 +42,9 @@ export class BasicInfoComponent implements OnInit {
     private globalService: GlobalService,
     private _clientDashService: ClientDashBoardService,
     private _elementMasterService: ElementMasterService,
+    public clientDashBoardService: ClientDashBoardService,
     private _briBasicInfoService: BriBasicInfoService) {
+
     this.product_id = globalService.decode(route.snapshot.params['product']);
     this.company_id = globalService.decode(route.snapshot.params['company']);
     this.product = route.snapshot.params['product'];

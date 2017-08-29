@@ -21,6 +21,7 @@ export class GlobalService {
     ];
 
     constructor() {
+
         if (environment.production == true) {
             this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
             this.apiRoot = 'http://services.acadev.acareportingsoftware.com/';
@@ -70,7 +71,6 @@ export class GlobalService {
      */
     public decode(param): any {
         let splittedString = param.split(this.URL_STRING);
-        console.log(splittedString)
         return atob(splittedString[1]);
     }
     public handleError(error: Response | any) {
