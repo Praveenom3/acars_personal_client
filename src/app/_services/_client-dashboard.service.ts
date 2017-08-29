@@ -66,12 +66,15 @@ export class ClientDashBoardService {
     public payRollDataLink: string;
     public medicalPlanDataLink: string;
     public clientHomeUrl: string;
+    public clientLogo: string = this._globalService.apiRoot + '/images/uploads/brands/';
 
     public stepTwoDisabled: string = 'disable-process-steps';
     public stepThreeDisabled: string = 'disable-process-steps';
     public stepFourDisabled: string = 'disable-process-steps';
     public stepFiveDisabled: string = 'disable-process-steps';
     public stepSixDisabled: string = 'disable-process-steps';
+
+    public brandInformation: any = {};
 
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
@@ -170,9 +173,16 @@ export class ClientDashBoardService {
                             this.company = result.data.defaultCompanyInformation;
                             this.company.client_agreement = true;
                             this.company.discovery_session = true;
+
                             this.setCompanyKeyParams();
+
                             localStorage.setItem('company', '');
                             localStorage.setItem('company', JSON.stringify(this.company));
+                            localStorage.setItem('defaultBrand', '');
+                            localStorage.setItem('defaultBrand', JSON.stringify(result.data.defaultBrandInformation));
+
+                            this.setContactUsData(productId, clientId);
+
                             this.setCompanyUrls(productId, this.company.company_id);
                         }
                     },
@@ -198,6 +208,32 @@ export class ClientDashBoardService {
         this.planClassesLink = url + '/employer-info/plan-classes';
         this.payRollDataLink = url + '/employer-info/payroll';
         this.medicalPlanDataLink = url + '/employer-info/enrollments';
+    }
+    /**
+     * 
+     * @param productId 
+     * @param clientId 
+     */
+    public setContactUsData(productId, clientId) {
+        let product = this.getProductFieldFromSession(productId, 'clients');
+        let client = product[clientId];
+        let clientsCount = this.getProductFieldFromSession(productId, 'clientsCount');
+        let brand: any;
+        let mobile: string;
+        if (clientsCount > 1) {
+            brand = JSON.parse(localStorage.getItem('defaultBrand'));
+            mobile = brand.support_phone
+        } else {
+            let brand: any = client.brand
+            let mobile: string = brand.support_phone
+
+        }
+        this.brandInformation = {
+            'brand_logo': brand.brand_logo,
+            "support_email": brand.support_email,
+            "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+        }
+        this.clientLogo = this.clientLogo + brand.brand_logo;
     }
     /**
      * 
@@ -379,8 +415,9 @@ export class ClientDashBoardService {
      * 
      */
     public setCompanyKeyParams() {
-
-        this.company.is_invoice_paid = !!JSON.parse(String(this.company.is_invoice_paid).toLowerCase());
+        if (this.company.is_invoice_paid) {
+            this.company.is_invoice_paid = !!JSON.parse(String(this.company.is_invoice_paid).toLowerCase());
+        }
         this.company.primary_data = true;
         this.company.onBoarding_data = this.checkOnBoaringData(this.company);
         this.company.company_data = this.checkCompanyData(this.company);
@@ -418,6 +455,23 @@ export class ClientDashBoardService {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 
+     * @param productId 
+     * @param field 
+     */
+    public getProductFieldFromSession(productId: number, field: any = null) {
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        let product = products[productId];
+        if (product) {
+            if (field) {
+                return product[field];
+            }
+            return product;
+        }
+        return false;
     }
 }
 

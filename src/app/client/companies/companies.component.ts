@@ -24,20 +24,16 @@ export class CompaniesComponent implements OnInit {
   private _formErrors: any;
   public _companyForm: FormGroup;
 
-  public isAgreementSigned: boolean = true;
-  public isDiscoveryCallDone: boolean = true;
-
   public filterQuery = "";
   public sortOrder = "asc";
   public sortBy = "";
 
-  public productService: string;
   private _errorMessage: string;
   private _submitted: boolean;
 
-  public basicReportingLink: string;
-  public benefitPlanLink: string;
-  public planClassesLink: string;
+  public accountManager: string;
+  public accountManagerNumber: string;
+  public brandInformation: any = {};
 
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
@@ -77,6 +73,7 @@ export class CompaniesComponent implements OnInit {
     this.clientDashBoardService.setInformation();
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
+    this.setContactUsData();
   }
   /**
    * 
@@ -94,7 +91,7 @@ export class CompaniesComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+
         this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
         if (error.status == 422) {
 
@@ -254,12 +251,21 @@ export class CompaniesComponent implements OnInit {
     this.clientDashBoardService.setCompany(company);
     localStorage.setItem('company', '');
     localStorage.setItem('company', JSON.stringify(company));
+    this.setContactUsData();
   }
 
   /**
    * 
    */
-  public enableNextSteps() {
-
+  public setContactUsData() {
+    let productId = this.clientDashBoardService.productParams
+    let product = this.clientDashBoardService.getProductFieldFromSession(productId);
+    if (product['account_manager_name'] != 'null' && product['account_manager_name'] != '') {
+      this.accountManager = product['account_manager_name'];
+    }
+    if (product['account_manager_number'] != 'null' && product['account_manager_number'] != '') {
+      this.accountManagerNumber = product['account_manager_number'];
+    }
+    //this.clientDashBoardService
   }
 }

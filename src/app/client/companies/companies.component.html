@@ -72,11 +72,13 @@
 
                         <p class=" setup-text-band">Managed Account - Assigned Agent</p>
                         <div class="content-div-managed-account addres-block">
-                            <b>Amanda Combs</b>, <i>Account Manager</i>
+                            <span class="account-manager-name" *ngIf="accountManager">
+                                <b>{{accountManager}}</b>, <i>Account Manager</i>
+                            </span>
                             <div class="padding-top-5">
-                                <p>Direct: <span>(142) 12454</span></p>
-                                <p>Email: <span>abcd@gmail.com</span></p>
-                                <p>Support Line: <span>(142) 12454</span></p>
+                                <p>Direct: <span>{{accountManagerNumber}}</span></p>
+                                <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
+                                <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
                                 <a class="link-blue"> Contact My Manager</a>
                             </div>
                         </div>
@@ -161,7 +163,7 @@
                 <div class="col-md-12">
                     <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
                         <div class="col-md-6">
-                            <h4 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images">                                {{clientDashBoardService.company.company_name}}
+                            <h4 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images"> {{clientDashBoardService.company.company_name}}
                             </h4>
                         </div>
                         <div class="col-md-6">
@@ -307,8 +309,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn status-btn " *ngIf="!clientDashBoardService.company.onBoarding_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
-                    <button class="btn status-btn " *ngIf="clientDashBoardService.company.onBoarding_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
+                    <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
+                    <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
                 </div>
             </div>
             <div class="col-md-4">

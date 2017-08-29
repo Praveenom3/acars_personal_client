@@ -39,7 +39,6 @@ export class ClientUserService {
     }
 
     public updateClientPurchaseInvoice(company): Observable<any> {
-        console.log(company)
         return this._http.post(
             this._apiUrl + '/update-client-purchase-invoice-status', company,
             {
