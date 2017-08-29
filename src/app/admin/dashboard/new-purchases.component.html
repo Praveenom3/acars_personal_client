@@ -1,0 +1,67 @@
+<app-admin-dashboard-nav></app-admin-dashboard-nav>
+
+<div class="page-content col-md-12 dashboard-page-content">
+    <div class="container">
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Outstanding Invoices</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="invoicesFilterQuery" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped" [mfData]="purchasesData | outstadingInvoicesFilter : invoicesFilterQuery" #purchasesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>
+                                    <mfDefaultSorter by="purchase_date">Purchase Date</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="brand_name">Brand</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="product_name">Product</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="is_invoice">Invoice / Credit Card</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="purchasesObj.data?.length">
+                                <tr *ngFor="let purchase of purchasesObj.data">
+                                    <td>{{purchase.purchase_date}}</td>
+                                    <td><a class="tbl-col-link">{{purchase.client_name}}</a></td>
+                                    <td>{{purchase.brand_name}}</td>
+                                    <td>{{purchase.product_name}}</td>
+                                    <td>{{purchase.amount}}</td>
+                                    <td class="text-center">{{(purchase.is_invoice == 1) ? "Invoice":"Credit Card" }}</td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!purchasesObj.data?.length>
+                                <td colspan="6">
+                                    No records are found
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

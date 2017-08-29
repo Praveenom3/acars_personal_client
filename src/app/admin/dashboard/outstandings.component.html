@@ -1,0 +1,264 @@
+<app-admin-dashboard-nav></app-admin-dashboard-nav>
+
+<div class="page-content col-md-12 dashboard-page-content">
+    <div class="container">
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Outstanding Invoices</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="invoicesFilterQuery" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped" [mfData]="invoicesData | outstadingInvoicesFilter : invoicesFilterQuery" #invoicesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>
+                                    <mfDefaultSorter by="invoice_created_at">Invoice Date</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="invoice_no">Invoice Number</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="brand_name">Brand</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="product_name">Product</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="account_manager">Account Manager</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="amount">Balance Amount</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter>Status</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="invoicesObj.data?.length">
+                                <tr *ngFor="let invoice of invoicesObj.data">
+                                    <td>{{invoice.invoice_created_at}}</td>
+                                    <td>{{invoice.invoice_no}}</td>
+                                    <td><a class="tbl-col-link">{{invoice.client_name}}</a></td>
+                                    <td>{{invoice.brand_name}}</td>
+                                    <td>{{invoice.product_name}}</td>
+                                    <td>{{invoice.account_manager}}</td>
+                                    <td>{{invoice.amount}}</td>
+                                    <td class="text-center"><a title="Status" style="cursor: pointer;">Unpaid</a></td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!invoicesObj.data?.length>
+                                <td colspan="8">
+                                    No records are found
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Outstanding Contracts</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>Purchase Date</th>
+                                <th>Client</th>
+                                <th>Brand</th>
+                                <th>Product</th>
+                                <th>Account Manager</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-text-center">
+                                <td>1/1/2017</td>
+                                <td><a class="link-blue-underline">Client Name One</a></td>
+                                <td>Brand Name One</td>
+                                <td>Product One</td>
+                                <td>Account Manager One</td>
+                                <td><a class="link-blue-underline">Received</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/2/2017</td>
+                                <td><a class="link-blue-underline">Client Name Two</a></td>
+                                <td>Brand Name Two</td>
+                                <td>Product Two</td>
+                                <td>Account Manager Two</td>
+                                <td><a class="link-blue-underline">Pending</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/3/2017</td>
+                                <td><a class="link-blue-underline">Client Name Three</a></td>
+                                <td>Brand Name Three</td>
+                                <td>Product Three</td>
+                                <td>Account Manager Three</td>
+                                <td><a class="link-blue-underline">Pending</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/4/2017</td>
+                                <td><a class="link-blue-underline">Client Name Four</a></td>
+                                <td>Brand Name Four</td>
+                                <td>Product Four</td>
+                                <td>Account Manager Four</td>
+                                <td><a class="link-blue-underline">Received</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/5/2017</td>
+                                <td><a class="link-blue-underline">Client Name Five</a></td>
+                                <td>Brand Name Five</td>
+                                <td>Product Five</td>
+                                <td>Account Manager Five</td>
+                                <td><a class="link-blue-underline">Pending</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/6/2017</td>
+                                <td><a class="link-blue-underline">Client Name Six</a></td>
+                                <td>Brand Name Six</td>
+                                <td>Product Six</td>
+                                <td>Account Manager Six</td>
+                                <td><a class="link-blue-underline">Received</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/7/2017</td>
+                                <td><a class="link-blue-underline">Client Name Seven</a></td>
+                                <td>Brand Name Seven</td>
+                                <td>Product Seven</td>
+                                <td>Account Manager Seven</td>
+                                <td><a class="link-blue-underline">Received</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/8/2017</td>
+                                <td><a class="link-blue-underline">Client Name Eight</a></td>
+                                <td>Brand Name Eight</td>
+                                <td>Product Eight</td>
+                                <td>Account Manager Eight</td>
+                                <td><a class="link-blue-underline">Received</a></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Discovery Calls Due</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>Purchase Date</th>
+                                <th>Client</th>
+                                <th>Brand</th>
+                                <th>Product</th>
+                                <th>Account Manager</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-text-center">
+                                <td>1/1/2017</td>
+                                <td><a class="link-blue-underline">Client Name One</a></td>
+                                <td>Brand Name One</td>
+                                <td>Product One</td>
+                                <td>Account Manager One</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/2/2017</td>
+                                <td><a class="link-blue-underline">Client Name Two</a></td>
+                                <td>Brand Name Two</td>
+                                <td>Product Two</td>
+                                <td>Account Manager Two</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/3/2017</td>
+                                <td><a class="link-blue-underline">Client Name Three</a></td>
+                                <td>Brand Name Three</td>
+                                <td>Product Three</td>
+                                <td>Account Manager Three</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/4/2017</td>
+                                <td><a class="link-blue-underline">Client Name Four</a></td>
+                                <td>Brand Name Four</td>
+                                <td>Product Four</td>
+                                <td>Account Manager Four</td>
+                                <td><a class="link-blue-underline">Pending</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/5/2017</td>
+                                <td><a class="link-blue-underline">Client Name Five</a></td>
+                                <td>Brand Name Five</td>
+                                <td>Product Five</td>
+                                <td>Account Manager Five</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/6/2017</td>
+                                <td><a class="link-blue-underline">Client Name Six</a></td>
+                                <td>Brand Name Six</td>
+                                <td>Product Six</td>
+                                <td>Account Manager Six</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/7/2017</td>
+                                <td><a class="link-blue-underline">Client Name Seven</a></td>
+                                <td>Brand Name Seven</td>
+                                <td>Product Seven</td>
+                                <td>Account Manager Seven</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+                            <tr class="tr-text-center">
+                                <td>1/8/2017</td>
+                                <td><a class="link-blue-underline">Client Name Eight</a></td>
+                                <td>Brand Name Eight</td>
+                                <td>Product Eight</td>
+                                <td>Account Manager Eight</td>
+                                <td><a class="link-blue-underline">Completed</a></td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
