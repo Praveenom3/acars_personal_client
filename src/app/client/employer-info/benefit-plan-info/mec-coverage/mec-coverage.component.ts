@@ -12,6 +12,9 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./mec-coverage.component.css']
 })
 export class MecCoverageComponent implements OnInit {
+  client_id: any;
+  purchase_id: any;
+  companyDetails: any;
   mecCoverageData: MecCoverage;
 
   _errorMessage: any;
@@ -31,15 +34,17 @@ export class MecCoverageComponent implements OnInit {
     private _mecService: MecCoverageService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product_id = this.product = _globalService.decode(route.snapshot.params['product']);
-    this.company_id = this.company = _globalService.decode(route.snapshot.params['company']);
-
+    this.product_id = _globalService.decode(route.snapshot.params['product']);
+    this.company_id = _globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
   }
 
   ngOnInit() {
     this.ElementLabelsList();
     this.mecCoverageData = this.createMecCoverage();
     this.getMecCoverageData();
+    this.getCompany();
   }
 
   createMecCoverage() {
@@ -58,6 +63,18 @@ export class MecCoverageComponent implements OnInit {
     return newMecCoverage;
   }
 
+  /*GET COMPANY DETAILS AND PRODUCT YEAR*/
+  getCompany() {
+    let companyDet = this._globalService.getCompany();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let productYear = products[this.product_id]['applicable_year'];
+    if (companyDet) {
+      this.companyDetails = JSON.parse(companyDet);
+      this.companyDetails.productYear = productYear;
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
+    }
+  }
 
   /*getting labels from service*/
   private ElementLabelsList() {

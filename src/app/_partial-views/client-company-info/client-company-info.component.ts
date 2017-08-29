@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'client-company-info',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client-company-info.component.css']
 })
 export class ClientCompanyInfoComponent implements OnInit {
+  product_year: any;
+  company_ein: any;
+  company_name: string;
+
+  @Input()
+  companyData: any;
 
   constructor() { }
 

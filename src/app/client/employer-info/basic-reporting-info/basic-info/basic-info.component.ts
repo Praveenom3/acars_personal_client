@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { BriBasicInfo } from "app/_models/bri-basic-info";
@@ -13,6 +13,12 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
+  productYear: any;
+  initialCount: number = 10;
+  company_name: any;
+  client_id: any;
+  purchase_id: any;
+  companyDetails: any;
   states: any;
 
   basicInfoData: BriBasicInfo;
@@ -34,11 +40,15 @@ export class BasicInfoComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private globalService: GlobalService,
+    private _clientDashService: ClientDashBoardService,
     private _elementMasterService: ElementMasterService,
     public clientDashBoardService: ClientDashBoardService,
     private _briBasicInfoService: BriBasicInfoService) {
-    this.product_id = this.product = globalService.decode(route.snapshot.params['product']);
-    this.company_id = this.company = globalService.decode(route.snapshot.params['company']);
+
+    this.product_id = globalService.decode(route.snapshot.params['product']);
+    this.company_id = globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
 
   }
 
@@ -47,6 +57,19 @@ export class BasicInfoComponent implements OnInit {
     this.ElementLabelsList();
     this.getStates();
     this.getBasicInfoData();
+    this.getCompany();
+  }
+
+  getCompany() {
+    let companyDet = this.globalService.getCompany();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let productYear = products[this.product_id]['applicable_year'];
+    if (companyDet) {
+      this.companyDetails = JSON.parse(companyDet);
+      this.companyDetails.productYear = productYear;
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
+    }
   }
 
   createNewBasicInfo() {
@@ -117,14 +140,14 @@ export class BasicInfoComponent implements OnInit {
 
   private formSubmit(param) {
     if (this.basicInfoData.basic_info_id > 0) {
-      this.basicInfoData['purchase_id'] = this.product_id;
+      this.basicInfoData['purchase_id'] = this.purchase_id;
       this.basicInfoData['company_id'] = this.company_id;
       this._briBasicInfoService.updateBriBasicInfo(this.basicInfoData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this.globalService.encode(this.product) + '/' + this.globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
             }
@@ -136,17 +159,17 @@ export class BasicInfoComponent implements OnInit {
         error => {
         });
     } else {
-      this.basicInfoData['purchase_id'] = '1';
-      this.basicInfoData['company_id'] = '1';
+      this.basicInfoData['purchase_id'] = this.purchase_id;
+      this.basicInfoData['company_id'] = this.company_id;
       this._briBasicInfoService.addBasicInfo(this.basicInfoData).subscribe(
         result => {
           // console.log(result.success);
           if (result.success) {
-            let url: string = 'client/' + this.globalService.encode(this.product) + '/' + this.globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id)]);
             } else {
-              this.router.navigate([url + 'employer-info/basic-reporting-info/emp-status-tracking']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
             }
             this.toastrService.success('Basic Info record added succesfully.');
           } else {

@@ -18,6 +18,8 @@ import { Products } from 'app/_models/products';
 
 export class ClientDashBoardService {
 
+    public client_id: any;
+
     vht: string = '';
     aca16: string = '';
     aca17: string = '';
@@ -119,7 +121,17 @@ export class ClientDashBoardService {
         this.setInfo(productId, clientId);
     }
 
+    public getClientId(): any {
+        let clientId;
+        if (this.splitUrl) {
+            let reversedUrl = this.splitUrl.split('/').reverse();
+            clientId = this._globalService.decode(reversedUrl[1]);
 
+        } else {
+            clientId = this.clientParams
+        }
+        return clientId;
+    }
     /**
      * 
      * @param productId 
@@ -127,7 +139,7 @@ export class ClientDashBoardService {
      * @param companyId 
      */
     public setInfo(productId: any, clientId: any, companyId: any = 0) {
-
+        this.client_id = "yes";
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
         this.product = Object.assign({});
         this.product = products[productId];
@@ -159,7 +171,9 @@ export class ClientDashBoardService {
                             this.company.client_agreement = true;
                             this.company.discovery_session = true;
                             this.setCompanyKeyParams();
-                            this.setCompanyUrls(productId, this.company.company_id)
+                            localStorage.setItem('company', '');
+                            localStorage.setItem('company', JSON.stringify(this.company));
+                            this.setCompanyUrls(productId, this.company.company_id);
                         }
                     },
                     error => {
@@ -170,7 +184,6 @@ export class ClientDashBoardService {
             this.getProductServiceName(this.product.product_type);
         }
     }
-
     /**
      * 
      * @param productId 

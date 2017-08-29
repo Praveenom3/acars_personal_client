@@ -12,6 +12,9 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./general-plan-information.component.css']
 })
 export class GeneralPlanInformationComponent implements OnInit {
+  client_id: any;
+  purchase_id: any;
+  companyDetails: any;
   generalPlanInfoData: GeneralPlanInfo;
   _errorMessage: any;
   label: string;
@@ -29,8 +32,10 @@ export class GeneralPlanInformationComponent implements OnInit {
     private _generalPlanInfoService: GeneralPlanInfoService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product_id = this.product = _globalService.decode(route.snapshot.params['product']);
-    this.company_id = this.company = _globalService.decode(route.snapshot.params['company']);
+    this.product_id = _globalService.decode(route.snapshot.params['product']);
+    this.company_id = _globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
 
   }
 
@@ -38,6 +43,7 @@ export class GeneralPlanInformationComponent implements OnInit {
     this.generalPlanInfoData = this.createNewGeneralPlanInfo();
     this.ElementLabelsList();
     this.getGeneralPlanInfoData();
+    this.getCompany();
   }
 
   createNewGeneralPlanInfo() {
@@ -73,6 +79,19 @@ export class GeneralPlanInformationComponent implements OnInit {
       this.generalPlanInfoData.months = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
     }
   }
+
+    /*GET COMPANY DETAILS AND PRODUCT YEAR*/
+    getCompany() {
+      let companyDet = this._globalService.getCompany();
+      let products = JSON.parse(localStorage.getItem('productsAndClients'));
+      let productYear = products[this.product_id]['applicable_year'];
+      if (companyDet) {
+        this.companyDetails = JSON.parse(companyDet);
+        this.companyDetails.productYear = productYear;
+        this.purchase_id = this.companyDetails.purchase_id;
+        this.client_id = this.companyDetails.client_id;
+      }
+    }
 
   /*getting labels from service*/
   private ElementLabelsList() {
@@ -132,12 +151,13 @@ export class GeneralPlanInformationComponent implements OnInit {
       this._generalPlanInfoService.updateGeneralPlanInfo(this.generalPlanInfoData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
+            
             //this.getGeneralPlanInfoData();
             this.toastrService.success('General Plan Information record added succesfully.');
           } else {
@@ -151,10 +171,11 @@ export class GeneralPlanInformationComponent implements OnInit {
         result => {
           // console.log(result.success);
           if (result.success) {
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
+              this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
             //this.getGeneralPlanInfoData();
             this.toastrService.success('General Plan Information record updated succesfully.');

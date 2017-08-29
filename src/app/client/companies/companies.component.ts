@@ -252,6 +252,8 @@ export class CompaniesComponent implements OnInit {
    */
   public setCompany(company: Company) {
     this.clientDashBoardService.setCompany(company);
+    localStorage.setItem('company', '');
+    localStorage.setItem('company', JSON.stringify(company));
   }
 
   /**

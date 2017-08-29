@@ -14,6 +14,9 @@ import { GlobalService } from "app/_services/_global.service";
 })
 
 export class DesignatedGovtEntityComponent implements OnInit {
+  client_id: any;
+  purchase_id: any;
+  companyDetails: any;
   states: any;
   govtEntityData: GovtEntity;
   model: any = {};
@@ -35,9 +38,10 @@ export class DesignatedGovtEntityComponent implements OnInit {
     private _briBasicInfoService: BriBasicInfoService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
-    this.product_id = this.product = route.snapshot.params['product'];
-    this.company_id = this.company = route.snapshot.params['company'];
-
+    this.product_id = _globalService.decode(route.snapshot.params['product']);
+    this.company_id = _globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
   }
 
   ngOnInit() {
@@ -46,6 +50,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
     this.getStates();
     this.govtEntityData = this.createNewGovtEntity();
     this.getDesignatedGovtEntityData();
+    this.getCompany();
   }
 
   createNewGovtEntity() {
@@ -87,6 +92,19 @@ export class DesignatedGovtEntityComponent implements OnInit {
       this.govtEntityData.assign_dge = assign_dge;
       this.govtEntityData.created_at = created_at;
       this.govtEntityData.created_by = created_by;
+    }
+  }
+
+  /*GET COMPANY DETAILS AND PRODUCT YEAR*/
+  getCompany() {
+    let companyDet = this._globalService.getCompany();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let productYear = products[this.product_id]['applicable_year'];
+    if (companyDet) {
+      this.companyDetails = JSON.parse(companyDet);
+      this.companyDetails.productYear = productYear;
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
     }
   }
 
@@ -135,12 +153,13 @@ export class DesignatedGovtEntityComponent implements OnInit {
       this._designatedGovtEntity.updateGovtEntity(this.govtEntityData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/aggregated-group']);
             }
+
             //this.getDesignatedGovtEntityData();
             this.toastrService.success('Employee status tracking record added succesfully.');
           } else {
@@ -154,10 +173,11 @@ export class DesignatedGovtEntityComponent implements OnInit {
         result => {
           // console.log(result.success);
           if (result.success) {
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/' + 'employer-info/basic-reporting-info/aggregated-group']);
+              this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/aggregated-group']);
             }
             // this.getDesignatedGovtEntityData();
             this.toastrService.success('Employee status tracking record added succesfully.');

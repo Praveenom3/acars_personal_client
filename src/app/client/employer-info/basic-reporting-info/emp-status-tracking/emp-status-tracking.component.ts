@@ -13,6 +13,9 @@ import { GlobalService } from "app/_services/_global.service";
 })
 
 export class EmpStatusTrackingComponent implements OnInit {
+  client_id: any;
+  purchase_id: any;
+  companyDetails: any;
 
   empStatusData: EmpStatusTracking;
   _errorMessage: any;
@@ -32,14 +35,17 @@ export class EmpStatusTrackingComponent implements OnInit {
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService
   ) {
-    this.product_id = this.product = route.snapshot.params['product'];
-    this.company_id = this.company = route.snapshot.params['company'];
+    this.product_id = _globalService.decode(route.snapshot.params['product']);
+    this.company_id = _globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
   }
 
   ngOnInit() {
     this.empStatusData = this.createNewEmpStatus();
     this.ElementLabelsList();
     this.getEmpStatusTrackingData();
+    this.getCompany();
   }
 
   createNewEmpStatus() {
@@ -57,6 +63,19 @@ export class EmpStatusTrackingComponent implements OnInit {
       updated_by: '',
     }
     return newEmpStatus;
+  }
+
+  /*GET COMPANY DETAILS AND PRODUCT YEAR*/
+  getCompany() {
+    let companyDet = this._globalService.getCompany();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let productYear = products[this.product_id]['applicable_year'];
+    if (companyDet) {
+      this.companyDetails = JSON.parse(companyDet);
+      this.companyDetails.productYear = productYear;
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
+    }
   }
 
   /*getting labels from service*/
@@ -91,9 +110,9 @@ export class EmpStatusTrackingComponent implements OnInit {
       this._empStatusTrackingService.updateEmpStatusTracking(this.empStatusData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
             }
@@ -109,9 +128,9 @@ export class EmpStatusTrackingComponent implements OnInit {
       this._empStatusTrackingService.addEmpStatusTracking(this.empStatusData).subscribe(
         result => {
           if (result.success) {
-            let url: string = 'client/' + this._globalService.encode(this.product) + '/' + this._globalService.encode(this.company);
+            let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate([url]);
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
             }
