@@ -1,82 +1,59 @@
-<div class="product-container col-md-12 pull-left width-100">
+<!-- company info -->
+<client-company-info [companyData]="companyDetails"></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+<client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
 
-	<!-- company info -->
-	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-		<div class="pull-right">
-			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-		</div>
-		<h5 class="cat__core__title d-block mb-0 pt-3">
-			<span> Name: <span class="text-muted">Cargo Force</span></span>
-			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-		</h5>
-	</nav>
-	<!-- ./company info -->
-
+<div class="product-container col-md-12">
     <div class="">
         <div class="col-md-12 border-ddd widget padding-0">
-
-            <!-- Main Tabs -->
-            <div class="search-header padding-10">
-                <ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-                    <li class="col-md-1"></li>
-                    <li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-                        <p class="font-white margin-0">Basic Reporting Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-                        <p class="font-white margin-0">Benefit Plan Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-                        <p class="font-white margin-0">Plan Classes</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Payroll</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Enrollments</p>
-                    </li>
-                    <li class="col-md-1"></li>
-                </ul>
-            </div>
-            <!-- ./Main Tabs -->
-
             <div class="tab-content clearfix">
                 <div aria-expanded="true" class="tab-pane active" id="account_setup_block">
                     <!-- Sub category Tabs -->
                     <div class="col-md-12  padding-10 ul-block">
-                        <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class']">
-                                    <div class="inner-block-digits pull-left">1</div>
-                                    <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class','coverage-offered']">
-                                    <div class="inner-block-digits pull-left">2</div>
-                                    <span class="inner-block-text">Type of Coverage Offered</span></a>
-                            </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
-                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class','employee-contributions']">
-                                    <div class="inner-block-digits pull-left">3</div>
-                                    <span class="inner-block-text">Employee Contributions</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- ./Sub category Tabs -->
-
+                            <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
+                                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
+                                    
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId]" *ngIf="encodedId">
+                                        <div class="inner-block-digits pull-left">1</div>
+                                        <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
+    
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']" *ngIf="!encodedId">
+                                            <div class="inner-block-digits pull-left">1</div>
+                                            <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
+                                    
+                                </li>
+                                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'coverage-offered']" *ngIf="encodedId">
+                                        <div class="inner-block-digits pull-left">2</div>
+                                        <span class="inner-block-text">Type of Coverage Offered</span></a>
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', 'coverage-offered']" *ngIf="!encodedId">
+                                        <div class="inner-block-digits pull-left">2</div>
+                                        <span class="inner-block-text">Type of Coverage Offered</span></a>
+                                </li>
+                                <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'employee-contributions']" *ngIf="encodedId">
+                                        <div class="inner-block-digits pull-left">3</div>
+                                        <span class="inner-block-text">Employee Contributions</span></a>
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', 'employee-contributions']" *ngIf="!encodedId">
+                                        <div class="inner-block-digits pull-left">3</div>
+                                        <span class="inner-block-text">Employee Contributions</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- ./Sub category Tabs -->
 
                     <div class="tab-content clearfix">
                         <div aria-expanded="true" class="tab-pane active" id="account_setup_block">
-
                             <div class="col-md-12 padding-0">
                                 <div class="tab-content clearfix">
                                     <div class="tab-pane active " id="planbasics" role="tabpanel">
-
                                         <div class="col-md-12 padding-0">
                                             <div class="tab-content clearfix">
                                                 <div class="tab-pane active " id="planbasics" role="tabpanel">
 
-                                                    <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+                                                    <form>
                                                         <div class="border-top-bottom-ddd col-md-12 padding-0">
                                                             <div class="container margin-top-30 margin-bottom-10">
 
@@ -85,113 +62,74 @@
                                                                     <div class="col-xs-12">
                                                                         <div class="form-group row">
                                                                             <div class="col-md-5">
-                                                                                <label class="form-control-label"><span>9.1&nbsp;&nbsp;&nbsp;Plan Class Number</span> </label>
+                                                                                <label class="form-control-label"><span>{{labels[0]}}</span> </label>
                                                                             </div>
                                                                             <div class="col-md-7">
-                                                                                <input type="text" class="form-control form-height" id="" placeholder="" value="Plan Class #1" readonly="" disabled="">
-
+                                                                                <span class="form-control" value="Plan Class #1" readOnly>{{coverageTypeData.plan_class_number}}</span>
                                                                             </div>
                                                                         </div>
 
-
                                                                         <div class="form-group row">
                                                                             <div class="col-md-5">
-                                                                                <label class="form-control-label"><span>9.2&nbsp;&nbsp;&nbsp;Plan Class Name</span> </label>
+                                                                                <label class="form-control-label"><span>{{labels[1]}}</span> </label>
                                                                             </div>
                                                                             <div class="col-md-7">
                                                                                 <div class="form-group field-tblacaplancoveragetype-plan_class_name">
-
-                                                                                    <input type="text" id="tblacaplancoveragetype-plan_class_name" class="form-control form-height" name="TblAcaPlanCoverageType[plan_class_name]" maxlength="34" onkeypress="return alpha(event);">
-
-                                                                                    <div class="help-block"></div>
+                                                                                    <input class="form-control" type="text" [(ngModel)]="coverageTypeData.plan_class_name" name="plan_class_name" maxlength="34">
                                                                                 </div>
-                                                                                <span id="plan_class_name_error" class="red"></span>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="form-group row plan-div-margin">
                                                                             <div class="col-md-5">
-                                                                                <label class="form-control-label"><span>9.3&nbsp;&nbsp;&nbsp;What type of plan did you offer this year for this class of employee ?</span> </label>
+                                                                                <label class="form-control-label"><span>{{labels[2]}}</span> </label>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="1"> No Qualifying Plan Offered
-                                                                                </label>
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="1"> No Qualifying Plan Offered
+                                                                                        </label>
                                                                                     </div>
-                                                                                    <!-- <div class="row">
-                                                                                    <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No
-																					Qualifying Plan Offered </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                </div>-->
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="2"> Self Insured
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="2"> Self Insured
                                                                                 </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="3">  Fully Insured
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="3">  Fully Insured
                                                                                            </label>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="4">  Multi Employer Plan
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="4">  Multi Employer Plan
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-8">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="5"> Combination of the options above during the year
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="5"> Combination of the options above during the year
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-                                                                            <!--<div class="col-md-4">
-                                                                                <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="3">  Fully Insured
-                                                                                </label>
-                                                                        <div class="row">
-                                                                                    <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="3">
-                                                                                    <span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;
-																					    Fully Insured
-																					 </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                </div>
-                                                                                <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="4">  Multi Employer Plan
-                                                                                </label>
-                                                                              <div class="row">
-                                                                                    <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="4">
-                                                                                    <span class="control-checkbox">&nbsp;&nbsp;&nbsp;Multi
-																					Employer Plan </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <div class="col-md-6"></div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="row">
-                                                                                    <input type="radio" [(ngModel)]="fullyInsured" name="TblAcaPlanCoverageType[plantype]" value="5"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Combination
-																					of the options above during the year</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                </div>
-                                                                            </div>-->
                                                                         </div>
-                                                                        <div *ngIf="fullyInsured == '5'" id="combination_div1" class="form-group row plan-div-margin">
+                                                                        <div *ngIf="coverageTypeData.plan_offer_type == '5'" id="combination_div1" class="form-group row plan-div-margin">
                                                                             <div class="col-xs-12" style="border: 1px solid #ddd;">
                                                                                 <div class="col-sm-4 padding-left-0">
                                                                                     <div class="row plan-div-margin">
                                                                                         <div class="col-sm-3">January</div>
                                                                                         <div class="col-sm-9">
-
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][1]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[1]" name="coverageType[1]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
@@ -199,45 +137,78 @@
                                                                                         <div class="col-sm-3">January</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[3][1]">
-																						<option value="">Select waiting Period</option>
-																																														<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[1]" name="waitingType[1]">
+																						        <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
                                                                                     <div class="row plan-div-margin">
                                                                                         <div class="col-sm-3">April</div>
                                                                                         <div class="col-sm-9">
-
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][4]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[4]" name="coverageType[4]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">April</div>
+                                                                                        <div class="col-sm-9">
 
-
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[4]" name="waitingType[4]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
 
                                                                                     <div class="row plan-div-margin">
                                                                                         <div class="col-sm-3">July</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][7]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[7]" name="coverageType[7]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">July</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[7]" name="waitingType[7]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
@@ -246,15 +217,32 @@
                                                                                         <div class="col-sm-3">October</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][10]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[10]" name="coverageType[10]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">October</div>
+                                                                                        <div class="col-sm-9">
 
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[10]" name="waitingType[10]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
 
                                                                                 </div>
                                                                                 <div class="col-md-4 padding-left-0">
@@ -263,12 +251,30 @@
                                                                                         <div class="col-sm-3">February</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][2]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[2]" name="coverageType[2]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">February</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[2]" name="waitingType[2]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
@@ -277,12 +283,30 @@
                                                                                         <div class="col-sm-3">May</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][5]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[5]" name="coverageType[5]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">May</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[5]" name="waitingType[5]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
@@ -290,24 +314,62 @@
                                                                                         <div class="col-sm-3">August</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][8]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[8]" name="coverageType[8]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">August</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[8]" name="waitingType[8]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
+
                                                                                     <div class="row plan-div-margin">
                                                                                         <div class="col-sm-3">November</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][11]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[11]" name="coverageType[11]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">November</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[11]" name="waitingType[11]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -317,24 +379,61 @@
                                                                                         <div class="col-sm-3">March</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][3]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[3]" name="coverageType[3]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">March</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[3]" name="waitingType[3]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
                                                                                     <div class="row plan-div-margin">
                                                                                         <div class="col-sm-3">June</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][6]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[6]" name="coverageType[6]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">June</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[6]" name="waitingType[6]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
@@ -342,50 +441,84 @@
                                                                                         <div class="col-sm-3">September</div>
                                                                                         <div class="col-sm-9">
 
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][9]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[9]" name="coverageType[9]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">September</div>
+                                                                                        <div class="col-sm-9">
+
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[9]" name="waitingType[9]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
 
                                                                                     <div class="row plan-div-margin">
                                                                                         <div class="col-sm-3">December</div>
                                                                                         <div class="col-sm-9">
-
-                                                                                            <select class="form-control reset-coverage-type" name="Planoffertypeyears[1][12]">
-																						<option value="">Select Coverage Type</option>
-																																														<option value="62">Multi Employer Plan</option>
-																																														<option value="63">Self Insured</option>
-																																														<option value="64">Fully Insured</option>
-																																													</select>
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.coverageType[12]" name="coverageType[12]">
+																						        <option value="">Select Coverage Type</option>
+                                                                                                <option value="62">Multi Employer Plan</option>
+                                                                                                <option value="63">Self Insured</option>
+                                                                                                <option value="64">Fully Insured</option>
+                                                                                            </select>
                                                                                         </div>
                                                                                     </div>
+                                                                                    
+                                                                                    <div class="row plan-div-margin">
+                                                                                        <div class="col-sm-3">December</div>
+                                                                                        <div class="col-sm-9">
 
+                                                                                            <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[12]" name="waitingType[12]">
+                                                                                                <option value="">Select waiting Period</option>
+                                                                                                <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                <option value="57">1st of Month after DOH</option>
+                                                                                                <option value="58">90 Days after DOH</option>
+                                                                                                <option value="59">60 Days after DOH</option>
+                                                                                                <option value="60">30 Days after DOH</option>
+                                                                                                <option value="61">Date fo hire (DOH)</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div id="combination_div2" class="form-group row plan-div-margin" *ngIf="fullyInsured == '4' || fullyInsured == '3' || fullyInsured == '2'">
+                                                                        <div id="combination_div2" class="form-group row plan-div-margin" *ngIf="coverageTypeData.plan_offer_type == '4' || coverageTypeData.plan_offer_type == '3' || coverageTypeData.plan_offer_type == '2'">
                                                                             <div class="col-md-12" style="border: 1px solid #ddd;">
                                                                                 <div class="form-group plan-div-margin">
 
                                                                                     <div class="col-md-6">
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Date
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Date
 																						of hire (DOH)</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;30
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;30
 																						Days after DOH </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="3"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;60
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="3"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;60
 																						Days after DOH </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="4"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;90
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="4"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;90
 																						Days after DOH </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
@@ -393,109 +526,100 @@
 
                                                                                     <div class="col-md-6">
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="5"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="5"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="6"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="6"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after 30 days after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="7"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="7"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after 60 days after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="8"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="8"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after 90 days after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="ninepthreeCombination" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="9"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Combination
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="9"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Combination
 																						of the options above during the year</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                     </div>
-
                                                                                 </div>
 
-                                                                                <div id="combination_div3" *ngIf="ninepthreeCombination == '9'">
+                                                                                <div id="combination_div3" *ngIf="coverageTypeData.plan_type_doh == '9'">
                                                                                     <div class="col-xs-12" style="border: 1px solid #ddd; margin-bottom: 15px;padding: 8px;">
                                                                                         <div class="col-md-4 padding-left-0">
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">January</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][1]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[1]" name="waitingType[1]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">April</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][4]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[4]" name="waitingType[4]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">July</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][7]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[7]" name="waitingType[7]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">October</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][10]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[10]" name="waitingType[10]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -504,73 +628,65 @@
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">February</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][2]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[2]" name="waitingType[2]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">May</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][5]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[5]" name="waitingType[5]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">August</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][8]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[8]" name="waitingType[8]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">November</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][11]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[11]" name="waitingType[11]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -579,111 +695,88 @@
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">March</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][3]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[3]" name="waitingType[3]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">June</div>
                                                                                                 <div class="col-sm-9">
-
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][6]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[6]" name="waitingType[6]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">September</div>
                                                                                                 <div class="col-sm-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][9]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[9]" name="waitingType[9]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="row plan-div-margin">
                                                                                                 <div class="col-sm-3">December</div>
                                                                                                 <div class="col-md-9">
-
-                                                                                                    <select class="form-control reset-coverage-type" name="Planoffertypeyears[2][12]">
-																								<option value="">Select Waiting Period</option>
-																																																<option value="54">1st of Month after 90 days after DOH</option>
-																																														<option value="55">1st of Month after 60 days after DOH</option>
-																																														<option value="56">1st of Month after 30 days after DOH</option>
-																																														<option value="57">1st of Month after DOH</option>
-																																														<option value="58">90 Days after DOH</option>
-																																														<option value="59">60 Days after DOH</option>
-																																														<option value="60">30 Days after DOH</option>
-																																														<option value="61">Date fo hire (DOH)</option>
-																							
-																								</select>
+                                                                                                    <select class="form-control reset-coverage-type" [(ngModel)]="coverageTypeData.waitingType[12]" name="waitingType[12]">
+																								        <option value="">Select Waiting Period</option>
+                                                                                                        <option value="54">1st of Month after 90 days after DOH</option>
+                                                                                                        <option value="55">1st of Month after 60 days after DOH</option>
+                                                                                                        <option value="56">1st of Month after 30 days after DOH</option>
+                                                                                                        <option value="57">1st of Month after DOH</option>
+                                                                                                        <option value="58">90 Days after DOH</option>
+                                                                                                        <option value="59">60 Days after DOH</option>
+                                                                                                        <option value="60">30 Days after DOH</option>
+                                                                                                        <option value="61">Date fo hire (DOH)</option>
+																								    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-
-
-
-
                                                                             </div>
-
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <div class="col-md-12">
-                                                                            <label class="form-control-label">9.4&nbsp;&nbsp;&nbsp;If an employee terminates their employment prior to the last day of the month while enrolled on this plan, will they still be covered under the medical plan through the end of the month?</label>
+                                                                            <label class="form-control-label">{{labels[3]}}</label>
                                                                             <div class="padding-left-25">
                                                                                 <label class="radio-inline">
-                                                               <input type="radio" name="TblAcaGeneralPlanInfo[employeemedicalplan]" value="1"> Yes
-                                                            </label>
+                                                                                    <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="1"> Yes
+                                                                                </label>
                                                                                 <label class="radio-inline">
-                                                             <input type="radio" name="TblAcaGeneralPlanInfo[employeemedicalplan]" value="2"> No
-                                                        </label>
+                                                                                    <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="2"> No
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                         </div>
-                                                                        <!--<div class="form-group row plan-div-margin">
-                                                                            <div class="col-md-8">
-                                                                                <label class="form-control-label"><span>9.4&nbsp;&nbsp;&nbsp;If an employee terminates their employment prior to the last day of the month while enrolled on this plan, will they still be covered under the medical plan through the end of the month?</span> </label>
-                                                                            </div>
-                                                                            <div class="col-md-4" style="margin-top: 10px;">
-                                                                                <input type="radio" name="TblAcaPlanCoverageType[employeemedicalplan]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                <input type="radio" name="TblAcaPlanCoverageType[employeemedicalplan]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-                                                                            </div>
-                                                                        </div>-->
                                                                     </div>
                                                                 </div>
                                                                 <!-- ./form content -->
@@ -693,8 +786,8 @@
                                                         <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
                                                             <div class="modal-footer-btn padding-15">
                                                                 <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-                                                                <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-                                                                <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+                                                                <button class="btn btn-modal-blue" (click)="onSubmit('exit')" [disabled]="coverageTypeData.plan_class_name.length == 0">Save & Exit</button> &nbsp;
+                                                                <button class="btn btn-modal-blue  pull-right " (click)="onSubmit('next')" [disabled]="coverageTypeData.plan_class_name.length == 0">Save & Continue</button>
                                                             </div>
                                                         </div>
                                                     </form>

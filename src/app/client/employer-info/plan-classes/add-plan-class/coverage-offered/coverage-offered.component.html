@@ -1,63 +1,42 @@
-<div class="product-container col-md-12 pull-left width-100">
+<!-- company info -->
+    <client-company-info [companyData]="companyDetails"></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+    <client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
 
-	<!-- company info -->
-	<nav class="col-xs-12 cat__core__top-sidebar cat__core__top-sidebar--bg" style="margin-bottom: 12px;">
-		<div class="pull-right">
-			<a class="btn btn-sm btn-outline-primary ladda-button" [routerLink]="['/client/',product,company,'reporting-check-list']" data-style="expand-right"><i class="fa fa-dashboard"></i> <span class="ladda-label">Company<span class="hidden-sm-down"> Dashboard</span></span><span class="ladda-spinner"></span></a>
-		</div>
-		<h5 class="cat__core__title d-block mb-0 pt-3">
-			<span> Name: <span class="text-muted">Cargo Force</span></span>
-			<span style="padding-left:10px;">EIN: <span class="text-muted">15-90010</span></span>
-			<span style="padding-left:10px;"> Reporting Year: <span class="text-muted">2016</span></span>
-		</h5>
-	</nav>
-	<!-- ./company info -->
-
+<div class="product-container col-md-12">
     <div class="">
         <div class="col-md-12 border-ddd widget padding-0">
-
-            <!-- Main Tabs -->
-            <div class="search-header padding-10">
-                <ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
-                    <li class="col-md-1"></li>
-                    <li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
-                        <p class="font-white margin-0">Basic Reporting Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
-                        <p class="font-white margin-0">Benefit Plan Info</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
-                        <p class="font-white margin-0">Plan Classes</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','payroll']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Payroll</p>
-                    </li>
-                    <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employer-info','enrollments']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
-                        <p class="font-white margin-0 ">Enrollments</p>
-                    </li>
-                    <li class="col-md-1"></li>
-                </ul>
-            </div>
-            <!-- ./Main Tabs -->
-
-
             <div class="tab-content clearfix">
                 <div aria-expanded="true" class="tab-pane active" id="account_setup_block">
                     <!-- Sub category Tabs -->
                     <div class="col-md-12  padding-10 ul-block">
                         <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class']">
+                                
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId]" *ngIf="encodedId">
                                     <div class="inner-block-digits pull-left">1</div>
                                     <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
+
+                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']" *ngIf="!encodedId">
+                                        <div class="inner-block-digits pull-left">1</div>
+                                        <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
+                                
                             </li>
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
-                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class','coverage-offered']">
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'coverage-offered']" *ngIf="encodedId">
+                                    <div class="inner-block-digits pull-left">2</div>
+                                    <span class="inner-block-text">Type of Coverage Offered</span></a>
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', 'coverage-offered']" *ngIf="!encodedId">
                                     <div class="inner-block-digits pull-left">2</div>
                                     <span class="inner-block-text">Type of Coverage Offered</span></a>
                             </li>
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
-                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class','employee-contributions']">
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'employee-contributions']" *ngIf="encodedId">
+                                    <div class="inner-block-digits pull-left">3</div>
+                                    <span class="inner-block-text">Employee Contributions</span></a>
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', 'employee-contributions']" *ngIf="!encodedId">
                                     <div class="inner-block-digits pull-left">3</div>
                                     <span class="inner-block-text">Employee Contributions</span></a>
                             </li>
@@ -75,81 +54,73 @@
                                         <div class="col-md-12 padding-0">
                                             <div class="tab-content clearfix">
                                                 <div class="tab-pane active " id="planbasics" role="tabpanel">
-
-                                                    <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
+                                                    <form>
                                                         <div class="border-top-bottom-ddd col-md-12 padding-0">
                                                             <div class="container margin-top-30 margin-bottom-10">
 
                                                                 <!-- form content -->
                                                                 <div class="col-md-12">
-
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label"><span>10.1&nbsp;&nbsp;&nbsp;Did you offer Minimum Value (MV) coverage to employees?</span>
-										                                          </label>
+                                                                            <label class="control-label"><span>{{labels[0]}}</span></label>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="tenpone" name="TblAcaPlanCoverageTypeOffered[employee_mv_coverage]" value="1"> Yes
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_mv_coverage" name="employee_mv_coverage" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                             <input type="radio" [(ngModel)]="tenpone"  name="TblAcaPlanCoverageTypeOffered[employee_mv_coverage]" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_mv_coverage" name="employee_mv_coverage" value="2"> No
                                                                            </label>
                                                                         </div>
-                                                                        <!--<div class="col-md-4" style="margin-top: 3px;">
-                                                                            <input type="radio" [(ngModel)]="tenpone" name="TblAcaPlanCoverageTypeOffered[employee_mv_coverage]" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                            <input type="radio" [(ngModel)]="tenpone" name="TblAcaPlanCoverageTypeOffered[employee_mv_coverage]" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-                                                                        </div>-->
                                                                     </div>
-                                                                    <div *ngIf="tenpone == '1'" class="form-group row years1 plan-div-margin">
+                                                                    <div *ngIf="coverageOfferedData.employee_mv_coverage == '1'" class="form-group row years1 plan-div-margin">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label">10.1.1&nbsp;&nbsp;&nbsp;What months did you offer MV coverage?
-													</label>
+                                                                            <label class="control-label">{{labels[1]}}</label>
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="col-sm-12">
-                                                                                <input id="entire_year" [(ngModel)]="tenponedisableMonths" name="TblAcaMecCoverage[mec_months][0]" type="checkbox" value="1" ng-reflect-name="TblAcaMecCoverage[mec_months][" class="ng-pristine ng-valid ng-touched">                                                                                Entire Year
+                                                                                <input id="entire_year" [(ngModel)]="coverageOfferedData.entireMvYear" name="entireMvYear" type="checkbox" value="1">Entire Year
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[1]" name="mv_coverage_months[1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[2]" name="mv_coverage_months[2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
-                                                                                </div>
-
-                                                                                <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[3]" name="mv_coverage_months[3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
                                                                                 </div>
 
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[4]" name="mv_coverage_months[4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                </div>
+
+                                                                                <div class="checkbox">
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[5]" name="mv_coverage_months[5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[6]" name="mv_coverage_months[6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[7]" name="mv_coverage_months[7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[8]" name="mv_coverage_months[8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[9]" name="mv_coverage_months[9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[10]" name="mv_coverage_months[10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[11]" name="mv_coverage_months[11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenponedisableMonths == 1"  name="TblAcaMecCoverage[mec_months][12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[12]" name="mv_coverage_months[12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
                                                                                 </div>
 
                                                                             </div>
@@ -157,122 +128,117 @@
                                                                     </div>
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label"><span>10.2&nbsp;&nbsp;&nbsp; Did you offer Minimum Essential coverage to your Employees during this ACA reporting year?															</span> </label>
+                                                                            <label class="control-label"><span>{{labels[2]}}</span> </label>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="tenptwo" name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="1"> Yes
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_essential_coverage" name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                             <input type="radio" [(ngModel)]="tenptwo"  name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_essential_coverage" name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>
-                                                                    <div *ngIf="tenptwo == '1'" class="form-group row years2 plan-div-margin">
+                                                                    <div *ngIf="coverageOfferedData.employee_essential_coverage == '1'" class="form-group row years2 plan-div-margin">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label">10.2.1&nbsp;&nbsp;&nbsp;Select which months during the year did you offer this coverage?
-													</label>
+                                                                            <label class="control-label">{{labels[3]}}</label>
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="col-sm-12">
-                                                                                <input id="entire_year" [(ngModel)]="tenptwodisableMonths" name="TblAcaMecCoverage[mec_months][0]" type="checkbox" value="1" ng-reflect-name="TblAcaMecCoverage[mec_months][" class="ng-pristine ng-valid ng-touched">                                                                                Entire Year
+                                                                                <input id="entire_year" [(ngModel)]="coverageOfferedData.entireMeYear" name="entireMeYear" type="checkbox" value="1">Entire Year
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths  == 1"  name="TblAcaMecCoverage[mec_months][1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[1]" name="essential_coverage_months[1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[2]" name="essential_coverage_months[2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
-                                                                                </div>
-
-                                                                                <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[3]" name="essential_coverage_months[3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
                                                                                 </div>
 
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[4]" name="essential_coverage_months[4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                </div>
+
+                                                                                <div class="checkbox">
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[5]" name="essential_coverage_months[5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[6]" name="essential_coverage_months[6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[7]" name="essential_coverage_months[7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[8]" name="essential_coverage_months[8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[9]" name="essential_coverage_months[9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[10]" name="essential_coverage_months[10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[11]" name="essential_coverage_months[11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year"  [disabled]="tenptwodisableMonths == 1"  name="TblAcaMecCoverage[mec_months][12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
+                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[12]" name="essential_coverage_months[12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
                                                                                 </div>
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label"><span>10.3&nbsp;&nbsp;&nbsp;Did you offer Minimum Essential coverage to Spouses of your Employees during this ACA reporting year?															</span> </label>
+                                                                            <label class="control-label"><span>{{labels[4]}}</span> </label>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="tenpthree" name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="1"> Yes
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.spouse_essential_coverage" name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                             <input type="radio" [(ngModel)]="tenpthree"  name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="2"> No
+                                                                             <input type="radio" [(ngModel)]="coverageOfferedData.spouse_essential_coverage" name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>
-                                                                    <div *ngIf="tenpthree == '1'" class="form-group row plan-div-margin spousediv" id="spouse_conditional_coverage_div" style="display: block;">
+                                                                    <div *ngIf="coverageOfferedData.spouse_essential_coverage == '1'" class="form-group row plan-div-margin spousediv" id="spouse_conditional_coverage_div" style="display: block;">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label">10.3.1&nbsp;&nbsp;&nbsp;Was this offer of coverage conditional? (Example: An offer of coverage not available to a spouse who is employed and offered coverage at their own place of employment)</label>
+                                                                            <label class="control-label">{{labels[5]}}</label>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" name="TblAcaPlanCoverageTypeOffered[spouse_conditional_coverage]" value="1"> Yes
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.spouse_conditional_coverage" name="TblAcaPlanCoverageTypeOffered[spouse_conditional_coverage]" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                             <input type="radio"  name="TblAcaPlanCoverageTypeOffered[spouse_conditional_coverage]" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.spouse_conditional_coverage" name="TblAcaPlanCoverageTypeOffered[spouse_conditional_coverage]" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group row plan-div-margin" id="">
                                                                         <div class="col-md-6">
-                                                                            <label class="control-label"><span>10.4&nbsp;&nbsp;&nbsp;Did you offer Minimum Essential Coverage to Dependents of Your Employees during the ACA reporting year?</span>
-													</label>
+                                                                            <label class="control-label"><span>{{labels[6]}}</span></label>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" name="TblAcaPlanCoverageTypeOffered[dependent_essential_coverage]" value="1"> Yes
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.dependent_essential_coverage" name="TblAcaPlanCoverageTypeOffered[dependent_essential_coverage]" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                             <input type="radio"  name="TblAcaPlanCoverageTypeOffered[dependent_essential_coverage]" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.dependent_essential_coverage" name="TblAcaPlanCoverageTypeOffered[dependent_essential_coverage]" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                                 <!-- ./form content -->
-
                                                             </div>
                                                         </div>
-                                                        <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+                                                        <div align="right" class="col-md-12 padding-0 bg-sky-blue" style="border-top: none;">
                                                             <div class="modal-footer-btn padding-15">
                                                                 <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-                                                                <a class="btn btn-modal-blue" type="button">Save & Exit</a> &nbsp;
-                                                                <a class="btn btn-modal-blue  pull-right " type="submit">Save & Continue</a>
+                                                                <button class="btn btn-modal-blue" (click)="onSubmit('exit')">Save & Exit</button> &nbsp;
+                                                                <button class="btn btn-modal-blue pull-right" (click)="onSubmit('next')">Save & Continue</button>
                                                             </div>
                                                         </div>
                                                     </form>
