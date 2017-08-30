@@ -71,7 +71,7 @@ export class GlobalService {
      */
     public decode(param): any {
         let splittedString = param.split(this.URL_STRING);
-        return atob(splittedString[1]);
+        return +atob(splittedString[1]);
     }
     public handleError(error: Response | any) {
 
