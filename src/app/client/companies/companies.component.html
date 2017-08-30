@@ -38,7 +38,7 @@
                                 </thead>
                                 <tbody>
                                     <ng-container *ngIf="mf.data?.length">
-                                        <tr *ngFor="let company of mf.data" [ngClass]="(clientDashBoardService.company.company_company_id == company.company_id) ? 'active-company':''">
+                                        <tr *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
                                             <td class="text-center">{{company.client_name}}</td>
                                             <td class="text-center">
                                                 <a class="link-blue-underline" (click)="setCompany(company)">
@@ -46,7 +46,6 @@
                                                  </a>
                                             </td>
                                         </tr>
-
                                     </ng-container>
                                     <tr class="tr-text-center" *ngIf=!mf.data?.length>
                                         <td colspan="2">

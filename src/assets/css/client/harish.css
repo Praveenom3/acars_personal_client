@@ -438,4 +438,7 @@ app-client-layout .section-container .left-small-box p {
 .irs-main-block{
     height: 254px;
 }
+.active-company{
+    background-color: #d8e3ef !important;
+}
    
