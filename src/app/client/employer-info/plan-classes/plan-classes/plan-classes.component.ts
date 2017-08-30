@@ -55,7 +55,7 @@ export class PlanClassesComponent implements OnInit {
   }
 
   public getPlanClasses(){    
-    this.planClassesService.getPlanClasses()
+    this.planClassesService.getCompanyPlanClasses(this.company_id)
     .subscribe((planClasses) => {
       if(planClasses.planClassesInformation){
         this.planClasses = planClasses.planClassesInformation;
