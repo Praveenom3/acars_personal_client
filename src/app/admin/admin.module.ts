@@ -7,7 +7,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { AdminRoutingModule } from './admin.routing';
-import { DashboardComponent, FinancialsComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, NewSalesComponent, ProcessingComponent, ACAFormsComponent } from './dashboard/dashboard.component';
 import { SummaryComponent } from './dashboard/summary.component';
 import { AdminUsersComponent } from "app/admin/dashboard/admin-users.component";
 import { JobsComponent } from "app/admin/jobs/jobs.component";
@@ -28,6 +28,10 @@ import { AdminUserFilterPipe } from "app/_filters/admin-users-filter.pipe";
 import { ModalModule } from "ngx-bootstrap";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
 import { inputFilterDirective } from "app/_directives/input-filter.directive";
+import { OutstandingsComponent } from "app/admin/dashboard/outstandings.component";
+import { OutstandingsService } from "app/_services/_outstandings.service";
+import { OutstandingsFilterPipe } from "app/_filters/outstandings-filter.pipe";
+import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.component";
 
 @NgModule({
   imports: [
@@ -45,17 +49,19 @@ import { inputFilterDirective } from "app/_directives/input-filter.directive";
     TextMaskModule
   ],
   declarations: [
-    AdminUserFilterPipe, 
-    SummaryComponent, 
-    DashboardComponent, 
-    FinancialsComponent, 
-    NewSalesComponent, 
-    AdminUsersComponent, ProcessingComponent, 
+    OutstandingsComponent,
+    AdminUserFilterPipe,
+    OutstandingsFilterPipe,
+    SummaryComponent,
+    DashboardComponent,
+    NewPurchasesComponent,
+    NewSalesComponent,
+    AdminUsersComponent, ProcessingComponent,
     ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent,
-    SearchComponent, SearchResultsComponent, ActivityLogComponent, 
+    SearchComponent, SearchResultsComponent, ActivityLogComponent,
     ErrorLogComponent
   ],
-  providers: [ErrorLogService, AdminUserService]
+  providers: [OutstandingsService, ErrorLogService, AdminUserService]
 
 })
 export class AdminModule { }

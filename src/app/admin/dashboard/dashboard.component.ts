@@ -37,20 +37,6 @@ export class DashboardComponent implements OnInit {
 
 }
 
-@Component({
- selector: 'app-dashboard',
-  templateUrl: './financials.component.html', 
-})
-export class FinancialsComponent implements OnInit {
-
-  ngOnInit() {
-       $('.table').dataTable({
-            "paging":   false,
-        "searching": false,
-        "info":     false
-        });
-    }
-}
 
 @Component({
  selector: 'app-dashboard',
