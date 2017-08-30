@@ -59,6 +59,9 @@ ngOnInit() {
   
   if(this.id){
     this.getCoverageOfferedData();
+  }else{
+    this.toastrService.error("Valid plan class id is required");
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class']);
   }
 
 }
