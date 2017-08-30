@@ -59,7 +59,7 @@ export class CoverageTypeComponent implements OnInit {
       this.getCoverageTypeData();
     }else{
 
-      this.planClassesService.getMaxPlanClassNumber()
+      this.planClassesService.getMaxPlanClassNumber(this.company_id)
       .subscribe((data) => {
         this.coverageTypeData.plan_class_number = data.maxPlanClassNumber;
       },
