@@ -56,6 +56,9 @@ export class EmployeeContributionsComponent implements OnInit {
     
     if(this.id){
       this.getEmployeeContributionData();
+    }else{
+      this.toastrService.error("Valid plan class id is required");
+      this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class']);
     }
   }
   
