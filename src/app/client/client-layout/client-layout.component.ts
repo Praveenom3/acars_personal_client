@@ -74,34 +74,34 @@ export class ClientLayoutComponent implements OnInit {
       clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
       let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
       let productUrl: string = '/client/' + this._globalService.encode(element.product_id) + '/' + this._globalService.encode(clientId) + '/dashboard';
-       
-      if(productName == 'vht'){
-        
-          productInfo['className'] = 'vht';
-          productInfo['productName'] = 'Variable Hour Tracking';
-          this.vhtStatus = true;
-          this.productsData['vht'] = productUrl;        
-        
-       }else{
-          
-         switch (currentValue) {
-        case '2016':
-          productInfo['className'] = 'aca16';
-          productInfo['productName'] = '2016 ACA Reporting';
-          this.aca16Status = true
-          this.productsData['aca16'] = productUrl;
-          break;
-        case '2017':
-          productInfo['className'] = 'aca17';
-          productInfo['productName'] = '2017 ACA Reporting';
-          this.productsData['aca17'] = productUrl;
-          this.aca17Status = true
-          break;
-      }
-          
+
+      if (productName == 'vht') {
+
+        productInfo['className'] = 'vht';
+        productInfo['productName'] = 'Variable Hour Tracking';
+        this.vhtStatus = true;
+        this.productsData['vht'] = '/client/vht';
+
+      } else {
+
+        switch (currentValue) {
+          case '2016':
+            productInfo['className'] = 'aca16';
+            productInfo['productName'] = '2016 ACA Reporting';
+            this.aca16Status = true
+            this.productsData['aca16'] = productUrl;
+            break;
+          case '2017':
+            productInfo['className'] = 'aca17';
+            productInfo['productName'] = '2017 ACA Reporting';
+            this.productsData['aca17'] = productUrl;
+            this.aca17Status = true
+            break;
+        }
+
       }
 
- 
+
     });
   }
 }

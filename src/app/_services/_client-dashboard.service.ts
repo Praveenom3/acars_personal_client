@@ -110,8 +110,10 @@ export class ClientDashBoardService {
         let clientId;
         if (this.splitUrl) {
             let reversedUrl = this.splitUrl.split('/').reverse();
-            clientId = this._globalService.decode(reversedUrl[1]);
-            productId = this._globalService.decode(reversedUrl[2]);
+            if (reversedUrl[2] != '') {
+                clientId = this._globalService.decode(reversedUrl[1]);
+                productId = this._globalService.decode(reversedUrl[2]);
+            }
 
         } else {
             productId = this.productParams;
@@ -169,7 +171,7 @@ export class ClientDashBoardService {
                             this.companies = result.data.companiesList;
                             this.rowsOnPage = this.companies.length;
                             let companyFromSession: any = JSON.parse(localStorage.getItem('company'));
-                            console.log(companyFromSession)
+
                             this.company = result.data.defaultCompanyInformation;
 
                             if (companyFromSession != 'null' && companyFromSession != '') {
