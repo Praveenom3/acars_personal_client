@@ -16,9 +16,9 @@ export class PlanClassesService {
     /**
      *  Begin Coverage Type Services
      */
-    public getPlanClasses() :Observable<any> {
+    public getCompanyPlanClasses(company_id) :Observable<any> {
         return this._http.get(
-                    this._planClassUrl+'?sort=-plan_class_id',
+                    this._planClassUrl+'/get-company-plan-classes/'+company_id+'?sort=-plan_class_id',
                     {headers:  this._globalService.getHeaders()}
                 ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
