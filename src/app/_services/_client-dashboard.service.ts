@@ -66,14 +66,11 @@ export class ClientDashBoardService {
     public payRollDataLink: string;
     public medicalPlanDataLink: string;
     public clientHomeUrl: string;
-    public clientLogo: string = this._globalService.apiRoot + '/images/uploads/brands/';
+    public clientLogo: string = '';
 
-    public stepTwoDisabled: string = 'disable-process-steps';
-    public stepThreeDisabled: string = 'disable-process-steps';
-    public stepFourDisabled: string = 'disable-process-steps';
-    public stepFiveDisabled: string = 'disable-process-steps';
-    public stepSixDisabled: string = 'disable-process-steps';
+    public selectedCompanyRow: any = '';
 
+    logoPath: string = this._globalService.apiRoot + '/images/uploads/brands/';
     public brandInformation: any = {};
 
     // This is the URL to the OData end point
@@ -168,9 +165,23 @@ export class ClientDashBoardService {
                 this.getClientCompanies(data).subscribe(
                     result => {
                         if (result.success) {
+
                             this.companies = result.data.companiesList;
                             this.rowsOnPage = this.companies.length;
+                            let companyFromSession: any = JSON.parse(localStorage.getItem('company'));
+                            console.log(companyFromSession)
                             this.company = result.data.defaultCompanyInformation;
+
+                            if (companyFromSession != 'null' && companyFromSession != '') {
+                                let sessionCompanyId = companyFromSession.company_id;
+                                this.companies.forEach(element => {
+                                    if (element.company_id == sessionCompanyId) {
+                                        this.company = element;
+                                    }
+                                });
+                            }
+
+                            this.selectedCompanyRow = this.company.company_id;
                             this.company.client_agreement = true;
                             this.company.discovery_session = true;
 
@@ -223,17 +234,22 @@ export class ClientDashBoardService {
         if (clientsCount > 1) {
             brand = JSON.parse(localStorage.getItem('defaultBrand'));
             mobile = brand.support_phone
+            this.brandInformation = {
+                'brand_logo': brand.brand_logo,
+                "support_email": brand.support_email,
+                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+            }
+            this.clientLogo = this.logoPath + brand.brand_logo;
         } else {
             let brand: any = client.brand
             let mobile: string = brand.support_phone
-
+            this.brandInformation = {
+                'brand_logo': brand.brand_logo,
+                "support_email": brand.support_email,
+                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+            }
+            this.clientLogo = this.logoPath + brand.brand_logo;
         }
-        this.brandInformation = {
-            'brand_logo': brand.brand_logo,
-            "support_email": brand.support_email,
-            "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
-        }
-        this.clientLogo = this.clientLogo + brand.brand_logo;
     }
     /**
      * 

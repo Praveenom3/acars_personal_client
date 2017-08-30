@@ -239,7 +239,7 @@ app-client-layout .section-container .left-small-box p {
     color: white;
 }
 
-.table-company-dashboard thead {
+/* .table-company-dashboard thead {
   display: block;
 }
 
@@ -249,7 +249,7 @@ app-client-layout .section-container .left-small-box p {
   height: 100px;
   overflow-y: scroll;
   overflow-x: hidden;
-}
+} */
 .content-header{
     padding: 10px 22px;
 }
@@ -397,6 +397,8 @@ app-client-layout .section-container .left-small-box p {
 
 .content-div{
     padding-left: 22px;
+    height: 130px;
+    overflow-y: auto;
 }
 .content-div-managed-account {
     padding: 19px;
@@ -435,5 +437,8 @@ app-client-layout .section-container .left-small-box p {
 }
 .irs-main-block{
     height: 254px;
+}
+.active-company{
+    background-color: #d8e3ef !important;
 }
    

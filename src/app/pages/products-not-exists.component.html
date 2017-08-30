@@ -1,0 +1,100 @@
+<nav class="left-menu media-hide" left-menu>
+    <!--logo image start -->
+    <div class="logo-container">
+        <a href="#" class="logo" style="max-width:none;height:auto;">
+            <img src="/assets/images/client_logo.png" alt="Benefits Client Template" style="height:44px;" />
+            <img class="logo-inverse" src="" alt="Clean UI Admin Template" />
+        </a>
+    </div>
+    <!--logo image end -->
+
+    <div class="left-menu-inner scroll-pane">
+        <ul class="left-menu-list left-menu-list-root list-unstyled">
+            <li>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+            </li>
+            <li>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']"><b>Search</b></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- left scroll menu start(in tab size)-->
+<!-- left end header start-->
+
+<nav class="top-menu transistion top-nav">
+    <div class="menu-icon-container items-class hidden-md-up">
+        <div class="animate-menu-button left-menu-toggle">
+        </div>
+    </div>
+    <div class="menu-icon-container image-class hidden-md-up margin-15">
+        <div class="">
+            <img src="/assets/images/client_logo.png" class="max-width-140" alt="Benefits Client Template">
+        </div>
+    </div>
+    <div class="menu transistion-menu header-top col-md-10 masterhead padding-left-0  media-hide-header">
+        <div class="logo-container col-md-2  media-hide-header">
+            <a href="#" class="logo" style="max-width:none;height:auto;">
+            </a>
+        </div>
+        <ul class="actions  media-hide-header">
+            <li>
+                <a class="disable-hover home" [routerLinkActive]="['home-page-active']">
+                    <b><i class="fa fa-home" aria-hidden="true"></i></b>
+                </a>
+            </li>
+            <li>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']">
+                    <b>Search</b>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile"
+        id="profile_details">
+        <div class="menu-user-block col-md-12">
+            <div class="dropdown dropdown-avatar pull-right">
+                <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false">
+                     <span class="header-name media-hide-profilename">
+                         <span class="font-14">Welcome</span> {{userFirstName}}<span class="font-14"></span></span>
+                </a>
+                <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:16px !important;">
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/profile']"><i
+						class="dropdown-icon icmn-user"></i> Profile</a>
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/messages']"><i
+						class="dropdown-icon fa fa-comments-o"></i> Messages</a>
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/purchases']"><i
+						class="dropdown-icon fa fa-shopping-cart"></i> Purchases</a>
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/activity-log']"><i
+						class="dropdown-icon fa fa-list"></i> Activity Log</a>
+                    <a class="dropdown-item dropdown-a color-white" href="#change_password_modal" role="button" data-toggle="modal"><i
+						class="dropdown-icon fa fa-repeat"></i> Change Password</a>
+                    <div class="dropdown-divider margin-0"></div>
+                    <a class="dropdown-item dropdown-a color-white" href="#"><i
+						class="dropdown-icon icmn-exit"></i> Logout</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</nav>
+<section class="page-content-lg page-content-0-lg padding-0">
+    <div class="page-content-inner">
+        <div class="col-md-12 blue-breadcrumb-plans" align="center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
+                <div class="nav-tabs-horizontal">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 offset-md-3 products-not-exists">
+            <div class="clearfix">
+                <h1 class="float-xs-left display-3 mr-2">
+                    <b> Products not exists </b>
+                </h1>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</section>

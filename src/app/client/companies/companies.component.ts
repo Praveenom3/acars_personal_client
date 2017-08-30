@@ -55,14 +55,16 @@ export class CompaniesComponent implements OnInit {
       .subscribe(companyData => this.onValueChanged(companyData));
 
   }
-
+  /**
+   * 
+   */
   public validationMessages = {
     'company_name': {
       'required': 'Company Name is required.',
       'pattern': 'No special characters are allowed other than & ,'
     },
     'company_ein': {
-      'required': 'Company EIN Year is required.'
+      'required': 'Company EIN is required.'
     }
   };
 
@@ -74,6 +76,7 @@ export class CompaniesComponent implements OnInit {
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
     this.setContactUsData();
+    this.clientDashBoardService.selectedCompanyRow = this.clientDashBoardService.company.company_id;
   }
   /**
    * 
@@ -249,6 +252,7 @@ export class CompaniesComponent implements OnInit {
    */
   public setCompany(company: Company) {
     this.clientDashBoardService.setCompany(company);
+    this.clientDashBoardService.selectedCompanyRow = company.company_id;
     localStorage.setItem('company', '');
     localStorage.setItem('company', JSON.stringify(company));
     this.setContactUsData();
@@ -266,6 +270,5 @@ export class CompaniesComponent implements OnInit {
     if (product['account_manager_number'] != 'null' && product['account_manager_number'] != '') {
       this.accountManagerNumber = product['account_manager_number'];
     }
-    //this.clientDashBoardService
   }
 }

@@ -8,6 +8,7 @@ import { LoginLayoutComponent } from './login/login-layout.component';
 import { ClientLayoutComponent } from "app/client/client-layout/client-layout.component";
 import { SetPasswordComponent } from './login/set-password.component';
 import { ActivateUserComponent } from './admin/activate-user/activate-user.component';
+import { ProductsNotExists } from './pages/products-not-exists.component';
 
 import { AuthGuard } from './_services/_auth.guard';
 
@@ -26,6 +27,10 @@ export const routes: Routes = [
                 loadChildren: 'app/login/login.module#LoginModule'
             }
         ],
+    },
+    {
+        path: 'products-not-exists',
+        component: ProductsNotExists,
     },
     {
         path: 'set-password',
