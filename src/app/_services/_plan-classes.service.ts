@@ -24,9 +24,9 @@ export class PlanClassesService {
             .catch(this._globalService.handleError);
     }
     
-    public getMaxPlanClassNumber() :Observable<any> {
+    public getMaxPlanClassNumber(company_id) :Observable<any> {
         return this._http.get(
-                    this._planClassUrl+'/get-max-plan-class-number',
+                    this._planClassUrl+'/get-max-plan-class-number'+company_id,
                     {headers:  this._globalService.getHeaders()}
                 ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
