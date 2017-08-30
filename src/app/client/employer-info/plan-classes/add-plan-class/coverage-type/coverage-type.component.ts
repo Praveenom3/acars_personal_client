@@ -228,6 +228,7 @@ export class CoverageTypeComponent implements OnInit {
           this.planClassesService.createCoverageType(this.coverageTypeData).subscribe(
             result => {
               if (result.success) {
+                this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
                 if (param == "exit") {
                   this.router.navigate(['client/' + this.product + '/' + this.company]);
                 } else {
