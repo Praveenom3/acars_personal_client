@@ -167,7 +167,7 @@ export class BasicInfoComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id)]);
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
             }
