@@ -59,7 +59,7 @@
                                                                 <td class="text-center">{{item.plan_type_doh ? getItemName("waiting_period", item.plan_type_doh) : '-'}}</td>
                                                                 <td class="text-center">{{item.coverageOffered?.employee_mv_coverage ? ((item.coverageOffered.employee_mv_coverage == 1) ? 'Yes': 'No') : '-'}}</td> 
                                                                 <td class="text-center">{{item.coverageOffered?.mv_coverage_months ? getItemName("months", item.coverageOffered.mv_coverage_months) : '-'}}</td> 
-                                                                <td class="text-center">{{item.coverageOffered?.employee_essential_coverage ? ((item.coverageOffered.employee_essential_coverage == 1)? 'Employee, ':'') : '-'}}{{item.coverageOffered?.spouse_essential_coverage ? ((item.coverageOffered.spouse_essential_coverage == 1)? 'Spouse, ':'') : '-'}}{{item.coverageOffered?.dependent_essential_coverage ? ((item.coverageOffered.dependent_essential_coverage == 1)? 'Dependent':'') : '-'}}</td> 
+                                                                <td class="text-center">{{item.coverageOffered ? getItemName("MEC", item.coverageOffered) : '-'}}</td>                                                                
                                                             </tr>
                                                         </ng-container>
                                                         <tr class="tr-text-center" *ngIf=!pcData.data?.length>

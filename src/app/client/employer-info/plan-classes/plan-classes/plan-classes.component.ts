@@ -108,6 +108,22 @@ export class PlanClassesComponent implements OnInit {
       }else{
         return '-';
       }
+    }else if(type == 'MEC'){
+      let MEC_arr = [];
+      if(value.employee_essential_coverage && value.employee_essential_coverage==1){
+        MEC_arr.push('Employee');
+      }
+      if(value.spouse_essential_coverage && value.spouse_essential_coverage==1){
+        MEC_arr.push('Spouse');
+      }
+      if(value.dependent_essential_coverage && value.dependent_essential_coverage==1){
+        MEC_arr.push('Dependent');
+      }
+      if(MEC_arr.length > 0){
+        return MEC_arr.join();
+      }else{
+        return '-';
+      }
     }
   }
 }
