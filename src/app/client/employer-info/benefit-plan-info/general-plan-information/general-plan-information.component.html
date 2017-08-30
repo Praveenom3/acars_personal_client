@@ -66,7 +66,7 @@
                         <div class="form-group row">
                             <label class="form-control-label">{{labels[2]}}</label>
                             <div class="col-sm-5 padding-left-25 field-tblacageneralplaninfo-plan_type_description">
-                                <textarea inputFilter="true" class="form-control form-height" [(ngModel)]="generalPlanInfoData.plan_type_description" name="plan_type_description" maxlength="100" rows="2" cols="4"></textarea>
+                                <textarea AlphanFewChar="true" class="form-control form-height" [(ngModel)]="generalPlanInfoData.plan_type_description" name="plan_type_description" maxlength="100" rows="2" cols="4"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -82,7 +82,7 @@
                         </div>
                         <div style="width:500px;" *ngIf="generalPlanInfoData.is_multiple_waiting_periods == '1'">
                             <label class="form-control-label">{{labels[4]}}</label>
-                            <textarea class="form-control" inputFilter="true" [(ngModel)]="generalPlanInfoData.multiple_description" name="multiple_description" maxlength="100"></textarea>
+                            <textarea class="form-control" AlphanFewChar="true" [(ngModel)]="generalPlanInfoData.multiple_description" name="multiple_description" maxlength="100"></textarea>
                         </div>
                         <div class="form-group row">
                             <label class="form-control-label">{{labels[5]}}</label>
@@ -247,7 +247,7 @@
             </div>
             <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
                 <div class="modal-footer-btn padding-15">
-                    <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+                    <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;
                     <button class="btn btn-modal-blue" (click)="formSubmit('exit')">Save & Exit</button> &nbsp;
                     <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')">Save & Continue</button>
                 </div>
