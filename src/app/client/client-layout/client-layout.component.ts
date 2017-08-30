@@ -74,7 +74,17 @@ export class ClientLayoutComponent implements OnInit {
       clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
       let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
       let productUrl: string = '/client/' + this._globalService.encode(element.product_id) + '/' + this._globalService.encode(clientId) + '/dashboard';
-      switch (currentValue) {
+       
+      if(productName == 'vht'){
+        
+          productInfo['className'] = 'vht';
+          productInfo['productName'] = 'Variable Hour Tracking';
+          this.vhtStatus = true;
+          this.productsData['vht'] = productUrl;        
+        
+       }else{
+          
+         switch (currentValue) {
         case '2016':
           productInfo['className'] = 'aca16';
           productInfo['productName'] = '2016 ACA Reporting';
@@ -87,13 +97,11 @@ export class ClientLayoutComponent implements OnInit {
           this.productsData['aca17'] = productUrl;
           this.aca17Status = true
           break;
-        case '3':
-          productInfo['className'] = 'vht';
-          productInfo['productName'] = 'Variable Hour Tracking';
-          this.aca17Status = true;
-          this.productsData['vht'] = productUrl;
-          break;
       }
+          
+      }
+
+ 
     });
   }
 }
