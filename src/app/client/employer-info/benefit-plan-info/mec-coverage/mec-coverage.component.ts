@@ -135,6 +135,12 @@ export class MecCoverageComponent implements OnInit {
       this._mecService.updateMecCoverage(this.mecCoverageData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this.product + '/' + this.company;
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+            } else {
+              //this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
+            }
             this.getMecCoverageData();
             this.mecCoverageData = this.createMecCoverage();
             this.toastrService.success('MEC Coverage record updated succesfully.');
@@ -148,6 +154,12 @@ export class MecCoverageComponent implements OnInit {
       this._mecService.addMecCoverage(this.mecCoverageData).subscribe(
         result => {
           if (result.success) {
+            let url: string = 'client/' + this.product + '/' + this.company;
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+            } else {
+              //this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
+            }
             this.getMecCoverageData();
             this.mecCoverageData = this.createMecCoverage();
             this.toastrService.success('MEC Coverage record added succesfully.');
