@@ -62,7 +62,7 @@ export class CompaniesComponent implements OnInit {
       'pattern': 'No special characters are allowed other than & ,'
     },
     'company_ein': {
-      'required': 'Company EIN Year is required.'
+      'required': 'Company EIN is required.'
     }
   };
 

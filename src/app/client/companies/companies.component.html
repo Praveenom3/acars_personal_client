@@ -19,12 +19,13 @@
 
                         <div class="company-search left-addon">
                             <i class="glyphicon glyphicon-search"></i>
-                            <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15">
+                            <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
+                            />
                         </div>
 
                         <div class="content-div">
-                            <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies" #mf="mfDataTable"
-                                [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                            <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
+                                #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
@@ -37,7 +38,7 @@
                                 </thead>
                                 <tbody>
                                     <ng-container *ngIf="mf.data?.length">
-                                        <tr *ngFor="let company of mf.data">
+                                        <tr *ngFor="let company of mf.data" [ngClass]="(clientDashBoardService.company.company_company_id == company.company_id) ? 'active-company':''">
                                             <td class="text-center">{{company.client_name}}</td>
                                             <td class="text-center">
                                                 <a class="link-blue-underline" (click)="setCompany(company)">
@@ -277,8 +278,8 @@
                                     <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
                                 </td>
                                 <td class="padding-5">
-                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" title="Click to toggle" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.company_ein" title="Click to toggle" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
                                 </td>
                             </tr>
                             <tr>
@@ -432,7 +433,7 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                 <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
                                     [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true" placeholder="(__)-_______"
-                                    maxlength="34">
+                                    maxlength="34" min="9">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
                             </div>
                         </div>

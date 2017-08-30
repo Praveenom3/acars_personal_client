@@ -22,6 +22,9 @@ import { ModalModule } from "ngx-bootstrap";
 import { PurchaseService } from "app/_services/_purchase.service";
 import { ClientUserService } from "app/_services/_client-user.service";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
+
+import { CompaniesFilterPipe } from "app/client/companies/companies-filter.pipe";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -41,7 +44,7 @@ import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
     DataFilterPipe, ProfileComponent,
     UsersComponent, PurchaseComponent,
     MessagesComponent, ActivityLogComponent,
-    CompaniesComponent, ReportingCheckListComponent, VhtComponent
+    CompaniesComponent, ReportingCheckListComponent, VhtComponent, CompaniesFilterPipe
   ],
   providers: [PurchaseService, ClientUserService]
 })

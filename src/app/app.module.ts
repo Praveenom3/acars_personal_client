@@ -39,11 +39,13 @@ import { MomentModule } from 'angular2-moment'; // optional, provides moment-sty
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
+import { ProductsNotExists } from './pages/products-not-exists.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     P404Component,
+    ProductsNotExists,
     LoginLayoutComponent,
     AdminLayoutComponent,
     ClientLayoutComponent,
