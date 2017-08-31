@@ -8,6 +8,8 @@ import { ModalDirective } from "ngx-bootstrap";
 import { ToastrService } from "ngx-toastr";
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
+import * as Globals from '../../_shared/_globals';
+
 declare var $: any;
 
 @Component({
@@ -15,6 +17,9 @@ declare var $: any;
     templateUrl: './admin-layout.component.html',
 })
 export class AdminLayoutComponent implements OnInit {
+    financial_permission: boolean = false;
+    systemAdmin_permission: boolean = false;
+    masterData_permission: boolean = false;
 
     @ViewChild('chngPwdModal') public chngPwdModal: ModalDirective;
 
@@ -59,6 +64,20 @@ export class AdminLayoutComponent implements OnInit {
 
         this.chngPwdForm.valueChanges
             .subscribe(data => this.onValueChanged(data));
+
+        if (localStorage.getItem("admin_permissions") != 'undefined') {
+            let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
+            if((admin_permissions).includes(1)){
+                this.financial_permission = true;
+            }
+            
+            if((admin_permissions).includes(2)){
+                this.systemAdmin_permission = true;
+            }
+            if((admin_permissions).includes(3)){
+                this.masterData_permission = true;
+            }
+        }
     }
 
     ngOnInit() {
