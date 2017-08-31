@@ -40,15 +40,16 @@ export class AuthGuard implements CanActivate, CanActivateChild {
                         if(url.indexOf(route) !== -1){
                             this.isUrlRequiresPermission = true;
                             
-                            let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
-                            let client_permissions = JSON.parse(localStorage.getItem('client_permissions'));
-    
-                            admin_permissions.forEach(ap => {
-                                if(ap == permission_key){
-                                    this.isUrlRequiresPermission = false;
-                                    return true;
-                                }
-                            });
+                            if (localStorage.getItem("admin_permissions") != 'undefined') {
+                                let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
+        
+                                admin_permissions.forEach(ap => {
+                                    if(ap == permission_key){
+                                        this.isUrlRequiresPermission = false;
+                                        return true;
+                                    }
+                                });
+                            }
                         }
                     });
                 }
