@@ -174,7 +174,7 @@ export class ClientDashBoardService {
 
                             this.company = result.data.defaultCompanyInformation;
 
-                            if (companyFromSession != 'null' && companyFromSession != '') {
+                            if (typeof companyFromSession != 'undefined'  && companyFromSession != null && companyFromSession != '') {
                                 let sessionCompanyId = companyFromSession.company_id;
                                 this.companies.forEach(element => {
                                     if (element.company_id == sessionCompanyId) {
