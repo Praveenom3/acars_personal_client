@@ -20,6 +20,7 @@ import { Brands } from 'app/_models/brands';
 export class ClientDashBoardService {
 
     public client_id: any;
+    public dashBoard: boolean = false;
 
     vht: string = '';
     aca16: string = '';
@@ -74,8 +75,6 @@ export class ClientDashBoardService {
     logoPath: string = this._globalService.apiRoot + '/images/uploads/brands/';
 
     public brandInformation: any = {};
-    public defaultBrand: Brands;
-
 
     public accountManager: string;
     public accountManagerNumber: string;
@@ -160,11 +159,10 @@ export class ClientDashBoardService {
             let userType = localStorage.getItem('usertype');
             this.changeStyle();
             this.company = Object.assign({});
-            this.setBrandData(productId, clientId);
             if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
                 this.redirectClientToWelcomeScreens();
             } else {
-
+                this.dashBoard = true;
                 let clientIds: any[] = Object.keys(this.product['clients']);
                 let data = {
                     "productId": productId,
@@ -181,8 +179,6 @@ export class ClientDashBoardService {
 
                             this.selectedCompanyRow = this.company.company_id;
                             this.company.company_data = this.checkCompanyData(this.company);
-
-                            this.defaultBrand = result.data.defaultBrandInformation;
 
                             this.setAccountManagerData(productId, clientId);
                             this.setCompanyUrls(productId, this.company.company_id);
@@ -217,14 +213,13 @@ export class ClientDashBoardService {
      * @param productId 
      * @param clientId 
      */
-    public setBrandData(productId, clientId) {
+    public setBrandData(productId, clientId, clientsCount = 0) {
         let product = this.getProductFieldFromSession(productId, 'clients');
         let client = product[clientId];
-        let clientsCount = this.getProductFieldFromSession(productId, 'clientsCount');
         let brand: any;
         let mobile: string;
         if (clientsCount > 1) {
-            brand = this.defaultBrand;
+            let brand = this.getProductFieldFromSession(productId, 'default_brand');
             mobile = brand.support_phone
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
@@ -267,6 +262,7 @@ export class ClientDashBoardService {
 
         let defaultUrl: string;
         let navigateUrl: string;
+
         let clientId = this._globalService.encode(this.client['client_id']);
         let productId: any = this._globalService.encode(this.product.product_id)
         defaultUrl = '/client/' + productId + '/' + clientId + '/setup';
@@ -423,19 +419,19 @@ export class ClientDashBoardService {
     public setCompany(company: Company) {
 
         this.client = this.product['clients'][company.client_id]
+
         let userType = localStorage.getItem('usertype');
         this.changeStyle();
-
+        this.dashBoard = false;
         if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
             this.redirectClientToWelcomeScreens();
         } else {
-
+            this.dashBoard = true;
             this.company = company;
             this.company.company_data = this.checkCompanyData(this.company);
             this.selectedCompanyRow = company.company_id;
             this.setCompanyUrls(this.product.product_id, this.company.company_id);
             this.setCompanyToSession()
-
         }
     }
 

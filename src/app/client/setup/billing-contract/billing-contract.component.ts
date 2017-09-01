@@ -154,5 +154,4 @@ export class BillingContractComponent implements OnInit {
     this.clientDashBoardService.isBillingContractSet = true;
     this.clientDashBoardService.setInformation()
   }
-
 }

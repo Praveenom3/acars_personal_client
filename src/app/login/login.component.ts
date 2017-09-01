@@ -9,6 +9,7 @@ import { ModalDirective } from "ngx-bootstrap";
 import { CookieService } from "ngx-cookie";
 
 import { GlobalService } from "../_services/_global.service";
+import { ClientDashBoardService } from "../_services/_client-dashboard.service";
 
 @Component({
     selector: 'app-login',
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private toastrService: ToastrService,
         private globalService: GlobalService,
+        private dashBoard: ClientDashBoardService,
         private _cookieService: CookieService) {
 
         /* login form */
@@ -278,17 +280,24 @@ export class LoginComponent implements OnInit {
                 return products[key]
             })
             let product;
+            let brand: any;
+            let clientsCount = 0;
             productsList.forEach(element => {
                 if (element.applicable_year > this.maxApplicableYear) {
                     this.maxApplicableYear = element.applicable_year
                     product = element;
                 }
+                clientsCount += element.clientsCount;
+                brand = element.default_brand;
             });
 
             let clientKeys: any[] = Object.keys(product.clients);
             let client = product['clients'][clientKeys[0]];
+
             let clientId: any = this.globalService.encode(client['client_id']);
             let productId: any = this.globalService.encode(product.product_id);
+            this.dashBoard.setBrandData(product.product_id, client['client_id'], clientsCount)
+
             this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
         } else {
             this.router.navigate(['/products-not-exists']);

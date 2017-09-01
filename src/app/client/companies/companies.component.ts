@@ -274,12 +274,14 @@ export class CompaniesComponent implements OnInit {
    * @param company 
    */
   public setCompany(company: Company) {
+    this.clientDashBoardService.splitUrl = '';
     this.clientDashBoardService.getCompanyInformation(company.company_id).subscribe(result => {
       if (result.success) {
-        this.clientDashBoardService.setCompany(result.data);
+
         let productId = this.clientDashBoardService.productParams;
         let clientId = company.client_id;
         this.clientDashBoardService.setAccountManagerData(productId, clientId);
+        this.clientDashBoardService.setCompany(result.data);
       }
     }, error => {
       this.toastrService.error(error.data);
