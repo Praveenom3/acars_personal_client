@@ -7,6 +7,7 @@ import { ModalDirective } from "ngx-bootstrap";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { ClientUserService } from "app/_services/_client-user.service";
 import { ToastrService } from "ngx-toastr";
+import { SettingsService } from "app/_services/_setting.service";
 
 declare var $: any;
 
@@ -31,10 +32,6 @@ export class CompaniesComponent implements OnInit {
   private _errorMessage: string;
   private _submitted: boolean;
 
-  public accountManager: string;
-  public accountManagerNumber: string;
-  public brandInformation: any = {};
-
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -43,10 +40,11 @@ export class CompaniesComponent implements OnInit {
     public globalService: GlobalService,
     public clientDashBoardService: ClientDashBoardService,
     private toastrService: ToastrService,
+    public settingsService: SettingsService,
     public clientUserService: ClientUserService) {
     this._companyForm = _formBuilder.group({
-      company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
-      company_ein: ['', Validators.compose([Validators.required])],
+      company_name: ['', Validators.compose([Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
+      company_ein: ['',],
 
     });
     this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
@@ -75,31 +73,26 @@ export class CompaniesComponent implements OnInit {
     this.clientDashBoardService.setInformation();
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
-    this.setContactUsData();
     this.clientDashBoardService.selectedCompanyRow = this.clientDashBoardService.company.company_id;
+    this.setIrsData();
   }
   /**
    * 
    */
   toggleInvoicePayment(company) {
     this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
-    this.clientUserService.updateClientPurchaseInvoice(this.clientDashBoardService.company).subscribe(
+    this.clientUserService.updateClientPurchaseInfo(this.clientDashBoardService.company, 'is_invoice_paid').subscribe(
       result => {
         if (result.success) {
-          this.clientDashBoardService.setCompanyKeyParams();
           this.toastrService.success('Company Details Updated Successfully.');
+          this.clientDashBoardService.setCompanySteps();
         } else {
-          this._errorMessage = 'Record not Updated';
+          this.toastrService.error('Error in updating record.');
           this._submitted = false;
         }
       },
       error => {
-
-        this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
-        if (error.status == 422) {
-
-        } else {
-        }
+        this.toastrService.error(error.data);
       });
   }
   /**
@@ -107,14 +100,39 @@ export class CompaniesComponent implements OnInit {
    */
   toggleAgreementSign() {
     this.clientDashBoardService.company.client_agreement = !this.clientDashBoardService.company.client_agreement;
-    this.clientDashBoardService.setCompanyKeyParams();
+    this.clientUserService.updateClientPurchaseInfo(this.clientDashBoardService.company, 'client_agreement').subscribe(
+      result => {
+        if (result.success) {
+          this.toastrService.success('Company Details Updated Successfully.');
+          this.clientDashBoardService.setCompanySteps();
+        } else {
+          this.toastrService.error('Error in updating record.');
+          this._submitted = false;
+        }
+      },
+      error => {
+        this.toastrService.error(error.data);
+      });
   }
   /**
    * 
    */
   toggleDiscoveryCallStatus() {
     this.clientDashBoardService.company.discovery_session = !this.clientDashBoardService.company.discovery_session;
-    this.clientDashBoardService.setCompanyKeyParams();
+    this.clientUserService.updateClientPurchaseInfo(this.clientDashBoardService.company, 'discovery_session').subscribe(
+      result => {
+        if (result.success) {
+          this.toastrService.success('Company Details Updated Successfully.');
+          this.clientDashBoardService.setCompanySteps();
+        } else {
+          this.toastrService.error('Error in updating record.');
+          this._submitted = false;
+        }
+      },
+      error => {
+        this.toastrService.error(error.data);
+      });
+
   }
 
   /**
@@ -123,7 +141,6 @@ export class CompaniesComponent implements OnInit {
    */
   public updateCompanyInfo(companyInfo: Company) {
     this.companyEdit = Object.assign({}, companyInfo);
-    //this.companyEdit.company_ein = '';
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
     this.companyModal.show();
   }
@@ -159,7 +176,9 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   onSubmit() {
-    this.companyEdit.company_ein = this.companyEdit.company_ein.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
+    if (this.companyEdit.company_ein) {
+      this.companyEdit.company_ein = this.companyEdit.company_ein.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
+    }
     this._submitted = true;
     this.clientUserService.updateClientCompanyInfo(this.companyEdit).subscribe(
       result => {
@@ -202,6 +221,7 @@ export class CompaniesComponent implements OnInit {
         this.clientDashBoardService.company.company_ein = updatedCompany.company_ein;
       }
     });
+    this.clientDashBoardService.setCompanySteps();
   }
   /**
    * 
@@ -233,7 +253,10 @@ export class CompaniesComponent implements OnInit {
     }
   }
 
-
+  /**
+   * 
+   * @param data 
+   */
   public onValueChanged(data?: any) {
     if (!this._companyForm) { return; }
     const form = this._companyForm;
@@ -251,24 +274,26 @@ export class CompaniesComponent implements OnInit {
    * @param company 
    */
   public setCompany(company: Company) {
-    this.clientDashBoardService.setCompany(company);
-    this.clientDashBoardService.selectedCompanyRow = company.company_id;
-    localStorage.setItem('company', '');
-    localStorage.setItem('company', JSON.stringify(company));
-    this.setContactUsData();
+    this.clientDashBoardService.getCompanyInformation(company.company_id).subscribe(result => {
+      if (result.success) {
+        this.clientDashBoardService.setCompany(result.data);
+        let productId = this.clientDashBoardService.productParams;
+        let clientId = company.client_id;
+        this.clientDashBoardService.setAccountManagerData(productId, clientId);
+      }
+    }, error => {
+      this.toastrService.error(error.data);
+    });
   }
 
   /**
    * 
    */
-  public setContactUsData() {
-    let productId = this.clientDashBoardService.productParams
-    let product = this.clientDashBoardService.getProductFieldFromSession(productId);
-    if (product['account_manager_name'] != 'null' && product['account_manager_name'] != '') {
-      this.accountManager = product['account_manager_name'];
-    }
-    if (product['account_manager_number'] != 'null' && product['account_manager_number'] != '') {
-      this.accountManagerNumber = product['account_manager_number'];
-    }
+
+  /**
+   * 
+   */
+  public setIrsData() {
+    this.settingsService.setSettingsValue();
   }
 }

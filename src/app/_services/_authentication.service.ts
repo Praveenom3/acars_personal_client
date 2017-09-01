@@ -195,6 +195,8 @@ export class AuthenticationService {
         localStorage.removeItem('lastName');
         localStorage.removeItem('admin_permissions');
         localStorage.removeItem('client_permissions');
+        localStorage.removeItem('company');
+          
     }
 
     public getToken(): any {

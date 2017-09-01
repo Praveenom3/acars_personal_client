@@ -38,12 +38,12 @@
                                 </thead>
                                 <tbody>
                                     <ng-container *ngIf="mf.data?.length">
-                                        <tr *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
+                                        <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
                                             <td class="text-center">{{company.client_name}}</td>
                                             <td class="text-center">
-                                                <a class="link-blue-underline" (click)="setCompany(company)">
+                                                <!-- <a class="link-blue-underline" (click)="setCompany(company)"> -->
                                                 {{company.company_client_number}}
-                                                 </a>
+                                                <!-- </a> -->
                                             </td>
                                         </tr>
                                     </ng-container>
@@ -72,14 +72,18 @@
 
                         <p class=" setup-text-band">Managed Account - Assigned Agent</p>
                         <div class="content-div-managed-account addres-block">
-                            <span class="account-manager-name" *ngIf="accountManager">
-                                <b>{{accountManager}}</b>, <i>Account Manager</i>
+                            <span class="account-manager-name" *ngIf="clientDashBoardService.accountManager">
+                                <b>{{clientDashBoardService.accountManager}}</b>, <i>Account Manager</i>
                             </span>
                             <div class="padding-top-5">
-                                <p>Direct: <span>{{accountManagerNumber}}</span></p>
+
+                                <span class="account-manager-number" *ngIf="clientDashBoardService.accountManagerNumber">
+                                <p>Direct: {{clientDashBoardService.accountManagerNumber}}</p>
+                                </span>
+
                                 <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
                                 <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
-                                <a class="link-blue"> Contact My Manager</a>
+                                <a *ngIf="clientDashBoardService.accountManager" href="mailto:someone@example.com" target="_top" class="link-blue"> Contact My Manager</a>
                             </div>
                         </div>
                     </div>
@@ -105,7 +109,7 @@
                             <div class="col-md-6">
                                 <span class="employee-inner-text"> 1095C TO EMPLOYEES</span>
                                 <div class="employees-count">
-                                    100
+                                    {{settingsService.employees1095Days}}
                                 </div>
                                 <div class="employees-text">
                                     Days Remaining
@@ -116,7 +120,7 @@
                                     E-FILE DATA TO IRS
                                 </span>
                                 <div class="irs-count">
-                                    100
+                                    {{settingsService.irsDays}}
                                 </div>
                                 <div class="irs-text">
                                     Days Remaining
@@ -170,9 +174,6 @@
                             <h4 class="text-center dark-blue-text ">
                                 ID: {{clientDashBoardService.company.company_client_number}}
                             </h4>
-                            <a class="link-blue-underline company-edit-block" (click)="updateCompanyInfo(clientDashBoardService.company)">
-                                            <i class="fa fa-edit"></i>
-                                    </a>
                         </div>
 
                         <div class="col-md-12 company-details-display">
@@ -274,7 +275,8 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
+                                    <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}" *ngIf = "!clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
+                                    <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "  *ngIf = "clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
                                 </td>
                                 <td class="padding-5">
                                     <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
@@ -283,9 +285,9 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink"
+                                    <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink"
                                         *ngIf="clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
+                                    <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
                                 </td>
                                 <td class="padding-5">
 
@@ -296,9 +298,9 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink"
+                                    <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink"
                                         *ngIf="clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
+                                    <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
                                 </td>
                                 <td class=" padding-5">
 
@@ -320,11 +322,11 @@
                     <table class="col-xs-12">
                         <tbody>
                             <tr>
-                                <td><a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.payRollDataLink">Payroll Data</a></td>
+                                <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.payRollDataLink">Payroll Data</a></td>
                                 <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
                             </tr>
                             <tr>
-                                <td><a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.medicalPlanDataLink">Medical Plan Data</a></td>
+                                <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.medicalPlanDataLink">Medical Plan Data</a></td>
                                 <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
                             </tr>
                         </tbody>
@@ -420,7 +422,7 @@
                 <div class="modal-body row">
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <label class="form-control-label">Company Name<span class="red">*</span></label>
+                            <label class="form-control-label">Company Name</label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
                                 <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
                                     [ngClass]="{'form-control-danger': !_isValid('company_name')}">
@@ -428,7 +430,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-control-label">EIN<span class="red">*</span></label>
+                            <label class="form-control-label">EIN</label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                 <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
                                     [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true" placeholder="(__)-_______"

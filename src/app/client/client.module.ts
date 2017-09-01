@@ -24,6 +24,7 @@ import { ClientUserService } from "app/_services/_client-user.service";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
 
 import { CompaniesFilterPipe } from "app/client/companies/companies-filter.pipe";
+import { SettingsService } from "app/_services/_setting.service";
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { CompaniesFilterPipe } from "app/client/companies/companies-filter.pipe"
     MessagesComponent, ActivityLogComponent,
     CompaniesComponent, ReportingCheckListComponent, VhtComponent, CompaniesFilterPipe
   ],
-  providers: [PurchaseService, ClientUserService]
+  providers: [PurchaseService, ClientUserService, SettingsService]
 })
 
 export class ClientModule { }

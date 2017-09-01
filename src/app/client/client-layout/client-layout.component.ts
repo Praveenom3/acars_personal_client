@@ -13,7 +13,6 @@ import { GlobalService } from "app/_services/_global.service";
 })
 export class ClientLayoutComponent implements OnInit {
 
-  public product: any;
   public productsData: any[] = [];
 
   public vhtStatus: boolean = false;
@@ -36,11 +35,10 @@ export class ClientLayoutComponent implements OnInit {
     this.userFirstName = (this.userFirstName === 'undefined') ? '' : this.userFirstName;
     this.userLastName = localStorage.getItem('lastName');
     this.userLastName = (this.userLastName != 'undefined') ? this.userLastName : '';
-    this.displayClientProducts();
   }
 
   ngOnInit() {
-
+    this.displayClientProducts();
   }
 
   setInformation(url = '') {
@@ -68,12 +66,11 @@ export class ClientLayoutComponent implements OnInit {
       let productInfo = {};
 
       let clientKeys: any[] = Object.keys(element.clients);
-      let client = clientKeys[0];
-      let clientId: number = element['clients'][client]['client_id'];
-      let clientName: string = element['clients'][client]['client_name'];
-      clientName = clientName.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productName: string = element.product_name.toLocaleLowerCase().replace(/\s+/g, "-");
-      let productUrl: string = '/client/' + this._globalService.encode(element.product_id) + '/' + this._globalService.encode(clientId) + '/dashboard';
+      let clientId: number = element['clients'][clientKeys[0]]['client_id'];
+      let productUrl: string = '/client/' + this._globalService.encode(element.product_id) +
+        '/' + this._globalService.encode(clientId) + '/dashboard';
+
+      let productName: string = element.product_name.toLocaleLowerCase();
 
       if (productName == 'vht') {
 
@@ -98,10 +95,7 @@ export class ClientLayoutComponent implements OnInit {
             this.aca17Status = true
             break;
         }
-
       }
-
-
     });
   }
 }

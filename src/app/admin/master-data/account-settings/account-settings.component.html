@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <caption class="datatable-caption">Account Settings</caption>
-                <table class="table table-hover table-bordered table-striped" [mfData]= "settings" #settingsData = "mfDataTable">
+                <table class="table table-hover table-bordered table-striped" [mfData]="settings" #settingsData="mfDataTable">
                     <thead>
                         <tr>
                             <th class="blue-grid-head" data-col-seq="0" style="width: 7.0%;"><a>Sl. No</a></th>
@@ -37,33 +37,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                         <ng-container *ngIf="settingsData.data?.length">
+                        <ng-container *ngIf="settingsData.data?.length">
                             <tr *ngFor="let setting of settingsData.data; let i=index;">
                                 <td class="text-center">{{setting.setting_id}}</td>
                                 <td class="text-center">{{setting.setting_name}}</td>
                                 <td class="text-center">{{setting.setting_description}}</td>
                                 <td class="text-center">{{setting.setting_value}}</td>
-                                <ng-container [ngSwitch] = "setting.setting_field_type">
+                                <ng-container [ngSwitch]="setting.setting_field_type">
                                     <td *ngSwitchCase="'text'">
-                                        <div *ngIf = "setting.setting_validation == 'email'">
-                                            <input  type="text" 
-                                                class="form-control"
-                                                id ="changed_value_{{setting.setting_id}}" 
-                                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
-                                                [(ngModel)] = "setting.setting_revised_value" 
-                                                #settingModel = "ngModel"  
-                                                required>
+                                        <div *ngIf="setting.setting_validation == 'email'">
+                                            <input type="text" class="form-control" id="changed_value_{{setting.setting_id}}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                                [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" required>
                                             <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                     Please Enter valid {{setting.setting_name}} value
                                             </span>
                                         </div>
-                                        <div *ngIf = "setting.setting_validation == ''">
-                                            <input  type="text" 
-                                                class="form-control"
-                                                id ="changed_value_{{setting.setting_id}}" 
-                                                [(ngModel)] = "setting.setting_revised_value" 
-                                                #settingModel = "ngModel"  
-                                                required>
+                                        <div *ngIf="setting.setting_validation == ''">
+                                            <input type="text" class="form-control" id="changed_value_{{setting.setting_id}}" [(ngModel)]="setting.setting_revised_value"
+                                                #settingModel="ngModel" required>
                                             <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                     Please Enter valids {{setting.setting_name}} value
                                             </span>
@@ -71,20 +62,23 @@
                                     </td>
                                     <td *ngSwitchCase="'textarea'">
                                         <div class="input-group ">
-                                            <textarea [(ngModel)] = "setting.setting_revised_value" #settingModel = "ngModel" id="changed_value_{{setting.setting_id}}" rows="8" cols="30" required></textarea>
+                                            <textarea [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" id="changed_value_{{setting.setting_id}}" rows="8"
+                                                cols="30" required></textarea>
                                         </div>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>
                                     </td>
                                     <td *ngSwitchCase="'date'">
-                                        <input [(ngModel)] = "setting.setting_revised_value" #settingModel = "ngModel" type="date" class="form-control "  id="changed_value_{{setting.setting_id}}" maxlength="60" value="" required>
+                                        <input [(ngModel)]="setting.setting_revised_value" [min]="todayDate" #settingModel="ngModel" type="date" class="form-control "
+                                            id="changed_value_{{setting.setting_id}}" maxlength="60" value="" required>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>
                                     </td>
                                     <td *ngSwitchCase="'select'">
-                                        <select [(ngModel)] = "setting.setting_revised_value" #settingModel = "ngModel" class="form-control" id="changed_value_{{setting.setting_id}}" required>
+                                        <select [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" class="form-control" id="changed_value_{{setting.setting_id}}"
+                                            required>
                                                <option *ngFor="let optionsData of setting.setting_options" [value]="optionsData.id">{{optionsData.value}}</option>
                                         </select>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
@@ -92,15 +86,16 @@
                                         </span>
                                     </td>
                                     <td *ngSwitchDefault>
-                                        <input [(ngModel)] = "setting.setting_revised_value" #settingModel = "ngModel" type="text" class="form-control" id="changed_value_{{setting.setting_id}}" maxlength="60" required>
+                                        <input [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" type="text" class="form-control" id="changed_value_{{setting.setting_id}}"
+                                            maxlength="60" required>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>
                                     </td>
-                                    
+
                                 </ng-container>
                                 <td style="text-align:center">
-                                    <a (click)="updateSettings(setting)"  class="tbl-col-link">
+                                    <a (click)="updateSettings(setting)" class="tbl-col-link">
                                         <i class="fa fa-save" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Click to update {{setting.setting_name}}">
                                         </i>
                                     </a>

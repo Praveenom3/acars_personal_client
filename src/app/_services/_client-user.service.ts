@@ -37,10 +37,17 @@ export class ClientUserService {
             }).map(response => response.json())
             .catch(this._globalService.handleError);
     }
-
-    public updateClientPurchaseInvoice(company): Observable<any> {
+    /**
+     * 
+     * @param company 
+     */
+    public updateClientPurchaseInfo(company, field): Observable<any> {
+        let data = JSON.stringify({
+            'field': field,
+            'data': company
+        });
         return this._http.post(
-            this._apiUrl + '/update-client-purchase-invoice-status', company,
+            this._apiUrl + '/update-client-purchase-information', data,
             {
                 headers: this._globalService.getHeaders()
             }).map(response => response.json())

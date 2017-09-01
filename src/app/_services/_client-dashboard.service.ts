@@ -13,6 +13,7 @@ import { GlobalService } from './_global.service';
 import { ClientSetupDetails } from 'app/_models/client-setup-details';
 import { Company } from 'app/_models/company';
 import { Products } from 'app/_models/products';
+import { Brands } from 'app/_models/brands';
 
 @Injectable()
 
@@ -71,7 +72,13 @@ export class ClientDashBoardService {
     public selectedCompanyRow: any = '';
 
     logoPath: string = this._globalService.apiRoot + '/images/uploads/brands/';
+
     public brandInformation: any = {};
+    public defaultBrand: Brands;
+
+
+    public accountManager: string;
+    public accountManagerNumber: string;
 
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
@@ -80,7 +87,9 @@ export class ClientDashBoardService {
         private _router: Router,
         private _http: Http) {
     }
-
+    /**
+     * 
+     */
     initDashBoardVaraibles() {
 
         this.clientAsDefaultBilling = false;
@@ -120,7 +129,7 @@ export class ClientDashBoardService {
             clientId = this.clientParams
         }
 
-        this.setInfo(productId, clientId);
+        this.setDashBoardInfo(productId, clientId);
     }
 
     public getClientId(): any {
@@ -140,28 +149,26 @@ export class ClientDashBoardService {
      * @param clientId 
      * @param companyId 
      */
-    public setInfo(productId: any, clientId: any, companyId: any = 0) {
+    public setDashBoardInfo(productId: any, clientId: any, companyId: any = 0) {
         this.client_id = "yes";
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
-        this.product = Object.assign({});
         this.product = products[productId];
         this.clientHomeUrl = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(clientId) + '/dashboard';
         if (this.product) {
 
             this.client = this.product['clients'][clientId]
-            let productName: string = this.product.product_name;
-            productName = productName.toLocaleLowerCase().replace(/\s+/g, "-");
             let userType = localStorage.getItem('usertype');
             this.changeStyle();
             this.company = Object.assign({});
+            this.setBrandData(productId, clientId);
             if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
                 this.redirectClientToWelcomeScreens();
             } else {
 
-                let clientsKeys: any[] = Object.keys(this.product['clients']);
+                let clientIds: any[] = Object.keys(this.product['clients']);
                 let data = {
                     "productId": productId,
-                    "clients": clientsKeys,
+                    "clients": clientIds,
                     "companyId": companyId
                 }
                 this.getClientCompanies(data).subscribe(
@@ -170,33 +177,16 @@ export class ClientDashBoardService {
 
                             this.companies = result.data.companiesList;
                             this.rowsOnPage = this.companies.length;
-                            let companyFromSession: any = JSON.parse(localStorage.getItem('company'));
-
                             this.company = result.data.defaultCompanyInformation;
 
-                            if (companyFromSession != 'null' && companyFromSession != '') {
-                                let sessionCompanyId = companyFromSession.company_id;
-                                this.companies.forEach(element => {
-                                    if (element.company_id == sessionCompanyId) {
-                                        this.company = element;
-                                    }
-                                });
-                            }
-
                             this.selectedCompanyRow = this.company.company_id;
-                            this.company.client_agreement = true;
-                            this.company.discovery_session = true;
+                            this.company.company_data = this.checkCompanyData(this.company);
 
-                            this.setCompanyKeyParams();
+                            this.defaultBrand = result.data.defaultBrandInformation;
 
-                            localStorage.setItem('company', '');
-                            localStorage.setItem('company', JSON.stringify(this.company));
-                            localStorage.setItem('defaultBrand', '');
-                            localStorage.setItem('defaultBrand', JSON.stringify(result.data.defaultBrandInformation));
-
-                            this.setContactUsData(productId, clientId);
-
+                            this.setAccountManagerData(productId, clientId);
                             this.setCompanyUrls(productId, this.company.company_id);
+                            this.setCompanyToSession()
                         }
                     },
                     error => {
@@ -227,14 +217,14 @@ export class ClientDashBoardService {
      * @param productId 
      * @param clientId 
      */
-    public setContactUsData(productId, clientId) {
+    public setBrandData(productId, clientId) {
         let product = this.getProductFieldFromSession(productId, 'clients');
         let client = product[clientId];
         let clientsCount = this.getProductFieldFromSession(productId, 'clientsCount');
         let brand: any;
         let mobile: string;
         if (clientsCount > 1) {
-            brand = JSON.parse(localStorage.getItem('defaultBrand'));
+            brand = this.defaultBrand;
             mobile = brand.support_phone
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
@@ -243,14 +233,31 @@ export class ClientDashBoardService {
             }
             this.clientLogo = this.logoPath + brand.brand_logo;
         } else {
-            let brand: any = client.brand
-            let mobile: string = brand.support_phone
+            brand = client.brand
+            mobile = brand.support_phone
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
                 "support_email": brand.support_email,
                 "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
             }
             this.clientLogo = this.logoPath + brand.brand_logo;
+        }
+    }
+    /**
+     * 
+     * @param company 
+     */
+    public setAccountManagerData(productId, clientId) {
+        let clients = this.getProductFieldFromSession(productId, 'clients');
+        let client = clients[clientId];
+        if (client) {
+
+            if (client['account_manager_name'] != 'null' && client['account_manager_name'] != '') {
+                this.accountManager = client['account_manager_name'];
+            }
+            if (client['account_manager_number'] != 'null' && client['account_manager_number'] != '') {
+                this.accountManagerNumber = client['account_manager_number'];
+            }
         }
     }
     /**
@@ -402,7 +409,6 @@ export class ClientDashBoardService {
      * @param details 
      */
     public savePrimaryDetailsOfClient(details): Observable<any> {
-        console.log(details);
         return this._http.post(
             this._apiUrl + '/save-client-primary-details', details,
             {
@@ -416,48 +422,23 @@ export class ClientDashBoardService {
      */
     public setCompany(company: Company) {
 
-        this.changeStyle();
         this.client = this.product['clients'][company.client_id]
         let userType = localStorage.getItem('usertype');
         this.changeStyle();
-        this.company = company;
-        this.company.client_agreement = true;
-        this.company.discovery_session = true;
-        this.setCompanyKeyParams();
-        this.setCompanyUrls(this.product.product_id, this.company.company_id);
+
         if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
             this.redirectClientToWelcomeScreens();
-        }
-    }
-    /**
-     * 
-     */
-    public setCompanyKeyParams() {
-        if (this.company.is_invoice_paid) {
-            this.company.is_invoice_paid = !!JSON.parse(String(this.company.is_invoice_paid).toLowerCase());
-        }
-        this.company.primary_data = true;
-        this.company.onBoarding_data = this.checkOnBoaringData(this.company);
-        this.company.company_data = this.checkCompanyData(this.company);
-    }
-    /**
-     * 
-     * @param company 
-     */
-    public checkOnBoaringData(company): boolean {
+        } else {
 
-        if (!company.is_invoice_paid) {
-            return false;
-        }
-        if (!company.client_agreement) {
-            return false;
-        }
-        if (!company.discovery_session) {
-            return false;
-        }
+            this.company = company;
+            this.company.company_data = this.checkCompanyData(this.company);
+            this.selectedCompanyRow = company.company_id;
+            this.setCompanyUrls(this.product.product_id, this.company.company_id);
+            this.setCompanyToSession()
 
-        return true
+        }
     }
+
     /**
      * 
      * @param company 
@@ -490,6 +471,60 @@ export class ClientDashBoardService {
             return product;
         }
         return false;
+    }
+
+    /**
+     * 
+     * @param companyId 
+     */
+    public getCompanyInformation(companyId): Observable<any> {
+        return this._http.get(
+            this._apiUrl + '/get-company-information/' + companyId,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
+    /**
+     * 
+     */
+    public setCompanyToSession() {
+        let data: any = {
+            'purchase_id': this.company.purchase_id,
+            'client_id': this.company.client_id,
+            'company_ein': this.company.company_ein,
+            'company_name': this.company.company_name,
+            'primary_data': this.company.primary_data,
+            'onBoarding_data': this.company.onBoarding_data
+        }
+
+        localStorage.setItem('company', '');
+        localStorage.setItem('company', JSON.stringify(data));
+    }
+    /**
+     * 
+     */
+    public setCompanySteps() {
+        this.company.company_data = this.checkCompanyData(this.company);
+        this.company.onBoarding_data = this.checkOnBoardingData(this.company);
+    }
+    /**
+     * 
+     * @param company 
+     */
+    public checkOnBoardingData(company): boolean {
+
+        if (!company.is_invoice_paid) {
+            return false;
+        }
+        if (!company.client_agreement) {
+            return false;
+        }
+        if (!company.discovery_session) {
+            return false;
+        }
+
+        return true
     }
 }
 

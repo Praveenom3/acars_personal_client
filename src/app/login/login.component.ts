@@ -273,7 +273,7 @@ export class LoginComponent implements OnInit {
     navigateUser(userType) {
 
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
-        if (products && products != 'null' && products != '') {
+        if (products && products != null && products != 'null' && products != '') {
             let productsList = Object.keys(products).map(function (key) {
                 return products[key]
             })
@@ -286,14 +286,12 @@ export class LoginComponent implements OnInit {
             });
 
             let clientKeys: any[] = Object.keys(product.clients);
-            let client = clientKeys[0];
-            let clientInfo = product['clients'][client];
-            let clientId: number = this.globalService.encode(clientInfo['client_id']);
+            let client = product['clients'][clientKeys[0]];
+            let clientId: any = this.globalService.encode(client['client_id']);
             let productId: any = this.globalService.encode(product.product_id);
             this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
         } else {
             this.router.navigate(['/products-not-exists']);
         }
-
     }
 }
