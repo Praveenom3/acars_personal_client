@@ -32,6 +32,7 @@ import { OutstandingsComponent } from "app/admin/dashboard/outstandings.componen
 import { OutstandingsService } from "app/_services/_outstandings.service";
 import { OutstandingsFilterPipe } from "app/_filters/outstandings-filter.pipe";
 import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.component";
+import { SearchScreenService } from "app/_services/_search-screen.service";
 
 @NgModule({
   imports: [
@@ -61,7 +62,7 @@ import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.compone
     SearchComponent, SearchResultsComponent, ActivityLogComponent,
     ErrorLogComponent
   ],
-  providers: [OutstandingsService, ErrorLogService, AdminUserService]
+  providers: [OutstandingsService, ErrorLogService, AdminUserService,SearchScreenService]
 
 })
 export class AdminModule { }

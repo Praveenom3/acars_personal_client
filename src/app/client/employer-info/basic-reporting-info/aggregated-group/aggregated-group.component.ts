@@ -170,6 +170,10 @@ export class AggregatedGroupComponent implements OnInit {
       );
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
+  }
+  
   private formSubmit(param) {
     this.aggregatedGroupData['purchase_id'] = this.product_id;
     this.aggregatedGroupData['company_id'] = this.company_id;

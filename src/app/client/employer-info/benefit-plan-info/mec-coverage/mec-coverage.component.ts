@@ -116,6 +116,10 @@ export class MecCoverageComponent implements OnInit {
       );
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+  }
+  
   private formSubmit(param) {
     this.mecCoverageData['purchase_id'] = this.product_id;
     this.mecCoverageData['company_id'] = this.company_id;
@@ -139,7 +143,7 @@ export class MecCoverageComponent implements OnInit {
             if (param == "exit") {
               this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
-              //this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
+              this.router.navigate([url + '/' + 'employer-info/plan-classes']);
             }
             this.getMecCoverageData();
             this.mecCoverageData = this.createMecCoverage();
@@ -158,7 +162,7 @@ export class MecCoverageComponent implements OnInit {
             if (param == "exit") {
               this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
-              //this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
+              this.router.navigate([url + '/' + 'employer-info/plan-classes']);
             }
             this.getMecCoverageData();
             this.mecCoverageData = this.createMecCoverage();

@@ -144,6 +144,9 @@ export class DesignatedGovtEntityComponent implements OnInit {
       );
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+  }
 
   private formSubmit(param) {
     this.govtEntityData['purchase_id'] = this.product_id;

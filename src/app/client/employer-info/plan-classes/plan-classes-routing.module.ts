@@ -9,13 +9,8 @@ const routes: Routes = [
         component: PlanClassesComponent
     },
     {
-        path: '',        
-        children: [
-            {
-                path: 'add-plan-class',
-                loadChildren: 'app/client/employer-info/plan-classes/add-plan-class/add-plan-class.module#AddPlanClassModule'
-            }
-        ],
+        path: 'plan-class',        
+        loadChildren: 'app/client/employer-info/plan-classes/add-plan-class/add-plan-class.module#AddPlanClassModule'
     }
 ];
 

@@ -1,5 +1,5 @@
 <!-- company info -->
-    <client-company-info></client-company-info>
+    <client-company-info [companyData]="companyDetails"></client-company-info>
 <!-- ./company info -->
 <!-- Main Tabs -->
     <client-reporting-band></client-reporting-band>
@@ -18,65 +18,64 @@
                                 <!-- Page Content -->
                                 <div class="container padding-0">
                                     <div class="row " style="padding: 10px 17px;">
-                                        <a class="btn btn-modal-blue pull-right" [routerLink]="['/client/',product,company,'employer-info','plan-classes','add-plan-class']"><i class="fa fa-plus"></i> Add Plan Class</a>
+                                        <a class="btn btn-modal-blue pull-right" [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']"><i class="fa fa-plus"></i> Add Plan Class</a>
                                     </div>
                                     <div class="panel panel-primary">
                                         <div class="table-responsive kv-grid-container" style="overflow: auto">
-                                            <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="blue-grid-head"><a>Plan Class #</a></th>
-                                                        <th class="blue-grid-head"><a>Plan Class Name</a></th>
-                                                        <th class="blue-grid-head"><a>Plan Type</a></th>
-                                                        <th class="blue-grid-head"><a>Waiting Period</a></th>
-                                                        <th class="blue-grid-head"><a>MV Coverage</a></th>
-                                                        <th class="blue-grid-head"><a>MV Months</a></th>
-                                                        <th class="blue-grid-head"><a>MEC</a></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td colspan="7">No data available</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
 
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="col-md-3 padding10">
-                                                <div class="dataTables_info" id="example3_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                            </div>
-                                            <div class="col-md-9 text-right">
-                                                <ul class="pagination">
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                                            <span>First</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                                            <span aria-hidden="true">
-                                                                        <i class="fa fa-arrow-left"></i>
-                                                                    </span>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                                            <span aria-hidden="true">
-                                                                        <i class="fa fa-arrow-right"></i>
-                                                                    </span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                                            <span>Last</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                                <table class="table table-hover table-bordered table-striped" [mfData]="planClasses" #pcData="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                                        
+                                                    <thead>
+                                                        <tr class="tr-blue-grid-head">
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="plan_class_number">Plan Class #</mfDefaultSorter>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="plan_class_name">Plan Class Name</mfDefaultSorter>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="plan_type">Plan Type</mfDefaultSorter>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="waiting_period">Waiting Period</mfDefaultSorter>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="mv_coverage">MV Coverage</mfDefaultSorter>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="mv_months">MV Months</mfDefaultSorter>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <mfDefaultSorter by="mec">MEC</mfDefaultSorter>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ng-container *ngIf="pcData.data?.length">                           
+                                                            <tr *ngFor="let item of pcData.data">
+                                                                <td class="text-center">{{item.plan_class_number}}</td> 
+                                                                <td class="text-center"><a class="link-blue-underline"  [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', globalService.encode(item.plan_class_id)]">{{item.plan_class_name}}</a></td> 
+                                                                <td class="text-center">{{getItemName("plan_type", item.plan_offer_type)}}</td>
+                                                                <td class="text-center">{{item.plan_type_doh ? getItemName("waiting_period", item.plan_type_doh) : '-'}}</td>
+                                                                <td class="text-center">{{item.coverageOffered?.employee_mv_coverage ? ((item.coverageOffered.employee_mv_coverage == 1) ? 'Yes': 'No') : '-'}}</td> 
+                                                                <td class="text-center">{{item.coverageOffered?.mv_coverage_months ? getItemName("months", item.coverageOffered.mv_coverage_months) : '-'}}</td> 
+                                                                <td class="text-center">{{item.coverageOffered ? getItemName("MEC", item.coverageOffered) : '-'}}</td>                                                                
+                                                            </tr>
+                                                        </ng-container>
+                                                        <tr class="tr-text-center" *ngIf=!pcData.data?.length>
+                                                            <td colspan="10">
+                                                                No records are found
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="10">
+                                                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                                            </td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
                                         </div>
                                     </div>
                                 </div>

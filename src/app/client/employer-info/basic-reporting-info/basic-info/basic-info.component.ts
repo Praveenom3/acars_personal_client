@@ -137,6 +137,9 @@ export class BasicInfoComponent implements OnInit {
       );
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
+  }
 
   private formSubmit(param) {
     if (this.basicInfoData.basic_info_id > 0) {

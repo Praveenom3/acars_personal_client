@@ -44,13 +44,13 @@
                         <tbody>
                             <ng-container *ngIf="invoicesObj.data?.length">
                                 <tr *ngFor="let invoice of invoicesObj.data">
-                                    <td>{{invoice.invoice_created_at}}</td>
-                                    <td>{{invoice.invoice_no}}</td>
-                                    <td><a class="tbl-col-link">{{invoice.client_name}}</a></td>
-                                    <td>{{invoice.brand_name}}</td>
-                                    <td>{{invoice.product_name}}</td>
-                                    <td>{{invoice.account_manager}}</td>
-                                    <td>{{invoice.amount}}</td>
+                                    <td class="text-center">{{invoice.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
+                                    <td class="text-center">{{invoice.invoice_no}}</td>
+                                    <td class="text-center"><a class="tbl-col-link">{{invoice.client_name}}</a></td>
+                                    <td class="text-center">{{invoice.brand_name}}</td>
+                                    <td class="text-center">{{invoice.product_name}}</td>
+                                    <td class="text-center">{{invoice.account_manager}}</td>
+                                    <td class="text-center">{{invoice.amount}}</td>
                                     <td class="text-center"><a title="Status" style="cursor: pointer;">Unpaid</a></td>
                                 </tr>
                             </ng-container>

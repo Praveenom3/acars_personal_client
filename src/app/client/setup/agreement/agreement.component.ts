@@ -70,7 +70,6 @@ export class AgreementComponent implements OnInit {
    * @param result 
    */
   setClientDetails(result) {
-    console.log(result)
     this.clientDashBoardService.initDashBoardVaraibles();
     let products: any = JSON.parse(localStorage.getItem('productsAndClients'));
     let productId = this.clientDashBoardService.productParams;

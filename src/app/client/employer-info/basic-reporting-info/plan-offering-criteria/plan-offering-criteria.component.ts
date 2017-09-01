@@ -123,6 +123,9 @@ export class PlanOfferingCriteriaComponent implements OnInit {
     return newPlanOfferingCriteria;
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+  }
 
   private formSubmit(param) {
     let customArray = [];

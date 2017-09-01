@@ -103,6 +103,10 @@ export class EmpStatusTrackingComponent implements OnInit {
       );
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+  }
+
   private formSubmit(param) {
     this.empStatusData['purchase_id'] = this.product_id;
     this.empStatusData['company_id'] = this.company_id;

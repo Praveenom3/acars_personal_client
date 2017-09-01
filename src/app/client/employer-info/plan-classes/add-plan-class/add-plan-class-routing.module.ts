@@ -5,18 +5,13 @@ import { CoverageOfferedComponent } from "app/client/employer-info/plan-classes/
 import { EmployeeContributionsComponent } from "app/client/employer-info/plan-classes/add-plan-class/employee-contributions/employee-contributions.component";
 
 const routes: Routes = [
-    {
-        path: '',
-        component: CoverageTypeComponent
-    },
-    {
-        path: 'coverage-offered',
-        component: CoverageOfferedComponent
-    },
-    {
-        path: 'employee-contributions',
-        component: EmployeeContributionsComponent
-    }
+    { path: '', component: CoverageTypeComponent },
+    { path: 'coverage-offered', component: CoverageOfferedComponent },
+    { path: 'employee-contributions', component: EmployeeContributionsComponent },
+    
+    { path: ':encodedId', component: CoverageTypeComponent },
+    { path: ':encodedId/coverage-offered', component: CoverageOfferedComponent },
+    { path: ':encodedId/employee-contributions', component: EmployeeContributionsComponent }
 ];
 
 @NgModule({
