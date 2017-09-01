@@ -14,7 +14,7 @@ import { JobsComponent } from "app/admin/jobs/jobs.component";
 
 import { ProfileComponent } from "app/admin/profile/profile.component";
 import { AddAdminUserComponent } from "app/admin/profile/add-admin-user.component";
-import { SearchComponent, SearchResultsComponent } from './search/search.component';
+import { SearchComponent } from './search/search.component';
 import { ActivityLogComponent } from "app/admin/activity-log/activity-log.component";
 import { ErrorLogComponent } from './error-log/error-log.component';
 
@@ -33,6 +33,7 @@ import { OutstandingsService } from "app/_services/_outstandings.service";
 import { OutstandingsFilterPipe } from "app/_filters/outstandings-filter.pipe";
 import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.component";
 import { SearchScreenService } from "app/_services/_search-screen.service";
+import { SearchResultsComponent } from "app/admin/search/search-results.component";
 
 @NgModule({
   imports: [
@@ -57,12 +58,18 @@ import { SearchScreenService } from "app/_services/_search-screen.service";
     DashboardComponent,
     NewPurchasesComponent,
     NewSalesComponent,
-    AdminUsersComponent, ProcessingComponent,
-    ACAFormsComponent, JobsComponent, ProfileComponent, AddAdminUserComponent,
-    SearchComponent, SearchResultsComponent, ActivityLogComponent,
+    AdminUsersComponent, 
+    ProcessingComponent,
+    ACAFormsComponent, 
+    JobsComponent, 
+    ProfileComponent, 
+    AddAdminUserComponent,
+    SearchComponent, 
+    SearchResultsComponent,
+    ActivityLogComponent,
     ErrorLogComponent
   ],
-  providers: [OutstandingsService, ErrorLogService, AdminUserService,SearchScreenService]
+  providers: [OutstandingsService, ErrorLogService, AdminUserService, SearchScreenService]
 
 })
 export class AdminModule { }

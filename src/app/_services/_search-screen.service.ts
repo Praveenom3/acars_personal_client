@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import {Router} from "@angular/router";
-import {tokenNotExpired} from 'angular2-jwt';
-import {AuthHttp, JwtHelper} from 'angular2-jwt';
+import { Router } from "@angular/router";
+import { tokenNotExpired } from 'angular2-jwt';
+import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 
 import { GlobalService } from './_global.service';
@@ -16,35 +16,22 @@ import { GlobalService } from './_global.service';
 export class SearchScreenService {
 
     // This is the URL to the OData end point
-    private _apiUrl = 'http://acars.localhost/v1/search/admin-search';
+    private _apiUrl = this._globalService.apiHost + '/search/';
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
         private _http: Http) {
     }
 
-
-
-   
-    public getAdminSearchDetails():Observable<any> {
+    public getAdminSearchDetails(key): Observable<any> {
         return this._http.post(
-                    this._apiUrl,
-                    {headers:  this._globalService.getHeaders()}
-             ) .map((response: Response) => response.json().data)
+            this._apiUrl + 'admin-search',
+            JSON.stringify({
+                "key": key
+            }),
+            { headers: this._globalService.getHeaders() }
+        ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
     }
-
-
-
-    // public getAdminSearchDetails(formValues?):Observable<any> {
-    //     return this._http.post(
-    //         this._apiUrl,
-    //         formValues,
-    //         { headers: this._globalService.getHeaders() }
-    //     ).map(response => response.json())
-    //         .catch(this._globalService.handleError);
-
-
-    // }
 
 }

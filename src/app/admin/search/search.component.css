@@ -12,7 +12,12 @@
           width: 100%;
       }
   }
-
-body, body.body-blue .back-lightblue{
-    background: #eceff4 !important;
-}
+  
+  body,
+  body.body-blue .back-lightblue {
+      background: #eceff4 !important;
+  }
+  
+  .search-user-box-new {
+      height: 175px;
+  }

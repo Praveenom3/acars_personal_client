@@ -10,12 +10,13 @@ import { AdminUsersComponent } from "app/admin/dashboard/admin-users.component";
 import { JobsComponent } from "app/admin/jobs/jobs.component";
 import { ProfileComponent } from "app/admin/profile/profile.component";
 import { AddAdminUserComponent } from "app/admin/profile/add-admin-user.component";
-import { SearchComponent, SearchResultsComponent } from "app/admin/search/search.component";
+import { SearchComponent } from "app/admin/search/search.component";
 import { ActivityLogComponent } from "app/admin/activity-log/activity-log.component";
 import { ErrorLogComponent } from "app/admin/error-log/error-log.component";
 import { AuthGuard } from "app/_services/_auth.guard";
 import { OutstandingsComponent } from "app/admin/dashboard/outstandings.component";
 import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.component";
+import { SearchResultsComponent } from "app/admin/search/search-results.component";
 
 const routes: Routes = [
     {
