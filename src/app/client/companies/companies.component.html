@@ -32,7 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">
-                                                <mfDefaultSorter by="company">Client Name</mfDefaultSorter>
+                                                <mfDefaultSorter by="company">Company Name</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
                                                 <mfDefaultSorter by="companyId">Company ID</mfDefaultSorter>
@@ -42,7 +42,7 @@
                                     <tbody>
                                         <ng-container *ngIf="mf.data?.length">
                                             <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
-                                                <td class="text-center">{{company.client_name}}</td>
+                                                <td class="text-center">{{company.company_name}}</td>
                                                 <td class="text-center">
                                                     <!-- <a class="link-blue-underline" (click)="setCompany(company)"> -->
                                                     {{company.company_client_number}}
