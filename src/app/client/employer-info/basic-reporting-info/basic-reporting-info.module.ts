@@ -20,6 +20,8 @@ import { DesignatedGovtEntityService } from "app/_services/_designated-govt-enti
 import { AggregatedGroupService } from "app/_services/_aggregated-group.service";
 import { AnythingElseService } from "app/_services/_anything-else.service";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
+import { ElementMasterResolver } from "app/_services/_element-resolver";
+
 
 @NgModule({
   imports: [
@@ -31,6 +33,6 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
     TextMaskModule,
   ],
   declarations: [BasicInfoComponent, EmpStatusTrackingComponent, PlanOfferingCriteriaComponent, DesignatedGovtEntityComponent, AggregatedGroupComponent, AnythingElseComponent],
-  providers:[ClientDashBoardService,AnythingElseService,AggregatedGroupService,DesignatedGovtEntityService,ElementMasterService,BriBasicInfoService,EmpStatusTrackingService,PlanOfferingCriteriaService]
+  providers:[ClientDashBoardService,AnythingElseService,AggregatedGroupService,DesignatedGovtEntityService,ElementMasterService,BriBasicInfoService,EmpStatusTrackingService,PlanOfferingCriteriaService,ElementMasterResolver]
 })
 export class BasicReportingInfoModule { }

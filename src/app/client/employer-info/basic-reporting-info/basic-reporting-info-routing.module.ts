@@ -7,15 +7,22 @@ import { PlanOfferingCriteriaComponent } from "app/client/employer-info/basic-re
 import { DesignatedGovtEntityComponent } from "app/client/employer-info/basic-reporting-info/designated-govt-entity/designated-govt-entity.component";
 import { AggregatedGroupComponent } from "app/client/employer-info/basic-reporting-info/aggregated-group/aggregated-group.component";
 import { AnythingElseComponent } from "app/client/employer-info/basic-reporting-info/anything-else/anything-else.component";
+import { ElementMasterResolver } from "app/_services/_element-resolver";
 
 const routes: Routes = [
     {
         path: '',
-        component: BasicInfoComponent
+        component: BasicInfoComponent,
+         resolve: {
+          data: ElementMasterResolver
+        }
     },
     {
         path: 'emp-status-tracking',
-        component: EmpStatusTrackingComponent
+        component: EmpStatusTrackingComponent,
+         resolve: {
+          data: ElementMasterResolver
+        }
     },
     {
         path: 'plan-offering-criteria',
