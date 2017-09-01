@@ -21,12 +21,11 @@ export class AgreementComponent implements OnInit {
     this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
     this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
     this.clientDashBoardService.agreementStep = true;
-    this.clientDashBoardService.setInformation()
-    console.log(this.clientDashBoardService.productParams);
-    console.log(this.clientDashBoardService.clientParams);
+
   }
 
   ngOnInit() {
+    this.clientDashBoardService.setInformation()
   }
   /**
    * 
@@ -71,7 +70,6 @@ export class AgreementComponent implements OnInit {
    * @param result 
    */
   setClientDetails(result) {
-    console.log(result)
     this.clientDashBoardService.initDashBoardVaraibles();
     let products: any = JSON.parse(localStorage.getItem('productsAndClients'));
     let productId = this.clientDashBoardService.productParams;
@@ -83,7 +81,7 @@ export class AgreementComponent implements OnInit {
       products[productId] = product;
       localStorage.setItem('productsAndClients', JSON.stringify(products));
     }
-    
+
     this.toastrService.success('Client purchase primary data updated successfully');
     this.router.navigate(['/client/' + this.globalService.encode(productId) + '/' + this.globalService.encode(clientId) + '/dashboard']);
   }

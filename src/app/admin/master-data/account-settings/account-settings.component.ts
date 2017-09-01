@@ -24,6 +24,7 @@ export class AccountSettingsComponent implements OnInit {
 
     public settingChangeValue: any[];
 
+    public todayDate: any;
     INPUT_TYPE_TEXT: string = "text";
     INPUT_TYPE_TEXTAREA: string = "textarea";
     INPUT_TYPE_SELECT: string = "select";
@@ -45,6 +46,7 @@ export class AccountSettingsComponent implements OnInit {
 
     ngOnInit() {
         this.getSettings();
+        this.todayDate = new Date().toJSON().split('T')[0];
     }
     /**
      *  Getting Settings
@@ -79,7 +81,7 @@ export class AccountSettingsComponent implements OnInit {
                     },
                     error => { this._errorMessage = error.data }
                     );
-            }else{
+            } else {
                 return false;
             }
 

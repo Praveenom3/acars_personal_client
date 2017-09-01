@@ -153,7 +153,7 @@ app-client-layout .section-container .left-small-box p {
     padding: 5px;
     text-align: center;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .gray-text {
@@ -239,17 +239,6 @@ app-client-layout .section-container .left-small-box p {
     color: white;
 }
 
-/* .table-company-dashboard thead {
-  display: block;
-}
-
-.table-company-dashboard tbody {
-  display: block;
-  overflow: auto;
-  height: 100px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-} */
 .content-header{
     padding: 10px 22px;
 }
@@ -425,6 +414,7 @@ app-client-layout .section-container .left-small-box p {
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;
+    width: 85px;
 }
 
 .employees-text, .irs-text{
@@ -444,4 +434,6 @@ app-client-layout .section-container .left-small-box p {
 .active-company{
     background-color: #d8e3ef !important;
 }
-   
+table.table-company-dashboard tbody tr:hover{
+    cursor: pointer;
+}

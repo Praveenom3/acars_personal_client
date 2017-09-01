@@ -1,520 +1,529 @@
-<div class="row company-section-container">
+<ng-container *ngIf="clientDashBoardService.dashBoard">
 
-    <div class="col-md-12" style="margin-top:25px;">
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="col-md-6">
-                <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
-                <div class="header-border-btm-blue"></div>
+    <div class="row company-section-container">
+
+        <div class="col-md-12" style="margin-top:25px;">
+            <div class="col-lg-10 col-lg-offset-1">
                 <div class="col-md-6">
-                    <div class="widget col-md-12 padding-15 block-one comp-dash-divs">
+                    <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
+                    <div class="header-border-btm-blue"></div>
+                    <div class="col-md-6">
+                        <div class="widget col-md-12 padding-15 block-one comp-dash-divs">
 
-                        <div class="content-header dark-blue-text">
-                            <div class="content-header-image">
-                                <img src='../src/assets/images/client-dashboard/companies list-icon.png' class="dashboard-images">
+                            <div class="content-header dark-blue-text">
+                                <div class="content-header-image">
+                                    <img src='../src/assets/images/client-dashboard/companies list-icon.png' class="dashboard-images">
+                                </div>
+                                <div class="content-header-text">
+                                    &nbsp; COMPANIES LIST
+                                </div>
                             </div>
-                            <div class="content-header-text">
-                                &nbsp; COMPANIES LIST
+
+                            <div class="company-search left-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                                <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
+                                />
                             </div>
-                        </div>
 
-                        <div class="company-search left-addon">
-                            <i class="glyphicon glyphicon-search"></i>
-                            <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
-                            />
-                        </div>
-
-                        <div class="content-div">
-                            <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
-                                #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            <mfDefaultSorter by="company">Client Name</mfDefaultSorter>
-                                        </th>
-                                        <th class="text-center">
-                                            <mfDefaultSorter by="companyId">Company ID</mfDefaultSorter>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ng-container *ngIf="mf.data?.length">
-                                        <tr *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
-                                            <td class="text-center">{{company.client_name}}</td>
-                                            <td class="text-center">
-                                                <a class="link-blue-underline" (click)="setCompany(company)">
-                                                {{company.company_client_number}}
-                                                 </a>
+                            <div class="content-div">
+                                <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
+                                    #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
+                                    [(mfSortOrder)]="sortOrder">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <mfDefaultSorter by="company">Company Name</mfDefaultSorter>
+                                            </th>
+                                            <th class="text-center">
+                                                <mfDefaultSorter by="companyId">Company ID</mfDefaultSorter>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngIf="mf.data?.length">
+                                            <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
+                                                <td class="text-center">{{company.company_name}}</td>
+                                                <td class="text-center">
+                                                    <!-- <a class="link-blue-underline" (click)="setCompany(company)"> -->
+                                                    {{company.company_client_number}}
+                                                    <!-- </a> -->
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                        <tr class="tr-text-center" *ngIf=!mf.data?.length>
+                                            <td colspan="2">
+                                                No records are found
                                             </td>
                                         </tr>
-                                    </ng-container>
-                                    <tr class="tr-text-center" *ngIf=!mf.data?.length>
-                                        <td colspan="2">
-                                            No records are found
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
+                    <div class="col-md-6">
+                        <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
 
-                        <div class="content-header dark-blue-text">
-                            <div class="content-header-image">
-                                <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
+                            <div class="content-header dark-blue-text">
+                                <div class="content-header-image">
+                                    <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
+                                </div>
+                                <div class="content-header-text">
+                                    &nbsp; &nbsp; CONTACT US
+                                </div>
                             </div>
-                            <div class="content-header-text">
-                                &nbsp; &nbsp; CONTACT US
-                            </div>
-                        </div>
 
-                        <p class=" setup-text-band">Managed Account - Assigned Agent</p>
-                        <div class="content-div-managed-account addres-block">
-                            <span class="account-manager-name" *ngIf="accountManager">
-                                <b>{{accountManager}}</b>, <i>Account Manager</i>
+                            <p class=" setup-text-band">Managed Account - Assigned Agent</p>
+                            <div class="content-div-managed-account addres-block">
+                                <span class="account-manager-name" *ngIf="clientDashBoardService.accountManager">
+                                <b>{{clientDashBoardService.accountManager}}</b>, <i>Account Manager</i>
                             </span>
-                            <div class="padding-top-5">
-                                <p>Direct: <span>{{accountManagerNumber}}</span></p>
-                                <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
-                                <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
-                                <a class="link-blue"> Contact My Manager</a>
+                                <div class="padding-top-5">
+
+                                    <span class="account-manager-number" *ngIf="clientDashBoardService.accountManagerNumber">
+                                <p>Direct: {{clientDashBoardService.accountManagerNumber}}</p>
+                                </span>
+
+                                    <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
+                                    <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
+                                    <a *ngIf="clientDashBoardService.accountManager" href="mailto:someone@example.com" target="_top" class="link-blue"> Contact My Manager</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
-                <div class="header-border-btm-blue"></div>
                 <div class="col-md-6">
-                    <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
-                        <div class="content-header dark-blue-text">
-                            <div class="content-header-image">
-                                <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
+                    <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
+                    <div class="header-border-btm-blue"></div>
+                    <div class="col-md-6">
+                        <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
+                            <div class="content-header dark-blue-text">
+                                <div class="content-header-image">
+                                    <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
+                                </div>
+                                <div class="content-header-text">
+                                    &nbsp; IRS DEADLINES
+                                </div>
                             </div>
-                            <div class="content-header-text">
-                                &nbsp; IRS DEADLINES
-                            </div>
-                        </div>
 
-                        <p class=" setup-text-band">Please note these important dates</p>
-                        <div class="content-div-dead-line">
-                            <div class="col-md-6">
-                                <span class="employee-inner-text"> 1095C TO EMPLOYEES</span>
-                                <div class="employees-count">
-                                    100
+                            <p class=" setup-text-band">Please note these important dates</p>
+                            <div class="content-div-dead-line">
+                                <div class="col-md-6">
+                                    <span class="employee-inner-text"> 1095C TO EMPLOYEES</span>
+                                    <div class="employees-count">
+                                        {{settingsService.employees1095Days}}
+                                    </div>
+                                    <div class="employees-text">
+                                        Days Remaining
+                                    </div>
                                 </div>
-                                <div class="employees-text">
-                                    Days Remaining
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="irs-inner-text">
+                                <div class="col-md-6">
+                                    <span class="irs-inner-text">
                                     E-FILE DATA TO IRS
                                 </span>
-                                <div class="irs-count">
-                                    100
-                                </div>
-                                <div class="irs-text">
-                                    Days Remaining
+                                    <div class="irs-count">
+                                        {{settingsService.irsDays}}
+                                    </div>
+                                    <div class="irs-text">
+                                        Days Remaining
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
-                        <div class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
-                            <ul class="ul-inline download-upload-ul">
-                                <li>
-                                    <img src='../src/assets/images/upload.png'>
-                                </li>
-                                <li>
-                                    <h6>UPLOAD</h6>
-                                    <h6>DATAFILES</h6>
-                                </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <div class="btn-default upload-download-block cursor-pointer" style="padding:29px;background-color:#5ad1ed">
-                            <ul class="ul-inline download-upload-ul">
-                                <li>
-                                    <img src='../src/assets/images/download.png'>
-                                </li>
-                                <li>
-                                    <h6>DOWNLOAD</h6>
-                                    <h6>DOCUMENTS</h6>
-                                </li>
-                            </ul>
+                    <div class="col-md-6">
+                        <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
+                            <div class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
+                                <ul class="ul-inline download-upload-ul">
+                                    <li>
+                                        <img src='../src/assets/images/upload.png'>
+                                    </li>
+                                    <li>
+                                        <h6>UPLOAD</h6>
+                                        <h6>DATAFILES</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br>
+                            <div class="btn-default upload-download-block cursor-pointer" style="padding:29px;background-color:#5ad1ed">
+                                <ul class="ul-inline download-upload-ul">
+                                    <li>
+                                        <img src='../src/assets/images/download.png'>
+                                    </li>
+                                    <li>
+                                        <h6>DOWNLOAD</h6>
+                                        <h6>DOCUMENTS</h6>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="col-md-6">
+                    <h3 class="fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h3>
+                    <div class="header-border-btm-blue"></div>
+                    <div class="col-md-12">
+                        <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
+                            <div class="col-md-6">
+                                <h4 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images">                                    {{clientDashBoardService.company.company_name}}
+                                </h4>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="text-center dark-blue-text ">
+                                    ID: {{clientDashBoardService.company.company_client_number}}
+                                </h4>
+                            </div>
 
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="col-md-6">
-                <h3 class="fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h3>
-                <div class="header-border-btm-blue"></div>
-                <div class="col-md-12">
-                    <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
-                        <div class="col-md-6">
-                            <h4 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images"> {{clientDashBoardService.company.company_name}}
-                            </h4>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="text-center dark-blue-text ">
-                                ID: {{clientDashBoardService.company.company_client_number}}
-                            </h4>
-                            <a class="link-blue-underline company-edit-block" (click)="updateCompanyInfo(clientDashBoardService.company)">
-                                            <i class="fa fa-edit"></i>
-                                    </a>
-                        </div>
-
-                        <div class="col-md-12 company-details-display">
-                            EIN : &nbsp;
-                            <span class="company-eins-block" *ngIf="!clientDashBoardService.company.company_ein">
+                            <div class="col-md-12 company-details-display">
+                                EIN : &nbsp;
+                                <span class="company-eins-block" *ngIf="!clientDashBoardService.company.company_ein">
                                 _ _-_ _ _ _ _ _ _
                             </span> {{clientDashBoardService.company.company_ein}} | Reporting
-                            Year: &nbsp; {{clientDashBoardService.product.applicable_year}} | Package: &nbsp; {{clientDashBoardService.productService}}
-                        </div>
+                                Year: &nbsp; {{clientDashBoardService.product.applicable_year}} | Package: &nbsp; {{clientDashBoardService.productService}}
+                            </div>
 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="authorized-main-header">
-                    <h3 class="fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h3>
-                    <div class="add-authorised-user-div">
-                        <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-                        <button class="add-authorised-user btn btn-primary btn-blue">Add User</button>
-                    </div>
-                </div>
-                <div class="header-border-btm-blue"></div>
-                <div class="col-md-12">
-                    <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
-                        <div class="col-md-12">
-                            <table class="col-xs-12 authorized-users">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Details & Activity</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="padding-5">xxxxx</td>
-                                        <td class="padding-5">xxxxx</td>
-                                        <td class="padding-5">xxxxx</td>
-                                        <td class="padding-5"><a class="link-blue-underline">view</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-
-        <div class="col-lg-10 col-lg-offset-1">
-            <h3 class="fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h3>
-            <div class="header-border-btm-blue"></div>
-            <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs">
-                    <h4 class="text-center dark-blue-text "> STEP 1</h4>
-                    <p class=" setup-text-band">On-boarding</p>
-                    <table class="col-xs-12">
-                        <tbody>
-                            <tr>
-                                <td>Invoice</td>
-                                <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid"
-                                        title="Click to toggle">Not Paid</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid"
-                                        title="Click to toggle">Paid</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Client Agreement</td>
-                                <td class=" padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement"
-                                        title="Click to toggle">Needed</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement"
-                                        title="Click to toggle">Completed</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Discovery Session</td>
-                                <td class="padding-5">
-                                    <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session"
-                                        title="Click to toggle">Needed</span>
-                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session"
-                                        title="Click to toggle">Completed</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-danger status-btn " *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
-                    <button class="btn btn-success status-btn " *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepTwoDisabled'>
-                    <h4 class="text-center dark-blue-text "> STEP 2</h4>
-                    <p class=" setup-text-band">Company Data</p>
-                    <table class="col-xs-12">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
-                                </td>
-                                <td class="padding-5">
-                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink"
-                                        *ngIf="clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
-                                </td>
-                                <td class="padding-5">
-
-                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink"
-                                        *ngIf="clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
-                                    <a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
-                                </td>
-                                <td class=" padding-5">
-
-                                    <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                    <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
-                    <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepThreeDisabled'>
-                    <h4 class="text-center dark-blue-text "> STEP 3</h4>
-                    <p class=" setup-text-band">Employee Data</p>
-                    <table class="col-xs-12">
-                        <tbody>
-                            <tr>
-                                <td><a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.payRollDataLink">Payroll Data</a></td>
-                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td><a class="company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.medicalPlanDataLink">Medical Plan Data</a></td>
-                                <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-10 col-md-offset-1">
-            <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFourDisabled'>
-                    <h4 class="text-center dark-blue-text "> STEP 4</h4>
-                    <p class=" setup-text-band">Request & Review Forms</p>
-                    <table class="col-xs-12">
-                        <tbody>
-                            <tr>
-                                <td>Form 1094</td>
-                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>Form 1095</td>
-                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFiveDisabled'>
-                    <h4 class="text-center dark-blue-text "> STEP 5</h4>
-                    <p class=" setup-text-band">Approval & Print and Mail</p>
-                    <table class="col-xs-12">
-                        <tbody>
-                            <tr>
-                                <td>Final Form Approval</td>
-                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>Print & Mail Requested</td>
-                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepSixDisabled'>
-                    <h4 class="text-center dark-blue-text "> STEP 6</h4>
-                    <p class=" setup-text-band">IRS Fillings</p>
-                    <table class="col-xs-12">
-                        <tbody>
-                            <tr>
-                                <td>E-File</td>
-                                <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>IRS Corrections</td>
-                                <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- Edit Company Details Modal -->
-
-<div class="modal fade" bsModal #companyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-    aria-hidden="true">
-
-
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header modal-header-color">
-
-                <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">
-								X
-							</button>
-                <h4 class="modal-title color-white" id="myModalLabel">
-                    {{modalTitle}}
-                </h4>
-            </div>
-
-            <form [formGroup]="_companyForm" (ngSubmit)="onSubmit()">
-                <div class="modal-body row">
+                <div class="col-md-6">
+                    <div class="authorized-main-header">
+                        <h3 class="fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h3>
+                        <div class="add-authorised-user-div">
+                            <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+                            <button class="add-authorised-user btn btn-primary btn-blue">Add User</button>
+                        </div>
+                    </div>
+                    <div class="header-border-btm-blue"></div>
                     <div class="col-md-12">
-                        <div class="col-md-6">
-                            <label class="form-control-label">Company Name<span class="red">*</span></label>
-                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
-                                <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
-                                    [ngClass]="{'form-control-danger': !_isValid('company_name')}">
-                                <span class="help-block help-block-error" *ngIf="!_formErrors.company_name.valid">{{_formErrors.company_name.message}}</span>
+                        <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
+                            <div class="col-md-12">
+                                <table class="col-xs-12 authorized-users">
+                                    <thead>
+                                        <tr>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Details & Activity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="padding-5">xxxxx</td>
+                                            <td class="padding-5">xxxxx</td>
+                                            <td class="padding-5">xxxxx</td>
+                                            <td class="padding-5"><a class="link-blue-underline">view</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-control-label">EIN<span class="red">*</span></label>
-                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
-                                <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
-                                    [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true" placeholder="(__)-_______"
-                                    maxlength="34" min="9">
-                                <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-                <div class="modal-footer footer-background">
-                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyForm.valid || _submitted == true">
-				  Save</button>
-                    <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+
+            </div>
+
+            <div class="col-lg-10 col-lg-offset-1">
+                <h3 class="fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h3>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-4">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text "> STEP 1</h4>
+                        <p class=" setup-text-band">On-boarding</p>
+                        <table class="col-xs-12">
+                            <tbody>
+                                <tr>
+                                    <td>Invoice</td>
+                                    <td class="padding-5">
+                                        <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid"
+                                            title="Click to toggle">Not Paid</span>
+                                        <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid"
+                                            title="Click to toggle">Paid</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Client Agreement</td>
+                                    <td class=" padding-5">
+                                        <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement"
+                                            title="Click to toggle">Needed</span>
+                                        <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement"
+                                            title="Click to toggle">Completed</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Discovery Session</td>
+                                    <td class="padding-5">
+                                        <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session"
+                                            title="Click to toggle">Needed</span>
+                                        <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session"
+                                            title="Click to toggle">Completed</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-danger status-btn " *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
+                        <button class="btn btn-success status-btn " *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
+                    </div>
                 </div>
-            </form>
+                <div class="col-md-4">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepTwoDisabled'>
+                        <h4 class="text-center dark-blue-text "> STEP 2</h4>
+                        <p class=" setup-text-band">Company Data</p>
+                        <table class="col-xs-12">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}"
+                                            *ngIf="!clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
+                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
+                                            *ngIf="clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
+                                    </td>
+                                    <td class="padding-5">
+                                        <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                        <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink"
+                                            *ngIf="clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
+                                    </td>
+                                    <td class="padding-5">
+
+                                        <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                        <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink"
+                                            *ngIf="clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
+                                    </td>
+                                    <td class=" padding-5">
+
+                                        <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
+                                        <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
+                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepThreeDisabled'>
+                        <h4 class="text-center dark-blue-text "> STEP 3</h4>
+                        <p class=" setup-text-band">Employee Data</p>
+                        <table class="col-xs-12">
+                            <tbody>
+                                <tr>
+                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
+                                            [routerLink]="clientDashBoardService.payRollDataLink">Payroll Data</a></td>
+                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
+                                            [routerLink]="clientDashBoardService.medicalPlanDataLink">Medical Plan Data</a></td>
+                                    <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-4">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFourDisabled'>
+                        <h4 class="text-center dark-blue-text "> STEP 4</h4>
+                        <p class=" setup-text-band">Request & Review Forms</p>
+                        <table class="col-xs-12">
+                            <tbody>
+                                <tr>
+                                    <td>Form 1094</td>
+                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Form 1095</td>
+                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFiveDisabled'>
+                        <h4 class="text-center dark-blue-text "> STEP 5</h4>
+                        <p class=" setup-text-band">Approval & Print and Mail</p>
+                        <table class="col-xs-12">
+                            <tbody>
+                                <tr>
+                                    <td>Final Form Approval</td>
+                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Print & Mail Requested</td>
+                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepSixDisabled'>
+                        <h4 class="text-center dark-blue-text "> STEP 6</h4>
+                        <p class=" setup-text-band">IRS Fillings</p>
+                        <table class="col-xs-12">
+                            <tbody>
+                                <tr>
+                                    <td>E-File</td>
+                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>IRS Corrections</td>
+                                    <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 
-<!-- ./Edit Company Details Modal -->
+    <!-- Edit Company Details Modal -->
 
-<!-- CopyModal -->
-<div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
-    data-keyboard="false">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header modal-header-color">
+    <div class="modal fade" bsModal #companyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
 
-                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeModal()">
 								X
 							</button>
-                <h4 class="modal-title color-white" id="myModalLabel">
-                    Copy
-                </h4>
-            </div>
-            <div class="modal-body row">
-                <form id="w0" method="post" enctype="multipart/form-data">
-                    <div class="col-md-12 border-ddd widget padding-15">
-                        <div class="col-md-12 padding-0">
+                    <h4 class="modal-title color-white" id="myModalLabel">
+                        {{modalTitle}}
+                    </h4>
+                </div>
+
+                <form [formGroup]="_companyForm" (ngSubmit)="onSubmit()">
+                    <div class="modal-body row">
+                        <div class="col-md-12">
                             <div class="col-md-6">
-                                <div class="">
-                                    <label class="form-control-label">Company Name <span class="red">*</span></label>
-                                    <div class="form-group field-adminusers-first_name required">
-                                        <select class="form-control">
+                                <label class="form-control-label">Company Name</label>
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
+                                    <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
+                                        [ngClass]="{'form-control-danger': !_isValid('company_name')}">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.company_name.valid">{{_formErrors.company_name.message}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-control-label">EIN</label>
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
+                                    <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
+                                        repeat=9 [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true"
+                                        placeholder="(__)-_______">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer footer-background">
+                        <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyForm.valid || _submitted == true">
+				  Save</button>
+                        <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ./Edit Company Details Modal -->
+
+    <!-- CopyModal -->
+    <div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
+        data-keyboard="false">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                    <h4 class="modal-title color-white" id="myModalLabel">
+                        Copy
+                    </h4>
+                </div>
+                <div class="modal-body row">
+                    <form id="w0" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12 border-ddd widget padding-15">
+                            <div class="col-md-12 padding-0">
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <label class="form-control-label">Company Name <span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-first_name required">
+                                            <select class="form-control">
                                             <option>-Select-</option>
                                            <option>Cargo 2</option>
                                            <option>Cargo force</option>
                                            <option>Company 1</option>
                                         </select>
-                                        <div class="help-block"></div>
+                                            <div class="help-block"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="">
-                                    <label class="form-control-label">Companies <span class="red">*</span></label>
-                                    <div class="form-group field-adminusers-last_name required">
-                                        <select class="form-control" id="companies" multiple="multiple">
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <label class="form-control-label">Companies <span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-last_name required">
+                                            <select class="form-control" id="companies" multiple="multiple">
                                            <option value="1">Cargo 2</option>
                                            <option value="2">Cargo force</option>
                                            <option value="3">Company 1</option>
                                         </select>
-                                        <div class="help-block"></div>
+                                            <div class="help-block"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <div class="modal-footer footer-background">
+                <div class="modal-footer footer-background">
 
-                <a href="" class="btn btn-modal-blue">
+                    <a href="" class="btn btn-modal-blue">
 								Copy  
 							</a>
-                <a href="#" class="btn btn-default" data-dismiss="modal">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">
 								Cancel
 							</a>
 
+                </div>
             </div>
+
         </div>
 
     </div>
-
-</div>
-
+</ng-container>
 <!-- ./Copy Modal -->
