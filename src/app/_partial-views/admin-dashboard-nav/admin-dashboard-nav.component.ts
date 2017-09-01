@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
   selector: 'app-admin-dashboard-nav',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalService: GlobalService) {
+    this.globalService.getPermissions();
+   }
 
   ngOnInit() {
   }
