@@ -9,6 +9,7 @@ import { ToastrService } from "ngx-toastr";
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 import * as Globals from '../../_shared/_globals';
+import { GlobalService } from "app/_services/_global.service";
 
 declare var $: any;
 
@@ -17,10 +18,7 @@ declare var $: any;
     templateUrl: './admin-layout.component.html',
 })
 export class AdminLayoutComponent implements OnInit {
-    financial_permission: boolean = false;
-    systemAdmin_permission: boolean = false;
-    masterData_permission: boolean = false;
-
+    
     @ViewChild('chngPwdModal') public chngPwdModal: ModalDirective;
 
     isMenuActive: boolean = false;
@@ -46,7 +44,8 @@ export class AdminLayoutComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private toastrService: ToastrService,
-        private _idleTimeout: IdleTimeoutService) {
+        private _idleTimeout: IdleTimeoutService,
+        private globalService: GlobalService) {
         _idleTimeout.init();
 
         this.useremail = localStorage.getItem('useremail');
@@ -65,19 +64,7 @@ export class AdminLayoutComponent implements OnInit {
         this.chngPwdForm.valueChanges
             .subscribe(data => this.onValueChanged(data));
 
-        if (localStorage.getItem("admin_permissions") != 'undefined') {
-            let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
-            if((admin_permissions).includes(1)){
-                this.financial_permission = true;
-            }
-            
-            if((admin_permissions).includes(2)){
-                this.systemAdmin_permission = true;
-            }
-            if((admin_permissions).includes(3)){
-                this.masterData_permission = true;
-            }
-        }
+      this.globalService.getPermissions();
     }
 
     ngOnInit() {
