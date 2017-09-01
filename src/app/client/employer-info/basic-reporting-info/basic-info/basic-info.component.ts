@@ -36,7 +36,7 @@ export class BasicInfoComponent implements OnInit {
   product: string;
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     private globalService: GlobalService,
@@ -54,9 +54,37 @@ export class BasicInfoComponent implements OnInit {
 
   ngOnInit() {
     this.basicInfoData = this.createNewBasicInfo();
-    this.ElementLabelsList();
+   // this.ElementLabelsList();
     this.getStates();
     this.getBasicInfoData();
+
+    this.route.data.subscribe((data) => { 
+        for (let label of data.data) {
+          this.label = label.element_serial_id + ' ' + label.element_label;
+          this.labels.push(this.label);
+        }      
+      },
+      error => { this._errorMessage = error.data }
+      );
+
+
+      //  alert(data); console.log(data);
+      //  this.basicInfoData = data.basicData;
+     // });
+
+
+
+  //  // or the observable method
+  // this.route.paramMap
+  //    .subscribe((params: ParamMap) => {
+  //       // console.log(params);
+  //       this.basicInfoData= params.get('id');
+  //       return params.get('dataYouResolved');
+  //       // return null
+  //    });
+
+
+
     this.getCompany();
   }
 
