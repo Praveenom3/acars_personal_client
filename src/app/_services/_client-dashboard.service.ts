@@ -179,18 +179,6 @@ export class ClientDashBoardService {
                             this.rowsOnPage = this.companies.length;
                             this.company = result.data.defaultCompanyInformation;
 
-<<<<<<< HEAD
-=======
-                            if (typeof companyFromSession != 'undefined'  && companyFromSession != null && companyFromSession != '') {
-                                let sessionCompanyId = companyFromSession.company_id;
-                                this.companies.forEach(element => {
-                                    if (element.company_id == sessionCompanyId) {
-                                        this.company = element;
-                                    }
-                                });
-                            }
-
->>>>>>> 36ecf5a4d58e5edd21452cf5e12ec3b0933e1928
                             this.selectedCompanyRow = this.company.company_id;
                             this.company.company_data = this.checkCompanyData(this.company);
 
