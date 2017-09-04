@@ -45,8 +45,8 @@
         </div>
         <ul class="actions media-hide-header">
             <li>
-                <a class="disable-hover home" *ngIf=financial_permission [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/summary']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
-                <a class="disable-hover home" *ngIf=!financial_permission [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/dashboard']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+                <a class="disable-hover home" *ngIf=globalService.financial_permission [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/summary']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
+                <a class="disable-hover home" *ngIf=!globalService.financial_permission [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/dashboard']"><b><i class="fa fa-home" aria-hidden="true"></i></b></a>
             </li>
             <li>
                 <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/admin/search']"><b>Search</b></a>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </li>
-            <li *ngIf=masterData_permission>
+            <li *ngIf=globalService.masterData_permission>
                 <div class="menu-user-block" [routerLinkActive]="['dropdown-menu-active']">
                     <div class="dropdown">
                         <a href="javascript: void(0);" class="dropdown-toggle disable-hover" data-toggle="dropdown" aria-expanded="false"><b> Master Data</b>

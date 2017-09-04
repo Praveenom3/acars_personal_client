@@ -8,6 +8,9 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class GlobalService {
+    systemAdmin_permission: boolean = false;
+    masterData_permission: boolean = false;
+    financial_permission: boolean = false;
     public headers: Headers;
     public apiHost: string;
     public apiRoot: string;
@@ -21,7 +24,7 @@ export class GlobalService {
     ];
 
     constructor() {
-
+            
         if (environment.production == true) {
             this.apiHost = 'http://acars.localhost/v1';
             this.apiRoot = 'http://acars.localhost/';
@@ -42,7 +45,6 @@ export class GlobalService {
         if (localStorage.getItem('backend-setting') != null) {
             this.setting = JSON.parse(localStorage.getItem('backend-setting'));
         }
-
     }
 
     public getToken(): any {
@@ -74,7 +76,7 @@ export class GlobalService {
         return atob(splittedString[1]);
     }
     public handleError(error: Response | any) {
-
+        
         let errorMessage: any = {};
         // Connection error
         if (error.status == 0) {
@@ -83,13 +85,31 @@ export class GlobalService {
                 status: 0,
                 data: "Sorry, there was a connection error occurred. Please try again.",
             };
-        }
-        else {
+        }else if(error.status == 401){
+            console.log('You are not authorized to view this content!');
+        }else {
             errorMessage = error.json();
         }
 
         return Observable.throw(errorMessage);
     }
 
+    public getPermissions(): void{
+        let permissionsSet: any = [];
+        if (localStorage.getItem("admin_permissions") != 'undefined') {
+            let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
+            console.log(admin_permissions);
+            if((admin_permissions).includes(1)){
+                this.financial_permission = true;
+            }
+            
+            if((admin_permissions).includes(2)){
+                this.masterData_permission = true;
+            }
+            if((admin_permissions).includes(3)){
+                this.systemAdmin_permission = true;
+            }
+        }
+    }
 
 }

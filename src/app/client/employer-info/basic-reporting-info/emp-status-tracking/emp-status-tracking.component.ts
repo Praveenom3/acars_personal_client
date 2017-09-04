@@ -28,7 +28,7 @@ export class EmpStatusTrackingComponent implements OnInit {
 
   company: string;
   product: string;
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     private _empStatusTrackingService: EmpStatusTrackingService,
@@ -43,7 +43,18 @@ export class EmpStatusTrackingComponent implements OnInit {
 
   ngOnInit() {
     this.empStatusData = this.createNewEmpStatus();
-    this.ElementLabelsList();
+    
+     this.route.data.subscribe((data) => { 
+        for (let label of data.data) {
+          this.label = label.element_serial_id + ' ' + label.element_label;
+          this.labels.push(this.label);
+        }      
+      },
+      error => { this._errorMessage = error.data }
+      );
+
+
+   // this.ElementLabelsList();
     this.getEmpStatusTrackingData();
     this.getCompany();
   }
