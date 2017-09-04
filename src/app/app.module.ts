@@ -39,6 +39,7 @@ import { MomentModule } from 'angular2-moment'; // optional, provides moment-sty
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
+import { CompanyUserService } from "app/_services/_company-user.service";
 import { ProductsNotExists } from './pages/products-not-exists.component';
 
 @NgModule({
@@ -76,7 +77,7 @@ import { ProductsNotExists } from './pages/products-not-exists.component';
     IdleTimeoutService,
     AuthGuard,
     AccessGuard,
-    GlobalService, ClientDashBoardService,
+    GlobalService, ClientDashBoardService, CompanyUserService,
     ValidationService],
 
   bootstrap: [AppComponent]

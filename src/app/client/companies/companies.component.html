@@ -44,9 +44,7 @@
                                             <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
                                                 <td class="text-center">{{company.company_name}}</td>
                                                 <td class="text-center">
-                                                    <!-- <a class="link-blue-underline" (click)="setCompany(company)"> -->
                                                     {{company.company_client_number}}
-                                                    <!-- </a> -->
                                                 </td>
                                             </tr>
                                         </ng-container>
@@ -169,22 +167,24 @@
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12">
                         <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
-                            <div class="col-md-6">
-                                <h4 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images">                                    {{clientDashBoardService.company.company_name}}
-                                </h4>
+                            <div class="col-md-4">
+                                <h5 class="text-center dark-blue-text "> Client : &nbsp;{{clientDashBoardService.client.client_name}}</h5>
                             </div>
-                            <div class="col-md-6">
-                                <h4 class="text-center dark-blue-text ">
+                            <div class="col-md-4">
+                                <h5 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images">                                    {{clientDashBoardService.company.company_name}}
+                                </h5>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="text-center dark-blue-text ">
                                     ID: {{clientDashBoardService.company.company_client_number}}
-                                </h4>
+                                </h5>
                             </div>
 
                             <div class="col-md-12 company-details-display">
-                                EIN : &nbsp;
-                                <span class="company-eins-block" *ngIf="!clientDashBoardService.company.company_ein">
-                                _ _-_ _ _ _ _ _ _
-                            </span> {{clientDashBoardService.company.company_ein}} | Reporting
-                                Year: &nbsp; {{clientDashBoardService.product.applicable_year}} | Package: &nbsp; {{clientDashBoardService.productService}}
+                                <span class="company-eins-block">
+                                   EIN : &nbsp;   {{formatCompanyEin(clientDashBoardService.company.company_ein)}}
+                            </span> | Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}
+                                | Package: &nbsp; {{clientDashBoardService.productService}}
                             </div>
 
                         </div>
@@ -195,29 +195,38 @@
                     <div class="authorized-main-header">
                         <h3 class="fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h3>
                         <div class="add-authorised-user-div">
-                            <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-                            <button class="add-authorised-user btn btn-primary btn-blue">Add User</button>
+                            <button (click)="createCompanyUser()" class="add-authorised-user btn btn-primary btn-blue"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add User</button>
                         </div>
                     </div>
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12">
                         <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
-                            <div class="col-md-12">
-                                <table class="col-xs-12 authorized-users">
+                            <div class="col-md-12 table-company-users-dashboard-div">
+                                <table class="table table-hover table-striped table-company-users-dashboard" [mfData]="clientDashBoardService.company.companyUsers"
+                                    #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
+                                    [(mfSortOrder)]="sortOrder">
                                     <thead>
                                         <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email</th>
-                                            <th>Details & Activity</th>
+
+                                            <th class="text-center">First Name</th>
+                                            <th class="text-center">Last Name</th>
+                                            <th class="text-center">Email</th>
+                                            <th class="text-center">Details & Activity</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="padding-5">xxxxx</td>
-                                            <td class="padding-5">xxxxx</td>
-                                            <td class="padding-5">xxxxx</td>
-                                            <td class="padding-5"><a class="link-blue-underline">view</a></td>
+                                        <ng-container *ngIf="users.data?.length">
+                                            <tr *ngFor="let companyUserData of users.data">
+                                                <td class="text-center padding-5">{{companyUserData.first_name}}</td>
+                                                <td class="text-center padding-5">{{companyUserData.last_name}}</td>
+                                                <td class="text-center padding-5">{{companyUserData.email}}</td>
+                                                <td class="text-center padding-5"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">view</a></td>
+                                            </tr>
+                                        </ng-container>
+                                        <tr class="tr-text-center" *ngIf=!users.data?.length>
+                                            <td colspan="2">
+                                                No records are found
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -225,7 +234,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="col-lg-10 col-lg-offset-1">
@@ -411,8 +419,6 @@
 
     <div class="modal fade" bsModal #companyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
-
-
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header modal-header-color">
@@ -525,5 +531,91 @@
         </div>
 
     </div>
+
+    <div class="modal fade" bsModal #companyUserModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeCompanyUserModal()" aria-hidden="true">×</button>
+                    <h4 class="modal-title color-white" id="myModalLabel">
+                        {{companyUserModalTitle}}
+                    </h4>
+                </div>
+                <form [formGroup]="_companyUserForm" (ngSubmit)="onCompanyUserSubmit()">
+                    <div class="modal-body row">
+                        <div class="col-md-12 border-ddd widget padding-15">
+                            <div class="col-md-12 padding-0">
+
+                                <div class="col-md-4">
+                                    <div class="">
+                                        <label class="form-control-label">First Name <span class="red">*</span></label>
+                                        <div class="form-group required" [ngClass]="{'has-danger': !_isCompanyUserValid('first_name')}">
+                                            <input type="text" class="form-control" [formControl]="_companyUserForm.controls['first_name']" [(ngModel)]="companyUserInformation.first_name"
+                                                [ngClass]="{'form-control-danger': !_isCompanyUserValid('first_name')}" maxlength="34">
+                                            <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.first_name.valid">{{_companyUserFormErrors.first_name.message}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="">
+                                        <label class="form-control-label">Last Name <span class="red">*</span></label>
+                                        <div class="form-group companyuser-last_name required" [ngClass]="{'has-danger': !_isCompanyUserValid('last_name')}">
+                                            <input type="text" id="companyuser-last_name" class="form-control" [formControl]="_companyUserForm.controls['last_name']"
+                                                [(ngModel)]="companyUserInformation.last_name" [ngClass]="{'form-control-danger': !_isCompanyUserValid('last_name')}"
+                                                maxlength="34">
+                                            <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.last_name.valid">{{_companyUserFormErrors.last_name.message}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-control-label" for="companyuser-email">Email Address <span class="red">*</span></label>
+                                    <div class="form-group field-companyuser-email" [ngClass]="{'has-danger': !_isCompanyUserValid('email')}">
+                                        <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_companyUserForm.controls['email']"
+                                            [(ngModel)]="companyUserInformation.email" [ngClass]="{'form-control-danger': !_isCompanyUserValid('email')}"
+                                            maxlength="34">
+                                        <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.email.valid">{{_companyUserFormErrors.email.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 padding-0">
+
+                                <div class="col-md-4">
+                                    <label class="form-control-label">Phone <span class="red">*</span></label>
+                                    <div class="form-group field-companyuser-phone required" [ngClass]="{'has-danger': !_isCompanyUserValid('phone')}">
+                                        <input type="text" [textMask]="{mask: mask}" id="companyuser-phone" class="form-control" [formControl]="_companyUserForm.controls['phone']"
+                                            [(ngModel)]="companyUserInformation.phone" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone')}"
+                                            aria-required="true" placeholder="(___) ___-____" maxlength="34">
+                                        <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone.valid">{{_companyUserFormErrors.phone.message}}</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-control-label">Extension</label>
+                                    <div class="form-group field-companyuser-phone-extension" [ngClass]="{'has-danger': !_isCompanyUserValid('phone_extension')}">
+                                        <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_companyUserForm.controls['phone_extension']"
+                                            [(ngModel)]="companyUserInformation.phone_extension" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone_extension')}"
+                                            value="" maxlength="6">
+                                        <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone_extension.valid">{{_companyUserFormErrors.phone_extension.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer footer-background">
+                        <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyUserForm.valid || _companyUserSubmitted == true">
+                        	Save Changes</button>
+                        <button type="button" class="btn btn-default" (click)="closeCompanyUserModal()">Close</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
 </ng-container>
 <!-- ./Copy Modal -->
