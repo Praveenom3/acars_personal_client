@@ -236,6 +236,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
+                    <div class="pull-left red" *ngIf="newPurchases.length > 0">Note: Please save changes before closing the modal.</div>
                     <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_addClientForm.valid && totalPurchases.length > 0 ) || _addClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('addClientModal')">Close</button>
                 </div>
@@ -397,6 +398,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
+                    <div class="pull-left red" *ngIf="updatePurchases.length > 0 || newPurchases.length > 0">Note: Please save changes before closing the modal.</div>
                     <button type="submit" class="btn btn-primary btn-blue" *ngIf="hasFinancialRights" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('updateClientModal')">Close</button>
                 </div>
