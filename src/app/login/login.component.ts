@@ -280,15 +280,11 @@ export class LoginComponent implements OnInit {
                 return products[key]
             })
             let product;
-            let brand: any;
-            let clientsCount = 0;
             productsList.forEach(element => {
                 if (element.applicable_year > this.maxApplicableYear) {
                     this.maxApplicableYear = element.applicable_year
                     product = element;
                 }
-                clientsCount += element.clientsCount;
-                brand = element.default_brand;
             });
 
             let clientKeys: any[] = Object.keys(product.clients);
@@ -296,7 +292,7 @@ export class LoginComponent implements OnInit {
 
             let clientId: any = this.globalService.encode(client['client_id']);
             let productId: any = this.globalService.encode(product.product_id);
-            this.dashBoard.setBrandData(product.product_id, client['client_id'], clientsCount)
+            this.dashBoard.setBrandData(product.product_id, client['client_id'])
 
             this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
         } else {

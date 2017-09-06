@@ -18,7 +18,7 @@ export class CoverageOfferedComponent implements OnInit {
 
 
   label: string;
-  
+
   company: string;
   product: string;
   company_id: any;
@@ -31,40 +31,40 @@ export class CoverageOfferedComponent implements OnInit {
   public labels: any[] = [];
 
   _errorMessage: string;
-  
-constructor(route: ActivatedRoute,
-  private router: Router,
-  private toastrService: ToastrService,
-  private globalService: GlobalService,
-  private _elementMasterService: ElementMasterService,
-  private planClassesService: PlanClassesService) {
 
-  this.product_id = globalService.decode(route.snapshot.params['product']);
-  this.company_id = globalService.decode(route.snapshot.params['company']);
-  this.product = route.snapshot.params['product'];
-  this.company = route.snapshot.params['company'];
+  constructor(route: ActivatedRoute,
+    private router: Router,
+    private toastrService: ToastrService,
+    private globalService: GlobalService,
+    private _elementMasterService: ElementMasterService,
+    private planClassesService: PlanClassesService) {
 
-  this.encodedId = route.snapshot.params['encodedId'];
-  
-  if(this.encodedId){
-    this.id  = globalService.decode(route.snapshot.params['encodedId']);
-  }
-  
-}
+    this.product_id = globalService.decode(route.snapshot.params['product']);
+    this.company_id = globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
 
-ngOnInit() {
-  this.coverageOfferedData = this.createNewCoverageOffered();
-  this.ElementLabelsList();
-  this.getCompany();
-  
-  if(this.id){
-    this.getCoverageOfferedData();
-  }else{
-    this.toastrService.error("Valid plan class id is required");
-    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class']);
+    this.encodedId = route.snapshot.params['encodedId'];
+
+    if (this.encodedId) {
+      this.id = globalService.decode(route.snapshot.params['encodedId']);
+    }
+
   }
 
-}
+  ngOnInit() {
+    this.coverageOfferedData = this.createNewCoverageOffered();
+    this.ElementLabelsList();
+    this.getCompany();
+
+    if (this.id) {
+      this.getCoverageOfferedData();
+    } else {
+      this.toastrService.error("Valid plan class id is required");
+      this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class']);
+    }
+
+  }
 
   getCompany() {
     let companyDet = this.globalService.getCompany();
@@ -73,77 +73,79 @@ ngOnInit() {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }
   }
 
-createNewCoverageOffered() {
-  // Create a new coverageOffered
-  let coverageOffered = {
-    plan_class_id: 0,
-    employee_mv_coverage: null,
-    entireMvYear: false,
-    mv_coverage_months: [],
-    employee_essential_coverage: null,
-    entireMeYear: false,
-    essential_coverage_months: [],
-    spouse_essential_coverage: null,
-    spouse_conditional_coverage: null,
-    dependent_essential_coverage: null,
-    created_at: '',
-    created_by: '',
-    updated_at: '',
-    updated_by: ''
+  createNewCoverageOffered() {
+    // Create a new coverageOffered
+    let coverageOffered = {
+      plan_class_id: 0,
+      employee_mv_coverage: null,
+      entireMvYear: false,
+      mv_coverage_months: [],
+      employee_essential_coverage: null,
+      entireMeYear: false,
+      essential_coverage_months: [],
+      spouse_essential_coverage: null,
+      spouse_conditional_coverage: null,
+      dependent_essential_coverage: null,
+      created_at: '',
+      created_by: '',
+      updated_at: '',
+      updated_by: ''
+    }
+    return coverageOffered;
   }
-  return coverageOffered;
-}
 
-/*getting data from service*/
-private getCoverageOfferedData() {
-  this.planClassesService.getCoverageOffered(this.id)
-    .subscribe((coverageOfferedInfo) => {
+  /*getting data from service*/
+  private getCoverageOfferedData() {
+    this.planClassesService.getCoverageOffered(this.id)
+      .subscribe((coverageOfferedInfo) => {
 
-      if(coverageOfferedInfo.planClassCoverageTypeOffered){
-        this.coverageOfferedData = coverageOfferedInfo.planClassCoverageTypeOffered;
+        if (coverageOfferedInfo.planClassCoverageTypeOffered) {
+          this.coverageOfferedData = coverageOfferedInfo.planClassCoverageTypeOffered;
 
-        if (this.coverageOfferedData.mv_coverage_months.length > 0) {
-          this.coverageOfferedData.mv_coverage_months = JSON.parse(this.coverageOfferedData.mv_coverage_months);
-          if (this.coverageOfferedData.mv_coverage_months.length == 12) {
-            this.coverageOfferedData.entireMvYear = true;
-            this.coverageOfferedData.mv_coverage_months = [];
-          } else {
-            let MvMonthFields: any[] = [];
-            this.coverageOfferedData.mv_coverage_months.forEach((monthSelected, index) => {
-              MvMonthFields[monthSelected] = true;
-            });
-            this.coverageOfferedData.mv_coverage_months = [];
-            this.coverageOfferedData.mv_coverage_months = MvMonthFields;
+          if (this.coverageOfferedData.mv_coverage_months.length > 0) {
+            this.coverageOfferedData.mv_coverage_months = JSON.parse(this.coverageOfferedData.mv_coverage_months);
+            if (this.coverageOfferedData.mv_coverage_months.length == 12) {
+              this.coverageOfferedData.entireMvYear = true;
+              this.coverageOfferedData.mv_coverage_months = [];
+            } else {
+              let MvMonthFields: any[] = [];
+              this.coverageOfferedData.mv_coverage_months.forEach((monthSelected, index) => {
+                MvMonthFields[monthSelected] = true;
+              });
+              this.coverageOfferedData.mv_coverage_months = [];
+              this.coverageOfferedData.mv_coverage_months = MvMonthFields;
+            }
           }
-        }
 
-        if (this.coverageOfferedData.essential_coverage_months.length > 0) {
-          this.coverageOfferedData.essential_coverage_months = JSON.parse(this.coverageOfferedData.essential_coverage_months);
-          if (this.coverageOfferedData.essential_coverage_months.length == 12) {
-            this.coverageOfferedData.entireMeYear = true;
-            this.coverageOfferedData.essential_coverage_months = [];
-          } else {
-            let MeMonthFields: any[] = [];
-            this.coverageOfferedData.essential_coverage_months.forEach((monthSelected, index) => {
-              MeMonthFields[monthSelected] = true;
-            });
-            this.coverageOfferedData.essential_coverage_months = [];
-            this.coverageOfferedData.essential_coverage_months = MeMonthFields;
+          if (this.coverageOfferedData.essential_coverage_months.length > 0) {
+            this.coverageOfferedData.essential_coverage_months = JSON.parse(this.coverageOfferedData.essential_coverage_months);
+            if (this.coverageOfferedData.essential_coverage_months.length == 12) {
+              this.coverageOfferedData.entireMeYear = true;
+              this.coverageOfferedData.essential_coverage_months = [];
+            } else {
+              let MeMonthFields: any[] = [];
+              this.coverageOfferedData.essential_coverage_months.forEach((monthSelected, index) => {
+                MeMonthFields[monthSelected] = true;
+              });
+              this.coverageOfferedData.essential_coverage_months = [];
+              this.coverageOfferedData.essential_coverage_months = MeMonthFields;
+            }
           }
-        }
 
-      }else{
-        this.coverageOfferedData = this.createNewCoverageOffered();
-      }
-    },
-    error => { this._errorMessage = error.data }
-    );
-}
+        } else {
+          this.coverageOfferedData = this.createNewCoverageOffered();
+        }
+      },
+      error => { this._errorMessage = error.data }
+      );
+  }
 
   /*getting labels from service*/
   private ElementLabelsList() {
@@ -171,7 +173,7 @@ private getCoverageOfferedData() {
       });
       this.coverageOfferedData.mv_coverage_months = JSON.stringify(mv_customArray);
     }
-    
+
     let me_customArray = [];
     if (this.coverageOfferedData.entireMeYear == true) {
       this.coverageOfferedData.essential_coverage_months = JSON.stringify(this.totalYear);
@@ -185,23 +187,23 @@ private getCoverageOfferedData() {
     }
 
     this.coverageOfferedData.plan_class_id = this.id;
-    
+
     this.planClassesService.createOrUpdateCoverageOffered(this.id, this.coverageOfferedData).subscribe(
-            result => {
-              if (result.success) {
-                if (param == "exit") {
-                  this.router.navigate(['client/' + this.product + '/' + this.company]);
-                } else {
-                  this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/'+this.encodedId+ '/employee-contributions']);
-                }
-                this.toastrService.success('Coverage Offered Information saved succesfully.');
-              } else {
-                this._errorMessage = 'Not Added.';
-                this.toastrService.success('Trouble saving the record. Please try later.');
-              }
-            },
-            error => {
-            });
-    }
+      result => {
+        if (result.success) {
+          if (param == "exit") {
+            this.router.navigate(['client/' + this.product + '/' + this.company]);
+          } else {
+            this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/employee-contributions']);
+          }
+          this.toastrService.success('Coverage Offered Information saved succesfully.');
+        } else {
+          this._errorMessage = 'Not Added.';
+          this.toastrService.success('Trouble saving the record. Please try later.');
+        }
+      },
+      error => {
+      });
+  }
 
 }

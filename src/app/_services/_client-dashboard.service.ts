@@ -14,6 +14,7 @@ import { ClientSetupDetails } from 'app/_models/client-setup-details';
 import { Company } from 'app/_models/company';
 import { Products } from 'app/_models/products';
 import { Brands } from 'app/_models/brands';
+import { CompanyUserService } from 'app/_services/_company-user.service';
 
 @Injectable()
 
@@ -79,11 +80,14 @@ export class ClientDashBoardService {
     public accountManager: string;
     public accountManagerNumber: string;
 
+    public userRowsOnPage: number = 5;
+
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
+        private _companyUserService: CompanyUserService,
         private _http: Http) {
     }
     /**
@@ -153,41 +157,71 @@ export class ClientDashBoardService {
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
         this.product = products[productId];
         this.clientHomeUrl = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(clientId) + '/dashboard';
+        let userType: any = localStorage.getItem('usertype');
         if (this.product) {
 
             this.client = this.product['clients'][clientId]
-            let userType = localStorage.getItem('usertype');
+            this.setBrandData(productId, clientId);
             this.changeStyle();
             this.company = Object.assign({});
             if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
                 this.redirectClientToWelcomeScreens();
             } else {
                 this.dashBoard = true;
-                let clientIds: any[] = Object.keys(this.product['clients']);
-                let data = {
-                    "productId": productId,
-                    "clients": clientIds,
-                    "companyId": companyId
+
+                if (userType == '3') {
+                    let clientIds: any[] = Object.keys(this.product['clients']);
+                    let data = {
+                        "productId": productId,
+                        "clients": clientIds,
+                        "companyId": companyId
+                    }
+                    this.getClientCompanies(data).subscribe(
+                        result => {
+                            if (result.success) {
+
+                                this.companies = result.data.companiesList;
+                                this.rowsOnPage = this.companies.length;
+                                this.company = result.data.defaultCompanyInformation;
+
+                                this.selectedCompanyRow = this.company.company_id;
+                                this.company.company_data = this.checkCompanyData(this.company);
+                                this.userRowsOnPage = this.company.companyUsers.length;
+                                this.setAccountManagerData(productId, clientId);
+                                this.setCompanyUrls(productId, this.company.company_id);
+                                this.setCompanyToSession()
+                            }
+                        },
+                        error => {
+
+                        });
+                } else if (userType == 4) {
+
+                    let data = {
+                        "productId": productId,
+                        "companyUserId": localStorage.getItem('user_id')
+                    }
+                    this._companyUserService.getCompanyUserCompanies(data).subscribe(
+                        result => {
+                            if (result.success) {
+
+                                this.companies = result.data.companiesList;
+                                this.rowsOnPage = this.companies.length;
+                                this.company = result.data.defaultCompanyInformation;
+
+                                this.selectedCompanyRow = this.company.company_id;
+                                this.company.company_data = this.checkCompanyData(this.company);
+                                this.userRowsOnPage = this.company.companyUsers.length;
+                                this.setAccountManagerData(productId, clientId);
+                                this.setCompanyUrls(productId, this.company.company_id);
+                                this.setCompanyToSession()
+                            }
+                        },
+                        error => {
+
+                        });
                 }
-                this.getClientCompanies(data).subscribe(
-                    result => {
-                        if (result.success) {
 
-                            this.companies = result.data.companiesList;
-                            this.rowsOnPage = this.companies.length;
-                            this.company = result.data.defaultCompanyInformation;
-
-                            this.selectedCompanyRow = this.company.company_id;
-                            this.company.company_data = this.checkCompanyData(this.company);
-
-                            this.setAccountManagerData(productId, clientId);
-                            this.setCompanyUrls(productId, this.company.company_id);
-                            this.setCompanyToSession()
-                        }
-                    },
-                    error => {
-
-                    });
                 this.primaryData = true;
             }
             this.getProductServiceName(this.product.product_type);
@@ -213,23 +247,36 @@ export class ClientDashBoardService {
      * @param productId 
      * @param clientId 
      */
-    public setBrandData(productId, clientId, clientsCount = 0) {
-        let product = this.getProductFieldFromSession(productId, 'clients');
-        let client = product[clientId];
+    public setBrandData(productId, clientId) {
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        let productClients = this.getProductFieldFromSession(productId, 'clients');
+        let client = productClients[clientId];
+        let productsList = Object.keys(products).map(function (key) {
+            return products[key]
+        })
+        let product;
+        let clientsCount = 0;
+        productsList.forEach(element => {
+            clientsCount += element.clientsCount;
+        });
+
         let brand: any;
         let mobile: string;
         if (clientsCount > 1) {
             let brand = this.getProductFieldFromSession(productId, 'default_brand');
-            mobile = brand.support_phone
-            this.brandInformation = {
-                'brand_logo': brand.brand_logo,
-                "support_email": brand.support_email,
-                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+            if (typeof brand != 'undefined') {
+
+                mobile = brand.support_phone;
+                this.brandInformation = {
+                    'brand_logo': brand.brand_logo,
+                    "support_email": brand.support_email,
+                    "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                }
+                this.clientLogo = this.logoPath + brand.brand_logo;
             }
-            this.clientLogo = this.logoPath + brand.brand_logo;
         } else {
-            brand = client.brand
-            mobile = brand.support_phone
+            brand = client.brand;
+            mobile = brand.support_phone;
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
                 "support_email": brand.support_email,
@@ -419,7 +466,6 @@ export class ClientDashBoardService {
     public setCompany(company: Company) {
 
         this.client = this.product['clients'][company.client_id]
-
         let userType = localStorage.getItem('usertype');
         this.changeStyle();
         this.dashBoard = false;
@@ -429,6 +475,7 @@ export class ClientDashBoardService {
             this.dashBoard = true;
             this.company = company;
             this.company.company_data = this.checkCompanyData(this.company);
+            this.userRowsOnPage = this.company.companyUsers.length;
             this.selectedCompanyRow = company.company_id;
             this.setCompanyUrls(this.product.product_id, this.company.company_id);
             this.setCompanyToSession()

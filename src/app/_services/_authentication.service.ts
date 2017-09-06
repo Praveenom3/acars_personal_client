@@ -186,17 +186,7 @@ export class AuthenticationService {
     }
 
     public removeLocalstorage(): void {
-        localStorage.removeItem('authtoken');
-        localStorage.removeItem('usertype');
-        localStorage.removeItem('productsAndClients');
-        localStorage.removeItem('useremail');
-        localStorage.removeItem('user_id');
-        localStorage.removeItem('firstName');
-        localStorage.removeItem('lastName');
-        localStorage.removeItem('admin_permissions');
-        localStorage.removeItem('client_permissions');
-        localStorage.removeItem('company');
-          
+        localStorage.clear();
     }
 
     public getToken(): any {

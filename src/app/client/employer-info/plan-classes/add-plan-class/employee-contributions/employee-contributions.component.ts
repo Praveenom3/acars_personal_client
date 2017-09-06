@@ -17,7 +17,7 @@ export class EmployeeContributionsComponent implements OnInit {
   employeeContributionData: { plan_class_id: number; safe_harbor: string; employee_plan_contribution: string; premiums: string[]; created_at: string; created_by: string; updated_at: string; updated_by: string; };
 
   label: string;
-  
+
   company: string;
   product: string;
   company_id: any;
@@ -37,31 +37,31 @@ export class EmployeeContributionsComponent implements OnInit {
     private _elementMasterService: ElementMasterService,
     private planClassesService: PlanClassesService) {
 
-      this.product_id = globalService.decode(route.snapshot.params['product']);
-      this.company_id = globalService.decode(route.snapshot.params['company']);
-      this.product = route.snapshot.params['product'];
-      this.company = route.snapshot.params['company'];
-  
-      this.encodedId = route.snapshot.params['encodedId'];
-      
-      if(this.encodedId){
-        this.id = globalService.decode(this.encodedId);
-      }
+    this.product_id = globalService.decode(route.snapshot.params['product']);
+    this.company_id = globalService.decode(route.snapshot.params['company']);
+    this.product = route.snapshot.params['product'];
+    this.company = route.snapshot.params['company'];
+
+    this.encodedId = route.snapshot.params['encodedId'];
+
+    if (this.encodedId) {
+      this.id = globalService.decode(this.encodedId);
+    }
   }
 
   ngOnInit() {
     this.employeeContributionData = this.createNewEmployeeContribution();
     this.ElementLabelsList();
     this.getCompany();
-    
-    if(this.id){
+
+    if (this.id) {
       this.getEmployeeContributionData();
-    }else{
+    } else {
       this.toastrService.error("Valid plan class id is required");
       this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class']);
     }
   }
-  
+
   getCompany() {
     let companyDet = this.globalService.getCompany();
     let products = JSON.parse(localStorage.getItem('productsAndClients'));
@@ -69,12 +69,14 @@ export class EmployeeContributionsComponent implements OnInit {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }
   }
 
-  
+
   createNewEmployeeContribution() {
     // Create a new Brand
     let employeeContribution = {
@@ -108,23 +110,23 @@ export class EmployeeContributionsComponent implements OnInit {
 
     this.planClassesService.getEmployeeContribution(this.id)
       .subscribe((employeeContributionInfo) => {
-       
+
         if (employeeContributionInfo.employeeContribution) {
-          
+
           this.employeeContributionData.safe_harbor = employeeContributionInfo.employeeContribution.safe_harbor;
           this.employeeContributionData.employee_plan_contribution = employeeContributionInfo.employeeContribution.employee_plan_contribution;
           let premiums = employeeContributionInfo.employeeContribution.empContributionPremiums;
-          
+
           let MonthFields: any[] = [];
-          if (premiums.length > 0) {         
-            premiums.forEach(eachSelectedMonth => {              
-                MonthFields[eachSelectedMonth.premium_month] = eachSelectedMonth.premium_value;
+          if (premiums.length > 0) {
+            premiums.forEach(eachSelectedMonth => {
+              MonthFields[eachSelectedMonth.premium_month] = eachSelectedMonth.premium_value;
             });
             for (let i = 1; i <= 12; i++) {
               if (!MonthFields[i]) {
                 MonthFields[i] = "";
               }
-            }            
+            }
           } else {
             MonthFields = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
           }
@@ -135,29 +137,29 @@ export class EmployeeContributionsComponent implements OnInit {
       );
   }
 
-  public onBlur(element){
-    if(element.target.value){
+  public onBlur(element) {
+    if (element.target.value) {
       element.target.value = parseFloat(element.target.value).toFixed(2);
     }
   }
-/*on submit sending form data to service.It is for both add and update*/
-public onSubmit(param) {
-  
-      this.planClassesService.createOrUpdateEmployeeContribution(this.id, this.employeeContributionData).subscribe(
-        result => {
-          if (result.success) {
-            if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
-            } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/payroll']);
-            }
-            this.toastrService.success('Coverage Type Information record added succesfully.');
+  /*on submit sending form data to service.It is for both add and update*/
+  public onSubmit(param) {
+
+    this.planClassesService.createOrUpdateEmployeeContribution(this.id, this.employeeContributionData).subscribe(
+      result => {
+        if (result.success) {
+          if (param == "exit") {
+            this.router.navigate(['client/' + this.product + '/' + this.company]);
           } else {
-            this._errorMessage = 'Not Added.';
+            this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/payroll']);
           }
-        },
-        error => {
-        });
-           
-       }
+          this.toastrService.success('Coverage Type Information record added succesfully.');
+        } else {
+          this._errorMessage = 'Not Added.';
+        }
+      },
+      error => {
+      });
+
+  }
 }

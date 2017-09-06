@@ -22,5 +22,5 @@ export interface Company {
     onBoarding_data: boolean;
     company_data: boolean;
     employee_data: boolean;
-
+    companyUsers: any;
 }

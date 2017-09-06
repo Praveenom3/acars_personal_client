@@ -368,7 +368,7 @@ app-client-layout .section-container .left-small-box p {
     position: absolute;
 }
 .company-details-display{
-    padding-left: 36px;
+    padding-left: 15px;
     text-align: center;
 }
 .company-details-main-block{
@@ -437,3 +437,78 @@ app-client-layout .section-container .left-small-box p {
 table.table-company-dashboard tbody tr:hover{
     cursor: pointer;
 }
+
+.table-company-users-dashboard th {
+    border-bottom: none !important;
+}
+
+.table-company-users-dashboard th a {
+    color: black;
+}
+
+.table-company-users-dashboard tbody tr td {
+    padding: 2px;
+    border: none;
+}
+.table-company-users-dashboard-div{
+    height: 75px;
+    overflow-y: scroll;
+}
+/* For Uploads file pop up*/
+.modal-header.modal-header-color.upload-files-div-header {
+    background-color: #7cc750 !important;
+    border: none;
+    height: 105px;
+}
+
+.upload-files-div-content{
+    background-color: #17aacc;
+    padding: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: white;
+}
+.close-upload-file{
+    background-color:#7cc750;
+    font-weight: 800;
+}
+.upload-file-block{
+    width: 47%;
+    padding: 25px;
+}
+.link-white-underline{
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.upload-data-date-span{
+    text-align: center;
+    text-decoration: underline;
+}
+.upload-file-footer{
+    text-align: center;
+    padding: 12px;
+}
+
+.upload-file-footer-a{
+    border: 6px solid;
+    padding: 4px 21px;
+    font-size: 17px;
+    color: white;
+    font-weight:bold;
+    }
+.upload-file-footer-a:hover{
+    color: white !important;
+    cursor: pointer;
+}
+.upload-tick-mark-div{
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+.upload-fa-icon{
+    font-size: 63px;
+    border: 2px solid;
+    border-radius: 36px 36px 36px 36px;
+}
+    
