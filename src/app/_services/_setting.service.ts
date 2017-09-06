@@ -21,9 +21,11 @@ export class SettingsService {
 
     public irsField = 3;
     public field1095 = 2;
+    public payrollField = 7;
     public settings: any;
     public irsDays: any;
     public employees1095Days: any;
+    public payrollDate: any;
 
     /**
      * Settings API Url
@@ -82,6 +84,9 @@ export class SettingsService {
                             case this.field1095:
                                 this.employees1095Days = this.getDays(element.setting_value);
                                 break;
+                            case this.payrollField:
+                                this.payrollDate = element.setting_value;
+                                break;
                         }
                     });
                 }
@@ -96,7 +101,7 @@ export class SettingsService {
     public getDays(date) {
         var date2 = new Date();
         var date1 = new Date(date);
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var timeDiff = (date1.getTime() - date2.getTime());
         return Math.ceil(timeDiff / (1000 * 3600 * 24));
     }
 }

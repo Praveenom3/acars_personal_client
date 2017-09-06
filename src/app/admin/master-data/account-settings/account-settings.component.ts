@@ -109,4 +109,14 @@ export class AccountSettingsComponent implements OnInit {
         }
         return true;
     }
+    /**
+     * 
+     * @param setting 
+     */
+    public getMinDate(setting: any) {
+        if (setting.setting_validation == 'min') {
+            return new Date().toJSON().split('T')[0];
+        }
+        return false;
+    }
 }

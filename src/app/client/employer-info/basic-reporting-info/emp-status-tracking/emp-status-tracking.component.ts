@@ -43,18 +43,18 @@ export class EmpStatusTrackingComponent implements OnInit {
 
   ngOnInit() {
     this.empStatusData = this.createNewEmpStatus();
-    
-     this.route.data.subscribe((data) => { 
-        for (let label of data.data) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }      
-      },
+
+    this.route.data.subscribe((data) => {
+      for (let label of data.data) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    },
       error => { this._errorMessage = error.data }
-      );
+    );
 
 
-   // this.ElementLabelsList();
+    // this.ElementLabelsList();
     this.getEmpStatusTrackingData();
     this.getCompany();
   }
@@ -84,6 +84,8 @@ export class EmpStatusTrackingComponent implements OnInit {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this._globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }

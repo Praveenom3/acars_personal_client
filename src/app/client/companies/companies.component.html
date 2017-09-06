@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
-                            <div (click)="uploadCompanyDataFiles()" class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
+                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
                                 <ul class="ul-inline download-upload-ul">
                                     <li>
                                         <img src='../src/assets/images/upload.png'>
@@ -336,12 +336,12 @@
                             <tbody>
                                 <tr>
                                     <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
-                                            [routerLink]="clientDashBoardService.payRollDataLink">Payroll Data</a></td>
+                                            (click)="redirectToEmployeeData('payroll')">Payroll Data</a></td>
                                     <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
                                 </tr>
                                 <tr>
                                     <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
-                                            [routerLink]="clientDashBoardService.medicalPlanDataLink">Medical Plan Data</a></td>
+                                            (click)="redirectToEmployeeData('medicalplan')">Medical Plan Data</a></td>
                                     <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
                                 </tr>
                             </tbody>
@@ -624,7 +624,7 @@
                 <div class="upload-files-div-header modal-header modal-header-color">
                     <button type="button" class="close-upload-file close-modal modal-opacity close-modal-blue" (click)="closeUploadDataModal()"
                         aria-hidden="true">×</button>
-                    <div class = "upload-tick-mark-div">
+                    <div class="upload-tick-mark-div">
                         <i class="upload-fa-icon fa fa-check" aria-hidden="true"></i>
                     </div>
                 </div>
@@ -632,7 +632,7 @@
 
                     <span class="upload-data-date-span">
                             <h6 style="color:white">
-                                Open {{ clientDashBoardService.uploadDataFileDate | date:'longDate'  }}
+                                Open {{ settingsService.payrollDate | date:'longDate'  }}
                             </h6>
                         </span>
 

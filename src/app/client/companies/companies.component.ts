@@ -496,21 +496,33 @@ export class CompaniesComponent implements OnInit {
     let einString: string = '(' + ein.slice(0, 2) + ') ' + '-' + ein.slice(2, 9);
     return einString;
   }
+
   /**
    * 
    */
-  public uploadCompanyDataFiles() {
+  public closeUploadDataModal() {
+    this.companyUploadDataFile.hide();
+  }
+  /**
+   * 
+   * @param step 
+   */
+  public redirectToEmployeeData(step: string) {
     let today: any = new Date().getTime();
-    var uploadDate: any = new Date(this.clientDashBoardService.uploadDataFileDate).getTime();
+    this.settingsService.setSettingsValue();
+    var uploadDate: any = new Date(this.settingsService.payrollDate).getTime();
     if (parseInt(today) >= parseInt(uploadDate)) {
-      let url: string = '/client/' + this.globalService.encode(this.clientDashBoardService.productParams) + '/' + this.globalService.encode(this.clientDashBoardService.company.company_id);
-      this.router.navigate([url + '/employer-info/payroll'])
+      switch (step) {
+        case 'payroll':
+        case 'uploadfiles':
+          this.router.navigate([this.clientDashBoardService.payRollDataLink])
+          break;
+        case 'medicalplan':
+          this.router.navigate([this.clientDashBoardService.medicalPlanDataLink])
+          break;
+      }
     } else {
       this.companyUploadDataFile.show();
     }
-  }
-
-  public closeUploadDataModal() {
-    this.companyUploadDataFile.hide();
   }
 }

@@ -81,7 +81,7 @@ export class ClientDashBoardService {
     public accountManagerNumber: string;
 
     public userRowsOnPage: number = 5;
-    public uploadDataFileDate: any = '2017/10/15';
+
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
 
@@ -161,7 +161,7 @@ export class ClientDashBoardService {
         if (this.product) {
 
             this.client = this.product['clients'][clientId]
-
+            this.setBrandData(productId, clientId);
             this.changeStyle();
             this.company = Object.assign({});
             if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
@@ -247,20 +247,33 @@ export class ClientDashBoardService {
      * @param productId 
      * @param clientId 
      */
-    public setBrandData(productId, clientId, clientsCount = 0) {
-        let product = this.getProductFieldFromSession(productId, 'clients');
-        let client = product[clientId];
+    public setBrandData(productId, clientId) {
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        let productClients = this.getProductFieldFromSession(productId, 'clients');
+        let client = productClients[clientId];
+        let productsList = Object.keys(products).map(function (key) {
+            return products[key]
+        })
+        let product;
+        let clientsCount = 0;
+        productsList.forEach(element => {
+            clientsCount += element.clientsCount;
+        });
+
         let brand: any;
         let mobile: string;
         if (clientsCount > 1) {
             let brand = this.getProductFieldFromSession(productId, 'default_brand');
-            mobile = brand.support_phone;
-            this.brandInformation = {
-                'brand_logo': brand.brand_logo,
-                "support_email": brand.support_email,
-                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+            if (typeof brand != 'undefined') {
+
+                mobile = brand.support_phone;
+                this.brandInformation = {
+                    'brand_logo': brand.brand_logo,
+                    "support_email": brand.support_email,
+                    "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                }
+                this.clientLogo = this.logoPath + brand.brand_logo;
             }
-            this.clientLogo = this.logoPath + brand.brand_logo;
         } else {
             brand = client.brand;
             mobile = brand.support_phone;
