@@ -9,21 +9,23 @@ import { Router, RouterStateSnapshot, UrlTree, PRIMARY_OUTLET, UrlSegmentGroup, 
 })
 export class SearchBandComponent implements OnInit {
   module: string;
-  
+  searchParam: any;
+
   constructor(router: Router) {
-    
+
     const state: RouterState = router.routerState;
     const snapshot: RouterStateSnapshot = state.snapshot;
-    
-    let url:string = snapshot.url;
+
+    let url: string = snapshot.url;
     const tree: UrlTree = router.parseUrl(url);
     const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
     const s: UrlSegment[] = g.segments;
-    this.module = s[0].path; // returns 'team'
-   // s[0].parameters; // returns {id: 33}
+    this.module = s[0].path; 
+
   }
 
   ngOnInit() {
+    
   }
 
 }

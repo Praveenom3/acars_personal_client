@@ -343,3 +343,10 @@ body.body-blue nav.admin-nav .menu {
 .table-word-break {
     word-break: break-all;
 }
+
+.productsInSearchResult {
+    margin-bottom: 0px !important;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+}
