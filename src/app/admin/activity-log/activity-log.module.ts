@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {ProductsRoutingModule} from './products.routing';
-import {ProductsComponent} from './products.component';
+import {ActivityRoutingModule} from './activity.routing';
+import {ActivityLogComponent} from './activity-log.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ActivityRoutingModule
   ],
-  declarations: [ProductsComponent]
+  declarations: [ActivityLogComponent]
 })
-export class ProductsModule { }
+export class ActivityLogModule { }
