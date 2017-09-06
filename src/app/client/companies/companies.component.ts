@@ -22,6 +22,7 @@ export class CompaniesComponent implements OnInit {
 
   @ViewChild('companyModal') public companyModal: ModalDirective;
   @ViewChild('companyUserModal') public companyUserModal: ModalDirective;
+  @ViewChild('companyUploadDataFile') public companyUploadDataFile: ModalDirective;
 
   public modalTitle: string;
   public companyUserModalTitle: string;
@@ -244,6 +245,7 @@ export class CompaniesComponent implements OnInit {
         this.clientDashBoardService.company.company_ein = updatedCompany.company_ein;
       }
     });
+    this.clientDashBoardService.setCompanyToSession();
     this.clientDashBoardService.setCompanySteps();
   }
   /**
@@ -485,13 +487,30 @@ export class CompaniesComponent implements OnInit {
     this.companyUserModal.show();
   }
   /**
-   * 
+   * Foramtting ein to display in company detaila page
    */
   public formatCompanyEin(ein: string = '') {
     if (!ein) {
       return '_ _-_ _ _ _ _ _ _';
     }
-    let einString: string = '(' + ein.slice(0, 2) + ')' + '-' + ein.slice(2, 9);
+    let einString: string = '(' + ein.slice(0, 2) + ') ' + '-' + ein.slice(2, 9);
     return einString;
+  }
+  /**
+   * 
+   */
+  public uploadCompanyDataFiles() {
+    let today: any = new Date().getTime();
+    var uploadDate: any = new Date(this.clientDashBoardService.uploadDataFileDate).getTime();
+    if (parseInt(today) >= parseInt(uploadDate)) {
+      let url: string = '/client/' + this.globalService.encode(this.clientDashBoardService.productParams) + '/' + this.globalService.encode(this.clientDashBoardService.company.company_id);
+      this.router.navigate([url + '/employer-info/payroll'])
+    } else {
+      this.companyUploadDataFile.show();
+    }
+  }
+
+  public closeUploadDataModal() {
+    this.companyUploadDataFile.hide();
   }
 }

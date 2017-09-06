@@ -71,6 +71,8 @@ export class MecCoverageComponent implements OnInit {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this._globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }

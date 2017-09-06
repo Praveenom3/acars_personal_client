@@ -81,6 +81,7 @@ export class ClientDashBoardService {
     public accountManagerNumber: string;
 
     public userRowsOnPage: number = 5;
+    public uploadDataFileDate: any = '2017/10/15';
     // This is the URL to the OData end point
     private _apiUrl = this._globalService.apiHost + '/client-user';
 

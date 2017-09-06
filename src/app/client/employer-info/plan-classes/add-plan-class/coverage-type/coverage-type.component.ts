@@ -17,19 +17,19 @@ export class CoverageTypeComponent implements OnInit {
   companyDetails: any;
   coverageTypeData: { plan_class_id: number; company_id: number; plan_class_number: string; plan_class_name: string; plan_offer_type: string; plan_type_doh: string; employee_medical_plan: string; coverageType: string[]; waitingType: string[]; created_at: string; created_by: string; updated_at: string; updated_by: string; };
   label: string;
-    
-    company: string;
-    product: string;
-    company_id: any;
-    product_id: any;
-    encodedId: string = null;
-    id: number = null;
 
-    section_id: any = 9;
-    public labels: any[] = [];
+  company: string;
+  product: string;
+  company_id: any;
+  product_id: any;
+  encodedId: string = null;
+  id: number = null;
 
-    _errorMessage: string;
-    
+  section_id: any = 9;
+  public labels: any[] = [];
+
+  _errorMessage: string;
+
   constructor(route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
@@ -43,28 +43,28 @@ export class CoverageTypeComponent implements OnInit {
     this.company = route.snapshot.params['company'];
 
     this.encodedId = route.snapshot.params['encodedId'];
-    
-    if(this.encodedId){
+
+    if (this.encodedId) {
       this.id = globalService.decode(this.encodedId);
     }
-    
+
   }
 
   ngOnInit() {
     this.coverageTypeData = this.createNewCoverageType();
     this.ElementLabelsList();
     this.getCompany();
-    
-    if(this.id){
+
+    if (this.id) {
       this.getCoverageTypeData();
-    }else{
+    } else {
 
       this.planClassesService.getMaxPlanClassNumber(this.company_id)
-      .subscribe((data) => {
-        this.coverageTypeData.plan_class_number = data.maxPlanClassNumber;
-      },
-      error => { this._errorMessage = error.data }
-      );
+        .subscribe((data) => {
+          this.coverageTypeData.plan_class_number = data.maxPlanClassNumber;
+        },
+        error => { this._errorMessage = error.data }
+        );
     }
   }
 
@@ -75,6 +75,8 @@ export class CoverageTypeComponent implements OnInit {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }
@@ -100,14 +102,14 @@ export class CoverageTypeComponent implements OnInit {
     return coverageType;
   }
 
-  
+
   changeSelectType(type, value) {
     if (value != 1) {
-        if(type = 'coverageType'){
-            this.coverageTypeData.coverageType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
-        }else{
-            this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
-        }
+      if (type = 'coverageType') {
+        this.coverageTypeData.coverageType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+      } else {
+        this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+      }
     }
   }
 
@@ -116,7 +118,7 @@ export class CoverageTypeComponent implements OnInit {
     this.planClassesService.getPlanClass(this.id)
       .subscribe((planClassData) => {
         if (planClassData.planClassInformation) {
-          
+
           this.coverageTypeData.plan_class_id = planClassData.planClassInformation.plan_class_id;
           this.coverageTypeData.plan_class_number = planClassData.planClassInformation.plan_class_number;
           this.coverageTypeData.plan_class_name = planClassData.planClassInformation.plan_class_name;
@@ -126,14 +128,14 @@ export class CoverageTypeComponent implements OnInit {
 
           let planOfferTypeYear = planClassData.planClassInformation.planOfferTypeYear;
 
-          if(this.coverageTypeData.plan_offer_type != '1' ){
-              if(this.coverageTypeData.plan_offer_type == '5' ){
-                
-                this.coverageTypeData.coverageType = this.AssignMonths(planOfferTypeYear, 1);
-                this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 3);
-              }else if(this.coverageTypeData.plan_type_doh == '9'){
-                this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 2);
-              }
+          if (this.coverageTypeData.plan_offer_type != '1') {
+            if (this.coverageTypeData.plan_offer_type == '5') {
+
+              this.coverageTypeData.coverageType = this.AssignMonths(planOfferTypeYear, 1);
+              this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 3);
+            } else if (this.coverageTypeData.plan_type_doh == '9') {
+              this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 2);
+            }
           }
         }
       },
@@ -141,14 +143,14 @@ export class CoverageTypeComponent implements OnInit {
       );
   }
 
-  private AssignMonths(data, combination_type){
-    
+  private AssignMonths(data, combination_type) {
+
     let MonthFields: any[] = [];
     if (data.length > 0) {
-   
+
       data.forEach(eachSelectedMonth => {
-        
-        if(eachSelectedMonth.combination_type == combination_type){
+
+        if (eachSelectedMonth.combination_type == combination_type) {
           MonthFields[eachSelectedMonth.plan_month] = eachSelectedMonth.plan_month_value;
         }
       });
@@ -157,7 +159,7 @@ export class CoverageTypeComponent implements OnInit {
           MonthFields[i] = "";
         }
       }
-      
+
     } else {
       MonthFields = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
     }
@@ -180,7 +182,7 @@ export class CoverageTypeComponent implements OnInit {
   /*on submit sending form data to service.It is for both add and update*/
   public onSubmit(param) {
 
-    if(this.coverageTypeData.plan_class_name.length == 0){
+    if (this.coverageTypeData.plan_class_name.length == 0) {
       this.toastrService.success('Plan class name cannot be empty.');
       return false;
     }
@@ -202,47 +204,47 @@ export class CoverageTypeComponent implements OnInit {
         }
       });
     }
-    
-         this.coverageTypeData.coverageType = customCoverageTypeArray;
-         this.coverageTypeData.waitingType = customWaitingTypeArray;
-         this.coverageTypeData['company_id'] = this.company_id;
-         
-        if (this.coverageTypeData.plan_class_id > 0) {
-          this.planClassesService.updateCoverageType(this.coverageTypeData).subscribe(
-            result => {
-              if (result.success) {
-                this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
-                if (param == "exit") {
-                  this.router.navigate(['client/' + this.product + '/' + this.company]);
-                } else {
-                  this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/'+this.encodedId+ '/coverage-offered']);
-                }
-                this.toastrService.success('Coverage Type Information record added succesfully.');
-              } else {
-                this._errorMessage = 'Not Added.';
-              }
-            },
-            error => {
-            });
-        } else {
-          this.planClassesService.createCoverageType(this.coverageTypeData).subscribe(
-            result => {
-              if (result.success) {
-                this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
-                if (param == "exit") {
-                  this.router.navigate(['client/' + this.product + '/' + this.company]);
-                } else {
-                  this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/'+this.encodedId+ '/coverage-offered']);
-                }
-                this.toastrService.success('Coverage Type Information record updated succesfully.');
-              } else {
-                this._errorMessage = 'Not Updated.';
-              }
-            },
-            error => {
-            });
-        }
-    
+
+    this.coverageTypeData.coverageType = customCoverageTypeArray;
+    this.coverageTypeData.waitingType = customWaitingTypeArray;
+    this.coverageTypeData['company_id'] = this.company_id;
+
+    if (this.coverageTypeData.plan_class_id > 0) {
+      this.planClassesService.updateCoverageType(this.coverageTypeData).subscribe(
+        result => {
+          if (result.success) {
+            this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this.company]);
+            } else {
+              this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
+            }
+            this.toastrService.success('Coverage Type Information record added succesfully.');
+          } else {
+            this._errorMessage = 'Not Added.';
+          }
+        },
+        error => {
+        });
+    } else {
+      this.planClassesService.createCoverageType(this.coverageTypeData).subscribe(
+        result => {
+          if (result.success) {
+            this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
+            if (param == "exit") {
+              this.router.navigate(['client/' + this.product + '/' + this.company]);
+            } else {
+              this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
+            }
+            this.toastrService.success('Coverage Type Information record updated succesfully.');
+          } else {
+            this._errorMessage = 'Not Updated.';
+          }
+        },
+        error => {
+        });
     }
+
+  }
 
 }

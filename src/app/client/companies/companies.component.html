@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
-                            <div class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
+                            <div (click)="uploadCompanyDataFiles()" class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
                                 <ul class="ul-inline download-upload-ul">
                                     <li>
                                         <img src='../src/assets/images/upload.png'>
@@ -150,8 +150,8 @@
                                         <img src='../src/assets/images/download.png'>
                                     </li>
                                     <li>
-                                        <h6>DOWNLOAD</h6>
-                                        <h6>DOCUMENTS</h6>
+                                        <h6>DOCUMENT</h6>
+                                        <h6>History</h6>
                                     </li>
                                 </ul>
                             </div>
@@ -614,6 +614,44 @@
                 </form>
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade" bsModal #companyUploadDataFile="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="upload-file-block modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="upload-files-div-header modal-header modal-header-color">
+                    <button type="button" class="close-upload-file close-modal modal-opacity close-modal-blue" (click)="closeUploadDataModal()"
+                        aria-hidden="true">×</button>
+                    <div class = "upload-tick-mark-div">
+                        <i class="upload-fa-icon fa fa-check" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="modal-body row upload-files-div-content">
+
+                    <span class="upload-data-date-span">
+                            <h6 style="color:white">
+                                Open {{ clientDashBoardService.uploadDataFileDate | date:'longDate'  }}
+                            </h6>
+                        </span>
+
+                    <div class="">
+                        <p>
+                            Accurate ACA reporting payroll period and medical enrollment data through the end of the calendar year. For this reason,
+                            we have not opened up the begin receiving payroll and medical enrollment data until closer to
+                            the end of the year.
+                        </p>
+                        In the meantime, you can <a href="" class="link-white-underline">download this template</a> to prepare
+                        for the end of year
+
+                    </div>
+                    <div class="upload-file-footer">
+                        <a class="upload-file-footer-a" (click)="closeUploadDataModal()">OK</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 

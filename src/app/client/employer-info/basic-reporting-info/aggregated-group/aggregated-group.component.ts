@@ -116,6 +116,8 @@ export class AggregatedGroupComponent implements OnInit {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }
@@ -173,7 +175,7 @@ export class AggregatedGroupComponent implements OnInit {
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
   }
-  
+
   private formSubmit(param) {
     this.aggregatedGroupData['purchase_id'] = this.product_id;
     this.aggregatedGroupData['company_id'] = this.company_id;
