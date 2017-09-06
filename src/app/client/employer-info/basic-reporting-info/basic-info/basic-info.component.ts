@@ -54,34 +54,34 @@ export class BasicInfoComponent implements OnInit {
 
   ngOnInit() {
     this.basicInfoData = this.createNewBasicInfo();
-   // this.ElementLabelsList();
+    // this.ElementLabelsList();
     this.getStates();
     this.getBasicInfoData();
 
-    this.route.data.subscribe((data) => { 
-        for (let label of data.data) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }      
-      },
+    this.route.data.subscribe((data) => {
+      for (let label of data.data) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    },
       error => { this._errorMessage = error.data }
-      );
+    );
 
 
-      //  alert(data); console.log(data);
-      //  this.basicInfoData = data.basicData;
-     // });
+    //  alert(data); console.log(data);
+    //  this.basicInfoData = data.basicData;
+    // });
 
 
 
-  //  // or the observable method
-  // this.route.paramMap
-  //    .subscribe((params: ParamMap) => {
-  //       // console.log(params);
-  //       this.basicInfoData= params.get('id');
-  //       return params.get('dataYouResolved');
-  //       // return null
-  //    });
+    //  // or the observable method
+    // this.route.paramMap
+    //    .subscribe((params: ParamMap) => {
+    //       // console.log(params);
+    //       this.basicInfoData= params.get('id');
+    //       return params.get('dataYouResolved');
+    //       // return null
+    //    });
 
 
 
@@ -95,6 +95,8 @@ export class BasicInfoComponent implements OnInit {
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
+      this.companyDetails['product'] = this.product;
+      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
       this.purchase_id = this.companyDetails.purchase_id;
       this.client_id = this.companyDetails.client_id;
     }
