@@ -21,6 +21,7 @@ export class ClientLayoutComponent implements OnInit {
 
   public userFirstName: string;
   public userLastName: string;
+  public userType: string;
 
   constructor(private router: Router,
     route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class ClientLayoutComponent implements OnInit {
     _idleTimeout.init();
     this.dashBoardService.initDashBoardVaraibles();
     this.userFirstName = localStorage.getItem('firstName');
+    this.userType = _globalService.getUserType();
     this.userFirstName = (this.userFirstName === 'undefined') ? '' : this.userFirstName;
     this.userLastName = localStorage.getItem('lastName');
     this.userLastName = (this.userLastName != 'undefined') ? this.userLastName : '';
@@ -70,7 +72,7 @@ export class ClientLayoutComponent implements OnInit {
       let productUrl: string = '/client/' + this._globalService.encode(element.product_id) +
         '/' + this._globalService.encode(clientId) + '/dashboard';
 
-      let productName: string = element.product_name.toLocaleLowerCase();
+      let productName: string = element.product_name ? element.product_name.toLocaleLowerCase() : '';
 
       if (productName == 'vht') {
 

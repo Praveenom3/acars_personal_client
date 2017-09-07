@@ -164,16 +164,29 @@ export class ClientDashBoardService {
             this.setBrandData(productId, clientId);
             this.changeStyle();
             this.company = Object.assign({});
-            if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
+            if ((userType != '4') && (this.client['primaryData'] == null || !this.client['primaryData'])) {
                 this.redirectClientToWelcomeScreens();
             } else {
                 this.dashBoard = true;
 
-                if (userType == '3') {
-                    let clientIds: any[] = Object.keys(this.product['clients']);
+                if (userType != '4') {
+                    let clients: any[] = this.product['clients'];
+                    let clientsList = Object.keys(clients).map(function (key) {
+                        return clients[key]
+                    })
+                    let clientUsers: any = [];
+                    let companyUsersList: any = [];
+                    clientsList.forEach(element => {
+                        if (element.companyUser) {
+                            companyUsersList.push(element.client_id);
+                        } else {
+                            clientUsers.push(element.client_id);
+                        }
+                    });
                     let data = {
                         "productId": productId,
-                        "clients": clientIds,
+                        "clientUsers": clientUsers,
+                        "companyUsersList": companyUsersList,
                         "companyId": companyId
                     }
                     this.getClientCompanies(data).subscribe(
@@ -308,7 +321,6 @@ export class ClientDashBoardService {
                 }
             }
         }
-
     }
     /**
      * 
@@ -494,7 +506,7 @@ export class ClientDashBoardService {
         let userType = localStorage.getItem('usertype');
         this.changeStyle();
         this.dashBoard = false;
-        if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
+        if (userType != '4' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
             this.redirectClientToWelcomeScreens();
         } else {
             this.dashBoard = true;
@@ -606,6 +618,18 @@ export class ClientDashBoardService {
         if (this.product) {
             this.changeStyle();
         }
+    }
+
+    /**
+     * getClientDashBoardData
+     */
+    public getClientDashBoardData(clientId): Observable<any> {
+        return this._http.get(
+            this._apiUrl + '/get-client-dashboard-data/' + clientId,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
     }
 }
 

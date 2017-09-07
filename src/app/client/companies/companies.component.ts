@@ -44,6 +44,7 @@ export class CompaniesComponent implements OnInit {
   private _errorMessage: string;
   private _submitted: boolean;
 
+  public userType: any;
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -69,6 +70,7 @@ export class CompaniesComponent implements OnInit {
       .subscribe(companyData => this.onValueChanged(companyData));
     this._companyUserForm.valueChanges
       .subscribe(data => this.onCompanyValueChanged(data));
+    this.userType = globalService.getUserType();
   }
   /**
    * 
@@ -111,6 +113,9 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   toggleInvoicePayment(company) {
+    if (this.userType == 3 || this.userType == 4) {
+      return false;
+    }
     this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
     this.clientUserService.updateClientPurchaseInfo(this.clientDashBoardService.company, 'is_invoice_paid').subscribe(
       result => {
@@ -130,6 +135,11 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   toggleAgreementSign() {
+
+    if (this.userType == 3 || this.userType == 4) {
+      return false;
+    }
+
     this.clientDashBoardService.company.client_agreement = !this.clientDashBoardService.company.client_agreement;
     this.clientUserService.updateClientPurchaseInfo(this.clientDashBoardService.company, 'client_agreement').subscribe(
       result => {
@@ -149,6 +159,11 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   toggleDiscoveryCallStatus() {
+
+    if (this.userType == 3 || this.userType == 4) {
+      return false;
+    }
+
     this.clientDashBoardService.company.discovery_session = !this.clientDashBoardService.company.discovery_session;
     this.clientUserService.updateClientPurchaseInfo(this.clientDashBoardService.company, 'discovery_session').subscribe(
       result => {
@@ -489,23 +504,13 @@ export class CompaniesComponent implements OnInit {
    * @param companyUserData 
    */
   public viewCompanyUser(companyUserData) {
-    /* this.companyUserInformation = companyUserData;
-    //this._companyUserForm.reset();
-    this._resetCompanyUserFormErrors();
-    this.companyUserModalTitle = "Edit Company User";
-    this.companyUserModal.show(); */
-
-
     this.companyUserInformation = this.createCompanyUserModel();
     //this._companyUserForm.reset();
     this._resetCompanyUserFormErrors();
-
     this.companyUserInformation = Object.assign({}, companyUserData);
     this._companyUserSubmitted = false;
     this.companyUserModalTitle = "Edit Company User";
     this.companyUserModal.show();
-
-
   }
   /**
    * Foramtting ein to display in company detaila page

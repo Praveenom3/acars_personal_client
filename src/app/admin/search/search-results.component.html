@@ -37,6 +37,9 @@
                                                 <a class="cursor-pointer color-blue">{{result.username}}</a>
                                             </div>
                                         </div>
+                                        <!-- <div class="col-xs-3 pull-right">
+                                            <a class="cursor-pointer color-blue link-blue-underline" (click)="redirectToClientDashBoard(result)">View Dashboard</a>
+                                        </div> -->
                                     </div>
                                     <div class="col-xs-12 padding-0  ">
                                         <div class="col-xs-9 ">
@@ -52,7 +55,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="result.client_id">
                         <div class="col-xs-12 padding-0 border-ddd">
-                            <div class="col-xs-12  padding-6 search-user-box-new">
+                            <div (click)="redirectToClientDashBoard(result)" class="col-xs-12  padding-6 search-user-box-new">
                                 <div class="col-xs-12  margin-top-10" style="font-family: arial;">
                                     <div class="col-xs-12 padding-0  margin-bottom-30">
                                         <div class="col-xs-9 ">
@@ -60,6 +63,9 @@
                                             <div class="no-wrap">
                                                 <span class="us-phone-mask-input">{{result.client_number}}</span>
                                             </div>
+                                        </div>
+                                        <div class="col-xs-3 pull-right">
+                                            <a class="cursor-pointer color-blue link-blue-underline" (click)="redirectToClientDashBoard(result)">Dashboard</a>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 padding-0">
@@ -70,7 +76,9 @@
                                         <div class="col-xs-9">
                                             <h6 class="margin-bottom-5">Products:</h6>
                                             <div *ngIf="result.products">
-                                                <p class="productsInSearchResult" *ngFor="let product of result.products">{{product.product_full_name}}</p>
+                                                <p class="productsInSearchResult" *ngFor="let product of result.products">
+                                                    {{product.product_full_name}}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
