@@ -169,7 +169,7 @@ export class ClientDashBoardService {
             } else {
                 this.dashBoard = true;
 
-                if (userType != '4') {
+                if (userType != 4) {
                     let clients: any[] = this.product['clients'];
                     let clientsList = Object.keys(clients).map(function (key) {
                         return clients[key]
@@ -221,7 +221,7 @@ export class ClientDashBoardService {
                                 this.companies = result.data.companiesList;
                                 this.rowsOnPage = this.companies.length;
                                 this.company = result.data.defaultCompanyInformation;
-
+                                this.client = this.product['clients'][this.company.client_id]
                                 this.selectedCompanyRow = this.company.company_id;
                                 this.company.company_data = this.checkCompanyData(this.company);
                                 this.userRowsOnPage = this.company.companyUsers.length;
