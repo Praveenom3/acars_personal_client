@@ -30,7 +30,7 @@ export class CoverageTypeComponent implements OnInit {
 
   _errorMessage: string;
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     public globalService: GlobalService,
@@ -58,7 +58,6 @@ export class CoverageTypeComponent implements OnInit {
     if (this.id) {
       this.getCoverageTypeData();
     } else {
-
       this.planClassesService.getMaxPlanClassNumber(this.company_id)
         .subscribe((data) => {
           this.coverageTypeData.plan_class_number = data.maxPlanClassNumber;
@@ -115,32 +114,29 @@ export class CoverageTypeComponent implements OnInit {
 
   /*getting data from service*/
   private getCoverageTypeData() {
-    this.planClassesService.getPlanClass(this.id)
-      .subscribe((planClassData) => {
-        if (planClassData.planClassInformation) {
+    let planClassData = this.route.snapshot.data['data'];
+    if (planClassData.planClassInformation) {
 
-          this.coverageTypeData.plan_class_id = planClassData.planClassInformation.plan_class_id;
-          this.coverageTypeData.plan_class_number = planClassData.planClassInformation.plan_class_number;
-          this.coverageTypeData.plan_class_name = planClassData.planClassInformation.plan_class_name;
-          this.coverageTypeData.plan_offer_type = planClassData.planClassInformation.plan_offer_type;
-          this.coverageTypeData.plan_type_doh = planClassData.planClassInformation.plan_type_doh;
-          this.coverageTypeData.employee_medical_plan = planClassData.planClassInformation.employee_medical_plan;
+      this.coverageTypeData.plan_class_id = planClassData.planClassInformation.plan_class_id;
+      this.coverageTypeData.plan_class_number = planClassData.planClassInformation.plan_class_number;
+      this.coverageTypeData.plan_class_name = planClassData.planClassInformation.plan_class_name;
+      this.coverageTypeData.plan_offer_type = planClassData.planClassInformation.plan_offer_type;
+      this.coverageTypeData.plan_type_doh = planClassData.planClassInformation.plan_type_doh;
+      this.coverageTypeData.employee_medical_plan = planClassData.planClassInformation.employee_medical_plan;
 
-          let planOfferTypeYear = planClassData.planClassInformation.planOfferTypeYear;
+      let planOfferTypeYear = planClassData.planClassInformation.planOfferTypeYear;
 
-          if (this.coverageTypeData.plan_offer_type != '1') {
-            if (this.coverageTypeData.plan_offer_type == '5') {
+      if (this.coverageTypeData.plan_offer_type != '1') {
+        if (this.coverageTypeData.plan_offer_type == '5') {
 
-              this.coverageTypeData.coverageType = this.AssignMonths(planOfferTypeYear, 1);
-              this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 3);
-            } else if (this.coverageTypeData.plan_type_doh == '9') {
-              this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 2);
-            }
-          }
+          this.coverageTypeData.coverageType = this.AssignMonths(planOfferTypeYear, 1);
+          this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 3);
+        } else if (this.coverageTypeData.plan_type_doh == '9') {
+          this.coverageTypeData.waitingType = this.AssignMonths(planOfferTypeYear, 2);
         }
-      },
-      error => { this._errorMessage = error.data }
-      );
+      }
+    }
+
   }
 
   private AssignMonths(data, combination_type) {
@@ -168,15 +164,13 @@ export class CoverageTypeComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      for (let label of labelsData) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    }
   }
 
   /*on submit sending form data to service.It is for both add and update*/

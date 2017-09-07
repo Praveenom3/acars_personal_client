@@ -8,7 +8,7 @@ const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: '',        
+        path: '',
         children: [
             {
                 path: 'basic-reporting-info',
@@ -17,7 +17,7 @@ const routes: Routes = [
         ],
     },
     {
-        path: '',        
+        path: '',
         children: [
             {
                 path: 'benefit-plan-info',
@@ -26,7 +26,7 @@ const routes: Routes = [
         ],
     },
     {
-        path: '',        
+        path: '',
         children: [
             {
                 path: 'plan-classes',
@@ -35,7 +35,7 @@ const routes: Routes = [
         ],
     },
     {
-        path: '',        
+        path: '',
         children: [
             {
                 path: 'payroll',
@@ -44,7 +44,7 @@ const routes: Routes = [
         ],
     },
     {
-        path: '',        
+        path: '',
         children: [
             {
                 path: 'enrollments',
@@ -56,8 +56,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: []
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+    providers: []
 })
 export class EmployerInfoRoutingModule { }

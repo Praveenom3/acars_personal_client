@@ -21,6 +21,7 @@ import { AggregatedGroupService } from "app/_services/_aggregated-group.service"
 import { AnythingElseService } from "app/_services/_anything-else.service";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { ElementMasterResolver } from "app/_services/_element-resolver";
+import { EmployerInfoDataResolver } from "app/_services/_employer-info-data-resolver";
 
 
 @NgModule({
@@ -33,6 +34,6 @@ import { ElementMasterResolver } from "app/_services/_element-resolver";
     TextMaskModule,
   ],
   declarations: [BasicInfoComponent, EmpStatusTrackingComponent, PlanOfferingCriteriaComponent, DesignatedGovtEntityComponent, AggregatedGroupComponent, AnythingElseComponent],
-  providers:[ClientDashBoardService,AnythingElseService,AggregatedGroupService,DesignatedGovtEntityService,ElementMasterService,BriBasicInfoService,EmpStatusTrackingService,PlanOfferingCriteriaService,ElementMasterResolver]
+  providers: [EmployerInfoDataResolver, ClientDashBoardService, AnythingElseService, AggregatedGroupService, DesignatedGovtEntityService, ElementMasterService, BriBasicInfoService, EmpStatusTrackingService, PlanOfferingCriteriaService, ElementMasterResolver]
 })
 export class BasicReportingInfoModule { }

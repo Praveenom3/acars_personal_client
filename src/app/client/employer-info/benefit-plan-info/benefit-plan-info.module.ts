@@ -10,6 +10,8 @@ import { ElementMasterService } from "app/_services/_element-master.service";
 import { GeneralPlanInfoService } from "app/_services/_general-plan-info.service";
 import { MecCoverageService } from "app/_services/_mec-coverage.service";
 import { SharedModule } from "app/_shared/shared.module";
+import { BpiDataDataResolver } from "app/_services/bpi-data-resolver";
+import { ElementMasterResolver } from "app/_services/_element-resolver";
 
 @NgModule({
   imports: [
@@ -20,6 +22,6 @@ import { SharedModule } from "app/_shared/shared.module";
     SharedModule
   ],
   declarations: [GeneralPlanInformationComponent, MecCoverageComponent],
-  providers:[ElementMasterService,GeneralPlanInfoService,MecCoverageService]
+  providers: [BpiDataDataResolver, ElementMasterResolver, ElementMasterService, GeneralPlanInfoService, MecCoverageService]
 })
 export class BenefitPlanInfoModule { }

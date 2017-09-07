@@ -33,7 +33,7 @@ export class AggregatedGroupComponent implements OnInit {
 
   public totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     public globalService: GlobalService,
@@ -125,52 +125,47 @@ export class AggregatedGroupComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      for (let label of labelsData) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    }
   }
 
   /*getting data from service*/
   private getAggregatedGroupData() {
-    this._aggregateGroupService.getAggregatedGroupData(this.company_id)
-      .subscribe((planOfferData) => {
-        if (planOfferData) {
-          this.aggregatedGroupData = planOfferData;
-          if (planOfferData.briAggregatedGroupLists.length != 0) {
-            this.inputs = [];
-            this.groupListsData = planOfferData.briAggregatedGroupLists;
-            for (let tempData of this.groupListsData) {
-              this.inputs.push({ name: tempData.group_name, ein: tempData.group_ein });
-              this.lengb = this.inputs.length;
-            }
-          }
-
-          if (this.aggregatedGroupData.total_aggregated_grp_months) {
-            this.aggregatedGroupData.total_aggregated_grp_months = JSON.parse(this.aggregatedGroupData.total_aggregated_grp_months);
-            if (this.aggregatedGroupData.total_aggregated_grp_months.length == 12) {
-              this.aggregatedGroupData.entireYear = true;
-              this.aggregatedGroupData.total_aggregated_grp_months = [];
-            } else {
-              let MonthFields: any[] = [];
-              this.aggregatedGroupData.total_aggregated_grp_months.forEach((monthSelected, index) => {
-                MonthFields[monthSelected] = true;
-              });
-              this.aggregatedGroupData.total_aggregated_grp_months = [];
-              this.aggregatedGroupData.total_aggregated_grp_months = MonthFields;
-            }
-          }
-
+    let planOfferData = this.route.snapshot.data['data'];
+    if (planOfferData) {
+      this.aggregatedGroupData = planOfferData;
+      if (planOfferData.briAggregatedGroupLists.length != 0) {
+        this.inputs = [];
+        this.groupListsData = planOfferData.briAggregatedGroupLists;
+        for (let tempData of this.groupListsData) {
+          this.inputs.push({ name: tempData.group_name, ein: tempData.group_ein });
+          this.lengb = this.inputs.length;
         }
-      },
-      error => { this._errorMessage = error.data }
-      );
+      }
+
+      if (this.aggregatedGroupData.total_aggregated_grp_months) {
+        this.aggregatedGroupData.total_aggregated_grp_months = JSON.parse(this.aggregatedGroupData.total_aggregated_grp_months);
+        if (this.aggregatedGroupData.total_aggregated_grp_months.length == 12) {
+          this.aggregatedGroupData.entireYear = true;
+          this.aggregatedGroupData.total_aggregated_grp_months = [];
+        } else {
+          let MonthFields: any[] = [];
+          this.aggregatedGroupData.total_aggregated_grp_months.forEach((monthSelected, index) => {
+            MonthFields[monthSelected] = true;
+          });
+          this.aggregatedGroupData.total_aggregated_grp_months = [];
+          this.aggregatedGroupData.total_aggregated_grp_months = MonthFields;
+        }
+      }
+
+    }
   }
+
 
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
