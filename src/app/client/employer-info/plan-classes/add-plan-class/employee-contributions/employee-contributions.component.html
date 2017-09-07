@@ -104,7 +104,7 @@
                                                                                 <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" name="employee_plan_contribution" value="1"> Yes
                                                                             </label>
                                                                                 <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" name="employee_plan_contribution" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" (click)="resetPremiums()" name="employee_plan_contribution" value="2"> No
                                                                            </label>
                                                                             </div>
                                                                         </div>

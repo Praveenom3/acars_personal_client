@@ -101,15 +101,14 @@ export class CoverageTypeComponent implements OnInit {
     return coverageType;
   }
 
-
-  changeSelectType(type, value) {
-    if (value != 1) {
-      if (type = 'coverageType') {
+  resetSelectTypes(type) {
+      if(type == "plan_type_doh"){
+        this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+      }else if(type == "plan_offer_type"){
+        this.coverageTypeData.plan_type_doh = '';
         this.coverageTypeData.coverageType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
-      } else {
         this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
       }
-    }
   }
 
   /*getting data from service*/
