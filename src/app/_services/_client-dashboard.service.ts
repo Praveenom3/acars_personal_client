@@ -164,16 +164,29 @@ export class ClientDashBoardService {
             this.setBrandData(productId, clientId);
             this.changeStyle();
             this.company = Object.assign({});
-            if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
+            if ((userType != '4') && (this.client['primaryData'] == null || !this.client['primaryData'])) {
                 this.redirectClientToWelcomeScreens();
             } else {
                 this.dashBoard = true;
 
-                if (userType == '3') {
-                    let clientIds: any[] = Object.keys(this.product['clients']);
+                if (userType != 4) {
+                    let clients: any[] = this.product['clients'];
+                    let clientsList = Object.keys(clients).map(function (key) {
+                        return clients[key]
+                    })
+                    let clientUsers: any = [];
+                    let companyUsersList: any = [];
+                    clientsList.forEach(element => {
+                        if (element.companyUser) {
+                            companyUsersList.push(element.client_id);
+                        } else {
+                            clientUsers.push(element.client_id);
+                        }
+                    });
                     let data = {
                         "productId": productId,
-                        "clients": clientIds,
+                        "clientUsers": clientUsers,
+                        "companyUsersList": companyUsersList,
                         "companyId": companyId
                     }
                     this.getClientCompanies(data).subscribe(
@@ -208,7 +221,7 @@ export class ClientDashBoardService {
                                 this.companies = result.data.companiesList;
                                 this.rowsOnPage = this.companies.length;
                                 this.company = result.data.defaultCompanyInformation;
-
+                                this.client = this.product['clients'][this.company.client_id]
                                 this.selectedCompanyRow = this.company.company_id;
                                 this.company.company_data = this.checkCompanyData(this.company);
                                 this.userRowsOnPage = this.company.companyUsers.length;
@@ -247,42 +260,66 @@ export class ClientDashBoardService {
      * @param productId 
      * @param clientId 
      */
-    public setBrandData(productId, clientId) {
+    public setBrandData(productId = null, clientId = null) {
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
-        let productClients = this.getProductFieldFromSession(productId, 'clients');
-        let client = productClients[clientId];
-        let productsList = Object.keys(products).map(function (key) {
-            return products[key]
-        })
-        let product;
-        let clientsCount = 0;
-        productsList.forEach(element => {
-            clientsCount += element.clientsCount;
-        });
+        let company = JSON.parse(this._globalService.getCompany());
+        productId = productId ? productId : this._globalService.decode(company.product_id);
+        clientId = clientId ? clientId : this._globalService.decode(company.client_id);
+        if (productId && clientId) {
+            let productClients = this.getProductFieldFromSession(productId, 'clients');
+            let client = productClients[clientId];
+            let productsList = Object.keys(products).map(function (key) {
+                return products[key];
+            })
 
-        let brand: any;
-        let mobile: string;
-        if (clientsCount > 1) {
-            let brand = this.getProductFieldFromSession(productId, 'default_brand');
-            if (typeof brand != 'undefined') {
+            let product;
+            let clientsCount = 0;
+            let clientsIds: any = [];
 
-                mobile = brand.support_phone;
-                this.brandInformation = {
-                    'brand_logo': brand.brand_logo,
-                    "support_email": brand.support_email,
-                    "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+            productsList.forEach(element => {
+                clientsIds.push(element.clientIds);
+            });
+
+            var distinctClientIds: any = [];
+
+            for (var prop in clientsIds) {
+                if (clientsIds.hasOwnProperty(prop)) {
+                    clientsIds[prop].forEach(function (id) {
+                        if (distinctClientIds.indexOf(id) == -1) {
+                            distinctClientIds.push(id);
+                        }
+                    });
                 }
-                this.clientLogo = this.logoPath + brand.brand_logo;
             }
-        } else {
-            brand = client.brand;
-            mobile = brand.support_phone;
-            this.brandInformation = {
-                'brand_logo': brand.brand_logo,
-                "support_email": brand.support_email,
-                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+
+            clientsCount = distinctClientIds.length;
+
+            let brand: any;
+            let mobile: string;
+            if (clientsCount > 1) {
+                let brand = this.getProductFieldFromSession(productId, 'default_brand');
+                if (brand && brand != null && typeof brand != 'undefined') {
+
+                    mobile = brand.support_phone;
+                    this.brandInformation = {
+                        'brand_logo': brand.brand_logo,
+                        "support_email": brand.support_email,
+                        "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                    }
+                    this.clientLogo = this.logoPath + brand.brand_logo;
+                }
+            } else {
+                brand = (typeof client.brand != 'undefined') ? client.brand : '';
+                if (brand && brand != null && typeof brand != 'undefined') {
+                    mobile = brand.support_phone;
+                    this.brandInformation = {
+                        'brand_logo': brand.brand_logo,
+                        "support_email": brand.support_email,
+                        "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                    }
+                    this.clientLogo = this.logoPath + brand.brand_logo;
+                }
             }
-            this.clientLogo = this.logoPath + brand.brand_logo;
         }
     }
     /**
@@ -469,7 +506,7 @@ export class ClientDashBoardService {
         let userType = localStorage.getItem('usertype');
         this.changeStyle();
         this.dashBoard = false;
-        if (userType == '3' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
+        if (userType != '4' && (this.client['primaryData'] == null || !this.client['primaryData'])) {
             this.redirectClientToWelcomeScreens();
         } else {
             this.dashBoard = true;
@@ -533,8 +570,9 @@ export class ClientDashBoardService {
      */
     public setCompanyToSession() {
         let data: any = {
-            'purchase_id': this.company.purchase_id,
-            'client_id': this.company.client_id,
+            'purchase_id': this._globalService.encode(this.company.purchase_id),
+            'product_id': this._globalService.encode(this.productParams),
+            'client_id': this._globalService.encode(this.company.client_id),
             'company_ein': this.company.company_ein,
             'company_name': this.company.company_name,
             'primary_data': this.company.primary_data,
@@ -568,6 +606,30 @@ export class ClientDashBoardService {
         }
 
         return true
+    }
+    /**
+     *  Setting active product
+     */
+    public setActiveProduct() {
+        let company = JSON.parse(this._globalService.getCompany());
+        let productId = this._globalService.decode(company.product_id);
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        this.product = products[productId];
+        if (this.product) {
+            this.changeStyle();
+        }
+    }
+
+    /**
+     * getClientDashBoardData
+     */
+    public getClientDashBoardData(clientId): Observable<any> {
+        return this._http.get(
+            this._apiUrl + '/get-client-dashboard-data/' + clientId,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
     }
 }
 

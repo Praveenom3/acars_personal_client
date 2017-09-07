@@ -58,9 +58,8 @@ export class PayrollComponent implements OnInit {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.companyDetails['clientEncodedId'] = this._globalService.encode(this.companyDetails.client_id);
-      this.purchase_id = this.companyDetails.purchase_id;
-      this.client_id = this.companyDetails.client_id;
+      this.purchase_id = this._globalService.decode(this.companyDetails.purchase_id);
+      this.client_id = this._globalService.decode(this.companyDetails.client_id);
     }
   }
 }

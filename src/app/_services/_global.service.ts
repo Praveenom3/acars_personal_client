@@ -24,7 +24,7 @@ export class GlobalService {
     ];
 
     constructor() {
-            
+
         if (environment.production == true) {
             this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
             this.apiRoot = 'http://services.acadev.acareportingsoftware.com/';
@@ -54,11 +54,17 @@ export class GlobalService {
     public getUserId(): any {
         return localStorage.getItem('user_id');
     }
-	
-	public getCompany(): any {
+    /**
+     * Returns User type of logged in user
+     */
+    public getUserType(): any {
+        return localStorage.getItem('usertype');
+    }
+
+    public getCompany(): any {
         return localStorage.getItem('company');
     }
-	
+
     /**
      * Encodes and returns
      * @param param 
@@ -76,7 +82,7 @@ export class GlobalService {
         return atob(splittedString[1]);
     }
     public handleError(error: Response | any) {
-        
+
         let errorMessage: any = {};
         // Connection error
         if (error.status == 0) {
@@ -85,28 +91,27 @@ export class GlobalService {
                 status: 0,
                 data: "Sorry, there was a connection error occurred. Please try again.",
             };
-        }else if(error.status == 401){
+        } else if (error.status == 401) {
             console.log('You are not authorized to view this content!');
-        }else {
+        } else {
             errorMessage = error.json();
         }
 
         return Observable.throw(errorMessage);
     }
 
-    public getPermissions(): void{
+    public getPermissions(): void {
         let permissionsSet: any = [];
         if (localStorage.getItem("admin_permissions") != 'undefined') {
             let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
-            console.log(admin_permissions);
-            if((admin_permissions).includes(1)){
+            if ((admin_permissions).includes(1)) {
                 this.financial_permission = true;
             }
-            
-            if((admin_permissions).includes(2)){
+
+            if ((admin_permissions).includes(2)) {
                 this.masterData_permission = true;
             }
-            if((admin_permissions).includes(3)){
+            if ((admin_permissions).includes(3)) {
                 this.systemAdmin_permission = true;
             }
         }

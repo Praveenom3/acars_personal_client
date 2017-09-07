@@ -89,9 +89,8 @@ export class GeneralPlanInformationComponent implements OnInit {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.companyDetails['clientEncodedId'] = this._globalService.encode(this.companyDetails.client_id);
-      this.purchase_id = this.companyDetails.purchase_id;
-      this.client_id = this.companyDetails.client_id;
+      this.purchase_id = this._globalService.decode(this.companyDetails.purchase_id);
+      this.client_id = this._globalService.decode(this.companyDetails.client_id);
     }
   }
 
@@ -153,7 +152,7 @@ export class GeneralPlanInformationComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+              this.redirectToDashboard();
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
@@ -173,7 +172,7 @@ export class GeneralPlanInformationComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+              this.redirectToDashboard();
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
