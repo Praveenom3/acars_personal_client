@@ -76,9 +76,8 @@ export class CoverageTypeComponent implements OnInit {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
-      this.purchase_id = this.companyDetails.purchase_id;
-      this.client_id = this.companyDetails.client_id;
+      this.purchase_id = this.globalService.decode(this.companyDetails.purchase_id);
+      this.client_id = this.globalService.decode(this.companyDetails.client_id);
     }
   }
 

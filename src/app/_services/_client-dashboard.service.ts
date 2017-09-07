@@ -247,43 +247,68 @@ export class ClientDashBoardService {
      * @param productId 
      * @param clientId 
      */
-    public setBrandData(productId, clientId) {
+    public setBrandData(productId = null, clientId = null) {
         let products = JSON.parse(localStorage.getItem('productsAndClients'));
-        let productClients = this.getProductFieldFromSession(productId, 'clients');
-        let client = productClients[clientId];
-        let productsList = Object.keys(products).map(function (key) {
-            return products[key]
-        })
-        let product;
-        let clientsCount = 0;
-        productsList.forEach(element => {
-            clientsCount += element.clientsCount;
-        });
+        let company = JSON.parse(this._globalService.getCompany());
+        productId = productId ? productId : this._globalService.decode(company.product_id);
+        clientId = clientId ? clientId : this._globalService.decode(company.client_id);
+        if (productId && clientId) {
+            let productClients = this.getProductFieldFromSession(productId, 'clients');
+            let client = productClients[clientId];
+            let productsList = Object.keys(products).map(function (key) {
+                return products[key];
+            })
 
-        let brand: any;
-        let mobile: string;
-        if (clientsCount > 1) {
-            let brand = this.getProductFieldFromSession(productId, 'default_brand');
-            if (typeof brand != 'undefined') {
+            let product;
+            let clientsCount = 0;
+            let clientsIds: any = [];
 
-                mobile = brand.support_phone;
-                this.brandInformation = {
-                    'brand_logo': brand.brand_logo,
-                    "support_email": brand.support_email,
-                    "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+            productsList.forEach(element => {
+                clientsIds.push(element.clientIds);
+            });
+
+            var distinctClientIds: any = [];
+
+            for (var prop in clientsIds) {
+                if (clientsIds.hasOwnProperty(prop)) {
+                    clientsIds[prop].forEach(function (id) {
+                        if (distinctClientIds.indexOf(id) == -1) {
+                            distinctClientIds.push(id);
+                        }
+                    });
                 }
-                this.clientLogo = this.logoPath + brand.brand_logo;
             }
-        } else {
-            brand = client.brand;
-            mobile = brand.support_phone;
-            this.brandInformation = {
-                'brand_logo': brand.brand_logo,
-                "support_email": brand.support_email,
-                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+
+            clientsCount = distinctClientIds.length;
+
+            let brand: any;
+            let mobile: string;
+            if (clientsCount > 1) {
+                let brand = this.getProductFieldFromSession(productId, 'default_brand');
+                if (brand && brand != null && typeof brand != 'undefined') {
+
+                    mobile = brand.support_phone;
+                    this.brandInformation = {
+                        'brand_logo': brand.brand_logo,
+                        "support_email": brand.support_email,
+                        "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                    }
+                    this.clientLogo = this.logoPath + brand.brand_logo;
+                }
+            } else {
+                brand = client.brand;
+                if (brand && brand != null && typeof brand != 'undefined') {
+                    mobile = brand.support_phone;
+                    this.brandInformation = {
+                        'brand_logo': brand.brand_logo,
+                        "support_email": brand.support_email,
+                        "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                    }
+                    this.clientLogo = this.logoPath + brand.brand_logo;
+                }
             }
-            this.clientLogo = this.logoPath + brand.brand_logo;
         }
+
     }
     /**
      * 
@@ -533,8 +558,9 @@ export class ClientDashBoardService {
      */
     public setCompanyToSession() {
         let data: any = {
-            'purchase_id': this.company.purchase_id,
-            'client_id': this.company.client_id,
+            'purchase_id': this._globalService.encode(this.company.purchase_id),
+            'product_id': this._globalService.encode(this.productParams),
+            'client_id': this._globalService.encode(this.company.client_id),
             'company_ein': this.company.company_ein,
             'company_name': this.company.company_name,
             'primary_data': this.company.primary_data,
@@ -568,6 +594,18 @@ export class ClientDashBoardService {
         }
 
         return true
+    }
+    /**
+     *  Setting active product
+     */
+    public setActiveProduct() {
+        let company = JSON.parse(this._globalService.getCompany());
+        let productId = this._globalService.decode(company.product_id);
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        this.product = products[productId];
+        if (this.product) {
+            this.changeStyle();
+        }
     }
 }
 

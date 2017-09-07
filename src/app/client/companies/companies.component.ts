@@ -55,18 +55,13 @@ export class CompaniesComponent implements OnInit {
     public settingsService: SettingsService,
     public companyUserService: CompanyUserService,
     public clientUserService: ClientUserService) {
+
     this._companyForm = _formBuilder.group({
-      company_name: ['', Validators.compose([Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
-      company_ein: ['',],
+      company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
+      company_ein: ['', Validators.compose([Validators.required])],
     });
 
-    this._companyUserForm = _formBuilder.group({
-      first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-      last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-      phone: ['', Validators.compose([Validators.required])],
-      phone_extension: ['']
-    });
+    this.createCompanyUserForm();
 
     this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
     this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
@@ -74,6 +69,18 @@ export class CompaniesComponent implements OnInit {
       .subscribe(companyData => this.onValueChanged(companyData));
     this._companyUserForm.valueChanges
       .subscribe(data => this.onCompanyValueChanged(data));
+  }
+  /**
+   * 
+   */
+  public createCompanyUserForm() {
+    this._companyUserForm = this._formBuilder.group({
+      first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+      last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+      phone: ['', Validators.compose([Validators.required])],
+      phone_extension: ['']
+    });
   }
   /**
    * 
@@ -482,9 +489,23 @@ export class CompaniesComponent implements OnInit {
    * @param companyUserData 
    */
   public viewCompanyUser(companyUserData) {
-    this.companyUserInformation = companyUserData;
+    /* this.companyUserInformation = companyUserData;
+    //this._companyUserForm.reset();
+    this._resetCompanyUserFormErrors();
+    this.companyUserModalTitle = "Edit Company User";
+    this.companyUserModal.show(); */
+
+
+    this.companyUserInformation = this.createCompanyUserModel();
+    //this._companyUserForm.reset();
+    this._resetCompanyUserFormErrors();
+
+    this.companyUserInformation = Object.assign({}, companyUserData);
+    this._companyUserSubmitted = false;
     this.companyUserModalTitle = "Edit Company User";
     this.companyUserModal.show();
+
+
   }
   /**
    * Foramtting ein to display in company detaila page

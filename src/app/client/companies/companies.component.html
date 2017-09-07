@@ -435,7 +435,7 @@
                     <div class="modal-body row">
                         <div class="col-md-12">
                             <div class="col-md-6">
-                                <label class="form-control-label">Company Name</label>
+                                <label class="form-control-label">Company Name<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
                                     <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
                                         [ngClass]="{'form-control-danger': !_isValid('company_name')}">
@@ -443,7 +443,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">EIN</label>
+                                <label class="form-control-label">EIN<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                     <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
                                         repeat=9 [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true"
