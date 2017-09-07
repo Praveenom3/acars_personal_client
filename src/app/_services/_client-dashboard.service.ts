@@ -309,7 +309,7 @@ export class ClientDashBoardService {
                     this.clientLogo = this.logoPath + brand.brand_logo;
                 }
             } else {
-                brand = client.brand;
+                brand = (typeof client.brand != 'undefined') ? client.brand : '';
                 if (brand && brand != null && typeof brand != 'undefined') {
                     mobile = brand.support_phone;
                     this.brandInformation = {
