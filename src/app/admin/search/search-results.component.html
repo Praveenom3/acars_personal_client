@@ -2,7 +2,7 @@
 
 <div class="page-content col-md-12 section-page-content">
     <div class="container">
-        <div class="col-md-12  padding-0 ">
+        <!--<div class="col-md-12  padding-0 ">
             <div class="col-md-6 padding-0 margin-top-10" align="left">
                 <div class="summary">Showing <b>1-12</b> of <b>147</b> items.</div>
             </div>
@@ -19,453 +19,66 @@
                     <li class="last"><a data-page="9">last</a></li>
                 </ul>
             </div>
-        </div>
+        </div>-->
         <div class="col-md-12 border-ddd widget">
             <div class="col-md-12  padding-0">
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
+                <div *ngFor="let result of searchResults">
+                    <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="result.user_id">
+                        <div class="col-xs-12 padding-0 border-ddd">
+                            <div class="col-xs-12  padding-6 search-user-box-new">
+                                <div class="col-xs-12  margin-top-10" style="font-family: arial;">
+                                    <div class="col-xs-12 padding-0  margin-bottom-35">
+                                        <div class="col-xs-9 ">
+                                            <div class="no-wrap">{{result.admin_user}}</div>
+                                            <div class="no-wrap">
+                                                <span class="us-phone-mask-input">{{result.mobile}}</span>
+                                            </div>
+                                            <div class="no-wrap">
+                                                <a class="cursor-pointer color-blue">{{result.username}}</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
+                                    <div class="col-xs-12 padding-0  ">
+                                        <div class="col-xs-9 ">
+                                            <div class="no-wrap">Admin</div>
+                                        </div>
+                                        <div class="col-xs-9 ">
+                                            <div class="no-wrap"><b>ACA</b></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="result.client_id">
+                        <div class="col-xs-12 padding-0 border-ddd">
+                            <div class="col-xs-12  padding-6 search-user-box-new">
+                                <div class="col-xs-12  margin-top-10" style="font-family: arial;">
+                                    <div class="col-xs-12 padding-0  margin-bottom-30">
+                                        <div class="col-xs-9 ">
+                                            <div class="no-wrap">{{result.client_name}}</div>
+                                            <div class="no-wrap">
+                                                <span class="us-phone-mask-input">{{result.client_number}}</span>
+                                            </div>
                                         </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
                                     </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
+                                    <div class="col-xs-12 padding-0">
+                                        <div class="col-xs-3">
+                                            <div class="no-wrap">Client</div>
+                                            <div class="no-wrap"><b>ACA</b></div>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <h6 class="margin-bottom-5">Products:</h6>
+                                            <div *ngIf="result.products">
+                                                <p class="productsInSearchResult" *ngFor="let product of result.products">{{product.product_full_name}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-xs-12 padding-10">
-                    <div class="col-xs-12 padding-0 border-ddd">
-                        <div class="col-xs-12  padding-6 search-user-box-new">
-                            <div class="col-xs-12  margin-top-10" style="font-family: arial;">
-                                <div class="col-xs-12 padding-0  margin-bottom-35">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Mark Combs</div>
-                                        <div class="no-wrap">
-                                            <span class="us-phone-mask-input">(444) 444-4444</span>
-                                        </div>
-                                        <div class="no-wrap">
-                                            <a href="mailto:mark@acars.com" class="color-blue">mark@acars.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a class="color-blue search-edit admin-view"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update admin user"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 padding-0  ">
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap">Admin</div>
-                                    </div>
-                                    <div class="col-xs-3 pull-right text-right">
-                                        <div class="color-blue pull-left margin-left-20" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to view Admin dashboard">
-                                            <a class="fa fa-dashboard color-blue"></a>
-                                        </div>
-                                        <a class="color-blue view-firm-detail"><i class="fa fa-pencil-square-o" alt="Alternative text to the image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click to update firm"></i></a>
-                                    </div>
-                                    <div class="col-xs-9 ">
-                                        <div class="no-wrap"><b>ACA</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

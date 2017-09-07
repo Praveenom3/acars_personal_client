@@ -64,13 +64,13 @@
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/manage-e-files']" [routerLinkActive]="['page-active']">
                             Manage E-files
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=systemAdmin_permission [routerLink]="['/admin/jobs']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/jobs']" [routerLinkActive]="['page-active']">
                             Scheduled Jobs
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=systemAdmin_permission [routerLink]="['/admin/error-log']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/error-log']" [routerLinkActive]="['page-active']">
                             Error Log
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=systemAdmin_permission [routerLink]="['/admin/activity-log']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/activity-log']" [routerLinkActive]="['page-active']">
                             Activity Log
                         </a>
 

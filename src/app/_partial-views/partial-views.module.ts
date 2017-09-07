@@ -11,12 +11,14 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import { ModalModule } from "ngx-bootstrap";
 import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmation/delete-confirmation.component";
 import { CloseModalConfirmationComponent } from "app/_partial-views/close-modal-confirmation/close-modal-confirmation.component";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
    imports: [
     CommonModule,
     RouterModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    FormsModule
   ],
   declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent],
   exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent]

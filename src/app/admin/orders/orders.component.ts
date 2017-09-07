@@ -180,7 +180,6 @@ export class OrdersComponent implements OnInit {
     }
 
     public getSelectableProducts(client_id?, product_id?, mode?){
-
         if(mode == 'clientAddPurchase'){
             //before submit
             //for the update client scenario
@@ -262,6 +261,12 @@ export class OrdersComponent implements OnInit {
                         });
                     }
                 });
+
+                let mid_arr = [];
+                mid_arr = this.temp_arr;
+                this.temp_arr = this.selectableProducts;
+                this.selectableProducts = mid_arr;
+                
             }
 
         }else if(mode == 'clientUpdatePurchaseAfterSubmit'){
@@ -281,6 +286,15 @@ export class OrdersComponent implements OnInit {
                 });
             }
             this.temp_arr = [];
+        }else if(mode == 'rollbackTempArrWithSelected'){
+            
+            if(this.temp_arr.length > 0){
+                let mid_arr = [];
+                mid_arr = this.temp_arr;
+                this.temp_arr = this.selectableProducts;
+                this.selectableProducts = mid_arr;
+
+            }
         }else{
             //getting all the available products.. This stmt alone can be used in the freshly adding client scenario also
             this.selectableProducts = JSON.parse(JSON.stringify(this.availableProducts));
@@ -423,6 +437,7 @@ export class OrdersComponent implements OnInit {
             this._resetFormValues(this._addPurchaseForm);
 
         }else if(modal=='updatePurchaseModal'){
+            this.getSelectableProducts('', '', 'rollbackTempArrWithSelected');
             this.updatePurchaseModal.hide();
             this._resetFormValues(this._updatePurchaseForm);
         }
@@ -593,7 +608,8 @@ export class OrdersComponent implements OnInit {
             this.temp_index = -1;
 
             this.updatePurchases.push(form.value);
-            
+
+            this.getSelectableProducts('', '', 'rollbackTempArrWithSelected');
             this.getSelectableProducts('', form.value.product_id, 'clientUpdatePurchaseAfterSubmit');
 
             this.closeModal('updatePurchaseModal');
