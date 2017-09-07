@@ -8,43 +8,62 @@ import { DesignatedGovtEntityComponent } from "app/client/employer-info/basic-re
 import { AggregatedGroupComponent } from "app/client/employer-info/basic-reporting-info/aggregated-group/aggregated-group.component";
 import { AnythingElseComponent } from "app/client/employer-info/basic-reporting-info/anything-else/anything-else.component";
 import { ElementMasterResolver } from "app/_services/_element-resolver";
+import { EmployerInfoDataResolver } from "app/_services/_employer-info-data-resolver";
 
 const routes: Routes = [
     {
         path: '',
         component: BasicInfoComponent,
-         resolve: {
-          data: ElementMasterResolver
+        resolve: {
+            labels: ElementMasterResolver,
+            data: EmployerInfoDataResolver
         }
     },
     {
         path: 'emp-status-tracking',
         component: EmpStatusTrackingComponent,
-         resolve: {
-          data: ElementMasterResolver
+        resolve: {
+            labels: ElementMasterResolver,
+            data: EmployerInfoDataResolver
         }
     },
     {
         path: 'plan-offering-criteria',
-        component: PlanOfferingCriteriaComponent
+        component: PlanOfferingCriteriaComponent,
+        resolve: {
+            labels: ElementMasterResolver,
+            data: EmployerInfoDataResolver
+        }
     },
     {
         path: 'designated-govt-entity',
-        component: DesignatedGovtEntityComponent
+        component: DesignatedGovtEntityComponent,
+        resolve: {
+            labels: ElementMasterResolver,
+            data: EmployerInfoDataResolver
+        }
     },
     {
         path: 'aggregated-group',
-        component: AggregatedGroupComponent
+        component: AggregatedGroupComponent,
+        resolve: {
+            labels: ElementMasterResolver,
+            data: EmployerInfoDataResolver
+        }
     },
     {
         path: 'anything-else',
-        component: AnythingElseComponent
+        component: AnythingElseComponent,
+        resolve: {
+            labels: ElementMasterResolver,
+            data: EmployerInfoDataResolver
+        }
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: []
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+    providers: []
 })
 export class BasicReportingInfoRoutingModule { }

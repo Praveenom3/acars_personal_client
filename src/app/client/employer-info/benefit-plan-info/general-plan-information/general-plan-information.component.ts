@@ -26,7 +26,7 @@ export class GeneralPlanInformationComponent implements OnInit {
   company_id: any;
   public labels: any[] = [];
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     private _generalPlanInfoService: GeneralPlanInfoService,
@@ -96,42 +96,36 @@ export class GeneralPlanInformationComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      for (let label of labelsData) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    }
   }
 
   /*getting data from service*/
   private getGeneralPlanInfoData() {
-    this._generalPlanInfoService.getGeneralPlanInfoData(this.company_id)
-      .subscribe((generalData) => {
-        if (generalData) {
-          this.generalPlanInfoData = generalData;
-          if (this.generalPlanInfoData.months.length > 0) {
-            let MonthFields: any[] = [];
-            this.generalPlanInfoData.months.forEach((eachSelectedMonth, index) => {
-              MonthFields[eachSelectedMonth.month_id] = eachSelectedMonth.plan_value;
-            });
-            for (let i = 1; i <= 12; i++) {
-              if (!MonthFields[i]) {
-                MonthFields[i] = "";
-              }
-            }
-            this.generalPlanInfoData.months = [];
-            this.generalPlanInfoData.months = MonthFields;
-          } else {
-            this.generalPlanInfoData.months = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+    let generalData = this.route.snapshot.data['data'];
+    if (generalData) {
+      this.generalPlanInfoData = generalData;
+      if (this.generalPlanInfoData.months.length > 0) {
+        let MonthFields: any[] = [];
+        this.generalPlanInfoData.months.forEach((eachSelectedMonth, index) => {
+          MonthFields[eachSelectedMonth.month_id] = eachSelectedMonth.plan_value;
+        });
+        for (let i = 1; i <= 12; i++) {
+          if (!MonthFields[i]) {
+            MonthFields[i] = "";
           }
         }
-      },
-      error => { this._errorMessage = error.data }
-      );
+        this.generalPlanInfoData.months = [];
+        this.generalPlanInfoData.months = MonthFields;
+      } else {
+        this.generalPlanInfoData.months = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+      }
+    }
   }
 
 

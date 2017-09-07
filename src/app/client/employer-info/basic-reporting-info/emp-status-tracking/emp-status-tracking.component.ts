@@ -28,6 +28,7 @@ export class EmpStatusTrackingComponent implements OnInit {
 
   company: string;
   product: string;
+  
   constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
@@ -43,19 +44,17 @@ export class EmpStatusTrackingComponent implements OnInit {
 
   ngOnInit() {
     this.empStatusData = this.createNewEmpStatus();
-
-    this.route.data.subscribe((data) => {
-      for (let label of data.data) {
+    let labelsData = this.route.snapshot.data['labels'];
+    let empStatusData = this.route.snapshot.data['data'];
+    if (labelsData) {
+      for (let label of labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
-    },
-      error => { this._errorMessage = error.data }
-    );
-
-
-    // this.ElementLabelsList();
-    this.getEmpStatusTrackingData();
+    }
+    if (empStatusData) {
+      this.empStatusData = empStatusData;
+    }
     this.getCompany();
   }
 
@@ -91,19 +90,19 @@ export class EmpStatusTrackingComponent implements OnInit {
   }
 
   /*getting labels from service*/
-  private getEmpStatusTrackingData() {
-    this._empStatusTrackingService.getEmpStatusTrackingData(this.company_id)
-      .subscribe((empstatusData) => {
-        if (empstatusData) {
-          this.empStatusData = empstatusData;
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
-  }
+  /* private getEmpStatusTrackingData() {
+     this._empStatusTrackingService.getEmpStatusTrackingData(this.company_id)
+       .subscribe((empstatusData) => {
+         if (empstatusData) {
+           this.empStatusData = empstatusData;
+         }
+       },
+       error => { this._errorMessage = error.data }
+       );
+   }*/
 
   /*getting labels from service*/
-  private ElementLabelsList() {
+  /*private ElementLabelsList() {
     this._elementMasterService.getLabels(this.section_id, this.product_id)
       .subscribe((labels) => {
         for (let label of labels) {
@@ -114,6 +113,7 @@ export class EmpStatusTrackingComponent implements OnInit {
       error => { this._errorMessage = error.data }
       );
   }
+*/
 
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);

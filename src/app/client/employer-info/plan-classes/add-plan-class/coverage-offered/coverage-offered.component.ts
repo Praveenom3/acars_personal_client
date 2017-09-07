@@ -32,7 +32,7 @@ export class CoverageOfferedComponent implements OnInit {
 
   _errorMessage: string;
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     private globalService: GlobalService,
@@ -102,61 +102,55 @@ export class CoverageOfferedComponent implements OnInit {
 
   /*getting data from service*/
   private getCoverageOfferedData() {
-    this.planClassesService.getCoverageOffered(this.id)
-      .subscribe((coverageOfferedInfo) => {
+    let coverageOfferedInfo = this.route.snapshot.data['data'];
 
-        if (coverageOfferedInfo.planClassCoverageTypeOffered) {
-          this.coverageOfferedData = coverageOfferedInfo.planClassCoverageTypeOffered;
+    if (coverageOfferedInfo.planClassCoverageTypeOffered) {
+      this.coverageOfferedData = coverageOfferedInfo.planClassCoverageTypeOffered;
 
-          if (this.coverageOfferedData.mv_coverage_months.length > 0) {
-            this.coverageOfferedData.mv_coverage_months = JSON.parse(this.coverageOfferedData.mv_coverage_months);
-            if (this.coverageOfferedData.mv_coverage_months.length == 12) {
-              this.coverageOfferedData.entireMvYear = true;
-              this.coverageOfferedData.mv_coverage_months = [];
-            } else {
-              let MvMonthFields: any[] = [];
-              this.coverageOfferedData.mv_coverage_months.forEach((monthSelected, index) => {
-                MvMonthFields[monthSelected] = true;
-              });
-              this.coverageOfferedData.mv_coverage_months = [];
-              this.coverageOfferedData.mv_coverage_months = MvMonthFields;
-            }
-          }
-
-          if (this.coverageOfferedData.essential_coverage_months.length > 0) {
-            this.coverageOfferedData.essential_coverage_months = JSON.parse(this.coverageOfferedData.essential_coverage_months);
-            if (this.coverageOfferedData.essential_coverage_months.length == 12) {
-              this.coverageOfferedData.entireMeYear = true;
-              this.coverageOfferedData.essential_coverage_months = [];
-            } else {
-              let MeMonthFields: any[] = [];
-              this.coverageOfferedData.essential_coverage_months.forEach((monthSelected, index) => {
-                MeMonthFields[monthSelected] = true;
-              });
-              this.coverageOfferedData.essential_coverage_months = [];
-              this.coverageOfferedData.essential_coverage_months = MeMonthFields;
-            }
-          }
-
+      if (this.coverageOfferedData.mv_coverage_months.length > 0) {
+        this.coverageOfferedData.mv_coverage_months = JSON.parse(this.coverageOfferedData.mv_coverage_months);
+        if (this.coverageOfferedData.mv_coverage_months.length == 12) {
+          this.coverageOfferedData.entireMvYear = true;
+          this.coverageOfferedData.mv_coverage_months = [];
         } else {
-          this.coverageOfferedData = this.createNewCoverageOffered();
+          let MvMonthFields: any[] = [];
+          this.coverageOfferedData.mv_coverage_months.forEach((monthSelected, index) => {
+            MvMonthFields[monthSelected] = true;
+          });
+          this.coverageOfferedData.mv_coverage_months = [];
+          this.coverageOfferedData.mv_coverage_months = MvMonthFields;
         }
-      },
-      error => { this._errorMessage = error.data }
-      );
+      }
+
+      if (this.coverageOfferedData.essential_coverage_months.length > 0) {
+        this.coverageOfferedData.essential_coverage_months = JSON.parse(this.coverageOfferedData.essential_coverage_months);
+        if (this.coverageOfferedData.essential_coverage_months.length == 12) {
+          this.coverageOfferedData.entireMeYear = true;
+          this.coverageOfferedData.essential_coverage_months = [];
+        } else {
+          let MeMonthFields: any[] = [];
+          this.coverageOfferedData.essential_coverage_months.forEach((monthSelected, index) => {
+            MeMonthFields[monthSelected] = true;
+          });
+          this.coverageOfferedData.essential_coverage_months = [];
+          this.coverageOfferedData.essential_coverage_months = MeMonthFields;
+        }
+      }
+
+    } else {
+      this.coverageOfferedData = this.createNewCoverageOffered();
+    }
   }
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      for (let label of labelsData) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    }
   }
 
   /*on submit sending form data to service.It is for both add and update*/
@@ -191,7 +185,7 @@ export class CoverageOfferedComponent implements OnInit {
       result => {
         if (result.success) {
           if (param == "exit") {
-            this.router.navigate(['client/' + this.product + '/' + this.company]);
+            this.router.navigate(['client/' + this.product + '/' + this.company + '/dashboard']);
           } else {
             this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/employee-contributions']);
           }

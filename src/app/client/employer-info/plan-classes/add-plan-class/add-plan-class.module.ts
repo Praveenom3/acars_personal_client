@@ -9,6 +9,8 @@ import { EmployeeContributionsComponent } from './employee-contributions/employe
 import { PartialViews } from "app/_partial-views/partial-views.module";
 import { PlanClassesService } from "app/_services/_plan-classes.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
+import { PlanClassDataDataResolver } from "app/_services/plan-class-data-resolver";
+import { ElementMasterResolver } from "app/_services/_element-resolver";
 
 @NgModule({
   imports: [
@@ -19,6 +21,6 @@ import { ElementMasterService } from "app/_services/_element-master.service";
     PartialViews
   ],
   declarations: [CoverageTypeComponent, CoverageOfferedComponent, EmployeeContributionsComponent],
-  providers: [PlanClassesService, ElementMasterService]
+  providers: [ElementMasterResolver,PlanClassDataDataResolver, PlanClassesService, ElementMasterService]
 })
 export class AddPlanClassModule { }
