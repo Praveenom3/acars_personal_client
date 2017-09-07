@@ -31,7 +31,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   product_id: any;
   company_id: any;
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private toastrService: ToastrService,
     private router: Router,
     private _designatedGovtEntity: DesignatedGovtEntityService,
@@ -113,15 +113,13 @@ export class DesignatedGovtEntityComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      for (let label of labelsData) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    }
   }
 
   // getStates
@@ -136,14 +134,10 @@ export class DesignatedGovtEntityComponent implements OnInit {
 
   /*getting data from service*/
   private getDesignatedGovtEntityData() {
-    this._designatedGovtEntity.getDesignatedGovtEntityData(this.company_id)
-      .subscribe((govtEntityData) => {
-        if (govtEntityData) {
-          this.govtEntityData = govtEntityData;
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let govtEntityData = this.route.snapshot.data['data'];
+    if (govtEntityData) {
+      this.govtEntityData = govtEntityData;
+    }
   }
 
   public redirectToDashboard() {

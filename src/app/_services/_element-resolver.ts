@@ -6,28 +6,41 @@ import { GlobalService } from "app/_services/_global.service";
 
 @Injectable()
 export class ElementMasterResolver implements Resolve<any> {
-  
+
     product_id: any;
 
-    constructor(private elementMasterService: ElementMasterService,private globalService:GlobalService) {}
-    resolve (route: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<any>|Promise<any>|any {
+    constructor(private elementMasterService: ElementMasterService, private globalService: GlobalService) { }
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         this.product_id = this.globalService.decode(route.params['product']);
-            let sectionId;
-      
-            if(state.url.indexOf('/emp-status-tracking') !== -1){
-                  sectionId = 2;
-             }else if(state.url.indexOf('/plan-offering-criteria') !== -1){
-                  sectionId = 3;
-             }else if(state.url.indexOf('/designated-govt-entity') !== -1){
-                 sectionId = 4;
-             }else if(state.url.indexOf('/aggregated-group') !== -1){
-                    sectionId = 5;
-             }else if(state.url.indexOf('/anything-else') !== -1){
-                   sectionId = 6;
-             }else if(state.url.indexOf('/basic-reporting-info') !== -1){
-                sectionId = 1;
-             }
-      
-        return this.elementMasterService.getLabels(sectionId,this.product_id);
+        let sectionId;
+        
+        if (state.url.indexOf('/emp-status-tracking') !== -1) {
+            sectionId = 2;
+        } else if (state.url.indexOf('/plan-offering-criteria') !== -1) {
+            sectionId = 3;
+        } else if (state.url.indexOf('/designated-govt-entity') !== -1) {
+            sectionId = 4;
+        } else if (state.url.indexOf('/aggregated-group') !== -1) {
+            sectionId = 5;
+        } else if (state.url.indexOf('/anything-else') !== -1) {
+            sectionId = 6;
+        } else if (state.url.indexOf('/basic-reporting-info') !== -1) {
+            sectionId = 1;
+        } else if (state.url.indexOf('/mec-coverage') !== -1) {
+            sectionId = 8;
+        } else if (state.url.indexOf('/benefit-plan-info') !== -1) {
+            sectionId = 7;
+        }
+        else if (state.url.indexOf('/coverage-offered') !== -1) {
+            sectionId = 10;
+        }
+        else if (state.url.indexOf('/employee-contributions') !== -1) {
+            sectionId = 11;
+        }
+        else if (state.url.indexOf('/plan-classes/plan-class') !== -1) {
+            sectionId = 9;
+        }
+
+        return this.elementMasterService.getLabels(sectionId, this.product_id);
     }
 }

@@ -29,7 +29,7 @@ export class AnythingElseComponent implements OnInit {
   public labels: any[] = [];
   _errorMessage: any;
 
-  constructor(route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
     private globalService: GlobalService,
@@ -88,34 +88,29 @@ export class AnythingElseComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      for (let label of labelsData) {
+        this.label = label.element_serial_id + ' ' + label.element_label;
+        this.labels.push(this.label);
+      }
+    }
   }
 
   /*getting labels from service*/
   private getAnythingElseData() {
-    this._anythingElseService.getAnythingElseData(this.company_id)
-      .subscribe((anythingData) => {
-        if (anythingData) {
-          this.anythingElseData = anythingData;
-          this.anythingElseData.hear_about_us = JSON.parse(this.anythingElseData.hear_about_us);
-          let hearAboutData: any[] = [];
-          this.anythingElseData.hear_about_us.forEach((hearAboutElement, index) => {
-            hearAboutData[hearAboutElement] = true;
-          });
-          this.anythingElseData.hear_about_us = [];
-          this.anythingElseData.hear_about_us = hearAboutData;
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
+    let anythingData = this.route.snapshot.data['data'];
+    if (anythingData) {
+      this.anythingElseData = anythingData;
+      this.anythingElseData.hear_about_us = JSON.parse(this.anythingElseData.hear_about_us);
+      let hearAboutData: any[] = [];
+      this.anythingElseData.hear_about_us.forEach((hearAboutElement, index) => {
+        hearAboutData[hearAboutElement] = true;
+      });
+      this.anythingElseData.hear_about_us = [];
+      this.anythingElseData.hear_about_us = hearAboutData;
+    }
+
   }
 
   public redirectToDashboard() {
@@ -130,7 +125,7 @@ export class AnythingElseComponent implements OnInit {
       }
     });
 
-    this.anythingElseData['purchase_id'] = this.product_id;
+    this.anythingElseData['purchase_id'] = this.purchase_id;
     this.anythingElseData['company_id'] = this.company_id;
     if (this.anythingElseData.additional_details_id > 0) {
       this.anythingElseData['hear_about_us'] = JSON.stringify(this.customArray);

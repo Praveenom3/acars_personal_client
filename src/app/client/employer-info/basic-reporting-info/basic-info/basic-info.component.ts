@@ -54,38 +54,19 @@ export class BasicInfoComponent implements OnInit {
 
   ngOnInit() {
     this.basicInfoData = this.createNewBasicInfo();
-    // this.ElementLabelsList();
-    this.getStates();
-    this.getBasicInfoData();
-
-    this.route.data.subscribe((data) => {
-      for (let label of data.data) {
+    let labelsData = this.route.snapshot.data['labels'];
+    let basicInfoData = this.route.snapshot.data['data'];
+    if (labelsData) {
+      for (let label of labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
-    },
-      error => { this._errorMessage = error.data }
-    );
-
-
-    //  alert(data); console.log(data);
-    //  this.basicInfoData = data.basicData;
-    // });
-
-
-
-    //  // or the observable method
-    // this.route.paramMap
-    //    .subscribe((params: ParamMap) => {
-    //       // console.log(params);
-    //       this.basicInfoData= params.get('id');
-    //       return params.get('dataYouResolved');
-    //       // return null
-    //    });
-
-
-
+    }
+    if (basicInfoData) {
+      this.basicInfoData = basicInfoData;
+    }
     this.getCompany();
+    this.getStates();
   }
 
   getCompany() {
@@ -133,17 +114,17 @@ export class BasicInfoComponent implements OnInit {
   }
 
   /*getting labels from service*/
-  private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
-  }
+  /* private ElementLabelsList() {
+     this._elementMasterService.getLabels(this.section_id, this.product_id)
+       .subscribe((labels) => {
+         for (let label of labels) {
+           this.label = label.element_serial_id + ' ' + label.element_label;
+           this.labels.push(this.label);
+         }
+       },
+       error => { this._errorMessage = error.data }
+       );
+   }*/
 
   // getStates
   private getStates() {
@@ -156,16 +137,16 @@ export class BasicInfoComponent implements OnInit {
   }
 
   /*getting data from service*/
-  private getBasicInfoData() {
-    this._briBasicInfoService.getbasicInfoData(this.company_id)
-      .subscribe((basicData) => {
-        if (basicData) {
-          this.basicInfoData = basicData;
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
-  }
+  /* private getBasicInfoData() {
+     this._briBasicInfoService.getbasicInfoData(this.company_id)
+       .subscribe((basicData) => {
+         if (basicData) {
+           this.basicInfoData = basicData;
+         }
+       },
+       error => { this._errorMessage = error.data }
+       );
+   }*/
 
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
