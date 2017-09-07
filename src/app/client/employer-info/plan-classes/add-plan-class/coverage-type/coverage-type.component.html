@@ -88,31 +88,31 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="1"> No Qualifying Plan Offered
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="1"> No Qualifying Plan Offered
                                                                                         </label>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="2"> Self Insured
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="2"> Self Insured
                                                                                 </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="3">  Fully Insured
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="3">  Fully Insured
                                                                                            </label>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="4">  Multi Employer Plan
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="4">  Multi Employer Plan
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-8">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" name="TblAcaPlanCoverageType[plantype]" value="5"> Combination of the options above during the year
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="5"> Combination of the options above during the year
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
@@ -506,19 +506,19 @@
 
                                                                                     <div class="col-md-6">
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Date
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Date
 																						of hire (DOH)</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;30
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;30
 																						Days after DOH </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="3"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;60
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="3"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;60
 																						Days after DOH </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="4"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;90
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="4"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;90
 																						Days after DOH </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
@@ -526,26 +526,26 @@
 
                                                                                     <div class="col-md-6">
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="5"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="5"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="6"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="6"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after 30 days after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="7"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="7"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after 60 days after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="8"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="8"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;1st
 																						of Month after 90 days after DOH</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
 
                                                                                         <div class="">
-                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="9"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Combination
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.plan_type_doh" (click)="resetSelectTypes('plan_type_doh')" name="TblAcaPlanCoverageType[doh]" class="reset-coverage-type-radio" value="9"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Combination
 																						of the options above during the year</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                         </div>
                                                                                     </div>

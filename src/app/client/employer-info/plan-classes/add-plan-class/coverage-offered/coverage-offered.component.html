@@ -69,7 +69,7 @@
                                                                                 <input type="radio" [(ngModel)]="coverageOfferedData.employee_mv_coverage" name="employee_mv_coverage" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_mv_coverage" name="employee_mv_coverage" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_mv_coverage" (click)="resetValues('employee_mv_coverage')" name="employee_mv_coverage" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>
@@ -135,7 +135,7 @@
                                                                                 <input type="radio" [(ngModel)]="coverageOfferedData.employee_essential_coverage" name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_essential_coverage" name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="2"> No
+                                                                                <input type="radio" [(ngModel)]="coverageOfferedData.employee_essential_coverage" (click)="resetValues('employee_essential_coverage')" name="TblAcaPlanCoverageTypeOffered[employee_essential_coverage]" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>
@@ -200,7 +200,7 @@
                                                                                 <input type="radio" [(ngModel)]="coverageOfferedData.spouse_essential_coverage" name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="1"> Yes
                                                                             </label>
                                                                             <label class="radio-inline">
-                                                                             <input type="radio" [(ngModel)]="coverageOfferedData.spouse_essential_coverage" name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="2"> No
+                                                                             <input type="radio" [(ngModel)]="coverageOfferedData.spouse_essential_coverage" (click)="resetValues('spouse_essential_coverage')" name="TblAcaPlanCoverageTypeOffered[spouse_essential_coverage]" value="2"> No
                                                                            </label>
                                                                         </div>
                                                                     </div>

@@ -102,6 +102,10 @@ export class EmployeeContributionsComponent implements OnInit {
     }
   }
 
+  resetPremiums(){
+    this.employeeContributionData.premiums = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+  }
+
   /*getting data from service*/
   private getEmployeeContributionData() {
 
