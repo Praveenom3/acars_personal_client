@@ -111,15 +111,14 @@ export class AggregatedGroupComponent implements OnInit {
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
   getCompany() {
     let companyDet = this.globalService.getCompany();
-    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products = this.globalService.getProducts();
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
-      this.purchase_id = this.companyDetails.purchase_id;
-      this.client_id = this.companyDetails.client_id;
+      this.purchase_id = this.globalService.decode(this.companyDetails.purchase_id);
+      this.client_id = this.globalService.decode(this.companyDetails.client_id);
     }
   }
 
