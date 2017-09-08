@@ -7,21 +7,11 @@ import 'rxjs/add/operator/catch';
 import {Router} from "@angular/router";
 import {tokenNotExpired} from 'angular2-jwt';
 import {AuthHttp, JwtHelper} from 'angular2-jwt';
-
-
-// import { ClientPurchaseUser } from "app/_models/client-purchase-user";
-// import { ClientPurchases } from "app/_models/client-purchases";
-// import { Clients } from "app/_models/clients";
-
-//import { Products } from "app/_models/products";
 import {GlobalService} from './_global.service';
-
-
 
 @Injectable()
 
 export class OrdersService {
-
     private _orderUrl = this._globalService.apiHost + '/order';
 
    constructor(private _globalService: GlobalService,
@@ -64,6 +54,16 @@ export class OrdersService {
         return this._http.post(
                     url,
                     data,
+                    {headers: this._globalService.getHeaders()}
+                ).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
+    
+    public deletePurchase(purchase_id) :Observable<any> {
+
+        let url = this._orderUrl+'/delete-purchase/'+purchase_id;
+        return this._http.delete(
+                    url,
                     {headers: this._globalService.getHeaders()}
                 ).map(response => response.json())
             .catch(this._globalService.handleError);
