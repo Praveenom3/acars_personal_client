@@ -78,45 +78,24 @@ export class EmpStatusTrackingComponent implements OnInit {
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
   getCompany() {
     let companyDet = this._globalService.getCompany();
-    let products = this._globalService.getProducts();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.purchase_id = this._globalService.decode(this.companyDetails.purchase_id);
-      this.client_id = this._globalService.decode(this.companyDetails.client_id);
+      this.companyDetails['clientEncodedId'] = this._globalService.encode(this.companyDetails.client_id);
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
     }
   }
 
-  /*getting labels from service*/
-  /* private getEmpStatusTrackingData() {
-     this._empStatusTrackingService.getEmpStatusTrackingData(this.company_id)
-       .subscribe((empstatusData) => {
-         if (empstatusData) {
-           this.empStatusData = empstatusData;
-         }
-       },
-       error => { this._errorMessage = error.data }
-       );
-   }*/
-
-  /*getting labels from service*/
-  /*private ElementLabelsList() {
-    this._elementMasterService.getLabels(this.section_id, this.product_id)
-      .subscribe((labels) => {
-        for (let label of labels) {
-          this.label = label.element_serial_id + ' ' + label.element_label;
-          this.labels.push(this.label);
-        }
-      },
-      error => { this._errorMessage = error.data }
-      );
-  }
-*/
-
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+  }
+
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/basic-reporting-info']);
   }
 
   private formSubmit(param) {
@@ -128,12 +107,12 @@ export class EmpStatusTrackingComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
             }
             //this.getEmpStatusTrackingData();    
-            this.toastrService.success('Employee status tracking record updated succesfully.');
+            // this.toastrService.success('Employee status tracking record updated succesfully.');
           } else {
             this.toastrService.error('Error in update.');
           }
@@ -146,13 +125,12 @@ export class EmpStatusTrackingComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/plan-offering-criteria']);
             }
             //this.getEmpStatusTrackingData();
-            this.empStatusData = this.createNewEmpStatus();
-            this.toastrService.success('Employee status tracking record added succesfully.');
+            // this.toastrService.success('Employee status tracking record added succesfully.');
           } else {
             this.toastrService.error('Error in adding.');
           }

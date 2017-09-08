@@ -51,14 +51,15 @@ export class PlanOfferingCriteriaComponent implements OnInit {
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
   getCompany() {
     let companyDet = this._globalService.getCompany();
-    let products = this._globalService.getProducts();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.purchase_id = this._globalService.decode(this.companyDetails.purchase_id);
-      this.client_id = this._globalService.decode(this.companyDetails.client_id);
+      this.companyDetails['clientEncodedId'] = this._globalService.encode(this.companyDetails.client_id);
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
     }
   }
 
@@ -123,6 +124,10 @@ export class PlanOfferingCriteriaComponent implements OnInit {
     this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
   }
 
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/basic-reporting-info/emp-status-tracking']);
+  }
+
   private formSubmit(param) {
     let customArray = [];
     this.planOfferingData.plan_offering_criteria_type.forEach((eachSelectedMethod, index) => {
@@ -140,13 +145,12 @@ export class PlanOfferingCriteriaComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
             }
             //this.getPlanOfferData();
-            this.planOfferingData = this.createNewPlanOfferingCriteria();
-            this.toastrService.success('Plan Offering Criteria record updated succesfully.');
+            //this.toastrService.success('Plan Offering Criteria record updated succesfully.');
           } else {
             this._errorMessage = 'Not updated.';
           }
@@ -160,13 +164,12 @@ export class PlanOfferingCriteriaComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
             }
             //this.getPlanOfferData();
-            this.planOfferingData = this.createNewPlanOfferingCriteria();
-            this.toastrService.success('Plan Offering Criteria record added succesfully.');
+            // this.toastrService.success('Plan Offering Criteria record added succesfully.');
           } else {
             this._errorMessage = 'Not added.';
           }

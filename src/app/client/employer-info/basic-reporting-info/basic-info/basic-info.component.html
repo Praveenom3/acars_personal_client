@@ -120,7 +120,12 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="form-control-label" for="l0">{{labels[6]}}</label>
-                                        <input type="text" name="mobile" class="form-control" [textMask]="{mask: mask}" [(ngModel)]="basicInfoData.contact_phone_number" name="contact_phone_number">
+                                        <input type="text" id="contactPhone" #contactPhone="ngModel" class="form-control" minlength="14" [textMask]="{mask: mask,guide: false, modelClean: true}" [(ngModel)]="basicInfoData.contact_phone_number" name="contact_phone_number">
+                                    </div>
+                                    <div class="md-errors-spacer" [hidden]="contactPhone.valid || contactPhone.untouched">
+                                        <span class="help-block help-block-error" *ngIf="contactPhone.errors && contactPhone.errors.minlength">
+                                            Phone should be 10 digit length.
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -204,7 +209,12 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="form-control-label" for="l0">{{labels[15]}}</label>
-                                        <input type="text" name="broker-telephone" class="form-control" [textMask]="{mask: mask}" [(ngModel)]="basicInfoData.emp_benefit_phone_number" name="emp_benefit_phone_number">
+                                        <input type="text" id="brokerPhone" #brokerPhone="ngModel" minlength="14" class="form-control" [textMask]="{mask: mask,guide: false, modelClean: true}" [(ngModel)]="basicInfoData.emp_benefit_phone_number" name="emp_benefit_phone_number">
+                                    </div>
+                                    <div class="md-errors-spacer" [hidden]="brokerPhone.valid || brokerPhone.untouched">
+                                        <span class="help-block help-block-error" *ngIf="brokerPhone.errors && brokerPhone.errors.minlength">
+                                            Phone should be 10 digit length.
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -216,8 +226,8 @@
             <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
                 <div class="modal-footer-btn padding-15">
                     <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;
-                    <button class="btn btn-modal-blue" (click)="formSubmit('exit')" [disabled]="!personEmail.valid || !brokerEmail.valid">Save & Exit</button> &nbsp;
-                    <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')" [disabled]="!personEmail.valid || !brokerEmail.valid"> Save & Continue</button>
+                    <button class="btn btn-modal-blue" (click)="formSubmit('exit')" [disabled]="!personEmail.valid || !brokerEmail.valid || !contactPhone.valid || !brokerPhone.valid">Save & Exit</button> &nbsp;
+                    <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')" [disabled]="!personEmail.valid || !brokerEmail.valid || !contactPhone.valid || !brokerPhone.valid"> Save & Continue</button>
                 </div>
             </div>
         </form>
