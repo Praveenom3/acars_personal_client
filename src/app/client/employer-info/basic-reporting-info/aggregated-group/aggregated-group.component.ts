@@ -111,14 +111,15 @@ export class AggregatedGroupComponent implements OnInit {
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
   getCompany() {
     let companyDet = this.globalService.getCompany();
-    let products = this.globalService.getProducts();
+    let products = JSON.parse(localStorage.getItem('productsAndClients'));
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
       this.companyDetails.productYear = productYear;
       this.companyDetails['product'] = this.product;
-      this.purchase_id = this.globalService.decode(this.companyDetails.purchase_id);
-      this.client_id = this.globalService.decode(this.companyDetails.client_id);
+      this.companyDetails['clientEncodedId'] = this.globalService.encode(this.companyDetails.client_id);
+      this.purchase_id = this.companyDetails.purchase_id;
+      this.client_id = this.companyDetails.client_id;
     }
   }
 
@@ -133,9 +134,42 @@ export class AggregatedGroupComponent implements OnInit {
     }
   }
 
+  public isEntireYear(val) {
+    if (val == true) {
+      let totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      let MonthFields: any[] = [];
+      totalYear.forEach((monthSelected, index) => {
+        MonthFields[monthSelected] = true;
+      });
+      this.aggregatedGroupData.total_aggregated_grp_months = [];
+      this.aggregatedGroupData.total_aggregated_grp_months = MonthFields;
+    }
+    else {
+      this.aggregatedGroupData.total_aggregated_grp_months = [];
+    }
+  }
+
+  public getMonthsCount() {
+    let customArray = [];
+    if (this.aggregatedGroupData.total_aggregated_grp_months.length > 0) {
+      this.aggregatedGroupData.total_aggregated_grp_months.forEach((eachSelectedMonth, index) => {
+        if (eachSelectedMonth == true) {
+          customArray.push(index);
+        }
+      });
+    }
+    if (customArray.length == 12) {
+      this.aggregatedGroupData.entireYear = true;
+    } else {
+      this.aggregatedGroupData.entireYear = false;
+    }
+  }
+
+
   /*getting data from service*/
   private getAggregatedGroupData() {
     let planOfferData = this.route.snapshot.data['data'];
+    let MonthFields: any[] = [];
     if (planOfferData) {
       this.aggregatedGroupData = planOfferData;
       if (planOfferData.briAggregatedGroupLists.length != 0) {
@@ -151,9 +185,12 @@ export class AggregatedGroupComponent implements OnInit {
         this.aggregatedGroupData.total_aggregated_grp_months = JSON.parse(this.aggregatedGroupData.total_aggregated_grp_months);
         if (this.aggregatedGroupData.total_aggregated_grp_months.length == 12) {
           this.aggregatedGroupData.entireYear = true;
+          this.aggregatedGroupData.total_aggregated_grp_months.forEach((monthSelected, index) => {
+            MonthFields[monthSelected] = true;
+          });
           this.aggregatedGroupData.total_aggregated_grp_months = [];
+          this.aggregatedGroupData.total_aggregated_grp_months = MonthFields;
         } else {
-          let MonthFields: any[] = [];
           this.aggregatedGroupData.total_aggregated_grp_months.forEach((monthSelected, index) => {
             MonthFields[monthSelected] = true;
           });
@@ -165,9 +202,12 @@ export class AggregatedGroupComponent implements OnInit {
     }
   }
 
-
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
+  }
+
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/basic-reporting-info/designated-govt-entity']);
   }
 
   private formSubmit(param) {
@@ -192,14 +232,14 @@ export class AggregatedGroupComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard()
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
 
             // this.getAggregatedGroupData();
             this.aggregatedGroupData = this.createNewAggregatedGroup();
-            this.toastrService.success('Basic Info record added succesfully.');
+           // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -212,13 +252,13 @@ export class AggregatedGroupComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
             //this.getAggregatedGroupData();
             this.aggregatedGroupData = this.createNewAggregatedGroup();
-            this.toastrService.success('Basic Info record added succesfully.');
+           // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
