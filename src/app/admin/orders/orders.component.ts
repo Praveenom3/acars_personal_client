@@ -14,6 +14,7 @@ import * as Globals from 'app/_shared/_globals';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+    purchaseSelected: any;
     hasFinancialRights: boolean = false;
     formToReset: any;
     askConfirm:boolean = false;
@@ -32,6 +33,7 @@ export class OrdersComponent implements OnInit {
     @ViewChild('updatePurchaseModal') public updatePurchaseModal: ModalDirective;
     
     @ViewChild('closeConfirmationModal') public closeConfirmationModal: ModalDirective;
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
@@ -39,7 +41,8 @@ export class OrdersComponent implements OnInit {
     public temp_brand = '';
     public temp_client_name = '';
     public temp_client_number = '';
-    public temp_index = -1;
+    public temp_new_index = -1;
+    public temp_total_index = -1;
     public show_account_manager = 0;
 
     public orders;
@@ -104,7 +107,11 @@ export class OrdersComponent implements OnInit {
             is_invoice: ['', Validators.compose([Validators.required])],            
             invoice_no: [''],
             invoice_created_at: [''],
-            is_invoice_paid: ['0']
+            is_invoice_paid: ['0'],
+            is_primary_contact: [''],
+            is_billing_contact: [''],
+            is_agreement_signed: [''],
+            is_new_purchase: [1]
         });
         
         this._updatePurchaseForm = _formBuilder.group({
@@ -124,7 +131,11 @@ export class OrdersComponent implements OnInit {
             is_invoice: ['', Validators.compose([Validators.required])],            
             invoice_no: [''],
             invoice_created_at: [''],
-            is_invoice_paid: ['0']
+            is_invoice_paid: ['0'],
+            is_primary_contact: [''],
+            is_billing_contact: [''],
+            is_agreement_signed: [''],
+            is_new_purchase: [0]
         });
         
         this._addClientForm.valueChanges
@@ -385,7 +396,11 @@ export class OrdersComponent implements OnInit {
 
             this._updatePurchaseFormSubmitted = false;
 
-            this.temp_index = this.totalPurchases.indexOf(data);
+            if(data.hasOwnProperty('is_new_purchase') && data.is_new_purchase == 1){
+                this.temp_new_index = this.newPurchases.indexOf(data);
+            }
+
+            this.temp_total_index = this.totalPurchases.indexOf(data);
             this.patchValue(this._updatePurchaseForm, data);
 
             this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
@@ -435,7 +450,6 @@ export class OrdersComponent implements OnInit {
         }else if(modal=='addPurchaseModal'){
             this.addPurchaseModal.hide();
             this._resetFormValues(this._addPurchaseForm);
-
         }else if(modal=='updatePurchaseModal'){
             this.getSelectableProducts('', '', 'rollbackTempArrWithSelected');
             this.updatePurchaseModal.hide();
@@ -597,18 +611,24 @@ export class OrdersComponent implements OnInit {
 
         }else if(form==this._updatePurchaseForm){
             
-            this.updatePurchases = [];
             //removing spl chars from purchaser mobile
             form.value.purchaser_mobile = form.value.purchaser_mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
             
-            if (this.temp_index !== -1) {
-                this.totalPurchases[this.temp_index] = form.value;
+            if (this.temp_total_index !== -1) {
+                this.totalPurchases[this.temp_total_index] = form.value;
             }
-            //resetting temp_index value
-            this.temp_index = -1;
+            //resetting temp_total_index value
+            this.temp_total_index = -1;
 
-            this.updatePurchases.push(form.value);
-
+            if(form.value.hasOwnProperty('is_new_purchase') && form.value.is_new_purchase == 1){
+                if (this.temp_new_index !== -1) {
+                    this.newPurchases[this.temp_new_index] = form.value;
+                }
+                this.temp_new_index = -1;
+            }else{
+                this.updatePurchases.push(form.value);
+            }
+            
             this.getSelectableProducts('', '', 'rollbackTempArrWithSelected');
             this.getSelectableProducts('', form.value.product_id, 'clientUpdatePurchaseAfterSubmit');
 
@@ -684,21 +704,12 @@ export class OrdersComponent implements OnInit {
         }
         return;
     }
-
-    removePurchase(item) {
-        var newIndex = this.newPurchases.indexOf(item);
-        if (newIndex !== -1) {
-            this.newPurchases.splice(newIndex, 1);
-        }
-        
-        var totalIndex = this.totalPurchases.indexOf(item);
-        if (totalIndex !== -1) {
-            this.newPurchases.splice(totalIndex, 1);
-        }       
-    }
         
     private _resetFormValues(form):void{
         form.reset();
+        if(form == this._addPurchaseForm){
+            form.controls.is_new_purchase.setValue(1);
+        }
         if(form == this._addPurchaseForm || form == this._updatePurchaseForm){
             form.controls.product_id.setValue('');
             form.controls.purchase_status.setValue('');
@@ -711,7 +722,8 @@ export class OrdersComponent implements OnInit {
         form.controls.brand_id.setValue('');
         this.temp_client_number = '';
         this.temp_brand = '';
-        this.temp_index = -1;
+        this.temp_new_index = -1;
+        this.temp_total_index = -1;
         }
     }
 
@@ -881,5 +893,79 @@ export class OrdersComponent implements OnInit {
         this.closeConfirmationModal.hide();
         this._resetFormValues(this.formToReset);
         this.tempModal = '';
+    }
+
+    /*To delete a particular Brand*/
+    public removePurchase(item) {
+        this.purchaseSelected = item;
+        this.deleteModal.show();
+    }
+
+    public okDelete() {
+        this.deleteModal.hide();
+        let item = this.purchaseSelected;
+        //Scenario 1 : Purchase is new. No dependencies are there so can be deleted directly
+        if(item.hasOwnProperty('is_new_purchase') && item.is_new_purchase == 1){
+            var newIndex = this.newPurchases.indexOf(item);
+            if (newIndex !== -1) {
+                this.newPurchases.splice(newIndex, 1);
+            }
+            
+            var totalIndex = this.totalPurchases.indexOf(item);
+            if (totalIndex !== -1) {
+                this.totalPurchases.splice(totalIndex, 1);
+            }
+        //Scenario 2 : Purchase is Old
+      //  }else if(item.hasOwnProperty('is_new_purchase') && item.is_new_purchase == 0){
+        }else{
+            //Scenario 2-1 : Checking for dependencies
+            //if has dependencies show error
+            if(item.is_primary_contact || item.is_billing_contact || item.is_agreement_signed){
+                this.toastrService.error("Purchase cannot be removed as it has dependencies");
+            }else{
+                //remove the purchase from the db as well as from client end.
+
+                if(item.purchase_id !== ''){
+                this.ordersService.deletePurchase(item.purchase_id).subscribe(
+                    result => {
+                        if (result.success) {
+
+                            if(result.data.flag == "Client Deleted"){
+                                this.askConfirm = false;
+                                this.closeModal('updateClientModal');
+                                this.orders = this.getOrders();
+                                this.toastrService.success('Purchase deleted with Client succesfully.');
+                            }else if(result.data.flag == "Purchase Deleted"){
+                                var newIndex = this.updatePurchases.indexOf(item);
+                                if (newIndex !== -1) {
+                                    this.updatePurchases.splice(newIndex, 1);
+                                }
+                                
+                                var totalIndex = this.totalPurchases.indexOf(item);
+                                if (totalIndex !== -1) {
+                                    this.totalPurchases.splice(totalIndex, 1);
+                                }
+                                this.toastrService.success('Purchase deleted succesfully.');
+                            }else{
+                                this.toastrService.success('Trouble in removing the purchase. Please try later.');
+                            }
+                         this.purchaseSelected = '';
+                        } else {
+                            this.toastrService.error('Trouble in removing the purchase. Please try later.');
+                        }
+                    },
+                    error => {
+                        if (error.status == 422) {
+                            let errorFields = JSON.parse(error.data.message);
+                           this.toastrService.error('Trouble in removing the purchase. Please try later.');
+                         //   this._setFormErrors(this._addClientFormErrors, errorFields);
+                        } else {
+                            //this._errorMessage = error.data;
+                            this.toastrService.error('Trouble in removing the purchase. Please try later.');
+                        }
+                    });
+                }
+            }
+        }
     }
 }

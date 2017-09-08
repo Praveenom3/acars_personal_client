@@ -194,9 +194,9 @@
                                             <th class="text-center">
                                                 <mfDefaultSorter by="invoice_created_at">Invoice Date</mfDefaultSorter>
                                             </th>
-                                            <!-- <th class="text-center">
-                                <mfDefaultSorter>Actions</mfDefaultSorter>
-                            </th> -->
+                                            <th class="text-center">
+                                                <mfDefaultSorter>Actions</mfDefaultSorter>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -212,7 +212,7 @@
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_created_at}}</td>
-                                                <!-- <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td> -->
+                                                <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
                                             </tr>
                                         </ng-container>
@@ -356,9 +356,9 @@
                                             <th class="text-center">
                                                 <mfDefaultSorter by="invoice_created_at">Invoice Date</mfDefaultSorter>
                                             </th>
-                                            <!-- <th class="text-center">
-                                <mfDefaultSorter>Actions</mfDefaultSorter>
-                            </th> -->
+                                            <th class="text-center">
+                                                <mfDefaultSorter>Actions</mfDefaultSorter>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -374,7 +374,7 @@
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_created_at}}</td>
-                                                <!-- <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td> -->
+                                                <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
                                             </tr>
                                         </ng-container>
@@ -915,5 +915,7 @@
 </div>
 <!-- ./Update Purchase Modal -->
 
-<!-- Delete confirmation Modal -->
+<!-- Close confirmation Modal -->
 <app-close-modal-confirmation #closeConfirmationModal (confirmed)="okClose()"></app-close-modal-confirmation>
+<!-- Delete confirmation Modal -->
+<app-delete-confirmation #deleteModal (confirmed)="okDelete()"></app-delete-confirmation>
