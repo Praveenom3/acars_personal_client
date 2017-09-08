@@ -1,8 +1,8 @@
 <!-- company info -->
-    <client-company-info [companyData]="companyDetails"></client-company-info>
+<client-company-info [companyData]="companyDetails"></client-company-info>
 <!-- ./company info -->
 <!-- Main Tabs -->
-    <client-reporting-band></client-reporting-band>
+<client-reporting-band></client-reporting-band>
 <!-- ./Main Tabs -->
 
 <div class="product-container col-md-12">
@@ -14,15 +14,15 @@
                     <div class="col-md-12  padding-10 ul-block">
                         <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                                
+
                                 <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId]" *ngIf="encodedId">
                                     <div class="inner-block-digits pull-left">1</div>
                                     <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
 
-                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']" *ngIf="!encodedId">
-                                        <div class="inner-block-digits pull-left">1</div>
-                                        <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
-                                
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']" *ngIf="!encodedId">
+                                    <div class="inner-block-digits pull-left">1</div>
+                                    <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
+
                             </li>
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
                                 <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'coverage-offered']" *ngIf="encodedId">
@@ -79,48 +79,49 @@
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="col-sm-12">
-                                                                                <input id="entire_year" [(ngModel)]="coverageOfferedData.entireMvYear" name="entireMvYear" type="checkbox" value="1">Entire Year
+                                                                                <input id="entire_year" (ngModelChange)="isEntireYear($event,'entireMvYear')" [(ngModel)]="coverageOfferedData.entireMvYear" name="entireMvYear" type="checkbox" value="1">Entire
+                                                                                Year
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[1]" name="mv_coverage_months[1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[1]" name="mv_coverage_months[1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[2]" name="mv_coverage_months[2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[2]" name="mv_coverage_months[2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[3]" name="mv_coverage_months[3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
-                                                                                </div>
-
-                                                                                <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[4]" name="mv_coverage_months[4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[3]" name="mv_coverage_months[3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
                                                                                 </div>
 
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[5]" name="mv_coverage_months[5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[4]" name="mv_coverage_months[4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                </div>
+
+                                                                                <div class="checkbox">
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[5]" name="mv_coverage_months[5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[6]" name="mv_coverage_months[6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[6]" name="mv_coverage_months[6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[7]" name="mv_coverage_months[7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[7]" name="mv_coverage_months[7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[8]" name="mv_coverage_months[8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[8]" name="mv_coverage_months[8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[9]" name="mv_coverage_months[9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[9]" name="mv_coverage_months[9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[10]" name="mv_coverage_months[10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[10]" name="mv_coverage_months[10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[11]" name="mv_coverage_months[11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[11]" name="mv_coverage_months[11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMvYear == 1" [(ngModel)]="coverageOfferedData.mv_coverage_months[12]" name="mv_coverage_months[12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMvYear')" [(ngModel)]="coverageOfferedData.mv_coverage_months[12]" name="mv_coverage_months[12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
                                                                                 </div>
 
                                                                             </div>
@@ -145,48 +146,49 @@
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="col-sm-12">
-                                                                                <input id="entire_year" [(ngModel)]="coverageOfferedData.entireMeYear" name="entireMeYear" type="checkbox" value="1">Entire Year
+                                                                                <input id="entire_year" (ngModelChange)="isEntireYear($event,'entireMeYear')" [(ngModel)]="coverageOfferedData.entireMeYear" name="entireMeYear" type="checkbox" value="1">Entire
+                                                                                Year
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[1]" name="essential_coverage_months[1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[1]" name="essential_coverage_months[1]" type="checkbox" value="1"><span  class="control-checkbox">January</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[2]" name="essential_coverage_months[2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[2]" name="essential_coverage_months[2]" type="checkbox" value="2"><span  class="control-checkbox">February</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[3]" name="essential_coverage_months[3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
-                                                                                </div>
-
-                                                                                <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[4]" name="essential_coverage_months[4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[3]" name="essential_coverage_months[3]" type="checkbox" value="3"><span  class="control-checkbox">March</span></label>
                                                                                 </div>
 
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[5]" name="essential_coverage_months[5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[4]" name="essential_coverage_months[4]" type="checkbox" value="4"><span  class="control-checkbox">April</span></label>
+                                                                                </div>
+
+                                                                                <div class="checkbox">
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[5]" name="essential_coverage_months[5]" type="checkbox" value="5"><span  class="control-checkbox">May</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[6]" name="essential_coverage_months[6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[6]" name="essential_coverage_months[6]" type="checkbox" value="6"><span  class="control-checkbox">June</span></label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-3" style="display:grid;">
                                                                                 <div class="checkbox" style="margin-top:5px;">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[7]" name="essential_coverage_months[7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[7]" name="essential_coverage_months[7]" type="checkbox" value="7"><span  class="control-checkbox">July</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[8]" name="essential_coverage_months[8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[8]" name="essential_coverage_months[8]" type="checkbox" value="8"><span  class="control-checkbox">August</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[9]" name="essential_coverage_months[9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[9]" name="essential_coverage_months[9]" type="checkbox" value="9"><span  class="control-checkbox">September</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[10]" name="essential_coverage_months[10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[10]" name="essential_coverage_months[10]" type="checkbox" value="10"><span  class="control-checkbox">October</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[11]" name="essential_coverage_months[11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[11]" name="essential_coverage_months[11]" type="checkbox" value="11"><span  class="control-checkbox">November</span></label>
                                                                                 </div>
                                                                                 <div class="checkbox">
-                                                                                    <label><input  class="specific_year" [disabled]="coverageOfferedData.entireMeYear == 1" [(ngModel)]="coverageOfferedData.essential_coverage_months[12]" name="essential_coverage_months[12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
+                                                                                    <label><input  class="specific_year" (change)="getMonthsCount('entireMeYear')" [(ngModel)]="coverageOfferedData.essential_coverage_months[12]" name="essential_coverage_months[12]" type="checkbox" value="12"><span  class="control-checkbox">December</span></label>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -236,7 +238,8 @@
                                                         </div>
                                                         <div align="right" class="col-md-12 padding-0 bg-sky-blue" style="border-top: none;">
                                                             <div class="modal-footer-btn padding-15">
-                                                                <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
+                                                                <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;
+                                                                <a class="btn btn-warning check-changed" (click)="redirectToPrevious()" type="button">Previous</a> &nbsp;
                                                                 <button class="btn btn-modal-blue" (click)="onSubmit('exit')">Save & Exit</button> &nbsp;
                                                                 <button class="btn btn-modal-blue pull-right" (click)="onSubmit('next')">Save & Continue</button>
                                                             </div>

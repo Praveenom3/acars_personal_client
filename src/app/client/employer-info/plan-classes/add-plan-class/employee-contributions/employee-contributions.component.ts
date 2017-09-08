@@ -106,6 +106,14 @@ export class EmployeeContributionsComponent implements OnInit {
     this.employeeContributionData.premiums = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
+  }
+
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId +'/coverage-offered' ]);
+  }
+
   /*getting data from service*/
   private getEmployeeContributionData() {
 
@@ -145,16 +153,15 @@ export class EmployeeContributionsComponent implements OnInit {
   }
   /*on submit sending form data to service.It is for both add and update*/
   public onSubmit(param) {
-
     this.planClassesService.createOrUpdateEmployeeContribution(this.id, this.employeeContributionData).subscribe(
       result => {
         if (result.success) {
           if (param == "exit") {
-            this.router.navigate(['client/' + this.product + '/' + this.company]);
+           this.redirectToDashboard();
           } else {
             this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/payroll']);
           }
-          this.toastrService.success('Coverage Type Information record added succesfully.');
+        //  this.toastrService.success('Coverage Type Information record added succesfully.');
         } else {
           this._errorMessage = 'Not Added.';
         }
