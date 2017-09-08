@@ -133,6 +133,10 @@ export class GeneralPlanInformationComponent implements OnInit {
     this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
   }
 
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/basic-reporting-info/anything-else']);
+  }
+
   private formSubmit(param) {
     let customArray = [];
     if (this.generalPlanInfoData.months.length > 0) {
@@ -152,13 +156,13 @@ export class GeneralPlanInformationComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
 
             //this.getGeneralPlanInfoData();
-            this.toastrService.success('General Plan Information record added succesfully.');
+           // this.toastrService.success('General Plan Information record added succesfully.');
           } else {
             this._errorMessage = 'Not Added.';
           }
@@ -172,12 +176,12 @@ export class GeneralPlanInformationComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info/mec-coverage']);
             }
             //this.getGeneralPlanInfoData();
-            this.toastrService.success('General Plan Information record updated succesfully.');
+          //  this.toastrService.success('General Plan Information record updated succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }

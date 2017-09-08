@@ -95,6 +95,16 @@ export class GlobalService {
         let splittedString = param.split(this.URL_STRING);
         return atob(splittedString[1]);
     }
+  
+     public numberFilter(numString) {
+        let returnNumber;
+        if (numString) {
+            returnNumber = numString.replace(/[^0-9]/g, '');
+        }
+        return returnNumber;
+    }
+  
+  
     public handleError(error: Response | any) {
 
         let errorMessage: any = {};

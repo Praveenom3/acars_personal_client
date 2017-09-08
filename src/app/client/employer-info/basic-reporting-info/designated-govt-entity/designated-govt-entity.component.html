@@ -75,9 +75,12 @@
                                 <div class="col-sm-4">
                                     <label class="control-label"><span>{{labels[2]}}</span></label>
                                     <div class="form-group field-tblacadesignatedgovtentity-dge_ein">
-                                        <input type="text" [textMask]="{mask: ein_mask}" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_ein" name="dge_ein">
-                                        <div class="help-block"></div>
+                                        <input type="text" [textMask]="{mask: ein_mask}" (ngModelChange)="isValidEin($event)" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_ein" name="dge_ein">
+                                        <span class="help-block help-block-error" *ngIf="isValidDgeEin">
+                                            EIN should be 8 digit length.
+                                        </span>
                                     </div>
+
                                 </div>
 
                                 <div class="col-sm-4">
@@ -89,7 +92,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="col-xs-12 margin-top-5">
                                 <div class="col-sm-4">
                                     <label class="control-label"><span>{{labels[4]}}</span></label>
                                     <div class="form-group field-tblacadesignatedgovtentity-street_address_2">
@@ -116,6 +119,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-4">
                                     <label class="control-label"><span>{{labels[7]}}</span></label>
@@ -166,9 +170,12 @@
                                 <div class="col-sm-4">
                                     <label class="control-label"><span>{{labels[12]}}</span></label>
                                     <div class="form-group field-tblacadesignatedgovtentity-dge_contact_phone_number">
-                                        <input type="text" class="form-control" [textMask]="{mask: mask}" name="govtEntityData.dge_contact_phone_number" [(ngModel)]="govtEntityData.dge_contact_phone_number">
-                                        <div class="help-block"></div>
+                                        <input type="text" (ngModelChange)="isValidMobile($event)" class="form-control" minlength="14" [textMask]="{mask: mask}" [(ngModel)]="govtEntityData.dge_contact_phone_number" name="dge_contact_phone_number">
+                                        <span class="help-block help-block-error" *ngIf="isValidDgePhone">
+                                            Phone should be 10 digit length.
+                                        </span>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -188,8 +195,9 @@
             <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
                 <div class="modal-footer-btn padding-15">
                     <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;
-                    <button class="btn btn-modal-blue" (click)="formSubmit('exit')">Save & Exit</button> &nbsp;
-                    <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')">Save & Continue</button>
+                    <a class="btn btn-warning check-changed" (click)="redirectToPrevious()" type="button">Previous</a> &nbsp;
+                    <button class="btn btn-modal-blue" (click)="formSubmit('exit')" [disabled]="isValidDgePhone || isValidDgeEin">Save & Exit</button> &nbsp;
+                    <button class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')" [disabled]="isValidDgePhone || isValidDgeEin">Save & Continue</button>
                 </div>
             </div>
         </form>

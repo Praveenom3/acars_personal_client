@@ -91,15 +91,19 @@ export class MecCoverageComponent implements OnInit {
   /*getting data from service*/
   private getMecCoverageData() {
     let mecData = this.route.snapshot.data['data'];
+    let MonthFields: any[] = [];
     if (mecData) {
       this.mecCoverageData = mecData;
       if (this.mecCoverageData.mec_months.length > 0) {
         this.mecCoverageData.mec_months = JSON.parse(this.mecCoverageData.mec_months);
         if (this.mecCoverageData.mec_months.length == 12) {
           this.mecCoverageData.entireYear = true;
+          this.mecCoverageData.mec_months.forEach((monthSelected, index) => {
+            MonthFields[monthSelected] = true;
+          });
           this.mecCoverageData.mec_months = [];
+          this.mecCoverageData.mec_months = MonthFields;
         } else {
-          let MonthFields: any[] = [];
           this.mecCoverageData.mec_months.forEach((monthSelected, index) => {
             MonthFields[monthSelected] = true;
           });
@@ -110,8 +114,43 @@ export class MecCoverageComponent implements OnInit {
     }
   }
 
+  public isEntireYear(val) {
+    if (val == true) {
+      let totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      let MonthFields: any[] = [];
+      totalYear.forEach((monthSelected, index) => {
+        MonthFields[monthSelected] = true;
+      });
+      this.mecCoverageData.mec_months = [];
+      this.mecCoverageData.mec_months = MonthFields;
+    }
+    else {
+      this.mecCoverageData.mec_months = [];
+    }
+  }
+
+  public getMonthsCount() {
+    let customArray = [];
+    if (this.mecCoverageData.mec_months.length > 0) {
+      this.mecCoverageData.mec_months.forEach((eachSelectedMonth, index) => {
+        if (eachSelectedMonth == true) {
+          customArray.push(index);
+        }
+      });
+    }
+    if (customArray.length == 12) {
+      this.mecCoverageData.entireYear = true;
+    } else {
+      this.mecCoverageData.entireYear = false;
+    }
+  }
+
   public redirectToDashboard() {
     this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
+  }
+
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/benefit-plan-info']);
   }
 
   private formSubmit(param) {
@@ -135,13 +174,13 @@ export class MecCoverageComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/plan-classes']);
             }
             this.getMecCoverageData();
-            this.mecCoverageData = this.createMecCoverage();
-            this.toastrService.success('MEC Coverage record updated succesfully.');
+            //this.mecCoverageData = this.createMecCoverage();
+            // this.toastrService.success('MEC Coverage record updated succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -154,13 +193,13 @@ export class MecCoverageComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/plan-classes']);
             }
             this.getMecCoverageData();
-            this.mecCoverageData = this.createMecCoverage();
-            this.toastrService.success('MEC Coverage record added succesfully.');
+            //this.mecCoverageData = this.createMecCoverage();
+            // this.toastrService.success('MEC Coverage record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }

@@ -123,6 +123,10 @@ export class PlanOfferingCriteriaComponent implements OnInit {
     this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
   }
 
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/basic-reporting-info/emp-status-tracking']);
+  }
+
   private formSubmit(param) {
     let customArray = [];
     this.planOfferingData.plan_offering_criteria_type.forEach((eachSelectedMethod, index) => {
@@ -140,13 +144,12 @@ export class PlanOfferingCriteriaComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
             }
             //this.getPlanOfferData();
-            this.planOfferingData = this.createNewPlanOfferingCriteria();
-            this.toastrService.success('Plan Offering Criteria record updated succesfully.');
+            //this.toastrService.success('Plan Offering Criteria record updated succesfully.');
           } else {
             this._errorMessage = 'Not updated.';
           }
@@ -160,13 +163,12 @@ export class PlanOfferingCriteriaComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this._globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/designated-govt-entity']);
             }
             //this.getPlanOfferData();
-            this.planOfferingData = this.createNewPlanOfferingCriteria();
-            this.toastrService.success('Plan Offering Criteria record added succesfully.');
+            // this.toastrService.success('Plan Offering Criteria record added succesfully.');
           } else {
             this._errorMessage = 'Not added.';
           }

@@ -116,6 +116,10 @@ export class AnythingElseComponent implements OnInit {
     this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
   }
 
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/basic-reporting-info/aggregated-group']);
+  }
+
   private formSubmit(param) {
     this.customArray = [];
     this.anythingElseData.hear_about_us.forEach((hearAboutElement, index) => {
@@ -124,7 +128,7 @@ export class AnythingElseComponent implements OnInit {
       }
     });
 
-    this.anythingElseData['purchase_id'] = this.purchase_id;
+    this.anythingElseData['purchase_id'] = this.product_id;
     this.anythingElseData['company_id'] = this.company_id;
     if (this.anythingElseData.additional_details_id > 0) {
       this.anythingElseData['hear_about_us'] = JSON.stringify(this.customArray);
@@ -134,11 +138,11 @@ export class AnythingElseComponent implements OnInit {
             //this.getAnythingElseData();
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard()
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info']);
             }
-            this.toastrService.success('Basic Info record updated succesfully.');
+           // this.toastrService.success('Basic Info record updated succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -154,12 +158,12 @@ export class AnythingElseComponent implements OnInit {
             // this.getAnythingElseData();
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info']);
             }
 
-            this.toastrService.success('Basic Info record added succesfully.');
+            //this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }

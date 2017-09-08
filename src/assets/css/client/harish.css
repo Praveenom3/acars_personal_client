@@ -521,4 +521,8 @@ table.table-company-dashboard tbody tr:hover{
     border: 2px solid;
     border-radius: 36px 36px 36px 36px;
 }
-    
+.btn.btn-warning,
+.open>.btn.btn-warning {
+    background-color: #f7971e !important;
+    border-color: #f7971e !important;
+}        

@@ -42,6 +42,7 @@ export class BasicInfoComponent implements OnInit {
     private globalService: GlobalService,
     private _clientDashService: ClientDashBoardService,
     private _elementMasterService: ElementMasterService,
+    public clientDashBoardService: ClientDashBoardService,
     private _briBasicInfoService: BriBasicInfoService) {
 
     this.product_id = globalService.decode(route.snapshot.params['product']);
@@ -66,8 +67,8 @@ export class BasicInfoComponent implements OnInit {
     }
     this.getCompany();
     this.getStates();
-
   }
+
 
   getCompany() {
     let companyDet = this.globalService.getCompany();
@@ -160,11 +161,11 @@ export class BasicInfoComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
             }
-            this.toastrService.success('Basic Info record updated succesfully.');
+            //this.toastrService.success('Basic Info record updated succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -180,11 +181,11 @@ export class BasicInfoComponent implements OnInit {
           if (result.success) {
             let url: string = 'client/' + this.product + '/' + this.company;
             if (param == "exit") {
-              this.redirectToDashboard();
+              this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
             } else {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/emp-status-tracking']);
             }
-            this.toastrService.success('Basic Info record added succesfully.');
+            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
