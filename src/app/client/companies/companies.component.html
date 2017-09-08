@@ -586,7 +586,7 @@
                                 <div class="col-md-4">
                                     <label class="form-control-label">Phone <span class="red">*</span></label>
                                     <div class="form-group field-companyuser-phone required" [ngClass]="{'has-danger': !_isCompanyUserValid('phone')}">
-                                        <input type="text" [textMask]="{mask: mask}" id="companyuser-phone" class="form-control" [formControl]="_companyUserForm.controls['phone']"
+                                        <input type="text" [textMask]="{mask: phoneNumberMask}" id="companyuser-phone" class="form-control" [formControl]="_companyUserForm.controls['phone']"
                                             [(ngModel)]="companyUserInformation.phone" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone')}"
                                             aria-required="true" placeholder="(___) ___-____" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone.valid">{{_companyUserFormErrors.phone.message}}</span>

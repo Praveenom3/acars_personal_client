@@ -71,7 +71,8 @@ export class AgreementComponent implements OnInit {
    */
   setClientDetails(result) {
     this.clientDashBoardService.initDashBoardVaraibles();
-    let products: any = JSON.parse(localStorage.getItem('productsAndClients'));
+    let productSession: any = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products: any = productSession['products'];
     let productId = this.clientDashBoardService.productParams;
     let product = products[productId];
     let clientId = this.clientDashBoardService.clientParams;
@@ -79,7 +80,8 @@ export class AgreementComponent implements OnInit {
     if (product) {
       product['clients'][clientId]['primaryData'] = result[clientId];
       products[productId] = product;
-      localStorage.setItem('productsAndClients', JSON.stringify(products));
+      productSession['products'] = products;
+      localStorage.setItem('productsAndClients', JSON.stringify(productSession));
     }
 
     this.toastrService.success('Client purchase primary data updated successfully');

@@ -52,7 +52,6 @@ export class AuthenticationService {
                     localStorage.setItem('lastName', response.data.lastName);
                     localStorage.setItem('productsAndClients', JSON.stringify(response.data.productsAndClients));
                     localStorage.setItem('admin_permissions', JSON.stringify(response.data.admin_permissions));
-                    localStorage.setItem('client_permissions', JSON.stringify(response.data.client_permissions));
                     this.loggedIn = true;
 
                     if (rememberMe == 1) {

@@ -69,7 +69,7 @@ export class CoverageTypeComponent implements OnInit {
 
   getCompany() {
     let companyDet = this.globalService.getCompany();
-    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products = this.globalService.getProducts();
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
@@ -101,13 +101,13 @@ export class CoverageTypeComponent implements OnInit {
   }
 
   resetSelectTypes(type) {
-      if(type == "plan_type_doh"){
-        this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
-      }else if(type == "plan_offer_type"){
-        this.coverageTypeData.plan_type_doh = '';
-        this.coverageTypeData.coverageType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
-        this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
-      }
+    if (type == "plan_type_doh") {
+      this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+    } else if (type == "plan_offer_type") {
+      this.coverageTypeData.plan_type_doh = '';
+      this.coverageTypeData.coverageType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+      this.coverageTypeData.waitingType = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+    }
   }
 
   /*getting data from service*/
