@@ -23,7 +23,7 @@
                                     <div class="panel panel-primary">
                                         <div class="table-responsive kv-grid-container" style="overflow: auto">
 
-                                            <table class="table table-hover table-bordered table-striped" [mfData]="planClasses" #pcData="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                            <table class="table table-hover table-bordered table-striped table-word-break" [mfData]="planClasses" #pcData="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                                                 <thead>
                                                     <tr class="tr-blue-grid-head">
@@ -53,8 +53,8 @@
                                                 <tbody>
                                                     <ng-container *ngIf="pcData.data?.length">
                                                         <tr *ngFor="let item of pcData.data">
-                                                            <td class="text-center">{{item.plan_class_number}}</td>
-                                                            <td class="text-center"><a class="link-blue-underline" [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', globalService.encode(item.plan_class_id)]">{{item.plan_class_name}}</a></td>
+                                                            <td class="text-center"><a class="link-blue-underline" [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', globalService.encode(item.plan_class_id)]">{{item.plan_class_number}}</a></td>
+                                                            <td class="text-center">{{item.plan_class_name}}</td>
                                                             <td class="text-center">{{getItemName("plan_type", item.plan_offer_type)}}</td>
                                                             <td class="text-center">{{item.plan_type_doh ? getItemName("waiting_period", item.plan_type_doh) : '-'}}</td>
                                                             <td class="text-center">{{item.coverageOffered?.employee_mv_coverage ? ((item.coverageOffered.employee_mv_coverage == 1) ? 'Yes': 'No') : '-'}}</td>

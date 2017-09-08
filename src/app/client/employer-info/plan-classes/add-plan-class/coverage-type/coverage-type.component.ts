@@ -171,13 +171,13 @@ export class CoverageTypeComponent implements OnInit {
     }
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
+  }
+
+
   /*on submit sending form data to service.It is for both add and update*/
   public onSubmit(param) {
-
-    if (this.coverageTypeData.plan_class_name.length == 0) {
-      this.toastrService.success('Plan class name cannot be empty.');
-      return false;
-    }
 
     let customCoverageTypeArray = [];
     if (this.coverageTypeData.coverageType.length > 0) {
@@ -207,11 +207,11 @@ export class CoverageTypeComponent implements OnInit {
           if (result.success) {
             this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.redirectToDashboard();
             } else {
               this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
             }
-            this.toastrService.success('Coverage Type Information record added succesfully.');
+            // this.toastrService.success('Coverage Type Information record added succesfully.');
           } else {
             this._errorMessage = 'Not Added.';
           }
@@ -224,11 +224,11 @@ export class CoverageTypeComponent implements OnInit {
           if (result.success) {
             this.encodedId = this.globalService.encode(result.data.PlanClassCoverageTypeInformation.plan_class_id);
             if (param == "exit") {
-              this.router.navigate(['client/' + this.product + '/' + this.company]);
+              this.redirectToDashboard();
             } else {
               this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
             }
-            this.toastrService.success('Coverage Type Information record updated succesfully.');
+            //  this.toastrService.success('Coverage Type Information record updated succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
