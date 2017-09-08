@@ -51,7 +51,7 @@ export class PlanOfferingCriteriaComponent implements OnInit {
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
   getCompany() {
     let companyDet = this._globalService.getCompany();
-    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products = this._globalService.getProducts();
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);

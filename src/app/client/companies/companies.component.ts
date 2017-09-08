@@ -46,6 +46,7 @@ export class CompaniesComponent implements OnInit {
 
   public userType: any;
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public phoneNumberMask = ['(', /\d/, /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
     private _formBuilder: FormBuilder,
@@ -410,6 +411,8 @@ export class CompaniesComponent implements OnInit {
     let newAdminUser: CompanyUser = {
       user_id: 0,
       company_user_id: 0,
+      client_id: 0,
+      user_type: '',
       company_id: this.clientDashBoardService.company.company_id,
       first_name: '',
       last_name: '',

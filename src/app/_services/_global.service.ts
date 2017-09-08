@@ -64,6 +64,20 @@ export class GlobalService {
     public getCompany(): any {
         return localStorage.getItem('company');
     }
+    /**
+     * 
+     */
+    public getProducts(): any {
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        return products['products'];
+    }
+    /**
+     * 
+     */
+    public getBrand(): any {
+        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        return products['brand'];
+    }
 
     /**
      * Encodes and returns

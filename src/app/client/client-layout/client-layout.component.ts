@@ -51,7 +51,7 @@ export class ClientLayoutComponent implements OnInit {
 
   displayClientProducts() {
 
-    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products = this._globalService.getProducts();
     let clientObject: ClientLayoutComponent = this;
 
     let productsList = Object.keys(products).map(function (key) {

@@ -74,7 +74,7 @@ export class AnythingElseComponent implements OnInit {
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
   getCompany() {
     let companyDet = this.globalService.getCompany();
-    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products = this.globalService.getProducts();
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);

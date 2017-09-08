@@ -68,7 +68,7 @@ export class CoverageOfferedComponent implements OnInit {
 
   getCompany() {
     let companyDet = this.globalService.getCompany();
-    let products = JSON.parse(localStorage.getItem('productsAndClients'));
+    let products = this.globalService.getProducts();
     let productYear = products[this.product_id]['applicable_year'];
     if (companyDet) {
       this.companyDetails = JSON.parse(companyDet);
@@ -153,15 +153,15 @@ export class CoverageOfferedComponent implements OnInit {
     }
   }
 
-  resetValues(type){
-    if(type == 'employee_mv_coverage'){
-      this.coverageOfferedData.entireMvYear= false;
-      this.coverageOfferedData.mv_coverage_months= [];
-    }else if(type == 'employee_essential_coverage'){
-      this.coverageOfferedData.entireMeYear= false;
-      this.coverageOfferedData.essential_coverage_months= [];
-    }else if(type == 'spouse_essential_coverage'){
-      this.coverageOfferedData.spouse_conditional_coverage= false;
+  resetValues(type) {
+    if (type == 'employee_mv_coverage') {
+      this.coverageOfferedData.entireMvYear = false;
+      this.coverageOfferedData.mv_coverage_months = [];
+    } else if (type == 'employee_essential_coverage') {
+      this.coverageOfferedData.entireMeYear = false;
+      this.coverageOfferedData.essential_coverage_months = [];
+    } else if (type == 'spouse_essential_coverage') {
+      this.coverageOfferedData.spouse_conditional_coverage = false;
     }
   }
 

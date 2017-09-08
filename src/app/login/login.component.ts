@@ -274,7 +274,7 @@ export class LoginComponent implements OnInit {
      */
     navigateUser(userType) {
 
-        let products = JSON.parse(localStorage.getItem('productsAndClients'));
+        let products = this.globalService.getProducts();
         if (products && products != null && products != 'null' && products != '') {
             let productsList = Object.keys(products).map(function (key) {
                 return products[key]
@@ -292,7 +292,7 @@ export class LoginComponent implements OnInit {
 
             let clientId: any = this.globalService.encode(client['client_id']);
             let productId: any = this.globalService.encode(product.product_id);
-            this.dashBoard.setBrandData(product.product_id, client['client_id'])
+            this.dashBoard.setBrandData()
 
             this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
         } else {
