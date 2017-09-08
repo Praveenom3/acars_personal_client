@@ -151,7 +151,7 @@
                                     </li>
                                     <li>
                                         <h6>DOCUMENT</h6>
-                                        <h6>History</h6>
+                                        <h6>HISTORY</h6>
                                     </li>
                                 </ul>
                             </div>
@@ -248,18 +248,22 @@
                                 <tr>
                                     <td>Invoice</td>
                                     <td class="padding-5">
-                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid"
+                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
+                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid"
                                             title="Click to toggle">Not Paid</span>
-                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid"
+                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
+                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid"
                                             title="Click to toggle">Paid</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Client Agreement</td>
                                     <td class=" padding-5">
-                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement"
+                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
+                                            (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement"
                                             title="Click to toggle">Needed</span>
-                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement"
+                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
+                                            (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement"
                                             title="Click to toggle">Completed</span>
                                     </td>
                                 </tr>
@@ -267,9 +271,11 @@
                                     <td>Discovery Session</td>
                                     <td class="padding-5">
 
-                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'" (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session"
+                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
+                                            (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session"
                                             title="Click to toggle">Needed</span>
-                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'" (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session"
+                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
+                                            (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session"
                                             title="Click to toggle">Completed</span>
                                     </td>
                                 </tr>
@@ -643,8 +649,7 @@
                             we have not opened up the begin receiving payroll and medical enrollment data until closer to
                             the end of the year.
                         </p>
-                        In the meantime, you can <a href="" class="link-white-underline">download this template</a> to prepare
-                        for the end of year
+                        In the meantime, you can <a class="link-white-underline" href="../src/assets/temp-files/ACA-Reporting-2017-Data-Packet.xls">download this template</a>                        to prepare for the end of year
 
                     </div>
                     <div class="upload-file-footer">
