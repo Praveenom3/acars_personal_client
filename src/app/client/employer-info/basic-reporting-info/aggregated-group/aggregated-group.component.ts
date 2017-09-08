@@ -210,7 +210,7 @@ export class AggregatedGroupComponent implements OnInit {
   }
 
   private formSubmit(param) {
-    this.aggregatedGroupData['purchase_id'] = this.product_id;
+    this.aggregatedGroupData['purchase_id'] = this.purchase_id;
     this.aggregatedGroupData['company_id'] = this.company_id;
     let customArray = [];
     if (this.aggregatedGroupData.entireYear == true) {
