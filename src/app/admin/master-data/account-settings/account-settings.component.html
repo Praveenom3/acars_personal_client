@@ -46,15 +46,13 @@
                                 <ng-container [ngSwitch]="setting.setting_field_type">
                                     <td *ngSwitchCase="'text'">
                                         <div *ngIf="setting.setting_validation == 'email'">
-                                            <input type="text" class="form-control" id="changed_value_{{setting.setting_id}}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                                [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" required>
+                                            <input type="text" class="form-control" id="changed_value_{{setting.setting_id}}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" required>
                                             <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                     Please Enter valid {{setting.setting_name}} value
                                             </span>
                                         </div>
                                         <div *ngIf="setting.setting_validation == ''">
-                                            <input type="text" class="form-control" id="changed_value_{{setting.setting_id}}" [(ngModel)]="setting.setting_revised_value"
-                                                #settingModel="ngModel" required>
+                                            <input type="text" class="form-control" id="changed_value_{{setting.setting_id}}" [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" required>
                                             <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                     Please Enter valids {{setting.setting_name}} value
                                             </span>
@@ -62,23 +60,20 @@
                                     </td>
                                     <td *ngSwitchCase="'textarea'">
                                         <div class="input-group ">
-                                            <textarea [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" id="changed_value_{{setting.setting_id}}" rows="8"
-                                                cols="30" required></textarea>
+                                            <textarea [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" id="changed_value_{{setting.setting_id}}" rows="8" cols="30" required></textarea>
                                         </div>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>
                                     </td>
                                     <td *ngSwitchCase="'date'">
-                                        <input [(ngModel)]="setting.setting_revised_value" [min]="getMinDate(setting)" #settingModel="ngModel" type="date" class="form-control "
-                                            id="changed_value_{{setting.setting_id}}" maxlength="60" value="" required>
+                                        <input [(ngModel)]="setting.setting_revised_value" [min]="getMinDate(setting)" #settingModel="ngModel" type="date" class="form-control " id="changed_value_{{setting.setting_id}}" maxlength="60" value="" required>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>
                                     </td>
                                     <td *ngSwitchCase="'select'">
-                                        <select [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" class="form-control" id="changed_value_{{setting.setting_id}}"
-                                            required>
+                                        <select [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" class="form-control" id="changed_value_{{setting.setting_id}}" required>
                                                <option *ngFor="let optionsData of setting.setting_options" [value]="optionsData.id">{{optionsData.value}}</option>
                                         </select>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
@@ -86,8 +81,7 @@
                                         </span>
                                     </td>
                                     <td *ngSwitchDefault>
-                                        <input [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" type="text" class="form-control" id="changed_value_{{setting.setting_id}}"
-                                            maxlength="60" required>
+                                        <input [(ngModel)]="setting.setting_revised_value" #settingModel="ngModel" type="text" class="form-control" id="changed_value_{{setting.setting_id}}" maxlength="60" required>
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>

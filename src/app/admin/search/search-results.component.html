@@ -1,25 +1,7 @@
 <search-band></search-band>
 
 <div class="page-content col-md-12 section-page-content">
-    <div class="container">
-        <!--<div class="col-md-12  padding-0 ">
-            <div class="col-md-6 padding-0 margin-top-10" align="left">
-                <div class="summary">Showing <b>1-12</b> of <b>147</b> items.</div>
-            </div>
-            <div class="col-md-6  padding-0 search-screen-pagination" align="right">
-                <ul class="pagination">
-                    <li class="first disabled"><span>first</span></li>
-                    <li class="prev disabled"><span>previous</span></li>
-                    <li class="active"><a data-page="0">1</a></li>
-                    <li><a data-page="1">2</a></li>
-                    <li><a data-page="2">3</a></li>
-                    <li><a data-page="3">4</a></li>
-                    <li><a data-page="4">5</a></li>
-                    <li class="next"><a data-page="1">next</a></li>
-                    <li class="last"><a data-page="9">last</a></li>
-                </ul>
-            </div>
-        </div>-->
+    <div class="container" *ngIf="searchResults.length > 0">
         <div class="col-md-12 border-ddd widget">
             <div class="col-md-12  padding-0">
                 <div *ngFor="let result of searchResults">
@@ -37,9 +19,6 @@
                                                 <a class="cursor-pointer color-blue">{{result.username}}</a>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-xs-3 pull-right">
-                                            <a class="cursor-pointer color-blue link-blue-underline" (click)="redirectToClientDashBoard(result)">View Dashboard</a>
-                                        </div> -->
                                     </div>
                                     <div class="col-xs-12 padding-0  ">
                                         <div class="col-xs-9 ">
@@ -88,6 +67,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="searchResults.length == 0">
+        <div class="widget width-100 padding-50 font-20 color-blue" align="center">
+            No records found.
         </div>
     </div>
 </div>
