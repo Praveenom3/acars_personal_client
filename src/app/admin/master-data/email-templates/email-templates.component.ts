@@ -148,6 +148,7 @@ export class EmailTemplatesComponent implements OnInit {
                         this._emailTemplatesForm.reset();
                         this._emailTemplatesForm.controls.email_type.setValue('');
                         this._resetFormErrors();
+                        this._resetFormValues();
                         this.emailTemplatesList();
                         this.toastrService.success('Email template Updated Successfully.');
 
@@ -198,9 +199,6 @@ export class EmailTemplatesComponent implements OnInit {
         this._emailTemplatesForm.controls.body.setValue('');
 
         this.emailTemplateSelected = this.createNewEmailTemplate();
-
-
-
     }
 
     private _setFormErrors(errorFields: any): void {

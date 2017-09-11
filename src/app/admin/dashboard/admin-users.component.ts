@@ -61,7 +61,7 @@ export class AdminUsersComponent implements OnInit {
             last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
             is_active: ['', Validators.compose([Validators.required])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            mobile: ['', Validators.compose([Validators.required])],
+            mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             phone_extension: ['',]
         });
 
@@ -273,6 +273,7 @@ export class AdminUsersComponent implements OnInit {
         },
         'mobile': {
             'required': 'phone is required.',
+            'minlength': 'Phone should be 10 digit length.'
         },
         'phone_extension': {
             'required': 'Extension is required.',

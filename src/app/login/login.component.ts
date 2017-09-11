@@ -82,9 +82,17 @@ export class LoginComponent implements OnInit {
         this._resetFormErrors();
 
         if (this._cookieService.get('rememberMe')) {
+            
             let userType: any = localStorage.getItem("usertype");
             if (userType == 1 || userType == 2) {
-                this.router.navigate(['/admin/dashboard']);
+                this.globalService.getPermissions();
+                if(this.globalService.financial_permission){
+                    this.router.navigate(['/admin/summary']);
+                }else{
+                    this.router.navigate(['/admin/dashboard']);
+                }
+                
+
             } else if (userType == 3 || userType == 4) {
                 this.navigateUser(userType);
             } else {
@@ -207,7 +215,12 @@ export class LoginComponent implements OnInit {
                         this.router.navigate([this.redirect_uri]);
                     } else {
                         if (result.data.user_type == 1 || result.data.user_type == 2) {
-                            this.router.navigate(['/admin/dashboard']);
+                            this.globalService.getPermissions();
+                            if(this.globalService.financial_permission){
+                                this.router.navigate(['/admin/summary']);
+                            }else{
+                                this.router.navigate(['/admin/dashboard']);
+                            }
                         } else if (result.data.user_type == 3 || result.data.user_type == 4) {
                             this.navigateUser(result.data.user_type);
                         }
