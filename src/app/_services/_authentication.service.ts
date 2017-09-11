@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 import { Router } from "@angular/router";
 import { tokenNotExpired } from 'angular2-jwt';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
@@ -127,7 +128,7 @@ export class AuthenticationService {
 
     /* Function to call the rest api to change the password */
     public verifyPasswordResetToken(token): Observable<any> {
-
+        
         let headers = new Headers();
         headers.append('Content-Type', 'application/json; charset=UTF-8');
 
@@ -140,9 +141,17 @@ export class AuthenticationService {
             { headers: headers }
         ).map(response => response.json())
             .map((response) => {
-                return response;
+                if(response.success == true){
+                    return Observable.of(true);
+                }else{
+                    return Observable.of(false);
+                }
             })
-            .catch(this.handleError);
+            .catch((response:Response) => {
+                // Handler case for different status
+             //   return Observable.empty();
+             return Observable.of(false);
+            })
     }
     /* ./Function to call the rest api to change the password */
 

@@ -41,6 +41,7 @@ import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { CompanyUserService } from "app/_services/_company-user.service";
 import { ProductsNotExists } from './pages/products-not-exists.component';
+import { TokenValidationResolver } from "app/_services/token-validation-resolver";
 
 @NgModule({
   declarations: [
@@ -78,7 +79,7 @@ import { ProductsNotExists } from './pages/products-not-exists.component';
     AuthGuard,
     AccessGuard,
     GlobalService, ClientDashBoardService, CompanyUserService,
-    ValidationService],
+    ValidationService, TokenValidationResolver],
 
   bootstrap: [AppComponent]
 })
