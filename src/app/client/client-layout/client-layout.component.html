@@ -41,12 +41,12 @@
         </div>
         <ul class="actions  media-hide-header">
 
-            <li>
+            <!-- <li>
                 <a class="disable-hover home" *ngIf="(userType==2 || userType==1 )" [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/dashboard']"
                     title="Click to admin dashboard">
                     <b><i class="fa fa-home" aria-hidden="true"></i></b>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="dashBoardService.clientHomeUrl">
                     <b><i class="fa fa-home" aria-hidden="true"></i></b>
@@ -68,7 +68,8 @@
                      <span class="header-name media-hide-profilename">
                          <span class="font-14">Welcome</span> {{userFirstName}}<span class="font-14"></span></span>
                 </a>
-                <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:16px !important;">
+                <ul *ngIf="(userType==3 || userType==4 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby=""
+                    role="menu" style="margin-top:16px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/profile']"><i
 						class="dropdown-icon icmn-user"></i> Profile</a>
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/messages']"><i
@@ -82,6 +83,15 @@
                     <div class="dropdown-divider margin-0"></div>
                     <a class="dropdown-item dropdown-a color-white" href="#"><i
 						class="dropdown-icon icmn-exit"></i> Logout</a>
+                </ul>
+                <ul *ngIf="(userType==1 || userType==2 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby=""
+                    role="menu" style="margin-top:16px !important;">
+                    <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/dashboard']">
+                        <i class="dropdown-icon fa fa-home">
+                            </i> Dashboard</a>
+                    <a class="dropdown-item dropdown-a color-white" href="#">
+                        <i class="dropdown-icon icmn-exit">
+                            </i> Logout</a>
                 </ul>
             </div>
         </div>

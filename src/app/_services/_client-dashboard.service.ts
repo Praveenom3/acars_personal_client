@@ -79,6 +79,7 @@ export class ClientDashBoardService {
 
     public accountManager: string;
     public accountManagerNumber: string;
+    public accountManagerMail: string;
 
     public userRowsOnPage: number = 5;
 
@@ -199,7 +200,7 @@ export class ClientDashBoardService {
 
                                 this.selectedCompanyRow = this.company.company_id;
                                 this.company.company_data = this.checkCompanyData(this.company);
-                                if(this.company.companyUsers){
+                                if (this.company.companyUsers) {
                                     this.userRowsOnPage = this.company.companyUsers.length;
                                 }
                                 this.setAccountManagerData(productId, clientId);
@@ -267,7 +268,7 @@ export class ClientDashBoardService {
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
                 "support_email": brand.support_email,
-                "support_phone": '(' + mobile.slice(0, 3) + ')' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10)
+                "support_phone": mobile
             }
             this.clientLogo = this.logoPath + brand.brand_logo;
         }
@@ -286,6 +287,9 @@ export class ClientDashBoardService {
             }
             if (client['account_manager_number'] != 'null' && client['account_manager_number'] != '') {
                 this.accountManagerNumber = client['account_manager_number'];
+            }
+            if (client['account_manager_mail'] != 'null' && client['account_manager_mail'] != '') {
+                this.accountManagerMail = client['account_manager_mail'];
             }
         }
     }
@@ -521,6 +525,7 @@ export class ClientDashBoardService {
     public setCompanyToSession() {
         let data: any = {
             'purchase_id': this._globalService.encode(this.company.purchase_id),
+            'company_id': this._globalService.encode(this.company.company_id),
             'product_id': this._globalService.encode(this.productParams),
             'client_id': this._globalService.encode(this.company.client_id),
             'company_ein': this.company.company_ein,
