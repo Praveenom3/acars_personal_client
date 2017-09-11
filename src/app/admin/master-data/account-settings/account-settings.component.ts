@@ -97,7 +97,7 @@ export class AccountSettingsComponent implements OnInit {
         let status = false;
         switch (setting.setting_validation) {
             case 'email':
-                let EMAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
+                let EMAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/i;
                 if (EMAIL_REGEXP.test(value)) {
                     status = true;
                 }

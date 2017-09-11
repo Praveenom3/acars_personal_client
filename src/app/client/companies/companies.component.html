@@ -84,7 +84,8 @@
 
                                     <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
                                     <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
-                                    <a *ngIf="clientDashBoardService.accountManager" href="mailto:someone@example.com" target="_top" class="link-blue"> Contact My Manager</a>
+                                    <a *ngIf="clientDashBoardService.accountManager" href="mailto:{{clientDashBoardService.accountManagerMail}}" target="_top"
+                                        class="link-blue"> Contact My Manager</a>
                                 </div>
                             </div>
                         </div>
