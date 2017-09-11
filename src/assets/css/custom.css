@@ -76,6 +76,11 @@ tr.tr-blue-grid-head>th {
     cursor: pointer;
 }
 
+.login a.link-blue-underline {
+    color: #0275d8;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 /* icons */
 

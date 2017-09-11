@@ -48,32 +48,12 @@ export class SetPasswordComponent implements OnInit {
         this._token = params['token'];
       });
 
-      
-        this._isValidToken = this.validateToken(this._token);
+      this._isValidToken = this.route.snapshot.data['token_validation_data'];
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
-  /* function to check whether the token is valid or not before showing the form */
-  private validateToken(token):boolean {
-    let _isValidToken:boolean = false;
-    
-    this.authenticationService.verifyPasswordResetToken(
-           token).subscribe(            
-              result => {
-                this._isValidToken = true;
-              },
-                error => {
-                    this._isValidToken = false;
-                    // Validation error
-                  // this.toastrService.error('Trouble resetting the password. Please try later.');
-                });
-
-     return _isValidToken;
-  }
-    /* ./function to check whether the token is valid or not before showing the form */
 
   private _setFormErrors(errorFields:any):void{
             for (let key in errorFields) {
@@ -134,7 +114,7 @@ export class SetPasswordComponent implements OnInit {
            this._token, this.setPwdForm.value.newPassword, this.setPwdForm.value.retypePassword).subscribe(            
               result => {
                   if(result.success) {
-                    localStorage.setItem('toastr_success', 'Password has been set successfully!');
+                    this.toastrService.success('Password has been set successfully!');
                     this.router.navigate(['/login']);
                   } else {
                     this._errorMessageSetPwd = 'Trouble setting the password. Please try later.';
