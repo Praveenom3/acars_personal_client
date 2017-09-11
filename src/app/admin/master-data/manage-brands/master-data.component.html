@@ -68,7 +68,10 @@
                                     <td>{{brand.support_email}}</td>
                                     <td>{{brand.support_phone}}</td>
                                     <td>{{brand.terms_conditions_url}}</td>
-                                    <td><a style="cursor:pointer" (click)="statusChange(brand)">{{(brand.is_default== "1") ? "" : ((brand.brand_status) == 1 ? "Active" : "Inactive")}}</a></td>
+                                    <td>
+                                        <p *ngIf="brand.is_default == '1'">{{(brand.brand_status) == 1 ? "Active" : "Inactive"}}</p>
+                                        <a style="cursor:pointer" *ngIf="brand.is_default != '1'" (click)="statusChange(brand)">{{(brand.brand_status) == 1 ? "Active" : "Inactive"}}</a>
+                                    </td>
                                     <td class="text-center">
                                         <a *ngIf="!brand.is_default" title="delete" (click)="deleteBrand(brand)" style="cursor: pointer;color:red;">
                                             <i class="fa fa-trash-o" aria-hidden="true">
@@ -135,8 +138,9 @@
                         <div class="col-md-6 required">
                             <label class="form-control-label">Support Phone</label>
                             <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('support_phone')}">
-                                <input type="text" [textMask]="{mask: mask}" [formControl]="_addBrandForm.controls['support_phone']" class="form-control" [(ngModel)]="brandSelected.support_phone" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid('support_phone')}">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_addBrandForm.controls['support_phone']" class="form-control" name="support_phone" [(ngModel)]="brandSelected.support_phone" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid('support_phone')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.support_phone.valid">{{_formErrors.support_phone.message}}</span>
+
                             </div>
                         </div>
                     </div>

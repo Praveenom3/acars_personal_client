@@ -94,20 +94,20 @@ export class AccountSettingsComponent implements OnInit {
      */
     protected validateSettings(setting) {
         let value = setting.setting_revised_value;
-        let status = true;
+        let status = false;
         switch (setting.setting_validation) {
             case 'email':
-                let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-                if (!EMAIL_REGEXP.test(value)) {
-                    status = false;
+                let EMAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
+                if (EMAIL_REGEXP.test(value)) {
+                    status = true;
                 }
             case 'date':
                 let datePattern = /^\d{1,2}\.\d{1,2}\.\d{4}$/;
-                if (!value.match(datePattern)) {
-                    status = false;
+                if (value.match(datePattern)) {
+                    status = true;
                 }
         }
-        return true;
+        return status;
     }
     /**
      * 

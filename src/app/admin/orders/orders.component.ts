@@ -99,7 +99,7 @@ export class OrdersComponent implements OnInit {
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            purchaser_mobile: ['', Validators.compose([Validators.required])],
+            purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             purchase_status: [''],
             amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
             account_manager: [''],
@@ -402,11 +402,8 @@ export class OrdersComponent implements OnInit {
             this.temp_total_index = this.totalPurchases.indexOf(data);
             this.patchValue(this._updatePurchaseForm, data);
 
-
-            if (!(data.hasOwnProperty('is_new_purchase') && data.is_new_purchase == 1)) {
-                this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
-                this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
-            }
+            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
+            this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
 
             if (this._updateClientForm.value.client_id) {
                 this.getSelectableProducts('', this._updatePurchaseForm.value.product_id, 'clientUpdatePurchaseBeforeSubmit');
@@ -559,7 +556,7 @@ export class OrdersComponent implements OnInit {
                     this._updateClientFormSubmitted = false;
                     if (error.status == 422) {
                         this._resetFormErrors();
-                        //let errorFields = JSON.parse(error.data.message);
+                        let errorFields = JSON.parse(error.data.message);
                         this.toastrService.error('Trouble in updating client. Please try later.');
                         //   this._setFormErrors(this._addClientFormErrors, errorFields);
                     } else {
@@ -615,51 +612,27 @@ export class OrdersComponent implements OnInit {
             //removing spl chars from purchaser mobile
             form.value.purchaser_mobile = form.value.purchaser_mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
 
-            let data = {
-                "client_email": form.value.purchaser_email
-            };
+            if (this.temp_total_index !== -1) {
+                this.totalPurchases[this.temp_total_index] = form.value;
+            }
+            //resetting temp_total_index value
+            this.temp_total_index = -1;
 
-            this._addPurchaseFormSubmitted = true;
+            if (form.value.hasOwnProperty('is_new_purchase') && form.value.is_new_purchase == 1) {
+                if (this.temp_new_index !== -1) {
+                    this.newPurchases[this.temp_new_index] = form.value;
+                }
+                this.temp_new_index = -1;
+            } else {
+                this.updatePurchases.push(form.value);
+            }
 
-            this.ordersService.validateClientEmail(data).subscribe(
-                result => {
-                    if (result.success) {
+            this.getSelectableProducts('', '', 'rollbackTempArrWithSelected');
+            this.getSelectableProducts('', form.value.product_id, 'clientUpdatePurchaseAfterSubmit');
 
-                        if (this.temp_total_index !== -1) {
-                            this.totalPurchases[this.temp_total_index] = form.value;
-                        }
-                        this.temp_total_index = -1;
+            this.closeModal('updatePurchaseModal');
+            this.askConfirm = true;
 
-                        if (form.value.hasOwnProperty('is_new_purchase') && form.value.is_new_purchase == 1) {
-                            if (this.temp_new_index !== -1) {
-                                this.newPurchases[this.temp_new_index] = form.value;
-                            }
-                            this.temp_new_index = -1;
-                        } else {
-                            this.updatePurchases.push(form.value);
-                        }
-
-                        this.getSelectableProducts('', '', 'rollbackTempArrWithSelected');
-                        this.getSelectableProducts('', form.value.product_id, 'clientUpdatePurchaseAfterSubmit');
-
-                        this.closeModal('updatePurchaseModal');
-                        this.askConfirm = true;
-
-                    } else {
-                        this.toastrService.error('Trouble validating the Purchaser Email. Please try later.');
-                        this._addPurchaseFormSubmitted = false;
-                    }
-                },
-                error => {
-                    this._updatePurchaseFormSubmitted = false;
-                    if (error.status == 422) {
-                        this._resetFormErrors();
-                        this._updatePurchaseFormErrors['purchaser_email'].valid = false;
-                        this._updatePurchaseFormErrors['purchaser_email'].message = error.data.message;
-                    } else {
-                        this.toastrService.error('Trouble validating the Purchaser Email. Please try later.');
-                    }
-                });
         }
     }
 
@@ -855,10 +828,10 @@ export class OrdersComponent implements OnInit {
             'required': 'Client Number is required.'
         },
         'purchase_user_id': {
-            'required': 'Purchase User is required.'
+            'required': 'Purchase User ID is required.'
         },
         'purchase_id': {
-            'required': 'Purchase is required.'
+            'required': 'Purchase ID is required.'
         },
         'product_id': {
             'required': 'Product is required.'
@@ -883,7 +856,8 @@ export class OrdersComponent implements OnInit {
             'pattern': 'Valid Purchaser Email is required.',
         },
         'purchaser_mobile': {
-            'required': 'Purchaser Mobile is required.'
+            'required': 'Purchaser Phone is required.',
+            'minlength': 'Phone should be 10 digit length.'
         },
         'purchase_status': {
             'required': 'Purchased Status is required.'
