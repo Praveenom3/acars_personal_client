@@ -350,3 +350,6 @@ body.body-blue nav.admin-nav .menu {
     line-height: 18px;
     font-weight: 400;
 }
+.hover-red {
+    color: red !important;
+}
