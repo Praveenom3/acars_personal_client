@@ -70,7 +70,8 @@ export class inputFilterDirective {
 
   @HostListener('keypress', ['$event']) onKeyPress(event) {
     let e = <any>event
-    if (typeof e.target.value === 'number') {
+    
+    if (this.OnlyAmountNumber)  {
       let valInFloat: number = parseFloat(e.target.value)
 
       if (this.minValue.length) {
