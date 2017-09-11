@@ -135,7 +135,7 @@ export class PlanOfferingCriteriaComponent implements OnInit {
       }
     });
 
-    this.planOfferingData['purchase_id'] = this.product_id;
+    this.planOfferingData['purchase_id'] = this.purchase_id;
     this.planOfferingData['company_id'] = this.company_id;
     this.planOfferingData['plan_offering_criteria_type'] = JSON.stringify(customArray);
     if (this.planOfferingData.plan_offer_criteria_id > 0) {

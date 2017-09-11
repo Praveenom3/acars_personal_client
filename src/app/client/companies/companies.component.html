@@ -211,7 +211,7 @@
                                             <th class="text-center">First Name</th>
                                             <th class="text-center">Last Name</th>
                                             <th class="text-center">Email</th>
-                                            <th class="text-center">Details & Activity</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -220,7 +220,7 @@
                                                 <td class="text-center padding-5">{{companyUserData.first_name}}</td>
                                                 <td class="text-center padding-5">{{companyUserData.last_name}}</td>
                                                 <td class="text-center padding-5">{{companyUserData.email}}</td>
-                                                <td class="text-center padding-5"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">view</a></td>
+                                                <td class="text-center padding-5"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
                                             </tr>
                                         </ng-container>
                                         <tr class="tr-text-center" *ngIf=!users.data?.length>

@@ -2,7 +2,7 @@
 <client-company-info [companyData]="companyDetails"></client-company-info>
 <!-- ./company info -->
 <!-- Main Tabs -->
-    <client-reporting-band></client-reporting-band>
+<client-reporting-band></client-reporting-band>
 <!-- ./Main Tabs -->
 
 <div class="product-container col-md-12">
@@ -15,15 +15,15 @@
                     <div class="col-md-12  padding-10 ul-block">
                         <ul class="nav nav-pills nav-wizard inner-block-ul" id="manage-plan-tabs" style="min-width:66%;">
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-1">
-                                
+
                                 <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId]" *ngIf="encodedId">
                                     <div class="inner-block-digits pull-left">1</div>
                                     <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
 
-                                    <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']" *ngIf="!encodedId">
-                                        <div class="inner-block-digits pull-left">1</div>
-                                        <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
-                                
+                                <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class']" *ngIf="!encodedId">
+                                    <div class="inner-block-digits pull-left">1</div>
+                                    <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
+
                             </li>
                             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
                                 <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'coverage-offered']" *ngIf="encodedId">
@@ -61,171 +61,172 @@
 
                                                                 <!-- form content -->
                                                                 <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <div class="col-sm-12">
-                                                                                <span class="form-control-label">
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-12">
+                                                                            <span class="form-control-label">
                                                                                     <span>"Pay or Play" rule require employees to offer
                                                                                         coverage that is affordable based upon a percentage of
                                                                                         each employee's household income. Employers would rarely
                                                                                         know this number, so the IRS allows for assumptions to
                                                                                         be made called "safe harbors"</span>
-                                                                                <label style="margin-top:5px;">{{labels[0]}}</label>
+                                                                            <label style="margin-top:5px;">{{labels[0]}}</label>
 
-                                                                                <div>
-                                                                                    <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" id="lock-back-method" type="radio" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                    <span class="control-checkbox">Assume W2 earnings is household earnings (W2 safe harbor)</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                </div>
-
-                                                                                <div>
-                                                                                    <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" type="radio" value="2">&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                    <span class="control-checkbox">Assume household earnings meets federal poverty line (federal poverty line safe harbor)</span>
-                                                                                </div>
-
-                                                                                <div>
-                                                                                    <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" type="radio" value="3">&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                    <span class="control-checkbox">Use employee's rate of pay to determine household earnings (rate of pay safe harbor)</span>
-                                                                                </div>
-
-                                                                                <div>
-                                                                                    <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" type="radio" value="4">&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                    <span class="control-checkbox">Do not apply a safe harbor to this plan class</span>
-                                                                                </div>
-
-                                                                                </span>
+                                                                            <div>
+                                                                                <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" id="lock-back-method" type="radio" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <span class="control-checkbox">Assume W2 earnings is household earnings (W2 safe harbor)</span> &nbsp;&nbsp;&nbsp;&nbsp;
                                                                             </div>
-                                                                        </div>
 
-                                                                        <div class="form-group" style="margin-top:5px; ">
-                                                                            <div class="col-sm-12">
-                                                                                <label class="form-control-label">{{labels[1]}}</label>
+                                                                            <div>
+                                                                                <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" type="radio" value="2">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <span class="control-checkbox">Assume household earnings meets federal poverty line (federal poverty line safe harbor)</span>
                                                                             </div>
-                                                                            <div class="col-sm-12 padding-left-25">
-                                                                                <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" name="employee_plan_contribution" value="1"> Yes
-                                                                            </label>
-                                                                                <label class="radio-inline">
-                                                                                <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" (click)="resetPremiums()" name="employee_plan_contribution" value="2"> No
-                                                                           </label>
+
+                                                                            <div>
+                                                                                <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" type="radio" value="3">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <span class="control-checkbox">Use employee's rate of pay to determine household earnings (rate of pay safe harbor)</span>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12" *ngIf="employeeContributionData.employee_plan_contribution == '1'">
-                                                                            <span class="form-control-label">{{labels[2]}}
-                                                                                <div class="col-sm-12 padding-left-10 paddingTopBottom10">
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>January</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
 
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[1]" name="premiums[1]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
+                                                                            <div>
+                                                                                <input [(ngModel)]="employeeContributionData.safe_harbor" name="safe_harbor" type="radio" value="4">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <span class="control-checkbox">Do not apply a safe harbor to this plan class</span>
+                                                                            </div>
 
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>February</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[2]" name="premiums[2]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>March</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[3]" name="premiums[3]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>April</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[4]" name="premiums[4]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10 ">
-                                                                                        <span>May</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[5]" name="premiums[5]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>June</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[6]" name="premiums[6]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>July</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[7]" name="premiums[7]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>August</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[8]" name="premiums[8]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>September</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[9]" name="premiums[9]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>October</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[10]" name="premiums[10]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>November</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[11]" name="premiums[11]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
-                                                                                        <span>December</span>
-                                                                                        <div class="input-group ">
-                                                                                            <span class="input-group-addon">$ </span>
-                                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[12]" name="premiums[12]" class="form-control" placeholder="0.00" maxlength="10">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- ./form content -->
+
+                                                                    <div class="form-group" style="margin-top:5px; ">
+                                                                        <div class="col-sm-12">
+                                                                            <label class="form-control-label">{{labels[1]}}</label>
+                                                                        </div>
+                                                                        <div class="col-sm-12 padding-left-25">
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" name="employee_plan_contribution" value="1"> Yes
+                                                                            </label>
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" [(ngModel)]="employeeContributionData.employee_plan_contribution" (click)="resetPremiums()" name="employee_plan_contribution" value="2"> No
+                                                                           </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12" *ngIf="employeeContributionData.employee_plan_contribution == '1'">
+                                                                        <span class="form-control-label">{{labels[2]}}
+                                                                                <div class="col-sm-12 padding-left-10 paddingTopBottom10">
+                                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                                        <span>January</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[1]" name="premiums[1]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>February</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[2]" name="premiums[2]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>March</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[3]" name="premiums[3]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>April</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[4]" name="premiums[4]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10 ">
+                                                                        <span>May</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[5]" name="premiums[5]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>June</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[6]" name="premiums[6]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>July</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[7]" name="premiums[7]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>August</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[8]" name="premiums[8]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>September</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[9]" name="premiums[9]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>October</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[10]" name="premiums[10]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>November</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[11]" name="premiums[11]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 padding-left-10 paddingTopBottom10">
+                                                                        <span>December</span>
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">$ </span>
+                                                                            <input type="text" oninput="this.value=this.value.replace(/[^0-9.]/g, '')" (blur)="onBlur($event)" [(ngModel)]="employeeContributionData.premiums[12]" name="premiums[12]" class="form-control" placeholder="0.00" maxlength="10">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
+                                                                </span>
                                                             </div>
-                                                            <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
-                                                                <div class="modal-footer-btn padding-15">
-                                                                    <a class="btn btn-default check-changed" type="button">Cancel</a> &nbsp;
-                                                                    <button class="btn btn-modal-blue" (click)="onSubmit('exit')">Save & Exit</button> &nbsp;
-                                                                    <button class="btn btn-modal-blue  pull-right " (click)="onSubmit('next')">Save & Continue</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                                        </div>
+                                                        <!-- ./form content -->
                                                 </div>
                                             </div>
+                                            <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
+                                                <div class="modal-footer-btn padding-15">
+                                                    <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;
+                                                    <a class="btn btn-warning check-changed" (click)="redirectToPrevious()" type="button">Previous</a> &nbsp;
+                                                    <button class="btn btn-modal-blue" (click)="onSubmit('exit')">Save & Exit</button> &nbsp;
+                                                    <button class="btn btn-modal-blue  pull-right " (click)="onSubmit('next')">Save & Continue</button>
+                                                </div>
+                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>

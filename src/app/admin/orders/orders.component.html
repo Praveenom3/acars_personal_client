@@ -122,7 +122,7 @@
                                     <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_addClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}"
                                         (ngModelChange)="onBrandChange(this._addClientForm, $event)" style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
-                                        <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
+                                        <option *ngFor="let ab of availableBrands" [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
                                     <td style="width:10%;"><label class="control-label">Client # :</label></td>
                                     <td style="width:20%;">
