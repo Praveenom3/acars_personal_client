@@ -77,7 +77,11 @@
                                     : ((product.product_type)== 3 ? "Enhanced" : ""))}}</td>
                                 <td class="text-center"><a class="color-blue-link" (click)="accountManagerStatus(product)">{{(product.account_manager) == 1 ? "Yes" : "No"}}</a></td>
                                 <td class="text-center">{{product.applicable_year}}</td>
-                                <td class="text-center"><a title="delete" (click)="deleteProduct(product)" style="cursor: pointer;color:red;"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                <td class="text-center product-delete-action">
+                                    <a title="delete" (click)="deleteProduct(product)" style="cursor: pointer;color:red;">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                                </td>
                             </tr>
                         </ng-container>
                         <tr class="tr-text-center" *ngIf=!prod.data?.length>

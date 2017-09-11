@@ -62,7 +62,7 @@ export class AdminUsersComponent implements OnInit {
             is_active: ['', Validators.compose([Validators.required])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             mobile: ['', Validators.compose([Validators.required])],
-            phone_extension: ['', Validators.compose([Validators.required])]
+            phone_extension: ['',]
         });
 
         this._adminUserForm.valueChanges
