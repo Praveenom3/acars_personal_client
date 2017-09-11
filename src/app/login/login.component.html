@@ -12,7 +12,7 @@
 
                     </div>
                     <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 login-form-div">
-                        <h3 style="text-align:right;color:#3276B7;" class="login-heading">LOGIN</h3>
+                        <h3 style="text-align:right;color:#3276B7;" class="login-heading">2017 LOGIN</h3>
                         <form [formGroup]="_loginForm" (ngSubmit)="onSubmit(_loginForm.value)">
                             <div class="form-group row" [ngClass]="{'has-danger': !_isValid('_loginForm','username')}">
                                 <div class="col-md-12">
@@ -34,13 +34,12 @@
                             </div>
                             <div class="col-md-12  padding-0">
                                 <div class="col-md-6 col-xs-6 padding-0">
-                                    <div class="form-group field-loginform-rememberme has-success">
+                                    <div class="field-loginform-rememberme has-success">
                                         <label class="mt-checkbox mt-checkbox-outline color-black">
 										Remember Me
 										<input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" [formControl]="_loginForm.controls['rememberMe']">
 										<span></span>
 										</label>
-                                        <p class="help-block help-block-error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-6 pull-right  padding-0">
@@ -56,6 +55,10 @@
 
                                 <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
                                     <div class="alert alert-danger">{{_errorMessage}}</div>
+                                </div>
+
+                                <div class="col-xs-12 padding-top-5 text-center">
+                                    <a class="old-acars-link" href="https://acareportingsoftware.com/login">Looking for 2016 ACA Reporting Login? Click here.</a>
                                 </div>
                             </div>
                         </form>

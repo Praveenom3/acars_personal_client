@@ -82,6 +82,13 @@ tr.tr-blue-grid-head>th {
     cursor: pointer;
 }
 
+.login a.old-acars-link {
+    color: #0275d8;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 /* icons */
 
 .excel-icon {
