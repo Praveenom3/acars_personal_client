@@ -128,7 +128,7 @@ export class AnythingElseComponent implements OnInit {
       }
     });
 
-    this.anythingElseData['purchase_id'] = this.product_id;
+    this.anythingElseData['purchase_id'] = this.purchase_id;
     this.anythingElseData['company_id'] = this.company_id;
     if (this.anythingElseData.additional_details_id > 0) {
       this.anythingElseData['hear_about_us'] = JSON.stringify(this.customArray);

@@ -98,7 +98,7 @@ export class EmpStatusTrackingComponent implements OnInit {
   }
 
   private formSubmit(param) {
-    this.empStatusData['purchase_id'] = this.product_id;
+    this.empStatusData['purchase_id'] = this.purchase_id;
     this.empStatusData['company_id'] = this.company_id;
     if (this.empStatusData.emp_status_track_id > 0) {
       this._empStatusTrackingService.updateEmpStatusTracking(this.empStatusData).subscribe(

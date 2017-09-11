@@ -176,7 +176,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   }
 
   private formSubmit(param) {
-    this.govtEntityData['purchase_id'] = this.product_id;
+    this.govtEntityData['purchase_id'] = this.purchase_id;
     this.govtEntityData['company_id'] = this.company_id;
     if (this.govtEntityData.designated_govt_entity_id > 0) {
       this._designatedGovtEntity.updateGovtEntity(this.govtEntityData).subscribe(

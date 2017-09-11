@@ -154,7 +154,7 @@ export class MecCoverageComponent implements OnInit {
   }
 
   private formSubmit(param) {
-    this.mecCoverageData['purchase_id'] = this.product_id;
+    this.mecCoverageData['purchase_id'] = this.purchase_id;
     this.mecCoverageData['company_id'] = this.company_id;
     let customArray = [];
     if (this.mecCoverageData.entireYear == true) {

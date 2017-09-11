@@ -148,7 +148,7 @@ export class GeneralPlanInformationComponent implements OnInit {
     }
 
     this.generalPlanInfoData.months = customArray;
-    this.generalPlanInfoData['purchase_id'] = this.product_id;
+    this.generalPlanInfoData['purchase_id'] = this.purchase_id;
     this.generalPlanInfoData['company_id'] = this.company_id;
     if (this.generalPlanInfoData.general_plan_id > 0) {
       this._generalPlanInfoService.updateGeneralPlanInfo(this.generalPlanInfoData).subscribe(

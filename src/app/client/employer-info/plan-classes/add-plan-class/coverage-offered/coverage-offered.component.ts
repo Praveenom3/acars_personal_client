@@ -108,12 +108,16 @@ export class CoverageOfferedComponent implements OnInit {
       this.coverageOfferedData = coverageOfferedInfo.planClassCoverageTypeOffered;
 
       if (this.coverageOfferedData.mv_coverage_months.length > 0) {
+        let MvMonthFields: any[] = [];
         this.coverageOfferedData.mv_coverage_months = JSON.parse(this.coverageOfferedData.mv_coverage_months);
         if (this.coverageOfferedData.mv_coverage_months.length == 12) {
           this.coverageOfferedData.entireMvYear = true;
+          this.coverageOfferedData.mv_coverage_months.forEach((monthSelected, index) => {
+            MvMonthFields[monthSelected] = true;
+          });
           this.coverageOfferedData.mv_coverage_months = [];
+          this.coverageOfferedData.mv_coverage_months = MvMonthFields;
         } else {
-          let MvMonthFields: any[] = [];
           this.coverageOfferedData.mv_coverage_months.forEach((monthSelected, index) => {
             MvMonthFields[monthSelected] = true;
           });
@@ -123,12 +127,16 @@ export class CoverageOfferedComponent implements OnInit {
       }
 
       if (this.coverageOfferedData.essential_coverage_months.length > 0) {
+        let MeMonthFields: any[] = [];
         this.coverageOfferedData.essential_coverage_months = JSON.parse(this.coverageOfferedData.essential_coverage_months);
         if (this.coverageOfferedData.essential_coverage_months.length == 12) {
           this.coverageOfferedData.entireMeYear = true;
+          this.coverageOfferedData.essential_coverage_months.forEach((monthSelected, index) => {
+            MeMonthFields[monthSelected] = true;
+          });
           this.coverageOfferedData.essential_coverage_months = [];
+          this.coverageOfferedData.essential_coverage_months = MeMonthFields;
         } else {
-          let MeMonthFields: any[] = [];
           this.coverageOfferedData.essential_coverage_months.forEach((monthSelected, index) => {
             MeMonthFields[monthSelected] = true;
           });
@@ -153,6 +161,14 @@ export class CoverageOfferedComponent implements OnInit {
     }
   }
 
+  public redirectToDashboard() {
+    this.router.navigate(['client/' + this.product + '/' + this.globalService.encode(this.client_id) + '/dashboard']);
+  }
+
+  public redirectToPrevious() {
+    this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId]);
+  }
+
   resetValues(type) {
     if (type == 'employee_mv_coverage') {
       this.coverageOfferedData.entireMvYear = false;
@@ -165,30 +181,95 @@ export class CoverageOfferedComponent implements OnInit {
     }
   }
 
-  /*on submit sending form data to service.It is for both add and update*/
-  public onSubmit(param) {
-    let mv_customArray = [];
-    if (this.coverageOfferedData.entireMvYear == true) {
-      this.coverageOfferedData.mv_coverage_months = JSON.stringify(this.totalYear);
-    } else {
-      this.coverageOfferedData.mv_coverage_months.forEach((eachSelectedMonth, index) => {
-        if (eachSelectedMonth == true) {
-          mv_customArray.push(index);
-        }
-      });
-      this.coverageOfferedData.mv_coverage_months = JSON.stringify(mv_customArray);
+  public isEntireYear(val, monthsType) {
+    let totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    let MonthFields: any[] = [];
+    totalYear.forEach((monthSelected, index) => {
+      MonthFields[monthSelected] = true;
+    });
+    if (monthsType == "entireMvYear") {
+      if (val == true) {
+        this.coverageOfferedData.mv_coverage_months = [];
+        this.coverageOfferedData.mv_coverage_months = MonthFields;
+      }
+      else {
+        this.coverageOfferedData.mv_coverage_months = [];
+      }
+    }
+    else if (monthsType == "entireMeYear") {
+      if (val == true) {
+        this.coverageOfferedData.essential_coverage_months = [];
+        this.coverageOfferedData.essential_coverage_months = MonthFields;
+      }
+      else {
+        this.coverageOfferedData.essential_coverage_months = [];
+      }
     }
 
-    let me_customArray = [];
-    if (this.coverageOfferedData.entireMeYear == true) {
-      this.coverageOfferedData.essential_coverage_months = JSON.stringify(this.totalYear);
-    } else {
-      this.coverageOfferedData.essential_coverage_months.forEach((eachSelectedMonth, index) => {
-        if (eachSelectedMonth == true) {
-          me_customArray.push(index);
-        }
-      });
-      this.coverageOfferedData.essential_coverage_months = JSON.stringify(me_customArray);
+  }
+
+  public getMonthsCount(monthsType) {
+
+    if (monthsType == "entireMvYear") {
+      let customArray = [];
+      if (this.coverageOfferedData.mv_coverage_months.length > 0) {
+        this.coverageOfferedData.mv_coverage_months.forEach((eachSelectedMonth, index) => {
+          if (eachSelectedMonth == true) {
+            customArray.push(index);
+          }
+        });
+      }
+      if (customArray.length == 12) {
+        this.coverageOfferedData.entireMvYear = true;
+      } else {
+        this.coverageOfferedData.entireMvYear = false;
+      }
+    } else if (monthsType == "entireMeYear") {
+      let customArray = [];
+      if (this.coverageOfferedData.essential_coverage_months.length > 0) {
+        this.coverageOfferedData.essential_coverage_months.forEach((eachSelectedMonth, index) => {
+          if (eachSelectedMonth == true) {
+            customArray.push(index);
+          }
+        });
+      }
+      if (customArray.length == 12) {
+        this.coverageOfferedData.entireMeYear = true;
+      } else {
+        this.coverageOfferedData.entireMeYear = false;
+      }
+    }
+
+
+  }
+
+  /*on submit sending form data to service.It is for both add and update*/
+  public onSubmit(param) {
+    if (this.coverageOfferedData.mv_coverage_months) {
+      let mv_customArray = [];
+      if (this.coverageOfferedData.entireMvYear == true) {
+        this.coverageOfferedData.mv_coverage_months = JSON.stringify(this.totalYear);
+      } else {
+        this.coverageOfferedData.mv_coverage_months.forEach((eachSelectedMonth, index) => {
+          if (eachSelectedMonth == true) {
+            mv_customArray.push(index);
+          }
+        });
+        this.coverageOfferedData.mv_coverage_months = JSON.stringify(mv_customArray);
+      }
+    }
+    if (this.coverageOfferedData.essential_coverage_months) {
+      let me_customArray = [];
+      if (this.coverageOfferedData.entireMeYear == true) {
+        this.coverageOfferedData.essential_coverage_months = JSON.stringify(this.totalYear);
+      } else {
+        this.coverageOfferedData.essential_coverage_months.forEach((eachSelectedMonth, index) => {
+          if (eachSelectedMonth == true) {
+            me_customArray.push(index);
+          }
+        });
+        this.coverageOfferedData.essential_coverage_months = JSON.stringify(me_customArray);
+      }
     }
 
     this.coverageOfferedData.plan_class_id = this.id;
@@ -197,14 +278,14 @@ export class CoverageOfferedComponent implements OnInit {
       result => {
         if (result.success) {
           if (param == "exit") {
-            this.router.navigate(['client/' + this.product + '/' + this.company + '/dashboard']);
+            this.redirectToDashboard();
           } else {
             this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/employee-contributions']);
           }
-          this.toastrService.success('Coverage Offered Information saved succesfully.');
+          // this.toastrService.success('Coverage Offered Information saved succesfully.');
         } else {
           this._errorMessage = 'Not Added.';
-          this.toastrService.success('Trouble saving the record. Please try later.');
+          // this.toastrService.success('Trouble saving the record. Please try later.');
         }
       },
       error => {
