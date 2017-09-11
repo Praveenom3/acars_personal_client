@@ -2885,3 +2885,6 @@ label.radio-inline input[type=radio]{
     padding: 70px;
     margin-left: 150px;
 }
+.product-delete-action{
+    border-bottom: 1px solid #ddd !important;
+}
