@@ -21,12 +21,12 @@ export class ActivateUserComponent implements OnInit {
     }
 
     ngOnInit() {
-         this.route
+        this.route
             .queryParams
             .subscribe(params => {
                 this.token = params['token'];
             });
-        this.validateTokenAndActivateUser(); 
+        this.validateTokenAndActivateUser();
     }
     /**
      * Validating token and activating user
@@ -34,12 +34,11 @@ export class ActivateUserComponent implements OnInit {
     private validateTokenAndActivateUser() {
         this.authenticationService.validateTokenAndActivateUser(this.token).subscribe(
             result => {
-                 localStorage.setItem('toastr_success', 'User is activated, Please login with credentials!');
+                this.toastrService.success('User is activated, Please login with credentials!');
                 this.router.navigate(['/login']);
             },
             error => {
-                console.log(error);
-                 localStorage.setItem('toastr_error', 'Token is  invalid');
+                this.toastrService.error('Token is  invalid');
                 this.router.navigate(['/login']);
             });
     }
