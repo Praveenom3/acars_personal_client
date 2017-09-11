@@ -11,6 +11,7 @@ import { ActivateUserComponent } from './admin/activate-user/activate-user.compo
 import { ProductsNotExists } from './pages/products-not-exists.component';
 
 import { AuthGuard } from './_services/_auth.guard';
+import { TokenValidationResolver } from "app/_services/token-validation-resolver";
 
 export const routes: Routes = [
     {
@@ -35,6 +36,9 @@ export const routes: Routes = [
     {
         path: 'set-password',
         component: SetPasswordComponent,
+        resolve: {
+            token_validation_data: TokenValidationResolver
+        }
     },
     {
         path: 'activate-user',

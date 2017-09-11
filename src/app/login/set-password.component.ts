@@ -49,36 +49,19 @@ export class SetPasswordComponent implements OnInit {
       });
 
 
-    this._isValidToken = this.validateToken(this._token);
+      this._isValidToken = this.route.snapshot.data['token_validation_data'];
+
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  /* function to check whether the token is valid or not before showing the form */
-  private validateToken(token): boolean {
-    let _isValidToken: boolean = false;
 
-    this.authenticationService.verifyPasswordResetToken(
-      token).subscribe(
-      result => {
-        this._isValidToken = true;
-      },
-      error => {
-        this._isValidToken = false;
-        // Validation error
-        // this.toastrService.error('Trouble resetting the password. Please try later.');
-      });
-
-    return _isValidToken;
-  }
-  /* ./function to check whether the token is valid or not before showing the form */
-
-  private _setFormErrors(errorFields: any): void {
-    for (let key in errorFields) {
-      // skip loop if the property is from prototype
-      if (!errorFields.hasOwnProperty(key)) continue;
+  private _setFormErrors(errorFields:any):void{
+            for (let key in errorFields) {
+                // skip loop if the property is from prototype
+                if (!errorFields.hasOwnProperty(key)) continue;
 
       let message = errorFields[key];
       this._formErrors[key].valid = false;
@@ -151,6 +134,7 @@ export class SetPasswordComponent implements OnInit {
             } else {
               this._errorMessageSetPwd = error.data;
             }
+
           });
       } else {
         this._errorMessageSetPwd = 'Confirm password should be same as new password';
@@ -158,6 +142,7 @@ export class SetPasswordComponent implements OnInit {
       }
 
     }
+
   }
 
 }

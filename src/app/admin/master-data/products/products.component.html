@@ -44,8 +44,7 @@
                         <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
                     </div>
                 </div>
-                <table class="table table-hover table-bordered table-striped" [mfData]="products | productsFilter : filterQuery" #prod="mfDataTable"
-                    [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <table class="table table-hover table-bordered table-striped" [mfData]="products | productsFilter : filterQuery" #prod="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                     <thead>
                         <tr class="tr-blue-grid-head">
@@ -73,14 +72,13 @@
                                 <td class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_full_name}}</a></td>
                                 <td *ngIf="!product.product_full_name" class="text-center"><a (click)="updateProduct(product)" class="tbl-col-link">{{product.product_name}}</a></td>
                                 <td *ngIf="product.product_full_name" class="text-center">{{product.product_name}}</td>
-                                <td class="text-center">{{(product.product_type) == 1 ? "Full Service" : ((product.product_type) == 2 ? "Self Service"
-                                    : ((product.product_type)== 3 ? "Enhanced" : ""))}}</td>
+                                <td class="text-center">{{(product.product_type) == 1 ? "Full Service" : ((product.product_type) == 2 ? "Self Service" : ((product.product_type)== 3 ? "Enhanced" : ""))}}</td>
                                 <td class="text-center"><a class="color-blue-link" (click)="accountManagerStatus(product)">{{(product.account_manager) == 1 ? "Yes" : "No"}}</a></td>
                                 <td class="text-center">{{product.applicable_year}}</td>
                                 <td class="text-center product-delete-action">
                                     <a title="delete" (click)="deleteProduct(product)" style="cursor: pointer;color:red;">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </ng-container>
@@ -106,8 +104,7 @@
 <!--  Container End-->
 
 <!-- Add product Modal -->
-<div class="modal fade" bsModal #ProductsModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-    aria-hidden="true">
+<div class="modal fade" bsModal #ProductsModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -125,8 +122,7 @@
                         <div class="col-md-6">
                             <label class="form-control-label">Applicable Year <span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('applicable_year')}">
-                                <select class="form-control" [formControl]="_productForm.controls['applicable_year']" [(ngModel)]="productSelected.applicable_year"
-                                    [ngClass]="{'form-control-danger': !_isValid('applicable_year')}">
+                                <select class="form-control" [formControl]="_productForm.controls['applicable_year']" [(ngModel)]="productSelected.applicable_year" [ngClass]="{'form-control-danger': !_isValid('applicable_year')}">
                                    <option  disabled [value]="null">Select</option>
                                     <option *ngFor="let year of years" [value]="year">{{year}}</option>
                                 </select>
@@ -136,8 +132,7 @@
                         <div class="col-md-6">
                             <label class="form-control-label">Product Name <span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('product_name')}">
-                                <input type="text" inputFilter="true" class="form-control" [formControl]="_productForm.controls['product_name']" [(ngModel)]="productSelected.product_name"
-                                    [ngClass]="{'form-control-danger': !_isValid('product_name')}">
+                                <input type="text" inputFilter="true" class="form-control" [formControl]="_productForm.controls['product_name']" [(ngModel)]="productSelected.product_name" [ngClass]="{'form-control-danger': !_isValid('product_name')}">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.product_name.valid">{{_formErrors.product_name.message}}</span>
                             </div>
                         </div>
@@ -146,8 +141,7 @@
                         <div class="col-md-6">
                             <label class="form-control-label">Product Type <span class="red">*</span></label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('product_type')}">
-                                <select class="form-control" [formControl]="_productForm.controls['product_type']" [(ngModel)]="productSelected.product_type"
-                                    [ngClass]="{'form-control-danger': !_isValid('product_type')}">
+                                <select class="form-control" [formControl]="_productForm.controls['product_type']" [(ngModel)]="productSelected.product_type" [ngClass]="{'form-control-danger': !_isValid('product_type')}">
                                 <option disabled [value]="null">Select</option>
                                 <option *ngFor="let productType of productTypes" [value]="productType.id">{{productType.service}}</option>
                             </select>

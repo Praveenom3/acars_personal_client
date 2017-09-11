@@ -19,15 +19,86 @@
         "prefix": "app",
         "styles": [
             "styles.css",
-			"../node_modules/ngx-toastr/toastr.css"
+            "assets/vendors/bootstrap/dist/css/bootstrap.min.css",
+            "assets/vendors/jscrollpane/style/jquery.jscrollpane.css",
+            "assets/vendors/ladda/dist/ladda-themeless.min.css",
+            "assets/vendors/select2/dist/css/select2.min.css",
+            "assets/vendors/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+            "assets/vendors/fullcalendar/dist/fullcalendar.min.css",
+            "assets/vendors/bootstrap-sweetalert/dist/sweetalert.css",
+            "assets/vendors/summernote/dist/summernote.css",
+            "assets/vendors/owl.carousel/dist/assets/owl.carousel.min.css",
+            "assets/vendors/ionrangeslider/css/ion.rangeSlider.css",
+            "assets/vendors/datatables/media/css/dataTables.bootstrap4.min.css",
+            "assets/vendors/c3/c3.min.css",
+            "assets/vendors/chartist/dist/chartist.min.css",
+            "assets/vendors/nprogress/nprogress.css",
+            "assets/vendors/jquery-steps/demo/css/jquery.steps.css",
+            "assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css",
+            "assets/vendors/dropify/dist/css/dropify.min.css",
+            "assets/common/css/source/main.css",
+            "assets/css/site.css",
+            "assets/css/admin.css",
+            "assets/css/custom.css",
+            "assets/css/harish.css",
+            "assets/css/naveen.css",
+            "assets/css/client/harish.css",
+            "assets/css/client/naveen.css",
+            "../node_modules/ngx-toastr/toastr.css"
         ],
         "scripts": [
-		  "../node_modules/tinymce/tinymce.js",
-		  "../node_modules/tinymce/themes/modern/theme.js",
-		  "../node_modules/tinymce/plugins/link/plugin.js",
-		  "../node_modules/tinymce/plugins/paste/plugin.js",
-		  "../node_modules/tinymce/plugins/table/plugin.js"
-		], 
+            "assets/vendors/tether/dist/js/tether.min.js",
+            "assets/vendors/bootstrap/dist/js/bootstrap.min.js",
+            "assets/vendors/jquery-mousewheel/jquery.mousewheel.min.js",
+            "assets/vendors/jscrollpane/script/jquery.jscrollpane.min.js",
+            "assets/vendors/spin.js/spin.js",
+            "assets/vendors/ladda/dist/ladda.min.js",
+            "assets/vendors/select2/dist/js/select2.full.min.js",
+            "assets/vendors/html5-form-validation/dist/jquery.validation.min.js",
+            "assets/vendors/jquery-typeahead/dist/jquery.typeahead.min.js",
+            "assets/vendors/jquery-mask-plugin/dist/jquery.mask.min.js",
+            "assets/vendors/autosize/dist/autosize.min.js",
+            "assets/vendors/bootstrap-show-password/bootstrap-show-password.min.js",
+            "assets/vendors/moment/min/moment.min.js",
+            "assets/vendors/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+            "assets/vendors/fullcalendar/dist/fullcalendar.min.js",
+            "assets/vendors/cleanhtmlaudioplayer/src/jquery.cleanaudioplayer.js",
+            "assets/vendors/cleanhtmlvideoplayer/src/jquery.cleanvideoplayer.js",
+            "assets/vendors/bootstrap-sweetalert/dist/sweetalert.min.js",
+            "assets/vendors/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js",
+            "assets/vendors/summernote/dist/summernote.min.js",
+            "assets/vendors/owl.carousel/dist/owl.carousel.min.js",
+            "assets/vendors/ionrangeslider/js/ion.rangeSlider.min.js",
+            "assets/vendors/nestable/jquery.nestable.js",
+            "assets/vendors/datatables/media/js/jquery.dataTables.min.js",
+            "assets/vendors/datatables/media/js/dataTables.bootstrap4.min.js",
+            "assets/vendors/datatables-fixedcolumns/js/dataTables.fixedColumns.js",
+            "assets/vendors/datatables-responsive/js/dataTables.responsive.js",
+            "assets/vendors/editable-table/mindmup-editabletable.js",
+            "assets/vendors/d3/d3.min.js",
+            "assets/vendors/c3/c3.min.js",
+            "assets/vendors/chartist/dist/chartist.min.js",
+            "assets/vendors/peity/jquery.peity.min.js",
+            "assets/vendors/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js",
+            "assets/vendors/gsap/src/minified/TweenMax.min.js",
+            "assets/vendors/hackertyper/hackertyper.js",
+            "assets/vendors/jquery-countTo/jquery.countTo.js",
+            "assets/vendors/nprogress/nprogress.js",
+            "assets/vendors/jquery-steps/build/jquery.steps.min.js",
+            "assets/vendors/bootstrap-select/dist/js/bootstrap-select.min.js",
+            "assets/vendors/chart.js/src/Chart.bundle.min.js",
+            "assets/vendors/dropify/dist/js/dropify.min.js",
+            "assets/vendors/angular/angular.min.js",
+            "assets/vendors/angular-route/angular-route.min.js",
+            "assets/common/js/version_angular/app.js",
+            "assets/common/js/common.js",
+            "assets/common/js/demo.temp.js",
+            "../node_modules/tinymce/tinymce.js",
+            "../node_modules/tinymce/themes/modern/theme.js",
+            "../node_modules/tinymce/plugins/link/plugin.js",
+            "../node_modules/tinymce/plugins/paste/plugin.js",
+            "../node_modules/tinymce/plugins/table/plugin.js"
+        ],
 
         "environmentSource": "environments/environment.ts",
         "environments": {
@@ -55,11 +126,11 @@
             "config": "./karma.conf.js"
         }
     },
-    "defaults": { 
+    "defaults": {
         "styleExt": "css",
         "component": {},
-		 "serve": {			
-			  "host": "0.0.0.0"
-		}
+        "serve": {
+            "host": "0.0.0.0"
+        }
     }
 }
