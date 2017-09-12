@@ -32,7 +32,7 @@ export class PrimaryContractComponent implements OnInit {
       first_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9&.-@ ,]+$/)])],
       last_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9&.-@ ,]+$/)])],
       email_id: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-      mobile_number: ['', Validators.compose([Validators.required])],
+      mobile_number: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
       phone_extension: ['', Validators.compose([])],
     });
 

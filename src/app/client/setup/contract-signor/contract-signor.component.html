@@ -11,10 +11,10 @@
             <div class="padding-15">
                 <ul class="ul-inline">
                     <li class="previous-link">
-                        <a [routerLink]="" (click) = "backToBillingContract()" >&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
+                        <a [routerLink]="" (click)="backToBillingContract()">&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Previous</a>
                     </li>
                     <li style="padding-left: 23%;">
-                        <a [routerLink]="" (click) = "nextPrimaryContractStep()"class="btn btn-primary btn-blue">Yes</a>
+                        <a [routerLink]="" (click)="nextPrimaryContractStep()" class="btn btn-primary btn-blue">Yes</a>
                         <a (click)="setup()" class="btn btn-default">No</a>
                     </li>
                 </ul>
@@ -32,7 +32,7 @@
                     Please Enter Contact Info for the Authorized Signer
                 </h5>
             </div>
-            
+
             <form [formGroup]="contractSignForm" (ngSubmit)="onSubmit()">
                 <div class="modal-body row">
                     <div class="col-md-12 padding-0">
@@ -40,8 +40,7 @@
                             <div class="">
                                 <label class="form-control-label">First Name <span class="red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'first_name')}">
-                                    <input type="text" class="form-control" [formControl]="contractSignForm.controls['first_name']" [(ngModel)]="clientDashBoardService.contractSignorModel.first_name"
-                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'first_name')}"
+                                    <input type="text" class="form-control" AlphanFewChar="true" [formControl]="contractSignForm.controls['first_name']" [(ngModel)]="clientDashBoardService.contractSignorModel.first_name" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'first_name')}"
                                         maxlength="34">
                                     <span class="help-block help-block-error" *ngIf="!contractSignFormErrors.first_name.valid">{{contractSignFormErrors.first_name.message}}</span>
                                 </div>
@@ -51,8 +50,7 @@
                             <div class="">
                                 <label class="form-control-label">Last Name <span class="red">*</span></label>
                                 <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'last_name')}">
-                                    <input type="text" class="form-control" [formControl]="contractSignForm.controls['last_name']" [(ngModel)]="clientDashBoardService.contractSignorModel.last_name"
-                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'last_name')}"
+                                    <input type="text" class="form-control" AlphanFewChar="true" [formControl]="contractSignForm.controls['last_name']" [(ngModel)]="clientDashBoardService.contractSignorModel.last_name" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'last_name')}"
                                         maxlength="34">
                                     <span class="help-block help-block-error" *ngIf="!contractSignFormErrors.last_name.valid">{{contractSignFormErrors.last_name.message}}</span>
                                 </div>
@@ -63,8 +61,7 @@
                         <div class="col-md-4">
                             <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
                             <div class="form-group field-user-username" [ngClass]="{'has-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'email_id')}">
-                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="contractSignForm.controls['email_id']"
-                                    [(ngModel)]="clientDashBoardService.contractSignorModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'email_id')}"
+                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="contractSignForm.controls['email_id']" [(ngModel)]="clientDashBoardService.contractSignorModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'email_id')}"
                                     maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!contractSignFormErrors.email_id.valid">{{contractSignFormErrors.email_id.message}}</span>
                             </div>
@@ -72,17 +69,15 @@
                         <div class="col-md-4">
                             <label class="form-control-label">Phone <span class="red">*</span></label>
                             <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'mobile_number')}">
-                                <input type="text" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="contractSignForm.controls['mobile_number']"
-                                    [(ngModel)]="clientDashBoardService.contractSignorModel.mobile_number" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'mobile_number')}"
-                                    aria-required="true" placeholder="(___) ___-____" maxlength="34">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="contractSignForm.controls['mobile_number']" [(ngModel)]="clientDashBoardService.contractSignorModel.mobile_number"
+                                    [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'mobile_number')}" aria-required="true" placeholder="(___) ___-____" maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!contractSignFormErrors.mobile_number.valid">{{contractSignFormErrors.mobile_number.message}}</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-control-label">Extension</label>
                             <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'phone_extension')}">
-                                <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="contractSignForm.controls['phone_extension']"
-                                    [(ngModel)]="clientDashBoardService.contractSignorModel.phone_extension" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'phone_extension')}"
+                                <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="contractSignForm.controls['phone_extension']" [(ngModel)]="clientDashBoardService.contractSignorModel.phone_extension" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'phone_extension')}"
                                     value="" maxlength="6">
                                 <span class="help-block help-block-error" *ngIf="!contractSignFormErrors.phone_extension.valid">{{contractSignFormErrors.phone_extension.message}}</span>
                             </div>

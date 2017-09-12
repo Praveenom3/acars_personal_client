@@ -10,6 +10,8 @@ import { AgreementComponent } from './agreement/agreement.component';
 import { DataTableModule } from "angular2-datatable";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
 import { OrdersService } from "app/_services/_orders.service";
+import { SharedModule } from "app/_shared/shared.module";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { OrdersService } from "app/_services/_orders.service";
     FormsModule,
     ReactiveFormsModule,
     DataTableModule,
-    TextMaskModule
+    TextMaskModule,
+    SharedModule
   ],
   declarations: [BillingContractComponent, ContractSignorComponent, PrimaryContractComponent, AgreementComponent],
   providers: [OrdersService]
