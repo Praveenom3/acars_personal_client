@@ -38,8 +38,7 @@
                             <div class="">
                                 <label class="form-control-label">First Name <span class="red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'first_name')}">
-                                    <input type="text" class="form-control" [formControl]="primaryContractForm.controls['first_name']" [(ngModel)]="clientDashBoardService.primaryContractModel.first_name"
-                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'first_name')}"
+                                    <input type="text" AlphanFewChar="true" class="form-control" [formControl]="primaryContractForm.controls['first_name']" [(ngModel)]="clientDashBoardService.primaryContractModel.first_name" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'first_name')}"
                                         maxlength="34">
                                     <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.first_name.valid">{{primaryContractFormErrors.first_name.message}}</span>
                                 </div>
@@ -49,8 +48,7 @@
                             <div class="">
                                 <label class="form-control-label">Last Name <span class="red">*</span></label>
                                 <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'last_name')}">
-                                    <input type="text" class="form-control" [formControl]="primaryContractForm.controls['last_name']" [(ngModel)]="clientDashBoardService.primaryContractModel.last_name"
-                                        [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'last_name')}"
+                                    <input type="text" AlphanFewChar="true" class="form-control" [formControl]="primaryContractForm.controls['last_name']" [(ngModel)]="clientDashBoardService.primaryContractModel.last_name" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'last_name')}"
                                         maxlength="34">
                                     <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.last_name.valid">{{primaryContractFormErrors.last_name.message}}</span>
                                 </div>
@@ -61,8 +59,7 @@
                         <div class="col-md-4">
                             <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
                             <div class="form-group field-user-username" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}">
-                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="primaryContractForm.controls['email_id']"
-                                    [(ngModel)]="clientDashBoardService.primaryContractModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}"
+                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="primaryContractForm.controls['email_id']" [(ngModel)]="clientDashBoardService.primaryContractModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}"
                                     maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.email_id.valid">{{primaryContractFormErrors.email_id.message}}</span>
                             </div>
@@ -70,17 +67,15 @@
                         <div class="col-md-4">
                             <label class="form-control-label">Phone <span class="red">*</span></label>
                             <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'mobile_number')}">
-                                <input type="text" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="primaryContractForm.controls['mobile_number']"
-                                    [(ngModel)]="clientDashBoardService.primaryContractModel.mobile_number" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'mobile_number')}"
-                                    aria-required="true" placeholder="(___) ___-____" maxlength="34">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" id="adminusers-phone" class="form-control" [formControl]="primaryContractForm.controls['mobile_number']" [(ngModel)]="clientDashBoardService.primaryContractModel.mobile_number"
+                                    [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'mobile_number')}" aria-required="true" placeholder="(___) ___-____" maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.mobile_number.valid">{{primaryContractFormErrors.mobile_number.message}}</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-control-label">Extension</label>
                             <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'phone_extension')}">
-                                <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="primaryContractForm.controls['phone_extension']"
-                                    [(ngModel)]="clientDashBoardService.primaryContractModel.phone_extension" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'phone_extension')}"
+                                <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="primaryContractForm.controls['phone_extension']" [(ngModel)]="clientDashBoardService.primaryContractModel.phone_extension" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'phone_extension')}"
                                     value="" maxlength="6">
                                 <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.phone_extension.valid">{{primaryContractFormErrors.phone_extension.message}}</span>
                             </div>
