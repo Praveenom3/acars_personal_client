@@ -101,8 +101,7 @@
                          Element Master
                         </a>
 
-                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/code-calculator']" [routerLink]="['/admin/master-data/form-pricing']"
-                                [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/code-calculator']" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
                          Code Calculator
                         </a>
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/error-master']" [routerLinkActive]="['page-active']">
@@ -127,17 +126,16 @@
         </ul>
     </div>
 
-    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile"
-        id="profile_details">
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile" id="profile_details">
         <div class="menu-user-block col-md-12">
             <div class="dropdown dropdown-avatar pull-right">
-                <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false"> 
+                <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false">
                     <span class="header-name media-hide-profilename">
                         <span class="font-14">Welcome</span> {{userFirstName}}
-                        <span class="font-14"></span>
+                    <span class="font-14"></span>
                     </span>
                 </a>
-                <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:15px !important;">
+                <ul class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:0px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/profile']"><i
 						class="dropdown-icon icmn-user"></i> Profile</a>
                     <div class="dropdown-divider margin-0"></div>
@@ -157,8 +155,7 @@
         <router-outlet></router-outlet>
     </div>
 </section>
-<div class="modal fade" bsModal #chngPwdModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-    aria-hidden="true">
+<div class="modal fade" bsModal #chngPwdModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -183,8 +180,7 @@
                             <label class="add-member-label">Current Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="Current Password" id="current-password" name="currentPassword" formControlName="currentPassword"
-                                [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','currentPassword')}">
+                            <input type="password" class="form-control" placeholder="Current Password" id="current-password" name="currentPassword" formControlName="currentPassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','currentPassword')}">
                             <control-messages [control]="chngPwdForm.controls.currentPassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.currentPassword.valid">{{_formErrors.currentPassword.message}}</span>
                         </div>
@@ -194,8 +190,7 @@
                             <label class="add-member-label">New Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="New Password" id="new-password" name="newPassword" formControlName="newPassword"
-                                [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','newPassword')}">
+                            <input type="password" class="form-control" placeholder="New Password" id="new-password" name="newPassword" formControlName="newPassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','newPassword')}">
                             <control-messages [control]="chngPwdForm.controls.newPassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.newPassword.valid">{{_formErrors.newPassword.message}}</span>
                         </div>
@@ -205,8 +200,7 @@
                             <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="Confirm Password" id="new-confirm-password" name="retypePassword"
-                                formControlName="retypePassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','retypePassword')}">
+                            <input type="password" class="form-control" placeholder="Confirm Password" id="new-confirm-password" name="retypePassword" formControlName="retypePassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','retypePassword')}">
                             <control-messages [control]="chngPwdForm.controls.retypePassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.retypePassword.valid">{{_formErrors.retypePassword.message}}</span>
                             <span *ngIf="_errorMessageChngPwd" class="help-block help-block-error">{{_errorMessageChngPwd}}</span>
