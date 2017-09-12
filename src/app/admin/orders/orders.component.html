@@ -119,7 +119,7 @@
                                     <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_addClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}" (ngModelChange)="onBrandChange(this._addClientForm, $event)"
                                         style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
-                                        <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
+                                        <option *ngFor="let ab of availableBrands" [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
                                     <td style="width:10%;"><label class="control-label">Client # :</label></td>
                                     <td style="width:20%;">
@@ -275,7 +275,7 @@
                                     <select class="form-control" *ngIf="hasFinancialRights" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}" (ngModelChange)="onBrandChange(this._updateClientForm, $event)"
                                         style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
-                                        <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
+                                        <option *ngFor="let ab of availableBrands"  [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
                                     <span *ngIf="!hasFinancialRights" class="form-control" style="width: 90%;" readOnly>{{this.temp_brand}}</span>
                                     <td style="width:10%;"><label class="control-label">Client # :</label></td>
