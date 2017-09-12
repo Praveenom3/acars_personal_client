@@ -761,7 +761,7 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <label class="form-control-label">Purchaser Phone</label>
-                                <input type="text" [textMask]="{mask: mask}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_mobile.valid">{{_updatePurchaseFormErrors.purchaser_mobile.message}}</span>
 

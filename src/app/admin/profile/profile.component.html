@@ -64,7 +64,7 @@
                     <div class="col-md-4">
                         <label class="form-control-label">Phone*</label>
                         <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !_isValid('mobile')}">
-                            <input type="text" [textMask]="{mask: mask}" id="adminusers-phone" class="form-control" [formControl]="_currentUserForm.controls['mobile']" [(ngModel)]="currentProfile.mobile" [ngClass]="{'form-control-danger': !_isValid('mobile')}" aria-required="true"
+                            <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" id="adminusers-phone" class="form-control" [formControl]="_currentUserForm.controls['mobile']" [(ngModel)]="currentProfile.mobile" [ngClass]="{'form-control-danger': !_isValid('mobile')}" aria-required="true"
                                 placeholder="(___) ___-____">
                             <span class="help-block help-block-error" *ngIf="!_formErrors.mobile.valid">{{_formErrors.mobile.message}}</span>
                         </div>

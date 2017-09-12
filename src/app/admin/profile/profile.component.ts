@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
       first_name: ['', Validators.compose([Validators.required])],
       last_name: ['', Validators.compose([Validators.required])],
       mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
-      phone_extension: ['', Validators.compose([Validators.required, Validators.maxLength(6)])]
+      phone_extension: ['', Validators.compose([Validators.maxLength(6)])]
     });
 
     this._currentUserForm.valueChanges
