@@ -25,7 +25,10 @@ export class OutstandingsComponent implements OnInit {
     public sortBy = "";
 
     constructor(private _outstandingsService: OutstandingsService,
-        private dashboardService: ClientDashBoardService, ) {
+        private dashboardService: ClientDashBoardService,
+        private globalService: GlobalService,
+        private toastrService: ToastrService ) {
+			this.globalService.getPermissions();
     }
 
     ngOnInit() {
@@ -47,5 +50,28 @@ export class OutstandingsComponent implements OnInit {
     */
     public redirectToClientDashBoard(client: any) {
         this.dashboardService.redirectToClientDashBoard(client);
+    }
+
+    toggleStatus(type, value){
+        if(type == "Outstanding Invoices"){
+            let data = {
+                'type' : "Outstanding Invoices",
+                'value' : value
+            };
+
+            this._outstandingsService.toggleStatus(data)
+            .subscribe(
+                result => {
+                    if (result['success'] == true) {
+                        this.toastrService.success('Status changed successfully');
+
+                        this.invoicesData.splice(this.invoicesData.indexOf(value), 1);
+
+                }                
+            },
+            error => { this._errorMessage = error.data }
+            );
+
+        }
     }
 }
