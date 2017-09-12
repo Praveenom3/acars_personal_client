@@ -122,10 +122,12 @@ export class AdminUsersComponent implements OnInit {
     public updateAdminUser(adminuser: AdminUser) {
         this.adminUserSelected = Object.assign({}, adminuser);
         let permissionArr = [];
-        this.adminUserSelected.permissions.forEach((monthSelected, index) => {
-            permissionArr[monthSelected] = true;
-        });
-        this.adminUserSelected.permissions = [];
+        if (this.adminUserSelected.permissions.length > 0) {
+            this.adminUserSelected.permissions.forEach((monthSelected, index) => {
+                permissionArr[monthSelected] = true;
+            });
+            this.adminUserSelected.permissions = [];
+        }
         this.adminUserSelected.permissions = permissionArr;
         this._submitted = false;
         this.modalTitle = "Edit : " + adminuser.first_name;
@@ -175,11 +177,13 @@ export class AdminUsersComponent implements OnInit {
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
         let customArray = [];
-        this.adminUserSelected.permissions.forEach((eachSelectedMonth, index) => {
-            if (eachSelectedMonth == true) {
-                customArray.push(index);
-            }
-        });
+        if (this.adminUserSelected.permissions.length > 0) {
+            this.adminUserSelected.permissions.forEach((eachSelectedMonth, index) => {
+                if (eachSelectedMonth == true) {
+                    customArray.push(index);
+                }
+            });
+        }
         if (this.adminUserSelected.is_active == '') {
             this.adminUserSelected.is_active = 1;
         }
