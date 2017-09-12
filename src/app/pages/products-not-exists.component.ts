@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
     templateUrl: 'products-not-exists.component.html'
 })
 export class ProductsNotExists {
-
-    constructor() { }
-
+    public userType: string;
+    constructor() {
+        this.userType = localStorage.getItem('usertype');
+    }
 }

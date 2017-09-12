@@ -39,7 +39,7 @@
                             <ng-container *ngIf="purchasesObj.data?.length">
                                 <tr *ngFor="let purchase of purchasesObj.data">
                                     <td class="text-center">{{purchase.purchase_date | date: 'MM/dd/yyyy'}}</td>
-                                    <td class="text-center"><a class="tbl-col-link">{{purchase.client_name}}</a></td>
+                                    <td class="text-center"><a (click) = "redirectToClientDashBoard(purchase)" class="tbl-col-link">{{purchase.client_name}}</a></td>
                                     <td class="text-center">{{purchase.brand_name}}</td>
                                     <td class="text-center">{{purchase.product_name}}</td>
                                     <td class="text-center">{{purchase.amount}}</td>

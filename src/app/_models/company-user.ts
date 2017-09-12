@@ -1,6 +1,7 @@
 
 export interface CompanyUser {
     company_user_id: number;
+    status: any;
     user_type: any;
     client_id: any;
     company_id: number;

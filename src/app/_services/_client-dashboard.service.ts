@@ -15,6 +15,7 @@ import { Company } from 'app/_models/company';
 import { Products } from 'app/_models/products';
 import { Brands } from 'app/_models/brands';
 import { CompanyUserService } from 'app/_services/_company-user.service';
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 
@@ -88,6 +89,7 @@ export class ClientDashBoardService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
+        private toastrService: ToastrService,
         private _companyUserService: CompanyUserService,
         private _http: Http) {
     }
@@ -585,6 +587,53 @@ export class ClientDashBoardService {
                 headers: this._globalService.getHeaders()
             }).map(response => response.json())
             .catch(this._globalService.handleError);
+    }
+    /**
+     * 
+     * @param info 
+     */
+    public redirectToClientDashBoard(info: any) {
+        if (info.client_id) {
+            this.getClientDashBoardData(info.client_id)
+                .subscribe((result) => {
+                    if (result.success) {
+                        localStorage.setItem('productsAndClients', '');
+                        localStorage.setItem('productsAndClients', JSON.stringify(result.data))
+                        let products = this._globalService.getProducts();
+                        if (products && products != null && products != 'null' && products != '') {
+                            let productsList = Object.keys(products).map(function (key) {
+                                return products[key]
+                            })
+                            let product;
+                            let maxApplicableYear = 0;
+                            productsList.forEach(element => {
+                                if (element.applicable_year > maxApplicableYear) {
+                                    maxApplicableYear = element.applicable_year
+                                    product = element;
+                                }
+                            });
+
+                            let clientKeys: any[] = Object.keys(product.clients);
+                            let client = product['clients'][clientKeys[0]];
+
+                            let clientId: any = this._globalService.encode(client['client_id']);
+                            let productId: any = this._globalService.encode(product.product_id);
+                            this.setBrandData()
+                            this._router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
+                        } else {
+                            this._router.navigate(['/products-not-exists']);
+                        }
+                    } else {
+                        this.toastrService.error(result.data);
+                    }
+                },
+                error => {
+                    this.toastrService.error(error.data);
+                }
+                );
+        } else {
+            this.toastrService.error("Client id not exists");
+        }
     }
 }
 

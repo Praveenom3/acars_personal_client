@@ -463,6 +463,7 @@ table.table-company-dashboard tbody tr:hover{
 .table-company-users-dashboard-div{
     height: 75px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 /* For Uploads file pop up*/
 .modal-header.modal-header-color.upload-files-div-header {
@@ -525,4 +526,7 @@ table.table-company-dashboard tbody tr:hover{
 .open>.btn.btn-warning {
     background-color: #f7971e !important;
     border-color: #f7971e !important;
-}        
+}
+.cursor-button-not-allowed{
+    cursor: auto;
+}

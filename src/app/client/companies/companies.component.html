@@ -218,8 +218,8 @@
                                     <tbody>
                                         <ng-container *ngIf="users.data?.length">
                                             <tr *ngFor="let companyUserData of users.data">
-                                                <td class="text-center padding-5">{{companyUserData.first_name}}</td>
-                                                <td class="text-center padding-5">{{companyUserData.last_name}}</td>
+                                                <td class="text-center padding-5">{{trimData(companyUserData.first_name)}}</td>
+                                                <td class="text-center padding-5">{{trimData(companyUserData.last_name)}}</td>
                                                 <td class="text-center padding-5">{{companyUserData.email}}</td>
                                                 <td class="text-center padding-5"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
                                             </tr>
@@ -282,8 +282,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-danger status-btn " *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
-                        <button class="btn btn-success status-btn " *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-danger status-btn "
+                            *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-success status-btn "
+                            *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -300,8 +302,10 @@
                                             *ngIf="clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
                                     </td>
                                     <td class="padding-5">
-                                        <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                        <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">
+                                            Required
+                                        </span>
+                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -312,8 +316,8 @@
                                     </td>
                                     <td class="padding-5">
 
-                                        <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                        <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
 
                                     </td>
                                 </tr>
@@ -325,15 +329,17 @@
                                     </td>
                                     <td class=" padding-5">
 
-                                        <span class="alert confirmation-box " *ngIf="!clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-danger'">Required</span>
-                                        <span class="alert confirmation-box " *ngIf="clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default':'alert-success'">Completed</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
-                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn status-btn "
+                            *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn status-btn "
+                            *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -354,7 +360,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
                     </div>
                 </div>
 
@@ -376,7 +382,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -395,7 +401,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
                     </div>
                 </div>
 
@@ -415,7 +421,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
                     </div>
                 </div>
 
@@ -609,11 +615,24 @@
                                         <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone_extension.valid">{{_companyUserFormErrors.phone_extension.message}}</span>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <div class="">
+                                        <label class="form-control-label">Status<span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-status required" [ngClass]="{'has-danger': !_isCompanyUserValid('status')}">
+                                            <select class="form-control" [formControl]="_companyUserForm.controls['status']" [(ngModel)]="companyUserInformation.status"
+                                                [ngClass]="{'form-control-danger': !_isCompanyUserValid('status')}">
+                                                    <option disabled value='null'>Select</option>
+                                                    <option [value]='1'>Active</option>
+                                                    <option [value]='0'>Inactive</option>
+                                                </select>
+                                            <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.status.valid">{{_companyUserFormErrors.status.message}}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="modal-footer footer-background">
                         <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyUserForm.valid || _companyUserSubmitted == true">
                         	Save Changes</button>
