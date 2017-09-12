@@ -124,7 +124,7 @@ export class OrdersComponent implements OnInit {
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            purchaser_mobile: ['', Validators.compose([Validators.required])],
+            purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             purchase_status: [''],
             amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
             account_manager: [''],
