@@ -61,7 +61,7 @@ export class AdminUsersComponent implements OnInit {
             last_name: ['', Validators.compose([Validators.required])],
             is_active: ['', Validators.compose([])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            mobile: ['', Validators.compose([Validators.required,Validators.minLength(14)])],
+            mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             phone_extension: ['',]
         });
 
@@ -118,47 +118,18 @@ export class AdminUsersComponent implements OnInit {
             );
     }
 
-
-    updateChecked2(value, event) {
-        if (event.target.checked) {
-            if (!(this.serverChk.indexOf(value) > -1)) {
-                this.serverChk.push(value);
-            }
-        }
-        else if (!event.target.checked) {
-            if (this.serverChk.indexOf(value) > -1) {
-                let index = this.serverChk.indexOf(value);
-                this.serverChk.splice(index, 1);
-            }
-        }
-        let mappingObject = {};
-
-        for (let message of this.serverChk) {
-            mappingObject[message] = true;
-        }
-        this.adminUserSelected.permissions = mappingObject;
-    }
-
     /*updating product*/
     public updateAdminUser(adminuser: AdminUser) {
-        this.adminUserSelected = this.createNewAdminUser();
-        this._adminUserForm.reset();
-        this._resetFormErrors();
-        this.serverChk = [];
-        this.adminUserSelected.permissions = [];
-        this.serverChk = adminuser.permissions;
-        let mappingObject = {};
-        for (let message of adminuser.permissions) {
-            mappingObject[message] = true;
-        }
         this.adminUserSelected = Object.assign({}, adminuser);
-        let userPermissionSet = Object.assign({}, adminuser.permissions);
-        this.adminUserSelected.permissions = Object.assign({}, userPermissionSet);
-        this.adminUserSelected.permissions = mappingObject;
+        let permissionArr = [];
+        this.adminUserSelected.permissions.forEach((monthSelected, index) => {
+            permissionArr[monthSelected] = true;
+        });
+        this.adminUserSelected.permissions = [];
+        this.adminUserSelected.permissions = permissionArr;
         this._submitted = false;
         this.modalTitle = "Edit : " + adminuser.first_name;
         this.AdminUsersModal.show();
-
     }
 
 
@@ -203,9 +174,16 @@ export class AdminUsersComponent implements OnInit {
 
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
+        let customArray = [];
+        this.adminUserSelected.permissions.forEach((eachSelectedMonth, index) => {
+            if (eachSelectedMonth == true) {
+                customArray.push(index);
+            }
+        });
         if (this.adminUserSelected.is_active == '') {
             this.adminUserSelected.is_active = 1;
         }
+        this.adminUserSelected.permissions = customArray;
         this._submitted = true;
         if (this.adminUserSelected.admin_user_id > 0) {
             this.adminUserService.updateAdminUser(this.adminUserSelected).subscribe(

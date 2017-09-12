@@ -10,7 +10,7 @@ export class AdminDashboardNavComponent implements OnInit {
 
   constructor(private globalService: GlobalService) {
     this.globalService.getPermissions();
-   }
+  }
 
   ngOnInit() {
   }

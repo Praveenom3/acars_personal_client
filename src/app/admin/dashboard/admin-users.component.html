@@ -155,8 +155,8 @@
                                     <div class="width-100 pull-left" *ngFor="let permission of PermissionsSet">
                                         <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
                                              {{permission.permission_name}}
-                                         <input type="checkbox" [checked]="adminUserSelected.permissions[permission.permission_id]" (change)="updateChecked2(permission.permission_id,$event)">
-                                           
+                                         <input type="checkbox" [(ngModel)]="adminUserSelected.permissions[permission.permission_id]" name="permissions[permission.permission_id]" [ngModelOptions]="{standalone: true}">
+                                           <span></span>
                                         </label>
                                     </div>
                                 </div>
