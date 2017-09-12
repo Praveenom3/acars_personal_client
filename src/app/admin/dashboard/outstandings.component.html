@@ -12,7 +12,8 @@
                             <input class="form-control mr-left-5" [(ngModel)]="invoicesFilterQuery" />
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped" [mfData]="invoicesData | outstadingInvoicesFilter : invoicesFilterQuery" #invoicesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table class="table table-hover table-bordered table-striped" [mfData]="invoicesData | outstadingInvoicesFilter : invoicesFilterQuery"
+                        #invoicesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
@@ -46,7 +47,7 @@
                                 <tr *ngFor="let invoice of invoicesObj.data">
                                     <td class="text-center">{{invoice.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                     <td class="text-center">{{invoice.invoice_no}}</td>
-                                    <td class="text-center"><a class="tbl-col-link">{{invoice.client_name}}</a></td>
+                                    <td class="text-center"><a (click)="redirectToClientDashBoard(invoice)" class="tbl-col-link">{{invoice.client_name}}</a></td>
                                     <td class="text-center">{{invoice.brand_name}}</td>
                                     <td class="text-center">{{invoice.product_name}}</td>
                                     <td class="text-center">{{invoice.account_manager}}</td>

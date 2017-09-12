@@ -57,47 +57,6 @@ export class SearchResultsComponent implements OnInit {
    * redirectToClientDashBoard
    */
   public redirectToClientDashBoard(client: any) {
-    if (client.client_id) {
-      this.dashboardService.getClientDashBoardData(client.client_id)
-        .subscribe((result) => {
-          if (result.success) {
-            localStorage.setItem('productsAndClients', '');
-            localStorage.setItem('productsAndClients', JSON.stringify(result.data))
-            let products = this.globalService.getProducts();
-            if (products && products != null && products != 'null' && products != '') {
-              let productsList = Object.keys(products).map(function (key) {
-                return products[key]
-              })
-              let product;
-              let maxApplicableYear = 0;
-              productsList.forEach(element => {
-                if (element.applicable_year > maxApplicableYear) {
-                  maxApplicableYear = element.applicable_year
-                  product = element;
-                }
-              });
-
-              let clientKeys: any[] = Object.keys(product.clients);
-              let client = product['clients'][clientKeys[0]];
-
-              let clientId: any = this.globalService.encode(client['client_id']);
-              let productId: any = this.globalService.encode(product.product_id);
-              this.dashboardService.setBrandData()
-              this.router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
-            } else {
-              this.router.navigate(['/products-not-exists']);
-            }
-          } else {
-            this.toastrService.error(result.data);
-          }
-        },
-        error => {
-          this._errorMessage = error.data;
-          this.toastrService.error(error.data);
-        }
-        );
-    } else {
-      this.toastrService.error("Client id not exists");
-    }
+    this.dashboardService.redirectToClientDashBoard(client);
   }
 }

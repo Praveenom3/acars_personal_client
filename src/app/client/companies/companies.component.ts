@@ -82,6 +82,7 @@ export class CompaniesComponent implements OnInit {
       last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
       phone: ['', Validators.compose([Validators.required])],
+      status: ['', Validators.compose([Validators.required])],
       phone_extension: ['']
     });
   }
@@ -398,7 +399,10 @@ export class CompaniesComponent implements OnInit {
       'pattern': 'Invalid Email Address.'
     },
     'phone': {
-      'required': 'phone is required.',
+      'required': 'Phone is required.',
+    },
+    'status': {
+      'required': 'Status is required.',
     },
     'phone_extension': {
     }
@@ -410,6 +414,7 @@ export class CompaniesComponent implements OnInit {
     // Create a new CompanyUser
     let newAdminUser: CompanyUser = {
       user_id: 0,
+      status: 1,
       company_user_id: 0,
       client_id: 0,
       user_type: '',
@@ -431,7 +436,8 @@ export class CompaniesComponent implements OnInit {
       last_name: { valid: true, message: '' },
       email: { valid: true, message: '' },
       phone: { valid: true, message: '' },
-      phone_extension: { valid: true, message: '' }
+      phone_extension: { valid: true, message: '' },
+      status: { valid: true, message: '' }
     };
   }
   /**
@@ -508,7 +514,6 @@ export class CompaniesComponent implements OnInit {
    */
   public viewCompanyUser(companyUserData) {
     this.companyUserInformation = this.createCompanyUserModel();
-    //this._companyUserForm.reset();
     this._resetCompanyUserFormErrors();
     this.companyUserInformation = Object.assign({}, companyUserData);
     this._companyUserSubmitted = false;
@@ -553,5 +558,15 @@ export class CompaniesComponent implements OnInit {
     } else {
       this.companyUploadDataFile.show();
     }
+  }
+  /**
+   * 
+   * @param text 
+   */
+  public trimData(text: string) {
+    if (text.length > 10) {
+      return text.slice(0, 10) + '...';
+    }
+    return text;
   }
 }

@@ -1,9 +1,11 @@
 import {
-    Component, OnInit} from '@angular/core';
+    Component, OnInit
+} from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 import { ToastrService } from "ngx-toastr";
 import { OutstandingsService } from "app/_services/_outstandings.service";
+import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -22,7 +24,8 @@ export class OutstandingsComponent implements OnInit {
     public sortOrder = "";
     public sortBy = "";
 
-    constructor(private _outstandingsService: OutstandingsService) {
+    constructor(private _outstandingsService: OutstandingsService,
+        private dashboardService: ClientDashBoardService, ) {
     }
 
     ngOnInit() {
@@ -38,5 +41,11 @@ export class OutstandingsComponent implements OnInit {
             },
             error => { this._errorMessage = error.data }
             );
+    }
+    /**
+    * redirectToClientDashBoard
+    */
+    public redirectToClientDashBoard(client: any) {
+        this.dashboardService.redirectToClientDashBoard(client);
     }
 }
