@@ -336,10 +336,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn status-btn "
-                            *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-danger'">Incomplete</button>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn status-btn "
-                            *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default':'btn-success'">Completed</button>
+                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger cursor-allowed'">Incomplete</button>
+                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-allowed'">Completed</button>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -459,8 +457,8 @@
                             <div class="col-md-6">
                                 <label class="form-control-label">EIN<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
-                                    <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein"
-                                        repeat=9 [ngClass]="{'form-control-danger': !_isValid('company_ein')}" aria-required="true"
+                                    <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
+                                        [(ngModel)]="companyEdit.company_ein" minLength=12 [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
                                         placeholder="(__)-_______">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
                                 </div>
@@ -599,9 +597,10 @@
                                 <div class="col-md-4">
                                     <label class="form-control-label">Phone <span class="red">*</span></label>
                                     <div class="form-group field-companyuser-phone required" [ngClass]="{'has-danger': !_isCompanyUserValid('phone')}">
-                                        <input type="text" [textMask]="{mask: phoneNumberMask}" id="companyuser-phone" class="form-control" [formControl]="_companyUserForm.controls['phone']"
-                                            [(ngModel)]="companyUserInformation.phone" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone')}"
-                                            aria-required="true" placeholder="(___) ___-____" maxlength="34">
+                                        <input type="text" [textMask]="{mask: phoneNumberMask,guide: false, modelClean: true}" id="companyuser-phone" class="form-control"
+                                            [formControl]="_companyUserForm.controls['phone']" [(ngModel)]="companyUserInformation.phone"
+                                            [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone')}" aria-required="true"
+                                            placeholder="(___) ___-____" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone.valid">{{_companyUserFormErrors.phone.message}}</span>
                                     </div>
 

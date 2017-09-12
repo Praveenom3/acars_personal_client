@@ -4,7 +4,7 @@ import { GlobalService } from "app/_services/_global.service";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { Company } from "app/_models/company";
 import { ModalDirective } from "ngx-bootstrap";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup, NgForm } from "@angular/forms";
 import { ClientUserService } from "app/_services/_client-user.service";
 import { ToastrService } from "ngx-toastr";
 import { SettingsService } from "app/_services/_setting.service";
@@ -46,7 +46,7 @@ export class CompaniesComponent implements OnInit {
 
   public userType: any;
   public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
-  public phoneNumberMask = ['(', /\d/, /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public phoneNumberMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
     private _formBuilder: FormBuilder,
@@ -60,7 +60,7 @@ export class CompaniesComponent implements OnInit {
 
     this._companyForm = _formBuilder.group({
       company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
-      company_ein: ['', Validators.compose([Validators.required])],
+      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(12)])],
     });
 
     this.createCompanyUserForm();
@@ -81,7 +81,7 @@ export class CompaniesComponent implements OnInit {
       first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
       last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-      phone: ['', Validators.compose([Validators.required])],
+      phone: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
       status: ['', Validators.compose([Validators.required])],
       phone_extension: ['']
     });
@@ -95,7 +95,8 @@ export class CompaniesComponent implements OnInit {
       'pattern': 'No special characters are allowed other than & ,'
     },
     'company_ein': {
-      'required': 'Company EIN is required.'
+      'required': 'Company EIN is required.',
+      'minlength': 'Company EIN should be 9 digits length',
     }
   };
 
@@ -224,9 +225,7 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   onSubmit() {
-    if (this.companyEdit.company_ein) {
-      this.companyEdit.company_ein = this.companyEdit.company_ein.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
-    }
+
     this._submitted = true;
     this.clientUserService.updateClientCompanyInfo(this.companyEdit).subscribe(
       result => {
@@ -348,6 +347,7 @@ export class CompaniesComponent implements OnInit {
   public createCompanyUser() {
     this._companyUserForm.reset();
     this.companyUserInformation = this.createCompanyUserModel();
+    this._resetCompanyUserFormErrors();
     this.companyUserModalTitle = "Add Company User";
     this.companyUserModal.show();
   }
@@ -400,6 +400,7 @@ export class CompaniesComponent implements OnInit {
     },
     'phone': {
       'required': 'Phone is required.',
+      'minlength': 'Phone should be 10 digit length.',
     },
     'status': {
       'required': 'Status is required.',
@@ -461,11 +462,7 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   onCompanyUserSubmit() {
-    if (this.companyUserInformation.phone) {
-      this.companyUserInformation.phone = this.companyUserInformation.phone.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
-    }
     this._companyUserSubmitted = true;
-
     this.companyUserService.saveCompanyUser(this.companyUserInformation).subscribe(
       result => {
         if (result.success) {
@@ -515,6 +512,7 @@ export class CompaniesComponent implements OnInit {
   public viewCompanyUser(companyUserData) {
     this.companyUserInformation = this.createCompanyUserModel();
     this._resetCompanyUserFormErrors();
+    companyUserData.phone = '(' + companyUserData.phone.slice(0, 3) + ') ' + '' + companyUserData.phone.slice(3, 6) + '-' + companyUserData.phone.slice(6, 10);
     this.companyUserInformation = Object.assign({}, companyUserData);
     this._companyUserSubmitted = false;
     this.companyUserModalTitle = "Edit Company User";
