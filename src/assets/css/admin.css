@@ -2876,3 +2876,12 @@ label.radio-inline input[type=radio]{
 .product-delete-action{
     border-bottom: 1px solid #ddd !important;
 }
+.dropdown.dropdown-avatar .dropdown-toggle {
+    padding-right: 24px;
+}
+
+body.body-blue .header-name {
+    padding: 10px 0px 0px 0px;
+    width: 176px;
+    height: 50px;
+}
