@@ -2,6 +2,7 @@ import {
     Component, OnInit, OnDestroy, Input, Output,
     ViewContainerRef, EventEmitter, ViewChild, trigger, AfterViewInit
 } from '@angular/core';
+
 import { Subscription } from 'rxjs/Subscription';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from "@angular/forms";
@@ -15,15 +16,19 @@ import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmat
 @Component({
     selector: 'app-dashboard',
     templateUrl: './admin-users.component.html',
+    
 })
 
 export class AdminUsersComponent implements OnInit {
-    adminUserIDSelected: any;
+
+    public deleteRecord: boolean = false;
 
     data: AdminUser[];
     etype: AdminUser;
 
+    //  this.deleteRecord=false;
     ids: any;
+
     results: any;
 
     public filterQuery = "";
@@ -51,18 +56,18 @@ export class AdminUsersComponent implements OnInit {
 
     public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
-    constructor(private _globalService: GlobalService,
+    constructor(private viewContainerRef: ViewContainerRef,private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private adminUserService: AdminUserService,
         private toastrService: ToastrService,
         private _http: Http) {
         this._adminUserForm = _formBuilder.group({
-            first_name: ['', Validators.compose([Validators.required])],
-            last_name: ['', Validators.compose([Validators.required])],
-            is_active: ['', Validators.compose([])],
+            first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+            last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+            is_active: ['', Validators.compose([Validators.required])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
-            phone_extension: ['',]
+            mobile: ['', Validators.compose([Validators.required])],
+            phone_extension: ['', Validators.compose([Validators.required])]
         });
 
         this._adminUserForm.valueChanges
@@ -84,7 +89,7 @@ export class AdminUsersComponent implements OnInit {
             admin_user_id: 0,
             first_name: '',
             last_name: '',
-            is_active: '',
+            is_active: null,
             username: '',
             mobile: '',
             phone_extension: '',
@@ -100,8 +105,7 @@ export class AdminUsersComponent implements OnInit {
         this.serverChk = [];
         this._adminUserForm.reset();
         this._resetFormErrors();
-        this.adminUserSelected = this.createNewAdminUser();
-        // Set adminUserSelected to a new Product      
+        this.adminUserSelected = this.createNewAdminUser();   // Set adminUserSelected to a new Product      
         this._submitted = false;
         this.modalTitle = "Add Admin User";
         this.AdminUsersModal.show();       // Open the Popup
@@ -113,34 +117,65 @@ export class AdminUsersComponent implements OnInit {
             .subscribe((adminUsers) => {
                 this.adminUsers = adminUsers.users;
                 this.PermissionsSet = adminUsers.permissionsList;
+                //console.log(adminUsers);
             },
             error => { this._errorMessage = error.data }
             );
     }
 
+
+    updateChecked2(value, event) {
+        if (event.target.checked) {
+            if (!(this.serverChk.indexOf(value) > -1)) {
+                this.serverChk.push(value);
+            }
+        }
+        else if (!event.target.checked) {
+            if (this.serverChk.indexOf(value) > -1) {
+                let index = this.serverChk.indexOf(value);
+                this.serverChk.splice(index, 1);
+            }
+        }
+        let mappingObject = {};
+
+        for (let message of this.serverChk) {
+            mappingObject[message] = true;
+        }
+        this.adminUserSelected.permissions = mappingObject;
+    }
+
     /*updating product*/
     public updateAdminUser(adminuser: AdminUser) {
-        this.adminUserSelected = Object.assign({}, adminuser);
-        let permissionArr = [];
-        this.adminUserSelected.permissions.forEach((monthSelected, index) => {
-            permissionArr[monthSelected] = true;
-        });
+        this.adminUserSelected = this.createNewAdminUser();
+        this._adminUserForm.reset();
+        this._resetFormErrors();
+        this.serverChk = [];
         this.adminUserSelected.permissions = [];
-        this.adminUserSelected.permissions = permissionArr;
+        this.serverChk = adminuser.permissions;
+        let mappingObject = {};
+        for (let message of adminuser.permissions) {
+            mappingObject[message] = true;
+        }
+        this.adminUserSelected = Object.assign({}, adminuser);
+        let userPermissionSet = Object.assign({}, adminuser.permissions);
+        this.adminUserSelected.permissions = Object.assign({}, userPermissionSet);
+        this.adminUserSelected.permissions = mappingObject;
         this._submitted = false;
-        this.modalTitle = "Edit : " + adminuser.first_name;
+        this.modalTitle = "Edit Admin User";
         this.AdminUsersModal.show();
+
     }
 
 
     /*To delete a particular Admin User*/
-    public deleteAdminUser(AdminuserId) {
-        this.adminUserIDSelected = AdminuserId;
+    public deleteAdminUser(adminUser) {
+        this.adminUserSelected = this.createNewAdminUser();
+        this.adminUserSelected = adminUser;
         this.deleteModal.show();
     }
 
     public okDelete() {
-        this.adminUserService.deleteAdminUser(this.adminUserIDSelected)
+        this.adminUserService.deleteAdminUser(this.adminUserSelected.admin_user_id)
             .subscribe(() => {
                 this.getAdminUsers();
                 this.toastrService.success('Admin User Deleted Succesfully .');
@@ -174,18 +209,10 @@ export class AdminUsersComponent implements OnInit {
 
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
-        let customArray = [];
-        this.adminUserSelected.permissions.forEach((eachSelectedMonth, index) => {
-            if (eachSelectedMonth == true) {
-                customArray.push(index);
-            }
-        });
-        if (this.adminUserSelected.is_active == '') {
-            this.adminUserSelected.is_active = 1;
-        }
-        this.adminUserSelected.permissions = customArray;
         this._submitted = true;
         if (this.adminUserSelected.admin_user_id > 0) {
+            this.adminUserSelected.permissions = this.serverChk;
+
             this.adminUserService.updateAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
@@ -210,7 +237,8 @@ export class AdminUsersComponent implements OnInit {
                 });
 
         } else {
-
+            this.adminUserSelected.permissions = this.serverChk;
+            // console.log(this.permissionArray);
             this.adminUserService.addAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
@@ -254,7 +282,6 @@ export class AdminUsersComponent implements OnInit {
         },
         'mobile': {
             'required': 'phone is required.',
-            'minlength': 'Phone should be 10 digit length.'
         },
         'phone_extension': {
             'required': 'Extension is required.',
