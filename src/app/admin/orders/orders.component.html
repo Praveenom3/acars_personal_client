@@ -690,7 +690,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                 <label class="form-control-label">Product</label>
-                                <select class="form-control" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
+                                <select class="form-control" *ngIf="temp_product == ''" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
                                     <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_full_name}}</option> -->
                                     
@@ -698,6 +698,7 @@
                                         <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
+								<span *ngIf="temp_product != ''" class="form-control" readOnly>{{temp_product}}</span>
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.product_id.valid">{{_updatePurchaseFormErrors.product_id.message}}</span>
 

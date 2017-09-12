@@ -387,11 +387,12 @@ export class OrdersComponent implements OnInit {
 
         } else if (modal == 'updatePurchaseModal') {
 
-            if (this._updateClientForm.value.client_id) {
+        /*    if (this._updateClientForm.value.client_id) {
                 this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
             } else {
                 this.getSelectableProducts('', '', 'clientAddPurchase');
-            }
+            } */
+			this.temp_product = this.getItemName('product', data.product_id);
 
             this._updatePurchaseFormSubmitted = false;
 
