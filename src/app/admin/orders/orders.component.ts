@@ -39,6 +39,7 @@ export class OrdersComponent implements OnInit {
 
     public temp_brand_id = '';
     public temp_brand = '';
+    public temp_product = '';
     public temp_client_name = '';
     public temp_client_number = '';
     public temp_new_index = -1;
