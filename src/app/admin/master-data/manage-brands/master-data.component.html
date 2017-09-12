@@ -115,7 +115,7 @@
                         <div class="col-md-6 required">
                             <label class="form-control-label">Brand Name</label>
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid('brand_name')}">
-                                <input type="text" inputFilter="true" class="form-control" [formControl]="_addBrandForm.controls['brand_name']" [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}">
+                                <input type="text" inputFilter="true" class="form-control" [formControl]="_addBrandForm.controls['brand_name']" [(ngModel)]="brandSelected.brand_name" [ngClass]="{'form-control-danger': !_isValid('brand_name')}" maxlength="30">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.brand_name.valid">{{_formErrors.brand_name.message}}</span>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                         <div class="col-md-6 required">
                             <label class="form-control-label">Support Email</label>
                             <div class="form-group  required" [ngClass]="{'has-danger': !_isValid('support_email')}">
-                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['support_email']" [(ngModel)]="brandSelected.support_email" [ngClass]="{'form-control-danger': !_isValid('support_email')}">
+                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['support_email']" [(ngModel)]="brandSelected.support_email" [ngClass]="{'form-control-danger': !_isValid('support_email')}" maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.support_email.valid">{{_formErrors.support_email.message}}</span>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                         <div class="col-md-6 required">
                             <label class="form-control-label">Terms & Condition URL</label>
                             <div class="form-group  required" [ngClass]="{'has-danger': !_isValid('terms_conditions_url')}">
-                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['terms_conditions_url']" [(ngModel)]="brandSelected.terms_conditions_url" [ngClass]="{'form-control-danger': !_isValid('terms_conditions_url')}">
+                                <input type="text" class="form-control" [formControl]="_addBrandForm.controls['terms_conditions_url']" [(ngModel)]="brandSelected.terms_conditions_url" [ngClass]="{'form-control-danger': !_isValid('terms_conditions_url')}" maxlength="100">
                                 <span class="help-block help-block-error" *ngIf="!_formErrors.terms_conditions_url.valid">{{_formErrors.terms_conditions_url.message}}</span>
                             </div>
                         </div>
