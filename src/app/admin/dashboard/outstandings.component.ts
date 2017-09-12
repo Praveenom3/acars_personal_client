@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ToastrService } from "ngx-toastr";
 import { OutstandingsService } from "app/_services/_outstandings.service";
 import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
+import { GlobalService } from "app/_services/_global.service";
 
 @Component({
     selector: 'app-dashboard',
