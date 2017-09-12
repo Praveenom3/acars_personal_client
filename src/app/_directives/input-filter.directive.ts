@@ -34,33 +34,33 @@ export class inputFilterDirective {
         return;
       }
       // Ensure that it is a number and stop the keypress
-      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && e.key != "Delete") {
         e.preventDefault();
       }
     }
 
     if (this.inputFilter) {
-      if (!e.key.match(/^([a-zA-Z0-9 ,.&@-]+)$/) && e.key != "Backspace") {
+      if (!e.key.match(/^([a-zA-Z0-9 ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
         e.preventDefault();
       }
     }
     else if (this.OnlyNumber) {
-      if (!e.key.match(/^([0-9])/) && e.key != "Backspace") {
+      if (!e.key.match(/^([0-9])/) && e.key != "Backspace" && e.key != "Delete") {
         e.preventDefault();
       }
     }
     else if (this.AlphanFewChar) {
-      if (!e.key.match(/^([a-zA-Z .-]+)$/) && e.key != "Backspace") {
+      if (!e.key.match(/^([a-zA-Z .-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
         e.preventDefault();
       }
     }
     else if (this.AlphanMoreChar) {
-      if (!e.key.match(/^([a-zA-Z ,.&@-]+)$/) && e.key != "Backspace") {
+      if (!e.key.match(/^([a-zA-Z ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
         e.preventDefault();
       }
     }
     else if (this.AlphaNumernFewChar) {
-      if (!e.key.match(/^([a-zA-Z0-9 .-]+)$/) && e.key != "Backspace") {
+      if (!e.key.match(/^([a-zA-Z0-9 .-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
         e.preventDefault();
       }
     }

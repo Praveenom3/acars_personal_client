@@ -57,11 +57,11 @@ export class AdminUsersComponent implements OnInit {
         private toastrService: ToastrService,
         private _http: Http) {
         this._adminUserForm = _formBuilder.group({
-            first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-            last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-            is_active: ['', Validators.compose([Validators.required])],
+            first_name: ['', Validators.compose([Validators.required])],
+            last_name: ['', Validators.compose([Validators.required])],
+            is_active: ['', Validators.compose([])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
+            mobile: ['', Validators.compose([Validators.required,Validators.minLength(14)])],
             phone_extension: ['',]
         });
 
@@ -84,7 +84,7 @@ export class AdminUsersComponent implements OnInit {
             admin_user_id: 0,
             first_name: '',
             last_name: '',
-            is_active: null,
+            is_active: '',
             username: '',
             mobile: '',
             phone_extension: '',
@@ -100,8 +100,8 @@ export class AdminUsersComponent implements OnInit {
         this.serverChk = [];
         this._adminUserForm.reset();
         this._resetFormErrors();
-        this.adminUserSelected = this.createNewAdminUser(); 
-          // Set adminUserSelected to a new Product      
+        this.adminUserSelected = this.createNewAdminUser();
+        // Set adminUserSelected to a new Product      
         this._submitted = false;
         this.modalTitle = "Add Admin User";
         this.AdminUsersModal.show();       // Open the Popup
@@ -179,7 +179,7 @@ export class AdminUsersComponent implements OnInit {
             });
         this.deleteModal.hide();
     }
-    
+
     public statusChange(adminUser) {
         this.adminUserService.statusChange(adminUser).subscribe(
             result => {
@@ -203,6 +203,9 @@ export class AdminUsersComponent implements OnInit {
 
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
+        if (this.adminUserSelected.is_active == '') {
+            this.adminUserSelected.is_active = 1;
+        }
         this._submitted = true;
         if (this.adminUserSelected.admin_user_id > 0) {
             this.adminUserService.updateAdminUser(this.adminUserSelected).subscribe(
