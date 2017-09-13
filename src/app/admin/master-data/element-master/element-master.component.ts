@@ -26,8 +26,8 @@ export class ElementMasterComponent implements OnInit {
     public rowsOnPage = 10;
 
     public products: any[] = [
-        { id: 1, product_name: 'ACA 2016' },
-        { id: 2, product_name: 'ACA 2017' }
+        { id: 1, product_name: 'ACA 2017' },
+        { id: 2, product_name: 'ACA 2016' }
     ];
 
     public selectedProduct = '';
