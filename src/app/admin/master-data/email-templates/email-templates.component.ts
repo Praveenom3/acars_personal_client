@@ -60,6 +60,7 @@ export class EmailTemplatesComponent implements OnInit {
     }
 
     private initWysiwyg(selector) {
+        tinymce.remove(this.editor);
         tinymce.init({
             selector: selector,
             plugins: ['link', 'paste', 'table', 'textcolor', 'textpattern', 'advlist', 'autolink', 'autosave', 'link', 'image', 'lists', 'charmap', 'print', 'preview', 'hr', 'anchor', 'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime', 'media', 'nonbreaking'],

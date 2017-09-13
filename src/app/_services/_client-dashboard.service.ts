@@ -16,6 +16,7 @@ import { Products } from 'app/_models/products';
 import { Brands } from 'app/_models/brands';
 import { CompanyUserService } from 'app/_services/_company-user.service';
 import { ToastrService } from "ngx-toastr";
+import { HttpService } from "app/interceptors/http.service";
 
 @Injectable()
 
@@ -91,7 +92,9 @@ export class ClientDashBoardService {
         private _router: Router,
         private toastrService: ToastrService,
         private _companyUserService: CompanyUserService,
-        private _http: Http) {
+        private _http: Http,
+        private _httpService: HttpService
+    ) {
     }
     /**
      * 
@@ -332,7 +335,7 @@ export class ClientDashBoardService {
      * @param data 
      */
     public getClientCompanies(data) {
-        return this._http.post(
+        return this._httpService.post(
             this._apiUrl + '/get-companies-of-clients', data,
             {
                 headers: this._globalService.getHeaders()
@@ -514,7 +517,7 @@ export class ClientDashBoardService {
      * @param companyId 
      */
     public getCompanyInformation(companyId): Observable<any> {
-        return this._http.get(
+        return this._httpService.get(
             this._apiUrl + '/get-company-information/' + companyId,
             {
                 headers: this._globalService.getHeaders()
@@ -545,6 +548,7 @@ export class ClientDashBoardService {
     public setCompanySteps() {
         this.company.company_data = this.checkCompanyData(this.company);
         this.company.onBoarding_data = this.checkOnBoardingData(this.company);
+        this.setCompanyToSession();
     }
     /**
      * 

@@ -131,7 +131,6 @@ export class AnythingElseComponent implements OnInit {
     this.anythingElseData['purchase_id'] = this.purchase_id;
     this.anythingElseData['company_id'] = this.company_id;
     if (this.anythingElseData.additional_details_id > 0) {
-      this.anythingElseData['hear_about_us'] = JSON.stringify(this.customArray);
       this._anythingElseService.updateAnythingElse(this.anythingElseData).subscribe(
         result => {
           if (result.success) {
@@ -142,7 +141,7 @@ export class AnythingElseComponent implements OnInit {
             } else {
               this.router.navigate([url + '/' + 'employer-info/benefit-plan-info']);
             }
-           // this.toastrService.success('Basic Info record updated succesfully.');
+            // this.toastrService.success('Basic Info record updated succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -151,7 +150,7 @@ export class AnythingElseComponent implements OnInit {
         });
     }
     else {
-      this.anythingElseData['hear_about_us'] = JSON.stringify(this.customArray);
+      //this.anythingElseData['hear_about_us'] = JSON.stringify(this.customArray);
       this._anythingElseService.addAnythingElse(this.anythingElseData).subscribe(
         result => {
           if (result.success) {

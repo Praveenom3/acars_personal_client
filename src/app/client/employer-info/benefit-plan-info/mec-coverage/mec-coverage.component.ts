@@ -158,14 +158,14 @@ export class MecCoverageComponent implements OnInit {
     this.mecCoverageData['company_id'] = this.company_id;
     let customArray = [];
     if (this.mecCoverageData.entireYear == true) {
-      this.mecCoverageData.mec_months = JSON.stringify(this.totalYear);
+      //this.mecCoverageData.mec_months = JSON.stringify(this.totalYear);
     } else {
       this.mecCoverageData.mec_months.forEach((eachSelectedMonth, index) => {
         if (eachSelectedMonth == true) {
           customArray.push(index);
         }
       });
-      this.mecCoverageData.mec_months = JSON.stringify(customArray);
+      //this.mecCoverageData.mec_months = JSON.stringify(customArray);
     }
 
     if (this.mecCoverageData.mec_coverage_id > 0) {

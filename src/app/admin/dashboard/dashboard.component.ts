@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from "ngx-toastr";
 import * as Globals from 'app/_shared/_globals';
 
 declare var $:any;

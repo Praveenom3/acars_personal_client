@@ -197,8 +197,8 @@ export class CoverageTypeComponent implements OnInit {
       });
     }
 
-    this.coverageTypeData.coverageType = customCoverageTypeArray;
-    this.coverageTypeData.waitingType = customWaitingTypeArray;
+    //this.coverageTypeData.coverageType = customCoverageTypeArray;
+    //this.coverageTypeData.waitingType = customWaitingTypeArray;
     this.coverageTypeData['company_id'] = this.company_id;
 
     if (this.coverageTypeData.plan_class_id > 0) {
