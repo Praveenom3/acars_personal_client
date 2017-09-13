@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { GovtEntity } from "app/_models/govt-entity";
 import { DesignatedGovtEntityService } from "app/_services/_designated-govt-entity.service";
@@ -34,7 +34,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   company_id: any;
 
   constructor(private route: ActivatedRoute,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private router: Router,
     private _designatedGovtEntity: DesignatedGovtEntityService,
     private _briBasicInfoService: BriBasicInfoService,

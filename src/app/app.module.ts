@@ -44,7 +44,7 @@ import { ProductsNotExists } from './pages/products-not-exists.component';
 import { TokenValidationResolver } from "app/_services/token-validation-resolver";
 import { HttpService } from "app/interceptors/http.service"
 import { LoaderService } from "app/interceptors/loader.service";
-import { CustomToastrService } from "app/toaster/toaster-service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +64,7 @@ import { CustomToastrService } from "app/toaster/toaster-service";
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
-    ToastrModule.forRoot({ timeOut: 3000 }),
+    ToastrModule.forRoot({ timeOut: 2000 }),
     CookieModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
@@ -78,7 +78,6 @@ import { CustomToastrService } from "app/toaster/toaster-service";
       useClass: HashLocationStrategy
     },
     HttpService,
-    CustomToastrService,
     IdleTimeoutService,
     AuthGuard,
     LoaderService,

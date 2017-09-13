@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { BrandsService } from "app/_services/_brands.service";
 import { ModalDirective } from "ngx-bootstrap";
 import { Brands } from "app/_models/brands";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { GlobalService } from "app/_services/_global.service";
 import { Http, Headers, Response } from '@angular/http';
 
@@ -59,7 +59,7 @@ export class MasterDataComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private brandsService: BrandsService,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private http: Http) {
 
 

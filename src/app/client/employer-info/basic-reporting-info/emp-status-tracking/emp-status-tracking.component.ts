@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { EmpStatusTracking } from "app/_models/emp-status-tracking";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { EmpStatusTrackingService } from "app/_services/_emp-status-tracking.service";
 import { GlobalService } from "app/_services/_global.service";
 
@@ -31,7 +31,7 @@ export class EmpStatusTrackingComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private _empStatusTrackingService: EmpStatusTrackingService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService

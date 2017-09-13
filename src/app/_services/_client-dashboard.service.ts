@@ -15,7 +15,7 @@ import { Company } from 'app/_models/company';
 import { Products } from 'app/_models/products';
 import { Brands } from 'app/_models/brands';
 import { CompanyUserService } from 'app/_services/_company-user.service';
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { HttpService } from "app/interceptors/http.service";
 
 @Injectable()
@@ -90,7 +90,7 @@ export class ClientDashBoardService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private _companyUserService: CompanyUserService,
         private _http: Http,
         private _httpService: HttpService
@@ -548,6 +548,7 @@ export class ClientDashBoardService {
     public setCompanySteps() {
         this.company.company_data = this.checkCompanyData(this.company);
         this.company.onBoarding_data = this.checkOnBoardingData(this.company);
+        this.setCompanyToSession();
     }
     /**
      * 

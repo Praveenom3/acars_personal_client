@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { AnythingElse } from "app/_models/anything-else";
 import { AnythingElseService } from "app/_services/_anything-else.service";
@@ -31,7 +31,7 @@ export class AnythingElseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private globalService: GlobalService,
     private _anythingElseService: AnythingElseService,
     private _elementMasterService: ElementMasterService

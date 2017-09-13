@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { PlanClassesService } from "app/_services/_plan-classes.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { GlobalService } from "app/_services/_global.service";
 
 @Component({
@@ -34,7 +34,7 @@ export class CoverageOfferedComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private globalService: GlobalService,
     private _elementMasterService: ElementMasterService,
     private planClassesService: PlanClassesService) {

@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../_services/_authentication.service';
 import { ValidationService } from "../_services/_validation.service";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { ModalDirective } from "ngx-bootstrap";
 import { CookieService } from "ngx-cookie";
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private _formBuilder: FormBuilder,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private globalService: GlobalService,
         private dashBoard: ClientDashBoardService,
         private _cookieService: CookieService) {

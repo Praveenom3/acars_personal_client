@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { AuthenticationService } from '../../_services/_authentication.service';
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
     selector: 'app-activate-user',
@@ -17,7 +17,7 @@ export class ActivateUserComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private toastrService: CustomToastrService) {
+        private toastrService: ToastrService) {
     }
 
     ngOnInit() {

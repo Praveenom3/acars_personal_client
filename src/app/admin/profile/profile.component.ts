@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from "@angular/forms";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
 import { AdminUserService } from "app/_services/_admin-user.service";
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   constructor(private _globalService: GlobalService,
     private _formBuilder: FormBuilder,
     private adminUserService: AdminUserService,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private _http: Http) {
     this._currentUserForm = _formBuilder.group({
       first_name: ['', Validators.compose([Validators.required])],

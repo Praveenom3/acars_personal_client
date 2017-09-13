@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { PlanOfferingCriteria } from "app/_models/plan-offering-criteria";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { PlanOfferingCriteriaService } from "app/_services/_plan-offering-criterial.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { GlobalService } from "app/_services/_global.service";
@@ -31,7 +31,7 @@ export class PlanOfferingCriteriaComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private _planOfferingCriteriaService: PlanOfferingCriteriaService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {

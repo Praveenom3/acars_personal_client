@@ -8,7 +8,7 @@ import { ValidationService } from "app/_services/_validation.service";
 import { EmailTemplatesService } from "app/_services/_email-templates.service";
 import { ModalDirective } from "ngx-bootstrap";
 import { EmailTemplates } from "app/_models/email-templates";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { GlobalService } from "app/_services/_global.service";
 import { Http, Headers, Response } from '@angular/http';
 
@@ -36,7 +36,7 @@ export class EmailTemplatesComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private emailTemplatesService: EmailTemplatesService,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private http: Http) {
 
         this._emailTemplatesForm = _formBuilder.group({

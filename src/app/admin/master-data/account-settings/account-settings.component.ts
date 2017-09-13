@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { GlobalService } from "app/_services/_global.service";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { SettingsService } from "app/_services/_setting.service";
 import { Http } from "@angular/http";
 
@@ -40,7 +40,7 @@ export class AccountSettingsComponent implements OnInit {
     constructor(
         private _globalService: GlobalService,
         private settingsService: SettingsService,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private _http: Http) {
     }
 

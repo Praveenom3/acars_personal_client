@@ -8,6 +8,6 @@ import { ToastrConfig } from 'ngx-toastr';
 export class CustomToastrService extends ToastrService {
     constructor(toastrConfig: ToastrConfig, overlay: Overlay, _injector: Injector) {
         super(toastrConfig, overlay, _injector);
-        toastrConfig.timeOut = 2000;
+        //toastrConfig.timeOut = 2000;
     }
 }

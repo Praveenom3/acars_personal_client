@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from '../../_services/_authentication.service';
 import { ValidationService } from "../../_services/_validation.service";
 import { ModalDirective } from "ngx-bootstrap";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 import * as Globals from '../../_shared/_globals';
@@ -43,7 +43,7 @@ export class AdminLayoutComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private _idleTimeout: IdleTimeoutService,
         private globalService: GlobalService) {
         _idleTimeout.init();

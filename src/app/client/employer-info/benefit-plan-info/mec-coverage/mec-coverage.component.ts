@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { MecCoverage } from "app/_models/mec-coverage";
 import { MecCoverageService } from "app/_services/_mec-coverage.service";
@@ -30,7 +30,7 @@ export class MecCoverageComponent implements OnInit {
   public labels: any[] = [];
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     private _mecService: MecCoverageService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { PurchaseService } from "app/_services/_purchase.service";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
@@ -21,7 +21,7 @@ export class PurchaseComponent implements OnInit {
   constructor(private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private purchaseService: PurchaseService,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private _http: Http) {
     }
 

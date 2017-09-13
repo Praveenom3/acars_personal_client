@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { AuthenticationService } from "app/_services/_authentication.service";
 import { CookieService } from "ngx-cookie";
 import { Router } from "@angular/router";
@@ -15,7 +15,7 @@ export class IdleTimeoutService{
 
    constructor(
        private router: Router,
-        private toastrService: CustomToastrService,
+        private toastrService: ToastrService,
         private authenticationService: AuthenticationService,
         private _cookieService:CookieService,
         private idle: Idle,

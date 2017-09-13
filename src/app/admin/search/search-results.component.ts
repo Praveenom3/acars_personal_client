@@ -4,7 +4,7 @@ import { SearchScreenService } from 'app/_services/_search-screen.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
 import { GlobalService } from 'app/_services/_global.service';
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-search',
@@ -24,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
     private router: Router,
     private dashboardService: ClientDashBoardService,
     private globalService: GlobalService,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
   ) {
 
     route.queryParams.subscribe(

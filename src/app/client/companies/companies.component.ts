@@ -6,7 +6,7 @@ import { Company } from "app/_models/company";
 import { ModalDirective } from "ngx-bootstrap";
 import { FormBuilder, Validators, FormGroup, NgForm } from "@angular/forms";
 import { ClientUserService } from "app/_services/_client-user.service";
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { SettingsService } from "app/_services/_setting.service";
 import { CompanyUser } from "app/_models/company-user";
 import { CompanyUserService } from "app/_services/_company-user.service";
@@ -53,7 +53,7 @@ export class CompaniesComponent implements OnInit {
     public router: Router,
     public globalService: GlobalService,
     public clientDashBoardService: ClientDashBoardService,
-    private toastrService: CustomToastrService,
+    private toastrService: ToastrService,
     public settingsService: SettingsService,
     public companyUserService: CompanyUserService,
     public clientUserService: ClientUserService) {

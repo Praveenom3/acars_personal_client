@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
-import { CustomToastrService } from "app/toaster/toaster-service";
+import { ToastrService } from "ngx-toastr";
 import { Http } from "@angular/http";
 import { GlobalService } from "app/_services/_global.service";
 import { OutstandingsService } from "app/_services/_outstandings.service";
