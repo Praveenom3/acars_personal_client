@@ -39,6 +39,7 @@ export class OrdersComponent implements OnInit {
 
     public temp_brand_id = '';
     public temp_brand = '';
+    public temp_product = '';
     public temp_client_name = '';
     public temp_client_number = '';
     public temp_new_index = -1;
@@ -123,7 +124,7 @@ export class OrdersComponent implements OnInit {
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
-            purchaser_mobile: ['', Validators.compose([Validators.required])],
+            purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             purchase_status: [''],
             amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
             account_manager: [''],
@@ -387,11 +388,12 @@ export class OrdersComponent implements OnInit {
 
         } else if (modal == 'updatePurchaseModal') {
 
-            if (this._updateClientForm.value.client_id) {
+        /*    if (this._updateClientForm.value.client_id) {
                 this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
             } else {
                 this.getSelectableProducts('', '', 'clientAddPurchase');
-            }
+            } */
+			this.temp_product = this.getItemName('product', data.product_id);
 
             this._updatePurchaseFormSubmitted = false;
 

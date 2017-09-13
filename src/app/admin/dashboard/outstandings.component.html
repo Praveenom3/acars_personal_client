@@ -52,7 +52,8 @@
                                     <td class="text-center">{{invoice.product_name}}</td>
                                     <td class="text-center">{{invoice.account_manager}}</td>
                                     <td class="text-center">{{invoice.amount}}</td>
-                                    <td class="text-center"><a title="Status" style="cursor: pointer;">Unpaid</a></td>
+                                    <td class="text-center"><a class="link-blue-underline" *ngIf=globalService.financial_permission (click)="toggleStatus('Outstanding Invoices', invoice)">{{(invoice.is_invoice_paid ==1)?"Paid":"Unpaid"}}</a>
+                                        <span *ngIf='!globalService.financial_permission'>{{(invoice.is_invoice_paid ==1)?"Paid":"Unpaid"}}</span></td>
                                 </tr>
                             </ng-container>
                             <tr class="tr-text-center" *ngIf=!invoicesObj.data?.length>

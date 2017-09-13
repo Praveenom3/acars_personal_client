@@ -28,4 +28,13 @@ export class OutstandingsService {
             .catch(this._globalService.handleError);
     }
 
+    public toggleStatus(data): Observable<any[]> {
+        return this._http.post(
+            this._oustandingUrl + '/toggle-status',
+            data,
+            {headers: this._globalService.getHeaders()}
+     ).map(response => response.json())
+    .catch(this._globalService.handleError);
+    }
+
 }

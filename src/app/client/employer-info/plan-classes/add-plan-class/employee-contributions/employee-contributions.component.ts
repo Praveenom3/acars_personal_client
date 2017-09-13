@@ -159,7 +159,7 @@ export class EmployeeContributionsComponent implements OnInit {
           if (param == "exit") {
            this.redirectToDashboard();
           } else {
-            this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/payroll']);
+            this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes']);
           }
         //  this.toastrService.success('Coverage Type Information record added succesfully.');
         } else {

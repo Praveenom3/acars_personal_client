@@ -275,7 +275,7 @@
                                     <select class="form-control" *ngIf="hasFinancialRights" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}" (ngModelChange)="onBrandChange(this._updateClientForm, $event)"
                                         style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
-                                        <option *ngFor="let ab of availableBrands"  [ngValue]="ab">{{ab.brand_name}}</option>
+                                        <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
                                     <span *ngIf="!hasFinancialRights" class="form-control" style="width: 90%;" readOnly>{{this.temp_brand}}</span>
                                     <td style="width:10%;"><label class="control-label">Client # :</label></td>
@@ -690,7 +690,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                 <label class="form-control-label">Product</label>
-                                <select class="form-control" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
+                                <select class="form-control" *ngIf="temp_product == ''" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
                                     <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_full_name}}</option> -->
                                     
@@ -698,6 +698,7 @@
                                         <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
+								<span *ngIf="temp_product != ''" class="form-control" readOnly>{{temp_product}}</span>
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.product_id.valid">{{_updatePurchaseFormErrors.product_id.message}}</span>
 
@@ -760,7 +761,7 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <label class="form-control-label">Purchaser Phone</label>
-                                <input type="text" [textMask]="{mask: mask}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_mobile.valid">{{_updatePurchaseFormErrors.purchaser_mobile.message}}</span>
 
@@ -788,7 +789,7 @@
                         <div class="col-md-4">
                             <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
                                 <label class="form-control-label">Amount</label>
-                                <input type="text" DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
+                                <input type="text" OnlyAmountNumber="true"  DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.amount.valid">{{_updatePurchaseFormErrors.amount.message}}</span>
 
