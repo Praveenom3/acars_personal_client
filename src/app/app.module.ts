@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
@@ -42,7 +42,9 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
 import { CompanyUserService } from "app/_services/_company-user.service";
 import { ProductsNotExists } from './pages/products-not-exists.component';
 import { TokenValidationResolver } from "app/_services/token-validation-resolver";
-
+import { HttpService } from "app/interceptors/http.service"
+import { LoaderService } from "app/interceptors/loader.service";
+import { CustomToastrService } from "app/toaster/toaster-service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,15 +70,18 @@ import { TokenValidationResolver } from "app/_services/token-validation-resolver
     ReactiveFormsModule,
     MomentModule,
     NgIdleKeepaliveModule.forRoot(),
-    PartialViews
+    PartialViews,
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
+    HttpService,
+    CustomToastrService,
     IdleTimeoutService,
     AuthGuard,
+    LoaderService,
     AccessGuard,
     GlobalService, ClientDashBoardService, CompanyUserService,
     ValidationService, TokenValidationResolver],

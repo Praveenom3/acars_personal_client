@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 
 import { AuthenticationService } from '../_services/_authentication.service';
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
@@ -26,7 +26,7 @@ export class SetPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private toastrService: ToastrService) {
+    private toastrService: CustomToastrService) {
 
     this.setPwdForm = this.formBuilder.group({
       'newPassword': ['', [Validators.required, Validators.minLength(6)]],

@@ -41,12 +41,6 @@
         </div>
         <ul class="actions  media-hide-header">
 
-            <!-- <li>
-                <a class="disable-hover home" *ngIf="(userType==2 || userType==1 )" [routerLinkActive]="['home-page-active']" [routerLink]="['/admin/dashboard']"
-                    title="Click to admin dashboard">
-                    <b><i class="fa fa-home" aria-hidden="true"></i></b>
-                </a>
-            </li> -->
             <li>
                 <a class="disable-hover home" [routerLinkActive]="['home-page-active']" [routerLink]="dashBoardService.clientHomeUrl">
                     <b><i class="fa fa-home" aria-hidden="true"></i></b>
@@ -88,7 +82,7 @@
                     role="menu" style="margin-top:16px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/dashboard']">
                         <i class="dropdown-icon fa fa-home">
-                            </i> Dashboard</a>
+                            </i> Admin Dashboard</a>
                     <a class="dropdown-item dropdown-a color-white" href="#">
                         <i class="dropdown-icon icmn-exit">
                             </i> Logout</a>

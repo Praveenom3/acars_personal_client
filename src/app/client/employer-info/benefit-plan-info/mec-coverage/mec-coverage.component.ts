@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { MecCoverage } from "app/_models/mec-coverage";
 import { MecCoverageService } from "app/_services/_mec-coverage.service";
@@ -30,7 +30,7 @@ export class MecCoverageComponent implements OnInit {
   public labels: any[] = [];
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private _mecService: MecCoverageService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
@@ -158,14 +158,14 @@ export class MecCoverageComponent implements OnInit {
     this.mecCoverageData['company_id'] = this.company_id;
     let customArray = [];
     if (this.mecCoverageData.entireYear == true) {
-      this.mecCoverageData.mec_months = JSON.stringify(this.totalYear);
+      //this.mecCoverageData.mec_months = JSON.stringify(this.totalYear);
     } else {
       this.mecCoverageData.mec_months.forEach((eachSelectedMonth, index) => {
         if (eachSelectedMonth == true) {
           customArray.push(index);
         }
       });
-      this.mecCoverageData.mec_months = JSON.stringify(customArray);
+      //this.mecCoverageData.mec_months = JSON.stringify(customArray);
     }
 
     if (this.mecCoverageData.mec_coverage_id > 0) {

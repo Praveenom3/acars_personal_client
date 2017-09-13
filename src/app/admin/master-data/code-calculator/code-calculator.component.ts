@@ -3,7 +3,7 @@ import { ModalDirective } from "ngx-bootstrap";
 import { Code } from "app/_models/code";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { GlobalService } from "app/_services/_global.service";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { Http } from "@angular/http";
 import { CodeCalculatorService } from "app/_services/_code-calculator.service";
 import { LookupOptionsService } from "app/_services/_lookup-options.service";
@@ -41,7 +41,7 @@ export class CodeCalculatorComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private codeService: CodeCalculatorService,
     private lookupService: LookupOptionsService,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private _http: Http) {
     this._codeForm = _formBuilder.group({
       line_14: ['', Validators.compose([Validators.required])],

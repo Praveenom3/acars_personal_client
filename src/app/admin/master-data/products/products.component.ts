@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { ProductsService } from "app/_services/_products.service";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
     constructor(private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private productsService: ProductsService,
-        private toastrService: ToastrService,
+        private toastrService: CustomToastrService,
         private _http: Http) {
         this.productTypes = this._globalService.productTypes;
         this.years = this._globalService.years;

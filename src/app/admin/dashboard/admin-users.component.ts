@@ -5,7 +5,7 @@ import {
 import { Subscription } from 'rxjs/Subscription';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
 import { AdminUserService } from "app/_services/_admin-user.service";
@@ -54,7 +54,7 @@ export class AdminUsersComponent implements OnInit {
     constructor(private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private adminUserService: AdminUserService,
-        private toastrService: ToastrService,
+        private toastrService: CustomToastrService,
         private _http: Http) {
         this._adminUserForm = _formBuilder.group({
             first_name: ['', Validators.compose([Validators.required])],

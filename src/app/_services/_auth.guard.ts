@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, NavigationEnd } from '@angular/router';
 import {AuthenticationService} from './_authentication.service';
 import * as Globals from '../_shared/_globals';
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     constructor(
         private _authenticationService: AuthenticationService, 
         private _router:Router, 
-        private toastrService: ToastrService) {
+        private toastrService: CustomToastrService) {
         _router.events
         .filter(event => event instanceof NavigationEnd)
         .subscribe(e => {

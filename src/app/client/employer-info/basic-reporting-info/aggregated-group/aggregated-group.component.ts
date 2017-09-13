@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { AggregatedGroup } from "app/_models/aggregated-group";
 import { AggregatedGroupService } from "app/_services/_aggregated-group.service";
@@ -35,7 +35,7 @@ export class AggregatedGroupComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     public globalService: GlobalService,
     private _aggregateGroupService: AggregatedGroupService,
     private _elementMasterService: ElementMasterService) {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { ElementMasterService } from "app/_services/_element-master.service";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { Http } from "@angular/http";
 import { Elements } from "app/_models/elements";
 
@@ -50,7 +50,7 @@ export class ElementMasterComponent implements OnInit {
 
 
     constructor(private elementMasterService: ElementMasterService,
-        private toastrService: ToastrService) {
+        private toastrService: CustomToastrService) {
 
     }
 

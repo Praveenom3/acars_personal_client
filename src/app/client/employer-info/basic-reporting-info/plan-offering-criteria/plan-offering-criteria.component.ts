@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { PlanOfferingCriteria } from "app/_models/plan-offering-criteria";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { PlanOfferingCriteriaService } from "app/_services/_plan-offering-criterial.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { GlobalService } from "app/_services/_global.service";
@@ -31,7 +31,7 @@ export class PlanOfferingCriteriaComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private _planOfferingCriteriaService: PlanOfferingCriteriaService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {
@@ -137,7 +137,8 @@ export class PlanOfferingCriteriaComponent implements OnInit {
 
     this.planOfferingData['purchase_id'] = this.purchase_id;
     this.planOfferingData['company_id'] = this.company_id;
-    this.planOfferingData['plan_offering_criteria_type'] = JSON.stringify(customArray);
+    //this.planOfferingData['plan_offering_criteria_type'] = JSON.stringify(customArray);
+
     if (this.planOfferingData.plan_offer_criteria_id > 0) {
       this._planOfferingCriteriaService.updatePlanOfferingCriteria(this.planOfferingData).subscribe(
         result => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { OrdersService } from "app/_services/_orders.service";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { Clients } from "app/_models/clients";
 import { Brands } from "app/_models/brands";
 import { ModalDirective } from "ngx-bootstrap";
@@ -77,7 +77,7 @@ export class OrdersComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private ordersService: OrdersService,
-        private toastrService: ToastrService) {
+        private toastrService: CustomToastrService) {
 
         this._addClientForm = _formBuilder.group({
             client_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],

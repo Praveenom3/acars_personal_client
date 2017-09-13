@@ -459,7 +459,7 @@
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                     <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
                                         [(ngModel)]="companyEdit.company_ein" minLength=12 [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
-                                        placeholder="(__)-_______">
+                                        placeholder="(__)-______">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
                                 </div>
                             </div>

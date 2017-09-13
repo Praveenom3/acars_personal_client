@@ -15,7 +15,8 @@ import { Company } from 'app/_models/company';
 import { Products } from 'app/_models/products';
 import { Brands } from 'app/_models/brands';
 import { CompanyUserService } from 'app/_services/_company-user.service';
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
+import { HttpService } from "app/interceptors/http.service";
 
 @Injectable()
 
@@ -89,9 +90,11 @@ export class ClientDashBoardService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private toastrService: ToastrService,
+        private toastrService: CustomToastrService,
         private _companyUserService: CompanyUserService,
-        private _http: Http) {
+        private _http: Http,
+        private _httpService: HttpService
+    ) {
     }
     /**
      * 
@@ -332,7 +335,7 @@ export class ClientDashBoardService {
      * @param data 
      */
     public getClientCompanies(data) {
-        return this._http.post(
+        return this._httpService.post(
             this._apiUrl + '/get-companies-of-clients', data,
             {
                 headers: this._globalService.getHeaders()
@@ -514,7 +517,7 @@ export class ClientDashBoardService {
      * @param companyId 
      */
     public getCompanyInformation(companyId): Observable<any> {
-        return this._http.get(
+        return this._httpService.get(
             this._apiUrl + '/get-company-information/' + companyId,
             {
                 headers: this._globalService.getHeaders()

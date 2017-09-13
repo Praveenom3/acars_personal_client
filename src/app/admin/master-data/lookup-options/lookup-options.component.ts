@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from "app/_services/_global.service";
 import { FormBuilder, Validators, FormGroup, FormControl } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { Http } from "@angular/http";
 import { ModalDirective } from "ngx-bootstrap";
 import { Lookup } from "app/_models/lookup";
@@ -42,7 +42,7 @@ export class LookupOptionsComponent implements OnInit {
 
   constructor(private _globalService: GlobalService,
     private _formBuilder: FormBuilder,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private lookupService: LookupOptionsService,
     private _http: Http) {
     this._lookupNameForm = _formBuilder.group({

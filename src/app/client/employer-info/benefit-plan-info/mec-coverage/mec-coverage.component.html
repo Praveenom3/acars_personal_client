@@ -37,16 +37,21 @@
                                             </label>
                                 <ul>
                                     <li>
-                                        <div class="margin form-control-label">For 2015 reporting, you must have offered MEC to at least 70% of your full time employees during the month.</div>
+                                        <div class="margin form-control-label">For 2015 reporting, you must have offered MEC to at least 70% of your full time employees
+                                            during the month.</div>
                                     </li>
                                     <li>
-                                        <div class="margin form-control-label bullet2">For 2016 reporting, you must have offered MEC to at least 95% of your full time employees during the month</div>
+                                        <div class="margin form-control-label bullet2">For 2016 reporting, you must have offered MEC to at least 95% of your full time employees
+                                            during the month</div>
                                     </li>
                                 </ul>
                                 <div class="col-sm-3" style="display:grid;">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="entireYear" (ngModelChange)="isEntireYear($event)" [(ngModel)]="mecCoverageData.entireYear" value="1"><span class="control-checkbox">Entire
-                                    Year</span></label>
+                                        <label>
+                                            <input type="checkbox" name="entireYear" (ngModelChange)="isEntireYear($event)" [(ngModel)]="mecCoverageData.entireYear" value="1">
+                                            <span class="control-checkbox"> &nbsp; Entire Year
+                                            </span>
+                                        </label>
                                     </div>
                                     <div class="checkbox">
                                         <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[1]" name="mec_months[1]" value="1"><span class="control-checkbox">January</span></label>

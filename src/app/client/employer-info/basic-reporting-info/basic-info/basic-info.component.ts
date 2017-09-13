@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { BriBasicInfo } from "app/_models/bri-basic-info";
 import { BriBasicInfoService } from "app/_services/_bri-basic-info.service";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { ROUTER_PROVIDERS } from "@angular/router/src/router_module";
 import { GlobalService } from "app/_services/_global.service";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
@@ -38,7 +38,7 @@ export class BasicInfoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private globalService: GlobalService,
     private _clientDashService: ClientDashBoardService,
     private _elementMasterService: ElementMasterService,

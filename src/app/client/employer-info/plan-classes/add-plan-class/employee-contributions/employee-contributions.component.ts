@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { PlanClassesService } from "app/_services/_plan-classes.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { GlobalService } from "app/_services/_global.service";
 
 @Component({
@@ -32,7 +32,7 @@ export class EmployeeContributionsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     public globalService: GlobalService,
     private _elementMasterService: ElementMasterService,
     private planClassesService: PlanClassesService) {

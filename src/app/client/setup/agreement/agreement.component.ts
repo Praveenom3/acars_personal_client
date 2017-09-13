@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { GlobalService } from "app/_services/_global.service";
 @Component({
   selector: 'app-agreement',
@@ -15,7 +15,7 @@ export class AgreementComponent implements OnInit {
   constructor(public route: ActivatedRoute,
     public clientDashBoardService: ClientDashBoardService,
     public globalService: GlobalService,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private router: Router,
   ) {
     this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);

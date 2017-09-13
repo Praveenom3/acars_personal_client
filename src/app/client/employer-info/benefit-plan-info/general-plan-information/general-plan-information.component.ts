@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { GeneralPlanInfo } from "app/_models/general-plan-info";
 import { GeneralPlanInfoService } from "app/_services/_general-plan-info.service";
@@ -28,7 +28,7 @@ export class GeneralPlanInformationComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     private _generalPlanInfoService: GeneralPlanInfoService,
     private _globalService: GlobalService,
     private _elementMasterService: ElementMasterService) {

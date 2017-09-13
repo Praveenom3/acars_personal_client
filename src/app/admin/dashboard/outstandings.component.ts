@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { OutstandingsService } from "app/_services/_outstandings.service";
 import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
 

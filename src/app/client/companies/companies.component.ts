@@ -6,7 +6,7 @@ import { Company } from "app/_models/company";
 import { ModalDirective } from "ngx-bootstrap";
 import { FormBuilder, Validators, FormGroup, NgForm } from "@angular/forms";
 import { ClientUserService } from "app/_services/_client-user.service";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { SettingsService } from "app/_services/_setting.service";
 import { CompanyUser } from "app/_models/company-user";
 import { CompanyUserService } from "app/_services/_company-user.service";
@@ -45,7 +45,7 @@ export class CompaniesComponent implements OnInit {
   private _submitted: boolean;
 
   public userType: any;
-  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
   public phoneNumberMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -53,14 +53,13 @@ export class CompaniesComponent implements OnInit {
     public router: Router,
     public globalService: GlobalService,
     public clientDashBoardService: ClientDashBoardService,
-    private toastrService: ToastrService,
+    private toastrService: CustomToastrService,
     public settingsService: SettingsService,
     public companyUserService: CompanyUserService,
     public clientUserService: ClientUserService) {
-
     this._companyForm = _formBuilder.group({
       company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
-      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(12)])],
+      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(11)])],
     });
 
     this.createCompanyUserForm();
@@ -96,7 +95,7 @@ export class CompaniesComponent implements OnInit {
     },
     'company_ein': {
       'required': 'Company EIN is required.',
-      'minlength': 'Company EIN should be 9 digits length',
+      'minlength': 'Company EIN should be 8 digits length',
     }
   };
 
@@ -523,7 +522,7 @@ export class CompaniesComponent implements OnInit {
    */
   public formatCompanyEin(ein: string = '') {
     if (!ein) {
-      return '_ _-_ _ _ _ _ _ _';
+      return '_ _-_ _ _ _ _ _';
     }
     let einString: string = '(' + ein.slice(0, 2) + ') ' + '-' + ein.slice(2, 9);
     return einString;

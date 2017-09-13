@@ -8,7 +8,7 @@ import { ValidationService } from "app/_services/_validation.service";
 import { EmailTemplatesService } from "app/_services/_email-templates.service";
 import { ModalDirective } from "ngx-bootstrap";
 import { EmailTemplates } from "app/_models/email-templates";
-import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "app/toaster/toaster-service";
 import { GlobalService } from "app/_services/_global.service";
 import { Http, Headers, Response } from '@angular/http';
 
@@ -36,7 +36,7 @@ export class EmailTemplatesComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private emailTemplatesService: EmailTemplatesService,
-        private toastrService: ToastrService,
+        private toastrService: CustomToastrService,
         private http: Http) {
 
         this._emailTemplatesForm = _formBuilder.group({
@@ -60,6 +60,7 @@ export class EmailTemplatesComponent implements OnInit {
     }
 
     private initWysiwyg(selector) {
+        tinymce.remove(this.editor);
         tinymce.init({
             selector: selector,
             plugins: ['link', 'paste', 'table', 'textcolor', 'textpattern', 'advlist', 'autolink', 'autosave', 'link', 'image', 'lists', 'charmap', 'print', 'preview', 'hr', 'anchor', 'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime', 'media', 'nonbreaking'],

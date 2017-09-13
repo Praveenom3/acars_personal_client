@@ -45,7 +45,7 @@ export class inputFilterDirective {
       }
     }
     else if (this.OnlyNumber) {
-      if (!e.key.match(/^([0-9])/) && e.key != "Backspace" && e.key != "Delete") {
+      if (!e.key.match(/^([0-9])$/) && e.key != "Tab" && e.key != "Backspace" && e.key != "Delete") {
         e.preventDefault();
       }
     }
@@ -70,8 +70,8 @@ export class inputFilterDirective {
 
   @HostListener('keypress', ['$event']) onKeyPress(event) {
     let e = <any>event
-    
-    if (this.OnlyAmountNumber)  {
+
+    if (this.OnlyAmountNumber) {
       let valInFloat: number = parseFloat(e.target.value)
 
       if (this.minValue.length) {

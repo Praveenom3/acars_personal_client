@@ -10,6 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { GlobalService } from './_global.service';
 import { BriBasicInfo } from "app/_models/bri-basic-info";
+import { HttpService } from "app/interceptors/http.service";
 
 
 @Injectable()
@@ -20,7 +21,7 @@ export class BriBasicInfoService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        private _http: HttpService) {
 
     }
 
