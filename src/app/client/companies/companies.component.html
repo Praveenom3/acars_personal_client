@@ -316,8 +316,8 @@
                                     </td>
                                     <td class="padding-5">
 
-                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
-                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.basic_plan_information" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
 
                                     </td>
                                 </tr>
@@ -329,8 +329,8 @@
                                     </td>
                                     <td class=" padding-5">
 
-                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
-                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.benefitPlan_planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
 
                                     </td>
                                 </tr>

@@ -20,6 +20,8 @@ export class OutstandingsComponent implements OnInit {
     invoices: any;
     _errorMessage: any;
     invoicesData: any[];
+    outstandingContractsData: any[];
+    discoverySessionData: any[];
     public invoicesFilterQuery = "";
     public rowsOnPage = 5;
     public sortOrder = "";
@@ -28,12 +30,14 @@ export class OutstandingsComponent implements OnInit {
     constructor(private _outstandingsService: OutstandingsService,
         private dashboardService: ClientDashBoardService,
         private globalService: GlobalService,
-        private toastrService: ToastrService ) {
-			this.globalService.getPermissions();
+        private toastrService: ToastrService) {
+        this.globalService.getPermissions();
     }
 
     ngOnInit() {
         this.getOutstandingInvoices('1');
+        this.getOutstandingContracts('3');
+        this.getDiscoveryCalls('4');
     }
 
     private getOutstandingInvoices(purpose) {
@@ -47,32 +51,62 @@ export class OutstandingsComponent implements OnInit {
             );
     }
     /**
-    * redirectToClientDashBoard
-    */
-    public redirectToClientDashBoard(client: any) {
-        this.dashboardService.redirectToClientDashBoard(client);
-    }
-
-    toggleStatus(type, value){
-        if(type == "Outstanding Invoices"){
-            let data = {
-                'type' : "Outstanding Invoices",
-                'value' : value
-            };
-
-            this._outstandingsService.toggleStatus(data)
-            .subscribe(
-                result => {
-                    if (result['success'] == true) {
-                        this.toastrService.success('Status changed successfully');
-
-                        this.invoicesData.splice(this.invoicesData.indexOf(value), 1);
-
-                }                
+     * 
+     * @param purpose 
+     */
+    private getOutstandingContracts(purpose) {
+        this._outstandingsService.getOutstandingInvoices(purpose)
+            .subscribe((contratcts) => {
+                if (contratcts.length > 0) {
+                    this.outstandingContractsData = contratcts;
+                }
             },
             error => { this._errorMessage = error.data }
             );
+    }
+    /**
+     * 
+     * @param purpose 
+     */
+    private getDiscoveryCalls(purpose) {
+        this._outstandingsService.getOutstandingInvoices(purpose)
+            .subscribe((discoverySession) => {
+                if (discoverySession.length > 0) {
+                    this.discoverySessionData = discoverySession;
+                }
+            },
+            error => { this._errorMessage = error.data }
+            );
+    }
+    /**
+    * redirectToClientDashBoard
+    */
+    public redirectToClientDashBoard(client: any) {
+        this.dashboardService.redirectToClientDashBoard(client, true);
+    }
 
-        }
+    toggleStatus(type, value) {
+
+        let data = {
+            'type': type,
+            'value': value
+        };
+
+        this._outstandingsService.toggleStatus(data)
+            .subscribe(
+            result => {
+                if (result['success'] == true) {
+                    this.toastrService.success('Status changed successfully');
+                    if (type == 'Outstanding Invoices') {
+                        this.invoicesData.splice(this.invoicesData.indexOf(value), 1);
+                    } else if (type == 'Client Agreements') {
+                        this.outstandingContractsData.splice(this.outstandingContractsData.indexOf(value), 1);
+                    } else if (type == 'Discovery Session') {
+                        this.discoverySessionData.splice(this.discoverySessionData.indexOf(value), 1);
+                    }
+                }
+            },
+            error => { this._errorMessage = error.data }
+            );
     }
 }

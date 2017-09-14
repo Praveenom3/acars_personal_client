@@ -1,29 +1,3 @@
-<!--<nav class="left-menu left-small-nav" id="left-nav">
-    <div class="left-menu-inner scroll-pane">
-        <ul class="left-menu-list left-menu-list-root list-unstyled left-small-nav-ul">
-            <li class="text-center">
-                <a class="left-menu-link" [routerLink]="['/admin/orders']" [routerLinkActive]="['left-nav-active']">
-                    <i class="left-menu-link-icon fa fa-list-alt"></i><br>Orders
-                </a>
-            </li>
-            <li class="text-center">
-                <a class="left-menu-link" [routerLink]="['/admin/manage-e-files']" [routerLinkActive]="['left-nav-active']">
-                    <i class="left-menu-link-icon fa fa-television"></i><br>Manage E Files
-                </a>
-            </li>
-            <li class="text-center">
-                <a class="left-menu-link" [routerLink]="['/admin/jobs']" [routerLinkActive]="['left-nav-active']">
-                    <i class="left-menu-link-icon fa fa-tasks"></i><br>Scheduled Jobs
-                </a>
-            </li>
-            <li class="text-center" style="min-height: 254px;border-right:1px solid #DDD;">
-            </li>
-        </ul>   
-    </div>
-</nav>-->
-<!-- left scroll menu start(in tab size)-->
-<!-- left end header start-->
-
 <nav class="top-menu transistion top-nav admin-nav">
     <div class="menu-icon-container items-class hidden-md-up">
         <div class="animate-menu-button left-menu-toggle" [class.active]="isLinkActive" (click)="toggleClass()">
@@ -61,16 +35,19 @@
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/orders']" [routerLinkActive]="['page-active']">
                            Orders
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/manage-e-files']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white color-red" [routerLink]="['/admin/manage-e-files']" [routerLinkActive]="['page-active']">
                             Manage E-files
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/jobs']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white color-red" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/jobs']"
+                                [routerLinkActive]="['page-active']">
                             Scheduled Jobs
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/error-log']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/error-log']"
+                                [routerLinkActive]="['page-active']">
                             Error Log
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/activity-log']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white color-red" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/activity-log']"
+                                [routerLinkActive]="['page-active']">
                             Activity Log
                         </a>
 
@@ -101,22 +78,23 @@
                          Element Master
                         </a>
 
-                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/code-calculator']" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/code-calculator']" [routerLink]="['/admin/master-data/form-pricing']"
+                                [routerLinkActive]="['page-active']">
                          Code Calculator
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/error-master']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white color-red" [routerLink]="['/admin/master-data/error-master']" [routerLinkActive]="['page-active']">
                       Error Master
                        </a>
 
 
-                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white color-red" [routerLink]="['/admin/master-data/form-pricing']" [routerLinkActive]="['page-active']">
 
                           Form Pricing
                         </a>
                             <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/email-templates']" [routerLinkActive]="['page-active']">
                             Email Templates
                         </a>
-                            <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/master-data/videos']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white color-red" [routerLink]="['/admin/master-data/videos']" [routerLinkActive]="['page-active']">
                        Videos
                         </a>
                         </ul>
@@ -126,7 +104,8 @@
         </ul>
     </div>
 
-    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile" id="profile_details">
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile"
+        id="profile_details">
         <div class="menu-user-block col-md-12">
             <div class="dropdown dropdown-avatar pull-right">
                 <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false">
@@ -155,7 +134,8 @@
         <router-outlet></router-outlet>
     </div>
 </section>
-<div class="modal fade" bsModal #chngPwdModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #chngPwdModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -180,7 +160,8 @@
                             <label class="add-member-label">Current Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="Current Password" id="current-password" name="currentPassword" formControlName="currentPassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','currentPassword')}">
+                            <input type="password" class="form-control" placeholder="Current Password" id="current-password" name="currentPassword" formControlName="currentPassword"
+                                [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','currentPassword')}">
                             <control-messages [control]="chngPwdForm.controls.currentPassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.currentPassword.valid">{{_formErrors.currentPassword.message}}</span>
                         </div>
@@ -190,7 +171,8 @@
                             <label class="add-member-label">New Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="New Password" id="new-password" name="newPassword" formControlName="newPassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','newPassword')}">
+                            <input type="password" class="form-control" placeholder="New Password" id="new-password" name="newPassword" formControlName="newPassword"
+                                [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','newPassword')}">
                             <control-messages [control]="chngPwdForm.controls.newPassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.newPassword.valid">{{_formErrors.newPassword.message}}</span>
                         </div>
@@ -200,7 +182,8 @@
                             <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="Confirm Password" id="new-confirm-password" name="retypePassword" formControlName="retypePassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','retypePassword')}">
+                            <input type="password" class="form-control" placeholder="Confirm Password" id="new-confirm-password" name="retypePassword"
+                                formControlName="retypePassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','retypePassword')}">
                             <control-messages [control]="chngPwdForm.controls.retypePassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.retypePassword.valid">{{_formErrors.retypePassword.message}}</span>
                             <span *ngIf="_errorMessageChngPwd" class="help-block help-block-error">{{_errorMessageChngPwd}}</span>

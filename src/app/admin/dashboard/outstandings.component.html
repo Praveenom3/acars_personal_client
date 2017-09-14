@@ -2,6 +2,7 @@
 
 <div class="page-content col-md-12 dashboard-page-content">
     <div class="container">
+
         <div class="col-md-12 padding-0 border-ddd margin-btm34">
             <div class="panel panel-primary">
                 <div class="table-responsive kv-grid-container" style="overflow: auto">
@@ -12,6 +13,7 @@
                             <input class="form-control mr-left-5" [(ngModel)]="invoicesFilterQuery" />
                         </div>
                     </div>
+
                     <table class="table table-hover table-bordered table-striped" [mfData]="invoicesData | outstadingInvoicesFilter : invoicesFilterQuery"
                         #invoicesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
@@ -49,7 +51,7 @@
                                     <td class="text-center">{{invoice.invoice_no}}</td>
                                     <td class="text-center"><a (click)="redirectToClientDashBoard(invoice)" class="tbl-col-link">{{invoice.client_name}}</a></td>
                                     <td class="text-center">{{invoice.brand_name}}</td>
-                                    <td class="text-center">{{invoice.product_name}}</td>
+                                    <td class="text-center">{{invoice.product_full_name}}</td>
                                     <td class="text-center">{{invoice.account_manager}}</td>
                                     <td class="text-center">{{invoice.amount}}</td>
                                     <td class="text-center"><a class="link-blue-underline" *ngIf=globalService.financial_permission (click)="toggleStatus('Outstanding Invoices', invoice)">{{(invoice.is_invoice_paid ==1)?"Paid":"Unpaid"}}</a>
@@ -84,89 +86,66 @@
                             <input class="form-control mr-left-5" />
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped">
+
+                    <table class="table table-hover table-bordered table-striped" [mfData]="outstandingContractsData | outstadingInvoicesFilter : invoicesFilterQuery"
+                        #outstandingContractsObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
-                                <th>Purchase Date</th>
-                                <th>Client</th>
-                                <th>Brand</th>
-                                <th>Product</th>
-                                <th>Account Manager</th>
-                                <th>Status</th>
+                                <th>
+                                    <mfDefaultSorter by="created_at">Purchase Date</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="brand_name">Brand</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="product_name">Product</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="account_manager">Account Manager</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter>Status</mfDefaultSorter>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="tr-text-center">
-                                <td>1/1/2017</td>
-                                <td><a class="link-blue-underline">Client Name One</a></td>
-                                <td>Brand Name One</td>
-                                <td>Product One</td>
-                                <td>Account Manager One</td>
-                                <td><a class="link-blue-underline">Received</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/2/2017</td>
-                                <td><a class="link-blue-underline">Client Name Two</a></td>
-                                <td>Brand Name Two</td>
-                                <td>Product Two</td>
-                                <td>Account Manager Two</td>
-                                <td><a class="link-blue-underline">Pending</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/3/2017</td>
-                                <td><a class="link-blue-underline">Client Name Three</a></td>
-                                <td>Brand Name Three</td>
-                                <td>Product Three</td>
-                                <td>Account Manager Three</td>
-                                <td><a class="link-blue-underline">Pending</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/4/2017</td>
-                                <td><a class="link-blue-underline">Client Name Four</a></td>
-                                <td>Brand Name Four</td>
-                                <td>Product Four</td>
-                                <td>Account Manager Four</td>
-                                <td><a class="link-blue-underline">Received</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/5/2017</td>
-                                <td><a class="link-blue-underline">Client Name Five</a></td>
-                                <td>Brand Name Five</td>
-                                <td>Product Five</td>
-                                <td>Account Manager Five</td>
-                                <td><a class="link-blue-underline">Pending</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/6/2017</td>
-                                <td><a class="link-blue-underline">Client Name Six</a></td>
-                                <td>Brand Name Six</td>
-                                <td>Product Six</td>
-                                <td>Account Manager Six</td>
-                                <td><a class="link-blue-underline">Received</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/7/2017</td>
-                                <td><a class="link-blue-underline">Client Name Seven</a></td>
-                                <td>Brand Name Seven</td>
-                                <td>Product Seven</td>
-                                <td>Account Manager Seven</td>
-                                <td><a class="link-blue-underline">Received</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/8/2017</td>
-                                <td><a class="link-blue-underline">Client Name Eight</a></td>
-                                <td>Brand Name Eight</td>
-                                <td>Product Eight</td>
-                                <td>Account Manager Eight</td>
-                                <td><a class="link-blue-underline">Received</a></td>
+                            <ng-container *ngIf="outstandingContractsObj.data?.length">
+                                <tr *ngFor="let contract of outstandingContractsObj.data">
+                                    <td class="text-center">{{contract.created_at | date: 'MM/dd/yyyy'}}</td>
+                                    <td class="text-center"><a (click)="redirectToClientDashBoard(contract)" class="tbl-col-link">{{contract.client_name}}</a></td>
+                                    <td class="text-center">{{contract.brand_name}}</td>
+                                    <td class="text-center">{{contract.product_full_name}}</td>
+                                    <td class="text-center">{{contract.account_manager}}</td>
+                                    <td class="text-center">
+                                        <a class="link-blue-underline" *ngIf=globalService.financial_permission (click)="toggleStatus('Client Agreements', contract)">
+                                            {{(contract.client_agreement ==1)?"Completed":"Pending"}}
+                                        </a>
+                                        <span *ngIf='!globalService.financial_permission'>
+                                            {{(contract.client_agreement ==1)?"Completed":"Pending"}}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!outstandingContractsObj.data?.length>
+                                <td colspan="8">
+                                    No records are found
+                                </td>
                             </tr>
                         </tbody>
-
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-12 padding-0 border-ddd margin-btm34">
             <div class="panel panel-primary">
@@ -178,86 +157,61 @@
                             <input class="form-control mr-left-5" />
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped">
+                    <table class="table table-hover table-bordered table-striped" [mfData]="discoverySessionData | outstadingInvoicesFilter : invoicesFilterQuery"
+                        #discoverySessionDataObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
-                                <th>Purchase Date</th>
-                                <th>Client</th>
-                                <th>Brand</th>
-                                <th>Product</th>
-                                <th>Account Manager</th>
-                                <th>Status</th>
+                                <th>
+                                    <mfDefaultSorter by="created_at">Purchase Date</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="brand_name">Brand</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="product_name">Product</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="account_manager">Account Manager</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter>Status</mfDefaultSorter>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="tr-text-center">
-                                <td>1/1/2017</td>
-                                <td><a class="link-blue-underline">Client Name One</a></td>
-                                <td>Brand Name One</td>
-                                <td>Product One</td>
-                                <td>Account Manager One</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
+                            <ng-container *ngIf="discoverySessionDataObj.data?.length">
+                                <tr *ngFor="let discovery of discoverySessionDataObj.data">
+                                    <td class="text-center">{{discovery.created_at | date: 'MM/dd/yyyy'}}</td>
+                                    <td class="text-center"><a (click)="redirectToClientDashBoard(discovery)" class="tbl-col-link">{{discovery.client_name}}</a></td>
+                                    <td class="text-center">{{discovery.brand_name}}</td>
+                                    <td class="text-center">{{discovery.product_full_name}}</td>
+                                    <td class="text-center">{{discovery.account_manager}}</td>
+                                    <td class="text-center">
+                                        <a class="link-blue-underline" *ngIf=globalService.financial_permission (click)="toggleStatus('Discovery Session', discovery)">
+                                            {{(discovery.discovery_session ==1)?"Completed":"Pending"}}
+                                        </a>
+                                        <span *ngIf='!globalService.financial_permission'>
+                                            {{(discovery.discovery_session ==1)?"Completed":"Pending"}}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!discoverySessionDataObj.data?.length>
+                                <td colspan="8">
+                                    No records are found
+                                </td>
                             </tr>
-                            <tr class="tr-text-center">
-                                <td>1/2/2017</td>
-                                <td><a class="link-blue-underline">Client Name Two</a></td>
-                                <td>Brand Name Two</td>
-                                <td>Product Two</td>
-                                <td>Account Manager Two</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/3/2017</td>
-                                <td><a class="link-blue-underline">Client Name Three</a></td>
-                                <td>Brand Name Three</td>
-                                <td>Product Three</td>
-                                <td>Account Manager Three</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/4/2017</td>
-                                <td><a class="link-blue-underline">Client Name Four</a></td>
-                                <td>Brand Name Four</td>
-                                <td>Product Four</td>
-                                <td>Account Manager Four</td>
-                                <td><a class="link-blue-underline">Pending</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/5/2017</td>
-                                <td><a class="link-blue-underline">Client Name Five</a></td>
-                                <td>Brand Name Five</td>
-                                <td>Product Five</td>
-                                <td>Account Manager Five</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/6/2017</td>
-                                <td><a class="link-blue-underline">Client Name Six</a></td>
-                                <td>Brand Name Six</td>
-                                <td>Product Six</td>
-                                <td>Account Manager Six</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/7/2017</td>
-                                <td><a class="link-blue-underline">Client Name Seven</a></td>
-                                <td>Brand Name Seven</td>
-                                <td>Product Seven</td>
-                                <td>Account Manager Seven</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
-                            </tr>
-                            <tr class="tr-text-center">
-                                <td>1/8/2017</td>
-                                <td><a class="link-blue-underline">Client Name Eight</a></td>
-                                <td>Brand Name Eight</td>
-                                <td>Product Eight</td>
-                                <td>Account Manager Eight</td>
-                                <td><a class="link-blue-underline">Completed</a></td>
-                            </tr>
-
-
                         </tbody>
-
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

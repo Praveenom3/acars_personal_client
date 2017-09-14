@@ -12,9 +12,10 @@ export interface Company {
     client_agreement: any;
     discovery_session: any;
 
-    basic_plan_information: any;
-    benefitPlan_planClasses: any;
-
+    basicReporting: any;
+    benefitPlan: any;
+    planClasses:any
+    
     payroll_data: any;
     medical_plan_data: any;
 

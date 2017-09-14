@@ -511,6 +511,7 @@ export class CompaniesComponent implements OnInit {
   public viewCompanyUser(companyUserData) {
     this.companyUserInformation = this.createCompanyUserModel();
     this._resetCompanyUserFormErrors();
+    companyUserData.phone = companyUserData.phone.replace(/[`()|\-\/\ ]/gi, '');
     companyUserData.phone = '(' + companyUserData.phone.slice(0, 3) + ') ' + '' + companyUserData.phone.slice(3, 6) + '-' + companyUserData.phone.slice(6, 10);
     this.companyUserInformation = Object.assign({}, companyUserData);
     this._companyUserSubmitted = false;
