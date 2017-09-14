@@ -145,7 +145,7 @@
                                 </ul>
                             </div>
                             <br>
-                            <div class="btn-default upload-download-block cursor-pointer" style="padding:29px;background-color:#5ad1ed">
+                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-default upload-download-block cursor-pointer" style="padding:29px;background-color:#5ad1ed">
                                 <ul class="ul-inline download-upload-ul">
                                     <li>
                                         <img src='../src/assets/images/download.png'>
@@ -329,8 +329,10 @@
                                     </td>
                                     <td class=" padding-5">
 
-                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
-                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
+                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
 
                                     </td>
                                 </tr>
@@ -458,7 +460,7 @@
                                 <label class="form-control-label">EIN<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                     <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
-                                        [(ngModel)]="companyEdit.company_ein" minLength=12 [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
+                                        [(ngModel)]="companyEdit.company_ein"[ngClass]="{'form-control-danger': !_isValid('company_ein')}"
                                         placeholder="(__)-______">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
                                 </div>
@@ -656,13 +658,13 @@
                 </div>
                 <div class="modal-body row upload-files-div-content">
 
-                    <span class="upload-data-date-span">
+                    <!-- <span class="upload-data-date-span">
                             <h6 style="color:white">
                                 Open {{ settingsService.payrollDate | date:'longDate'  }}
                             </h6>
-                        </span>
+                        </span> -->
 
-                    <div class="">
+                    <div class="upload-file-body">
                         <p>
                             Accurate ACA reporting payroll period and medical enrollment data through the end of the calendar year. For this reason,
                             we have not opened up the begin receiving payroll and medical enrollment data until closer to

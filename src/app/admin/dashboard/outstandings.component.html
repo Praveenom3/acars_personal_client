@@ -92,7 +92,7 @@
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
-                                    <mfDefaultSorter by="created_at">Purchase Date</mfDefaultSorter>
+                                    <mfDefaultSorter by="purchase_date">Purchase Date</mfDefaultSorter>
                                 </th>
                                 <th>
                                     <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
@@ -114,18 +114,15 @@
                         <tbody>
                             <ng-container *ngIf="outstandingContractsObj.data?.length">
                                 <tr *ngFor="let contract of outstandingContractsObj.data">
-                                    <td class="text-center">{{contract.created_at | date: 'MM/dd/yyyy'}}</td>
+                                    <td class="text-center">{{contract.purchase_date | date: 'MM/dd/yyyy'}}</td>
                                     <td class="text-center"><a (click)="redirectToClientDashBoard(contract)" class="tbl-col-link">{{contract.client_name}}</a></td>
                                     <td class="text-center">{{contract.brand_name}}</td>
                                     <td class="text-center">{{contract.product_full_name}}</td>
                                     <td class="text-center">{{contract.account_manager}}</td>
                                     <td class="text-center">
-                                        <a class="link-blue-underline" *ngIf=globalService.financial_permission (click)="toggleStatus('Client Agreements', contract)">
+                                        <a class="link-blue-underline" (click)="toggleStatus('Client Agreements', contract)">
                                             {{(contract.client_agreement ==1)?"Completed":"Pending"}}
                                         </a>
-                                        <span *ngIf='!globalService.financial_permission'>
-                                            {{(contract.client_agreement ==1)?"Completed":"Pending"}}
-                                        </span>
                                     </td>
                                 </tr>
                             </ng-container>
@@ -162,7 +159,7 @@
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
-                                    <mfDefaultSorter by="created_at">Purchase Date</mfDefaultSorter>
+                                    <mfDefaultSorter by="purchase_date">Purchase Date</mfDefaultSorter>
                                 </th>
                                 <th>
                                     <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
@@ -184,18 +181,15 @@
                         <tbody>
                             <ng-container *ngIf="discoverySessionDataObj.data?.length">
                                 <tr *ngFor="let discovery of discoverySessionDataObj.data">
-                                    <td class="text-center">{{discovery.created_at | date: 'MM/dd/yyyy'}}</td>
+                                    <td class="text-center">{{discovery.purchase_date | date: 'MM/dd/yyyy'}}</td>
                                     <td class="text-center"><a (click)="redirectToClientDashBoard(discovery)" class="tbl-col-link">{{discovery.client_name}}</a></td>
                                     <td class="text-center">{{discovery.brand_name}}</td>
                                     <td class="text-center">{{discovery.product_full_name}}</td>
                                     <td class="text-center">{{discovery.account_manager}}</td>
                                     <td class="text-center">
-                                        <a class="link-blue-underline" *ngIf=globalService.financial_permission (click)="toggleStatus('Discovery Session', discovery)">
+                                        <a class="link-blue-underline" (click)="toggleStatus('Discovery Session', discovery)">
                                             {{(discovery.discovery_session ==1)?"Completed":"Pending"}}
                                         </a>
-                                        <span *ngIf='!globalService.financial_permission'>
-                                            {{(discovery.discovery_session ==1)?"Completed":"Pending"}}
-                                        </span>
                                     </td>
                                 </tr>
                             </ng-container>

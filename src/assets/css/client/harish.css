@@ -530,3 +530,6 @@ table.table-company-dashboard tbody tr:hover{
 .cursor-button-not-allowed{
     cursor: auto;
 }
+.upload-file-body{
+    font-size: 17px;
+}

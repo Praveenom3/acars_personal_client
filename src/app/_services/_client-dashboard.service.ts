@@ -275,7 +275,8 @@ export class ClientDashBoardService {
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
                 "support_email": brand.support_email,
-                "support_phone": mobile
+                "support_phone": mobile,
+                'terms_conditions_url': brand.terms_conditions_url
             }
             this.clientLogo = this.logoPath + brand.brand_logo;
         }

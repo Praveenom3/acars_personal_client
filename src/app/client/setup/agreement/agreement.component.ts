@@ -12,6 +12,7 @@ export class AgreementComponent implements OnInit {
 
   public productId: any;
   public clientId: any
+  termsConditionsUrl: string;
   constructor(public route: ActivatedRoute,
     public clientDashBoardService: ClientDashBoardService,
     public globalService: GlobalService,
@@ -25,6 +26,8 @@ export class AgreementComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.clientDashBoardService.setBrandData();
+    this.termsConditionsUrl = this.clientDashBoardService.brandInformation.terms_conditions_url;
     this.clientDashBoardService.setInformation()
   }
   /**

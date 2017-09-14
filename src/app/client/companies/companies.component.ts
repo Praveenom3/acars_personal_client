@@ -45,7 +45,7 @@ export class CompaniesComponent implements OnInit {
   private _submitted: boolean;
 
   public userType: any;
-  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/]
   public phoneNumberMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -59,7 +59,7 @@ export class CompaniesComponent implements OnInit {
     public clientUserService: ClientUserService) {
     this._companyForm = _formBuilder.group({
       company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
-      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(11)])],
+      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(12)])],
     });
 
     this.createCompanyUserForm();
@@ -95,7 +95,7 @@ export class CompaniesComponent implements OnInit {
     },
     'company_ein': {
       'required': 'Company EIN is required.',
-      'minlength': 'Company EIN should be 8 digits length',
+      'minlength': 'Company EIN should be 9 digits length',
     }
   };
 
@@ -523,7 +523,7 @@ export class CompaniesComponent implements OnInit {
    */
   public formatCompanyEin(ein: string = '') {
     if (!ein) {
-      return '_ _-_ _ _ _ _ _';
+      return '_ _-_ _ _ _ _ _ _';
     }
     let einString: string = '(' + ein.slice(0, 2) + ') ' + '-' + ein.slice(2, 9);
     return einString;
