@@ -121,7 +121,7 @@
                             <div class="col-md-4">
                                 <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
                                 <div class="form-group field-user-username" [ngClass]="{'has-danger': !_isValid('username')}">
-                                    <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['username']" [(ngModel)]="adminUserSelected.username" [ngClass]="{'form-control-danger': !_isValid('username')}" maxlength="34">
+                                    <input type="text" id="adminusers-email" maxlength="50" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['username']" [(ngModel)]="adminUserSelected.username" [ngClass]="{'form-control-danger': !_isValid('username')}">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.username.valid">{{_formErrors.username.message}}</span>
                                 </div>
                             </div>

@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
     @ViewChild('deleteModal') public deleteModal: ModalDirective;
 
     public filterQuery = "";
-    public rowsOnPage = 5;
+    public rowsOnPage = 10;
     public sortOrder = "";
     public sortBy = "";
 

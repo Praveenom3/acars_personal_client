@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[inputFilter],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
+  selector: '[inputFilter],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
 })
 export class inputFilterDirective {
 
@@ -16,6 +16,7 @@ export class inputFilterDirective {
   @Input() DecimalPlaces: string;
   @Input() minValue: string;
   @Input() maxValue: string;
+  @Input() empInfoValidator: string;
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
     let e = <KeyboardEvent>event;
@@ -33,34 +34,40 @@ export class inputFilterDirective {
         // let it happen, don't do anything
         return;
       }
+
       // Ensure that it is a number and stop the keypress
-      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && e.key != "Delete") {
+      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
 
     if (this.inputFilter) {
-      if (!e.key.match(/^([a-zA-Z0-9 ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
+      if (!e.key.match(/^([a-zA-Z0-9 ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+        e.preventDefault();
+      }
+    }
+    if (this.empInfoValidator) {
+      if (!e.key.match(/^([a-zA-Z0-9 '"(),.&-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
     else if (this.OnlyNumber) {
-      if (!e.key.match(/^([0-9])$/) && e.key != "Tab" && e.key != "Backspace" && e.key != "Delete") {
+      if (!e.key.match(/^([0-9])$/) && e.key != "Tab" && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
     else if (this.AlphanFewChar) {
-      if (!e.key.match(/^([a-zA-Z .-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
+      if (!e.key.match(/^([a-zA-Z .-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
     else if (this.AlphanMoreChar) {
-      if (!e.key.match(/^([a-zA-Z ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
+      if (!e.key.match(/^([a-zA-Z ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
     else if (this.AlphaNumernFewChar) {
-      if (!e.key.match(/^([a-zA-Z0-9 .-]+)$/) && e.key != "Backspace" && e.key != "Delete") {
+      if (!e.key.match(/^([a-zA-Z0-9 .-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }

@@ -25,7 +25,7 @@ export class AggregatedGroupComponent implements OnInit {
   section_id: any = 5;
   product_id: any;
   company_id: any;
-  public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   public labels: any[] = [];
   _errorMessage: any;

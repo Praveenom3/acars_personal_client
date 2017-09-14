@@ -502,7 +502,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_email')}">
                                 <label class="form-control-label">Purchaser Email</label>
-                                <input type="text" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_email']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_email')}">
+                                <input type="text" class="form-control" maxlength="50" [formControl]="_addPurchaseForm.controls['purchaser_email']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_email')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_email.valid">{{_addPurchaseFormErrors.purchaser_email.message}}</span>
 
@@ -698,7 +698,7 @@
                                         <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
                                     </ng-container>
                                 </select>
-								<span *ngIf="temp_product != ''" class="form-control" readOnly>{{temp_product}}</span>
+                                <span *ngIf="temp_product != ''" class="form-control" readOnly>{{temp_product}}</span>
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.product_id.valid">{{_updatePurchaseFormErrors.product_id.message}}</span>
 
@@ -748,7 +748,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_email')}">
                                 <label class="form-control-label">Purchaser Email</label>
-                                <input type="text" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_email']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_email')}">
+                                <input type="text" class="form-control" maxlength="50" [formControl]="_updatePurchaseForm.controls['purchaser_email']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_email')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_email.valid">{{_updatePurchaseFormErrors.purchaser_email.message}}</span>
 
@@ -789,7 +789,7 @@
                         <div class="col-md-4">
                             <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
                                 <label class="form-control-label">Amount</label>
-                                <input type="text" OnlyAmountNumber="true"  DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
+                                <input type="text" OnlyAmountNumber="true" DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.amount.valid">{{_updatePurchaseFormErrors.amount.message}}</span>
 

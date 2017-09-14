@@ -60,7 +60,7 @@ export class AdminUsersComponent implements OnInit {
             first_name: ['', Validators.compose([Validators.required])],
             last_name: ['', Validators.compose([Validators.required])],
             is_active: ['', Validators.compose([])],
-            username: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+            username: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             phone_extension: ['',]
         });

@@ -23,7 +23,7 @@ export class AccountSettingsComponent implements OnInit {
     private _errorMessage: string;
 
     public settingChangeValue: any[];
-
+    public emailRegx = this._globalService.emailRegx;
     public todayDate: any;
     INPUT_TYPE_TEXT: string = "text";
     INPUT_TYPE_TEXTAREA: string = "textarea";
@@ -97,7 +97,7 @@ export class AccountSettingsComponent implements OnInit {
         let status = false;
         switch (setting.setting_validation) {
             case 'email':
-                let EMAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/i;
+                let EMAIL_REGEXP = this._globalService.emailRegx;
                 if (EMAIL_REGEXP.test(value)) {
                     status = true;
                 }
