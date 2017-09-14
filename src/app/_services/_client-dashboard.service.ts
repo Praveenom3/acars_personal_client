@@ -269,10 +269,13 @@ export class ClientDashBoardService {
         let brand = this._globalService.getBrand();
         if (brand && brand != null && typeof brand != 'undefined') {
             let mobile = brand.support_phone;
+            mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
+            mobile = '(' + mobile.slice(0, 3) + ') ' + '' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10);
             this.brandInformation = {
                 'brand_logo': brand.brand_logo,
                 "support_email": brand.support_email,
-                "support_phone": mobile
+                "support_phone": mobile,
+                'terms_conditions_url': brand.terms_conditions_url
             }
             this.clientLogo = this.logoPath + brand.brand_logo;
         }
@@ -285,12 +288,16 @@ export class ClientDashBoardService {
         let clients = this.getProductFieldFromSession(productId, 'clients');
         let client = clients[clientId];
         if (client) {
-
+            this.accountManager = '';
+            this.accountManagerNumber = '';
+            this.accountManagerMail = '';
             if (client['account_manager_name'] != 'null' && client['account_manager_name'] != '') {
                 this.accountManager = client['account_manager_name'];
             }
-            if (client['account_manager_number'] != 'null' && client['account_manager_number'] != '') {
-                this.accountManagerNumber = client['account_manager_number'];
+            if (client['account_manager_number'] && client['account_manager_number'] != 'null' && client['account_manager_number'] != '') {
+                let mobile = client['account_manager_number'];
+                mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
+                this.accountManagerNumber = '(' + mobile.slice(0, 3) + ') ' + '' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10);
             }
             if (client['account_manager_mail'] != 'null' && client['account_manager_mail'] != '') {
                 this.accountManagerMail = client['account_manager_mail'];
@@ -485,10 +492,13 @@ export class ClientDashBoardService {
         if (!company.company_ein) {
             return false;
         }
-        if (!company.basic_plan_information) {
+        if (!company.basicReporting) {
             return false;
         }
-        if (!company.benefitPlan_planClasses) {
+        if (!company.benefitPlan) {
+            return false;
+        }
+        if (!company.planClasses) {
             return false;
         }
         return true;
@@ -539,7 +549,8 @@ export class ClientDashBoardService {
             'onBoarding_data': this.company.onBoarding_data,
             'basicReporting': this.company.basicReporting,
             'benefitPlan': this.company.benefitPlan,
-            'planClasses': this.company.planClasses,
+            'planClasses': this.company.planClasses
+
         }
 
         localStorage.setItem('company', '');
@@ -599,7 +610,7 @@ export class ClientDashBoardService {
      * 
      * @param info 
      */
-    public redirectToClientDashBoard(info: any) {
+    public redirectToClientDashBoard(info: any, productSelectedStatus = false) {
         if (info.client_id) {
             this.getClientDashBoardData(info.client_id)
                 .subscribe((result) => {
@@ -613,12 +624,16 @@ export class ClientDashBoardService {
                             })
                             let product;
                             let maxApplicableYear = 0;
-                            productsList.forEach(element => {
-                                if (element.applicable_year > maxApplicableYear) {
-                                    maxApplicableYear = element.applicable_year
-                                    product = element;
-                                }
-                            });
+                            if (productSelectedStatus) {
+                                product = products[info.product_id];
+                            } else {
+                                productsList.forEach(element => {
+                                    if (element.applicable_year > maxApplicableYear) {
+                                        maxApplicableYear = element.applicable_year
+                                        product = element;
+                                    }
+                                });
+                            }
 
                             let clientKeys: any[] = Object.keys(product.clients);
                             let client = product['clients'][clientKeys[0]];

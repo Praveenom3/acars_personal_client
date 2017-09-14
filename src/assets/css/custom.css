@@ -85,7 +85,7 @@ tr.tr-blue-grid-head>th {
 .login a.old-acars-link {
     color: #0275d8;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -148,5 +148,7 @@ body.body-blue .dropdown-menu .dropdown-item.page-active {
     border: 1px solid #ddd;
 }
 
-
+.color-red{
+    color: red !important;
+}
 /* ./header */

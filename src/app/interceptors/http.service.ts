@@ -8,6 +8,7 @@ import { LoaderService } from './loader.service';
 @Injectable()
 export class HttpService extends Http {
 
+    private loader: boolean = false;
     constructor(backend: XHRBackend, options: RequestOptions, private loaderService: LoaderService) {
         super(backend, options);
     }
@@ -25,11 +26,15 @@ export class HttpService extends Http {
      */
     public removeLoader() {
         this.loaderService.hideLoader();
+        this.loader = false
     }
     /**
      * 
      */
     public addLoader() {
-        this.loaderService.showLoader();
+        if (!this.loader) {
+            this.loaderService.showLoader();
+            this.loader = true;
+        }
     }
 }

@@ -6,7 +6,14 @@
             <img src='../src/assets/images/client-dashboard/4-agree-terms.png' class="setupImg">
             <p class="setup-text-band">Please help us setup your account:</p>
             <div align="center">
-                <p class="gray-text">Do you Agree to the Software Terms & Conditions?</p>
+                <p class="gray-text">
+                    <a target="_blank" *ngIf="termsConditionsUrl" href="{{termsConditionsUrl}}">
+                    Do you Agree to the Software Terms & Conditions?
+                    </a>
+                    <a *ngIf="!termsConditionsUrl">
+                    Do you Agree to the Software Terms & Conditions?
+                    </a>
+                </p>
             </div>
             <div class="padding-15">
                 <ul class="ul-inline">
