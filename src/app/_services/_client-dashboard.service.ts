@@ -93,8 +93,7 @@ export class ClientDashBoardService {
         private toastrService: ToastrService,
         private _companyUserService: CompanyUserService,
         private _http: Http,
-        private _httpService: HttpService
-    ) {
+        private _httpService: HttpService) {
     }
     /**
      * 
@@ -528,6 +527,7 @@ export class ClientDashBoardService {
      * 
      */
     public setCompanyToSession() {
+
         let data: any = {
             'purchase_id': this._globalService.encode(this.company.purchase_id),
             'company_id': this._globalService.encode(this.company.company_id),
@@ -536,7 +536,10 @@ export class ClientDashBoardService {
             'company_ein': this.company.company_ein,
             'company_name': this.company.company_name,
             'primary_data': this.company.primary_data,
-            'onBoarding_data': this.company.onBoarding_data
+            'onBoarding_data': this.company.onBoarding_data,
+            'basicReporting': this.company.basicReporting,
+            'benefitPlan': this.company.benefitPlan,
+            'planClasses': this.company.planClasses,
         }
 
         localStorage.setItem('company', '');
