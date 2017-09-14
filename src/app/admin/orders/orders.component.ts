@@ -388,20 +388,21 @@ export class OrdersComponent implements OnInit {
 
         } else if (modal == 'updatePurchaseModal') {
 
-        /*    if (this._updateClientForm.value.client_id) {
-                this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
-            } else {
-                this.getSelectableProducts('', '', 'clientAddPurchase');
-            } */
-			this.temp_product = this.getItemName('product', data.product_id);
+            /*    if (this._updateClientForm.value.client_id) {
+                    this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
+                } else {
+                    this.getSelectableProducts('', '', 'clientAddPurchase');
+                } */
+            this.temp_product = this.getItemName('product', data.product_id);
 
             this._updatePurchaseFormSubmitted = false;
-
+            data.purchaser_mobile = '(' + data.purchaser_mobile.slice(0, 3) + ') ' + '' + data.purchaser_mobile.slice(3, 6) + '-' + data.purchaser_mobile.slice(6, 10);
             if (data.hasOwnProperty('is_new_purchase') && data.is_new_purchase == 1) {
                 this.temp_new_index = this.newPurchases.indexOf(data);
             }
 
             this.temp_total_index = this.totalPurchases.indexOf(data);
+
             this.patchValue(this._updatePurchaseForm, data);
 
             this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));

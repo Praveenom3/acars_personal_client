@@ -12,6 +12,7 @@ import { ModalModule } from "ngx-bootstrap";
 import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmation/delete-confirmation.component";
 import { CloseModalConfirmationComponent } from "app/_partial-views/close-modal-confirmation/close-modal-confirmation.component";
 import { FormsModule } from '@angular/forms';
+import { GlobalService } from "app/_services/_global.service";
 
 @NgModule({
    imports: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent],
+  providers:[GlobalService],
   exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent]
 })
 export class PartialViews { }
