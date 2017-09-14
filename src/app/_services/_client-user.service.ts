@@ -53,6 +53,23 @@ export class ClientUserService {
             }).map(response => response.json())
             .catch(this._globalService.handleError);
     }
+    
+    public getClientProfile(user_id): Observable<any> {
+        return this._http.get(
+            this._apiUrl + '/get-user-data/' + user_id,
+            { headers: this._globalService.getHeaders() }
+        ).map((response: Response) => response.json().data)
+            .catch(this._globalService.handleError);
+    }
+
+    public updateClientProfile(formValues): Observable<any> {
+        return this._http.put(
+            this._apiUrl + '/update-client-profile/' + formValues.user_id,
+            formValues,
+            { headers: this._globalService.getHeaders() }
+        ).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
 
 }
 
