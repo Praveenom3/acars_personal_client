@@ -45,7 +45,7 @@ export class NewPurchasesComponent implements OnInit {
     /**
    * redirectToClientDashBoard
    */
-    public redirectToClientDashBoard(client: any) {
-        this.dashboardService.redirectToClientDashBoard(client);
+    public redirectToClientDashBoard(purchase: any) {
+        this.dashboardService.redirectToClientDashBoard(purchase, true);
     }
 }
