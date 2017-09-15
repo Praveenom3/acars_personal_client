@@ -353,3 +353,8 @@ body.body-blue nav.admin-nav .menu {
 .hover-red {
     color: red !important;
 }
+select.form-control {
+    background: #fff center right no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAFCAYAAABB9hwOAAAAGXRFW…gv37w+qKmqOp+BQsAEpX8wMTFm/fnz5/P/f//DGagAAAIMAKIuMR+q/rU9AAAAAElFTkSuQmCC);
+    background-position: 242px 5px;
+    background-size: 16px;
+}
