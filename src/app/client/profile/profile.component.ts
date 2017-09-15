@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from "@ang
 import { ToastrService } from "ngx-toastr";
 import { ClientUserService } from 'app/_services/_client-user.service';
 import { OrdersService } from 'app/_services/_orders.service';
+import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,9 +24,13 @@ export class ProfileComponent implements OnInit {
 
   constructor(private _globalService: GlobalService,
     private _formBuilder: FormBuilder,
-    private clientUserService: ClientUserService,
+    private clientUserService: ClientUserService,    
+    public dashBoardService: ClientDashBoardService,
     private ordersService: OrdersService,
     private toastrService: ToastrService) {
+      
+      this.dashBoardService.initDashBoardVaraibles();
+
     this._currentUserForm = _formBuilder.group({
       first_name: ['', Validators.compose([Validators.required])],
       last_name: ['', Validators.compose([Validators.required])],

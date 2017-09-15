@@ -176,23 +176,26 @@ export class AdminUsersComponent implements OnInit {
 
     /*on submit sending form data to service.It is for both add and update*/
     public onSubmit() {
-        let customArray = [];
+        /*let customArray = [];
+        let arrPermissions = [];
         if (this.adminUserSelected.permissions.length > 0) {
+            let arrPermissions = this.adminUserSelected.permissions;
             this.adminUserSelected.permissions.forEach((eachSelectedMonth, index) => {
                 if (eachSelectedMonth == true) {
                     customArray.push(index);
                 }
             });
-        }
+        }*/
         if (this.adminUserSelected.is_active == '') {
             this.adminUserSelected.is_active = 1;
         }
-        this.adminUserSelected.permissions = customArray;
+        //  this.adminUserSelected.permissions = customArray;
         this._submitted = true;
         if (this.adminUserSelected.admin_user_id > 0) {
             this.adminUserService.updateAdminUser(this.adminUserSelected).subscribe(
                 result => {
                     if (result.success) {
+
                         this.getAdminUsers();
                         this.closeModal();
                         this.toastrService.success('Admin User Updated Successfully.');
