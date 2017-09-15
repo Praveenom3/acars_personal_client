@@ -129,16 +129,17 @@ export class GlobalService {
         let permissionsSet: any = [];
         if (localStorage.getItem("admin_permissions") != 'undefined') {
             let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
-            if ((admin_permissions).includes(1)) {
+          
+            if ((admin_permissions).indexOf(1) !== -1) {
                 this.financial_permission = true;
-            }
-
-            if ((admin_permissions).includes(2)) {
+           }
+           if ((admin_permissions).indexOf(2) !== -1) {
                 this.masterData_permission = true;
-            }
-            if ((admin_permissions).includes(3)) {
+           }
+           if ((admin_permissions).indexOf(3) !== -1) {
                 this.systemAdmin_permission = true;
-            }
+           }
+
         }
     }
 
