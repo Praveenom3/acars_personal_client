@@ -197,7 +197,7 @@
                                     <tbody>
                                         <ng-container *ngIf="addPurchaseHist.data?.length">
                                             <tr *ngFor="let item of addPurchaseHist.data">
-                                                <td class="text-center">{{item.purchase_date}}</td>
+                                                <td class="text-center">{{item.purchase_date | date: 'MM/dd/yyyy'}}</td>
                                                 <!-- <td class="text-center">{{item.product}}</td>  -->
                                                 <td class="text-center">{{getItemName("product", item.product_id)}}</td>
                                                 <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td>
@@ -231,7 +231,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
-                    <a class="red hover-red" *ngIf="newPurchases.length > 0">Unsaved Data.</a>
+                    <a class="red hover-red" *ngIf="newPurchases.length > 0">DATA unsaved.</a>
                     <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_addClientForm.valid && totalPurchases.length > 0 ) || _addClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('addClientModal')">Close</button>
                 </div>
@@ -354,7 +354,7 @@
                                     <tbody>
                                         <ng-container *ngIf="updatePurchaseHist.data?.length">
                                             <tr *ngFor="let item of updatePurchaseHist.data">
-                                                <td class="text-center">{{item.purchase_date}}</td>
+                                                <td class="text-center">{{item.purchase_date | date: 'MM/dd/yyyy'}}</td>
                                                 <!-- <td class="text-center">{{item.product}}</td>  -->
                                                 <td class="text-center">{{getItemName("product", item.product_id)}}</td>
                                                 <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td>
@@ -388,7 +388,7 @@
                     <!-- ./Purchase history -->
                 </div>
                 <div class="modal-footer footer-background">
-                    <a class="red hover-red" *ngIf="newPurchases.length > 0">Unsaved Data.</a>
+                    <a class="red hover-red" *ngIf="newPurchases.length > 0">DATA unsaved.</a>
                     <button type="submit" class="btn btn-primary btn-blue" *ngIf="hasFinancialRights" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('updateClientModal')">Close</button>
                 </div>
@@ -472,8 +472,11 @@
                             <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}">
 
                                 <label class="form-control-label">Total # of Forms</label>
-                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="6" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}">
-
+                                <!-- <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="6" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}"> -->
+                                <select class="form-control" [formControl]="_addPurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}">
+                                    <option value='' [ngValue]='' selected>Select</option>
+                                    <option *ngFor="let nfl of no_of_forms_list" [value]="nfl.form_value" >{{nfl.form_name}}</option>
+                                </select>
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.total_no_forms.valid">{{_addPurchaseFormErrors.total_no_forms.message}}</span>
 
                             </div>
@@ -569,7 +572,7 @@
                             <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
 
                                 <label class="form-control-label">Date of Purchase</label>
-                                <input type="date" class="form-control" [formControl]="_addPurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
+                                <input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchase_date.valid">{{_addPurchaseFormErrors.purchase_date.message}}</span>
 
@@ -605,7 +608,7 @@
                             <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">
                                     <label class="form-control-label">Invoice Date</label>
-                                    <input type="date" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">
+                                    <input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">
 
                                     <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.invoice_created_at.valid">{{_addPurchaseFormErrors.invoice_created_at.message}}</span>
 
@@ -718,8 +721,11 @@
                             <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}">
 
                                 <label class="form-control-label">Total # of Forms</label>
-                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="6" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}">
-
+                                <!-- <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="6" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}"> -->
+                                <select class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}">
+                                    <option value='' [ngValue]='' selected>Select</option>
+                                    <option *ngFor="let nfl of no_of_forms_list" [value]="nfl.form_value" >{{nfl.form_name}}</option>
+                                </select>
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.total_no_forms.valid">{{_updatePurchaseFormErrors.total_no_forms.message}}</span>
 
                             </div>
@@ -815,7 +821,7 @@
                             <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
 
                                 <label class="form-control-label">Date of Purchase</label>
-                                <input type="date" class="form-control" [formControl]="_updatePurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
+                                <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchase_date.valid">{{_updatePurchaseFormErrors.purchase_date.message}}</span>
 
@@ -851,7 +857,7 @@
                             <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">
                                     <label class="form-control-label">Invoice Date</label>
-                                    <input type="date" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">
+                                    <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">
 
                                     <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.invoice_created_at.valid">{{_updatePurchaseFormErrors.invoice_created_at.message}}</span>
 
