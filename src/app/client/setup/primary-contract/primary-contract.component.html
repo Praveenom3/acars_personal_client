@@ -59,7 +59,7 @@
                         <div class="col-md-4">
                             <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
                             <div class="form-group field-user-username" [ngClass]="{'has-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}">
-                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="primaryContractForm.controls['email_id']" [(ngModel)]="clientDashBoardService.primaryContractModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}"
+                                <input type="text" id="adminusers-email" maxlength="50" class="form-control" aria-required="true" [formControl]="primaryContractForm.controls['email_id']" [(ngModel)]="clientDashBoardService.primaryContractModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(primaryContractForm,primaryContractFormErrors,'email_id')}"
                                     maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!primaryContractFormErrors.email_id.valid">{{primaryContractFormErrors.email_id.message}}</span>
                             </div>

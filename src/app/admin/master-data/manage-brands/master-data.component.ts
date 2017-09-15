@@ -66,7 +66,7 @@ export class MasterDataComponent implements OnInit {
 
         this._addBrandForm = _formBuilder.group({
             brand_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-            support_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+            support_email: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             support_phone: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             terms_conditions_url: ['', Validators.compose([Validators.required])],
             brand_logo: ['', Validators.compose([])],

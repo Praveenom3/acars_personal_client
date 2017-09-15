@@ -15,6 +15,7 @@ export class GlobalService {
     public apiHost: string;
     public apiRoot: string;
     public setting: any = {};
+	public emailRegx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     public years = ["2016", "2017"];
     URL_STRING = '00eeaa';
     public productTypes: any[] = [

@@ -28,7 +28,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   label: string;
   public labels: any[] = [];
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
-  public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
   section_id: any = 4;
   product_id: any;
   company_id: any;
@@ -99,7 +99,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   isValidEin(ein) {
     if (ein) {
       let einNumber = this._globalService.numberFilter(ein);
-      if (einNumber.length < 8) {
+      if (einNumber.length < 9) {
         this.isValidDgeEin = true;
       } else {
         this.isValidDgeEin = false;
@@ -190,7 +190,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
             }
 
             //this.getDesignatedGovtEntityData();
-           // this.toastrService.success('Employee status tracking record added succesfully.');
+            // this.toastrService.success('Employee status tracking record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -209,7 +209,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/aggregated-group']);
             }
             // this.getDesignatedGovtEntityData();
-           // this.toastrService.success('Employee status tracking record added succesfully.');
+            // this.toastrService.success('Employee status tracking record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }

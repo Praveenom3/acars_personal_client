@@ -7,6 +7,7 @@ import { Brands } from "app/_models/brands";
 import { ModalDirective } from "ngx-bootstrap";
 import { NumberValidationService } from "app/_services/_number-validation.service";
 import * as Globals from 'app/_shared/_globals';
+import { GlobalService } from 'app/_services/_global.service';
 
 @Component({
     selector: 'app-orders',
@@ -76,6 +77,7 @@ export class OrdersComponent implements OnInit {
     _clearFormErrors: any;
 
     constructor(
+        private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private ordersService: OrdersService,
         private toastrService: ToastrService) {
@@ -99,7 +101,7 @@ export class OrdersComponent implements OnInit {
             total_no_forms: ['', Validators.compose([Validators.maxLength(6)])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-            purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+            purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             purchase_status: [''],
             amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
@@ -123,7 +125,7 @@ export class OrdersComponent implements OnInit {
             total_no_forms: ['', Validators.compose([Validators.maxLength(6)])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-            purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+            purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             purchase_status: [''],
             amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],

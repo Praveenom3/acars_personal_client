@@ -61,7 +61,7 @@
                         <div class="col-md-4">
                             <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
                             <div class="form-group field-user-username" [ngClass]="{'has-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'email_id')}">
-                                <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="contractSignForm.controls['email_id']" [(ngModel)]="clientDashBoardService.contractSignorModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'email_id')}"
+                                <input type="text" id="adminusers-email" maxlength="50" class="form-control" aria-required="true" [formControl]="contractSignForm.controls['email_id']" [(ngModel)]="clientDashBoardService.contractSignorModel.email_id" [ngClass]="{'form-control-danger': !clientDashBoardService.isValid(contractSignForm,contractSignFormErrors,'email_id')}"
                                     maxlength="34">
                                 <span class="help-block help-block-error" *ngIf="!contractSignFormErrors.email_id.valid">{{contractSignFormErrors.email_id.message}}</span>
                             </div>

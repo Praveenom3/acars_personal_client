@@ -108,7 +108,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label" for="l0">{{labels[5]}}</label>
                                         <div class="form-group">
-                                            <input type="text" id="personEmail" #personEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.contact_person_email" name="contact_person_email" maxlength="100" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                            <input type="text" id="personEmail" #personEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.contact_person_email" name="contact_person_email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
                                         </div>
                                         <div class="md-errors-spacer" [hidden]="personEmail.valid || personEmail.untouched">
                                             <span class="help-block help-block-error" *ngIf="personEmail.errors && personEmail.errors.pattern">
@@ -197,7 +197,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label" for="l0">{{labels[14]}}</label>
                                         <div class="form-group">
-                                            <input type="text" id="brokerEmail" #brokerEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.emp_benefit_broker_email" name="emp_benefit_broker_email" maxlength="100" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                            <input type="text" id="brokerEmail" #brokerEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.emp_benefit_broker_email" name="emp_benefit_broker_email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
                                         </div>
                                         <div class="md-errors-spacer" [hidden]="brokerEmail.valid || brokerEmail.untouched">
                                             <span class="help-block help-block-error" *ngIf="brokerEmail.errors && brokerEmail.errors.pattern">
