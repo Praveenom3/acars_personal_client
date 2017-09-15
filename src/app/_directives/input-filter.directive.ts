@@ -42,7 +42,7 @@ export class inputFilterDirective {
     }
 
     if (this.inputFilter) {
-      if (!e.key.match(/^([a-zA-Z0-9 ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+      if (!e.key.match(/^([a-zA-Z0-9 ,.&]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
@@ -62,7 +62,7 @@ export class inputFilterDirective {
       }
     }
     else if (this.AlphanMoreChar) {
-      if (!e.key.match(/^([a-zA-Z ,.&@-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+      if (!e.key.match(/^([a-zA-Z ,.&]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
@@ -85,8 +85,9 @@ export class inputFilterDirective {
         // (isNaN(valInFloat) && e.key === "0") - When user enters value for first time valInFloat will be NaN, e.key condition is 
         // because I didn't want user to enter anything below 1.
         // NOTE: You might want to remove it if you want to accept 0
-        if (valInFloat < parseFloat(this.minValue) || (isNaN(valInFloat) && e.key === "0")) {
-          e.preventDefault();
+        if (valInFloat < parseFloat(this.minValue)) {
+         // console.log("yes");
+        //  e.preventDefault();
         }
       }
 
@@ -113,7 +114,7 @@ export class inputFilterDirective {
         // currentCursorPos > e.target.value.indexOf(".") because we must allow user's to enter value before dot(.)
         // Checking Backspace etc.. keys because firefox doesn't pressing them while chrome does by default
         if (dotLength > 1 || (dotLength === 1 && e.key === ".") || (decimalLength > (parseInt(this.DecimalPlaces) - 1) &&
-          currentCursorPos > e.target.value.indexOf(".")) && ["Backspace", "ArrowLeft", "ArrowRight"].indexOf(e.key) === -1) {
+          currentCursorPos > e.target.value.indexOf("."))) {
           e.preventDefault();
         }
       }
