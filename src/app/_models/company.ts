@@ -15,7 +15,6 @@ export interface Company {
     basicReporting: any;
     benefitPlan: any;
     planClasses:any
-    
     payroll_data: any;
     medical_plan_data: any;
 
