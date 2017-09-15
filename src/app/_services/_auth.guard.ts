@@ -36,19 +36,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
             var splitUrl = url.split('/');
             if (localStorage.getItem("usertype") != 'undefined') {
                 let usertype = JSON.parse(localStorage.getItem('usertype'));
-                if(usertype == '1' || usertype == '2'){
-                    if(splitUrl[1] !== "admin"){
-                        this.toastrService.error('You do not have necessary privileges to access the page.');
-                        return false;
-                    }
-                }else if(usertype == '3' || usertype == '4'){
+                if(usertype == '3' || usertype == '4'){
                     if(splitUrl[1] !== "client"){
                         this.toastrService.error('You do not have necessary privileges to access the page.');
                         return false;
                     }
-                }else{
-                    this.toastrService.error('You do not have necessary privileges to access the page.');
-                    return false;
                 }
             }
             
