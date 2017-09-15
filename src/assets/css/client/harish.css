@@ -136,7 +136,7 @@ app-client-layout .section-container .left-small-box p {
 .header-border-btm-blue {
     height: 10px;
     background-color: #13a9cc;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
     border-radius: 16px;
 }
 
@@ -287,7 +287,7 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .download-upload-ul li:nth-child(2) h6 {
-    font-size: 14px;
+    font-size: 18px;
     color: white;
     margin-bottom: 0px;
 }
@@ -377,16 +377,13 @@ app-client-layout .section-container .left-small-box p {
     padding-left: 235px;
     position: absolute;
 }
-.company-details-display{
-    padding-left: 15px;
-    text-align: center;
-}
+
 .company-details-main-block{
-    height: 101px;
+    height: 125px;
     padding: 15px;
 }
 .authorized-users-block {
-    height: 101px;
+    height: 125px;
 }
 
 .add-authorised-user {
@@ -416,15 +413,14 @@ app-client-layout .section-container .left-small-box p {
     height: 39px;
     text-align: center;
     border-color: #31B3D1;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 26px;
     color: #31B3D1;
-    width: 108px;
-    padding-top: 5px;
+    padding-top: 0px;
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;
-    width: 85px;
+    width: 90%;
 }
 
 .employees-text, .irs-text{
@@ -532,4 +528,156 @@ table.table-company-dashboard tbody tr:hover{
 }
 .upload-file-body{
     font-size: 17px;
+}
+.font-weight-300{
+    font-weight: 300;
+}
+.padding-right-12{
+    padding-right: 12px !important;
+}
+
+.padding-bottom-7{
+    padding-bottom: 7px !important;
+}
+
+.step-circle {
+    border: 1px solid #13a9cc;
+    border-radius: 50%;
+    padding: 3px 11px;
+    background-color: #13a9cc;
+    color: white;
+}
+
+.step-status-flag {
+    border: 1px solid;
+    text-align: center;
+    float: right;
+    width: 135px;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.step-success{
+    background-color: #46be8a;
+    border-color:  #46be8a;
+    color:white;
+}
+.step-failed{
+    border-color: #ca141b;
+    background-color: #ca141b ;
+    color:white;
+ }
+.step-default{
+    border-color: #acb7bf;
+    background-color: #acb7bf ;
+    color:white;
+}
+.link-white:hover{
+    color: white;
+}
+.link-default:hover{
+    color: #acb7bf;
+}
+.client-name-header, .company-client-number-header{
+    text-transform: uppercase;
+}
+.color-ash{
+    color: #898d94
+}
+
+.upload-margin{
+    margin-left: -18px;
+}
+.download-ul-li,.upload-ul-li{
+    padding:3px;
+}
+.history-margin{
+    margin-left: -5px;
+}
+.document-margin{
+    margin-right: -24px;
+}
+.company-details-display{
+    font-size: 17px;
+}
+
+.employee-inner-text, .irs-inner-text{
+    font-size: 13px;
+    font-weight: 300;
+}
+.span-1095{
+    margin-left: 14px;
+}
+.employee-span{
+    margin-left: 4px;
+}
+.efile-span{
+    display: block;
+    margin-left: 35px;
+}
+.irs-span{
+    margin-left: 10px;
+}
+@media screen and (min-width: 768px) and (max-width:1200px){ 
+.content-header-text {
+    top: 12px;
+    position: absolute;
+    left: 36px;
+    font-size: 14px;
+}
+.dashboard-images {
+    width: 16%;
+}
+.company-search .glyphicon{
+position: absolute;
+padding: 53px 0px 0px 7px;
+pointer-events: none;
+width: 36px;
+top: 1px;
+color: #b9b9b4;
+left: 19px;
+font-size: 14px;
+}
+.company-search-text-box {
+    text-indent: 5px;
+    font-size: 11px;
+    width: 132px;
+}
+.setup-text-band {
+    padding: 1px;
+    color: white;
+    font-size: 11px;
+}
+.content-div-managed-account {
+    padding: 7px;
+    font-size: 13px;
+}
+.content-div-dead-line {
+    padding: 0px;
+}
+.irs-count, .employees-count {
+    padding-bottom: 5px;
+    width: 56px;
+}
+.employees-text, .irs-text {
+    font-size: 10px;
+}
+.employee-inner-text, .irs-inner-text{
+    font-size: 10px;
+    font-weight: 300;
+}
+.upload-datafiles-media{
+    padding: 10px !important;
+}
+.ul-inline {
+    padding: 4px;
+}
+.client-name-header, .company-client-number-header{
+    font-size: 14px;
+    text-transform: uppercase !important;
+}
+.company-details-display{
+    font-size: 12px;
+}
 }

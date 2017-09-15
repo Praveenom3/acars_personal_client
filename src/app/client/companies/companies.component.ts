@@ -45,7 +45,7 @@ export class CompaniesComponent implements OnInit {
   private _submitted: boolean;
 
   public userType: any;
-  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/]
+  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
   public phoneNumberMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -115,7 +115,8 @@ export class CompaniesComponent implements OnInit {
    * 
    */
   toggleInvoicePayment(company) {
-    if (this.userType == 3 || this.userType == 4) {
+
+    if (this.userType) {
       return false;
     }
     this.clientDashBoardService.company.is_invoice_paid = !this.clientDashBoardService.company.is_invoice_paid;
@@ -138,7 +139,7 @@ export class CompaniesComponent implements OnInit {
    */
   toggleAgreementSign() {
 
-    if (this.userType == 3 || this.userType == 4) {
+    if (this.userType) {
       return false;
     }
 
@@ -162,7 +163,7 @@ export class CompaniesComponent implements OnInit {
    */
   toggleDiscoveryCallStatus() {
 
-    if (this.userType == 3 || this.userType == 4) {
+    if (this.userType) {
       return false;
     }
 
@@ -188,6 +189,9 @@ export class CompaniesComponent implements OnInit {
    * @param companyInfo 
    */
   public updateCompanyInfo(companyInfo: Company) {
+    if (!this.clientDashBoardService.company.onBoarding_data) {
+      return false;
+    }
     this.companyEdit = Object.assign({}, companyInfo);
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
     this.companyModal.show();
@@ -557,6 +561,21 @@ export class CompaniesComponent implements OnInit {
       this.companyUploadDataFile.show();
     }
   }
+  /**
+   * 
+   * @param step 
+   */
+  public redirectToCompanyData(step: string) {
+
+    switch (step) {
+      case 'basicReporting':
+        this.router.navigate([this.clientDashBoardService.basicReportingLink])
+      case 'benefitPlan':
+        this.router.navigate([this.clientDashBoardService.benefitPlanLink])
+        break;
+    }
+  }
+
   /**
    * 
    * @param text 
