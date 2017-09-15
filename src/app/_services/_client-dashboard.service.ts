@@ -101,6 +101,7 @@ export class ClientDashBoardService {
      */
     initDashBoardVaraibles() {
 
+        this.dashBoard = false;
         this.clientAsDefaultBilling = false;
         this.clientAsDefaultContractSign = false;
         this.clientAsDefaultPrimaryContract = false;
@@ -132,7 +133,7 @@ export class ClientDashBoardService {
                 clientId = this._globalService.decode(reversedUrl[1]);
                 productId = this._globalService.decode(reversedUrl[2]);
             }
-
+            this.splitUrl = '';
         } else {
             productId = this.productParams;
             clientId = this.clientParams
