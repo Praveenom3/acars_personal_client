@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     previousUrl: string;
     constructor(
         private _authenticationService: AuthenticationService, 
-        private _router:Router, 
+        private _router:Router,
         private toastrService: ToastrService) {
         _router.events
         .filter(event => event instanceof NavigationEnd)
@@ -33,6 +33,25 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
         if(this._authenticationService.isLoggedIn()) {
 
+            var splitUrl = url.split('/');
+            if (localStorage.getItem("usertype") != 'undefined') {
+                let usertype = JSON.parse(localStorage.getItem('usertype'));
+                if(usertype == '1' || usertype == '2'){
+                    if(splitUrl[1] !== "admin"){
+                        this.toastrService.error('You do not have necessary privileges to access the page.');
+                        return false;
+                    }
+                }else if(usertype == '3' || usertype == '4'){
+                    if(splitUrl[1] !== "client"){
+                        this.toastrService.error('You do not have necessary privileges to access the page.');
+                        return false;
+                    }
+                }else{
+                    this.toastrService.error('You do not have necessary privileges to access the page.');
+                    return false;
+                }
+            }
+            
             for (var permission_key in Globals.route_permissions) {
                 if (Globals.route_permissions.hasOwnProperty(permission_key)) {
                     var routes = Globals.route_permissions[permission_key];
