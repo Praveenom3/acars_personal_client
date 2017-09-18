@@ -106,6 +106,9 @@ export class AccountSettingsComponent implements OnInit {
                 if (value.match(datePattern)) {
                     status = true;
                 }
+            default:
+                status = true;
+                break;
         }
         return status;
     }
