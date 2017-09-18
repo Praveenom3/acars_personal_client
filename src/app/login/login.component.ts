@@ -299,7 +299,7 @@ export class LoginComponent implements OnInit {
                     product = element;
                 }
             });
-
+            
             let clientKeys: any[] = Object.keys(product.clients);
             let client = product['clients'][clientKeys[0]];
 

@@ -3,11 +3,11 @@
     <div class="row company-section-container">
 
         <div class="col-md-12" style="margin-top:25px;">
-            <div class="col-lg-10 col-lg-offset-1">
-                <div class="col-md-6">
-                    <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
+            <div class="col-lg-10 col-lg-offset-1 padding-bottom-30">
+                <div class="col-md-6 padding-right-12">
+                    <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h2>
                     <div class="header-border-btm-blue"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 padding-left-0 padding-right-12">
                         <div class="widget col-md-12 padding-15 block-one comp-dash-divs">
 
                             <div class="content-header dark-blue-text">
@@ -15,26 +15,40 @@
                                     <img src='../src/assets/images/client-dashboard/companies list-icon.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text">
-                                    &nbsp; COMPANIES LIST
+                                    <h4 class="font-weight-300 dark-blue-text">&nbsp; COMPANIES LIST</h4>
                                 </div>
                             </div>
 
                             <div class="company-search left-addon">
+                                <!-- 
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                    <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
+                                    />
+                                </div>
+                                 -->
                                 <i class="glyphicon glyphicon-search"></i>
                                 <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
                                 />
                             </div>
-
+                            <div class="add-company-ein-div">
+                                <button (click)="createCompany()" class="add-company-ein btn btn-primary btn-blue">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i> 
+                                    Add EIN
+                                </button>
+                            </div>
                             <div class="content-div">
-                                <table class="table table-hover table-striped table-company-dashboard" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
+                                <table class="table table-fixed table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
                                     #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
                                     [(mfSortOrder)]="sortOrder">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">
+                                            <th class="padding-left-15 col-xs-6">
                                                 <mfDefaultSorter by="company">Company Name</mfDefaultSorter>
                                             </th>
-                                            <th class="text-center">
+                                            <th class="padding-left-15 col-xs-6">
                                                 <mfDefaultSorter by="companyId">Company ID</mfDefaultSorter>
                                             </th>
                                         </tr>
@@ -42,8 +56,8 @@
                                     <tbody>
                                         <ng-container *ngIf="mf.data?.length">
                                             <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
-                                                <td class="text-center">{{company.company_name}}</td>
-                                                <td class="text-center">
+                                                <td class="padding-left-20 col-xs-6">{{company.company_name}}</td>
+                                                <td class="text-center padding-left-30 col-xs-6">
                                                     {{company.company_client_number}}
                                                 </td>
                                             </tr>
@@ -59,20 +73,20 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 padding-right-0">
                         <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
 
                             <div class="content-header dark-blue-text">
                                 <div class="content-header-image">
                                     <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
                                 </div>
-                                <div class="content-header-text">
-                                    &nbsp; &nbsp; CONTACT US
+                                <div class="content-header-text ">
+                                    <h3 class="font-weight-300 dark-blue-text">&nbsp; &nbsp; CONTACT US</h3>
                                 </div>
                             </div>
 
                             <p class=" setup-text-band">Managed Account - Assigned Agent</p>
-                            <div class="content-div-managed-account addres-block">
+                            <div class="content-div-managed-account addres-block color-ash">
                                 <span class="account-manager-name" *ngIf="clientDashBoardService.accountManager">
                                 <b>{{clientDashBoardService.accountManager}}</b>, <i>Account Manager</i>
                             </span>
@@ -93,23 +107,27 @@
                 </div>
 
                 <div class="col-md-6">
-                    <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
+                    <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h2>
                     <div class="header-border-btm-blue"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 padding-left-0 padding-right-12">
                         <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
                             <div class="content-header dark-blue-text">
                                 <div class="content-header-image">
                                     <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text">
-                                    &nbsp; IRS DEADLINES
+                                    <h3 class="font-weight-300 dark-blue-text">&nbsp; IRS DEADLINES</h3>
                                 </div>
                             </div>
 
                             <p class=" setup-text-band">Please note these important dates</p>
                             <div class="content-div-dead-line">
                                 <div class="col-md-6">
-                                    <span class="employee-inner-text"> 1095C TO EMPLOYEES</span>
+                                    <span class="employee-inner-text"> 
+                                        <span class = "span-1095">1095C TO </span>
+                                    <span class="employee-span"> EMPLOYEES</span>
+                                    </span>
+
                                     <div class="employees-count">
                                         {{settingsService.employees1095Days}}
                                     </div>
@@ -119,8 +137,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <span class="irs-inner-text">
-                                    E-FILE DATA TO IRS
-                                </span>
+                                        <span class = "efile-span">E-FILE </span>
+                                    <span class="irs-span">DATA TO IRS</span>
+                                    </span>
                                     <div class="irs-count">
                                         {{settingsService.irsDays}}
                                     </div>
@@ -131,28 +150,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 padding-right-0">
                         <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
-                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer" style="padding:29px; background-color:#13a9cc">
+                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer upload-datafiles-media"
+                                style="padding:23px; background-color:#13a9cc">
                                 <ul class="ul-inline download-upload-ul">
-                                    <li>
+                                    <li class="download-ul-li">
                                         <img src='../src/assets/images/upload.png'>
                                     </li>
                                     <li>
-                                        <h6>UPLOAD</h6>
-                                        <h6>DATAFILES</h6>
+                                        <h6 class="upload-margin font-weight-300">UPLOAD</h6>
+                                        <h6 class="font-weight-300">DATAFILES</h6>
                                     </li>
                                 </ul>
                             </div>
                             <br>
-                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-default upload-download-block cursor-pointer" style="padding:29px;background-color:#5ad1ed">
+                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-default upload-download-block cursor-pointer upload-datafiles-media"
+                                style="padding:23px;background-color:#5ad1ed">
                                 <ul class="ul-inline download-upload-ul">
-                                    <li>
+                                    <li class="upload-ul-li">
                                         <img src='../src/assets/images/download.png'>
                                     </li>
                                     <li>
-                                        <h6>DOCUMENT</h6>
-                                        <h6>HISTORY</h6>
+                                        <h6 class="document-margin font-weight-300">DOCUMENT</h6>
+                                        <h6 class="history-margin font-weight-300">HISTORY</h6>
                                     </li>
                                 </ul>
                             </div>
@@ -162,27 +183,25 @@
 
             </div>
 
-            <div class="col-lg-10 col-lg-offset-1">
-                <div class="col-md-6">
-                    <h3 class="fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h3>
+            <div class="col-lg-10 col-lg-offset-1 padding-bottom-30">
+                <div class="col-md-6 padding-right-12">
+                    <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h2>
                     <div class="header-border-btm-blue"></div>
-                    <div class="col-md-12">
-                        <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
-                            <div class="col-md-4">
-                                <h5 class="text-center dark-blue-text "> Client : &nbsp;{{clientDashBoardService.client.client_name}}</h5>
+                    <div class="col-md-12 padding-left-0 padding-right-0">
+                        <div class="widget col-md-12 company-details-main-block padding-10 comp-dash-divs">
+                            <div class="col-md-6 ">
+                                <h4 class="font-weight-300 dark-blue-text client-name-header"> Client : &nbsp;{{clientDashBoardService.client.client_name}}</h4>
                             </div>
-                            <div class="col-md-4">
-                                <h5 class="text-center dark-blue-text "><img src='../src/assets/images/client-dashboard/company-icon.png' class="dashboard-images">                                    {{clientDashBoardService.company.company_name}}
-                                </h5>
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="text-center dark-blue-text ">
+                            <div class="col-md-6">
+                                <h4 class="font-weight-300 dark-blue-text company-client-number-header">
                                     ID: {{clientDashBoardService.company.company_client_number}}
-                                </h5>
+                                </h4>
                             </div>
 
-                            <div class="col-md-12 company-details-display">
+                            <div class="col-md-12 company-details-display color-ash">
+                                <div class="company-name-div">{{clientDashBoardService.company.company_name}}</div>
                                 <span class="company-eins-block">
+                                    
                                    EIN : &nbsp;   {{formatCompanyEin(clientDashBoardService.company.company_ein)}}
                             </span> | Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}
                                 | Package: &nbsp; {{clientDashBoardService.productService}}
@@ -194,169 +213,186 @@
 
                 <div class="col-md-6">
                     <div class="authorized-main-header">
-                        <h3 class="fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h3>
+                        <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">AUTHORIZED USERS</h2>
                         <div class="add-authorised-user-div">
                             <button (click)="createCompanyUser()" class="add-authorised-user btn btn-primary btn-blue"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add User</button>
                         </div>
                     </div>
                     <div class="header-border-btm-blue"></div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 padding-left-0 padding-right-0">
                         <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
-                            <div class="col-md-12 table-company-users-dashboard-div">
-                                <table class="table table-hover table-striped table-company-users-dashboard" [mfData]="clientDashBoardService.company.companyUsers"
-                                    #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
-                                    [(mfSortOrder)]="sortOrder">
-                                    <thead>
-                                        <tr>
+                            <table class="table table-fixed table-hover table-striped table-company-users-dashboard color-ash" [mfData]="clientDashBoardService.company.companyUsers"
+                                #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
+                                [(mfSortOrder)]="sortOrder">
+                                <thead>
+                                    <tr>
+                                        <th class="fontcolor-blue col-xs-2">
+                                            <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+                                        </th>
 
-                                            <th class="text-center">First Name</th>
-                                            <th class="text-center">Last Name</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">Actions</th>
+                                        <th class="fontcolor-blue col-xs-2 ">
+                                            <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+                                        </th>
+                                        <th class="fontcolor-blue col-xs-6">
+                                            <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                        </th>
+                                        <th class="fontcolor-blue col-xs-2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="users.data?.length">
+                                        <tr *ngFor="let companyUserData of users.data">
+                                            <td class="col-xs-2">{{trimData(companyUserData.first_name)}}</td>
+                                            <td class="col-xs-2">{{trimData(companyUserData.last_name)}}</td>
+                                            <td class="col-xs-6">{{companyUserData.email}}</td>
+                                            <td class="col-xs-2"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <ng-container *ngIf="users.data?.length">
-                                            <tr *ngFor="let companyUserData of users.data">
-                                                <td class="text-center padding-5">{{trimData(companyUserData.first_name)}}</td>
-                                                <td class="text-center padding-5">{{trimData(companyUserData.last_name)}}</td>
-                                                <td class="text-center padding-5">{{companyUserData.email}}</td>
-                                                <td class="text-center padding-5"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
-                                            </tr>
-                                        </ng-container>
-                                        <tr class="tr-text-center" *ngIf=!users.data?.length>
-                                            <td colspan="2">
-                                                No records are found
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </ng-container>
+                                    <tr class="tr-text-center" *ngIf=!users.data?.length>
+                                        <td colspan="2">
+                                            No records are found
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-10 col-lg-offset-1">
-                <h3 class="fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h3>
+            <div class="col-lg-10 col-lg-offset-1 padding-bottom-7">
+                <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h2>
                 <div class="header-border-btm-blue"></div>
-                <div class="col-md-4">
+                <div class="col-md-4 padding-left-0 padding-right-12">
                     <div class="widget col-md-12  padding-15 comp-dash-divs">
-                        <h4 class="text-center dark-blue-text "> STEP 1</h4>
+                        <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">1</span></h4>
                         <p class=" setup-text-band">On-boarding</p>
                         <table class="col-xs-12">
                             <tbody>
-                                <tr>
+                                <tr class="steps-tr-class">
                                     <td>Invoice</td>
                                     <td class="padding-5">
-                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
-                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid"
-                                            title="Click to toggle">Not Paid</span>
-                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
-                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid"
-                                            title="Click to toggle">Paid</span>
+                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
+                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid">Not Paid</span>
+                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
+                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid">Paid</span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="steps-tr-class">
                                     <td>Client Agreement</td>
-                                    <td class=" padding-5">
-                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
-                                            (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement"
-                                            title="Click to toggle">Needed</span>
-                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
-                                            (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement"
-                                            title="Click to toggle">Completed</span>
+                                    <td class="padding-5">
+                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
+                                            (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement">Needed</span>
+                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
+                                            (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement">Completed</span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="steps-tr-class">
                                     <td>Discovery Session</td>
                                     <td class="padding-5">
-
-                                        <span class="alert alert-danger confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
-                                            (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session"
-                                            title="Click to toggle">Needed</span>
-                                        <span class="alert alert-success confirmation-box-admin" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-not-allowed'"
-                                            (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session"
-                                            title="Click to toggle">Completed</span>
+                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
+                                            (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session">Needed</span>
+                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
+                                            (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session">Completed</span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-danger status-btn "
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn step-failed status-btn "
                             *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
                         <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-success status-btn "
                             *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 padding-right-12">
                     <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepTwoDisabled'>
-                        <h4 class="text-center dark-blue-text "> STEP 2</h4>
+                        <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">2</span></h4>
                         <p class=" setup-text-band">Company Data</p>
                         <table class="col-xs-12">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}"
-                                            *ngIf="!clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
                                         <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
-                                            *ngIf="clientDashBoardService.company.onBoarding_data">Confirm EIN</a>
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
                                     </td>
                                     <td class="padding-5">
-                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">
+                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.company_ein"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
                                             Required
-                                        </span>
-                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
+                                        </a>
+                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.company_ein"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                            Completed
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.basicReportingLink"
-                                            *ngIf="clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
-                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Basic Plan Information</a>
+                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap"
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein}">
+                                            Basic Plan Information
+                                        </a>
                                     </td>
                                     <td class="padding-5">
 
-                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
-                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
-
+                                        <a (click)="redirectToCompanyData('basicReporting')" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                            Required
+                                        </a>
+                                        <a (click)="redirectToCompanyData('basicReporting')" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                            Completed
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " [routerLink]="clientDashBoardService.benefitPlanLink"
-                                            *ngIf="clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
-                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap disabled" *ngIf="!clientDashBoardService.company.onBoarding_data">Benefit Plan & Plan Classes</a>
+                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap"
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting}">
+                                            Benefit Plan & Plan Classes
+                                        </a>
                                     </td>
                                     <td class=" padding-5">
 
-                                        <span class="alert confirmation-box-admin " *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-danger cursor-allowed'">Required</span>
-                                        <span class="alert confirmation-box-admin " *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'alert-default cursor-not-allowed':'alert-success cursor-allowed'">Completed</span>
+                                        <a (click)="redirectToCompanyData('benefitPlan')" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                            Required</a>
+                                        <a (click)="redirectToCompanyData('benefitPlan')" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                            Completed</a>
 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger cursor-allowed'">Incomplete</button>
+                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-allowed'">Incomplete</button>
                         <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-allowed'">Completed</button>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 padding-right-0">
                     <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepThreeDisabled'>
-                        <h4 class="text-center dark-blue-text "> STEP 3</h4>
+                        <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">3</span></h4>
                         <p class=" setup-text-band">Employee Data</p>
                         <table class="col-xs-12">
                             <tbody>
                                 <tr>
-                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
-                                            (click)="redirectToEmployeeData('payroll')">Payroll Data</a></td>
-                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td>
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " (click)="redirectToEmployeeData('payroll')">
+                                            Payroll Data</a></td>
+                                    <td class="padding-5">
+                                        <a (click)="redirectToEmployeeData('payroll')" class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
                                             (click)="redirectToEmployeeData('medicalplan')">Medical Plan Data</a></td>
-                                    <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class=" padding-5">
+                                        <a (click)="redirectToEmployeeData('medicalplan')" class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -366,38 +402,55 @@
 
             </div>
             <div class="col-md-10 col-md-offset-1">
-                <div class="col-md-4">
+
+                <div class="col-md-4 padding-left-0 padding-right-12">
                     <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFourDisabled'>
-                        <h4 class="text-center dark-blue-text "> STEP 4</h4>
+                        <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">4</span></h4>
                         <p class=" setup-text-band">Request & Review Forms</p>
                         <table class="col-xs-12">
                             <tbody>
                                 <tr>
                                     <td>Form 1094</td>
-                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class="padding-5">
+                                        <a class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Form 1095</td>
-                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class="padding-5">
+                                        <a class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 padding-right-12">
                     <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFiveDisabled'>
-                        <h4 class="text-center dark-blue-text "> STEP 5</h4>
+                        <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">5</span></h4>
                         <p class=" setup-text-band">Approval & Print and Mail</p>
                         <table class="col-xs-12">
                             <tbody>
                                 <tr>
                                     <td>Final Form Approval</td>
-                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class="padding-5">
+                                        <a class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Print & Mail Requested</td>
-                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class="padding-5">
+                                        <a class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -405,19 +458,27 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 padding-right-0">
                     <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepSixDisabled'>
-                        <h4 class="text-center dark-blue-text "> STEP 6</h4>
+                        <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">6</span></h4>
                         <p class=" setup-text-band">IRS Fillings</p>
                         <table class="col-xs-12">
                             <tbody>
                                 <tr>
                                     <td>E-File</td>
-                                    <td class="padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class="padding-5">
+                                        <a class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>IRS Corrections</td>
-                                    <td class=" padding-5"><span class="alert alert-default confirmation-box">Pending</span></td>
+                                    <td class=" padding-5">
+                                        <span class="cursor-allowed step-status-flag link-default">
+                                            Pending
+                                        </span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -460,7 +521,7 @@
                                 <label class="form-control-label">EIN<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
                                     <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
-                                        [(ngModel)]="companyEdit.company_ein"[ngClass]="{'form-control-danger': !_isValid('company_ein')}"
+                                        [(ngModel)]="companyEdit.company_ein" [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
                                         placeholder="(__)-______">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
                                 </div>
@@ -480,71 +541,6 @@
 
     <!-- ./Edit Company Details Modal -->
 
-    <!-- CopyModal -->
-    <div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
-        data-keyboard="false">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header modal-header-color">
-
-                    <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
-								X
-							</button>
-                    <h4 class="modal-title color-white" id="myModalLabel">
-                        Copy
-                    </h4>
-                </div>
-                <div class="modal-body row">
-                    <form id="w0" method="post" enctype="multipart/form-data">
-                        <div class="col-md-12 border-ddd widget padding-15">
-                            <div class="col-md-12 padding-0">
-                                <div class="col-md-6">
-                                    <div class="">
-                                        <label class="form-control-label">Company Name <span class="red">*</span></label>
-                                        <div class="form-group field-adminusers-first_name required">
-                                            <select class="form-control">
-                                            <option>-Select-</option>
-                                           <option>Cargo 2</option>
-                                           <option>Cargo force</option>
-                                           <option>Company 1</option>
-                                        </select>
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="">
-                                        <label class="form-control-label">Companies <span class="red">*</span></label>
-                                        <div class="form-group field-adminusers-last_name required">
-                                            <select class="form-control" id="companies" multiple="multiple">
-                                           <option value="1">Cargo 2</option>
-                                           <option value="2">Cargo force</option>
-                                           <option value="3">Company 1</option>
-                                        </select>
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="modal-footer footer-background">
-
-                    <a href="" class="btn btn-modal-blue">
-								Copy  
-							</a>
-                    <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
 
     <div class="modal fade" bsModal #companyUserModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">

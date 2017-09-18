@@ -13,6 +13,8 @@ import { DeleteConfirmationComponent } from "app/_partial-views/delete-confirmat
 import { CloseModalConfirmationComponent } from "app/_partial-views/close-modal-confirmation/close-modal-confirmation.component";
 import { FormsModule } from '@angular/forms';
 import { GlobalService } from "app/_services/_global.service";
+import { VhtBandComponent } from './vht-band/vht-band.component';
+import { VhtActionsComponent } from './vht-actions/vht-actions.component';
 
 @NgModule({
    imports: [
@@ -21,8 +23,8 @@ import { GlobalService } from "app/_services/_global.service";
     ModalModule.forRoot(),
     FormsModule
   ],
-  declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent],
+  declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent,VhtBandComponent, VhtActionsComponent],
   providers:[GlobalService],
-  exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent]
+  exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent,VhtBandComponent, VhtActionsComponent]
 })
 export class PartialViews { }

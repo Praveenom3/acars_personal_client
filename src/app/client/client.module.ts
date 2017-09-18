@@ -7,7 +7,6 @@ import { PurchaseComponent } from './purchase/purchase.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ActivityLogComponent } from './activity-log/activity-log.component';
 import { ReportingCheckListComponent } from './reporting-check-list/reporting-check-list.component';
-import { VhtComponent } from './vht/vht.component';
 import { CompaniesComponent } from "app/client/companies/companies.component";
 import { UsersComponent } from "app/client/users/users.component";
 import { AccordionModule } from "ngx-bootstrap";
@@ -47,7 +46,7 @@ import { OrdersService } from 'app/_services/_orders.service';
     DataFilterPipe, ProfileComponent,
     UsersComponent, PurchaseComponent,
     MessagesComponent, ActivityLogComponent,
-    CompaniesComponent, ReportingCheckListComponent, VhtComponent, CompaniesFilterPipe
+    CompaniesComponent, ReportingCheckListComponent, CompaniesFilterPipe
   ],
   providers: [PurchaseService, ClientUserService, SettingsService, CompanyUserService, OrdersService]
 })

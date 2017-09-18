@@ -87,14 +87,14 @@ export class inputFilterDirective {
     if (this.OnlyAmountNumber) {
       let valInFloat: number = parseFloat(e.target.value)
 
-      if (this.minValue.length) {
+    //  if (this.minValue.length) {
         // (isNaN(valInFloat) && e.key === "0") - When user enters value for first time valInFloat will be NaN, e.key condition is 
         // because I didn't want user to enter anything below 1.
         // NOTE: You might want to remove it if you want to accept 0
-        if (valInFloat < parseFloat(this.minValue)) {
-        //  e.preventDefault();
-        }
-      }
+    //    if (valInFloat < parseFloat(this.minValue)) {
+
+    //    }
+   //   }
 
       if (this.maxValue.length) {
         if (valInFloat > parseFloat(this.maxValue)) {

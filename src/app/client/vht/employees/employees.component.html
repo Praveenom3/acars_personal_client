@@ -1,0 +1,80 @@
+
+<div class="section-container" style="top:45px !important">
+<div class="col-md-12 ">    
+ <app-vht-band ></app-vht-band>
+<div class="col-md-9 col-xs-12">
+ <app-vht-actions></app-vht-actions>
+<!-- Continer starts Here -->
+ <div class="col-md-12 widget padding-40  ">
+            
+                <div class="clearfix">
+                    <div class="form-inline">
+                       <div class="col-md-6"><h4  class="dark-blue-text">All Employees Listing</h4></div>
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
+                        </div>
+                    </div> 
+           <table class="table table-hover table-bordered table-striped " [mfData]="csvData " #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th> <mfDefaultSorter by="0">First Name</mfDefaultSorter></th>
+                             <th> <mfDefaultSorter by="1">Last Name</mfDefaultSorter></th>
+                              <th> <mfDefaultSorter by="2">Division</mfDefaultSorter></th>
+                               <th> <mfDefaultSorter by="3">ID</mfDefaultSorter></th>
+                                <th> <mfDefaultSorter by="4">Hire date (1)</mfDefaultSorter></th>
+                                 <th> <mfDefaultSorter by="5">Term date (1)</mfDefaultSorter></th>
+                                  <th> <mfDefaultSorter by="6">Hire date (2)</mfDefaultSorter></th>
+                                   <th> <mfDefaultSorter by="7">Term date (2)</mfDefaultSorter></th>
+                                    <th> <mfDefaultSorter by="8">Status</mfDefaultSorter></th>
+                            <!--<th>Last Name</th>
+                            <th>Division</th>
+                            <th>ID</th>-->
+                            <!--<th>Measurement Start</th>
+                            <th>Measurement End</th>
+                            <th>Average Hours</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+             <ng-container *ngIf="mf.data?.length">
+                         <tr class="tr-text-center"  *ngFor="let x of mf.data; let i = index">
+                             
+                           <td  class="link-blue-underline"><a class="link-blue-underline"  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employees','employeedetails']" [queryParams]="{id:i+1}" >{{x[0]}}</a></td>
+                            <td class="link-blue-underline"><a class="link-blue-underline"  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employees','employeedetails']" [queryParams]="{id:i+1}" >{{x[1]}}</a></td>                           
+                            <td>{{x[2]}}</td>
+                            <td>{{x[3]}}</td> 
+                             <td>{{x[4]}}</td> 
+                              <td>{{x[5]}}</td> 
+                               <td>{{x[6]}}</td> 
+                                <td>{{x[7]}}</td> 
+                                 <td>{{x[8]}}</td>                           
+                            <!--<td *ngFor="let y of x">{{ y }}</td>-->
+                        </tr>
+             </ng-container>
+                      <tr class="tr-text-center" *ngIf=!mf.data?.length>
+                            <td colspan="9">
+                                No records are found
+                            </td>
+                        </tr>
+
+                     
+
+
+                    </tbody>
+                     <tfoot>
+                            <tr>
+                                <td colspan="9">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot> 
+
+                </table>        
+                      
+
+
+ </div> 
+<!-- Continer Ends Here -->
+  </div>
+  </div>
+</div>
