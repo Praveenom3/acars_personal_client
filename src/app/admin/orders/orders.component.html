@@ -211,7 +211,7 @@
                                                 <td class="text-center">{{item.purchaser_mobile}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{item.amount}}</td>
-                                                <td class="text-center">{{item.invoice_created_at}}</td>
+                                                <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                                 <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
                                             </tr>
@@ -373,7 +373,7 @@
                                                 <td class="text-center">{{item.purchaser_mobile}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{item.amount}}</td>
-                                                <td class="text-center">{{item.invoice_created_at}}</td>
+                                                <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                                 <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
                                             </tr>
