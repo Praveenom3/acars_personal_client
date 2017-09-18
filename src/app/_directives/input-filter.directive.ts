@@ -86,7 +86,6 @@ export class inputFilterDirective {
         // because I didn't want user to enter anything below 1.
         // NOTE: You might want to remove it if you want to accept 0
         if (valInFloat < parseFloat(this.minValue)) {
-         // console.log("yes");
         //  e.preventDefault();
         }
       }
