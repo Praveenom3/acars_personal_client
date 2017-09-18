@@ -245,21 +245,25 @@ app-client-layout .section-container .left-small-box p {
     color: white;
 }
 
-.cursor-allowed{
+.cursor-allowed {
     cursor: pointer !important;
 }
 
-.cursor-not-allowed{
+.cursor-not-allowed {
     cursor: default !important;
 }
-.content-header{
+
+.content-header {
     padding: 10px 22px;
 }
 
+
 /* enable absolute positioning */
-.inner-addon { 
-    position: relative; 
+
+.inner-addon {
+    position: relative;
 }
+
 
 /* style icon */
 
@@ -274,9 +278,9 @@ app-client-layout .section-container .left-small-box p {
     text-align: center;
 }
 
-.block-one{
-     height: 254px;
-     padding: 0px; 
+.block-one {
+    height: 254px;
+    padding: 0px;
 }
 
 .download-upload-ul li:nth-child(1) img {
@@ -306,9 +310,11 @@ app-client-layout .section-container .left-small-box p {
 .table-company-dashboard th a {
     color: black;
 }
-.view-manage-div{
+
+.view-manage-div {
     height: 255px;
 }
+
 .table-company-dashboard tbody tr td {
     padding: 2px;
     border: none;
@@ -322,6 +328,7 @@ app-client-layout .section-container .left-small-box p {
     border-bottom: none !important;
     cursor: default;
 }
+
 .confirmation-modal-sm {
     width: 38%;
     vertical-align: top !important;
@@ -348,46 +355,50 @@ app-client-layout .section-container .left-small-box p {
     transform: translate3d(0, -300px, 0);
     opacity: 1;
 }
-.dashboard-images{
+
+.dashboard-images {
     width: 14%;
 }
 
-.content-header-text{
+.content-header-text {
     top: 11px;
     position: absolute;
     left: 57px;
     font-size: 21px;
 }
-.company-search-text-box{
+
+.company-search-text-box {
     background-color: #f2f4f8;
     text-indent: 17px
 }
 
-.company-search{
+.company-search {
     padding: 1px 33px 0px 20px
 }
+
 .company-search .glyphicon {
-  position: absolute;
-  padding: 63px 0px 0px 22px;
-  pointer-events: none;
-  width: 36px;
-  top: 0px;
-  color: #b9b9b4;
-  left: 7px;
-  font-size: 20px;
+    position: absolute;
+    padding: 63px 0px 0px 22px;
+    pointer-events: none;
+    width: 36px;
+    top: 0px;
+    color: #b9b9b4;
+    left: 7px;
+    font-size: 20px;
 }
 
-.company-edit-block{
+.company-edit-block {
     top: 3px;
     padding-left: 235px;
     position: absolute;
 }
 
-.company-details-main-block{
+.company-details-main-block {
     height: 104px;
     overflow: hidden;
     overflow-y: auto;
 }
+
 .authorized-users-block {
     height: 104px;
     overflow: hidden;
@@ -398,10 +409,10 @@ app-client-layout .section-container .left-small-box p {
     float: right;
     margin-top: -34px;
     margin-right: 7px;
-    line-height:14px;
+    line-height: 14px;
 }
 
-.add-company-ein-div{
+.add-company-ein-div {
     float: right;
     padding: 0px;
     margin-right: 5px;
@@ -409,15 +420,15 @@ app-client-layout .section-container .left-small-box p {
     margin-top: -10px;
 }
 
-.table-company-dashboard tbody{
-    height:100px !important;
+.table-company-dashboard tbody {
+    height: 100px !important;
 }
 
-.padding-left-30{
+.padding-left-30 {
     padding-left: 30px !important;
 }
 
-table.table-company-dashboard tbody tr:hover{
+table.table-company-dashboard tbody tr:hover {
     cursor: pointer;
 }
 
@@ -428,12 +439,13 @@ table.table-company-dashboard tbody tr:hover{
 .content-div-managed-account {
     padding: 19px;
 }
+
 .content-div-dead-line {
     padding: 22px;
 }
 
-.irs-count , .employees-count{
-  
+.irs-count,
+.employees-count {
     border-radius: 5px;
     border: 1px solid;
     height: 39px;
@@ -449,7 +461,8 @@ table.table-company-dashboard tbody tr:hover{
     width: 90%;
 }
 
-.employees-text, .irs-text{
+.employees-text,
+.irs-text {
     font-size: 12px;
     padding: 2px;
     text-align: center;
@@ -457,120 +470,149 @@ table.table-company-dashboard tbody tr:hover{
     font-style: italic;
 }
 
-.employee-inner-text, .irs-inner-text{
+.employee-inner-text,
+.irs-inner-text {
     color: #898d94;
 }
-.irs-main-block{
+
+.irs-main-block {
     height: 254px;
 }
 
-.active-company{
+.active-company {
     background-color: #d8e3ef !important;
 }
 
+.flex {
+    display: flex !important;
+}
 
-.padding-left-35{
+.padding-left-35 {
     padding-left: 35px !important;
 }
 
 .table-fixed thead {
-  width: 97%;
+    width: 97%;
 }
+
 .table-fixed tbody {
-  height: 75px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 100%;
+    height: 75px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
 }
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-  display: block;
-  border-top:none !important;
-  border-bottom: none !important;
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+    border-top: none !important;
+    border-bottom: none !important;
 }
-.table-fixed tbody td, .table-fixed thead > tr> th {
-  float: left;
+
+.table-fixed tbody td,
+.table-fixed thead>tr>th {
+    float: left;
 }
+
 .table-company-users-dashboard tbody tr td {
     padding: 4px !important;
     border: none;
 }
 
+
 /* For Uploads file pop up*/
+
 .modal-header.modal-header-color.upload-files-div-header {
     background-color: #7cc750 !important;
     border: none;
     height: 105px;
 }
 
-.upload-files-div-content{
+.upload-files-div-content {
     background-color: #17aacc;
     padding: 20px;
     margin-left: 0px;
     margin-right: 0px;
     color: white;
 }
-.close-upload-file{
-    background-color:#7cc750;
+
+.close-upload-file {
+    background-color: #7cc750;
     font-weight: 800;
 }
-.upload-file-block{
+
+.upload-file-block {
     width: 47%;
     padding: 25px;
 }
-.link-white-underline{
+
+.link-white-underline {
     color: white;
     text-decoration: underline;
     cursor: pointer;
 }
-.upload-data-date-span{
+
+.upload-data-date-span {
     text-align: center;
     text-decoration: underline;
 }
-.upload-file-footer{
+
+.upload-file-footer {
     text-align: center;
     padding: 12px;
 }
 
-.upload-file-footer-a{
+.upload-file-footer-a {
     border: 6px solid;
     padding: 4px 21px;
     font-size: 17px;
     color: white;
-    font-weight:bold;
-    }
-.upload-file-footer-a:hover{
+    font-weight: bold;
+}
+
+.upload-file-footer-a:hover {
     color: white !important;
     cursor: pointer;
 }
-.upload-tick-mark-div{
+
+.upload-tick-mark-div {
     padding: 15px;
     text-align: center;
     color: white;
 }
-.upload-fa-icon{
+
+.upload-fa-icon {
     font-size: 63px;
     border: 2px solid;
     border-radius: 36px 36px 36px 36px;
 }
+
 .btn.btn-warning,
 .open>.btn.btn-warning {
     background-color: #f7971e !important;
     border-color: #f7971e !important;
 }
-.cursor-button-not-allowed{
+
+.cursor-button-not-allowed {
     cursor: auto;
 }
-.upload-file-body{
+
+.upload-file-body {
     font-size: 17px;
 }
-.font-weight-300{
+
+.font-weight-300 {
     font-weight: 300;
 }
-.padding-right-12{
+
+.padding-right-12 {
     padding-right: 12px !important;
 }
 
-.padding-bottom-7{
+.padding-bottom-7 {
     padding-bottom: 7px !important;
 }
 
@@ -592,146 +634,173 @@ table.table-company-dashboard tbody tr:hover{
     text-transform: uppercase;
 }
 
-.step-success{
+.step-success {
     background-color: #46be8a;
-    border-color:  #46be8a;
-    color:white;
-}
-.step-failed{
-    border-color: #ca141b;
-    background-color: #ca141b ;
-    color:white;
- }
-.step-default{
-    border-color: #acb7bf;
-    background-color: #acb7bf ;
-    color:white;
-}
-.link-white:hover{
+    border-color: #46be8a;
     color: white;
 }
-.link-default:hover{
+
+.step-failed {
+    border-color: #ca141b;
+    background-color: #ca141b;
+    color: white;
+}
+
+.step-default {
+    border-color: #acb7bf;
+    background-color: #acb7bf;
+    color: white;
+}
+
+.link-white:hover {
+    color: white;
+}
+
+.link-default:hover {
     color: #acb7bf;
 }
-.client-name-header, .company-client-number-header{
+
+.client-name-header,
+.company-client-number-header {
     text-transform: uppercase;
 }
-.color-ash{
+
+.color-ash {
     color: #898d94
 }
 
-.upload-margin{
+.upload-margin {
     margin-left: -18px;
 }
-.download-ul-li,.upload-ul-li{
-    padding:3px;
+
+.download-ul-li,
+.upload-ul-li {
+    padding: 3px;
 }
-.history-margin{
+
+.history-margin {
     margin-left: -5px;
 }
-.document-margin{
+
+.document-margin {
     margin-right: -24px;
 }
-.company-details-display{
+
+.company-details-display {
     font-size: 14px;
 }
 
-.employee-inner-text, .irs-inner-text{
+.employee-inner-text,
+.irs-inner-text {
     font-size: 13px;
     font-weight: 300;
 }
-.span-1095{
+
+.span-1095 {
     margin-left: 14px;
 }
-.employee-span{
+
+.employee-span {
     margin-left: 4px;
 }
-.employee-span-compliance{
+
+.employee-span-compliance {
     margin-left: 27px;
 }
-.efile-span-irs{
+
+.efile-span-irs {
     margin-left: 32px;
 }
-.efile-span{
+
+.efile-span {
     display: block;
     margin-left: 35px;
 }
-.irs-span{
+
+.irs-span {
     margin-left: 10px;
 }
 
-button.add-company-ein{
+button.add-company-ein {
     padding: 3px;
     font-size: 9px
 }
-.padding-left-15{
+
+.padding-left-15 {
     padding-left: 15px !important;
 }
-.padding-left-18{
+
+.padding-left-18 {
     padding-left: 18px !important;
 }
-.padding-left-20{
-    padding-left:20px !important;
+
+.padding-left-20 {
+    padding-left: 20px !important;
 }
-@media screen and (min-width: 768px) and (max-width:1200px){ 
-.content-header-text {
-    top: 12px;
-    position: absolute;
-    left: 36px;
-    font-size: 14px;
-}
-.dashboard-images {
-    width: 16%;
-}
-.company-search .glyphicon{
-position: absolute;
-padding: 53px 0px 0px 7px;
-pointer-events: none;
-width: 36px;
-top: 1px;
-color: #b9b9b4;
-left: 19px;
-font-size: 14px;
-}
-.company-search-text-box {
-    text-indent: 5px;
-    font-size: 11px;
-    width: 132px;
-}
-.setup-text-band {
-    padding: 1px;
-    color: white;
-    font-size: 11px;
-}
-.content-div-managed-account {
-    padding: 7px;
-    font-size: 13px;
-}
-.content-div-dead-line {
-    padding: 0px;
-}
-.irs-count, .employees-count {
-    padding-bottom: 5px;
-    width: 56px;
-}
-.employees-text, .irs-text {
-    font-size: 10px;
-}
-.employee-inner-text, .irs-inner-text{
-    font-size: 10px;
-    font-weight: 300;
-}
-.upload-datafiles-media{
-    padding: 10px !important;
-}
-.ul-inline {
-    padding: 4px;
-}
-.client-name-header, .company-client-number-header{
-    font-size: 14px;
-    text-transform: uppercase !important;
-}
-.company-details-display{
-    font-size: 12px;
-}
+
+@media screen and (min-width: 768px) and (max-width:1200px) {
+    .content-header-text {
+        top: 12px;
+        position: absolute;
+        left: 36px;
+        font-size: 14px;
+    }
+    .dashboard-images {
+        width: 16%;
+    }
+    .company-search .glyphicon {
+        position: absolute;
+        padding: 53px 0px 0px 7px;
+        pointer-events: none;
+        width: 36px;
+        top: 1px;
+        color: #b9b9b4;
+        left: 19px;
+        font-size: 14px;
+    }
+    .company-search-text-box {
+        text-indent: 5px;
+        font-size: 11px;
+        width: 132px;
+    }
+    .setup-text-band {
+        padding: 1px;
+        color: white;
+        font-size: 11px;
+    }
+    .content-div-managed-account {
+        padding: 7px;
+        font-size: 13px;
+    }
+    .content-div-dead-line {
+        padding: 0px;
+    }
+    .irs-count,
+    .employees-count {
+        padding-bottom: 5px;
+        width: 56px;
+    }
+    .employees-text,
+    .irs-text {
+        font-size: 10px;
+    }
+    .employee-inner-text,
+    .irs-inner-text {
+        font-size: 10px;
+        font-weight: 300;
+    }
+    .upload-datafiles-media {
+        padding: 10px !important;
+    }
+    .ul-inline {
+        padding: 4px;
+    }
+    .client-name-header,
+    .company-client-number-header {
+        font-size: 14px;
+        text-transform: uppercase !important;
+    }
+    .company-details-display {
+        font-size: 12px;
+    }
 }
