@@ -1,0 +1,252 @@
+<div class="row company-section-container">
+    <!--<section class="padding-0">
+        <div class="col-md-12 blue-breadcrumb-plans" align="center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 float-initial">
+                <div class="nav-tabs-horizontal">
+                    <ul class="nav nav-tabs border-bottom display-inblock company-details-nav" role="tablist">
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap no-border">Name: &nbsp; </a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap no-border">EIN: &nbsp;</a></li>
+
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Reporting Year: &nbsp;</a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-border no-wrap ">Package: &nbsp;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>-->
+    <div class="col-md-12" style="margin-top:77px;">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-md-6">
+                <h3 class="fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h3>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12 padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text ">
+                             <img class = "avatari" src="assets/images/client/companies list-icon.png"> COMPANIES LIST</h4>
+                        <input type="text" class="form-control margin-bottom-15" placeholder="Search for companies">
+                        <table class="table table-hover table-striped table-company-dashboard" >
+                            <thead>
+                                <tr>                                   
+                                    <th class="text-center">
+                                       Companies
+                                    </th>
+                                    <th class="text-center">
+                                     EIN
+                                    </th>                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr style=" cursor: pointer;"  (click)="selectCompany();">                                    
+                                        <td class="text-center"><span >Cargo Force-1</span></td>
+                                        <td class="text-center">15-8976547</td>                                        
+                                    </tr>
+                                       <!--<tr style=" cursor: pointer;"  (click)="selectCompany();">                                   
+                                        <td class="text-center">Cargo Force-2</td>
+                                        <td class="text-center">34-7589125</td>                                        
+                                    </tr>
+                                       <tr style=" cursor: pointer;"  (click)="selectCompany();">                                     
+                                        <td class="text-center">Cargo Force-3</td>
+                                        <td class="text-center">19-5682347</td>                                        
+                                    </tr>
+                                      <tr style=" cursor: pointer;"  (click)="selectCompany();">                                   
+                                        <td class="text-center">Cargo Force-4</td>
+                                        <td class="text-center">28-5338356</td>                                        
+                                    </tr>-->
+                                   
+
+
+                             
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text ">
+                             <img  class = "avatari" src="assets/images/client/contact us-icon.png"> &nbsp; CONTACT US</h4>
+                        <p class=" setup-text-band">Managed Account - Assigned Agent</p>
+                        <div class="addres-block">
+                            <p><b>Amanda Combs</b></p>
+                            <i>Account Manager</i>
+                            <div class="padding-top-5">
+                                <p>Direct: <span>888-663-6503</span></p>
+                                <p>Email: <span>amanda@skyinsurancetech.com</span></p>
+                                <p>Support Line: <span>888-663-6503</span></p>
+                                <a class="link-blue" href = "mailto: amanda@skyinsurancetech.com"> Contact My Manager</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h3>
+                <div class="header-border-btm-blue"></div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <h4 class="text-center dark-blue-text ">
+                            <img  class = "avatari" src="assets/images/client/irs-deadlines-icon.png">
+                                &nbsp; IRS DEADLINES</h4>
+                        <p class=" setup-text-band">Please note these important dates</p>
+                        <table class="col-xs-12">
+                            <thead>
+                                <tr>
+                                    <th>Compliance item</th>
+                                    <th>Days Remaining</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="padding-5"><a class="link-blue">1095C to employees</a></td>
+                                    <td class="text-center padding-5">183</td>
+                                </tr>
+                                <tr>
+                                    <td class="padding-5"><a class="link-blue">EFile to IRS</a></td>
+                                    <td class="text-center padding-5">212</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                        <div class="btn-primary upload-download-block cursor-pointer" [routerLink]="['/client/vht/test/payroll/submit']" style="background-color:#13a9cc">
+                            <ul class="ul-inline download-upload-ul">
+                                <li>
+                                    <img src='../src/assets/images/upload.png'>
+                                </li>
+                                <li>
+                                    <h6>UPLOAD</h6>
+                                    <h6>DATAFILES</h6>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="btn-default upload-download-block cursor-pointer" [routerLink]="['/client/vht/test/payroll/uploads']" style="background-color:#5ad1ed">
+                            <ul class="ul-inline download-upload-ul">
+                                <li>
+                                    <img src='../src/assets/images/download.png'>
+                                </li>
+                                <li>
+                                    <h6>DOWNLOAD</h6>
+                                    <h6>DOCUMENTS</h6>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1" *ngIf="companySelected">
+            <h3 class="fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h3>
+            <div class="header-border-btm-blue"></div>
+            <div class="col-md-3">
+                <div class="widget col-md-12  padding-15">
+                    <h4 class="text-center dark-blue-text "> STEP 1</h4>
+                    <p class=" setup-text-band">On-boarding</p>
+                   <table class="col-xs-12">
+                        <tbody>
+                            <tr>
+                                <td>Invoice</td>
+                                <td class="padding-5">                                   
+                                     <span class="alert alert-danger confirmation-box" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === true" title="Click to toggle">Not paid</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleInvoicePayment();" *ngIf="isInvoicePaid === false" title="Click to toggle">Paid</span>
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Client Agreement</td>
+                                <td class=" padding-5">
+                                    <span class="alert alert-danger confirmation-box" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === true" title="Click to toggle">Needed</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleAgreementSign();" *ngIf="isAgreementSigned === false" title="Click to toggle">Completed</span>
+                               
+                                   
+                                   </td>
+                            </tr>
+                            <tr>
+                                <td>Discovery Session</td>
+                                <td class="padding-5">
+                                      <span class="alert alert-danger confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === true"
+                                        title="Click to toggle">Needed</span>
+                                    <span class="alert alert-success confirmation-box" (click)="toggleDiscoveryCallStatus();" *ngIf="isDiscoveryCallDone === false"
+                                        title="Click to toggle">Completed</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-danger status-btn"  *ngIf="onBoarding === false">Incomplete</button>
+                     <button class="btn btn-success status-btn"  *ngIf="onBoarding === true">Up to date</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="widget col-md-12  padding-15">
+                    <h4 class="text-center dark-blue-text "> View & Manage Tracking</h4>
+                    <div class="col-md-12 setup-text-band padding-20" > 
+
+                        <div class="col-md-offset-1 col-md-2 padding-10"  >
+                        <a [routerLink]="['/client/vht/test/trends']">
+                            <img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/bri_default.png">
+                             <h5 class="font-white margin-0 padding-10">Trends</h5>
+                        </a> 
+                        </div>
+                         <div class="col-md-2  padding-10">
+                           <a [routerLink]="['/client/vht/test/payroll/submit']">
+                            <img class="avatar"   id="main-anchor-1" src="assets/images/client/employer-info/cost_projectionsl.png">
+                              <h5 class="font-white margin-0 padding-10">Payroll</h5>
+                           </a>
+                        </div>
+                         <div class="col-md-2  padding-10">
+                               <a [routerLink]="['/client/vht/test/employees']">
+                            <img class="avatar"  id="main-anchor-1" src="assets/images/client/employer-info/monthly_inputs.png">
+                              <h5 class="font-white margin-0 padding-10">Employees</h5>
+                               </a>
+                        </div>
+                         <div class="col-md-2  padding-10">
+                               <a [routerLink]="['/client/vht/test/actions']">
+                            <img class="avatar"  id="main-anchor-1" src="assets/images/client/employer-info/reports.png">
+                            <h5 class="font-white margin-0 padding-10 ">Actions</h5>
+                             </a>
+                        </div>
+                         <div class="col-md-2  padding-10">
+                               <a [routerLink]="['/client/vht/test/setup/users']">
+                            <img class="avatar"  id="main-anchor-1" src="assets/images/client/employer-info/reports.png">
+                             <h5 class="font-white margin-0 padding-10">Setup</h5>
+                              </a>
+                        </div>
+                    <!--<ul>
+                   
+                    <li align="center" aria-expanded="true" class="col-xs-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'trends']"><img class="avatar" id="main-anchor-1" src="assets/images/client/employer-info/account_setup_sel.png">
+                        <p class="font-white margin-0">Trends</p>
+                    </li>
+                    <li align="center" class="col-xs-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','submit']"><img class="avatar" id="main-anchor-2" src="assets/images/client/employer-info/cost_projectionsl.png">
+                        <p class="font-white margin-0">payroll</p>
+                    </li>
+                    <li align="center" class="col-xs-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employees']"><img class="avatar" id="main-anchor-3" src="assets/images/client/employer-info/monthly_inputs.png">
+                        <p class="font-white margin-0">Employees</p>
+                    </li>
+                    <li align="center" class="col-xs-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'actions']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+                        <p class="font-white margin-0 ">Actions</p>
+                    </li>
+                    <li align="center" class="col-xs-2 check-changed" [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'setup','users']"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+                        <p class="font-white margin-0 ">Setup</p>
+                    </li>
+                 
+
+                </ul></div>-->
+                    
+                   
+                </div>
+            </div>
+          
+       
+    </div>
+</div>
+
+<!-- Edit Company Details Modal -->

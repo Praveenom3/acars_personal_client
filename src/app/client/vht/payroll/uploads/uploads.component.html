@@ -1,0 +1,220 @@
+<div class="section-container" style="top:45px !important">
+<div class="col-md-12 ">    
+ <app-vht-band ></app-vht-band>
+<div class="col-md-9 col-xs-12">
+ <app-vht-actions></app-vht-actions>
+<!-- Continer starts Here -->
+ <div class="col-md-12 widget padding-0 ">
+
+   <div class="col-md-12 padding-0">
+    <div class="nav-tabs-horizontal" style="background-color: rgba(19, 169, 204, 0.51);">
+                    <ul class=" col-md-offset-2 nav nav-tabs border-bottom display-inblock" style="background: None !important;" role="tablist">
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white no-wrap " [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','edit']">View</a>
+                            </li>              
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white no-wrap "  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','submit']">Submit</a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white  no-wrap " ng-reflect-klass="nav-link plan-link color-white dropdown-icon-li no-wrap"[routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','uploads']">Uploads</a>
+                        </li>
+                          <!--<li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white dropdown-icon-li no-wrap"[routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','import']">Import</a>
+                        </li>-->
+                    </ul>
+                </div> 
+<div class="col-md-12 padding-30" >
+
+    
+                 <h4 class="dark-blue-text">Previously Uploaded Documents</h4> 
+                 <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th>First Name</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Prior Data</th>
+                            <th>Admin Notes</th>                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-text-center">
+                            <td ><a target="_self" class="link-blue-underline" href="src/assets/csv/Variable Hour Tracking Upload Template.xlsb" download="Variable Hour Tracking Upload Template.xlsb" >Payroll file 1</a></td>
+                            <td>Mark </td>
+                            <td>1-1-2015</td>                           
+                            <td>9:00 Am</td>
+                            <td>Amend</td>
+                             <td>File has been Uploaded</td>
+                           
+
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td ><a target="_self" class="link-blue-underline" href="src/assets/csv/Variable Hour Tracking Upload Template.xlsb" download="Variable Hour Tracking Upload Template.xlsb" >Payroll file 2</a></td>
+                               <td>John </td>
+                            <td>08-02-2015</td>                           
+                            <td>11:00 Am</td>
+                            <td>Delete</td>
+                            <td>File is not in correct format</td>
+                        </tr>
+                       
+
+
+                    </tbody>
+
+                </table>    
+                      
+
+
+                  <!--<table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th>First Name</th>
+                            <th>Upload Date</th>
+                            <th>User</th>
+                            <th># Employees Uploaded</th>
+                            <th># of New Employees</th>                                                   
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                          <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+
+                         <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                       <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                       <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                       <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline">Mark</td>  
+                            <td>2/1/2015</td>                                              
+                            <td>Abc Xyz</td>
+                            <td>2500</td>
+                            <td>130</td>
+                            <td class="link-blue-underline">Edit Delete</td>
+                        </tr>
+                    </tbody>
+
+                </table>        -->
+</div>
+
+</div>  
+ </div> 
+<!-- Continer Ends Here -->
+  </div>
+  </div>
+</div>

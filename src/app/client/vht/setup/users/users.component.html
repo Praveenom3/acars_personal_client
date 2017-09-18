@@ -1,0 +1,312 @@
+<div class="section-container" style="top:45px !important">
+<div class="col-md-12 ">    
+ <app-vht-band ></app-vht-band>
+<div class="col-md-9 col-xs-12">
+ <app-vht-actions></app-vht-actions>
+<!-- Continer starts Here -->
+ <div class="col-md-12 widget padding-0 ">
+
+  
+    <div class="nav-tabs-horizontal" style="
+    background-color: rgba(19, 169, 204, 0.51);">
+                    <ul class=" col-md-offset-2 nav nav-tabs border-bottom display-inblock" style="background: None !important;" role="tablist">
+                    
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white no-wrap " [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'setup','companydetails']">Company Details</a></li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white no-wrap "  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'setup','users']">Users</a>
+                        </li>
+                      
+                    </ul>
+                </div>  
+
+                 <div class="col-xs-12 widget-header-11 padding-30">
+               
+               
+                    <div class="pull-right">
+                        <a class="btn  btn-modal-blue" data-toggle="modal" href="#add_admin_user_modal" role="button">Add User</a>
+                    </div>
+              
+            </div>
+            <div class="clearfix  padding-30">
+
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Extension</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" data-toggle="modal" href="#edit_admin_user_modal">John</td>
+                            <td>Jones</td>
+                            <td><a class="link-blue-underline" href="mailto:Jjones@newclient.com">Jjones@newclient.com</a></td>
+                            <td>888-564-4477</td>
+                            <td>14</td>
+                          
+
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" data-toggle="modal" href="#edit_admin_user_modal">Bill</td>
+                            <td>Smith</td>
+                            <td><a class="link-blue-underline" href="mailto:Bsmith@newclient.com">Bsmith@newclient.com</a></td>
+                            <td>546-598-1147</td>
+                            <td>11</td>
+                        </tr>                       
+                        <tr class="tr-text-center">
+                            <td class="link-blue-underline" data-toggle="modal" href="#edit_admin_user_modal">Sally</td>
+                            <td>Ziker</td>
+                            <td><a class="link-blue-underline" href="mailto:sziker@newclient.com">sziker@newclient.com</a></td>
+                            <td>888-564-4477</td>
+                            <td>18</td>
+                          </tr>                      
+                    </tbody>
+
+                </table>
+
+                <!--<div class="col-md-12">
+                    <div class="col-md-3 padding10">
+                        <div aria-live="polite" class="dataTables_info" id="example3_info" role="status">Showing 1 to 4 of 48 entries</div>
+                    </div>
+                    <div class="col-md-9 text-right">
+
+                        <ul class="pagination">
+                            <li class="first disabled"><span>first</span></li>
+                            <li class="prev disabled"><span>previous</span></li>
+                            <li class="active"><a data-page="0">1</a></li>
+                            <li><a data-page="1">2</a></li>
+                            <li><a data-page="2">3</a></li>
+                            <li><a data-page="3">4</a></li>
+                            <li><a data-page="4">5</a></li>
+                            <li class="next"><a data-page="1">next</a></li>
+                            <li class="last"><a data-page="8">last</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                </div>
+
+                           
+ 
+ </div> 
+<!-- Continer Ends Here -->
+  </div>
+  </div>
+</div>
+
+
+
+
+  <!-- Add  User Modal -->
+    <div class="modal fade" id="edit_admin_user_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                    <h4 class="modal-title color-white" id="myModalLabel">
+                        Edit User
+                    </h4>
+                </div>
+                <div class="modal-body row">
+                    <form id="w0" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12 border-ddd widget padding-15">
+                            <div class="col-md-12 padding-0">
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <label class="form-control-label">First Name <span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-first_name required">
+
+                                            <input type="text" id="adminusers-first_name" class="form-control" value = "John"name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <label class="form-control-label">Last Name <span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-last_name required">
+                                            <input type="text" id="adminusers-last_name" class="form-control"   value = "Jones" name="AdminUsers[last_name]" maxlength="15" aria-required="true">
+
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-12 padding-0">
+                                <div class="col-md-4">
+                                    <div class="form-group field-user-username">
+                                        <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
+                                        <input type="text" disabled id="adminusers-email" class="form-control"  value = "Jjones@newclient.com" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-control-label">Phone <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-phone required">
+                                        <input type="text" id="adminusers-phone" class="form-control" value = "888-564-4477" name="AdminUsers[phone]" aria-required="true" placeholder="(___) ___-____">
+                                        <div class="help-block"></div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-control-label">Extension</label>
+                                    <div class="form-group field-adminusers-extension">
+                                        <input type="text" id="adminusers-extension" class="form-control numbers" value="14" name="AdminUsers[extension]" maxlength="6">
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 padding-top-5  padding-left-0">
+                                <div class="col-md-4">
+                                    <h6 class="action_head">
+                                        Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
+                                                    Next, select if this user should be able to access financial
+                                                    performance of theentireapplication." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </h6>
+                                    <div class="md-checkbox-list ">
+                                        <div class="width-100 pull-left">
+                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                                                        Add/Edit Admin Users
+                                                        <input type="checkbox" class="primary-contact-checkbox " checked >
+                                                    <span></span>
+                                                    </label>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer footer-background">
+
+                    <a href="" class="btn btn-modal-blue">
+								Save  
+							</a>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- ./Edit  User Modal -->
+
+
+
+
+
+  <!-- Add Admin User Modal -->
+    <div class="modal fade" id="add_admin_user_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                    <h4 class="modal-title color-white" id="myModalLabel">
+                        Add User
+                    </h4>
+                </div>
+                <div class="modal-body row">
+                    <form id="w0" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12 border-ddd widget padding-15">
+                            <div class="col-md-12 padding-0">
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <label class="form-control-label">First Name <span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-first_name required">
+
+                                            <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" maxlength="15" onkeypress="return username(event);" aria-required="true">
+
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <label class="form-control-label">Last Name <span class="red">*</span></label>
+                                        <div class="form-group field-adminusers-last_name required">
+                                            <input type="text" id="adminusers-last_name" class="form-control" name="AdminUsers[last_name]" maxlength="15" aria-required="true">
+
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-12 padding-0">
+                                <div class="col-md-4">
+                                    <div class="form-group field-user-username">
+                                        <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
+                                        <input type="text" id="adminusers-email" class="form-control" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-control-label">Phone <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-phone required">
+                                        <input type="text" id="adminusers-phone" class="form-control" name="AdminUsers[phone]" aria-required="true" placeholder="(___) ___-____">
+                                        <div class="help-block"></div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-control-label">Extension</label>
+                                    <div class="form-group field-adminusers-extension">
+                                        <input type="text" id="adminusers-extension" class="form-control numbers" name="AdminUsers[extension]" value="" maxlength="6">
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 padding-top-5  padding-left-0">
+                                <div class="col-md-4">
+                                    <h6 class="action_head">
+                                        Permissions: <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
+                                                    Next, select if this user should be able to access financial
+                                                    performance of theentireapplication." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </h6>
+                                    <div class="md-checkbox-list ">
+                                        <div class="width-100 pull-left">
+                                            <label class="mt-checkbox mt-checkbox-outline margin-bottom-10  ">
+                                                                        Add/Edit Admin Users
+                                                        <input type="checkbox" class="primary-contact-checkbox " >
+                                                    <span></span>
+                                                    </label>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer footer-background">
+
+                    <a href="" class="btn btn-modal-blue">
+								Save  
+							</a>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- ./Add Admin User Modal -->

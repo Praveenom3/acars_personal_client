@@ -54,9 +54,9 @@ const routes: Routes = [
                 path: 'messages',
                 component: MessagesComponent
             },
-             {
+            {
                 path: 'vht',
-                component: VhtComponent
+                loadChildren: 'app/client/vht/vht.module#VhtModule'
             },
             {
                 path: ':product/:company/users',
