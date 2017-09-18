@@ -1,0 +1,76 @@
+<div class="section-container" style="top:45px !important">
+<div class="col-md-12 ">    
+ <app-vht-band ></app-vht-band>
+<div class="col-md-9 col-xs-12">
+ <app-vht-actions></app-vht-actions>
+<!-- Continer starts Here -->
+ <div class="col-md-12 widget padding-0 ">
+
+   <div class="col-md-12  padding-0 ">
+    <div class="nav-tabs-horizontal" style="background-color: rgba(19, 169, 204, 0.51);">
+                    <ul class=" col-md-offset-2 nav nav-tabs border-bottom display-inblock" style="background: None !important;" role="tablist">
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white no-wrap " [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','edit']">View</a>
+                            </li>              
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white no-wrap "  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','submit']">Submit</a>
+                        </li>
+                        <li class="nav-item hover">
+                            <a class="nav-link plan-link color-white  no-wrap " ng-reflect-klass="nav-link plan-link color-white dropdown-icon-li no-wrap"[routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','uploads']">Uploads</a>
+                        </li>
+                          <!--<li class="nav-item hover">
+                            <a class="nav-link plan-link color-white no-wrap " ng-reflect-klass="nav-link plan-link color-white dropdown-icon-li no-wrap"[routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'payroll','import']">Import</a>
+                        </li>-->
+                    </ul>
+                </div> 
+<div class="col-md-12 padding-10" >
+                    <table class="table table-hover table-bordered table-striped " [mfData]="csvData " #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <thead>
+                        <tr class="tr-blue-grid-head">
+                            <th> <mfDefaultSorter by="0">First Name</mfDefaultSorter></th>
+                              <th> <mfDefaultSorter by="1">Last Name</mfDefaultSorter></th>
+                              <th> <mfDefaultSorter by="2">Division</mfDefaultSorter></th>
+                               <th> <mfDefaultSorter by="3">ID</mfDefaultSorter></th>                          
+                            <th> <mfDefaultSorter by="4">Measurement Start</mfDefaultSorter></th>
+                            <th> <mfDefaultSorter by="5">Measurement End</mfDefaultSorter></th>
+                            <th> <mfDefaultSorter by="6">Average Hours</mfDefaultSorter></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="mf.data?.length">   
+                        <tr class="tr-text-center"  *ngFor="let x of mf.data; let i = index">
+                             
+                           <td  class="link-blue-underline"><a class="link-blue-underline"  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employees','employeedetails']" [queryParams]="{id:i+1}" >{{x[0]}}</a></td>
+                            <td class="link-blue-underline"><a class="link-blue-underline"  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employees','employeedetails']" [queryParams]="{id:i+1}" >{{x[1]}}</a></td>                           
+                                                
+                            <td>{{x[2]}}</td>
+                            <td>{{x[3]}}</td>
+                            <td>{{x[4]}}</td>
+                             <td>{{x[5]}}</td>
+                            <td>{{x[6]}}</td>                          
+                        </tr>
+                        </ng-container>
+                      <tr class="tr-text-center" *ngIf=!mf.data?.length>
+                            <td colspan="7">
+                                No records are found
+                            </td>
+                        </tr>
+
+                    </tbody>
+                     <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot> 
+
+                </table>             
+</div>
+
+</div>  
+ </div> 
+<!-- Continer Ends Here -->
+  </div>
+  </div>
+</div>
