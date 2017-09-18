@@ -1,0 +1,39 @@
+.right-box .mt-checkbox.mt-checkbox-outline:hover>input:not([disabled]):checked~span,
+.right-box .mt-checkbox.mt-checkbox-outline:hover>input:not([disabled])~span,
+.right-box .mt-checkbox.mt-checkbox-outline>input:checked~span,
+.right-box .mt-checkbox.mt-checkbox-outline>input:focus~span,
+.right-box .mt-checkbox.mt-checkbox-outline>span,
+.right-box .mt-checkbox.mt-radio-outline:hover>input:not([disabled]):checked~span,
+.right-box .mt-checkbox.mt-radio-outline:hover>input:not([disabled])~span,
+.right-box .mt-checkbox.mt-radio-outline>input:checked~span,
+.right-box .mt-checkbox.mt-radio-outline>input:focus~span,
+.right-box .mt-checkbox.mt-radio-outline>span {
+    border: 1px solid green;
+    background: green;
+}
+
+.right-box .mt-checkbox>span:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.right-box ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.right-box ul li {
+    padding-bottom: 5px;
+    font-size: 17px;
+}
+
+.right-box ul li a.right-box-links {
+    color: #31B3D1;
+    text-decoration: underline;
+    font-size: 17px;
+}

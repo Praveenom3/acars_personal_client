@@ -1,0 +1,284 @@
+<div class="section-container">
+    <div class="col-lg-3 col-md-3">
+        <div class="border-ddd widget padding41 box-shadow widget-six left-small-box row" style="padding: 15px;">
+            <h6 class="text-left">
+                ACA Hourly Tracking
+            </h6>
+             <div class="col-xs-6 col-md-6">
+                <p>Account Manager :</p>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <p>Ashley Duckett</p>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <p>Email Support :</p>
+            </div>
+            <div class="col-xs-6 col-md-6 ">
+                <p>support@skytech.com</p>
+            </div>
+             <div class="col-xs-6 col-md-6">
+                <p>Support :</p>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <p>(888) 900100</p>
+            </div>
+        </div>
+
+        <div class="border-ddd widget box-shadow widget-six left-small-box companies-list-acc">
+
+            <accordion [closeOthers]="true">
+                <accordion-group #client1>
+                    <div accordion-heading>
+                        Client 1
+                        <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': client1?.isOpen, 'fa-chevron-right': !client1?.isOpen}"></i>
+                    </div>
+
+                    <!-- accordion content-1 -->
+                    <div class="row">
+                       
+                        <table class="col-xs-12">
+                            <thead>
+                                <tr>
+                                    <th>Companies</th>
+                                    <th class="text-center">EIN</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'cargo-force-1','dashboard']" [routerLinkActive]="['link-bg-blue']">Cargo force 1</a></td>
+                                    <td class="text-center">15-90010</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'pro-sky-1','dashboard']" [routerLinkActive]="['link-bg-blue']">Pro Sky 1</a></td>
+                                    <td class="text-center">15-90010</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'sky-aca-1','dashboard']" [routerLinkActive]="['link-bg-blue']">Sky ACA 1</a></td>
+                                    <td class="text-center">15-90010</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ./accordion content-1 -->
+
+                </accordion-group>
+                <accordion-group #client2>
+                    <div accordion-heading>
+                        Client 2
+                        <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': client2?.isOpen, 'fa-chevron-right': !client2?.isOpen}"></i>
+                    </div>
+
+                    <!-- accordion content-2 -->
+                    <div class="row">
+                      
+                        <table class="col-xs-12">
+                            <thead>
+                                <tr>
+                                    <th>Companies</th>
+                                    <th class="text-center">EIN</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'cargo-force-2','dashboard']" [routerLinkActive]="['link-bg-blue']">Cargo force 2</a></td>
+                                    <td class="text-center">25-90020</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'pro-sky-2','dashboard']" [routerLinkActive]="['link-bg-blue']">Pro Sky 2</a></td>
+                                    <td class="text-center">25-90020</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'sky-aca-2','dashboard']" [routerLinkActive]="['link-bg-blue']">Sky ACA 2</a></td>
+                                    <td class="text-center">25-90020</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ./accordion content-2 -->
+
+                </accordion-group>
+                <accordion-group #client3>
+                    <div accordion-heading>
+                        Client 3
+                        <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down': client3?.isOpen, 'fa-chevron-right': !client3?.isOpen}"></i>
+                    </div>
+
+                    <!-- accordion content-3 -->
+                    <div class="row">
+                      
+                        <table class="col-xs-12">
+                            <thead>
+                                <tr>
+                                    <th>Companies</th>
+                                    <th class="text-center">EIN</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'cargo-force-3','dashboard']" [routerLinkActive]="['link-bg-blue']">Cargo force 3</a></td>
+                                    <td class="text-center">35-90030</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'pro-sky-3','dashboard']" [routerLinkActive]="['link-bg-blue']">Pro Sky 3</a></td>
+                                    <td class="text-center">35-90030</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="link-blue" [routerLink]="['/client/',product,'sky-aca-3','dashboard']" [routerLinkActive]="['link-bg-blue']">Sky ACA 3</a></td>
+                                    <td class="text-center">35-90030</td>
+                                    <td class="text-center"><a class="link-blue" data-toggle="modal" href="#edit_company_modal" role="button"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ./accordion content-1 -->
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-md-8 right-box" align="left">
+        <div class="col-md-11 col-md-offset-1">
+            <div class="col-md-12 widget width-100 padding-50 color-blue text-center">Please select a company from the left panel to get the reporting check list.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Company Details Modal -->
+<div class="modal fade" id="edit_company_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Edit Company Details
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <form id="w0" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12 border-ddd widget padding-15">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-6">
+                                <div class="">
+                                    <label class="form-control-label">Company Name <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-first_name required">
+
+                                        <input type="text" id="adminusers-first_name" class="form-control" name="AdminUsers[first_name]" value="Cargo Force">
+
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    <label class="form-control-label">EIN <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-last_name required">
+                                        <input type="text" id="adminusers-last_name" class="form-control" name="AdminUsers[last_name]" value="15-90010">
+
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer footer-background">
+
+                <a href="" class="btn btn-modal-blue">
+								Save  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ./Edit Company Details Modal -->
+
+<!-- CopyModal -->
+<div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Copy
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <form id="w0" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12 border-ddd widget padding-15">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-6">
+                                <div class="">
+                                    <label class="form-control-label">Company Name <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-first_name required">
+                                        <select class="form-control">
+                                            <option>-Select-</option>
+                                           <option>Cargo 2</option>
+                                           <option>Cargo force</option>
+                                           <option>Company 1</option>
+                                        </select>
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    <label class="form-control-label">Companies <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-last_name required">
+                                        <select class="form-control" id="companies" multiple="multiple">
+                                           <option value="1">Cargo 2</option>
+                                           <option value="2">Cargo force</option>
+                                           <option value="3">Company 1</option>
+                                        </select>
+                                        <div class="help-block"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer footer-background">
+
+                <a href="" class="btn btn-modal-blue">
+								Copy  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ./Copy Modal -->

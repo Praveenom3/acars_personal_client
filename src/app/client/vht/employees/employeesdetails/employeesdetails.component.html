@@ -1,0 +1,148 @@
+
+<div class="section-container" style="top:45px !important">
+<div class="col-md-12 ">    
+ <app-vht-band ></app-vht-band>
+<div class="col-md-9 col-xs-12">
+ <app-vht-actions></app-vht-actions>
+<!-- Continer starts Here -->
+ <div class="col-md-12 widget padding-10  ">
+<div class="col-md-12">
+<a class="link-blue-underline"  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'employees']" >Search Employees</a>
+</div>
+<div class="col-md-12">
+
+<div class="col-md-3 padding-20">
+
+<div class="col-md-12">
+<h6>{{eName}}</h6>
+</div>
+<div class="col-md-12">
+<h6>{{eId}}</h6>
+</div>
+<div class="col-md-12 padding-10">
+  <select class="form-control" (change)="onChange($event)" >
+    <option  [value]="i" *ngFor="let mstype of eType; let i = index">{{mstype}}</option>
+</select>
+</div>
+
+<div class="col-md-12 padding-10">
+ <input type="text" class="form-control" value="{{empData.date}}"/>		
+ </div>							 
+</div>
+
+
+<div class="col-md-3 padding-20">
+<h6>Measurement Period</h6>
+  <div class="row">
+<table class="table table-hover table-bordered table-striped ">
+                   
+                    <tbody>
+                        <tr class="tr-text-center">
+                           <td>Start Date</td>
+                            <td>{{empData.mst}}</td>
+
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td>End Date</td>
+                            <td>{{empData.med}}</td>
+
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td>Total Hours</td>
+                            <td>{{empData.total_hours}}</td>
+
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td>Avg Hours / Mo</td>
+                            <td>{{empData.avg_hours}}</td>
+
+                        </tr>
+                         <tr class="tr-text-center">
+                            <td>Qualified ?</td>
+                            <td>{{empData.qualified}}</td>
+
+                        </tr>
+                    </tbody>
+                    </table>
+
+
+  </div>
+
+</div>
+
+
+<div class="col-md-3 padding-20">
+<h6>Adminstrative Period</h6>
+  <div class="row">
+<table class="table table-hover table-bordered table-striped ">
+                   
+                    <tbody>
+                        <tr class="tr-text-center">
+                           <td>Start Date</td>
+                            <td>{{empData.ast}}</td>
+
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td>End Date</td>
+                            <td>{{empData.aed}}</td>
+
+                        </tr>
+                       
+                    </tbody>
+                    </table>
+
+
+  </div>
+
+</div>
+
+
+<div class="col-md-3 padding-20">
+<h6>Stability Period</h6>
+  <div class="row">
+<table class="table table-hover table-bordered table-striped ">
+                   
+                    <tbody>
+                        <tr class="tr-text-center">
+                           <td>Start Date</td>
+                            <td>{{empData.stsd}}</td>
+
+                        </tr>
+                        <tr class="tr-text-center">
+                            <td>End Date</td>
+                            <td>{{empData.sted}}</td>
+
+                        </tr>
+                        
+                    </tbody>
+                    </table>
+
+
+  </div>
+
+</div>
+
+
+
+</div>
+          <div class="col-md-offset-3 col-md-9">
+  <div  style="display: block;" >
+    <canvas  baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [colors]="lineChartColors"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+</div>
+                      
+
+
+ </div> 
+<!-- Continer Ends Here -->
+  </div>
+  </div>
+</div>

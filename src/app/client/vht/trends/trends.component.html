@@ -1,0 +1,109 @@
+<div class="section-container" style="top:45px !important">
+<div class="col-md-12 ">
+      
+ <app-vht-band ></app-vht-band>
+
+   
+
+
+        <div class="col-md-9 col-xs-12">
+           <app-vht-actions></app-vht-actions>
+
+
+            <div class="col-md-12 widget ">
+              
+                  <div class="col-md-6 padding41">
+                      
+                 <div style="display: block" class="graph-box-border">
+                       <div class="col-md-offset-2">
+           <h4 class="dark-blue-text padding-10">Standard Measurement Periods</h4>
+            </div>
+         <canvas baseChart
+          [data]="pieChartData"   
+            [labels]="pieChartLabels" 
+            [colors] = "ChartColors"    
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+
+                           <div class="row" style="margin: 10px;">
+                     <div class="col-md-5 padding-10" style="border: 4px solid #f99f20;background-color: #ECEFF4;">
+                         <a  [routerLink]="['/client/',product,company,'trends','int-measurement']"  [queryParams]="{type:'Standard',value:'956'}">
+                        <h5 class="text-center dark-blue-text">In Measurement</h5><h5 class="text-center dark-blue-text">956</h5>
+                         </a>
+                        </div>
+                     <div class="col-md-offset-2 col-md-5 padding-10" style="border: 4px solid #46be8a;background-color: #ECEFF4;">
+                          <a  [routerLink]="['/client/',product,company,'trends','trendingeligible']"  [queryParams]="{type:'Standard',value:'235'}">
+                         <h5 class="text-center dark-blue-text">Trending Eligible</h5>
+                         <h5 class="text-center dark-blue-text">235 | 20 %</h5>
+                          </a>
+                         </div>
+                     
+                     </div>          
+
+
+        </div>
+
+      
+            </div>
+
+
+                <div class="col-md-6  padding41">
+                     <div style="display: block" class="graph-box-border">
+                            <div class="col-md-offset-2">
+                          <h4 class="dark-blue-text padding-10">Initial  Measurement Periods</h4>         
+                            </div>
+                        <canvas baseChart
+                        [data]="pieChartData2"   
+                        [labels]="pieChartLabels" 
+                        [colors] = "ChartColors"                  
+                        [chartType]="pieChartType"                 
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+
+                      <div class="row" style="margin: 10px;">
+                     <div class="col-md-5 padding-10" style="border: 4px solid #f99f20;background-color: #ECEFF4;">
+            <a  [routerLink]="['/client/',product,company,'trends','int-measurement']"  [queryParams]="{type:'Initial',value:'125'}">
+
+                        <h5 class="text-center dark-blue-text">In Measurement</h5><h5 class="text-center dark-blue-text">125</h5>
+            </a>
+                        </div>
+                     <div class="col-md-offset-2 col-md-5 padding-10" style="border: 4px solid #46be8a;background-color: #ECEFF4;">
+                         <a  [routerLink]="['/client/',product,company,'trends','trendingeligible']"  [queryParams]="{type:'Initial',value:'41'}">
+                         <h5 class="text-center dark-blue-text">
+                            Trending Eligible</h5><h5 class="text-center dark-blue-text">41 | 25 %</h5>
+                              </a>
+                             </div>
+                    
+
+                     </div>          
+
+  <!-- [colors] = "piechartcolors"-->
+                            <!--<div class="col-md-offset-2 padding5">           
+                            <a class="btn  btn-info"  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'trends','int-measurement']" role="button">In  Measurement Periods</a>
+                            <a class="link-blue" >1,251</a>           
+                            </div>
+
+                            <div class="col-md-offset-2 padding5">
+                            <a  class="btn  btn-success "  [routerLinkActive]="['active']" [routerLink]="['/client/',product,company,'trends','trendingeligible']" role="button">Trending Eligible</a>
+                            <a class="link-blue" >121</a>
+                            </div>-->
+
+                        </div>
+                </div>
+
+          
+            </div>
+               
+
+  </div>
+
+      
+
+
+
+
+
+  </div>
+
+</div>
