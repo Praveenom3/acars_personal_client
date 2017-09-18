@@ -15,12 +15,12 @@
                                     <img src='../src/assets/images/client-dashboard/companies list-icon.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text">
-                                    <h4 class = "font-weight-300 dark-blue-text">&nbsp; COMPANIES LIST</h4>
+                                    <h4 class="font-weight-300 dark-blue-text">&nbsp; COMPANIES LIST</h4>
                                 </div>
                             </div>
 
                             <div class="company-search left-addon">
-<!-- 
+                                <!-- 
                                  <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-search"></i>
@@ -30,19 +30,25 @@
                                 </div>
                                  -->
                                 <i class="glyphicon glyphicon-search"></i>
-                                <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"/>
+                                <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
+                                />
                             </div>
-
+                            <div class="add-company-ein-div">
+                                <button (click)="createCompany()" class="add-company-ein btn btn-primary btn-blue">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i> 
+                                    Add EIN
+                                </button>
+                            </div>
                             <div class="content-div">
-                                <table class="table table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
+                                <table class="table table-fixed table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
                                     #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
                                     [(mfSortOrder)]="sortOrder">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">
+                                            <th class="padding-left-15 col-xs-6">
                                                 <mfDefaultSorter by="company">Company Name</mfDefaultSorter>
                                             </th>
-                                            <th class="text-center">
+                                            <th class="padding-left-15 col-xs-6">
                                                 <mfDefaultSorter by="companyId">Company ID</mfDefaultSorter>
                                             </th>
                                         </tr>
@@ -50,8 +56,8 @@
                                     <tbody>
                                         <ng-container *ngIf="mf.data?.length">
                                             <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
-                                                <td class="text-center">{{company.company_name}}</td>
-                                                <td class="text-center">
+                                                <td class="padding-left-20 col-xs-6">{{company.company_name}}</td>
+                                                <td class="text-center padding-left-30 col-xs-6">
                                                     {{company.company_client_number}}
                                                 </td>
                                             </tr>
@@ -75,7 +81,7 @@
                                     <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text ">
-                                    <h3 class = "font-weight-300 dark-blue-text">&nbsp; &nbsp; CONTACT US</h3>
+                                    <h3 class="font-weight-300 dark-blue-text">&nbsp; &nbsp; CONTACT US</h3>
                                 </div>
                             </div>
 
@@ -110,7 +116,7 @@
                                     <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text">
-                                    <h3 class = "font-weight-300 dark-blue-text">&nbsp; IRS DEADLINES</h3>
+                                    <h3 class="font-weight-300 dark-blue-text">&nbsp; IRS DEADLINES</h3>
                                 </div>
                             </div>
 
@@ -182,7 +188,7 @@
                     <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h2>
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12 padding-left-0 padding-right-0">
-                        <div class="widget col-md-12 company-details-main-block padding-15 comp-dash-divs">
+                        <div class="widget col-md-12 company-details-main-block padding-10 comp-dash-divs">
                             <div class="col-md-6 ">
                                 <h4 class="font-weight-300 dark-blue-text client-name-header"> Client : &nbsp;{{clientDashBoardService.client.client_name}}</h4>
                             </div>
@@ -215,36 +221,40 @@
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12 padding-left-0 padding-right-0">
                         <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
-                            <div class="col-md-12 table-company-users-dashboard-div">
-                                <table class="table table-hover table-striped table-company-users-dashboard color-ash" [mfData]="clientDashBoardService.company.companyUsers"
-                                    #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
-                                    [(mfSortOrder)]="sortOrder">
-                                    <thead>
-                                        <tr>
+                            <table class="table table-fixed table-hover table-striped table-company-users-dashboard color-ash" [mfData]="clientDashBoardService.company.companyUsers"
+                                #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
+                                [(mfSortOrder)]="sortOrder">
+                                <thead>
+                                    <tr>
+                                        <th class="fontcolor-blue col-xs-2">
+                                            <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+                                        </th>
 
-                                            <th class="text-center fontcolor-blue">First Name</th>
-                                            <th class="text-center fontcolor-blue">Last Name</th>
-                                            <th class="text-center fontcolor-blue">Email</th>
-                                            <th class="text-center fontcolor-blue">Actions</th>
+                                        <th class="fontcolor-blue col-xs-2 ">
+                                            <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+                                        </th>
+                                        <th class="fontcolor-blue col-xs-6">
+                                            <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                        </th>
+                                        <th class="fontcolor-blue col-xs-2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="users.data?.length">
+                                        <tr *ngFor="let companyUserData of users.data">
+                                            <td class="col-xs-2">{{trimData(companyUserData.first_name)}}</td>
+                                            <td class="col-xs-2">{{trimData(companyUserData.last_name)}}</td>
+                                            <td class="col-xs-6">{{companyUserData.email}}</td>
+                                            <td class="col-xs-2"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <ng-container *ngIf="users.data?.length">
-                                            <tr *ngFor="let companyUserData of users.data">
-                                                <td class="text-center padding-5">{{trimData(companyUserData.first_name)}}</td>
-                                                <td class="text-center padding-5">{{trimData(companyUserData.last_name)}}</td>
-                                                <td class="text-center padding-5">{{companyUserData.email}}</td>
-                                                <td class="text-center padding-5"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
-                                            </tr>
-                                        </ng-container>
-                                        <tr class="tr-text-center" *ngIf=!users.data?.length>
-                                            <td colspan="2">
-                                                No records are found
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </ng-container>
+                                    <tr class="tr-text-center" *ngIf=!users.data?.length>
+                                        <td colspan="2">
+                                            No records are found
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -319,18 +329,18 @@
                                 <tr>
                                     <td>
                                         <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap"
-                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein}">
                                             Basic Plan Information
                                         </a>
                                     </td>
                                     <td class="padding-5">
 
                                         <a (click)="redirectToCompanyData('basicReporting')" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
                                             Required
                                         </a>
                                         <a (click)="redirectToCompanyData('basicReporting')" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
                                             Completed
                                         </a>
                                     </td>
@@ -338,24 +348,24 @@
                                 <tr>
                                     <td>
                                         <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap"
-                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting}">
                                             Benefit Plan & Plan Classes
                                         </a>
                                     </td>
                                     <td class=" padding-5">
 
                                         <a (click)="redirectToCompanyData('benefitPlan')" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
                                             Required</a>
                                         <a (click)="redirectToCompanyData('benefitPlan')" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
                                             Completed</a>
 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'step-failed cursor-allowed'">Incomplete</button>
+                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-allowed'">Incomplete</button>
                         <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-allowed'">Completed</button>
                     </div>
                 </div>
@@ -531,71 +541,6 @@
 
     <!-- ./Edit Company Details Modal -->
 
-    <!-- CopyModal -->
-    <div class="modal fade" id="copy_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
-        data-keyboard="false">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header modal-header-color">
-
-                    <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
-								X
-							</button>
-                    <h4 class="modal-title color-white" id="myModalLabel">
-                        Copy
-                    </h4>
-                </div>
-                <div class="modal-body row">
-                    <form id="w0" method="post" enctype="multipart/form-data">
-                        <div class="col-md-12 border-ddd widget padding-15">
-                            <div class="col-md-12 padding-0">
-                                <div class="col-md-6">
-                                    <div class="">
-                                        <label class="form-control-label">Company Name <span class="red">*</span></label>
-                                        <div class="form-group field-adminusers-first_name required">
-                                            <select class="form-control">
-                                            <option>-Select-</option>
-                                           <option>Cargo 2</option>
-                                           <option>Cargo force</option>
-                                           <option>Company 1</option>
-                                        </select>
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="">
-                                        <label class="form-control-label">Companies <span class="red">*</span></label>
-                                        <div class="form-group field-adminusers-last_name required">
-                                            <select class="form-control" id="companies" multiple="multiple">
-                                           <option value="1">Cargo 2</option>
-                                           <option value="2">Cargo force</option>
-                                           <option value="3">Company 1</option>
-                                        </select>
-                                            <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="modal-footer footer-background">
-
-                    <a href="" class="btn btn-modal-blue">
-								Copy  
-							</a>
-                    <a href="#" class="btn btn-default" data-dismiss="modal">
-								Cancel
-							</a>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
 
     <div class="modal fade" bsModal #companyUserModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">

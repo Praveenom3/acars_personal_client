@@ -45,7 +45,7 @@ export class CompaniesComponent implements OnInit {
   private _submitted: boolean;
 
   public userType: any;
-  public mask = ['(', /\d/, /\d/, ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public mask = [/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
   public phoneNumberMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   constructor(public route: ActivatedRoute,
@@ -57,29 +57,33 @@ export class CompaniesComponent implements OnInit {
     public settingsService: SettingsService,
     public companyUserService: CompanyUserService,
     public clientUserService: ClientUserService) {
+
     this._companyForm = _formBuilder.group({
       company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
-      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(12)])],
+      company_ein: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
     });
 
     this.createCompanyUserForm();
-
     this.clientDashBoardService.productParams = this.globalService.decode(route.snapshot.params['product']);
     this.clientDashBoardService.clientParams = this.globalService.decode(route.snapshot.params['client']);
+
     this._companyForm.valueChanges
-      .subscribe(companyData => this.onValueChanged(companyData));
+      .subscribe(companyData => this.setFormErrorsOnChange(this._companyForm, this._formErrors, companyData));
+
     this._companyUserForm.valueChanges
-      .subscribe(data => this.onCompanyValueChanged(data));
+      .subscribe(data => this.setFormErrorsOnChange(this._companyUserForm, this._companyUserFormErrors, data));
+
     this.userType = globalService.getUserType();
+
   }
   /**
    * 
    */
   public createCompanyUserForm() {
     this._companyUserForm = this._formBuilder.group({
-      first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-      last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
+      first_name: ['', Validators.compose([Validators.minLength(2), Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+      last_name: ['', Validators.compose([Validators.minLength(2), Validators.required, Validators.pattern(/^[a-zA-Z0-9& -]+$/)])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(this.globalService.emailRegx)])],
       phone: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
       status: ['', Validators.compose([Validators.required])],
       phone_extension: ['']
@@ -104,12 +108,16 @@ export class CompaniesComponent implements OnInit {
    */
   ngOnInit() {
     this.clientDashBoardService.setInformation();
+
     this.companyEdit = Object.assign({});
     this._resetFormErrors();
+
     this.clientDashBoardService.selectedCompanyRow = this.clientDashBoardService.company.company_id;
     this.setIrsData();
+
     this._resetCompanyUserFormErrors();
     this.companyUserInformation = Object.assign({})
+
   }
   /**
    * 
@@ -194,6 +202,7 @@ export class CompaniesComponent implements OnInit {
     }
     this.companyEdit = Object.assign({}, companyInfo);
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
+    this._submitted = false;
     this.companyModal.show();
   }
   /**
@@ -237,6 +246,10 @@ export class CompaniesComponent implements OnInit {
           this.resetCompanyInfo(result);
           this._submitted = false;
           this.toastrService.success('Company Details Updated Successfully.');
+          let companies: any[] = this.clientDashBoardService.companies;
+          companies.push(result.data);
+          console.log(companies);
+          this.clientDashBoardService.companies = companies;
         } else {
           this._errorMessage = 'Record not Updated';
           this._submitted = false;
@@ -301,23 +314,6 @@ export class CompaniesComponent implements OnInit {
       let message = errorFields[key];
       this._formErrors[key].valid = false;
       this._formErrors[key].message = message;
-    }
-  }
-
-  /**
-   * 
-   * @param data 
-   */
-  public onValueChanged(data?: any) {
-    if (!this._companyForm) { return; }
-    const form = this._companyForm;
-    for (let field in this._formErrors) {
-      // clear previous error message (if any)
-      let control = form.get(field);
-      if (control && control.dirty) {
-        this._formErrors[field].valid = true;
-        this._formErrors[field].message = '';
-      }
     }
   }
   /**
@@ -391,11 +387,13 @@ export class CompaniesComponent implements OnInit {
   public companyUserValidationMessages = {
     'first_name': {
       'required': 'First Name is required.',
-      'pattern': 'No special characters are allowed.'
+      'pattern': 'No special characters are allowed.',
+      'minlength': 'First Name should be a minimum 2 chars.',
     },
     'last_name': {
       'required': 'Last Name is required.',
-      'pattern': 'No special characters are allowed.'
+      'pattern': 'No special characters are allowed.',
+      'minlength': 'Last Name should be a minimum 2 chars.',
     },
     'email': {
       'required': 'Email Address is required.',
@@ -443,22 +441,6 @@ export class CompaniesComponent implements OnInit {
       phone_extension: { valid: true, message: '' },
       status: { valid: true, message: '' }
     };
-  }
-  /**
-  * 
-  * @param data 
-  */
-  public onCompanyValueChanged(data?: any) {
-    if (!this._companyUserForm) { return; }
-    const form = this._companyUserForm;
-    for (let field in this._companyUserFormErrors) {
-      // clear previous error message (if any)
-      let control = form.get(field);
-      if (control && control.dirty) {
-        this._companyUserFormErrors[field].valid = true;
-        this._companyUserFormErrors[field].message = '';
-      }
-    }
   }
 
   /**
@@ -529,7 +511,7 @@ export class CompaniesComponent implements OnInit {
     if (!ein) {
       return '_ _-_ _ _ _ _ _ _';
     }
-    let einString: string = '(' + ein.slice(0, 2) + ') ' + '-' + ein.slice(2, 9);
+    let einString: string = ein.slice(0, 2) + '-' + ein.slice(2, 9);
     return einString;
   }
 
@@ -569,9 +551,17 @@ export class CompaniesComponent implements OnInit {
 
     switch (step) {
       case 'basicReporting':
-        this.router.navigate([this.clientDashBoardService.basicReportingLink])
+        if (this.clientDashBoardService.company.company_ein) {
+          this.router.navigate([this.clientDashBoardService.basicReportingLink])
+        } else {
+          return false;
+        }
       case 'benefitPlan':
-        this.router.navigate([this.clientDashBoardService.benefitPlanLink])
+        if (this.clientDashBoardService.company.basicReporting) {
+          this.router.navigate([this.clientDashBoardService.benefitPlanLink])
+        } else {
+          return false;
+        }
         break;
     }
   }
@@ -585,5 +575,29 @@ export class CompaniesComponent implements OnInit {
       return text.slice(0, 10) + '...';
     }
     return text;
+  }
+
+  /**
+   * 
+   */
+  createCompany() {
+    this.companyEdit = Object.assign({});
+    this.companyEdit.client_id = this.clientDashBoardService.company.client_id;
+    this.companyEdit.purchase_id = this.clientDashBoardService.company.purchase_id;
+    this.modalTitle = "Create Company : ";
+    this._submitted = false;
+    this.companyModal.show();
+  }
+
+  setFormErrorsOnChange(form, formErrors, data?: any) {
+    if (!form) { return; }
+    for (let field in formErrors) {
+      // clear previous error message (if any)
+      let control = form.get(field);
+      if (control && control.dirty) {
+        formErrors[field].valid = true;
+        formErrors[field].message = '';
+      }
+    }
   }
 }

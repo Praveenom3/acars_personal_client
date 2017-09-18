@@ -305,7 +305,7 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .table-company-dashboard tbody tr td {
-    padding: 3px;
+    padding: 2px;
     border: none;
 }
 
@@ -379,11 +379,13 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .company-details-main-block{
-    height: 125px;
-    padding: 15px;
+    height: 104px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 .authorized-users-block {
-    height: 125px;
+    height: 104px;
+    overflow: hidden;
 }
 
 .add-authorised-user {
@@ -394,11 +396,30 @@ app-client-layout .section-container .left-small-box p {
     line-height:14px;
 }
 
-.content-div{
-    padding-left: 22px;
-    height: 130px;
-    overflow-y: auto;
+.add-company-ein-div{
+    float: right;
+    padding: 0px;
+    margin-right: 5px;
+    margin-bottom: 4px;
+    margin-top: -10px;
 }
+
+.table-company-dashboard tbody{
+    height:100px !important;
+}
+
+.padding-left-30{
+    padding-left: 30px !important;
+}
+
+table.table-company-dashboard tbody tr:hover{
+    cursor: pointer;
+}
+
+.table-company-users-dashboard th a {
+    color: #13a9cc;
+}
+
 .content-div-managed-account {
     padding: 19px;
 }
@@ -437,30 +458,38 @@ app-client-layout .section-container .left-small-box p {
 .irs-main-block{
     height: 254px;
 }
+
 .active-company{
     background-color: #d8e3ef !important;
 }
-table.table-company-dashboard tbody tr:hover{
-    cursor: pointer;
+
+
+.padding-left-35{
+    padding-left: 35px !important;
 }
 
-.table-company-users-dashboard th {
-    border-bottom: none !important;
+.table-fixed thead {
+  width: 97%;
 }
-
-.table-company-users-dashboard th a {
-    color: black;
+.table-fixed tbody {
+  height: 75px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
 }
-
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+  border-top:none !important;
+  border-bottom: none !important;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+}
 .table-company-users-dashboard tbody tr td {
-    padding: 2px;
+    padding: 4px !important;
     border: none;
 }
-.table-company-users-dashboard-div{
-    height: 75px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
+
 /* For Uploads file pop up*/
 .modal-header.modal-header-color.upload-files-div-header {
     background-color: #7cc750 !important;
@@ -618,6 +647,20 @@ table.table-company-dashboard tbody tr:hover{
 }
 .irs-span{
     margin-left: 10px;
+}
+
+button.add-company-ein{
+    padding: 3px;
+    font-size: 9px
+}
+.padding-left-15{
+    padding-left: 15px !important;
+}
+.padding-left-18{
+    padding-left: 18px !important;
+}
+.padding-left-20{
+    padding-left:20px !important;
 }
 @media screen and (min-width: 768px) and (max-width:1200px){ 
 .content-header-text {

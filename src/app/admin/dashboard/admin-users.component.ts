@@ -57,8 +57,8 @@ export class AdminUsersComponent implements OnInit {
         private toastrService: ToastrService,
         private _http: Http) {
         this._adminUserForm = _formBuilder.group({
-            first_name: ['', Validators.compose([Validators.required])],
-            last_name: ['', Validators.compose([Validators.required])],
+            first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+            last_name: ['', Validators.compose([Validators.required, Validators.minLength(2),])],
             is_active: ['', Validators.compose([])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
@@ -246,11 +246,13 @@ export class AdminUsersComponent implements OnInit {
     public validationMessages = {
         'first_name': {
             'required': 'First Name is required.',
-            'pattern': 'No special characters are allowed.'
+            'pattern': 'No special characters are allowed.',
+            'minlength': 'First Name should be a minimum 2 chars.',
         },
         'last_name': {
             'required': 'Last Name is required.',
-            'pattern': 'No special characters are allowed.'
+            'pattern': 'No special characters are allowed.',
+            'minlength': 'Last Name should be a minimum 2 chars.',
         },
         'username': {
             'required': 'Email Address is required.',
