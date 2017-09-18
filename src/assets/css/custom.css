@@ -152,3 +152,9 @@ body.body-blue .dropdown-menu .dropdown-item.page-active {
     color: red !important;
 }
 /* ./header */
+
+/* select */
+select.form-control{
+    background-position: 312px 7px;
+}
+/* ./select */
