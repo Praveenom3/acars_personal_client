@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[inputFilter],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
+  selector: '[inputFilter],[groupNames],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
 })
 export class inputFilterDirective {
 
@@ -17,6 +17,7 @@ export class inputFilterDirective {
   @Input() minValue: string;
   @Input() maxValue: string;
   @Input() empInfoValidator: string;
+  @Input() groupNames: string;
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
     let e = <KeyboardEvent>event;
@@ -71,6 +72,11 @@ export class inputFilterDirective {
         e.preventDefault();
       }
     }
+    else if (this.groupNames) {
+      if (!e.key.match(/^([a-zA-Z0-9 '&-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+        e.preventDefault();
+      }
+    }
   }
 
 
@@ -86,8 +92,8 @@ export class inputFilterDirective {
         // because I didn't want user to enter anything below 1.
         // NOTE: You might want to remove it if you want to accept 0
         if (valInFloat < parseFloat(this.minValue)) {
-         // console.log("yes");
-        //  e.preventDefault();
+          // console.log("yes");
+          //  e.preventDefault();
         }
       }
 
