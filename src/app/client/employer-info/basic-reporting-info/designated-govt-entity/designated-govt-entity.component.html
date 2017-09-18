@@ -77,7 +77,7 @@
                                     <div class="form-group field-tblacadesignatedgovtentity-dge_ein">
                                         <input type="text" [textMask]="{mask: ein_mask}" (ngModelChange)="isValidEin($event)" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_ein" name="dge_ein">
                                         <span class="help-block help-block-error" *ngIf="isValidDgeEin">
-                                            EIN should be 8 digit length.
+                                            EIN should be 9 digit length.
                                         </span>
                                     </div>
 

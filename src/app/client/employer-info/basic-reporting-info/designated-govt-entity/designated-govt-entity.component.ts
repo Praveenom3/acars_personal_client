@@ -28,7 +28,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   label: string;
   public labels: any[] = [];
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
-  public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
+  public ein_mask = [/[0-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
   section_id: any = 4;
   product_id: any;
   company_id: any;
