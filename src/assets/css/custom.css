@@ -154,7 +154,7 @@ body.body-blue .dropdown-menu .dropdown-item.page-active {
 /* ./header */
 
 /* select */
-select.form-control{
-    background-position: 312px 7px;
+.has-danger .form-control-danger {
+    background-position: 96% 7px;
 }
 /* ./select */
