@@ -44,7 +44,7 @@ const routes: Routes = [
     }, 
     {
         path: ':company/trends',    
-        component: TrendsComponent
+        component: TrendsComponent 
     },
      {
         path: ':company/trends/int-measurement',    
