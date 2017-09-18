@@ -33,12 +33,12 @@
                                 <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
                                 />
                             </div>
-                            <div class="add-company-ein-div">
+                            <!-- <div class="add-company-ein-div">
                                 <button (click)="createCompany()" class="add-company-ein btn btn-primary btn-blue">
                                     <i class="fa fa-plus-circle" aria-hidden="true"></i> 
                                     Add EIN
                                 </button>
-                            </div>
+                            </div> -->
                             <div class="content-div">
                                 <table class="table table-fixed table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
                                     #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
@@ -56,7 +56,9 @@
                                     <tbody>
                                         <ng-container *ngIf="mf.data?.length">
                                             <tr (click)="setCompany(company)" *ngFor="let company of mf.data" [class.active-company]="company.company_id == clientDashBoardService.selectedCompanyRow">
-                                                <td class="padding-left-20 col-xs-6">{{company.company_name}}</td>
+                                                <td *ngIf="company.company_name" class="padding-left-20 col-xs-6">{{company.company_name}}</td>
+                                                <td *ngIf="!company.company_name" (click)="updateCompanyInfo(company)" class="padding-left-20 col-xs-6">
+                                                    <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap ">Add EIN</a></td>
                                                 <td class="text-center padding-left-30 col-xs-6">
                                                     {{company.company_client_number}}
                                                 </td>
@@ -86,21 +88,23 @@
                             </div>
 
                             <p class=" setup-text-band">Managed Account - Assigned Agent</p>
+
                             <div class="content-div-managed-account addres-block color-ash">
+
                                 <span class="account-manager-name" *ngIf="clientDashBoardService.accountManager">
                                 <b>{{clientDashBoardService.accountManager}}</b>, <i>Account Manager</i>
-                            </span>
-                                <div class="padding-top-5">
+                                </span>
 
+                                <div class="padding-top-5">
                                     <span class="account-manager-number" *ngIf="clientDashBoardService.accountManagerNumber">
                                 <p>Direct: {{clientDashBoardService.accountManagerNumber}}</p>
                                 </span>
-
                                     <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
                                     <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
                                     <a *ngIf="clientDashBoardService.accountManager" href="mailto:{{clientDashBoardService.accountManagerMail}}" target="_top"
                                         class="link-blue"> Contact My Manager</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -298,9 +302,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn step-failed status-btn "
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-failed status-btn "
                             *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-success status-btn "
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-success status-btn "
                             *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
                     </div>
                 </div>
@@ -316,12 +320,12 @@
                                             [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
                                     </td>
                                     <td class="padding-5">
-                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.company_ein"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                        <a class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.company_ein"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
                                             Required
                                         </a>
-                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.company_ein"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                        <a class="step-status-flag link-white" *ngIf="clientDashBoardService.company.company_ein"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
                                             Completed
                                         </a>
                                     </td>
@@ -335,12 +339,12 @@
                                     </td>
                                     <td class="padding-5">
 
-                                        <a (click)="redirectToCompanyData('basicReporting')" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                        <a class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
                                             Required
                                         </a>
-                                        <a (click)="redirectToCompanyData('basicReporting')" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                        <a class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
                                             Completed
                                         </a>
                                     </td>
@@ -354,19 +358,19 @@
                                     </td>
                                     <td class=" padding-5">
 
-                                        <a (click)="redirectToCompanyData('benefitPlan')" class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-allowed'">
+                                        <a class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
                                             Required</a>
-                                        <a (click)="redirectToCompanyData('benefitPlan')" class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-allowed'">
+                                        <a  class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
                                             Completed</a>
 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-allowed'">Incomplete</button>
-                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-allowed'">Completed</button>
+                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">Incomplete</button>
+                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-not-allowed'">Completed</button>
                     </div>
                 </div>
                 <div class="col-md-4 padding-right-0">
@@ -380,7 +384,7 @@
                                         <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " (click)="redirectToEmployeeData('payroll')">
                                             Payroll Data</a></td>
                                     <td class="padding-5">
-                                        <a (click)="redirectToEmployeeData('payroll')" class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-allowed step-status-flag link-default cursor-not-allowed">
                                             Pending
                                         </a>
                                     </td>
@@ -389,14 +393,14 @@
                                     <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
                                             (click)="redirectToEmployeeData('medicalplan')">Medical Plan Data</a></td>
                                     <td class=" padding-5">
-                                        <a (click)="redirectToEmployeeData('medicalplan')" class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-allowed step-status-flag link-default cursor-not-allowed">
                                             Pending
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
                     </div>
                 </div>
 
@@ -412,7 +416,7 @@
                                 <tr>
                                     <td>Form 1094</td>
                                     <td class="padding-5">
-                                        <a class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-not-allowed step-status-flag link-default">
                                             Pending
                                         </a>
                                     </td>
@@ -420,14 +424,14 @@
                                 <tr>
                                     <td>Form 1095</td>
                                     <td class="padding-5">
-                                        <a class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-not-allowed step-status-flag link-default">
                                             Pending
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
                     </div>
                 </div>
                 <div class="col-md-4 padding-right-12">
@@ -439,7 +443,7 @@
                                 <tr>
                                     <td>Final Form Approval</td>
                                     <td class="padding-5">
-                                        <a class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-not-allowed step-status-flag link-default">
                                             Pending
                                         </a>
                                     </td>
@@ -447,14 +451,14 @@
                                 <tr>
                                     <td>Print & Mail Requested</td>
                                     <td class="padding-5">
-                                        <a class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-not-allowed step-status-flag link-default">
                                             Pending
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
                     </div>
                 </div>
 
@@ -467,7 +471,7 @@
                                 <tr>
                                     <td>E-File</td>
                                     <td class="padding-5">
-                                        <a class="cursor-allowed step-status-flag link-default">
+                                        <a class="cursor-not-allowed step-status-flag link-default">
                                             Pending
                                         </a>
                                     </td>
@@ -475,14 +479,14 @@
                                 <tr>
                                     <td>IRS Corrections</td>
                                     <td class=" padding-5">
-                                        <span class="cursor-allowed step-status-flag link-default">
+                                        <span class="cursor-not-allowed step-status-flag link-default">
                                             Pending
                                         </span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
                     </div>
                 </div>
 

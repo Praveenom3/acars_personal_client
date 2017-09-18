@@ -248,7 +248,6 @@ export class CompaniesComponent implements OnInit {
           this.toastrService.success('Company Details Updated Successfully.');
           let companies: any[] = this.clientDashBoardService.companies;
           companies.push(result.data);
-          console.log(companies);
           this.clientDashBoardService.companies = companies;
         } else {
           this._errorMessage = 'Record not Updated';
