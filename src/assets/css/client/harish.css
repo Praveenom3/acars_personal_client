@@ -246,9 +246,12 @@ app-client-layout .section-container .left-small-box p {
 }
 
 .cursor-allowed{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
+.cursor-not-allowed{
+    cursor: default !important;
+}
 .content-header{
     padding: 10px 22px;
 }
@@ -303,7 +306,9 @@ app-client-layout .section-container .left-small-box p {
 .table-company-dashboard th a {
     color: black;
 }
-
+.view-manage-div{
+    height: 255px;
+}
 .table-company-dashboard tbody tr td {
     padding: 2px;
     border: none;
@@ -640,6 +645,12 @@ table.table-company-dashboard tbody tr:hover{
 }
 .employee-span{
     margin-left: 4px;
+}
+.employee-span-compliance{
+    margin-left: 27px;
+}
+.efile-span-irs{
+    margin-left: 32px;
 }
 .efile-span{
     display: block;

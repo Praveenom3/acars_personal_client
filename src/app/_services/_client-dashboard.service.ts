@@ -349,12 +349,19 @@ export class ClientDashBoardService {
             }).map(response => response.json())
             .catch(this._globalService.handleError);
     }
-
-    changeStyle() {
+    /**
+     * 
+     * @param vht 
+     */
+    changeStyle(vht = false) {
 
         this.vht = '';
         this.aca16 = '';
         this.aca17 = '';
+        if (vht) {
+            this.vht = 'active';
+            return true;
+        }
         switch (this.product.applicable_year) {
             case '2016':
                 this.aca16 = 'active';
@@ -635,14 +642,19 @@ export class ClientDashBoardService {
                                     }
                                 });
                             }
+                            if (product.product_id) {
+                                console.log(product)
+                                let clientKeys: any[] = Object.keys(product.clients);
+                                let client = product['clients'][clientKeys[0]];
 
-                            let clientKeys: any[] = Object.keys(product.clients);
-                            let client = product['clients'][clientKeys[0]];
+                                let clientId: any = this._globalService.encode(client['client_id']);
+                                let productId: any = this._globalService.encode(product.product_id);
+                                this.setBrandData()
+                                this._router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
+                            } else {
+                                this._router.navigate(['/products-not-exists']);
+                            }
 
-                            let clientId: any = this._globalService.encode(client['client_id']);
-                            let productId: any = this._globalService.encode(product.product_id);
-                            this.setBrandData()
-                            this._router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
                         } else {
                             this._router.navigate(['/products-not-exists']);
                         }
