@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CodeCalculatorService } from "app/_services/_code-calculator.service";
 import { LookupOptionsService } from "app/_services/_lookup-options.service";
 import { CodeFilterPipe } from "app/_filters/code-filter.pipe";
+import { PartialViews } from 'app/_partial-views/partial-views.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CodeFilterPipe } from "app/_filters/code-filter.pipe";
      ModalModule.forRoot(),
      FormsModule,
      DataTableModule,
-     ReactiveFormsModule
+     ReactiveFormsModule,
+     PartialViews,
   ],
   declarations: [CodeCalculatorComponent,CodeFilterPipe],
   providers:[CodeCalculatorService,LookupOptionsService]

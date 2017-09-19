@@ -56,6 +56,9 @@
                 </div>
             </li>
             <li *ngIf=globalService.masterData_permission>
+                <a class="disable-hover" id="search_link" [routerLinkActive]="['page-active']" [routerLink]="['/admin/master-data/manage-brands']"><b>Master Data</b></a>
+            </li>
+            <!-- <li *ngIf=globalService.masterData_permission>
                 <div class="menu-user-block" [routerLinkActive]="['dropdown-menu-active']">
                     <div class="dropdown">
                         <a href="javascript: void(0);" class="dropdown-toggle disable-hover" data-toggle="dropdown" aria-expanded="false"><b> Master Data</b>
@@ -100,7 +103,7 @@
                         </ul>
                     </div>
                 </div>
-            </li>
+            </li> -->
         </ul>
     </div>
 

@@ -19,6 +19,7 @@ export class OrdersComponent implements OnInit {
     hasFinancialRights: boolean = false;
     formToReset: any;
     askConfirm: boolean = false;
+    isVhtProduct: boolean = false;
     tempModal: any;
     public temp_arr = [];
     tempAvailableProducts: any;
@@ -210,14 +211,14 @@ export class OrdersComponent implements OnInit {
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
-            purchase_status: [''],
-            amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
-            account_manager: [''],
-            purchase_date: [''],
+            purchase_status: ['', Validators.compose([Validators.required])],
+            amount: ['', Validators.compose([Validators.required, Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
+            account_manager: ['', Validators.compose([Validators.required])],
+            purchase_date: ['', Validators.compose([Validators.required])],
             is_invoice: ['', Validators.compose([Validators.required])],
-            invoice_no: [''],
-            invoice_created_at: [''],
-            is_invoice_paid: ['0'],
+            invoice_no: ['', Validators.compose([Validators.required])],
+            invoice_created_at: ['', Validators.compose([Validators.required])],
+            is_invoice_paid: ['0', Validators.compose([Validators.required])],
             is_primary_contact: [''],
             is_billing_contact: [''],
             is_agreement_signed: [''],
@@ -234,14 +235,14 @@ export class OrdersComponent implements OnInit {
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_email: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             purchaser_mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
-            purchase_status: [''],
-            amount: ['', Validators.compose([Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
-            account_manager: [''],
-            purchase_date: [''],
+            purchase_status: ['', Validators.compose([Validators.required])],
+            amount: ['', Validators.compose([Validators.required, Validators.pattern(/^\s*([1-9]+)\d*(?:\.\d{1,2})?\s*$/)])],
+            account_manager: ['', Validators.compose([Validators.required])],
+            purchase_date: ['', Validators.compose([Validators.required])],
             is_invoice: ['', Validators.compose([Validators.required])],
-            invoice_no: [''],
-            invoice_created_at: [''],
-            is_invoice_paid: ['0'],
+            invoice_no: ['', Validators.compose([Validators.required])],
+            invoice_created_at: ['', Validators.compose([Validators.required])],
+            is_invoice_paid: ['0', Validators.compose([Validators.required])],
             is_primary_contact: [''],
             is_billing_contact: [''],
             is_agreement_signed: [''],
@@ -786,6 +787,24 @@ export class OrdersComponent implements OnInit {
             for (var i = 0; i < this.availableProducts.length; i++) {
                 if (this.availableProducts[i].product_id == value) {
                     this.show_account_manager = this.availableProducts[i].account_manager;
+
+                    if(this.availableProducts[i].product_name.indexOf("VHT") !== -1){
+                        this.isVhtProduct = true;
+                        form.controls['total_no_forms'].setValidators(null);
+                        form.controls['total_no_forms'].updateValueAndValidity();
+                    }else{
+                        this.isVhtProduct = false;
+                        form.controls['total_no_forms'].setValidators(Validators.compose([Validators.required]));
+                        form.controls['total_no_forms'].updateValueAndValidity();
+                    }
+                    
+                    if(form == this._addPurchaseForm){
+                        this._addPurchaseFormErrors['total_no_forms'].valid = true;
+                        this._addPurchaseFormErrors['total_no_forms'].message = '';
+                    }else if(form == this._updatePurchaseForm){
+                        this._updatePurchaseFormErrors['total_no_forms'].valid = true;
+                        this._updatePurchaseFormErrors['total_no_forms'].message = '';
+                    }
                 }
             }
         }
