@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { GlobalService } from "app/_services/_global.service";
 import { VhtBandComponent } from './vht-band/vht-band.component';
 import { VhtActionsComponent } from './vht-actions/vht-actions.component';
+import { AdminMasterDataNavComponent } from 'app/_partial-views/admin-masterData-nav/admin-masterData-nav.component';
 
 @NgModule({
    imports: [
@@ -23,8 +24,8 @@ import { VhtActionsComponent } from './vht-actions/vht-actions.component';
     ModalModule.forRoot(),
     FormsModule
   ],
-  declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent,VhtBandComponent, VhtActionsComponent],
+  declarations: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent,VhtBandComponent, VhtActionsComponent, AdminMasterDataNavComponent],
   providers:[GlobalService],
-  exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent,VhtBandComponent, VhtActionsComponent]
+  exports: [CloseModalConfirmationComponent, DeleteConfirmationComponent,BreadcrumbsComponent, SearchBandComponent, AdminDashboardNavComponent, ClientCompanyInfoComponent, ClientReportingBandComponent, ControlMessagesComponent,VhtBandComponent, VhtActionsComponent, AdminMasterDataNavComponent]
 })
 export class PartialViews { }
