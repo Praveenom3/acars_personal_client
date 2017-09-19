@@ -482,7 +482,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}">
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms'), 'required': !isVhtProduct}">
 
                                 <label class="form-control-label">Total # of Forms</label>
                                 <!-- <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="6" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_forms')}"> -->
@@ -542,7 +542,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">
 
                                 <label class="form-control-label">Purchased Status</label>
                                 <div style="height:34px; padding-top:5px;">
@@ -560,7 +560,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
                                 <label class="form-control-label">Amount</label>
                                 <input type="text" OnlyAmountNumber="true" class="form-control" [formControl]="_addPurchaseForm.controls['amount']" DecimalPlaces="2"
                                     minValue="1.00" maxValue="999999.00" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
@@ -586,7 +586,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
 
                                 <label class="form-control-label">Date of Purchase</label>
                                 <input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
@@ -739,7 +739,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}">
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms'), 'required': !isVhtProduct}">
 
                                 <label class="form-control-label">Total # of Forms</label>
                                 <!-- <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="6" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_forms']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_forms')}"> -->
@@ -799,7 +799,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">
 
                                 <label class="form-control-label">Purchased Status</label>
                                 <div style="height:34px; padding-top:5px;">
@@ -817,7 +817,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
                                 <label class="form-control-label">Amount</label>
                                 <input type="text" OnlyAmountNumber="true" DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']"
                                     [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
@@ -843,7 +843,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
+                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
 
                                 <label class="form-control-label">Date of Purchase</label>
                                 <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
