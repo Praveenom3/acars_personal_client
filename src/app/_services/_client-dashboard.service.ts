@@ -643,7 +643,7 @@ export class ClientDashBoardService {
                                 });
                             }
                             if (product.product_id) {
-                                if (product.product_name == 'vht') {
+                                if (product.product_name.toLowerCase() == 'vht') {
                                     this._router.navigate(['/client/vht']);
                                 } else {
 
