@@ -205,7 +205,7 @@ export class OrdersComponent implements OnInit {
 
         this._addPurchaseForm = _formBuilder.group({
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.minValue(1)])],
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(10), this.minValue(1)])],
             total_no_forms: ['', Validators.compose([Validators.required])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -229,7 +229,7 @@ export class OrdersComponent implements OnInit {
             purchase_user_id: [''],
             purchase_id: [''],
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.minValue(1)])],
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(10),this.minValue(1)])],
             total_no_forms: ['', Validators.compose([Validators.required])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -788,20 +788,20 @@ export class OrdersComponent implements OnInit {
                 if (this.availableProducts[i].product_id == value) {
                     this.show_account_manager = this.availableProducts[i].account_manager;
 
-                    if(this.availableProducts[i].product_name.indexOf("VHT") !== -1){
+                    if (this.availableProducts[i].product_name.indexOf("VHT") !== -1) {
                         this.isVhtProduct = true;
                         form.controls['total_no_forms'].setValidators(null);
                         form.controls['total_no_forms'].updateValueAndValidity();
-                    }else{
+                    } else {
                         this.isVhtProduct = false;
                         form.controls['total_no_forms'].setValidators(Validators.compose([Validators.required]));
                         form.controls['total_no_forms'].updateValueAndValidity();
                     }
-                    
-                    if(form == this._addPurchaseForm){
+
+                    if (form == this._addPurchaseForm) {
                         this._addPurchaseFormErrors['total_no_forms'].valid = true;
                         this._addPurchaseFormErrors['total_no_forms'].message = '';
-                    }else if(form == this._updatePurchaseForm){
+                    } else if (form == this._updatePurchaseForm) {
                         this._updatePurchaseFormErrors['total_no_forms'].valid = true;
                         this._updatePurchaseFormErrors['total_no_forms'].message = '';
                     }
@@ -970,7 +970,8 @@ export class OrdersComponent implements OnInit {
         'total_no_eins': {
             'required': 'Total No. of EIN\'s is required.',
             'min': 'Min value can\'t be less than already provided value',
-            'minValue': 'Total No. of EIN\'s should be greater than 0'
+            'minValue': 'Total No. of EIN\'s should be greater than 0',
+            'maxValue': 'Total No. of EIN\'s should be less than or equal to 10'
         },
         'total_no_forms': {
             'required': 'Total No. of Form\'s is required.'
@@ -1099,13 +1100,31 @@ export class OrdersComponent implements OnInit {
             }
         }
     }
-
+    /**
+     * 
+     * @param max 
+     */
     public minValue(max: Number): ValidatorFn {
         return (control: AbstractControl): { [key: string]: any } => {
             const input = control.value,
                 isValid = input < max;
             if (isValid)
                 return { 'minValue': { max } }
+            else
+                return null;
+        };
+    }
+
+    /**
+     * 
+     * @param max 
+     */
+    public maxValue(max: Number): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: any } => {
+            const input = control.value,
+                isValid = input > max;
+            if (isValid)
+                return { 'maxValue': { max } }
             else
                 return null;
         };

@@ -496,7 +496,7 @@ table.table-company-dashboard tbody tr:hover {
 }
 
 .table-fixed tbody {
-    height: 75px;
+    height: 50px;
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;

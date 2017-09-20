@@ -34,7 +34,7 @@ export class ElementMasterResolver implements Resolve<any> {
         } else if (state.url.indexOf('/anything-else') !== -1) {
             sectionId = 6;
         } else if (state.url.indexOf('/basic-reporting-info') !== -1) {
-            this.validateStepLevelData('benefit-plan-info');
+            this.validateStepLevelData('basic-reporting-info');
             sectionId = 1;
         } else if (state.url.indexOf('/mec-coverage') !== -1) {
             sectionId = 8;
@@ -97,13 +97,13 @@ export class ElementMasterResolver implements Resolve<any> {
 
         switch (step) {
             case 'basic-reporting-info':
-                if (sessionCompanyData.company_ein) {
+                if (!sessionCompanyData.company_ein) {
                     this.toasterService.error("Company EIN is required to fill Basic Plan information");
                     this.redirectToDashboard(sessionProductId, sessionClientId);
                 }
                 break;
-            case 'basic-reporting-info':
-                if (sessionCompanyData.company_ein && sessionCompanyData.basicReporting) {
+            case 'benefit-plan-info':
+                if (!sessionCompanyData.company_ein || !sessionCompanyData.basicReporting) {
                     this.toasterService.error("Basic Plan information is required to fill Benefit Plan information");
                     this.redirectToDashboard(sessionProductId, sessionClientId);
                 }

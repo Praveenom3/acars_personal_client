@@ -196,8 +196,8 @@ export class CompaniesComponent implements OnInit {
    * 
    * @param companyInfo 
    */
-  public updateCompanyInfo(companyInfo: Company) {
-    if (!this.clientDashBoardService.company.onBoarding_data) {
+  public updateCompanyInfo(companyInfo: Company, updateEin: boolean = false) {
+    if (!this.clientDashBoardService.company.onBoarding_data && !updateEin) {
       return false;
     }
     this.companyEdit = Object.assign({}, companyInfo);
