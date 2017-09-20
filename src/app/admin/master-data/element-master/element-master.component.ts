@@ -36,7 +36,7 @@ export class ElementMasterComponent implements OnInit {
 
     public sections: any[] = [
         { id: 1, section: 'Basic Information' },
-        { id: 2, section: 'Large Emplpoyee Status' },
+        { id: 2, section: 'Large Employee Status' },
         { id: 3, section: 'Plan Offering Criteria' },
         { id: 4, section: 'Designed Government Entity' },
         { id: 5, section: 'Aggregated Group' },
