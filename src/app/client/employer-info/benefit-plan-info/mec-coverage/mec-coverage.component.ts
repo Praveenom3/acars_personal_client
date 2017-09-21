@@ -81,7 +81,7 @@ export class MecCoverageComponent implements OnInit {
   private ElementLabelsList() {
     let labelsData = this.route.snapshot.data['labels'];
     if (labelsData) {
-      for (let label of labelsData) {
+      for (let label of labelsData.labels) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
@@ -178,7 +178,7 @@ export class MecCoverageComponent implements OnInit {
             } else {
               this.router.navigate([url + '/' + 'employer-info/plan-classes']);
             }
-            this.getMecCoverageData();
+           // this.getMecCoverageData();
             //this.mecCoverageData = this.createMecCoverage();
             // this.toastrService.success('MEC Coverage record updated succesfully.');
           } else {
@@ -197,7 +197,7 @@ export class MecCoverageComponent implements OnInit {
             } else {
               this.router.navigate([url + '/' + 'employer-info/plan-classes']);
             }
-            this.getMecCoverageData();
+          //  this.getMecCoverageData();
             //this.mecCoverageData = this.createMecCoverage();
             // this.toastrService.success('MEC Coverage record added succesfully.');
           } else {

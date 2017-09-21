@@ -95,7 +95,7 @@ export class EmployeeContributionsComponent implements OnInit {
   private ElementLabelsList() {
     let labelsData = this.route.snapshot.data['labels'];
     if (labelsData) {
-      for (let label of labelsData) {
+      for (let label of labelsData.labels) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
@@ -153,6 +153,7 @@ export class EmployeeContributionsComponent implements OnInit {
   }
   /*on submit sending form data to service.It is for both add and update*/
   public onSubmit(param) {
+    this.employeeContributionData['company_id']=this.company_id;
     this.planClassesService.createOrUpdateEmployeeContribution(this.id, this.employeeContributionData).subscribe(
       result => {
         if (result.success) {
