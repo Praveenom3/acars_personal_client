@@ -216,7 +216,7 @@ export class OrdersComponent implements OnInit {
             account_manager: ['', Validators.compose([Validators.required])],
             purchase_date: ['', Validators.compose([Validators.required])],
             is_invoice: ['', Validators.compose([Validators.required])],
-            invoice_no: ['', Validators.compose([Validators.required])],
+            invoice_no: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
             invoice_created_at: ['', Validators.compose([Validators.required])],
             is_invoice_paid: ['0', Validators.compose([Validators.required])],
             is_primary_contact: [''],
@@ -229,7 +229,7 @@ export class OrdersComponent implements OnInit {
             purchase_user_id: [''],
             purchase_id: [''],
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(10),this.minValue(1)])],
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(10), this.minValue(1)])],
             total_no_forms: ['', Validators.compose([Validators.required])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -240,7 +240,7 @@ export class OrdersComponent implements OnInit {
             account_manager: ['', Validators.compose([Validators.required])],
             purchase_date: ['', Validators.compose([Validators.required])],
             is_invoice: ['', Validators.compose([Validators.required])],
-            invoice_no: ['', Validators.compose([Validators.required])],
+            invoice_no: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
             invoice_created_at: ['', Validators.compose([Validators.required])],
             is_invoice_paid: ['0', Validators.compose([Validators.required])],
             is_primary_contact: [''],
@@ -427,7 +427,7 @@ export class OrdersComponent implements OnInit {
     public toggleInvoiceFieldsValidator(form, status) {
         if (status == true) {
 
-            form.controls['invoice_no'].setValidators(Validators.compose([Validators.required]));
+            form.controls['invoice_no'].setValidators(Validators.compose([Validators.required, Validators.maxLength(30)]));
             form.controls['invoice_created_at'].setValidators(Validators.compose([Validators.required]));
             form.controls['is_invoice_paid'].setValidators(Validators.compose([Validators.required]));
 
@@ -1009,7 +1009,8 @@ export class OrdersComponent implements OnInit {
             'required': 'Invoice is required.'
         },
         'invoice_no': {
-            'required': 'Invoice No. is required.'
+            'required': 'Invoice No. is required.',
+            'maxlength': 'Invoice No. should be a maximum 30 chars.'
         },
         'invoice_created_at': {
             'required': 'Invoice Date is required.'
