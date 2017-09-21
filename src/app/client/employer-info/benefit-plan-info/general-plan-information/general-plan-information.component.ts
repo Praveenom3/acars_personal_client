@@ -12,6 +12,8 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./general-plan-information.component.css']
 })
 export class GeneralPlanInformationComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number;
   client_id: any;
   purchase_id: any;
   companyDetails: any;
@@ -40,6 +42,8 @@ export class GeneralPlanInformationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = 1240;
+	
     this.generalPlanInfoData = this.createNewGeneralPlanInfo();
     this.ElementLabelsList();
     this.getGeneralPlanInfoData();
@@ -96,9 +100,9 @@ export class GeneralPlanInformationComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    let labelsData = this.route.snapshot.data['labels'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    this.labelsData = this.route.snapshot.data['labels'].labels;
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
