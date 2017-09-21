@@ -73,7 +73,7 @@ export class PlanOfferingCriteriaComponent implements OnInit {
   private ElementLabelsList() {
     let labelsData = this.route.snapshot.data['labels'];
     if (labelsData) {
-      for (let label of labelsData) {
+      for (let label of labelsData.labels) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }

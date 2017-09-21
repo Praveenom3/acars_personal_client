@@ -8,10 +8,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 @Injectable()
 export class ElementMasterResolver implements Resolve<any> {
+    isCompletedData: any;
     company_id: any;
     product_id: any;
 
-    constructor(private elementMasterService: ElementMasterService,
+    constructor(private aroute: ActivatedRoute, private elementMasterService: ElementMasterService,
         private globalService: GlobalService,
         private toasterService: ToastrService,
         private router: Router,
@@ -20,39 +21,85 @@ export class ElementMasterResolver implements Resolve<any> {
         this.product_id = this.globalService.decode(route.params['product']);
         this.company_id = this.globalService.decode(route.params['company']);
         let sectionId;
-
+        let urlString;
         this.validateSessionDataAndUrl();
 
         if (state.url.indexOf('/emp-status-tracking') !== -1) {
             sectionId = 2;
+            urlString = "basic-reporting-info";
         } else if (state.url.indexOf('/plan-offering-criteria') !== -1) {
             sectionId = 3;
+            urlString = "basic-reporting-info";
         } else if (state.url.indexOf('/designated-govt-entity') !== -1) {
             sectionId = 4;
+            urlString = "basic-reporting-info";
         } else if (state.url.indexOf('/aggregated-group') !== -1) {
             sectionId = 5;
+            urlString = "basic-reporting-info";
         } else if (state.url.indexOf('/anything-else') !== -1) {
             sectionId = 6;
+            urlString = "basic-reporting-info";
         } else if (state.url.indexOf('/basic-reporting-info') !== -1) {
-            this.validateStepLevelData('benefit-plan-info');
+            // this.validateStepLevelData('basic-reporting-info');
+            urlString = "basic-reporting-info";
             sectionId = 1;
         } else if (state.url.indexOf('/mec-coverage') !== -1) {
+            urlString = "benefit-plan-info";
             sectionId = 8;
         } else if (state.url.indexOf('/benefit-plan-info') !== -1) {
-            this.validateStepLevelData('benefit-plan-info');
+            //  this.validateStepLevelData('benefit-plan-info');
+            urlString = "benefit-plan-info";
             sectionId = 7;
         }
         else if (state.url.indexOf('/coverage-offered') !== -1) {
+            urlString = "plan-class";
             sectionId = 10;
         }
         else if (state.url.indexOf('/employee-contributions') !== -1) {
+            urlString = "plan-class";
             sectionId = 11;
         }
         else if (state.url.indexOf('/plan-classes/plan-class') !== -1) {
+            urlString = "plan-class";
             sectionId = 9;
         }
+        // console.log(state.url);
+        this.checkIsCompleted(urlString, this.elementMasterService.getLabels(sectionId, this.product_id, this.company_id), state.url);
 
-        return this.elementMasterService.getLabels(sectionId, this.product_id);
+        return this.elementMasterService.getLabels(sectionId, this.product_id, this.company_id);
+    }
+
+    public checkIsCompleted(section, data, stateUrl) {
+        let sessionCompanyData = JSON.parse(this.globalService.getCompany());
+        let sessionClientId = this.globalService.decode(sessionCompanyData.client_id);
+        let sessionCompanyId = this.globalService.decode(sessionCompanyData.company_id);
+        let sessionProductId = this.globalService.decode(sessionCompanyData.product_id);
+        data.subscribe(result => {
+            this.isCompletedData = result.company;
+            if (section == "basic-reporting-info") {
+                if (!sessionCompanyData.company_ein) {
+                    this.toasterService.error("Company EIN is required to fill Basic Plan information.");
+                    this.redirectToDashboard(sessionProductId, sessionClientId);
+                }
+            }
+            else if (section == "benefit-plan-info") {
+                if (this.isCompletedData.is_bri_completed == 0) {
+                    this.toasterService.error("Basic Reporting information is required to fill.");
+                    this.router.navigate(['client/' + this.globalService.encode(this.product_id) + '/' + this.globalService.encode(this.company_id) + '/employer-info/basic-reporting-info']);
+                }
+            } else if (section == "plan-class") {
+                if (this.isCompletedData.is_bpi_completed == 0) {
+                    this.toasterService.error("Benefit Plan information is required to fill.");
+                    this.router.navigate(['client/' + this.globalService.encode(this.product_id) + '/' + this.globalService.encode(this.company_id) + '/employer-info/benefit-plan-info']);
+                }
+            }
+            /* if (this.product_id != sessionProductId || this.company_id != sessionCompanyId) {
+                 this.toasterService.error("Un Authorised company user");
+                 this.redirectToDashboard(sessionProductId, sessionClientId);
+             }*/
+        });
+
+        return true;
     }
 
     /**
@@ -71,7 +118,7 @@ export class ElementMasterResolver implements Resolve<any> {
             this.toasterService.error("Please complete on boarding step");
             this.redirectToDashboard(sessionProductId, sessionClientId);
         }
-        if (this.product_id != sessionProductId || this.company_id != sessionCompanyId) {
+        if (this.product_id != sessionProductId && this.company_id != sessionCompanyId) {
             this.toasterService.error("Un Authorised company user");
             this.redirectToDashboard(sessionProductId, sessionClientId);
         }
@@ -90,6 +137,30 @@ export class ElementMasterResolver implements Resolve<any> {
      * @param step 
      */
     private validateStepLevelData(step: string) {
+        let sessionCompanyData = JSON.parse(this.globalService.getCompany());
+        let sessionCompanyId = this.globalService.decode(sessionCompanyData.company_id);
+        let sessionProductId = this.globalService.decode(sessionCompanyData.product_id);
+        let sessionClientId = this.globalService.decode(sessionCompanyData.client_id);
+
+        switch (step) {
+            case 'basic-reporting-info':
+                if (sessionCompanyData.company_ein) {
+                    this.toasterService.error("Company EIN is required to fill Basic Plan information");
+                    this.redirectToDashboard(sessionProductId, sessionClientId);
+                }
+                break;
+            case 'benefit-plan-info':
+                if (sessionCompanyData.company_ein && sessionCompanyData.basicReporting) {
+                    this.toasterService.error("Basic Plan information is required to fill Benefit Plan information");
+                    this.redirectToDashboard(sessionProductId, sessionClientId);
+                }
+                break;
+        }
+        return true;
+    }
+
+    /* checking particular module is filled or not */
+    private validateEmployerInfoData(step: string) {
         let sessionCompanyData = JSON.parse(this.globalService.getCompany());
         let sessionCompanyId = this.globalService.decode(sessionCompanyData.company_id);
         let sessionProductId = this.globalService.decode(sessionCompanyData.product_id);
