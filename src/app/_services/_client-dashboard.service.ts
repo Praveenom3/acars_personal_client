@@ -560,7 +560,7 @@ export class ClientDashBoardService {
         let data: any = {
             'purchase_id': this._globalService.encode(this.company.purchase_id),
             'company_id': this._globalService.encode(this.company.company_id),
-            'product_id': this._globalService.encode(this.productParams),
+            'product_id': this._globalService.encode(this.product.product_id),
             'client_id': this._globalService.encode(this.company.client_id),
             'company_ein': this.company.company_ein,
             'company_name': this.company.company_name,
@@ -654,14 +654,17 @@ export class ClientDashBoardService {
                                 });
                             }
                             if (product.product_id) {
-                                console.log(product)
-                                let clientKeys: any[] = Object.keys(product.clients);
-                                let client = product['clients'][clientKeys[0]];
+                                if (product.product_name.toLowerCase() == 'vht') {
+                                    this._router.navigate(['/client/vht']);
+                                } else {
 
-                                let clientId: any = this._globalService.encode(client['client_id']);
-                                let productId: any = this._globalService.encode(product.product_id);
-                                this.setBrandData()
-                                this._router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
+                                    let clientKeys: any[] = Object.keys(product.clients);
+                                    let client = product['clients'][clientKeys[0]];
+                                    let clientId: any = this._globalService.encode(client['client_id']);
+                                    let productId: any = this._globalService.encode(product.product_id);
+                                    this.setBrandData()
+                                    this._router.navigate(['/client/' + productId + '/' + clientId + '/dashboard']);
+                                }
                             } else {
                                 this._router.navigate(['/products-not-exists']);
                             }

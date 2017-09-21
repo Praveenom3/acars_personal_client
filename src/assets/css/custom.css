@@ -152,3 +152,32 @@ body.body-blue .dropdown-menu .dropdown-item.page-active {
     color: red !important;
 }
 /* ./header */
+
+/* select */
+.has-danger .form-control-danger {
+    background-position: 96% 7px;
+}
+/* ./select */
+/* header menu */
+ul.actions.media-hide-header{
+    text-align: center;
+}
+ul.actions.media-hide-header > li:nth-child(1) {
+    width: 60px;
+}
+ul.actions.media-hide-header > li:nth-child(2) {
+    width: 80px;
+}
+ul.actions.media-hide-header > li:nth-child(3) {
+    width: 102px;
+}
+ul.actions.media-hide-header > li:nth-child(4) {
+    width: 114px;
+}
+nav.top-menu .menu .menu-user-block{
+    float: unset;
+}
+body.body-blue .actions>li{
+    margin-right: 0px !important;
+}
+/* ./header menu */

@@ -656,9 +656,9 @@ table.table-company-dashboard tbody tr:hover {
     color: white;
 }
 
-.link-default:hover {
+/* .link-default:hover {
     color: #acb7bf;
-}
+} */
 
 .client-name-header,
 .company-client-number-header {

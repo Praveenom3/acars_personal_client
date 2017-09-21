@@ -248,6 +248,7 @@ export class CompaniesComponent implements OnInit {
           this.toastrService.success('Company Details Updated Successfully.');
           let companies: any[] = this.clientDashBoardService.companies;
           companies.push(result.data);
+
           this.clientDashBoardService.companies = companies;
         } else {
           this._errorMessage = 'Record not Updated';
@@ -554,6 +555,7 @@ export class CompaniesComponent implements OnInit {
         } else {
           return false;
         }
+        break;
       case 'benefitPlan':
         if (this.clientDashBoardService.company.basicReporting) {
           this.router.navigate([this.clientDashBoardService.benefitPlanLink])
