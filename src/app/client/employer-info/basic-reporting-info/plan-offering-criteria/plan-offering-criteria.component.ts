@@ -12,6 +12,8 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./plan-offering-criteria.component.css']
 })
 export class PlanOfferingCriteriaComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number = 1240;
   client_id: any;
   purchase_id: any;
   companyDetails: any;
@@ -42,6 +44,8 @@ export class PlanOfferingCriteriaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
+	
     this.ElementLabelsList();
     this.planOfferingData = this.createNewPlanOfferingCriteria();
     this.getPlanOfferData();
@@ -71,9 +75,9 @@ export class PlanOfferingCriteriaComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    let labelsData = this.route.snapshot.data['labels'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    this.labelsData = this.route.snapshot.data['labels'];
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }

@@ -13,6 +13,8 @@ import { ClientDashBoardService } from "app/_services/_client-dashboard.service"
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number = 1240;
   productYear: any;
   initialCount: number = 10;
   company_name: any;
@@ -53,11 +55,13 @@ export class BasicInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
+	
     this.basicInfoData = this.createNewBasicInfo();
-    let labelsData = this.route.snapshot.data['labels'];
+    this.labelsData = this.route.snapshot.data['labels'];
     let basicInfoData = this.route.snapshot.data['data'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
