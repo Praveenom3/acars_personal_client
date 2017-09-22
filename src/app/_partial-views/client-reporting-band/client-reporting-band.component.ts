@@ -29,7 +29,7 @@ export class ClientReportingBandComponent implements OnInit {
     if (labelsData) {
       this.companyData = labelsData.company;
     }
-console.log(labelsData.company);
+
   }
 
   /**
