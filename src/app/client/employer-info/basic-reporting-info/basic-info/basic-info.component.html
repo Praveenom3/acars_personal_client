@@ -49,47 +49,63 @@
 <div class="product-container-with-sub-tabs col-md-12">
     <div class="col-md-12 padding-0">
         <form>
-            <div class="col-md-12 padding-0">
-                <div class="container margin-top-30 margin-bottom-10">
+            <div class="col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
+                <div id="employer_info_container" [style.width.px]="employer_info_container_width" >
                     <!-- form content -->
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[0]}}</label>
-                                        <input type="text" class="form-control" AlphanFewChar="true" [(ngModel)]="basicInfoData.contact_first_name" name="contact_first_name" maxlength="20">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                            <input type="text" class="form-control" AlphanFewChar="true" [(ngModel)]="basicInfoData.contact_first_name" name="contact_first_name" maxlength="20">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[1]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
                                             <input type="text" class="form-control" AlphanFewChar="true" [(ngModel)]="basicInfoData.contact_middle_name" name="contact_middle_name" maxlength="20">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[2]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
                                             <input type="text" class="form-control" AlphanFewChar="true" [(ngModel)]="basicInfoData.contact_last_name" name="contact_last_name" maxlength="20">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[3]}}</label>
-                                        <select class="form-control" [(ngModel)]="basicInfoData.contact_person_suffix" name="contact_person_suffix">
-                                            <option value="">Select Suffix</option>
-                                            <option value="1">Jr</option>
-                                            <option value="2">Sr</option>
-                                            <option value="3">I</option>
-                                            <option value="4">II</option>
-                                            <option value="5">III</option>
-                                            <option value="6">IV</option>
-                                            <option value="7">V</option>
-                                        </select>
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                            <select class="form-control" [(ngModel)]="basicInfoData.contact_person_suffix" name="contact_person_suffix">
+                                                <option value="">Select Suffix</option>
+                                                <option value="1">Jr</option>
+                                                <option value="2">Sr</option>
+                                                <option value="3">I</option>
+                                                <option value="4">II</option>
+                                                <option value="5">III</option>
+                                                <option value="6">IV</option>
+                                                <option value="7">V</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -97,41 +113,55 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[4]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
                                             <input type="text" class="form-control" AlphanFewChar="true" [(ngModel)]="basicInfoData.contact_person_title" name="contact_person_title" maxlength="10">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[5]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
                                             <input type="text" id="personEmail" #personEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.contact_person_email" name="contact_person_email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
-                                        </div>
-                                        <div class="md-errors-spacer" [hidden]="personEmail.valid || personEmail.untouched">
-                                            <span class="help-block help-block-error" *ngIf="personEmail.errors && personEmail.errors.pattern">
-                                                Email is invalid
-                                            </span>
+                                            <div class="md-errors-spacer" [hidden]="personEmail.valid || personEmail.untouched">
+                                                <span class="help-block help-block-error" *ngIf="personEmail.errors && personEmail.errors.pattern">
+                                                    Email is invalid
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[6]}}</label>
-                                        <input type="text" id="contactPhone" #contactPhone="ngModel" class="form-control" minlength="14" [textMask]="{mask: mask,guide: false, modelClean: true}" [(ngModel)]="basicInfoData.contact_phone_number" name="contact_phone_number">
-                                    </div>
-                                    <div class="md-errors-spacer" [hidden]="contactPhone.valid || contactPhone.untouched">
-                                        <span class="help-block help-block-error" *ngIf="contactPhone.errors && contactPhone.errors.minlength">
-                                            Phone should be 10 digit length.
-                                        </span>
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
+                                            <input type="text" id="contactPhone" #contactPhone="ngModel" class="form-control" minlength="14" [textMask]="{mask: mask,guide: false, modelClean: true}" [(ngModel)]="basicInfoData.contact_phone_number" name="contact_phone_number">
+                                            <div class="md-errors-spacer" [hidden]="contactPhone.valid || contactPhone.untouched">
+                                                <span class="help-block help-block-error" *ngIf="contactPhone.errors && contactPhone.errors.minlength">
+                                                    Phone should be 10 digit length.
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[7]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[7].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[7].element_label"></label>
                                             <input type="text" class="form-control" [(ngModel)]="basicInfoData.street_address_1" name="street_address_1" maxlength="200" inputFilter="true">
                                         </div>
                                     </div>
@@ -141,36 +171,50 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[8]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[8].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[8].element_label"></label>
                                             <input type="text" class="form-control" [(ngModel)]="basicInfoData.street_address_2" name="street_address_2" maxlength="200" inputFilter="true">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[9]}}</label>
-                                        <select class="form-control form-height" [(ngModel)]="basicInfoData.contact_country" name="contact_country">
-                                            <option value="1">United States</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[10]}}</label>
-                                        <div class="form-group">
-                                            <select class="form-control form-height" [(ngModel)]="basicInfoData.contact_state" name="contact_state">
-                                                        <option  value="null">Select State</option>
-                                                        <option [ngValue]="state.state_id" *ngFor="let state of states">{{state.state_code}}</option>
-                                                    </select>
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[9].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[9].element_label"></label>
+                                            <select class="form-control form-height" [(ngModel)]="basicInfoData.contact_country" name="contact_country">
+                                                <option value="1">United States</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[11]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[10].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[10].element_label"></label>
+                                            <select class="form-control form-height" [(ngModel)]="basicInfoData.contact_state" name="contact_state">
+                                                <option  value="null">Select State</option>
+                                                <option [ngValue]="state.state_id" *ngFor="let state of states">{{state.state_code}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[11].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[11].element_label"></label>
                                             <input type="text" class="form-control" [(ngModel)]="basicInfoData.contact_city" name="contact_city" maxlength="50" AlphanMoreChar="true">
                                         </div>
                                     </div>
@@ -180,41 +224,58 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[12]}}</label>
-                                        <input type="text" class="form-control" [(ngModel)]="basicInfoData.contact_zip" name="contact_zip" maxlength="5" OnlyNumber="true">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[12].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[12].element_label"></label>
+                                            <input type="text" class="form-control" [(ngModel)]="basicInfoData.contact_zip" name="contact_zip" maxlength="5" OnlyNumber="true">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[13]}}</label>
-                                        <div class="form-group">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[13].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[13].element_label"></label>
                                             <input type="text" class="form-control" [(ngModel)]="basicInfoData.emp_benefit_broker_name" name="emp_benefit_broker_name" maxlength="34" AlphanFewChar="true">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[14]}}</label>
-                                        <div class="form-group">
-                                            <input type="text" id="brokerEmail" #brokerEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.emp_benefit_broker_email" name="emp_benefit_broker_email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
+                                        <div class="form-group inl-q-a">
+                                            <div>
+                                                <label class="control-label span-label" [innerHTML]="labelsData[14].element_serial_id"></label>
+                                            </div>
+                                            <div class="tabSpace width-100">
+                                                <label class="control-label span-label" [innerHTML]="labelsData[14].element_label"></label>
+                                                <input type="text" id="brokerEmail" #brokerEmail="ngModel" class="form-control" [(ngModel)]="basicInfoData.emp_benefit_broker_email" name="emp_benefit_broker_email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
+                                                
+                                                <div class="md-errors-spacer" [hidden]="brokerEmail.valid || brokerEmail.untouched">
+                                                    <span class="help-block help-block-error" *ngIf="brokerEmail.errors && brokerEmail.errors.pattern">
+                                                        Email is invalid
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="md-errors-spacer" [hidden]="brokerEmail.valid || brokerEmail.untouched">
-                                            <span class="help-block help-block-error" *ngIf="brokerEmail.errors && brokerEmail.errors.pattern">
-                                                Email is invalid
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="l0">{{labels[15]}}</label>
-                                        <input type="text" id="brokerPhone" #brokerPhone="ngModel" minlength="14" class="form-control" [textMask]="{mask: mask,guide: false, modelClean: true}" [(ngModel)]="basicInfoData.emp_benefit_phone_number" name="emp_benefit_phone_number">
-                                    </div>
-                                    <div class="md-errors-spacer" [hidden]="brokerPhone.valid || brokerPhone.untouched">
-                                        <span class="help-block help-block-error" *ngIf="brokerPhone.errors && brokerPhone.errors.minlength">
-                                            Phone should be 10 digit length.
-                                        </span>
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[15].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[15].element_label"></label>
+                                            <input type="text" id="brokerPhone" #brokerPhone="ngModel" minlength="14" class="form-control" [textMask]="{mask: mask,guide: false, modelClean: true}" [(ngModel)]="basicInfoData.emp_benefit_phone_number" name="emp_benefit_phone_number">
+                                            <div class="md-errors-spacer" [hidden]="brokerPhone.valid || brokerPhone.untouched">
+                                                <span class="help-block help-block-error" *ngIf="brokerPhone.errors && brokerPhone.errors.minlength">
+                                                    Phone should be 10 digit length.
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

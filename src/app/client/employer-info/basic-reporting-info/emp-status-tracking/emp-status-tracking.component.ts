@@ -13,6 +13,8 @@ import { GlobalService } from "app/_services/_global.service";
 })
 
 export class EmpStatusTrackingComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number = 1240;
   client_id: any;
   purchase_id: any;
   companyDetails: any;
@@ -43,11 +45,13 @@ export class EmpStatusTrackingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
+	
     this.empStatusData = this.createNewEmpStatus();
-    let labelsData = this.route.snapshot.data['labels'];
+    this.labelsData = this.route.snapshot.data['labels'];
     let empStatusData = this.route.snapshot.data['data'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }

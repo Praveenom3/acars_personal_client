@@ -13,7 +13,6 @@ export class ClientReportingBandComponent implements OnInit {
   @ViewChild('companyUploadDataFile') public companyUploadDataFile: ModalDirective;
 
   companyData: { basicReporting: string; benefitPlan: string; planClasses: string; };
-  company_id: any;
   company: string;
   product: string;
   constructor(public route: ActivatedRoute,
@@ -21,18 +20,16 @@ export class ClientReportingBandComponent implements OnInit {
     public router: Router, private _globalService: GlobalService) {
     this.product = route.snapshot.params['product'];
     this.company = route.snapshot.params['company'];
-    this.company_id = _globalService.decode(route.snapshot.params['company']);
   }
 
   ngOnInit() {
     this.companyData = this.infoObject();
-    let companyDatas = this.clientDashBoardService.getIsCompletedInfo(this.company_id);
-    companyDatas.subscribe((info) => {
-      this.companyData = info;
-      console.log(this.companyData);
-    },
-      error => { }
-    );
+
+    let labelsData = this.route.snapshot.data['labels'];
+    if (labelsData) {
+      this.companyData = labelsData.company;
+    }
+
   }
 
   /**

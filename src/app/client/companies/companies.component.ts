@@ -548,7 +548,6 @@ export class CompaniesComponent implements OnInit {
    * @param step 
    */
   public redirectToCompanyData(step: string) {
-
     switch (step) {
       case 'basicReporting':
         if (this.clientDashBoardService.company.company_ein) {
