@@ -29,7 +29,6 @@ export class ClientReportingBandComponent implements OnInit {
     let companyDatas = this.clientDashBoardService.getIsCompletedInfo(this.company_id);
     companyDatas.subscribe((info) => {
       this.companyData = info;
-      console.log(this.companyData);
     },
       error => { }
     );
