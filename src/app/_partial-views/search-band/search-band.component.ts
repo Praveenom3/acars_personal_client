@@ -11,7 +11,7 @@ export class SearchBandComponent implements OnInit {
   module: string;
   searchParam: any;
 
-  constructor(router: Router) {
+  constructor(private router: Router) {
 
     const state: RouterState = router.routerState;
     const snapshot: RouterStateSnapshot = state.snapshot;
@@ -27,5 +27,11 @@ export class SearchBandComponent implements OnInit {
   ngOnInit() {
     
   }
-
+  /**
+   * 
+   */
+  searchData(){
+    this.searchParam = this.searchParam ? this.searchParam : '';
+    this.router.navigate(['/admin/search/search-results'], { queryParams: { key: this.searchParam } });
+  }
 }
