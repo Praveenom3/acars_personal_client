@@ -63,6 +63,11 @@ export class ElementMasterResolver implements Resolve<any> {
             urlString = "plan-class";
             sectionId = 9;
         }
+        else if (state.url.indexOf('/plan-classes') !== -1) {
+            urlString = "plan-class";
+            sectionId = 9;
+        }
+      
         // console.log(state.url);
         this.checkIsCompleted(urlString, this.elementMasterService.getLabels(sectionId, this.product_id, this.company_id), state.url);
 
