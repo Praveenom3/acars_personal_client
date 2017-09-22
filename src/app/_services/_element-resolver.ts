@@ -88,12 +88,12 @@ export class ElementMasterResolver implements Resolve<any> {
                 }
             }
             else if (section == "benefit-plan-info") {
-                if (!this.isCompletedData.is_bri_completed) {
+                if (!this.isCompletedData.basicReporting) {
                     this.toasterService.error("Basic Reporting information is required to fill.");
                     this.router.navigate(['client/' + this.globalService.encode(this.product_id) + '/' + this.globalService.encode(this.company_id) + '/employer-info/basic-reporting-info']);
                 }
             } else if (section == "plan-class") {
-                if (!this.isCompletedData.is_bpi_completed) {
+                if (!this.isCompletedData.benefitPlan) {
                     this.toasterService.error("Benefit Plan information is required to fill.");
                     this.router.navigate(['client/' + this.globalService.encode(this.product_id) + '/' + this.globalService.encode(this.company_id) + '/employer-info/benefit-plan-info']);
                 }
