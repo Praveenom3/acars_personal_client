@@ -740,7 +740,7 @@ button.add-company-ein {
 .white-space{
     white-space: nowrap;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .content-header-text {
         top: 15px;
         position: absolute;
@@ -811,10 +811,104 @@ button.add-company-ein {
     .company-details-display {
         font-size: 12px;
     }
+} */
+
+/* @media screen and (min-width: 768px) and (max-width:991px){
+    .content-header-text {
+        top: 8%;
+        position: absolute;
+        left: 18%;
+    }
+    .dashboard-images {
+        width: 16%;
+    }
+    h4 {
+        font-size: 24px !important;
+    }
+    h3 {
+        font-size: 26px !important;
+    }
+    .company-search .glyphicon {
+        top: 8%;
+        font-size: 16px;
+    }
+    .employee-inner-text,
+    .irs-inner-text {
+        font-weight: 300;
+        font-size:14px;
+    }
+
+    .upload-datafiles-media {
+        padding: 10px !important;
+    }
+    .ul-inline {
+        padding: 4px;
+    }
+    .client-name-header,
+    .company-client-number-header {
+        font-size: 14px;
+        text-transform: uppercase !important;
+    }
+    .company-details-display {
+        font-size: 12px;
+    }
+    .irs-media-div,.companies-media-div{
+        padding-right:0px !important;
+    }
+    .upload-media-div,.contact-us-media-div{
+        padding-left: 0px !important; 
+    }
 }
-@media only screen and (max-width: 2560px) and (min-width: 1441px)  {
+
+@media screen and (min-width: 995px) and (max-width:1440px){
+    .content-header-text {
+        top: 5%;
+        position: absolute;
+        left: 24%;
+    }
+    .company-search-text-box {
+        text-indent: 5px;
+        font-size: 11px;
+        width: 110% !important;
+    }
+    .dashboard-images {
+        width: 18%;
+    }
+    h4 {
+        font-size: 14px !important;
+    }
+    h3 {
+        font-size: 16px !important;
+    }
+    .company-search .glyphicon {
+        font-size: 16px;
+    }
+    .employee-inner-text,
+    .irs-inner-text {
+        font-weight: 300;
+        font-size: 11px;
+    }
+    .company-search .glyphicon {
+        padding: 53px 0px 0px 7px;
+        top: 2%;
+        left: 10%;
+    }
+    .upload-datafiles-media {
+        padding: 10px !important;
+    }
+    .setup-text-band {
+        padding: 2px;
+        color: white;
+        font-size:12px;
+    }
+    .company-details-display {
+        font-size: 12px;
+    }
+} */
+
+/* @media only screen and (max-width: 2560px) and (min-width: 1441px)  {
     .content-header-text {
         top:10%;
         left:18%
     }
-}
+} */
