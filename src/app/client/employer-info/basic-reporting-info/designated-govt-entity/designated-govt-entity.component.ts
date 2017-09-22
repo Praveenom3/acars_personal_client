@@ -143,7 +143,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    this.labelsData = this.route.snapshot.data['labels'];
+    this.labelsData = this.route.snapshot.data['labels'].labels;
     if (this.labelsData) {
       for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
