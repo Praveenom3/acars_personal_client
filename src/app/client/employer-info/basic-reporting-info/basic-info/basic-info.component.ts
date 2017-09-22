@@ -58,7 +58,7 @@ export class BasicInfoComponent implements OnInit {
     this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
 	
     this.basicInfoData = this.createNewBasicInfo();
-    this.labelsData = this.route.snapshot.data['labels'];
+    this.labelsData = this.route.snapshot.data['labels'].labels;
     let basicInfoData = this.route.snapshot.data['data'];
     if (this.labelsData) {
       for (let label of this.labelsData) {
