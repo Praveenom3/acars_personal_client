@@ -48,51 +48,59 @@
 <div class="product-container-with-sub-tabs col-md-12">
     <div class="col-md-12 padding-0">
         <form>
-            <div class="col-md-12 padding-0">
-                <div class="container margin-top-30 margin-bottom-10">
+            <div class="col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
+                <div id="employer_info_container" [style.width.px]="employer_info_container_width" >
                     <!-- form content -->
-                    <div class="col-md-12">
-                        <div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
-                            <div class="col-sm-12">
-                                <label class="control-label mb-0">{{labels[0]}} </label>
-                            </div>
-                            <div class="col-sm-12 vertical-checkbox">
-                                <div class="checkbox">
-                                    <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[0]" name="hear_about_us[0]" value="0"><span class="control-checkbox">Referred by a friend</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group inl-q-a">
+                                <div>
+                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                                 </div>
-                                <div class="checkbox">
-                                    <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[1]" name="hear_about_us[1]" value="1"><span class="control-checkbox">Internet Search</span></label>
+                                <div class="tabSpace">
+                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                    <div class="col-sm-12 vertical-checkbox">
+                                        <div class="checkbox">
+                                            <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[0]" name="hear_about_us[0]" value="0"><span class="control-checkbox">Referred by a friend</span></label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[1]" name="hear_about_us[1]" value="1"><span class="control-checkbox">Internet Search</span></label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[2]" name="hear_about_us[2]" value="2"><span class="control-checkbox">Attended our conference</span></label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label> <input type="checkbox" class="specific_heard" (change)="handleChange($event)" [(ngModel)]="anythingElseData.hear_about_us[3]" name="hear_about_us[3]"  value="3"><span class="control-checkbox">Others</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 padding_left_30 others_comments" *ngIf="anythingElseData.hear_about_us[3]==true">
+                                        <div class="field-tblacabasicadditionaldetail-others">
+                                            <textarea class="form-control form-height" [(ngModel)]="anythingElseData.others" name="others" AlphanFewChar="true" maxlength="49" rows="4" cols="6"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="checkbox">
-                                    <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[2]" name="hear_about_us[2]" value="2"><span class="control-checkbox">Attended our conference</span></label>
-                                </div>
-                                <div class="checkbox">
-                                    <label> <input type="checkbox" class="specific_heard" (change)="handleChange($event)" [(ngModel)]="anythingElseData.hear_about_us[3]" name="hear_about_us[3]"  value="3"><span class="control-checkbox">Others</span></label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 padding_left_30 others_comments" *ngIf="anythingElseData.hear_about_us[3]==true">
-                                <div class="field-tblacabasicadditionaldetail-others">
-                                    <textarea class="form-control form-height" [(ngModel)]="anythingElseData.others" name="others" AlphanFewChar="true" maxlength="49" rows="4" cols="6"></textarea>
-                                    <div class="help-block"></div>
-                                </div>
-                                <!--<textarea class="form-control form-height"></textarea>-->
                             </div>
                         </div>
-                        <div class="form-group row" style="margin-top: 10px; margin-bottom: 20px;">
-                            <div class="col-sm-12">
-                                <label class="control-label">{{labels[1]}}</label>
-                            </div>
-                            <div class="col-sm-6 ">
-                                <label class="radio-inline">
-                                     <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="1">Yes
-								</label>
-                                <label class="radio-inline">
-                                   <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="2">No
-								</label>
-                            </div>
-                            <div class="text-anything-else" *ngIf="anythingElseData.anything_else == 1">
-                                <div class="col-sm-12">
-                                    <label class="control-label">Please contact the help desk for more information</label>
+                        <div class="col-sm-12">
+                            <div class="form-group inl-q-a">
+                                <div>
+                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                </div>
+                                <div class="tabSpace">
+                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                    <div>
+                                        <label class="radio-inline">
+                                            <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="1">Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="2">No
+                                        </label>
+                                    </div>
+                                    <div class="text-anything-else" *ngIf="anythingElseData.anything_else == 1">
+                                        <div class="col-sm-12 padding-top-15">
+                                            <label class="control-label">Please contact the help desk for more information</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -54,15 +54,20 @@
                                                 <div class="tab-pane active " id="planbasics" role="tabpanel">
 
                                                     <form>
-                                                        <div class="border-top-bottom-ddd col-md-12 padding-0">
-                                                            <div class="container margin-top-30 margin-bottom-10">
+                                                        <div class="border-top-bottom-ddd col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
+                                                            <div id="employer_info_container" [style.width.px]="employer_info_container_width">
 
                                                                 <!-- form content -->
                                                                 <div class="col-md-12">
                                                                     <div class="col-xs-12">
                                                                         <div class="form-group row">
-                                                                            <div class="col-md-5">
-                                                                                <label class="form-control-label"><span>{{labels[0]}}</span> </label>
+                                                                            <div class="col-md-5 inl-q-a">
+                                                                                <div>
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
+                                                                                </div>
+                                                                                <div class="tabSpace width-100">
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="col-md-7">
                                                                                 <span class="form-control" value="Plan Class #1" readOnly>{{coverageTypeData.plan_class_number}}</span>
@@ -70,8 +75,13 @@
                                                                         </div>
 
                                                                         <div class="form-group row">
-                                                                            <div class="col-md-5">
-                                                                                <label class="form-control-label"><span>{{labels[1]}}</span> </label>
+                                                                            <div class="col-md-5 inl-q-a">
+                                                                                <div>
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                                                                </div>
+                                                                                <div class="tabSpace width-100">
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="col-md-7">
                                                                                 <div class="form-group field-tblacaplancoveragetype-plan_class_name">
@@ -81,8 +91,13 @@
                                                                         </div>
 
                                                                         <div class="form-group row plan-div-margin">
-                                                                            <div class="col-md-5">
-                                                                                <label class="form-control-label"><span>{{labels[2]}}</span> </label>
+                                                                            <div class="col-md-5 inl-q-a">
+                                                                                <div>
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                                                                                </div>
+                                                                                <div class="tabSpace width-100">
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="row">
@@ -764,19 +779,22 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
-                                                                            <div class="col-md-12">
-                                                                                <label class="form-control-label">{{labels[3]}}</label>
-                                                                                <div class="padding-left-25">
-                                                                                    <label class="radio-inline">
-                                                                                    <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="1"> Yes
-                                                                                </label>
-                                                                                    <label class="radio-inline">
-                                                                                    <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="2"> No
-                                                                                </label>
+                                                                            <div class="form-group inl-q-a">
+                                                                                <div>
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
+                                                                                </div>
+                                                                                <div class="tabSpace width-100">
+                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                                                                    <div>
+                                                                                        <label class="radio-inline">
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="1"> Yes
+                                                                                        </label>
+                                                                                        <label class="radio-inline">
+                                                                                            <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="2"> No
+                                                                                        </label>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <!-- ./form content -->

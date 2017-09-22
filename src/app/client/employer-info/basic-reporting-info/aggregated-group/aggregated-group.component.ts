@@ -12,6 +12,8 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./aggregated-group.component.css']
 })
 export class AggregatedGroupComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number = 1240;
   purchase_id: any;
   client_id: any;
   companyDetails: any;
@@ -46,6 +48,8 @@ export class AggregatedGroupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
+	
     this.lengb = this.inputs.length;
     this.ElementLabelsList();
     this.aggregatedGroupData = this.createNewAggregatedGroup();
@@ -124,9 +128,9 @@ export class AggregatedGroupComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    let labelsData = this.route.snapshot.data['labels'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    this.labelsData = this.route.snapshot.data['labels'];
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }

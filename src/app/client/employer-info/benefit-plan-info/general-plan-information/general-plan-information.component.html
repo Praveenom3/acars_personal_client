@@ -27,25 +27,35 @@
 <div class="product-container-with-sub-tabs col-md-12">
     <div class="col-md-12 padding-0">
         <form>
-            <div class="col-md-12 padding-0">
-                <div class="container margin-top-30 margin-bottom-10">
+            <div class="col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
+                <div id="employer_info_container" [style.width.px]="employer_info_container_width">
                     <!-- form content -->
                     <div class="col-md-12">
-                        <div class="form-group row">
-                            <label class="form-control-label">{{labels[0]}}</label>
-                            <div class="padding-left-25">
-                                <label class="radio-inline">
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                
+                                <div>
+                                    <label class="radio-inline">
                                         <input type="radio" [(ngModel)]="generalPlanInfoData.is_first_year" name="is_first_year" value="1"> Yes
                                     </label>
-                                <label class="radio-inline">
+                                    <label class="radio-inline">
                                         <input type="radio" [(ngModel)]="generalPlanInfoData.is_first_year" name="is_first_year" value="0"> No
-                                </label>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="form-control-label">{{labels[1]}}</label>
-                            <div class="col-sm-5 padding-left-25">
-                                <select class="form-control form-height" [(ngModel)]="generalPlanInfoData.renewal_month" name="renewal_month">
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                
+                                <select class="form-control form-height" [(ngModel)]="generalPlanInfoData.renewal_month" name="renewal_month" style="width: 50%;">
                                     <option value="">Select a Value</option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
@@ -60,187 +70,224 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                     <option value="13">Not Applicable</option>
-                            </select>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="form-control-label">{{labels[2]}}</label>
-                            <div class="col-sm-5 padding-left-25 field-tblacageneralplaninfo-plan_type_description">
-                                <textarea AlphanFewChar="true" class="form-control form-height" [(ngModel)]="generalPlanInfoData.plan_type_description" name="plan_type_description" maxlength="100" rows="2" cols="4"></textarea>
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                
+                                <textarea AlphanFewChar="true" class="form-control form-height" [(ngModel)]="generalPlanInfoData.plan_type_description" name="plan_type_description" maxlength="100" rows="2" cols="4" style="width: 50%;"></textarea>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="form-control-label">{{labels[3]}}</label>
-                            <div class="padding-left-25">
-                                <label class="radio-inline">
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                <div>
+                                    <label class="radio-inline">
                                         <input type="radio"  (change)="handleChange(1)" [(ngModel)]="generalPlanInfoData.is_multiple_waiting_periods" name="is_multiple_waiting_periods"  value="1"> Yes
                                     </label>
-                                <label class="radio-inline">
+                                    <label class="radio-inline">
                                         <input type="radio"  (change)="handleChange(0)" [(ngModel)]="generalPlanInfoData.is_multiple_waiting_periods" name="is_multiple_waiting_periods"  value="0"> No
-                                </label>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div style="width:500px;" *ngIf="generalPlanInfoData.is_multiple_waiting_periods == '1'">
-                            <label class="form-control-label">{{labels[4]}}</label>
-                            <textarea class="form-control" AlphanFewChar="true" [(ngModel)]="generalPlanInfoData.multiple_description" name="multiple_description" maxlength="100"></textarea>
+                        <div *ngIf="generalPlanInfoData.is_multiple_waiting_periods == '1'">
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
+                                    
+                                <textarea class="form-control" AlphanFewChar="true" [(ngModel)]="generalPlanInfoData.multiple_description" name="multiple_description" maxlength="100" style="width: 50%;"></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="form-control-label">{{labels[5]}}</label>
-                            <div class="padding-left-25">
-                                <label class="radio-inline">
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
+                                <div>
+                                    <label class="radio-inline">
                                         <input type="radio" [(ngModel)]="generalPlanInfoData.is_employees_hra" name="is_employees_hra"  value="1"> Yes
                                     </label>
-                                <label class="radio-inline">
+                                    <label class="radio-inline">
                                         <input type="radio"  [(ngModel)]="generalPlanInfoData.is_employees_hra" name="is_employees_hra" value="0"> No
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group text_hra " *ngIf="generalPlanInfoData.is_employees_hra == '1'">
-                            <div class="col-sm-12">
-                                <label class="form-control-label"><div>{{labels[6]}}</div></label>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="form-control-label">{{labels[7]}}</label>
-                            <div class="padding-left-25">
-                                <label class="radio-inline">
-                                        <input type="radio" (change)="changeOfferType(1)" [(ngModel)]="generalPlanInfoData.offer_type" name="offer_type" value="1"> Yes
                                     </label>
-                                <label class="radio-inline">
-                                        <input type="radio" (change)="changeOfferType(0)" [(ngModel)]="generalPlanInfoData.offer_type" name="offer_type" value="0"> No
-                                </label>
-                            </div>
-                            <div class="col-sm-12" *ngIf="generalPlanInfoData.offer_type == '1'" id="combination_div1" style="margin-top: 15px;">
-                                <div class="col-xs-12 padding-left-0 padding-right-0" style="border: 1px solid #ddd;">
-                                    <div class="col-sm-4">
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">January</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[1]" name="months[1]">
-                                                                <option value="">Select a Plan</option>
-                                                                <option value="1">Self Insured</option>
-                                                                 <option value="2">Fully Insured</option>                                                                                        
-                                                 </select>
-                                            </div>
+                                </div>
+                                
+                                <div *ngIf="generalPlanInfoData.is_employees_hra == '1'" style="margin-top:15px;">
+                                    <div class="inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
                                         </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">April</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[4]" name="months[4]">
-                                                                <option value="">Select a Plan</option>
-                                                                 <option value="1">Self Insured</option>
-                                                               <option value="2">Fully Insured</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">July</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[7]" name="months[7]">
-                                                                <option value="">Select a Plan</option>																					
-                                                                <option value="1">Self Insured</option>
-                                                                <option value="2">Fully Insured</option>
-                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">October</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[10]" name="months[10]">
-                                                                <option value="">Select a Plan</option>
-                                                                 <option value="1">Self Insured</option>
-                                                                <option value="2">Fully Insured</option>
-                                             </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 padding-left-0">
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">February</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[2]" name="months[2]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                                  </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">May</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[5]" name="months[5]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                               </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">August</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[8]" name="months[8]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">November</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[11]" name="months[11]"> 
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                                 </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 padding-left-0">
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">March</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[3]" name="months[3]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                               </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">June</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[6]" name="months[6]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">September</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[9]" name="months[9]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mar-top-bottom">
-                                            <div class="col-sm-3">December</div>
-                                            <div class="col-sm-9">
-                                                <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[12]" name="months[12]">
-                                                    <option value="">Select a Plan</option>
-                                                     <option value="1">Self Insured</option>
-                                                    <option value="2">Fully Insured</option>
-                                                  </select>
-                                            </div>
+                                        <div class="tabSpace width-100">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group inl-q-a">
+                            <div>
+                                <label class="control-label span-label" [innerHTML]="labelsData[7].element_serial_id"></label>
+                            </div>
+                            <div class="tabSpace width-100">
+                                <label class="control-label span-label" [innerHTML]="labelsData[7].element_label"></label>
+                                <div>
+                                    <label class="radio-inline">
+                                        <input type="radio" (change)="changeOfferType(1)" [(ngModel)]="generalPlanInfoData.offer_type" name="offer_type" value="1"> Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" (change)="changeOfferType(0)" [(ngModel)]="generalPlanInfoData.offer_type" name="offer_type" value="0"> No
+                                    </label>
+                                </div>
+
+
+
+
+                                <div class="col-sm-12" *ngIf="generalPlanInfoData.offer_type == '1'" id="combination_div1" style="margin-top: 15px;">
+                                        <div class="col-xs-12 padding-left-0 padding-right-0" style="border: 1px solid #ddd;">
+                                            <div class="col-sm-4">
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">January</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[1]" name="months[1]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>                                                                                        
+                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">April</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[4]" name="months[4]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">July</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[7]" name="months[7]">
+                                                            <option value="">Select a Plan</option>																					
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">October</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[10]" name="months[10]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 padding-left-0">
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">February</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[2]" name="months[2]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">May</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[5]" name="months[5]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                       </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">August</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[8]" name="months[8]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">November</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[11]" name="months[11]"> 
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 padding-left-0">
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">March</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[3]" name="months[3]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                       </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">June</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[6]" name="months[6]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">September</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[9]" name="months[9]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mar-top-bottom">
+                                                    <div class="col-sm-3">December</div>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control plan_value" [(ngModel)]="generalPlanInfoData.months[12]" name="months[12]">
+                                                            <option value="">Select a Plan</option>
+                                                            <option value="1">Self Insured</option>
+                                                            <option value="2">Fully Insured</option>
+                                                          </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                     <!-- ./form content -->
                 </div>

@@ -181,3 +181,47 @@ body.body-blue .actions>li{
     margin-right: 0px !important;
 }
 /* ./header menu */
+/* client employer-info font*/
+.emp-info-font{
+    font-size: 16px;
+}
+.emp-info-font input[type=radio]{
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 6px !important;
+}
+
+.emp-info-font input[type=checkbox]{
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 5px !important;
+}
+.emp-info-font .checkbox-inline+.checkbox-inline{
+    padding-left: 30px;
+}
+.emp-info-font .radio-inline+.radio-inline{
+    padding-left: 30px;
+}
+/* client employer-info font*/
+#employer_info_container{
+    margin: 0 auto;
+    padding-top: 30px;
+}
+#employer_info_container > div{
+    padding: 0;
+}
+
+.tabSpace{
+    padding-left: 30px;
+}
+
+.emp-info-font .form-group{
+    margin-bottom: 2.5rem;
+}
+.emp-info-font .inl-q-a{
+    display: flex;
+}
+
+.box-head {
+    font-size: 1.6286rem !important;
+}
