@@ -7,6 +7,8 @@ import { PlanClassesComponent } from './plan-classes/plan-classes.component';
 import { PartialViews } from "app/_partial-views/partial-views.module";
 import { PlanClassesService } from "app/_services/_plan-classes.service";
 import { DataTableModule } from "angular2-datatable";
+import { ElementMasterResolver } from 'app/_services/_element-resolver';
+import { ElementMasterService } from 'app/_services/_element-master.service';
 
 @NgModule({
   imports: [
@@ -17,6 +19,6 @@ import { DataTableModule } from "angular2-datatable";
     PartialViews
   ],
   declarations: [PlanClassesComponent],
-  providers:[PlanClassesService]
+  providers:[ElementMasterResolver,ElementMasterService,PlanClassesService]
 })
 export class PlanClassesModule { }
