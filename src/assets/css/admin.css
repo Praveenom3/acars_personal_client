@@ -410,6 +410,7 @@ margin-top: 10px;*/
 
 .color-red {
     color: red;
+    /* display:none !important; */
 }
 
 .text-align-right {

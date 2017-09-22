@@ -740,15 +740,21 @@ button.add-company-ein {
 .white-space{
     white-space: nowrap;
 }
-@media screen and (min-width: 768px) and (max-width:1200px) {
+@media screen and (max-width: 768px) {
     .content-header-text {
-        top: 12px;
+        top: 15px;
         position: absolute;
         left: 36px;
         font-size: 14px;
     }
     .dashboard-images {
         width: 16%;
+    }
+    h4 {
+        font-size: 14px !important;
+    }
+    h3 {
+        font-size: 16px !important;
     }
     .company-search .glyphicon {
         position: absolute;
@@ -804,5 +810,11 @@ button.add-company-ein {
     }
     .company-details-display {
         font-size: 12px;
+    }
+}
+@media only screen and (max-width: 2560px) and (min-width: 1441px)  {
+    .content-header-text {
+        top:10%;
+        left:18%
     }
 }
