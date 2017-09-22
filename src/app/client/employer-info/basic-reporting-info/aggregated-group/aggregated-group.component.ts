@@ -12,6 +12,8 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./aggregated-group.component.css']
 })
 export class AggregatedGroupComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number = 1240;
   purchase_id: any;
   client_id: any;
   companyDetails: any;
@@ -46,6 +48,8 @@ export class AggregatedGroupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
+	
     this.lengb = this.inputs.length;
     this.ElementLabelsList();
     this.aggregatedGroupData = this.createNewAggregatedGroup();
@@ -124,9 +128,9 @@ export class AggregatedGroupComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    let labelsData = this.route.snapshot.data['labels'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    this.labelsData = this.route.snapshot.data['labels'];
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
@@ -214,14 +218,14 @@ export class AggregatedGroupComponent implements OnInit {
     this.aggregatedGroupData['company_id'] = this.company_id;
     let customArray = [];
     if (this.aggregatedGroupData.entireYear == true) {
-      this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(this.totalYear);
+      //this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(this.totalYear);
     } else {
       this.aggregatedGroupData.total_aggregated_grp_months.forEach((eachSelectedMonth, index) => {
         if (eachSelectedMonth == true) {
           customArray.push(index);
         }
       });
-      this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(customArray);
+      //this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(customArray);
     }
 
     this.aggregatedGroupData.group_list = this.inputs;
@@ -237,7 +241,7 @@ export class AggregatedGroupComponent implements OnInit {
             }
 
             // this.getAggregatedGroupData();
-            this.aggregatedGroupData = this.createNewAggregatedGroup();
+            //this.aggregatedGroupData = this.createNewAggregatedGroup();
            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
@@ -256,7 +260,7 @@ export class AggregatedGroupComponent implements OnInit {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
             //this.getAggregatedGroupData();
-            this.aggregatedGroupData = this.createNewAggregatedGroup();
+            //this.aggregatedGroupData = this.createNewAggregatedGroup();
            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';

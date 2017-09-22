@@ -45,45 +45,59 @@
 <!-- ./Sub Tabs -->
 <div class="product-container-with-sub-tabs col-md-12">
     <div class="col-md-12 padding-0">
-        <form action="/firm-plan/save-plan-basics" class="form-vertical" enctype="multipart/form-data" id="planbasics_form" method="post">
-            <div class="col-md-12 padding-0">
-                <div class="container margin-top-10 margin-bottom-10">
+        <form>           
+            <div class="col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
+                    <div id="employer_info_container" [style.width.px]="employer_info_container_width" >
                     <!-- form content -->
                     <div class="col-md-12">
                         <span class="fontcolor-blue box-head">Variable Hour Measuring</span>
                         <hr class="margin-top-5">
                         <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label span-label">{{labels[0]}}</label>
-                                <label class="radio-inline">
-								<input (change)="handleChange(1)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="1">Look-Back Measurement Method
-								</label>
-                                <label class="radio-inline">
-                                <input (change)="handleChange(2)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="2">Monthly Measurement Method
-							</label>
-                                <label class="radio-inline">
-								<input (change)="handleChange(3)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="3">Not Currently Measuring Hours
-							</label>
+                            <div class="form-group inl-q-a">
+                                <div>
+                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
+                                </div>
+                                <div class="tabSpace">
+                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                    <label class="radio-inline">
+                                        <input (change)="handleChange(1)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="1">Look-Back Measurement Method
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input (change)="handleChange(2)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="2">Monthly Measurement Method
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input (change)="handleChange(3)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="3">Not Currently Measuring Hours
+                                    </label>
+                                </div>
                             </div>
                             <div id="hours_tracking_method_div" *ngIf="planOfferingData.hours_tracking_method == 1">
                                 <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="control-label"><span>{{labels[1]}}</span></label>
-                                        <div class="form-group field-tblacaplancriteria-initial_measurement_period">
-                                            <input type="text" OnlyNumber="true" maxlength="5" [(ngModel)]="planOfferingData.initial_measurement_period" name="initial_measurement_period" class="form-control form-height numbers" style="width:50%">
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                            <div class="form-group field-tblacaplancriteria-initial_measurement_period">
+                                                <input type="text" OnlyNumber="true" maxlength="5" [(ngModel)]="planOfferingData.initial_measurement_period" name="initial_measurement_period" class="form-control form-height numbers" style="width:50%">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="control-label">{{labels[2]}}</label>
-                                        <div>
-                                            <label class="radio-inline">
-                                                  <input type="radio"  [(ngModel)]="planOfferingData.initial_measurement_period_begin" name="initial_measurement_period_begin" value="1" >Date of Hire (DOH)
-											</label>
-                                            <label class="radio-inline">
-										    	<input type="radio"  [(ngModel)]="planOfferingData.initial_measurement_period_begin" name="initial_measurement_period_begin" value="2" >1st of Month After DOH
-											</label>
+                                        <div class="form-group inl-q-a">
+                                            <div>
+                                                <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                                            </div>
+                                            <div class="tabSpace">
+                                                <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                                <label class="radio-inline">
+                                                    <input type="radio"  [(ngModel)]="planOfferingData.initial_measurement_period_begin" name="initial_measurement_period_begin" value="1" >Date of Hire (DOH)
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio"  [(ngModel)]="planOfferingData.initial_measurement_period_begin" name="initial_measurement_period_begin" value="2" >1st of Month After DOH
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -93,66 +107,95 @@
                             <span class="fontcolor-blue box-head">Plan Offering Criteria</span>
                             <hr class="margin-top-5">
                             <div class="col-sm-12">
-                                <div class="form-group">
+                                <div class="form-group inl-q-a">
                                     <div>
-                                        <label class="control-label">{{labels[3]}}</label>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
                                     </div>
-                                    <div class="checkbox">
-                                        <label> <input type="checkbox" name="plan_offering_criteria_type[0]" [(ngModel)]="planOfferingData.plan_offering_criteria_type[0]" value="1">
-									<span class="margin-0">Qualifying Offer Method</span>
-									</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label> <input type="checkbox"  name="plan_offering_criteria_type[1]" [(ngModel)]="planOfferingData.plan_offering_criteria_type[1]" value="2" >
-									<span class="margin-0">98% Offer Method</span>
-									</label>
+                                    <div class="tabSpace">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                        <div>
+                                            <div class="checkbox-inline">
+                                                <label> <input type="checkbox" name="plan_offering_criteria_type[0]" [(ngModel)]="planOfferingData.plan_offering_criteria_type[0]" value="1">
+                                                <span class="margin-0">Qualifying Offer Method</span>
+                                                </label>
+                                            </div>
+                                            <div class="checkbox-inline">
+                                                <label> <input type="checkbox"  name="plan_offering_criteria_type[1]" [(ngModel)]="planOfferingData.plan_offering_criteria_type[1]" value="2" >
+                                                <span class="margin-0">98% Offer Method</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="control-label"><span>{{labels[4]}}</span>
-								</label>
-                                    <div class="col-sm-12">
-                                        <label class="control-label">
-										<div><span>{{labels[5]}}</span> </div>
-										<label class="radio-inline">
-									    	<input  type="radio"  [(ngModel)]="planOfferingData.company_certification_workforce" name="company_certification_workforce" value="1">Yes
-										</label>
-                                        <label class="radio-inline">
-									    	 <input type="radio"  [(ngModel)]="planOfferingData.company_certification_workforce" name="company_certification_workforce"  value="0">No
-										</label>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <label class="control-label">
-										<div><span>{{labels[6]}}</span> </div>
-										<label class="radio-inline">
-									     	<input type="radio"  [(ngModel)]="planOfferingData.company_certification_medical_eligibility" name="company_certification_medical_eligibility"  value="1">Yes
-										</label>
-                                        <label class="radio-inline">
-									    	<input type="radio"  [(ngModel)]="planOfferingData.company_certification_medical_eligibility" name="company_certification_medical_eligibility" value="0">No
-										</label>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <label class="control-label">
-										<div><span>{{labels[7]}}</span></div>
-										<label class="radio-inline">
-									     	<input type="radio"  [(ngModel)]="planOfferingData.company_certification_employer_contribution" name="company_certification_employer_contribution" value="1">Yes
-										</label>
-                                        <label class="radio-inline">
-											 <input type="radio" [(ngModel)]="planOfferingData.company_certification_employer_contribution" name="company_certification_employer_contribution"  value="0">No
-											</label>
-                                        </label>
+                                    <div class="form-group inl-q-a">
+                                        <div>
+                                            <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
+                                        </div>
+                                        <div class="tabSpace">
+                                            <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
+                                            <div class="col-sm-12">
+                                                <div class="form-group inl-q-a">
+                                                    <div>
+                                                        <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
+                                                    </div>
+                                                    <div class="tabSpace">
+                                                        <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
+                                                        <div>
+                                                            <label class="radio-inline">
+                                                                <input  type="radio"  [(ngModel)]="planOfferingData.company_certification_workforce" name="company_certification_workforce" value="1">Yes
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio"  [(ngModel)]="planOfferingData.company_certification_workforce" name="company_certification_workforce"  value="0">No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group inl-q-a">
+                                                    <div>
+                                                        <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
+                                                    </div>
+                                                    <div class="tabSpace">
+                                                        <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
+                                                        <div>
+                                                            <label class="radio-inline">
+                                                                <input type="radio"  [(ngModel)]="planOfferingData.company_certification_medical_eligibility" name="company_certification_medical_eligibility"  value="1">Yes
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio"  [(ngModel)]="planOfferingData.company_certification_medical_eligibility" name="company_certification_medical_eligibility" value="0">No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group inl-q-a">
+                                                    <div>
+                                                        <label class="control-label span-label" [innerHTML]="labelsData[7].element_serial_id"></label>
+                                                    </div>
+                                                    <div class="tabSpace">
+                                                        <label class="control-label span-label" [innerHTML]="labelsData[7].element_label"></label>
+                                                        <div>
+                                                            <label class="radio-inline">
+                                                                <input type="radio"  [(ngModel)]="planOfferingData.company_certification_employer_contribution" name="company_certification_employer_contribution" value="1">Yes
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" [(ngModel)]="planOfferingData.company_certification_employer_contribution" name="company_certification_employer_contribution"  value="0">No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- ./form content -->
-                </div>
-            </div>
             <div align="right" class="col-md-12 padding-0 bg-sky-blue " style="border-top: none;">
                 <div class="modal-footer-btn padding-15">
                     <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;

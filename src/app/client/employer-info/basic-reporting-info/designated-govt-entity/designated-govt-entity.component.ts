@@ -14,6 +14,8 @@ import { GlobalService } from "app/_services/_global.service";
 })
 
 export class DesignatedGovtEntityComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number = 1240;
   isValidDgeEin: boolean = false;
   isValidDgePhone: boolean = false;
   client_id: any;
@@ -47,6 +49,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
 
     this.ElementLabelsList();
     this.getStates();
@@ -140,9 +143,9 @@ export class DesignatedGovtEntityComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    let labelsData = this.route.snapshot.data['labels'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    this.labelsData = this.route.snapshot.data['labels'];
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }

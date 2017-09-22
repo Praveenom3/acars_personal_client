@@ -11,6 +11,8 @@ import { GlobalService } from "app/_services/_global.service";
   styleUrls: ['./employee-contributions.component.css']
 })
 export class EmployeeContributionsComponent implements OnInit {
+  labelsData: any = '';
+  employer_info_container_width: number;
   client_id: any;
   purchase_id: any;
   companyDetails: any;
@@ -50,6 +52,8 @@ export class EmployeeContributionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employer_info_container_width = 1240;
+	
     this.employeeContributionData = this.createNewEmployeeContribution();
     this.ElementLabelsList();
     this.getCompany();
@@ -93,9 +97,9 @@ export class EmployeeContributionsComponent implements OnInit {
 
   /*getting labels from service*/
   private ElementLabelsList() {
-    let labelsData = this.route.snapshot.data['labels'];
-    if (labelsData) {
-      for (let label of labelsData.labels) {
+    this.labelsData = this.route.snapshot.data['labels'].labels;
+    if (this.labelsData) {
+      for (let label of this.labelsData) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }

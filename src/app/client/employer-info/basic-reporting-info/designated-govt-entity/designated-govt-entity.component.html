@@ -48,142 +48,205 @@
 <div class="product-container-with-sub-tabs col-md-12">
     <div class="col-md-12 padding-0">
         <form>
-            <div class="col-md-12 padding-0">
-                <div class="container margin-top-30 margin-bottom-10">
+            <div class="col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
+                <div id="employer_info_container" [style.width.px]="employer_info_container_width" >
                     <!-- form content -->
-                    <div class="col-md-12">
+                    <div class="row">
                         <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label">
-										{{labels[0]}}
-								<div>
-									<input type="radio" (change)="handleChange(1)" name="assign_dge" [(ngModel)]="govtEntityData.assign_dge" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" (change)="handleChange(0)"  name="assign_dge" [(ngModel)]="govtEntityData.assign_dge" value="0"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;No</span>
-								</div>
-							</label>
+                            <div class="form-group inl-q-a">
+                                <div>
+                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
+                                </div>
+                                <div class="tabSpace">
+                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                    <div>
+                                        <label class="radio-inline">
+                                            <input type="radio" (change)="handleChange(1)" name="assign_dge" [(ngModel)]="govtEntityData.assign_dge" value="1"> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" (change)="handleChange(0)"  name="assign_dge" [(ngModel)]="govtEntityData.assign_dge" value="0"> No
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="designation" *ngIf="govtEntityData.assign_dge == 1">
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[1]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_name">
-                                        <input type="text" AlphanFewChar="true" [(ngModel)]="govtEntityData.dge_name" name="dge_name" class="form-control form-height dge-clear" maxlength="75">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[2]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_ein">
-                                        <input type="text" [textMask]="{mask: ein_mask}" (ngModelChange)="isValidEin($event)" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_ein" name="dge_ein">
-                                        <span class="help-block help-block-error" *ngIf="isValidDgeEin">
-                                            EIN should be 9 digit length.
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[3]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-street_address_1">
-                                        <input type="text" inputFilter="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.street_address_1" name="street_address_1" maxlength="200">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 margin-top-5">
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[4]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-street_address_2">
-                                        <input type="text" inputFilter="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.street_address_2" name="street_address_2" maxlength="200">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[5]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_state">
-                                        <select class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_state" name="dge_state">
-											<option value="">Select State</option>
-											<option [ngValue]="state.state_id" *ngFor="let state of states">{{state.state_code}}</option>
-					                	</select>
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[6]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_city">
-                                        <input type="text" AlphanFewChar="true" class="form-control form-height" [(ngModel)]="govtEntityData.dge_city" name="dge_city" maxlength="50">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[7]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_zip">
-                                        <input type="text" class="form-control numbers form-height dge-clear" [(ngModel)]="govtEntityData.dge_zip" OnlyNumber="true" name="dge_zip" maxlength="5">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[8]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_contact_first_name">
-                                        <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_first_name" name="dge_contact_first_name" maxlength="20">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[9]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_contact_middle_name">
-                                        <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_middle_name" name="dge_contact_middle_name" maxlength="20">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[10]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_contact_last_name">
-                                        <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_last_name" name="dge_contact_last_name" maxlength="20">
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[11]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_contact_suffix">
-                                        <select class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_suffix" name="dge_contact_suffix">
-								            	<option value="">Select Suffix</option>
-												<option value="75">Jr</option>
-												<option value="76">Sr</option>
-												<option value="77">I</option>
-												<option value="78">II</option>
-												<option value="79">III</option>
-												<option value="99">IV</option>
-												<option value="100">V</option>
-									</select>
-                                        <div class="help-block"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="control-label"><span>{{labels[12]}}</span></label>
-                                    <div class="form-group field-tblacadesignatedgovtentity-dge_contact_phone_number">
-                                        <input type="text" (ngModelChange)="isValidMobile($event)" class="form-control" minlength="14" [textMask]="{mask: mask}" [(ngModel)]="govtEntityData.dge_contact_phone_number" name="dge_contact_phone_number">
-                                        <span class="help-block help-block-error" *ngIf="isValidDgePhone">
-                                            Phone should be 10 digit length.
-                                        </span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12 plan-div-margin">
-                                    <label class="control-label">{{labels[13]}}</label>
+                        <div class="designation padding-0" *ngIf="govtEntityData.assign_dge == 1">
+                            <div class="col-sm-12 padding-0">
+                                <div class="col-sm-4 inl-q-a">
                                     <div>
-                                        <input type="radio" class="dge-clear-radio" [(ngModel)]="govtEntityData.dge_reporting" name="dge_reporting" value="1"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Enrollment Only</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input type="radio" class="dge-clear-radio" [(ngModel)]="govtEntityData.dge_reporting" name="dge_reporting" value="2"><span class="control-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;Enrollment and Offer of Coverage</span>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_name">
+                                            <input type="text" AlphanFewChar="true" [(ngModel)]="govtEntityData.dge_name" name="dge_name" class="form-control form-height dge-clear" maxlength="75">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_ein">
+                                            <input type="text" [textMask]="{mask: ein_mask}" (ngModelChange)="isValidEin($event)" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_ein" name="dge_ein">
+                                            <span class="help-block help-block-error" *ngIf="isValidDgeEin">
+                                                EIN should be 9 digit length.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-street_address_1">
+                                            <input type="text" inputFilter="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.street_address_1" name="street_address_1" maxlength="200">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 padding-0">
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-street_address_2">
+                                            <input type="text" inputFilter="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.street_address_2" name="street_address_2" maxlength="200">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_state">
+                                            <select class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_state" name="dge_state">
+                                                <option value="">Select State</option>
+                                                <option [ngValue]="state.state_id" *ngFor="let state of states">{{state.state_code}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_city">
+                                            <input type="text" AlphanFewChar="true" class="form-control form-height" [(ngModel)]="govtEntityData.dge_city" name="dge_city" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 padding-0">
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[7].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[7].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_zip">
+                                            <input type="text" class="form-control numbers form-height dge-clear" [(ngModel)]="govtEntityData.dge_zip" OnlyNumber="true" name="dge_zip" maxlength="5">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[8].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[8].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_contact_first_name">
+                                            <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_first_name" name="dge_contact_first_name" maxlength="20">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[9].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[9].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_contact_middle_name">
+                                            <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_middle_name" name="dge_contact_middle_name" maxlength="20">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 padding-0">
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[10].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[10].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_contact_last_name">
+                                            <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_last_name" name="dge_contact_last_name" maxlength="20">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[11].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[11].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_contact_suffix">
+                                            <select class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_suffix" name="dge_contact_suffix">
+                                                <option value="">Select Suffix</option>
+                                                <option value="75">Jr</option>
+                                                <option value="76">Sr</option>
+                                                <option value="77">I</option>
+                                                <option value="78">II</option>
+                                                <option value="79">III</option>
+                                                <option value="99">IV</option>
+                                                <option value="100">V</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[12].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace width-100">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[12].element_label"></label>
+                                        <div class="form-group field-tblacadesignatedgovtentity-dge_contact_phone_number">
+                                            <input type="text" (ngModelChange)="isValidMobile($event)" class="form-control" minlength="14" [textMask]="{mask: mask}" [(ngModel)]="govtEntityData.dge_contact_phone_number" name="dge_contact_phone_number">
+                                            <span class="help-block help-block-error" *ngIf="isValidDgePhone">
+                                                Phone should be 10 digit length.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 padding-0">
+                                <div class="form-group inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[13].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[13].element_label"></label>
+                                        <div>
+                                            <label class="radio-inline">
+                                                <input type="radio" class="dge-clear-radio" [(ngModel)]="govtEntityData.dge_reporting" name="dge_reporting" value="1"> Enrollment Only
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" class="dge-clear-radio" [(ngModel)]="govtEntityData.dge_reporting" name="dge_reporting" value="2"> Enrollment and Offer of Coverage
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
