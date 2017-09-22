@@ -15,7 +15,7 @@
                                     <img src='../src/assets/images/client-dashboard/companies list-icon.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text">
-                                    <h4 class="font-weight-300 dark-blue-text">&nbsp; COMPANIES LIST</h4>
+                                    <h4 class="white-space font-weight-300 dark-blue-text">&nbsp; COMPANIES LIST</h4>
                                 </div>
                             </div>
 
@@ -83,7 +83,7 @@
                                     <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text ">
-                                    <h3 class="font-weight-300 dark-blue-text">&nbsp; &nbsp; CONTACT US</h3>
+                                    <h3 class="white-space font-weight-300 dark-blue-text">&nbsp; &nbsp; CONTACT US</h3>
                                 </div>
                             </div>
 
@@ -120,7 +120,7 @@
                                     <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
                                 </div>
                                 <div class="content-header-text">
-                                    <h3 class="font-weight-300 dark-blue-text">&nbsp; IRS DEADLINES</h3>
+                                    <h3 class="white-space font-weight-300 dark-blue-text">&nbsp; IRS DEADLINES</h3>
                                 </div>
                             </div>
 
@@ -316,7 +316,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
+                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
                                             [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
                                     </td>
                                     <td class="padding-5">
@@ -330,7 +330,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap"
+                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
                                             [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein}">
                                             Basic Plan Information
                                         </a>
@@ -347,7 +347,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap"
+                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
                                             [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting}">
                                             Benefit Plan & Plan Classes
                                         </a>
@@ -377,7 +377,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap " (click)="redirectToEmployeeData('payroll')">
+                                        <a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li" (click)="redirectToEmployeeData('payroll')">
                                             Payroll Data</a></td>
                                     <td class="padding-5">
                                         <span class="cursor-allowed step-status-flag link-default cursor-not-allowed">
@@ -386,7 +386,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li no-wrap "
+                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
                                             (click)="redirectToEmployeeData('medicalplan')">Medical Plan Data</a></td>
                                     <td class=" padding-5">
                                         <span class="cursor-allowed step-status-flag link-default cursor-not-allowed">
@@ -632,7 +632,7 @@
                     </div>
                     <div class="modal-footer footer-background">
                         <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyUserForm.valid || _companyUserSubmitted == true">
-                        	Save Changes</button>
+                        	<i *ngIf="_companyUserSubmitted" class="fa fa-circle-o-notch fa-spin fa-fw"></i>Save Changes</button>
                         <button type="button" class="btn btn-default" (click)="closeCompanyUserModal()">Close</button>
                     </div>
                 </form>

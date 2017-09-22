@@ -2,7 +2,8 @@
     <div class="search-header padding-10">
         <ul class="nav nav-pills col-md-12 main-pills" id="main_tab">
             <li class="col-md-1"></li>
-            <li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" #rla1="routerLinkActive" [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" [src]="(companyData.basicReporting === true && !rla1.isActive) ? 'assets/images/client/employer-info/bri_comp.png': (rla1.isActive ?'assets/images/client/employer-info/bri_active.png' : 'assets/images/client/employer-info/bri_default.png' )">
+            <li align="center" aria-expanded="true" class="col-md-2 check-changed" [routerLinkActive]="['active']" #rla1="routerLinkActive"
+                [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info']"><img class="avatar" id="main-anchor-1" [src]="(companyData.basicReporting === true && !rla1.isActive) ? 'assets/images/client/employer-info/bri_comp.png': (rla1.isActive ?'assets/images/client/employer-info/bri_active.png' : 'assets/images/client/employer-info/bri_default.png' )">
                 <p class="font-white margin-0">Basic Reporting Info</p>
             </li>
             <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" #rla2="routerLinkActive" [routerLink]="['/client/',product,company,'employer-info','benefit-plan-info']"><img class="avatar" id="main-anchor-2" [src]="(companyData.benefitPlan === true && !rla2.isActive) ? 'assets/images/client/employer-info/bpi_comp.png': (rla2.isActive ? 'assets/images/client/employer-info/bpi_active.png' : 'assets/images/client/employer-info/bpi_default.png') ">
@@ -11,13 +12,50 @@
             <li align="center" class="col-md-2 check-changed" [routerLinkActive]="['active']" #rla3="routerLinkActive" [routerLink]="['/client/',product,company,'employer-info','plan-classes']"><img class="avatar" id="main-anchor-3" [src]="(companyData.planClasses === true && !rla3.isActive) ? 'assets/images/client/employer-info/plan_comp.png': (rla3.isActive ? 'assets/images/client/employer-info/plan_active.png' : 'assets/images/client/employer-info/plan_default.png') ">
                 <p class="font-white margin-0">Plan Classes</p>
             </li>
-            <li align="center" class="col-md-2 check-changed"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+            <li (click)="uploadDataFiles()" align="center" class="col-md-2 check-changed"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
                 <p class="font-white margin-0 ">Payroll</p>
             </li>
-            <li align="center" class="col-md-2 check-changed"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
+            <li (click)="uploadDataFiles()" align="center" class="col-md-2 check-changed"><img class="avatar" id="main-anchor-4" src="assets/images/client/employer-info/reports.png">
                 <p class="font-white margin-0 ">Enrollments</p>
             </li>
             <li class="col-md-1"></li>
         </ul>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #companyUploadDataFile="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="upload-file-block modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="upload-files-div-header modal-header modal-header-color">
+                <button type="button" class="close-upload-file close-modal modal-opacity close-modal-blue" (click)="closeUploadDataModal()"
+                    aria-hidden="true">×</button>
+                <div class="upload-tick-mark-div">
+                    <i class="upload-fa-icon fa fa-check" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="modal-body row upload-files-div-content">
+
+                <!-- <span class="upload-data-date-span">
+                            <h6 style="color:white">
+                                Open {{ settingsService.payrollDate | date:'longDate'  }}
+                            </h6>
+                        </span> -->
+
+                <div class="upload-file-body">
+                    <p>
+                        Accurate ACA reporting payroll period and medical enrollment data through the end of the calendar year. For this reason,
+                        we have not opened up the begin receiving payroll and medical enrollment data until closer to the
+                        end of the year.
+                    </p>
+                    In the meantime, you can <a class="link-white-underline" href="../src/assets/temp-files/ACA-Reporting-2017-Data-Packet.xls">download this template</a>                    to prepare for the end of year
+
+                </div>
+                <div class="upload-file-footer">
+                    <a class="upload-file-footer-a" (click)="closeUploadDataModal()">OK</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

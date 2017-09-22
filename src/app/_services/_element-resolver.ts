@@ -144,37 +144,13 @@ export class ElementMasterResolver implements Resolve<any> {
 
         switch (step) {
             case 'basic-reporting-info':
-                if (sessionCompanyData.company_ein) {
+                if (!sessionCompanyData.company_ein) {
                     this.toasterService.error("Company EIN is required to fill Basic Plan information");
                     this.redirectToDashboard(sessionProductId, sessionClientId);
                 }
                 break;
             case 'benefit-plan-info':
-                if (sessionCompanyData.company_ein && sessionCompanyData.basicReporting) {
-                    this.toasterService.error("Basic Plan information is required to fill Benefit Plan information");
-                    this.redirectToDashboard(sessionProductId, sessionClientId);
-                }
-                break;
-        }
-        return true;
-    }
-
-    /* checking particular module is filled or not */
-    private validateEmployerInfoData(step: string) {
-        let sessionCompanyData = JSON.parse(this.globalService.getCompany());
-        let sessionCompanyId = this.globalService.decode(sessionCompanyData.company_id);
-        let sessionProductId = this.globalService.decode(sessionCompanyData.product_id);
-        let sessionClientId = this.globalService.decode(sessionCompanyData.client_id);
-
-        switch (step) {
-            case 'basic-reporting-info':
-                if (sessionCompanyData.company_ein) {
-                    this.toasterService.error("Company EIN is required to fill Basic Plan information");
-                    this.redirectToDashboard(sessionProductId, sessionClientId);
-                }
-                break;
-            case 'basic-reporting-info':
-                if (sessionCompanyData.company_ein && sessionCompanyData.basicReporting) {
+                if (!sessionCompanyData.company_ein || !sessionCompanyData.basicReporting) {
                     this.toasterService.error("Basic Plan information is required to fill Benefit Plan information");
                     this.redirectToDashboard(sessionProductId, sessionClientId);
                 }

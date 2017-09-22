@@ -214,14 +214,14 @@ export class AggregatedGroupComponent implements OnInit {
     this.aggregatedGroupData['company_id'] = this.company_id;
     let customArray = [];
     if (this.aggregatedGroupData.entireYear == true) {
-      this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(this.totalYear);
+      //this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(this.totalYear);
     } else {
       this.aggregatedGroupData.total_aggregated_grp_months.forEach((eachSelectedMonth, index) => {
         if (eachSelectedMonth == true) {
           customArray.push(index);
         }
       });
-      this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(customArray);
+      //this.aggregatedGroupData.total_aggregated_grp_months = JSON.stringify(customArray);
     }
 
     this.aggregatedGroupData.group_list = this.inputs;
@@ -237,7 +237,7 @@ export class AggregatedGroupComponent implements OnInit {
             }
 
             // this.getAggregatedGroupData();
-            this.aggregatedGroupData = this.createNewAggregatedGroup();
+            //this.aggregatedGroupData = this.createNewAggregatedGroup();
            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
@@ -256,7 +256,7 @@ export class AggregatedGroupComponent implements OnInit {
               this.router.navigate([url + '/' + 'employer-info/basic-reporting-info/anything-else']);
             }
             //this.getAggregatedGroupData();
-            this.aggregatedGroupData = this.createNewAggregatedGroup();
+            //this.aggregatedGroupData = this.createNewAggregatedGroup();
            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';

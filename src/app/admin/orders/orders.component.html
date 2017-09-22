@@ -237,7 +237,8 @@
                 </div>
                 <div class="modal-footer footer-background">
                     <a class="red hover-red" *ngIf="newPurchases.length > 0">DATA unsaved.</a>
-                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_addClientForm.valid && totalPurchases.length > 0 ) || _addClientFormSubmitted == true">Save</button>
+                    <button type="submit" class="btn btn-primary btn-blue" [disabled]="!(_addClientForm.valid && totalPurchases.length > 0 ) || _addClientFormSubmitted == true">
+                        <i *ngIf="_addClientFormSubmitted == true" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('addClientModal')">Close</button>
                 </div>
             </form>
@@ -399,7 +400,8 @@
                 </div>
                 <div class="modal-footer footer-background">
                     <a class="red hover-red" *ngIf="newPurchases.length > 0">DATA unsaved.</a>
-                    <button type="submit" class="btn btn-primary btn-blue" *ngIf="hasFinancialRights" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">Save</button>
+                    <button type="submit" class="btn btn-primary btn-blue" *ngIf="hasFinancialRights" [disabled]="!(_updateClientForm.valid && totalPurchases.length > 0 ) || _updateClientFormSubmitted == true">
+                        <i *ngIf ="_updateClientFormSubmitted == true" class="fa fa-circle-o-notch fa-spin fa-fw"></i>Save</button>
                     <button type="button" class="btn btn-default" (click)="closeModal('updateClientModal')">Close</button>
                 </div>
             </form>
