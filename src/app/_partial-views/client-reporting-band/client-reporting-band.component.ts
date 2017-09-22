@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { GlobalService } from "app/_services/_global.service";
 import { ModalDirective } from "ngx-bootstrap";
+import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
+
 @Component({
   selector: 'client-reporting-band',
   templateUrl: './client-reporting-band.component.html',
@@ -10,16 +12,27 @@ import { ModalDirective } from "ngx-bootstrap";
 export class ClientReportingBandComponent implements OnInit {
   @ViewChild('companyUploadDataFile') public companyUploadDataFile: ModalDirective;
 
-  companyData: any;
+  companyData: { basicReporting: string; benefitPlan: string; planClasses: string; };
+  company_id: any;
   company: string;
   product: string;
-  constructor(route: ActivatedRoute, private _globalService: GlobalService) {
+  constructor(public route: ActivatedRoute,
+    public clientDashBoardService: ClientDashBoardService,
+    public router: Router, private _globalService: GlobalService) {
     this.product = route.snapshot.params['product'];
     this.company = route.snapshot.params['company'];
+    this.company_id = _globalService.decode(route.snapshot.params['company']);
   }
 
   ngOnInit() {
-    this.companyData = JSON.parse(this._globalService.getCompany());
+    this.companyData = this.infoObject();
+    let companyDatas = this.clientDashBoardService.getIsCompletedInfo(this.company_id);
+    companyDatas.subscribe((info) => {
+      this.companyData = info;
+      console.log(this.companyData);
+    },
+      error => { }
+    );
   }
 
   /**
@@ -29,8 +42,8 @@ export class ClientReportingBandComponent implements OnInit {
     let today: any = new Date().getTime();
     var uploadDate: any = new Date("2017-10-15").getTime();
     if (parseInt(today) < parseInt(uploadDate)) {
-        this.companyUploadDataFile.show();
-    } 
+      this.companyUploadDataFile.show();
+    }
   }
 
 
@@ -41,4 +54,16 @@ export class ClientReportingBandComponent implements OnInit {
     this.companyUploadDataFile.hide();
   }
 
+
+  infoObject() {
+    // Create a new Element
+    let newElement = {
+      basicReporting: '',
+      benefitPlan: '',
+      planClasses: ''
+    }
+    return newElement;
+  }
+
 }
+

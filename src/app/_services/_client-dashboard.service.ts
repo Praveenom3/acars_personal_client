@@ -349,6 +349,17 @@ export class ClientDashBoardService {
             }).map(response => response.json())
             .catch(this._globalService.handleError);
     }
+
+
+    public getIsCompletedInfo(companyid) {
+        return this._httpService.get(
+            this._apiUrl + '/get-is-completed-info/' + companyid,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json().data)
+            .catch(this._globalService.handleError);
+    }
+
     /**
      * 
      * @param vht 

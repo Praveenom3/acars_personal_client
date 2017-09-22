@@ -154,7 +154,7 @@ export class CoverageOfferedComponent implements OnInit {
   private ElementLabelsList() {
     let labelsData = this.route.snapshot.data['labels'];
     if (labelsData) {
-      for (let label of labelsData) {
+      for (let label of labelsData.labels) {
         this.label = label.element_serial_id + ' ' + label.element_label;
         this.labels.push(this.label);
       }
@@ -245,7 +245,7 @@ export class CoverageOfferedComponent implements OnInit {
 
   /*on submit sending form data to service.It is for both add and update*/
   public onSubmit(param) {
-    if (this.coverageOfferedData.mv_coverage_months) {
+    if (this.coverageOfferedData.mv_coverage_months.length > 0) {
       let mv_customArray = [];
       if (this.coverageOfferedData.entireMvYear == true) {
         this.coverageOfferedData.mv_coverage_months = JSON.stringify(this.totalYear);
@@ -258,7 +258,7 @@ export class CoverageOfferedComponent implements OnInit {
         this.coverageOfferedData.mv_coverage_months = JSON.stringify(mv_customArray);
       }
     }
-    if (this.coverageOfferedData.essential_coverage_months) {
+    if (this.coverageOfferedData.essential_coverage_months.length > 0) {
       let me_customArray = [];
       if (this.coverageOfferedData.entireMeYear == true) {
         this.coverageOfferedData.essential_coverage_months = JSON.stringify(this.totalYear);
@@ -273,7 +273,7 @@ export class CoverageOfferedComponent implements OnInit {
     }
 
     this.coverageOfferedData.plan_class_id = this.id;
-
+    this.coverageOfferedData['company_id'] = this.company_id;
     this.planClassesService.createOrUpdateCoverageOffered(this.id, this.coverageOfferedData).subscribe(
       result => {
         if (result.success) {

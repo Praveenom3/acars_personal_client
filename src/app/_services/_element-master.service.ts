@@ -37,7 +37,7 @@ export class ElementMasterService {
             .catch(this._globalService.handleError);
     }
 
-    public getLabels(section_id, product_id): Observable<any> {
+    public getLabels(section_id, product_id, company_id): Observable<any> {
         let product;
         if (product_id == 1 || product_id == 2 || product_id == 3) {
             product = 1;
@@ -45,7 +45,7 @@ export class ElementMasterService {
             product = 2;
         }
         return this._http.get(
-            this._elementMasterUrl + '/get-labels/' + section_id + '/' + product,
+            this._elementMasterUrl + '/get-labels/' + section_id + '/' + product + '/' + company_id,
             { headers: this._globalService.getHeaders() }
         ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
