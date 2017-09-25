@@ -206,3 +206,15 @@ body.body-blue nav.top-menu .menu{
         top: 4px;
     }
 }
+
+.comp-dash-project-steps-divs{
+    min-height: 284px;
+}
+
+.client-dash-project-steps-btns{
+    position: absolute;
+    bottom: 15px;
+    left: 3%;
+    width: 94%;
+    text-align: center;
+}
