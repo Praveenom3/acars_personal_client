@@ -10,6 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { GlobalService } from './_global.service';
 import { GeneralPlanInfo } from "app/_models/general-plan-info";
+import { HttpService } from "app/interceptors/http.service";
 
 @Injectable()
 
@@ -19,7 +20,7 @@ export class GeneralPlanInfoService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        private _http: HttpService) {
 
     }
 

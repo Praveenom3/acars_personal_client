@@ -10,6 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { GlobalService } from './_global.service';
 import { PlanOfferingCriteria } from "app/_models/plan-offering-criteria";
+import {HttpService} from "app/interceptors/http.service"
 
 @Injectable()
 
@@ -19,7 +20,7 @@ export class PlanOfferingCriteriaService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        private _http: HttpService) {
 
     }
 

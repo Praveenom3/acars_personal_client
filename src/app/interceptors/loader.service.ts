@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-
+import { LoaderComponent } from 'app/interceptors/loader.component';
 @Injectable()
 
 export class LoaderService {
 
     private loaderSubject = new Subject<LoaderState>();
 
-    loaderState = this.loaderSubject.asObservable();
+    loaderState: boolean = false;//this.loaderSubject.asObservable();
 
-    constructor() { }
+    constructor( ) {
+    }
     /**
      * 
      */
     showLoader() {
-        this.loaderSubject.next(<LoaderState>{ show: true });
+        this.loaderState = true;
     }
     /**
      * 
      */
     hideLoader() {
-        this.loaderSubject.next(<LoaderState>{ show: false });
+        this.loaderState = false;
     }
 }
 /**

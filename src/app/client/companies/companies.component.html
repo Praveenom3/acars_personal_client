@@ -303,8 +303,8 @@
                             </tbody>
                         </table>
                         <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-failed status-btn "
-                            *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-success status-btn "
+                            *ngIf="!clientDashBoardService.company.onBoarding_data">IN COMPLETE</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-completed btn-success status-btn "
                             *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
                     </div>
                 </div>
@@ -365,8 +365,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">Incomplete</button>
-                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-not-allowed'">Completed</button>
+                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default step-button-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">IN COMPLETE</button>
+                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default step-button-default cursor-not-allowed':'btn-success step-completed cursor-not-allowed'">Completed</button>
                     </div>
                 </div>
                 <div class="col-md-4 padding-right-0">
@@ -396,7 +396,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 3</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default step-button-default status-btn margin-top-42">COMPLETE STEP 3</button>
                     </div>
                 </div>
 
@@ -427,7 +427,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-button-default btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
                     </div>
                 </div>
                 <div class="col-md-4 padding-right-12">
@@ -454,7 +454,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-button-default btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
                     </div>
                 </div>
 
@@ -482,7 +482,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-button-default btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
                     </div>
                 </div>
 
