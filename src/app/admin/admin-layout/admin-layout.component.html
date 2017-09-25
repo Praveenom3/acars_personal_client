@@ -1,3 +1,4 @@
+<div *ngIf="loaderService.loaderState" class="loading"></div>
 <nav class="top-menu transistion top-nav admin-nav">
     <div class="menu-icon-container items-class hidden-md-up">
         <div class="animate-menu-button left-menu-toggle" [class.active]="isLinkActive" (click)="toggleClass()">

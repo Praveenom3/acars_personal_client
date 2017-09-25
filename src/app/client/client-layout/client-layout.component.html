@@ -1,4 +1,6 @@
 <!-- left scroll menu start(in tab size)-->
+<div *ngIf="loaderService.loaderState" class="loading"></div>
+{{loaderService.loaderState}}
 <nav class="left-menu media-hide" left-menu>
     <!--logo image start -->
     <div class="logo-container">

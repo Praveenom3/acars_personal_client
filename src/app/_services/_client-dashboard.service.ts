@@ -92,7 +92,7 @@ export class ClientDashBoardService {
         private _router: Router,
         private toastrService: ToastrService,
         private _companyUserService: CompanyUserService,
-        private _http: Http,
+        private _http: HttpService,
         private _httpService: HttpService) {
     }
     /**
@@ -342,7 +342,7 @@ export class ClientDashBoardService {
      * @param data 
      */
     public getClientCompanies(data) {
-        return this._httpService.post(
+        return this._http.post(
             this._apiUrl + '/get-companies-of-clients', data,
             {
                 headers: this._globalService.getHeaders()
@@ -352,7 +352,7 @@ export class ClientDashBoardService {
 
 
     public getIsCompletedInfo(companyid) {
-        return this._httpService.get(
+        return this._http.get(
             this._apiUrl + '/get-is-completed-info/' + companyid,
             {
                 headers: this._globalService.getHeaders()

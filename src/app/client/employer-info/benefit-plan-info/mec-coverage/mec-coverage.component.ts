@@ -5,6 +5,7 @@ import { ElementMasterService } from "app/_services/_element-master.service";
 import { MecCoverage } from "app/_models/mec-coverage";
 import { MecCoverageService } from "app/_services/_mec-coverage.service";
 import { GlobalService } from "app/_services/_global.service";
+import { HttpService } from "app/interceptors/http.service";
 
 @Component({
   selector: 'app-mec-coverage',
