@@ -30,8 +30,7 @@
                                 </div>
                                  -->
                                 <i class="glyphicon glyphicon-search"></i>
-                                <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery"
-                                />
+                                <input type="text" placeholder="Search for Companies" class="form-control company-search-text-box margin-bottom-15" [(ngModel)]="filterQuery" />
                             </div>
                             <!-- <div class="add-company-ein-div">
                                 <button (click)="createCompany()" class="add-company-ein btn btn-primary btn-blue">
@@ -40,8 +39,7 @@
                                 </button>
                             </div> -->
                             <div id="company_list_table" class="content-div">
-                                <table class="table table-fixed table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
-                                    #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
+                                <table class="table table-fixed table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
                                     [(mfSortOrder)]="sortOrder">
                                     <thead>
                                         <tr>
@@ -101,8 +99,7 @@
                                 </span>
                                     <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
                                     <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
-                                    <a *ngIf="clientDashBoardService.accountManager" href="mailto:{{clientDashBoardService.accountManagerMail}}" target="_top"
-                                        class="link-blue"> Contact My Manager</a>
+                                    <a *ngIf="clientDashBoardService.accountManager" href="mailto:{{clientDashBoardService.accountManagerMail}}" target="_top" class="link-blue"> Contact My Manager</a>
                                 </div>
 
                             </div>
@@ -156,8 +153,7 @@
                     </div>
                     <div class="upload-media-div padding-right-0">
                         <div id="upload-div" class="client-dash-first-row-widgets widget col-md-12  irs-main-block padding-15 comp-dash-divs">
-                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer upload-datafiles-media"
-                                style="padding:23px; background-color:#13a9cc">
+                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer upload-datafiles-media" style="padding:23px; background-color:#13a9cc">
                                 <ul class="ul-inline download-upload-ul">
                                     <li class="download-ul-li">
                                         <img src='../src/assets/images/upload.png'>
@@ -169,8 +165,7 @@
                                 </ul>
                             </div>
                             <br>
-                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-default upload-download-block cursor-pointer upload-datafiles-media"
-                                style="padding:23px;background-color:#5ad1ed">
+                            <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-default upload-download-block cursor-pointer upload-datafiles-media" style="padding:23px;background-color:#5ad1ed">
                                 <ul class="ul-inline download-upload-ul">
                                     <li class="upload-ul-li">
                                         <img src='../src/assets/images/download.png'>
@@ -207,8 +202,7 @@
                                 <span class="company-eins-block">
                                     
                                    EIN : &nbsp;   {{formatCompanyEin(clientDashBoardService.company.company_ein)}}
-                            </span> | Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}}
-                                | Package: &nbsp; {{clientDashBoardService.productService}}
+                            </span> | Reporting Year: &nbsp; {{clientDashBoardService.product.applicable_year}} | Package: &nbsp; {{clientDashBoardService.productService}}
                             </div>
 
                         </div>
@@ -225,8 +219,7 @@
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12 padding-left-0 padding-right-0">
                         <div class="widget col-md-12  authorized-users-block padding-15 comp-dash-divs">
-                            <table class="table table-fixed table-hover table-striped table-company-users-dashboard color-ash" [mfData]="clientDashBoardService.company.companyUsers"
-                                #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
+                            <table class="table table-fixed table-hover table-striped table-company-users-dashboard color-ash" [mfData]="clientDashBoardService.company.companyUsers" #users="mfDataTable" [mfRowsOnPage]="clientDashBoardService.userRowsOnPage" [(mfSortBy)]="sortBy"
                                 [(mfSortOrder)]="sortOrder">
                                 <thead>
                                     <tr>
@@ -246,9 +239,9 @@
                                 <tbody>
                                     <ng-container *ngIf="users.data?.length">
                                         <tr class="flex" *ngFor="let companyUserData of users.data">
-                                            <td class="col-xs-2">{{trimData(companyUserData.first_name)}}</td>
-                                            <td class="col-xs-2">{{trimData(companyUserData.last_name)}}</td>
-                                            <td class="col-xs-6">{{companyUserData.email}}</td>
+                                            <td class="col-xs-2" [attr.title]="companyUserData.first_name">{{trimData(companyUserData.first_name)}}</td>
+                                            <td class="col-xs-2" [attr.title]="companyUserData.last_name">{{trimData(companyUserData.last_name)}}</td>
+                                            <td class="col-xs-6" [attr.title]="companyUserData.email">{{companyUserData.email}}</td>
                                             <td class="col-xs-2"><a (click)="viewCompanyUser(companyUserData)" class="link-blue-underline">Edit</a></td>
                                         </tr>
                                     </ng-container>
@@ -276,36 +269,28 @@
                                 <tr class="steps-tr-class">
                                     <td>Invoice</td>
                                     <td class="padding-5">
-                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
-                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid">Not Paid</span>
-                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
-                                            (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid">Paid</span>
+                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="!clientDashBoardService.company.is_invoice_paid">Not Paid</span>
+                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleInvoicePayment(clientDashBoardService.company);" *ngIf="clientDashBoardService.company.is_invoice_paid">Paid</span>
                                     </td>
                                 </tr>
                                 <tr class="steps-tr-class">
                                     <td>Client Agreement</td>
                                     <td class="padding-5">
-                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
-                                            (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement">Needed</span>
-                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
-                                            (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement">Completed</span>
+                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleAgreementSign();" *ngIf="!clientDashBoardService.company.client_agreement">Needed</span>
+                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleAgreementSign();" *ngIf="clientDashBoardService.company.client_agreement">Completed</span>
                                     </td>
                                 </tr>
                                 <tr class="steps-tr-class">
                                     <td>Discovery Session</td>
                                     <td class="padding-5">
-                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
-                                            (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session">Needed</span>
-                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'"
-                                            (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session">Completed</span>
+                                        <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session">Needed</span>
+                                        <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session">Completed</span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn step-failed status-btn "
-                            *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-success status-btn "
-                            *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
+                        <span [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn step-failed status-btn danger-span" *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</span>
+                        <span [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-success status-btn success-span" *ngIf="clientDashBoardService.company.onBoarding_data">Completed</span>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 padding-right-12">
@@ -316,8 +301,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
-                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
+                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li" [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
                                     </td>
                                     <td class="padding-5">
                                         <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
@@ -330,8 +314,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
-                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein}">
+                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li" [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein}">
                                             Basic Plan Information
                                         </a>
                                     </td>
@@ -347,26 +330,23 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
-                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting}">
+                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li" [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting}">
                                             Benefit Plan & Plan Classes
                                         </a>
                                     </td>
                                     <td class=" padding-5">
 
-                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
+                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
                                             Required</span>
-                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
-                                            [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
+                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses" [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
                                             Completed</span>
 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn client-dash-project-steps-btns" *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">Incomplete</button>
-                        <button class="btn status-btn client-dash-project-steps-btns" *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-not-allowed'">Completed</button>
+                        <button class="btn status-btn client-dash-project-steps-btns danger-span" *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">Incomplete</button>
+                        <button class="btn status-btn client-dash-project-steps-btns success-span" *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-not-allowed'">Completed</button>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 padding-right-0">
@@ -386,8 +366,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
-                                            (click)="redirectToEmployeeData('medicalplan')">Medical Plan Data</a></td>
+                                    <td><a class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li" (click)="redirectToEmployeeData('medicalplan')">Medical Plan Data</a></td>
                                     <td class=" padding-5">
                                         <span class="cursor-allowed step-status-flag link-default cursor-not-allowed">
                                             Pending
@@ -396,7 +375,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="client-dash-project-steps-btns btn btn-default status-btn">COMPLETE STEP 3</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="client-dash-project-steps-btns btn btn-default status-btn default-span">COMPLETE STEP 3</button>
                     </div>
                 </div>
 
@@ -424,7 +403,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-default status-btn  margin-top-42 default-span">COMPLETE STEP 4</button>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 padding-right-12">
@@ -451,7 +430,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-default status-btn margin-top-42 default-span">COMPLETE STEP 5</button>
                     </div>
                 </div>
 
@@ -479,7 +458,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn btn-default status-btn margin-top-42 default-span">COMPLETE STEP 6</button>
                     </div>
                 </div>
 
@@ -489,8 +468,7 @@
 
     <!-- Edit Company Details Modal -->
 
-    <div class="modal fade" bsModal #companyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" bsModal #companyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header modal-header-color">
@@ -509,16 +487,14 @@
                             <div class="col-md-6">
                                 <label class="form-control-label">Company Name<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
-                                    <input type="text" class="form-control" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
-                                        [ngClass]="{'form-control-danger': !_isValid('company_name')}">
+                                    <input type="text" class="form-control" maxlength="30" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name" [ngClass]="{'form-control-danger': !_isValid('company_name')}">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_name.valid">{{_formErrors.company_name.message}}</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-control-label">EIN<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
-                                    <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
-                                        [(ngModel)]="companyEdit.company_ein" [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
+                                    <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']" [(ngModel)]="companyEdit.company_ein" [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
                                         placeholder="(__)-______">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
                                 </div>
@@ -539,8 +515,7 @@
     <!-- ./Edit Company Details Modal -->
 
 
-    <div class="modal fade" bsModal #companyUserModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" bsModal #companyUserModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header modal-header-color">
@@ -559,8 +534,7 @@
                                     <div class="">
                                         <label class="form-control-label">First Name <span class="red">*</span></label>
                                         <div class="form-group required" [ngClass]="{'has-danger': !_isCompanyUserValid('first_name')}">
-                                            <input type="text" class="form-control" [formControl]="_companyUserForm.controls['first_name']" [(ngModel)]="companyUserInformation.first_name"
-                                                [ngClass]="{'form-control-danger': !_isCompanyUserValid('first_name')}" maxlength="34">
+                                            <input type="text" class="form-control" [formControl]="_companyUserForm.controls['first_name']" [(ngModel)]="companyUserInformation.first_name" [ngClass]="{'form-control-danger': !_isCompanyUserValid('first_name')}" maxlength="34">
                                             <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.first_name.valid">{{_companyUserFormErrors.first_name.message}}</span>
                                         </div>
                                     </div>
@@ -570,9 +544,7 @@
                                     <div class="">
                                         <label class="form-control-label">Last Name <span class="red">*</span></label>
                                         <div class="form-group companyuser-last_name required" [ngClass]="{'has-danger': !_isCompanyUserValid('last_name')}">
-                                            <input type="text" id="companyuser-last_name" class="form-control" [formControl]="_companyUserForm.controls['last_name']"
-                                                [(ngModel)]="companyUserInformation.last_name" [ngClass]="{'form-control-danger': !_isCompanyUserValid('last_name')}"
-                                                maxlength="34">
+                                            <input type="text" id="companyuser-last_name" class="form-control" [formControl]="_companyUserForm.controls['last_name']" [(ngModel)]="companyUserInformation.last_name" [ngClass]="{'form-control-danger': !_isCompanyUserValid('last_name')}" maxlength="34">
                                             <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.last_name.valid">{{_companyUserFormErrors.last_name.message}}</span>
                                         </div>
                                     </div>
@@ -580,9 +552,7 @@
                                 <div class="col-md-4">
                                     <label class="form-control-label" for="companyuser-email">Email Address <span class="red">*</span></label>
                                     <div class="form-group field-companyuser-email" [ngClass]="{'has-danger': !_isCompanyUserValid('email')}">
-                                        <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_companyUserForm.controls['email']"
-                                            [(ngModel)]="companyUserInformation.email" [ngClass]="{'form-control-danger': !_isCompanyUserValid('email')}"
-                                            maxlength="34">
+                                        <input type="text" id="adminusers-email" class="form-control" aria-required="true" [formControl]="_companyUserForm.controls['email']" [(ngModel)]="companyUserInformation.email" [ngClass]="{'form-control-danger': !_isCompanyUserValid('email')}" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.email.valid">{{_companyUserFormErrors.email.message}}</span>
                                     </div>
                                 </div>
@@ -592,10 +562,8 @@
                                 <div class="col-md-4">
                                     <label class="form-control-label">Phone <span class="red">*</span></label>
                                     <div class="form-group field-companyuser-phone required" [ngClass]="{'has-danger': !_isCompanyUserValid('phone')}">
-                                        <input type="text" [textMask]="{mask: phoneNumberMask,guide: false, modelClean: true}" id="companyuser-phone" class="form-control"
-                                            [formControl]="_companyUserForm.controls['phone']" [(ngModel)]="companyUserInformation.phone"
-                                            [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone')}" aria-required="true"
-                                            placeholder="(___) ___-____" maxlength="34">
+                                        <input type="text" [textMask]="{mask: phoneNumberMask,guide: false, modelClean: true}" id="companyuser-phone" class="form-control" [formControl]="_companyUserForm.controls['phone']" [(ngModel)]="companyUserInformation.phone" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone')}"
+                                            aria-required="true" placeholder="(___) ___-____" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone.valid">{{_companyUserFormErrors.phone.message}}</span>
                                     </div>
 
@@ -603,8 +571,7 @@
                                 <div class="col-md-4">
                                     <label class="form-control-label">Extension</label>
                                     <div class="form-group field-companyuser-phone-extension" [ngClass]="{'has-danger': !_isCompanyUserValid('phone_extension')}">
-                                        <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_companyUserForm.controls['phone_extension']"
-                                            [(ngModel)]="companyUserInformation.phone_extension" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone_extension')}"
+                                        <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_companyUserForm.controls['phone_extension']" [(ngModel)]="companyUserInformation.phone_extension" [ngClass]="{'form-control-danger': !_isCompanyUserValid('phone_extension')}"
                                             value="" maxlength="6">
                                         <span class="help-block help-block-error" *ngIf="!_companyUserFormErrors.phone_extension.valid">{{_companyUserFormErrors.phone_extension.message}}</span>
                                     </div>
@@ -614,8 +581,7 @@
                                     <div class="">
                                         <label class="form-control-label">Status<span class="red">*</span></label>
                                         <div class="form-group field-adminusers-status required" [ngClass]="{'has-danger': !_isCompanyUserValid('status')}">
-                                            <select class="form-control" [formControl]="_companyUserForm.controls['status']" [(ngModel)]="companyUserInformation.status"
-                                                [ngClass]="{'form-control-danger': !_isCompanyUserValid('status')}">
+                                            <select class="form-control" [formControl]="_companyUserForm.controls['status']" [(ngModel)]="companyUserInformation.status" [ngClass]="{'form-control-danger': !_isCompanyUserValid('status')}">
                                                     <option disabled value='null'>Select</option>
                                                     <option [value]='1'>Active</option>
                                                     <option [value]='0'>Inactive</option>
@@ -638,13 +604,11 @@
         </div>
     </div>
 
-    <div class="modal fade" bsModal #companyUploadDataFile="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" bsModal #companyUploadDataFile="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="upload-file-block modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="upload-files-div-header modal-header modal-header-color">
-                    <button type="button" class="close-upload-file close-modal modal-opacity close-modal-blue" (click)="closeUploadDataModal()"
-                        aria-hidden="true">×</button>
+                    <button type="button" class="close-upload-file close-modal modal-opacity close-modal-blue" (click)="closeUploadDataModal()" aria-hidden="true">×</button>
                     <div class="upload-tick-mark-div">
                         <i class="upload-fa-icon fa fa-check" aria-hidden="true"></i>
                     </div>
@@ -659,11 +623,9 @@
 
                     <div class="upload-file-body">
                         <p>
-                            Accurate ACA reporting payroll period and medical enrollment data through the end of the calendar year. For this reason,
-                            we have not opened up the begin receiving payroll and medical enrollment data until closer to
-                            the end of the year.
+                            Accurate ACA reporting payroll period and medical enrollment data through the end of the calendar year. For this reason, we have not opened up the begin receiving payroll and medical enrollment data until closer to the end of the year.
                         </p>
-                        In the meantime, you can <a class="link-white-underline" href="../src/assets/temp-files/ACA-Reporting-2017-Data-Packet.xls">download this template</a>                        to prepare for the end of year
+                        In the meantime, you can <a class="link-white-underline" href="../src/assets/temp-files/ACA-Reporting-2017-Data-Packet.xls">download this template</a> to prepare for the end of year
 
                     </div>
                     <div class="upload-file-footer">

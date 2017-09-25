@@ -656,6 +656,7 @@ table.table-company-dashboard tbody tr:hover {
     color: white;
 }
 
+
 /* .link-default:hover {
     color: #acb7bf;
 } */
@@ -737,9 +738,34 @@ button.add-company-ein {
 .padding-left-20 {
     padding-left: 20px !important;
 }
-.white-space{
+
+.white-space {
     white-space: nowrap;
 }
+
+.no-transition {
+    transition: unset !important;
+}
+
+.success-span,
+.success-span:hover {
+    background: #46be8a !important;
+    border-color: #46be8a !important;
+}
+
+.danger-span,
+.danger-span:hover {
+    background: #ca141b !important;
+    border-color: #ca141b !important;
+}
+
+.default-span,
+.default-span:hover {
+    background: #9ba8b2 !important;
+    border-color: #9ba8b2 !important;
+}
+
+
 /* @media screen and (max-width: 768px) {
     .content-header-text {
         top: 15px;
@@ -812,6 +838,7 @@ button.add-company-ein {
         font-size: 12px;
     }
 } */
+
 
 /* @media screen and (min-width: 768px) and (max-width:991px){
     .content-header-text {
@@ -905,6 +932,7 @@ button.add-company-ein {
         font-size: 12px;
     }
 } */
+
 
 /* @media only screen and (max-width: 2560px) and (min-width: 1441px)  {
     .content-header-text {
