@@ -1048,6 +1048,20 @@ export class OrdersComponent implements OnInit {
             if (totalIndex !== -1) {
                 this.totalPurchases.splice(totalIndex, 1);
             }
+
+            //updating the selectable products
+            let product_full_name = this.getItemName('product', item.product_id);
+            
+            this.selectableProducts.forEach((selectableProductElement, index) => {
+                Globals.products_keywords.forEach(product_key => {
+                    if (product_full_name.indexOf(product_key) !== -1) {
+                        if (selectableProductElement.product_full_name.indexOf(product_key) !== -1) {
+                            this.selectableProducts[index].is_deleted = 0;
+                        }
+                    }
+                });
+            });
+
             //Scenario 2 : Purchase is Old
             //  }else if(item.hasOwnProperty('is_new_purchase') && item.is_new_purchase == 0){
         } else {
@@ -1069,6 +1083,7 @@ export class OrdersComponent implements OnInit {
                                     this.orders = this.getOrders();
                                     this.toastrService.success('Purchase deleted with Client succesfully.');
                                 } else if (result.data.flag == "Purchase Deleted") {
+
                                     var newIndex = this.updatePurchases.indexOf(item);
                                     if (newIndex !== -1) {
                                         this.updatePurchases.splice(newIndex, 1);
@@ -1078,6 +1093,18 @@ export class OrdersComponent implements OnInit {
                                     if (totalIndex !== -1) {
                                         this.totalPurchases.splice(totalIndex, 1);
                                     }
+                                    //updating the selectable products
+                                    let product_full_name = this.getItemName('product', item.product_id);
+                                    
+                                    this.selectableProducts.forEach((selectableProductElement, index) => {
+                                        Globals.products_keywords.forEach(product_key => {
+                                            if (product_full_name.indexOf(product_key) !== -1) {
+                                                if (selectableProductElement.product_full_name.indexOf(product_key) !== -1) {
+                                                    this.selectableProducts[index].is_deleted = 0;
+                                                }
+                                            }
+                                        });
+                                    });
                                     this.toastrService.success('Purchase deleted succesfully.');
                                 } else {
                                     this.toastrService.success('Trouble in removing the purchase. Please try later.');
