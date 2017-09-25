@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from "@angular/router";
-import { LoaderService, LoaderState } from "app/interceptors/loader.service";
+import { LoaderService } from "app/interceptors/loader.service";
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
