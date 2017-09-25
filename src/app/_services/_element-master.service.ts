@@ -6,6 +6,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 import { GlobalService } from './_global.service';
+import { HttpService } from 'app/interceptors/http.service';
+
 
 @Injectable()
 
@@ -14,7 +16,7 @@ export class ElementMasterService {
     private _elementMasterUrl = this._globalService.apiHost + '/element-master';
 
     constructor(private _globalService: GlobalService,
-        private _http: Http) {
+        private _http: HttpService) {
 
     }
 

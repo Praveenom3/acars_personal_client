@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import {GlobalService} from './_global.service';
+import {HttpService} from 'app/interceptors/http.service';
 
 @Injectable()
 export class PlanClassesService {
@@ -10,7 +11,7 @@ export class PlanClassesService {
 
     constructor(
         private _globalService: GlobalService,
-        private _http: Http) {
+        private _http: HttpService) {
     }
 
     /**
