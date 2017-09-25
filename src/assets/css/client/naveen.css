@@ -170,3 +170,51 @@ body.body-blue nav.top-menu .menu{
 .product-container{
     top: 155px;
 }
+.client-dash-first-row-widgets{
+    min-width: 253.7px;
+
+}
+
+.companies-media-div, .contact-us-media-div, .irs-media-div, .upload-media-div{
+    width: 49%;
+    display: inline-block;
+}
+
+@media screen and (max-width: 1201px) {
+    .companies-media-div, .contact-us-media-div, .irs-media-div, .upload-media-div{
+        width: 100%;
+    }
+    .efile-span{
+        display: initial;
+        margin-left: 5px;
+    }
+    .content-header-text{
+        top: 23px;
+        left: 78px;
+    }
+    .company-search .glyphicon{
+        top: 19px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .content-header-text{
+        top: 17px;
+        left: 68px;
+    }
+    .company-search .glyphicon{
+        top: 4px;
+    }
+}
+
+.comp-dash-project-steps-divs{
+    min-height: 284px;
+}
+
+.client-dash-project-steps-btns{
+    position: absolute;
+    bottom: 15px;
+    left: 3%;
+    width: 94%;
+    text-align: center;
+}

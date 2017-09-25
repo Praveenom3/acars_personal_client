@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[inputFilter],[groupNames],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
+  selector: '[inputFilter],[invoiceNumber],[groupNames],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
 })
 export class inputFilterDirective {
 
@@ -18,6 +18,7 @@ export class inputFilterDirective {
   @Input() maxValue: string;
   @Input() empInfoValidator: string;
   @Input() groupNames: string;
+  @Input() invoiceNumber: string;
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
     let e = <KeyboardEvent>event;
@@ -77,6 +78,11 @@ export class inputFilterDirective {
         e.preventDefault();
       }
     }
+    else if (this.invoiceNumber) {
+      if (!e.key.match(/^([a-zA-Z0-9 '.,$-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+        e.preventDefault();
+      }
+    }
   }
 
 
@@ -87,14 +93,14 @@ export class inputFilterDirective {
     if (this.OnlyAmountNumber) {
       let valInFloat: number = parseFloat(e.target.value)
 
-    //  if (this.minValue.length) {
-        // (isNaN(valInFloat) && e.key === "0") - When user enters value for first time valInFloat will be NaN, e.key condition is 
-        // because I didn't want user to enter anything below 1.
-        // NOTE: You might want to remove it if you want to accept 0
-    //    if (valInFloat < parseFloat(this.minValue)) {
+      //  if (this.minValue.length) {
+      // (isNaN(valInFloat) && e.key === "0") - When user enters value for first time valInFloat will be NaN, e.key condition is 
+      // because I didn't want user to enter anything below 1.
+      // NOTE: You might want to remove it if you want to accept 0
+      //    if (valInFloat < parseFloat(this.minValue)) {
 
-    //    }
-   //   }
+      //    }
+      //   }
 
       if (this.maxValue.length) {
         if (valInFloat > parseFloat(this.maxValue)) {

@@ -3,12 +3,12 @@
     <div class="row company-section-container">
 
         <div class="col-md-12" style="margin-top:25px;">
-            <div class="col-lg-10 col-lg-offset-1 padding-bottom-30">
+            <div class="container padding-bottom-30">
                 <div class="col-md-6 padding-right-12">
                     <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">SEARCH & SUPPORT</h2>
                     <div class="header-border-btm-blue"></div>
-                    <div class="companies-media-div col-lg-6 col-md-12 padding-left-0 padding-right-12">
-                        <div class="widget col-md-12 padding-15 block-one comp-dash-divs">
+                    <div class="companies-media-div padding-left-0 padding-right-12">
+                        <div id="companies_list_div" class="client-dash-first-row-widgets widget col-md-12 padding-15 block-one comp-dash-divs">
 
                             <div class="content-header dark-blue-text">
                                 <div class="content-header-image">
@@ -39,7 +39,7 @@
                                     Add EIN
                                 </button>
                             </div> -->
-                            <div class="content-div">
+                            <div id="company_list_table" class="content-div">
                                 <table class="table table-fixed table-hover table-striped table-company-dashboard color-ash" [mfData]="clientDashBoardService.companies | companiesFilter : filterQuery"
                                     #mf="mfDataTable" [mfRowsOnPage]="clientDashBoardService.rowsOnPage" [(mfSortBy)]="sortBy"
                                     [(mfSortOrder)]="sortOrder">
@@ -75,8 +75,8 @@
                         </div>
                     </div>
 
-                    <div class="contact-us-media-div col-lg-6 col-md-12 padding-right-0">
-                        <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
+                    <div class="contact-us-media-div padding-right-0">
+                        <div id="contact_us_div" class="client-dash-first-row-widgets widget col-md-12  padding-15 block-one comp-dash-divs">
 
                             <div class="content-header dark-blue-text">
                                 <div class="content-header-image">
@@ -113,8 +113,8 @@
                 <div class="col-md-6">
                     <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">DEADLINES & DATA</h2>
                     <div class="header-border-btm-blue"></div>
-                    <div class="irs-media-div col-lg-6 col-md-12 padding-left-0 padding-right-12">
-                        <div class="widget col-md-12  padding-15 block-one comp-dash-divs">
+                    <div class="irs-media-div padding-left-0 padding-right-12">
+                        <div id="irs-div" class="client-dash-first-row-widgets widget col-md-12  padding-15 block-one comp-dash-divs">
                             <div class="content-header dark-blue-text">
                                 <div class="content-header-image">
                                     <img src='../src/assets/images/client-dashboard/irs deadlines.png' class="dashboard-images">
@@ -154,8 +154,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="upload-media-div col-lg-6 col-md-12 padding-right-0">
-                        <div class="widget col-md-12  irs-main-block padding-15 comp-dash-divs">
+                    <div class="upload-media-div padding-right-0">
+                        <div id="upload-div" class="client-dash-first-row-widgets widget col-md-12  irs-main-block padding-15 comp-dash-divs">
                             <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer upload-datafiles-media"
                                 style="padding:23px; background-color:#13a9cc">
                                 <ul class="ul-inline download-upload-ul">
@@ -187,7 +187,7 @@
 
             </div>
 
-            <div class="col-lg-10 col-lg-offset-1 padding-bottom-30">
+            <div class="container padding-bottom-30">
                 <div class="col-lg-6 col-md-12 padding-right-12">
                     <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h2>
                     <div class="header-border-btm-blue"></div>
@@ -264,11 +264,11 @@
                 </div>
             </div>
 
-            <div class="col-lg-10 col-lg-offset-1 padding-bottom-7">
+            <div class="container padding-bottom-7">
                 <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">PROJECT STEPS & STATUS</h2>
                 <div class="header-border-btm-blue"></div>
-                <div class="col-md-4 padding-left-0 padding-right-12">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs">
+                <div class="col-lg-4 col-md-6 padding-left-0 padding-right-12">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs comp-dash-project-steps-divs">
                         <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">1</span></h4>
                         <p class=" setup-text-band">On-boarding</p>
                         <table class="col-xs-12">
@@ -302,14 +302,14 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-failed status-btn "
-                            *ngIf="!clientDashBoardService.company.onBoarding_data">IN COMPLETE</button>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-completed btn-success status-btn "
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns btn step-failed status-btn "
+                            *ngIf="!clientDashBoardService.company.onBoarding_data">Incomplete</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns step-completed btn btn-success status-btn "
                             *ngIf="clientDashBoardService.company.onBoarding_data">Completed</button>
                     </div>
                 </div>
-                <div class="col-md-4 padding-right-12">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepTwoDisabled'>
+                <div class="col-lg-4 col-md-6 padding-right-12">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs comp-dash-project-steps-divs" [ngClass]='clientDashBoardService.stepTwoDisabled'>
                         <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">2</span></h4>
                         <p class=" setup-text-band">Company Data</p>
                         <table class="col-xs-12">
@@ -365,12 +365,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn status-btn " *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default step-button-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">IN COMPLETE</button>
-                        <button class="btn status-btn " *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default step-button-default cursor-not-allowed':'btn-success step-completed cursor-not-allowed'">Completed</button>
+                        <button class="btn status-btn client-dash-project-steps-btns" *ngIf="!clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default step-button-defaultcursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">Incomplete</button>
+                        <button class="btn status-btn client-dash-project-steps-btns" *ngIf="clientDashBoardService.company.company_data" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default step-button-default cursor-not-allowed':'btn-success step-completed cursor-not-allowed'">Completed</button>
                     </div>
                 </div>
-                <div class="col-md-4 padding-right-0">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepThreeDisabled'>
+                <div class="col-lg-4 col-md-6 padding-right-0">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs comp-dash-project-steps-divs" [ngClass]='clientDashBoardService.stepThreeDisabled'>
                         <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">3</span></h4>
                         <p class=" setup-text-band">Employee Data</p>
                         <table class="col-xs-12">
@@ -396,15 +396,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn btn-default step-button-default status-btn margin-top-42">COMPLETE STEP 3</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="client-dash-project-steps-btns step-button-default btn btn-default status-btn">COMPLETE STEP 3</button>
                     </div>
                 </div>
 
-            </div>
-            <div class="col-md-10 col-md-offset-1">
-
-                <div class="col-md-4 padding-left-0 padding-right-12">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFourDisabled'>
+                <div class="col-lg-4 col-md-6 padding-left-0 padding-right-12">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs comp-dash-project-steps-divs" [ngClass]='clientDashBoardService.stepFourDisabled'>
                         <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">4</span></h4>
                         <p class=" setup-text-band">Request & Review Forms</p>
                         <table class="col-xs-12">
@@ -427,11 +424,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-button-default btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
+
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns step-button-default btn btn-default status-btn  margin-top-42">COMPLETE STEP 4</button>
                     </div>
                 </div>
-                <div class="col-md-4 padding-right-12">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepFiveDisabled'>
+                <div class="col-lg-4 col-md-6 padding-right-12">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs comp-dash-project-steps-divs" [ngClass]='clientDashBoardService.stepFiveDisabled'>
                         <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">5</span></h4>
                         <p class=" setup-text-band">Approval & Print and Mail</p>
                         <table class="col-xs-12">
@@ -454,12 +452,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-button-default btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
+
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns step-button-default btn btn-default status-btn margin-top-42">COMPLETE STEP 5</button>
                     </div>
                 </div>
 
-                <div class="col-md-4 padding-right-0">
-                    <div class="widget col-md-12  padding-15 comp-dash-divs " [ngClass]='clientDashBoardService.stepSixDisabled'>
+                <div class="col-lg-4 col-md-6 padding-right-0">
+                    <div class="widget col-md-12  padding-15 comp-dash-divs comp-dash-project-steps-divs" [ngClass]='clientDashBoardService.stepSixDisabled'>
                         <h4 class="font-weight-300 text-center dark-blue-text "> STEP <span class="step-circle">6</span></h4>
                         <p class=" setup-text-band">IRS Fillings</p>
                         <table class="col-xs-12">
@@ -482,7 +481,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class="btn step-button-default btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
+                        <button [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-button-not-allowed'" class=" client-dash-project-steps-btns step-button-default btn btn-default status-btn margin-top-42">COMPLETE STEP 6</button>
                     </div>
                 </div>
 
