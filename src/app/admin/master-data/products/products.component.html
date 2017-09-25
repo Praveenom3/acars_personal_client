@@ -40,10 +40,10 @@
                 <div class="form-inline">
                     <div class="form-group pull-right padding-10">
                         <label for="email"><b>Search:</b></label>
-                        <input class="form-control mr-left-5" />
+                        <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
                     </div>
                 </div>
-                <table class="table table-hover table-bordered table-striped" [mfData]="products" #prod="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <table class="table table-hover table-bordered table-striped" [mfData]="products | productsFilter : filterQuery" #prod="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                     <thead>
                         <tr class="tr-blue-grid-head">
