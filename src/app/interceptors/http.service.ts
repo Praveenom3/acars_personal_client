@@ -18,9 +18,10 @@ export class HttpService extends Http {
         return super.request(url, options)
             ._finally(() => {
           
-            setTimeout(function() {
-               this.removeLoader();
-              }, 500);
+          setTimeout(()=>{    //<<<---    using ()=> syntax
+                 this.removeLoader();
+           },500);
+         
                
             });
     }
