@@ -10,7 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { GlobalService } from './_global.service';
 import { AggregatedGroup } from "app/_models/aggregated-group";
-
+import { HttpService } from "app/interceptors/http.service";
 @Injectable()
 
 export class AggregatedGroupService {
@@ -19,7 +19,10 @@ export class AggregatedGroupService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        //private _http: Http,
+        private _http: HttpService,
+        
+    ) {
 
     }
 

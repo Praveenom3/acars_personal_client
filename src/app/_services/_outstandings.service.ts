@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import { Router } from "@angular/router";
 
 import { GlobalService } from './_global.service';
-
+import { HttpService } from 'app/interceptors/http.service';
 @Injectable()
 
 export class OutstandingsService {
@@ -16,7 +16,7 @@ export class OutstandingsService {
     private _oustandingUrl = this._globalService.apiHost + '/outstandings';
 
     constructor(private _globalService: GlobalService,
-        private _http: Http) {
+        private _http: HttpService) {
 
     }
 

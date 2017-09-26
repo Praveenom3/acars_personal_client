@@ -17,7 +17,12 @@ export class HttpService extends Http {
         this.addLoader();
         return super.request(url, options)
             ._finally(() => {
-                this.removeLoader();
+          
+          setTimeout(()=>{    //<<<---    using ()=> syntax
+                 this.removeLoader();
+           },500);
+         
+               
             });
     }
 

@@ -13,6 +13,7 @@ import { BriBasicInfo } from "app/_models/bri-basic-info";
 import { HttpService } from "app/interceptors/http.service";
 
 
+
 @Injectable()
 
 export class BriBasicInfoService {
@@ -21,7 +22,9 @@ export class BriBasicInfoService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: HttpService) {
+        //private _http: Http,
+        private _http: HttpService
+    ) {
 
     }
 

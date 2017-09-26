@@ -646,12 +646,28 @@ table.table-company-dashboard tbody tr:hover {
     color: white;
 }
 
+.step-failed:hover,.step-failed:active {
+    border-color: #ca141b;
+    background-color: #ca141b;
+    color: white;
+}
+
+.step-completed:hover{
+    border-color: #46be8a !important;
+    background-color: #46be8a !important;
+    color: white;
+}
+
 .step-default {
     border-color: #acb7bf;
     background-color: #acb7bf;
     color: white;
 }
-
+.step-button-default:hover{
+    border-color: #acb7bf !important;
+    background-color: #acb7bf !important;
+    color: white;
+}
 .link-white:hover {
     color: white;
 }

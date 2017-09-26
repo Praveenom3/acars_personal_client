@@ -10,7 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { GlobalService } from './_global.service';
 import { AnythingElse } from "app/_models/anything-else";
-
+import { HttpService } from "app/interceptors/http.service";
 @Injectable()
 
 export class AnythingElseService {
@@ -19,7 +19,7 @@ export class AnythingElseService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        private _http: HttpService) {
 
     }
 

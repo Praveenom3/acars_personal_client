@@ -5,27 +5,21 @@ import { Subject } from 'rxjs/Subject';
 
 export class LoaderService {
 
-    private loaderSubject = new Subject<LoaderState>();
+    
+    loaderState: boolean = false;
 
-    loaderState = this.loaderSubject.asObservable();
-
-    constructor() { }
+    constructor( ) {
+    }
     /**
      * 
      */
     showLoader() {
-        this.loaderSubject.next(<LoaderState>{ show: true });
+        this.loaderState = true;
     }
     /**
      * 
      */
     hideLoader() {
-        this.loaderSubject.next(<LoaderState>{ show: false });
+        this.loaderState = false;
     }
-}
-/**
- * 
- */
-export interface LoaderState {
-    show: boolean;
 }

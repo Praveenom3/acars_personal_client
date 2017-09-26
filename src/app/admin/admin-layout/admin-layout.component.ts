@@ -10,7 +10,7 @@ import { IdleTimeoutService } from "app/_services/_idle-timeout.service";
 
 import * as Globals from '../../_shared/_globals';
 import { GlobalService } from "app/_services/_global.service";
-
+import { LoaderService } from "app/interceptors/loader.service";
 declare var $: any;
 
 @Component({
@@ -45,7 +45,9 @@ export class AdminLayoutComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private toastrService: ToastrService,
         private _idleTimeout: IdleTimeoutService,
-        private globalService: GlobalService) {
+        private globalService: GlobalService,
+        public loaderService:LoaderService
+) {
         _idleTimeout.init();
 
         this.useremail = localStorage.getItem('useremail');

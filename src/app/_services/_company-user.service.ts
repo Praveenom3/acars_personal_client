@@ -10,7 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { AdminUser } from "app/_models/admin-user";
 import { GlobalService } from './_global.service';
-
+import {HttpService}  from "app/interceptors/http.service";
 
 @Injectable()
 
