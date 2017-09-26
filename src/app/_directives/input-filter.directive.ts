@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[inputFilter],[invoiceNumber],[groupNames],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
+  selector: '[inputFilter],[address],[invoiceNumber],[groupNames],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
 })
 export class inputFilterDirective {
 
@@ -19,6 +19,7 @@ export class inputFilterDirective {
   @Input() empInfoValidator: string;
   @Input() groupNames: string;
   @Input() invoiceNumber: string;
+  @Input() address: string;
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
     let e = <KeyboardEvent>event;
@@ -80,6 +81,11 @@ export class inputFilterDirective {
     }
     else if (this.invoiceNumber) {
       if (!e.key.match(/^([a-zA-Z0-9 '.,$-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+        e.preventDefault();
+      }
+    }
+    else if (this.address) {
+      if (!e.key.match(/^([a-zA-Z0-9 /-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
