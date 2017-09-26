@@ -47,6 +47,12 @@ export class BillingContractComponent implements OnInit {
     } else if (this.clientDashBoardService.billingContractModel.first_name != null &&
       this.clientDashBoardService.billingContractModel.first_name != '' &&
       this.clientDashBoardService.billingContractModel.first_name) {
+      let mobile = this.clientDashBoardService.billingContractModel.mobile_number;
+      if (mobile) {
+        mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
+        mobile = '(' + mobile.slice(0, 3) + ') ' + '' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10);
+        this.clientDashBoardService.billingContractModel.mobile_number = mobile;
+      }
       this.setup();
     }
 

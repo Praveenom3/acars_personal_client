@@ -22,9 +22,13 @@
                     </li>
                     <li style="padding-left: 23%;">
                         <a [routerLink]="" (click)="finalStep()" class="btn btn-primary btn-blue">Yes</a>
-                        <a class="btn btn-default">No</a>
+                        <a (click)="setup()" class="btn btn-default">No</a>
                     </li>
                 </ul>
+            </div>
+            <div class="padding-10" *ngIf="isSetup">
+                <p>Please contact Customer support:</p>
+                <h4>Contact Number: &nbsp; <span><a  href="tel:+12837832">12837832</a></span></h4>
             </div>
         </div>
     </div>
