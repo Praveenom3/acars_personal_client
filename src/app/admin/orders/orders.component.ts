@@ -506,6 +506,7 @@ export class OrdersComponent implements OnInit {
             this.temp_product = this.getItemName('product', data.product_id);
 
             this._updatePurchaseFormSubmitted = false;
+            data.purchaser_mobile = data.purchaser_mobile.replace(/[`()|\-\/\ ]/gi, '');
             data.purchaser_mobile = '(' + data.purchaser_mobile.slice(0, 3) + ') ' + '' + data.purchaser_mobile.slice(3, 6) + '-' + data.purchaser_mobile.slice(6, 10);
             if (data.hasOwnProperty('is_new_purchase') && data.is_new_purchase == 1) {
                 this.temp_new_index = this.newPurchases.indexOf(data);
