@@ -10,6 +10,7 @@ import { ToastrService } from "ngx-toastr";
 import { SettingsService } from "app/_services/_setting.service";
 import { CompanyUser } from "app/_models/company-user";
 import { CompanyUserService } from "app/_services/_company-user.service";
+import { Location } from '@angular/common';
 
 declare var $: any;
 
@@ -56,7 +57,9 @@ export class CompaniesComponent implements OnInit {
     private toastrService: ToastrService,
     public settingsService: SettingsService,
     public companyUserService: CompanyUserService,
-    public clientUserService: ClientUserService) {
+    public clientUserService: ClientUserService,
+    private location :Location
+  ) {
 
     this._companyForm = _formBuilder.group({
       company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
@@ -326,8 +329,17 @@ export class CompaniesComponent implements OnInit {
       if (result.success) {
         let productId = this.clientDashBoardService.productParams;
         let clientId = company.client_id;
-        this.clientDashBoardService.setAccountManagerData(productId, clientId);
-        this.clientDashBoardService.setCompany(result.data);
+        let companyInformation = result.data;
+        this.clientDashBoardService.setAccountManagerData(companyInformation.product_id, companyInformation.client_id);
+        this.clientDashBoardService.setCompany(companyInformation);
+        // Generate the URL:
+        let url = this.router.createUrlTree(['/client/' + 
+                                                        this.globalService.encode(companyInformation.product_id) + 
+                                                        '/' + 
+                                                        this.globalService.encode(companyInformation.client_id) + '/dashboard'])
+                                                      .toString();
+      // Change the URL without navigate:
+        this.location.go(url);
       }
     }, error => {
       this.toastrService.error(error.data.message);
