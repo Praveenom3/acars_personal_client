@@ -201,6 +201,7 @@ export class CompaniesComponent implements OnInit {
       return false;
     }
     this.companyEdit = Object.assign({}, companyInfo);
+    this.companyEdit.company_ein = this.formatCompanyEin(companyInfo.company_ein);
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
     this._submitted = false;
     this.companyModal.show();
@@ -511,7 +512,7 @@ export class CompaniesComponent implements OnInit {
     if (!ein) {
       return '_ _-_ _ _ _ _ _ _';
     }
-    let einString: string = ein.slice(0, 2) + '-' + ein.slice(2, 9);
+    let einString: string = ein.slice(0, 2) + '-' + ein.slice(2, 10);
     return einString;
   }
 

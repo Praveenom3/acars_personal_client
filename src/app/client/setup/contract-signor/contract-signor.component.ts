@@ -47,7 +47,12 @@ export class ContractSignorComponent implements OnInit {
       this.clientDashBoardService.contractSignorModel.first_name != '' &&
       this.clientDashBoardService.contractSignorModel.first_name
     ) {
-      console.log(this.clientDashBoardService.contractSignorModel.first_name);
+      let mobile = this.clientDashBoardService.contractSignorModel.mobile_number;
+      if (mobile) {
+        mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
+        mobile = '(' + mobile.slice(0, 3) + ') ' + '' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10);
+        this.clientDashBoardService.contractSignorModel.mobile_number = mobile;
+      }
       this.setup();
     }
 
