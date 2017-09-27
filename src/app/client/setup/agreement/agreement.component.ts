@@ -27,7 +27,9 @@ export class AgreementComponent implements OnInit {
 
   ngOnInit() {
     this.clientDashBoardService.setBrandData();
-    this.termsConditionsUrl = this.clientDashBoardService.brandInformation.terms_conditions_url;
+    let termsUrl :string = this.clientDashBoardService.brandInformation.terms_conditions_url;
+    termsUrl = termsUrl.replace(/^https?:\/\//,'')
+    this.termsConditionsUrl = 'http://'+termsUrl;
     this.clientDashBoardService.setInformation()
   }
   /**

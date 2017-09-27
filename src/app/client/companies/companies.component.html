@@ -318,60 +318,83 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
-                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a>
+                                        <!-- <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data}">Confirm EIN</a> -->
+                                        <a (click)="updateCompanyInfo(clientDashBoardService.company)" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li">Confirm EIN</a>
                                     </td>
                                     <td class="padding-5">
-                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
+                                        <!-- <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'"> </span>-->
+                                        <span class="step-status-flag link-white step-failed cursor-not-allowed" *ngIf="!clientDashBoardService.company.company_ein">
                                             Required
                                         </span>
-                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
+                                        <!-- <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.company_ein" [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'"></span> -->
+                                        <span class="step-success cursor-not-allowed step-status-flag link-white" *ngIf="clientDashBoardService.company.company_ein">
                                             Completed
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
+                                        <!-- <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
                                             [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein}">
+                                             Basic Plan Information
+                                         </a> -->
+                                        <a (click)="redirectToCompanyData('basicReporting')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.company_ein}">
                                             Basic Plan Information
                                         </a>
                                     </td>
                                     <td class="padding-5">
-
-                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
+                                        <!-- <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'"></span> -->
+                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
                                             Required
                                         </span>
-                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
+                                        <!-- <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'"></span> -->
+                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.basicReporting" [ngClass]="(!clientDashBoardService.company.company_ein) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
                                             Completed
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
+                                        <!-- <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
                                             [ngClass]="{'disabled': !clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting}">
+                                             Benefit Plan & Plan Classes
+                                         </a> -->
+                                        <a (click)="redirectToCompanyData('benefitPlan')" class="link-blue-underline company-navigation-link nav-link plan-link dropdown-icon-li"
+                                            [ngClass]="{'disabled': !clientDashBoardService.company.basicReporting}">
                                             Benefit Plan & Plan Classes
                                         </a>
                                     </td>
                                     <td class=" padding-5">
 
-                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
+                                        <!-- <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
                                             [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
+                                             Required</span> -->
+
+                                        <span class="step-status-flag link-white" *ngIf="!clientDashBoardService.company.benefitPlan || !clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-failed cursor-not-allowed'">
                                             Required</span>
-                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
+
+                                        <!-- <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
                                             [ngClass]="(!clientDashBoardService.company.onBoarding_data || !clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
+                                            Completed</span> -->
+
+                                        <span class="step-status-flag link-white" *ngIf="clientDashBoardService.company.benefitPlan && clientDashBoardService.company.planClasses"
+                                            [ngClass]="(!clientDashBoardService.company.basicReporting) ? 'step-default cursor-not-allowed':'step-success cursor-not-allowed'">
                                             Completed</span>
 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
-                        <button class="btn status-btn client-dash-project-steps-btns danger-span" *ngIf="!clientDashBoardService.company.company_data"
+                        <!-- <button class="btn status-btn client-dash-project-steps-btns danger-span" *ngIf="!clientDashBoardService.company.company_data"
                             [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-danger step-failed cursor-not-allowed'">Incomplete</button>
                         <button class="btn status-btn client-dash-project-steps-btns success-span" *ngIf="clientDashBoardService.company.company_data"
-                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-not-allowed'">Completed</button>
+                            [ngClass]="(!clientDashBoardService.company.onBoarding_data) ? 'btn-default cursor-not-allowed':'btn-success cursor-not-allowed'">Completed</button> -->
+
+                        <button class="btn-danger step-failed cursor-not-allowed btn status-btn client-dash-project-steps-btns danger-span" *ngIf="!clientDashBoardService.company.company_data">Incomplete</button>
+                        <button class="btn-success cursor-not-allowed btn status-btn client-dash-project-steps-btns success-span" *ngIf="clientDashBoardService.company.company_data">Completed</button>
 
                     </div>
                 </div>
@@ -541,7 +564,6 @@
                         </div>
                     </div>
                     <div class="modal-footer footer-background">
-                        <!-- {{_companyForm.valid}} {{_submitted}} -->
                         <button type="submit" class="btn btn-primary btn-blue" [disabled]="!_companyForm.valid || _submitted == true">
 				  Save</button>
                         <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
@@ -674,11 +696,11 @@
 
                     <div class="upload-file-body">
                         <p>
-                            Accurate ACA reporting payroll period and medical enrollment data through the end of the calendar year. For this reason,
-                            we have not opened up the begin receiving payroll and medical enrollment data until closer to
-                            the end of the year.
+                            Accurate ACA reporting requires payroll period and medical enrollment data through the end of the calendar year. For this
+                            reason, we will not begin accepting payroll and medical enrollment data until closer to the end
+                            of the year.
                         </p>
-                        In the meantime, you can <a class="link-white-underline" href="../src/assets/temp-files/ACA-Reporting-2017-Data-Packet.xls">download this template</a>                        to prepare for the end of year
+                        In the meantime, you may <a class="link-white-underline" href="../src/assets/temp-files/ACA-Reporting-2017-Data-Packet.xls">download this template</a>                        to prepare for the end of year
 
                     </div>
                     <div class="upload-file-footer">
