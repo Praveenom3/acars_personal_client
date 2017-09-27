@@ -21,7 +21,7 @@ export class CompanyUserService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        private _http: HttpService) {
     }
 
     /**

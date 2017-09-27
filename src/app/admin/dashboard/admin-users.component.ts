@@ -145,7 +145,7 @@ export class AdminUsersComponent implements OnInit {
         this.adminUserService.deleteAdminUser(this.adminUserIDSelected)
             .subscribe(() => {
                 this.getAdminUsers();
-                this.toastrService.success('Admin User Deleted Succesfully .');
+                this.toastrService.success('Admin User Deleted Successfully .');
             },
             error => {
                 this._errorMessage = error.data;
@@ -158,7 +158,7 @@ export class AdminUsersComponent implements OnInit {
             result => {
                 if (result.success) {
                     this.getAdminUsers();
-                    this.toastrService.success('Status Updated Succesfully.');
+                    this.toastrService.success('Status Updated Successfully.');
                 } else {
                     this._errorMessage = 'Status not Updated.';
                 }
@@ -223,7 +223,7 @@ export class AdminUsersComponent implements OnInit {
                     if (result.success) {
                         this.getAdminUsers();
                         this.closeModal();
-                        this.toastrService.success('Admin User Added Succesfully.');
+                        this.toastrService.success('Admin User Added Successfully.');
                     } else {
                         this._errorMessage = 'Record not added.';
                         this._submitted = false;

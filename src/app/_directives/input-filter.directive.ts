@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[inputFilter],[address],[invoiceNumber],[groupNames],[empInfoValidator],[OnlyNumber],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
+  selector: '[inputFilter],[address],[invoiceNumber],[groupNames],[empInfoValidator],[OnlyNumber],[NameWithDotSpace],[AlphanFewChar],[AlphaNumernFewChar],[AlphanMoreChar],[OnlyAmountNumber]'
 })
 export class inputFilterDirective {
 
@@ -10,6 +10,7 @@ export class inputFilterDirective {
   @Input() inputFilter: any; /* alphabets,numerical and  ,.&@- */
   @Input() OnlyNumber: any;
   @Input() OnlyAmountNumber: boolean;
+  @Input() NameWithDotSpace: any;
   @Input() AlphanFewChar: any;
   @Input() AlphanMoreChar: any;
   @Input() AlphaNumernFewChar: any;
@@ -56,6 +57,11 @@ export class inputFilterDirective {
     }
     else if (this.OnlyNumber) {
       if (!e.key.match(/^([0-9])$/) && e.key != "Tab" && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+        e.preventDefault();
+      }
+    }
+    else if (this.NameWithDotSpace) {
+      if (!e.key.match(/^([a-zA-Z .]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }

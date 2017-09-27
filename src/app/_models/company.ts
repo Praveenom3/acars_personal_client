@@ -5,6 +5,7 @@ export interface Company {
     company_ein: string;
     client_id: number;
     purchase_id: number;
+    product_id: number;
     purchase_status: boolean;
     company_client_number: any;
 

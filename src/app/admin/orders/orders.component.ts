@@ -314,8 +314,8 @@ export class OrdersComponent implements OnInit {
 
                             this.selectableProducts.forEach((selectableProductElement, index) => {
                                 Globals.products_keywords.forEach(product_key => {
-                                    if (product_full_name.indexOf(product_key) !== -1) {
-                                        if (selectableProductElement.product_full_name.indexOf(product_key) !== -1) {
+                                    if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                                        if (selectableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                                             this.selectableProducts[index].is_deleted = 1;
                                         }
                                     }
@@ -344,8 +344,8 @@ export class OrdersComponent implements OnInit {
 
                 this.selectableProducts.forEach((selectableProductElement, index) => {
                     Globals.products_keywords.forEach(product_key => {
-                        if (product_full_name.indexOf(product_key) !== -1) {
-                            if (selectableProductElement.product_full_name.indexOf(product_key) !== -1) {
+                        if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                            if (selectableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                                 this.selectableProducts[index].is_deleted = 1;
                             }
                         }
@@ -372,9 +372,9 @@ export class OrdersComponent implements OnInit {
                 let product_full_name = this.getItemName('product', product_id);
 
                 Globals.products_keywords.forEach(product_key => {
-                    if (product_full_name.indexOf(product_key) !== -1) {
+                    if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                         this.availableProducts.forEach((availableProductElement, index) => {
-                            if (availableProductElement.product_full_name.indexOf(product_key) !== -1) {
+                            if (availableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                                 if (availableProductElement.is_deleted == 0) {
                                     this.temp_arr.push(this.availableProducts[index]);
                                     this.selectableProducts[index].is_deleted = 0;
@@ -398,9 +398,9 @@ export class OrdersComponent implements OnInit {
 
                 //if product_id exists in previously selected products package
                 Globals.products_keywords.forEach(product_key => {
-                    if (product_full_name.indexOf(product_key) !== -1) {
+                    if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                         this.availableProducts.forEach((availableProductElement, index) => {
-                            if (availableProductElement.product_full_name.indexOf(product_key) !== -1) {
+                            if (availableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                                 this.selectableProducts[index].is_deleted = 1;
                             }
                         });
@@ -492,6 +492,8 @@ export class OrdersComponent implements OnInit {
                 this.getSelectableProducts('', '', 'clientAddPurchase');
             }
 
+            this.checkNewAndUpdatePurchasesList();
+
             this._addPurchaseFormSubmitted = false;
 
             this.addPurchaseModal.show();
@@ -506,6 +508,7 @@ export class OrdersComponent implements OnInit {
             this.temp_product = this.getItemName('product', data.product_id);
 
             this._updatePurchaseFormSubmitted = false;
+            data.purchaser_mobile = data.purchaser_mobile.replace(/[`()|\-\/\ ]/gi, '');
             data.purchaser_mobile = '(' + data.purchaser_mobile.slice(0, 3) + ') ' + '' + data.purchaser_mobile.slice(3, 6) + '-' + data.purchaser_mobile.slice(6, 10);
             if (data.hasOwnProperty('is_new_purchase') && data.is_new_purchase == 1) {
                 this.temp_new_index = this.newPurchases.indexOf(data);
@@ -524,6 +527,18 @@ export class OrdersComponent implements OnInit {
                 this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
                 this.getSelectableProducts('', this._updatePurchaseForm.value.product_id, 'clientUpdatePurchaseBeforeSubmit');
             }
+            
+            this.checkNewAndUpdatePurchasesList(this._updateClientForm.value.client_id);
+            
+            
+            //setting validators for invoice dependant inputs
+            if(this._updatePurchaseForm.value.is_invoice == '1' || this._updatePurchaseForm.value.is_invoice == 1){
+                this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, true);
+            }else{
+                this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, false);
+            }
+
+
             this.updatePurchaseModal.show();
         }
     }
@@ -586,6 +601,64 @@ export class OrdersComponent implements OnInit {
             }
         }
         return "NA";
+    }
+
+    public checkNewAndUpdatePurchasesList(client_id?){
+        if (this.newPurchases.length > 0) {
+            this.newPurchases.forEach((newProductElement, index) => {
+                let product_full_name = this.getItemName('product', newProductElement.product_id);
+                
+                this.selectableProducts.forEach((selectableProductElement, index) => {
+                    Globals.products_keywords.forEach(product_key => {
+                        if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                            if (selectableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                                this.selectableProducts[index].is_deleted = 1;
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        if (this.updatePurchases.length > 0) {
+
+            this.updatePurchases.forEach((updateProductElement, index) => {
+                //change the previously selected value of the update purchase to not deleted status
+                this.clientsTableData.forEach(clientx => {
+                    if(clientx.client_id == client_id){
+                        clientx.clientPurchases.forEach(purchase => {
+                            if (purchase.purchase_id == updateProductElement.product_id) {
+                                let product_full_name = this.getItemName('product', updateProductElement.product_id);
+                                
+                                Globals.products_keywords.forEach(product_key => {
+                                    if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                                        this.availableProducts.forEach((availableProductElement, index) => {
+                                            if (availableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                                                if (availableProductElement.is_deleted == 0) {
+                                                    this.selectableProducts[index].is_deleted = 0;
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    
+                });
+                //assigning the newly selected product to deleted status
+                let product_full_name = this.getItemName('product', updateProductElement.product_id);
+                
+                this.selectableProducts.forEach((selectableProductElement, index) => {
+                    Globals.products_keywords.forEach(product_key => {
+                        if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                            if (selectableProductElement.product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
+                                this.selectableProducts[index].is_deleted = 1;
+                            }
+                        }
+                    });
+                });
+            });
+        }
     }
 
     public onSubmit(form) {
@@ -788,7 +861,7 @@ export class OrdersComponent implements OnInit {
                 if (this.availableProducts[i].product_id == value) {
                     this.show_account_manager = this.availableProducts[i].account_manager;
 
-                    if (this.availableProducts[i].product_name.indexOf("VHT") !== -1) {
+                    if (this.availableProducts[i].product_name.toLowerCase().indexOf("vht") !== -1) {
                         this.isVhtProduct = true;
                         form.controls['total_no_forms'].setValidators(null);
                         form.controls['total_no_forms'].updateValueAndValidity();
@@ -1049,19 +1122,9 @@ export class OrdersComponent implements OnInit {
                 this.totalPurchases.splice(totalIndex, 1);
             }
 
-            //updating the selectable products
-            let product_full_name = this.getItemName('product', item.product_id);
+            //updating the orders with selectable products
+            this.orders = this.getOrders();
             
-            this.selectableProducts.forEach((selectableProductElement, index) => {
-                Globals.products_keywords.forEach(product_key => {
-                    if (product_full_name.indexOf(product_key) !== -1) {
-                        if (selectableProductElement.product_full_name.indexOf(product_key) !== -1) {
-                            this.selectableProducts[index].is_deleted = 0;
-                        }
-                    }
-                });
-            });
-
             //Scenario 2 : Purchase is Old
             //  }else if(item.hasOwnProperty('is_new_purchase') && item.is_new_purchase == 0){
         } else {
@@ -1093,18 +1156,9 @@ export class OrdersComponent implements OnInit {
                                     if (totalIndex !== -1) {
                                         this.totalPurchases.splice(totalIndex, 1);
                                     }
-                                    //updating the selectable products
-                                    let product_full_name = this.getItemName('product', item.product_id);
-                                    
-                                    this.selectableProducts.forEach((selectableProductElement, index) => {
-                                        Globals.products_keywords.forEach(product_key => {
-                                            if (product_full_name.indexOf(product_key) !== -1) {
-                                                if (selectableProductElement.product_full_name.indexOf(product_key) !== -1) {
-                                                    this.selectableProducts[index].is_deleted = 0;
-                                                }
-                                            }
-                                        });
-                                    });
+                                    //updating the orders with selectable products
+                                    this.orders = this.getOrders();
+
                                     this.toastrService.success('Purchase deleted succesfully.');
                                 } else {
                                     this.toastrService.success('Trouble in removing the purchase. Please try later.');
@@ -1156,5 +1210,16 @@ export class OrdersComponent implements OnInit {
             else
                 return null;
         };
+    }
+    /**
+     * 
+     * @param phoneNumber 
+     */
+    formatPhoneNumber(phoneNumber){
+        if(phoneNumber){
+            phoneNumber = phoneNumber.replace(/[`()|\-\/\ ]/gi, '');
+          return  '(' + phoneNumber.slice(0, 3) + ') ' + '' + phoneNumber.slice(3, 6) + '-' + phoneNumber.slice(6, 10)
+        }
+        return '';
     }
 }
