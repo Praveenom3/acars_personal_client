@@ -119,10 +119,10 @@ export class ElementMasterResolver implements Resolve<any> {
             this.toasterService.error("Please fill primary data");
             this.redirectToDashboard(sessionProductId, sessionClientId);
         }
-        if (!sessionCompanyData.onBoarding_data) {
+        /*if (!sessionCompanyData.onBoarding_data) {
             this.toasterService.error("Please complete on boarding step");
             this.redirectToDashboard(sessionProductId, sessionClientId);
-        }
+        }*/
         if (this.product_id != sessionProductId && this.company_id != sessionCompanyId) {
             this.toasterService.error("Un Authorised company user");
             this.redirectToDashboard(sessionProductId, sessionClientId);

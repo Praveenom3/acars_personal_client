@@ -208,7 +208,7 @@
                                                 <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td>
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
-                                                <td class="text-center">{{'(' + item.purchaser_mobile.slice(0, 3) + ') ' + '' + item.purchaser_mobile.slice(3, 6) + '-' + item.purchaser_mobile.slice(6, 10)}}</td>
+                                                <td class="text-center">{{formatPhoneNumber(item.purchaser_mobile)}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
@@ -371,7 +371,7 @@
                                                 <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td>
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
-                                                <td class="text-center">{{'(' + item.purchaser_mobile.slice(0, 3) + ') ' + '' + item.purchaser_mobile.slice(3, 6) + '-' + item.purchaser_mobile.slice(6, 10)}}</td>
+                                                <td class="text-center">{{ formatPhoneNumber(item.purchaser_mobile)}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
