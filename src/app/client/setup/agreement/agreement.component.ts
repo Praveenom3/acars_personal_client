@@ -70,6 +70,12 @@ export class AgreementComponent implements OnInit {
       });
 
   }
+  public isSetup = false;
+  /* add/remove form div in setup*/
+  setup(): void {
+    this.isSetup = true;
+  }
+
   /**
    * 
    * @param result 
