@@ -48,7 +48,9 @@
                                     <td>{{adminUser.username}}</td>
                                     <td>{{adminUser.mobile}}</td>
                                     <td>{{adminUser.phone_extension}}</td>
-                                    <td><a style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.is_active) == 1 ? "Active" : "Inactive"}}</a></td>
+                                    <td *ngIf="_globalService.getUserEmail() === adminUser.username">{{(adminUser.is_active) == 1 ? "Active" : "Inactive"}}</td>
+                                    <td *ngIf="_globalService.getUserEmail() !== adminUser.username"><a class="link-blue" style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.is_active) == 1 ? "Active" : "Inactive"}}</a></td>
+                                    
                                 </tr>
                             </ng-container>
                             <tr class="tr-text-center" *ngIf=!adminUserObj.data?.length>
@@ -105,13 +107,16 @@
                             <div class="col-md-4">
                                 <div class="">
                                     <label class="form-control-label">Status</label>
-                                    <div class="form-group field-adminusers-last_name required">
+                                    <div class="form-group field-adminusers-last_name required" *ngIf="_globalService.getUserEmail() !== adminUserSelected.username">
                                         <label class="radio-inline">
                                                   <input type="radio" [(ngModel)]="adminUserSelected.is_active" name="is_active" [formControl]="_adminUserForm.controls['is_active']"  value="1"> Active
                                          </label>
                                         <label class="radio-inline">
                                               <input type="radio"  [(ngModel)]="adminUserSelected.is_active" name="is_active" [formControl]="_adminUserForm.controls['is_active']"  value="0"> Inactive
                                          </label>
+                                    </div>
+                                    <div class="form-group field-adminusers-last_name required" *ngIf="_globalService.getUserEmail() === adminUserSelected.username">
+                                        <span class="form-control" readOnly>{{(adminUserSelected.is_active) == 1 ? "Active" : "Inactive"}}</span>
                                     </div>
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.is_active.valid">{{_formErrors.is_active.message}}</span>
                                 </div>
