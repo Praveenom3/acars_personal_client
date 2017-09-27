@@ -297,6 +297,7 @@ export class ClientDashBoardService {
             this.clientLogo = this.logoPath + brand.brand_logo;
         }
     }
+    
     /**
      * 
      * @param company 

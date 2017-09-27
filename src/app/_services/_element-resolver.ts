@@ -89,19 +89,15 @@ export class ElementMasterResolver implements Resolve<any> {
             }
             else if (section == "benefit-plan-info") {
                 if (!this.isCompletedData.basicReporting) {
-                    this.toasterService.error("Basic Reporting information is required to fill.");
+                    this.toasterService.error("Basic Reporting information is required.");
                     this.router.navigate(['client/' + this.globalService.encode(this.product_id) + '/' + this.globalService.encode(this.company_id) + '/employer-info/basic-reporting-info']);
                 }
             } else if (section == "plan-class") {
                 if (!this.isCompletedData.benefitPlan) {
-                    this.toasterService.error("Benefit Plan information is required to fill.");
+                    this.toasterService.error("Benefit Plan information is required.");
                     this.router.navigate(['client/' + this.globalService.encode(this.product_id) + '/' + this.globalService.encode(this.company_id) + '/employer-info/benefit-plan-info']);
                 }
             }
-            /* if (this.product_id != sessionProductId || this.company_id != sessionCompanyId) {
-                 this.toasterService.error("Un Authorised company user");
-                 this.redirectToDashboard(sessionProductId, sessionClientId);
-             }*/
         });
 
         return true;
