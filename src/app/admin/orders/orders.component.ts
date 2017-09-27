@@ -530,6 +530,15 @@ export class OrdersComponent implements OnInit {
             
             this.checkNewAndUpdatePurchasesList(this._updateClientForm.value.client_id);
             
+            
+            //setting validators for invoice dependant inputs
+            if(this._updatePurchaseForm.value.is_invoice == '1' || this._updatePurchaseForm.value.is_invoice == 1){
+                this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, true);
+            }else{
+                this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, false);
+            }
+
+
             this.updatePurchaseModal.show();
         }
     }
