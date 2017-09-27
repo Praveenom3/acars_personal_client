@@ -203,9 +203,8 @@
                                         <ng-container *ngIf="addPurchaseHist.data?.length">
                                             <tr *ngFor="let item of addPurchaseHist.data">
                                                 <td class="text-center">{{item.purchase_date | date: 'MM/dd/yyyy'}}</td>
-                                                <!-- <td class="text-center">{{item.product}}</td>  -->
-                                                <td class="text-center">{{getItemName("product", item.product_id)}}</td>
-                                                <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td>
+                                                <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{getItemName("product", item.product_id)}}</a></td>
+                                                <td class="text-center">{{item.purchaser_first_name}}</td>
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{'(' + item.purchaser_mobile.slice(0, 3) + ') ' + '' + item.purchaser_mobile.slice(3, 6) + '-' + item.purchaser_mobile.slice(6, 10)}}</td>
@@ -366,9 +365,8 @@
                                         <ng-container *ngIf="updatePurchaseHist.data?.length">
                                             <tr *ngFor="let item of updatePurchaseHist.data">
                                                 <td class="text-center">{{item.purchase_date | date: 'MM/dd/yyyy'}}</td>
-                                                <!-- <td class="text-center">{{item.product}}</td>  -->
-                                                <td class="text-center">{{getItemName("product", item.product_id)}}</td>
-                                                <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{item.purchaser_first_name}}</a></td>
+                                                <td class="text-center"><a class="link-blue-underline" (click)="openModal('updatePurchaseModal', item)">{{getItemName("product", item.product_id)}}</a></td>
+                                                <td class="text-center">{{item.purchaser_first_name}}</td>
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{'(' + item.purchaser_mobile.slice(0, 3) + ') ' + '' + item.purchaser_mobile.slice(3, 6) + '-' + item.purchaser_mobile.slice(6, 10)}}</td>
