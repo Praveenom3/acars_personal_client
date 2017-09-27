@@ -86,7 +86,7 @@ export class inputFilterDirective {
       }
     }
     else if (this.invoiceNumber) {
-      if (!e.key.match(/^([a-zA-Z0-9 '.,$-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
+      if (!e.key.match(/^([a-zA-Z0-9$-]+)$/) && e.key != "Backspace" && e.key != "Delete" && e.key != "Tab") {
         e.preventDefault();
       }
     }
