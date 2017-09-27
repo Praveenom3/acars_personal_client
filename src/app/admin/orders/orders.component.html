@@ -186,6 +186,9 @@
                                                 <mfDefaultSorter by="contact_num">Contact #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
+                                                <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+                                            </th>
+                                            <th class="text-center">
                                                 <mfDefaultSorter by="invoice_num">Invoice #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
@@ -208,6 +211,7 @@
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{formatPhoneNumber(item.purchaser_mobile)}}</td>
+                                                <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
@@ -348,6 +352,9 @@
                                                 <mfDefaultSorter by="contact_num">Contact #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
+                                                <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+                                            </th>
+                                            <th class="text-center">
                                                 <mfDefaultSorter by="invoice_num">Invoice #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
@@ -370,6 +377,7 @@
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{ formatPhoneNumber(item.purchaser_mobile)}}</td>
+                                                <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>

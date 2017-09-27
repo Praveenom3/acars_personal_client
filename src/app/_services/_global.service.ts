@@ -55,6 +55,10 @@ export class GlobalService {
     public getUserId(): any {
         return localStorage.getItem('user_id');
     }
+    
+    public getUserEmail(): any {
+        return localStorage.getItem('useremail');
+    }
     /**
      * Returns User type of logged in user
      */
