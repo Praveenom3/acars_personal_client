@@ -209,7 +209,7 @@
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{formatPhoneNumber(item.purchaser_mobile)}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
-                                                <td class="text-center">{{item.amount}}</td>
+                                                <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                                 <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
@@ -371,7 +371,7 @@
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{ formatPhoneNumber(item.purchaser_mobile)}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
-                                                <td class="text-center">{{item.amount}}</td>
+                                                <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                                 <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
@@ -616,7 +616,7 @@
                             <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_no')}">
                                     <label class="form-control-label">Invoice #</label>
-                                    <input type="text" maxlength="6" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_no']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_no')}">
+                                    <input type="text" invoiceNumber="true" maxlength="30" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_no']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_no')}">
 
                                     <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.invoice_no.valid">{{_addPurchaseFormErrors.invoice_no.message}}</span>
 
@@ -873,7 +873,7 @@
                             <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_no')}">
                                     <label class="form-control-label">Invoice #</label>
-                                    <input type="text" maxlength="6" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_no']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_no')}">
+                                    <input type="text" invoiceNumber="true" maxlength="30" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_no']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_no')}">
 
                                     <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.invoice_no.valid">{{_updatePurchaseFormErrors.invoice_no.message}}</span>
 
