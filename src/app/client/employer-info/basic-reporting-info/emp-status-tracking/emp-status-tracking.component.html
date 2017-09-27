@@ -22,7 +22,7 @@
             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
                 <a [routerLink]="['/client/',product,company,'employer-info','basic-reporting-info','plan-offering-criteria']">
                     <div class="inner-block-digits pull-left ">3</div>
-                    <span class="inner-block-text">Plan Offering Criteria <i class="fa fa-info-circle margin-left-5" data-container="body" data-content="Select the various types of claims you want to track on this plan, each month." data-original-title="Claim Types to Track" data-placement="bottom" data-toggle="popover-hover"></i>
+                    <span class="inner-block-text">Plan Offering Criteria
                     </span></a>
             </li>
             <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-4">
@@ -49,7 +49,7 @@
     <div class="col-md-12 padding-0">
         <form class="form-vertical">
             <div class="col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
-                <div id="employer_info_container" [style.width.px]="employer_info_container_width" >
+                <div id="employer_info_container" [style.width.px]="employer_info_container_width">
                     <!-- form content -->
                     <div class="row">
                         <div class="col-sm-12 padding-0">
@@ -72,41 +72,41 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                    <div class="form-group inl-q-a">
+                                <div class="form-group inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
                                         <div>
-                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
-                                        </div>
-                                        <div class="tabSpace">
-                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
-                                            <div>
-                                                <label class="radio-inline">
+                                            <label class="radio-inline">
                                                         <input type="radio" [(ngModel)]="empStatusData.ale_first_applicable" name="ale_first_applicable" value="1"> Yes
                                                     </label>
-                                                <label class="radio-inline">
+                                            <label class="radio-inline">
                                                         <input type="radio" [(ngModel)]="empStatusData.ale_first_applicable" name="ale_first_applicable" value="0"> No
                                                 </label>
-                                            </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12 padding-0">
                             <div class="col-sm-12">
-                                    <div class="form-group inl-q-a">
-                                        <div>
-                                            <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
-                                        </div>
-                                        <div class="tabSpace">
-                                            <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
-                                            <div style="margin-bottom: 0px;">
-                                                    <label class="radio-inline">
+                                <div class="form-group inl-q-a">
+                                    <div>
+                                        <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                                    </div>
+                                    <div class="tabSpace">
+                                        <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                        <div style="margin-bottom: 0px;">
+                                            <label class="radio-inline">
                                                 <input type="radio" [(ngModel)]="empStatusData.ale_category" name="ale_category" value="1">An ALE
                                                     with fewer than 100 full time employees (including full
                                                     time equivalent employees).
                                                 </label>
-                                            </div>
-                                            <div style="margin-top: 0px;">
-                                                <label class="radio-inline">
+                                        </div>
+                                        <div style="margin-top: 0px;">
+                                            <label class="radio-inline">
                                                 <input type="radio" [(ngModel)]="empStatusData.ale_category" name="ale_category" value="2">An ALE
                                                     with more than 100 full time employees (including full
                                                     time equivalent employees).
