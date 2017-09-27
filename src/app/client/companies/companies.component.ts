@@ -203,8 +203,11 @@ export class CompaniesComponent implements OnInit {
     /* if (!this.clientDashBoardService.company.onBoarding_data && !updateEin) {
       return false;
     } */
-    companyInfo.company_ein = companyInfo.company_ein.replace(/[`()|\-\/\ ]/gi, '');
-    companyInfo.company_ein = companyInfo.company_ein.slice(0, 2) + '-'+ companyInfo.company_ein.slice(2, 9);
+    if(companyInfo.company_ein){
+      companyInfo.company_ein = companyInfo.company_ein.replace(/[`()|\-\/\ ]/gi, '');
+      companyInfo.company_ein = companyInfo.company_ein.slice(0, 2) + '-'+ companyInfo.company_ein.slice(2, 9);
+    }
+    
     this.companyEdit = Object.assign({}, companyInfo);
     this.companyEdit.company_ein = this.formatCompanyEin(companyInfo.company_ein);
     this.modalTitle = "Edit Company : " + companyInfo.company_name;

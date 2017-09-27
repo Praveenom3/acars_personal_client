@@ -11,7 +11,7 @@ export class CompaniesFilterPipe implements PipeTransform {
         return query && array ?
             array.filter(company =>
                 (company.company_client_number.toLocaleLowerCase().indexOf(query) !== -1) || 
-                (company.client_name.toLocaleLowerCase().indexOf(query) !== -1)
+                (company.company_name.toLocaleLowerCase().indexOf(query) !== -1)
             ) :
             array;
     }
