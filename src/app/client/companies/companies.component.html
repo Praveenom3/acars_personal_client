@@ -285,7 +285,7 @@
                                     <td class="padding-5">
                                         <span class="step-status-flag step-failed" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleDiscoveryCallStatus();" *ngIf="!clientDashBoardService.company.discovery_session">Needed</span>
                                         <span class="step-status-flag step-success" [ngClass]="(userType == 2 || userType == 1) ? 'cursor-not-allowed':'cursor-not-allowed'" (click)="toggleDiscoveryCallStatus();" *ngIf="clientDashBoardService.company.discovery_session == 1">Completed</span>
-                                        <span class="step-status-flag step-failed" class="cursor-not-allowed" *ngIf="clientDashBoardService.company.discovery_session == 2">Not Purchased</span>
+                                        <span class="step-status-flag step-failed cursor-not-allowed" *ngIf="clientDashBoardService.company.discovery_session == 2">Not Purchased</span>
                                     </td>
                                 </tr>
                             </tbody>
