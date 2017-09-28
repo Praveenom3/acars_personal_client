@@ -62,7 +62,7 @@ export class CompaniesComponent implements OnInit {
   ) {
 
     this._companyForm = _formBuilder.group({
-      company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
+      company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])], 
       company_ein: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
     });
 
@@ -79,6 +79,7 @@ export class CompaniesComponent implements OnInit {
     this.userType = globalService.getUserType();
 
   }
+
   /**
    * 
    */
@@ -102,7 +103,7 @@ export class CompaniesComponent implements OnInit {
     },
     'company_ein': {
       'required': 'Company EIN is required.',
-      'minlength': 'Company EIN should be 9 digits length',
+      'minlength': 'Company EIN should be 9 digits length'
     }
   };
 

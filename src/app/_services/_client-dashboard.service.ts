@@ -305,6 +305,7 @@ export class ClientDashBoardService {
     public setAccountManagerData(productId, clientId) {
         let clients = this.getProductFieldFromSession(productId, 'clients');
         let client = clients[clientId];
+        console.log(client);
         if (client) {
             this.accountManager = '';
             this.accountManagerNumber = '';
@@ -314,8 +315,8 @@ export class ClientDashBoardService {
             }
             if (client['account_manager_number'] && client['account_manager_number'] != 'null' && client['account_manager_number'] != '') {
                 let mobile = client['account_manager_number'];
-                mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
-                this.accountManagerNumber = '(' + mobile.slice(0, 3) + ') ' + '' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10);
+              //  mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
+                this.accountManagerNumber = mobile;
             }
             if (client['account_manager_mail'] != 'null' && client['account_manager_mail'] != '') {
                 this.accountManagerMail = client['account_manager_mail'];
