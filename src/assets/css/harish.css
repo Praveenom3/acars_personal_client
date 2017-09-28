@@ -350,11 +350,27 @@ body.body-blue nav.admin-nav .menu {
     line-height: 18px;
     font-weight: 400;
 }
+
 .hover-red {
     color: red !important;
 }
+
 select.form-control {
     background: #fff center right no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAFCAYAAABB9hwOAAAAGXRFW…gv37w+qKmqOp+BQsAEpX8wMTFm/fnz5/P/f//DGagAAAIMAKIuMR+q/rU9AAAAAElFTkSuQmCC);
     background-position: 242px 5px;
     background-size: 16px;
+}
+
+.termsNCondition-div {
+    padding: 13px 5px 2px 5px;
+}
+
+.termsNCondition-link,
+.termsNCondition-link:hover {
+    font-size: 11px;
+    color: #fff
+}
+
+.border-btm-dd {
+    border-bottom: 1px solid #ddd;
 }
