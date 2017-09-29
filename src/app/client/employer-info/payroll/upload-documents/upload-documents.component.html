@@ -1,0 +1,311 @@
+<!-- company info -->
+<client-company-info [companyData]="companyDetails"></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+<client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
+
+<div class="product-container col-md-12">
+    <div class="">
+        <div class="col-md-12 border-ddd widget padding-0">
+            <div class="tab-content clearfix">
+                <div aria-expanded="true" class="tab-pane active col-xs-12 padding-0" id="account_setup_block" style="display: inline-block;">
+                    <div class="row">
+                            <div style="width:22%;padding: 10px;">
+                                    <!-- Support us -->
+                                    <div class="col-md-12">
+                                            <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">SUPPORT</h2>
+                                            <div class="header-border-btm-blue"></div>
+                        
+                                            <div class="contact-us-media-div padding-right-0">
+                                                <div id="contact_us_div" class="client-dash-first-row-widgets widget col-md-12  padding-15 block-one comp-dash-divs">
+                        
+                                                    <div class="content-header dark-blue-text">
+                                                        <div class="content-header-image">
+                                                            <img src='../src/assets/images/client-dashboard/contact us-icon.png' class="dashboard-images">
+                                                        </div>
+                                                        <div class="content-header-text ">
+                                                            <h3 class="white-space font-weight-300 dark-blue-text">&nbsp; &nbsp; CONTACT US</h3>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <p class=" setup-text-band">Managed Account - Assigned Agent</p>
+                        
+                                                    <div class="content-div-managed-account addres-block color-ash">
+                        
+                                                        <span class="account-manager-name" *ngIf="clientDashBoardService.accountManager">
+                                                        <b>{{clientDashBoardService.accountManager}}</b>, <i>Account Manager</i>
+                                                        </span>
+                        
+                                                        <div class="padding-top-5">
+                                                            <span class="account-manager-number" *ngIf="clientDashBoardService.accountManagerNumber">
+                                                        <p>Direct: {{clientDashBoardService.accountManagerNumber}}</p>
+                                                        </span>
+                                                            <p>Email: <span>{{clientDashBoardService.brandInformation.support_email}}</span></p>
+                                                            <p>Support Line: <span>{{clientDashBoardService.brandInformation.support_phone}}</span></p>
+                                                            <a *ngIf="clientDashBoardService.accountManager" href="mailto:{{clientDashBoardService.accountManagerMail}}" target="_top"
+                                                                class="link-blue"> Contact My Manager</a>
+                                                        </div>
+                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- ./Support us -->
+                                    <!-- Instructions -->
+                                    
+                                    <div class="col-md-12">
+                                        <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">Instructions</h2>
+                                        <div class="header-border-btm-blue"></div>
+                    
+                                        <div class="contact-us-media-div padding-right-0">
+                                            <div id="contact_us_div" class="fontcolor-blue client-dash-first-row-widgets widget col-md-12  padding-15 block-one comp-dash-divs">
+                                                <div class="col-xs-12"><b>
+                                                    <div class="inl-q-a"><div>1.</div><div class="tabSpace"><a class="fontcolor-blue"><u>Download template</u></a></div></div>
+                                                    <div class="inl-q-a">2. <div class="tabSpace">Read instructions tab in downloaded file</div></div>
+                                                    <div class="inl-q-a">3. <div class="tabSpace">Enter data into file</div></div>
+                                                    <div class="inl-q-a">4. <div class="tabSpace">Upload file for processing</div></div>
+                                                </b>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./Instructions -->
+                                </div>
+                                <div style="width:63%;padding: 10px;display: inline-block;">
+                                    <div class="col-md-12">
+                                        <h6 class="fontcolor-blue margin-bottom-5 padding-left-10">Upload files and include instructions for processing the files.</h6>
+                                        <div class="row">
+                                            <div class="col-xs-12 form-group">
+                                                <div class="col-xs-offset-2 col-xs-4 text-center">
+                                                    <span class="text-muted"><u>File name</u></span>
+                                                </div>
+                                                <div class="col-xs-6" style="padding-left:50px;">
+                                                    <span class="text-muted"><u>How should we process this file?</u></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 form-group">
+                                                <div class="col-xs-2">
+                                                    <button class="btn btn-sm btn-default">Add File</button>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="col-xs-6" style="padding-left:50px;">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 form-group">
+                                                <div class="col-xs-2">
+                                                    <button class="btn btn-sm btn-default">Add File</button>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="col-xs-6" style="padding-left:50px;">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 form-group">
+                                                <div class="col-xs-2">
+                                                    <button class="btn btn-sm btn-default">Add File</button>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="col-xs-6" style="padding-left:50px;">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 form-group">
+                                                <div class="col-xs-2">
+                                                    <button class="btn btn-sm btn-default">Add File</button>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="col-xs-6" style="padding-left:50px;">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 form-group">
+                                                <div class="col-xs-2">
+                                                    <button class="btn btn-sm btn-default">Add File</button>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="col-xs-6" style="padding-left:50px;">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 form-group padding-right-10">
+                                                <div class="col-xs-12">
+                                                    <button class="btn btn-sm btn-warning pull-right">Submit Files</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+
+                                    
+                                </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .my-drop-zone {
+        border: dotted 3px lightgray;
+    }
+
+    .nv-file-over {
+        border: dotted 3px red;
+    }
+    /* Default class applied to drop zones on over */
+</style>
+
+
+
+
+<!-- Payroll modal -->
+
+<div class="modal fade" id="upload_payroll_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-header-color">
+
+                <button type="button" class="close-modal modal-opacity close-modal-blue" data-dismiss="modal" aria-hidden="true">
+								X
+							</button>
+                <h4 class="modal-title color-white" id="myModalLabel">
+                    Upload Payroll Data
+                </h4>
+            </div>
+            <div class="modal-body row">
+
+
+
+
+
+
+                <div class="col-md-12">
+
+
+
+                    <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                        class="well my-drop-zone">
+                        Drop Files
+                    </div>
+                    <input type="file" ng2FileSelect [uploader]="uploader" />
+                    <!--<div ng2FileDrop
+                 [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
+                 (fileOver)="fileOverAnother($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                Another drop zone
+            </div>
+ 
+            Multiple
+            <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+ 
+            Single
+            <input type="file" ng2FileSelect [uploader]="uploader" /> -->
+                </div>
+
+                <!--<div class="col-md-12" style="margin-bottom: 40px">
+ 
+            <h3>Upload queue</h3>
+            <p>Queue length: {{ uploader?.queue?.length }}</p>
+ 
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th>Size</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+                    <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                    <td *ngIf="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs"
+                                (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+ 
+            <div>
+                <div>
+                    Queue progress:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>
+            </div>
+ 
+        </div>-->
+
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer footer-background">
+
+                <a href="" class="btn btn-modal-blue">
+								Submit  
+							</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./payroll modal -->

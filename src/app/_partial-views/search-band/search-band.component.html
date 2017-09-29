@@ -8,7 +8,7 @@
                                                 <form>
                                                         <input type="text" [(ngModel)]="searchParam" name="searchParam" class="form-control form-control-sm search-input" name="search"
                                                                 maxlength="35" id="textsearch" placeholder="Search" (keyup.enter)="searchData()">
-                                                        <a type="button" [routerLink]="['/',module,'search','search-results']" [queryParams]="{key:(searchParam != undefined) ? searchParam : ''}"
+                                                        <a type="button" [routerLink]="['/',module,'search','search-results']" [queryParams]="{keyword:(searchParam != undefined) ? searchParam : ''}"
                                                                 routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}"
                                                                 class="search-block-submit "></a>
                                                 </form>
