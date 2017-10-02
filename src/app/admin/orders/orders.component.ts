@@ -436,6 +436,10 @@ export class OrdersComponent implements OnInit {
             form.controls['is_invoice_paid'].updateValueAndValidity();
 
         } else {
+            form.controls['invoice_no'].reset();
+            form.controls['invoice_created_at'].reset();
+            form.controls['is_invoice_paid'].reset();
+            
             form.controls['invoice_no'].setValidators(null);
             form.controls['invoice_created_at'].setValidators(null);
             form.controls['is_invoice_paid'].setValidators(null);

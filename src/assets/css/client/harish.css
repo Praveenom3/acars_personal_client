@@ -781,6 +781,11 @@ button.add-company-ein {
     border-color: #9ba8b2 !important;
 }
 
+.upload-help-text,.download-help-text{
+    font-size: 12px;
+    margin-top: 4%;
+    color: #fff;
+}
 
 /* @media screen and (max-width: 768px) {
     .content-header-text {
