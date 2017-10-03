@@ -646,13 +646,14 @@ table.table-company-dashboard tbody tr:hover {
     color: white;
 }
 
-.step-failed:hover,.step-failed:active {
+.step-failed:hover,
+.step-failed:active {
     border-color: #ca141b;
     background-color: #ca141b;
     color: white;
 }
 
-.step-completed:hover{
+.step-completed:hover {
     border-color: #46be8a !important;
     background-color: #46be8a !important;
     color: white;
@@ -663,11 +664,13 @@ table.table-company-dashboard tbody tr:hover {
     background-color: #acb7bf;
     color: white;
 }
-.step-button-default:hover{
+
+.step-button-default:hover {
     border-color: #acb7bf !important;
     background-color: #acb7bf !important;
     color: white;
 }
+
 .link-white:hover {
     color: white;
 }
@@ -729,6 +732,7 @@ table.table-company-dashboard tbody tr:hover {
     margin-left: 32px;
 }
 
+
 /*.efile-span {
     display: block;
     margin-left: 35px;
@@ -781,11 +785,18 @@ button.add-company-ein {
     border-color: #9ba8b2 !important;
 }
 
-.upload-help-text,.download-help-text{
+.upload-help-text,
+.download-help-text {
     font-size: 12px;
     margin-top: 4%;
     color: #fff;
 }
+
+.checkbox,
+.radio {
+    display: block;
+}
+
 
 /* @media screen and (max-width: 768px) {
     .content-header-text {
