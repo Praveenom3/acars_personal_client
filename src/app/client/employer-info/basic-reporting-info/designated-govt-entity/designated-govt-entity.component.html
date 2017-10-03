@@ -58,7 +58,8 @@
                                     <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                                 </div>
                                 <div class="tabSpace">
-                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                    <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </label>
                                     <div>
                                         <label class="radio-inline">
                                             <input type="radio" (change)="handleChange(1)" name="assign_dge" [(ngModel)]="govtEntityData.assign_dge" value="1"> Yes
@@ -77,7 +78,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_name">
                                             <input type="text" AlphanFewChar="true" [(ngModel)]="govtEntityData.dge_name" name="dge_name" class="form-control form-height dge-clear" maxlength="75">
                                         </div>
@@ -88,7 +90,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[2].element_label}}<span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[2].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_ein">
                                             <input type="text" [textMask]="{mask: ein_mask}" (ngModelChange)="isValidEin($event)" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_ein" name="dge_ein">
                                             <span class="help-block help-block-error" *ngIf="isValidDgeEin">
@@ -102,7 +105,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[3].element_label}}<span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[3].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-street_address_1">
                                             <input type="text" inputFilter="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.street_address_1" name="street_address_1" maxlength="200">
                                         </div>
@@ -116,7 +120,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[4].element_label}}<span *ngIf="labelsData[4].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[4].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-street_address_2">
                                             <input type="text" inputFilter="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.street_address_2" name="street_address_2" maxlength="200">
                                         </div>
@@ -127,7 +132,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[5].element_label}}<span *ngIf="labelsData[5].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[5].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_state">
                                             <select class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_state" name="dge_state">
                                                 <option value="">Select State</option>
@@ -142,7 +148,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[6].element_label}}<span *ngIf="labelsData[6].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[6].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_city">
                                             <input type="text" AlphanFewChar="true" class="form-control form-height" [(ngModel)]="govtEntityData.dge_city" name="dge_city" maxlength="50">
                                         </div>
@@ -156,7 +163,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[7].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[7].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[7].element_label}}<span *ngIf="labelsData[7].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[7].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_zip">
                                             <input type="text" class="form-control numbers form-height dge-clear" [(ngModel)]="govtEntityData.dge_zip" OnlyNumber="true" name="dge_zip" maxlength="5">
                                         </div>
@@ -167,7 +175,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[8].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[8].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[8].element_label}}<span *ngIf="labelsData[8].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[8].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_contact_first_name">
                                             <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_first_name" name="dge_contact_first_name" maxlength="20">
                                         </div>
@@ -178,7 +187,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[9].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[9].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[9].element_label}}<span *ngIf="labelsData[9].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[9].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_contact_middle_name">
                                             <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_middle_name" name="dge_contact_middle_name" maxlength="20">
                                         </div>
@@ -191,7 +201,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[10].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[10].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[10].element_label}}<span *ngIf="labelsData[10].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[10].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_contact_last_name">
                                             <input type="text" AlphanFewChar="true" class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_last_name" name="dge_contact_last_name" maxlength="20">
                                         </div>
@@ -202,7 +213,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[11].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[11].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[11].element_label}}<span *ngIf="labelsData[11].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[11].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_contact_suffix">
                                             <select class="form-control form-height dge-clear" [(ngModel)]="govtEntityData.dge_contact_suffix" name="dge_contact_suffix">
                                                 <option value="">Select Suffix</option>
@@ -222,7 +234,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[12].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace width-100">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[12].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[12].element_label}}<span *ngIf="labelsData[12].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[12].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div class="form-group field-tblacadesignatedgovtentity-dge_contact_phone_number">
                                             <input type="text" (ngModelChange)="isValidMobile($event)" class="form-control" minlength="14" [textMask]="{mask: mask}" [(ngModel)]="govtEntityData.dge_contact_phone_number" name="dge_contact_phone_number">
                                             <span class="help-block help-block-error" *ngIf="isValidDgePhone">
@@ -238,7 +251,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[13].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[13].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[13].element_label}}<span *ngIf="labelsData[13].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[13].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div>
                                             <label class="radio-inline">
                                                 <input type="radio" class="dge-clear-radio" [(ngModel)]="govtEntityData.dge_reporting" name="dge_reporting" value="1"> Enrollment Only

@@ -36,8 +36,9 @@
                                 <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                             </div>
                             <div class="tabSpace width-100">
-                                <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
-                                
+                                <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                </label>
+
                                 <ul>
                                     <li>
                                         <div class="margin form-control-label">For 2015 reporting, you must have offered MEC to at least 70% of your full time employees during the month.</div>
@@ -47,92 +48,14 @@
                                     </li>
                                 </ul>
 
-                                
+
                                 <div class="col-sm-3" style="display:grid;">
-                                        <div class="checkbox">
-                                            <label>
+                                    <div class="checkbox">
+                                        <label>
                                                 <input type="checkbox" name="entireYear" (ngModelChange)="isEntireYear($event)" [(ngModel)]="mecCoverageData.entireYear" value="1">
                                                 <span class="control-checkbox"> &nbsp; Entire Year
                                                 </span>
                                             </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[1]" name="mec_months[1]" value="1"><span class="control-checkbox">January</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[2]" name="mec_months[2]"  value="2"><span class="control-checkbox">February</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"   [(ngModel)]="mecCoverageData.mec_months[3]" name="mec_months[3]" value="3"><span class="control-checkbox">March</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[4]" name="mec_months[4]"  value="4"><span class="control-checkbox">April</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[5]" name="mec_months[5]"  value="5"><span class="control-checkbox">May</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"   [(ngModel)]="mecCoverageData.mec_months[6]" name="mec_months[6]"  value="6"><span class="control-checkbox">June</span></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3" style="display:grid;">
-                                        <div class="checkbox">
-                                            <label></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[7]" name="mec_months[7]"  value="7"><span class="control-checkbox">July</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"   [(ngModel)]="mecCoverageData.mec_months[8]" name="mec_months[8]"  value="8"><span class="control-checkbox">August</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[9]" name="mec_months[9]"  value="9"><span class="control-checkbox">September</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[10]" name="mec_months[10]"  value="10"><span class="control-checkbox">October</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[11]" name="mec_months[11]"  value="11"><span class="control-checkbox">November</span></label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[12]" name="mec_months[12]"  value="12"><span class="control-checkbox">December</span></label>
-                                        </div>
-    
-                                    </div>
-
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                        <!-- <div class="form-group">
-                            <div class="col-sm-12 padding-0">
-                                <label class="form-control-label"><div class="margin">{{labels[0]}}</div></label>
-                                <ul>
-                                    <li>
-                                        <div class="margin form-control-label">For 2015 reporting, you must have offered MEC to at least 70% of your full time employees
-                                            during the month.</div>
-                                    </li>
-                                    <li>
-                                        <div class="margin form-control-label bullet2">For 2016 reporting, you must have offered MEC to at least 95% of your full time employees
-                                            during the month</div>
-                                    </li>
-                                </ul>
-                                <div class="col-sm-3" style="display:grid;">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="entireYear" (ngModelChange)="isEntireYear($event)" [(ngModel)]="mecCoverageData.entireYear" value="1">
-                                            <span class="control-checkbox"> &nbsp; Entire Year
-                                            </span>
-                                        </label>
                                     </div>
                                     <div class="checkbox">
                                         <label><input type="checkbox" class="specific_year" (change)="getMonthsCount()"  [(ngModel)]="mecCoverageData.mec_months[1]" name="mec_months[1]" value="1"><span class="control-checkbox">January</span></label>
@@ -177,8 +100,10 @@
                                     </div>
 
                                 </div>
+
                             </div>
-                        </div> -->
+                        </div>
+
                     </div>
                     <!-- ./form content -->
                 </div>

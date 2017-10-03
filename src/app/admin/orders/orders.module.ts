@@ -11,7 +11,7 @@ import { SharedModule } from "app/_shared/shared.module";
 import { OrdersService } from "app/_services/_orders.service";
 import { OrdersFilterPipe } from "app/admin/orders/orders-filter.pipe";
 import { DataTableModule } from "angular2-datatable";
-import { ModalModule } from "ngx-bootstrap";
+import { ModalModule, BsDatepickerModule } from "ngx-bootstrap";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
 
 @NgModule({
@@ -25,7 +25,8 @@ import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
      ReactiveFormsModule,
      SharedModule,
      TextMaskModule,
-     PartialViews
+     PartialViews,
+     BsDatepickerModule.forRoot()
   ],
   declarations: [OrdersComponent, OrdersFilterPipe],  
   providers: [ OrdersService ]

@@ -6,6 +6,7 @@ import { SettingsService } from "app/_services/_setting.service";
 import { Http } from "@angular/http";
 
 import { Setting } from "app/_models/setting";
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 declare var $: any;
 
 @Component({
@@ -17,6 +18,11 @@ declare var $: any;
  * 
  */
 export class AccountSettingsComponent implements OnInit {
+
+    minDate = new Date(2017, 0, 1);
+    maxDate = new Date(2025, 12, 31);
+    colorTheme = 'theme-blue';
+    public bsConfig: Partial<BsDatepickerConfig>;
 
 
     public settings: Setting[];
@@ -46,8 +52,9 @@ export class AccountSettingsComponent implements OnInit {
 
     ngOnInit() {
         this.getSettings();
-        this.todayDate = new Date().toJSON().split('T')[0];
+        this.bsConfig = Object.assign({}, { containerClass: this.colorTheme, showWeekNumbers: false  });
     }
+
     /**
      *  Getting Settings
      */
@@ -111,15 +118,5 @@ export class AccountSettingsComponent implements OnInit {
                 break;
         }
         return status;
-    }
-    /**
-     * 
-     * @param setting 
-     */
-    public getMinDate(setting: any) {
-        if (setting.setting_validation == 'min') {
-            return new Date().toJSON().split('T')[0];
-        }
-        return false;
     }
 }

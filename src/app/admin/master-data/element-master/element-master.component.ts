@@ -66,6 +66,7 @@ export class ElementMasterComponent implements OnInit {
             element_id: 0,
             product_id: '',
             section_id: '',
+            element_popup_text:'',
             element_serial_id: '',
             element_label: '',
             created_by: '',

@@ -8,6 +8,7 @@ import { ModalDirective } from "ngx-bootstrap";
 import { NumberValidationService } from "app/_services/_number-validation.service";
 import * as Globals from 'app/_shared/_globals';
 import { GlobalService } from 'app/_services/_global.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
     selector: 'app-orders',
@@ -15,6 +16,12 @@ import { GlobalService } from 'app/_services/_global.service';
     styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+    minDate = new Date(2017, 0, 1);
+    maxDate = new Date(2025, 12, 31);
+    colorTheme = 'theme-blue';
+    public bsConfig: Partial<BsDatepickerConfig>;
+
+
     purchaseSelected: any;
     hasFinancialRights: boolean = false;
     formToReset: any;
@@ -264,6 +271,7 @@ export class OrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.bsConfig = Object.assign({}, { containerClass: this.colorTheme, showWeekNumbers: false });
         //checking if the user has the financial rights
         for (var key in Globals.admin_permissions) {
             if (Globals.admin_permissions.hasOwnProperty(key)) {
@@ -527,14 +535,14 @@ export class OrdersComponent implements OnInit {
                 this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
                 this.getSelectableProducts('', this._updatePurchaseForm.value.product_id, 'clientUpdatePurchaseBeforeSubmit');
             }
-            
+
             this.checkNewAndUpdatePurchasesList(this._updateClientForm.value.client_id);
-            
-            
+
+
             //setting validators for invoice dependant inputs
-            if(this._updatePurchaseForm.value.is_invoice == '1' || this._updatePurchaseForm.value.is_invoice == 1){
+            if (this._updatePurchaseForm.value.is_invoice == '1' || this._updatePurchaseForm.value.is_invoice == 1) {
                 this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, true);
-            }else{
+            } else {
                 this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, false);
             }
 
@@ -603,11 +611,11 @@ export class OrdersComponent implements OnInit {
         return "NA";
     }
 
-    public checkNewAndUpdatePurchasesList(client_id?){
+    public checkNewAndUpdatePurchasesList(client_id?) {
         if (this.newPurchases.length > 0) {
             this.newPurchases.forEach((newProductElement, index) => {
                 let product_full_name = this.getItemName('product', newProductElement.product_id);
-                
+
                 this.selectableProducts.forEach((selectableProductElement, index) => {
                     Globals.products_keywords.forEach(product_key => {
                         if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
@@ -624,11 +632,11 @@ export class OrdersComponent implements OnInit {
             this.updatePurchases.forEach((updateProductElement, index) => {
                 //change the previously selected value of the update purchase to not deleted status
                 this.clientsTableData.forEach(clientx => {
-                    if(clientx.client_id == client_id){
+                    if (clientx.client_id == client_id) {
                         clientx.clientPurchases.forEach(purchase => {
                             if (purchase.purchase_id == updateProductElement.product_id) {
                                 let product_full_name = this.getItemName('product', updateProductElement.product_id);
-                                
+
                                 Globals.products_keywords.forEach(product_key => {
                                     if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                                         this.availableProducts.forEach((availableProductElement, index) => {
@@ -643,11 +651,11 @@ export class OrdersComponent implements OnInit {
                             }
                         });
                     }
-                    
+
                 });
                 //assigning the newly selected product to deleted status
                 let product_full_name = this.getItemName('product', updateProductElement.product_id);
-                
+
                 this.selectableProducts.forEach((selectableProductElement, index) => {
                     Globals.products_keywords.forEach(product_key => {
                         if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
@@ -1124,7 +1132,7 @@ export class OrdersComponent implements OnInit {
 
             //updating the orders with selectable products
             this.orders = this.getOrders();
-            
+
             //Scenario 2 : Purchase is Old
             //  }else if(item.hasOwnProperty('is_new_purchase') && item.is_new_purchase == 0){
         } else {
@@ -1215,10 +1223,10 @@ export class OrdersComponent implements OnInit {
      * 
      * @param phoneNumber 
      */
-    formatPhoneNumber(phoneNumber){
-        if(phoneNumber){
+    formatPhoneNumber(phoneNumber) {
+        if (phoneNumber) {
             phoneNumber = phoneNumber.replace(/[`()|\-\/\ ]/gi, '');
-          return  '(' + phoneNumber.slice(0, 3) + ') ' + '' + phoneNumber.slice(3, 6) + '-' + phoneNumber.slice(6, 10)
+            return '(' + phoneNumber.slice(0, 3) + ') ' + '' + phoneNumber.slice(3, 6) + '-' + phoneNumber.slice(6, 10)
         }
         return '';
     }

@@ -22,6 +22,7 @@ import { AnythingElseService } from "app/_services/_anything-else.service";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { ElementMasterResolver } from "app/_services/_element-resolver";
 import { EmployerInfoDataResolver } from "app/_services/_employer-info-data-resolver";
+import { PopoverModule } from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { EmployerInfoDataResolver } from "app/_services/_employer-info-data-reso
     SharedModule,
     PartialViews,
     TextMaskModule,
+    PopoverModule.forRoot(),
   ],
   declarations: [BasicInfoComponent, EmpStatusTrackingComponent, PlanOfferingCriteriaComponent, DesignatedGovtEntityComponent, AggregatedGroupComponent, AnythingElseComponent],
   providers: [EmployerInfoDataResolver, ClientDashBoardService, AnythingElseService, AggregatedGroupService, DesignatedGovtEntityService, ElementMasterService, BriBasicInfoService, EmpStatusTrackingService, PlanOfferingCriteriaService, ElementMasterResolver]

@@ -58,7 +58,8 @@
                                 <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                             </div>
                             <div class="tabSpace">
-                                <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                </label>
                                 <div>
                                     <label class="radio-inline">
                                     <input type="radio" [(ngModel)]="aggregatedGroupData.is_authoritative_transmittal" name="is_authoritative_transmittal" value="1"><span class="control-checkbox">Yes</span>
@@ -86,7 +87,8 @@
                                 <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
                             </div>
                             <div class="tabSpace">
-                                <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="left" triggers="mouseenter:mouseleave"></span>
+                                </label>
                                 <div>
                                     <label class="radio-inline">
                                             <input type="radio" (change)="handleChange(1)" [(ngModel)]="aggregatedGroupData.is_ale_member" name="is_ale_member" value="1"> Yes
@@ -107,7 +109,8 @@
                                                 <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
                                             </div>
                                             <div class="tabSpace">
-                                                <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                                <label class="control-label span-label">{{labelsData[2].element_label}}<span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[2].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                </label>
                                                 <div>
                                                     <label class="radio-inline">
                                                                 <input type="radio" (change)="isOtherEntityChange(1)" [(ngModel)]="aggregatedGroupData.is_other_entity" name="is_other_entity" class="aggregate-clear-radio" value="1"><span class="control-checkbox">Yes</span>
@@ -126,7 +129,8 @@
                                                     <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
                                                 </div>
                                                 <div class="tabSpace">
-                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                                    <label class="control-label span-label">{{labelsData[3].element_label}}<span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[3].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                    </label>
                                                     <div class="field-tblacaaggregatedgroup-total_1095_forms">
                                                         <input type="text" OnlyNumber="true" class="form-control form-height aggregate-clear" [(ngModel)]="aggregatedGroupData.total_1095_forms" name="total_1095_forms" maxlength="5">
                                                     </div>
@@ -139,7 +143,8 @@
                                                     <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
                                                 </div>
                                                 <div class="tabSpace">
-                                                    <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
+                                                    <label class="control-label span-label">{{labelsData[4].element_label}}<span *ngIf="labelsData[4].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[4].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                    </label>
                                                     <div>
                                                         <div class="col-sm-5" style="display:grid;">
                                                             <div class="checkbox">
@@ -197,7 +202,8 @@
                                                     <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
                                                 </div>
                                                 <div class="tabSpace">
-                                                    <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
+                                                    <label class="control-label span-label">{{labelsData[5].element_label}}<span *ngIf="labelsData[5].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[5].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                    </label>
                                                     <div class="col-md-12 padding-0" id="group_div" *ngFor="let input of inputs; let i = index">
 
                                                         <div class="row" id="row_1" style="margin-bottom: 10px;">

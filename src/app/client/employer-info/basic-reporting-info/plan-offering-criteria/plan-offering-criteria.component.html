@@ -58,7 +58,8 @@
                                     <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                                 </div>
                                 <div class="tabSpace">
-                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                    <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </label>
                                     <label class="radio-inline">
                                         <input (change)="handleChange(1)" [(ngModel)]="planOfferingData.hours_tracking_method" name="hours_tracking_method" type="radio" value="1">Look-Back Measurement Method
                                     </label>
@@ -77,7 +78,8 @@
                                             <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
                                         </div>
                                         <div class="tabSpace">
-                                            <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                            <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                            </label>
                                             <div class="form-group field-tblacaplancriteria-initial_measurement_period">
                                                 <input type="text" OnlyNumber="true" maxlength="5" [(ngModel)]="planOfferingData.initial_measurement_period" name="initial_measurement_period" class="form-control form-height numbers" style="width:50%">
                                             </div>
@@ -90,7 +92,8 @@
                                             <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
                                         </div>
                                         <div class="tabSpace">
-                                            <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                            <label class="control-label span-label">{{labelsData[2].element_label}}<span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[2].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                            </label>
                                             <label class="radio-inline">
                                                     <input type="radio"  [(ngModel)]="planOfferingData.initial_measurement_period_begin" name="initial_measurement_period_begin" value="1" >Date of Hire (DOH)
                                                 </label>
@@ -112,16 +115,19 @@
                                     <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
                                 </div>
                                 <div class="tabSpace">
-                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
+                                    <label class="control-label span-label">{{labelsData[3].element_label}}<span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[3].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </label>
                                     <div>
                                         <div class="checkbox-inline">
                                             <label> <input type="checkbox" name="plan_offering_criteria_type[0]" [(ngModel)]="planOfferingData.plan_offering_criteria_type[0]" value="1">
                                                 <span class="margin-0">Qualifying Offer Method</span>
+                                                <span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="An employer must make a qualifying offer of Minimum Essential Coverage and Minimum Value Coverage to one or more of its full-time employees for all months of the year that was at or below the federal poverty line." placement="right" triggers="mouseenter:mouseleave"></span>
                                                 </label>
                                         </div>
                                         <div class="checkbox-inline">
                                             <label> <input type="checkbox"  name="plan_offering_criteria_type[1]" [(ngModel)]="planOfferingData.plan_offering_criteria_type[1]" value="2" >
                                                 <span class="margin-0">98% Offer Method</span>
+                                                <span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="An employer must make an affordable offer providing minimum value to 98% of it's full-time employee population all months of the calendar year. Also make a offer of minimum essential coverage to dependents." placement="right" triggers="mouseenter:mouseleave"></span>
                                                 </label>
                                         </div>
                                     </div>
@@ -134,20 +140,24 @@
                                     <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
                                 </div>
                                 <div class="tabSpace">
-                                    <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
+                                    <label class="control-label span-label">{{labelsData[4].element_label}}<span *ngIf="labelsData[4].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[4].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </label>
                                     <div class="col-sm-12">
                                         <div class="form-group inl-q-a">
                                             <div>
                                                 <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
                                             </div>
                                             <div class="tabSpace">
-                                                <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
+                                                <label class="control-label span-label">{{labelsData[5].element_label}}<span *ngIf="labelsData[5].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[5].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                </label>
                                                 <div>
                                                     <label class="radio-inline">
                                                                 <input  type="radio"  [(ngModel)]="planOfferingData.company_certification_workforce" name="company_certification_workforce" value="1">Yes
+                                                              
                                                             </label>
                                                     <label class="radio-inline">
                                                                 <input type="radio"  [(ngModel)]="planOfferingData.company_certification_workforce" name="company_certification_workforce"  value="0">No
+                                                                
                                                             </label>
                                                 </div>
                                             </div>
@@ -159,7 +169,8 @@
                                                 <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
                                             </div>
                                             <div class="tabSpace">
-                                                <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
+                                                <label class="control-label span-label">{{labelsData[6].element_label}}<span *ngIf="labelsData[6].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[6].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                </label>
                                                 <div>
                                                     <label class="radio-inline">
                                                                 <input type="radio"  [(ngModel)]="planOfferingData.company_certification_medical_eligibility" name="company_certification_medical_eligibility"  value="1">Yes
@@ -177,7 +188,8 @@
                                                 <label class="control-label span-label" [innerHTML]="labelsData[7].element_serial_id"></label>
                                             </div>
                                             <div class="tabSpace">
-                                                <label class="control-label span-label" [innerHTML]="labelsData[7].element_label"></label>
+                                                <label class="control-label span-label">{{labelsData[7].element_label}}<span *ngIf="labelsData[7].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[7].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                </label>
                                                 <div>
                                                     <label class="radio-inline">
                                                                 <input type="radio"  [(ngModel)]="planOfferingData.company_certification_employer_contribution" name="company_certification_employer_contribution" value="1">Yes

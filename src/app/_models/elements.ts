@@ -2,6 +2,7 @@ export interface Elements{
      element_id:number;
      product_id :any;
      section_id:any;
+     element_popup_text:any;
      element_serial_id:any;
      element_label:any;
      created_by:any;

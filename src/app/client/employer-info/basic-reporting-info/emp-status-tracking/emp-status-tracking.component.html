@@ -59,7 +59,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div>
                                             <label class="radio-inline">
                                                 <input type="radio" [(ngModel)]="empStatusData.ale_applicable" name="ale_applicable" value="1"> Yes
@@ -77,7 +78,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div>
                                             <label class="radio-inline">
                                                         <input type="radio" [(ngModel)]="empStatusData.ale_first_applicable" name="ale_first_applicable" value="1"> Yes
@@ -97,7 +99,8 @@
                                         <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
                                     </div>
                                     <div class="tabSpace">
-                                        <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                        <label class="control-label span-label">{{labelsData[2].element_label}}<span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[2].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                        </label>
                                         <div style="margin-bottom: 0px;">
                                             <label class="radio-inline">
                                                 <input type="radio" [(ngModel)]="empStatusData.ale_category" name="ale_category" value="1">An ALE

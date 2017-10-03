@@ -58,7 +58,8 @@
                                     <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                                 </div>
                                 <div class="tabSpace">
-                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                    <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </label>
                                     <div class="col-sm-12 vertical-checkbox">
                                         <div class="checkbox">
                                             <label> <input type="checkbox" class="specific_heard" [(ngModel)]="anythingElseData.hear_about_us[0]" name="hear_about_us[0]" value="0"><span class="control-checkbox">Referred by a friend</span></label>
@@ -87,7 +88,8 @@
                                     <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
                                 </div>
                                 <div class="tabSpace">
-                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                    <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                    </label>
                                     <div>
                                         <label class="radio-inline">
                                             <input type="radio" [(ngModel)]="anythingElseData.anything_else" name="anything_else" value="1">Yes
