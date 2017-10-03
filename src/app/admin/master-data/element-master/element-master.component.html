@@ -65,6 +65,9 @@
                                     <mfDefaultSorter by="element_label">Element Label</mfDefaultSorter>
                                 </th>
                                 <th class="text-center">
+                                    Element Popup Text
+                                </th>
+                                <th class="text-center">
                                     <mfDefaultSorter>Update</mfDefaultSorter>
                                 </th>
                             </tr>
@@ -79,6 +82,10 @@
                                     <td style="width: 50%;">
                                         <input type="text" empInfoValidator="true" class="form-control" #model="ngModel" [(ngModel)]="element.element_label" style="width: 93%;" required>
                                         <div *ngIf="model.invalid" style="color: red">Required</div>
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <input type="text" empInfoValidator="true" class="form-control" #popupTextmodel="ngModel" [(ngModel)]="element.element_popup_text" style="width: 93%;" required>
+                                        <!--<div *ngIf="popupTextmodel.invalid" style="color: red">Required</div>-->
                                     </td>
                                     <td style="text-align: center;"><button [disabled]="!model.valid" [ngClass]="!model.valid ?'disabled-btn' : ''" (click)="updateProduct(element)" class="updateBtn"><i class="fa fa-floppy-o"></i></button></td>
                                 </tr>

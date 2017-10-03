@@ -19,6 +19,7 @@ import { DataTableModule } from "angular2-datatable";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import {SettingsService} from "app/_services/_setting.service";
 import { SharedModule } from "app/_shared/shared.module";
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { SharedModule } from "app/_shared/shared.module";
       DataTableModule,
       FormsModule,
       PartialViews,
-      SharedModule
+      SharedModule,
+      BsDatepickerModule.forRoot()
   ],
   declarations: [AccountSettingsComponent, ElementMasterComponent, VideosComponent, FormPricingComponent, ErrorMasterComponent, EmailTemplatesComponent,],  
   providers: [ ValidationService,EmailTemplatesService, ElementMasterService , SettingsService],

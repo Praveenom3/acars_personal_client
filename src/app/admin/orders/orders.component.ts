@@ -8,6 +8,7 @@ import { ModalDirective } from "ngx-bootstrap";
 import { NumberValidationService } from "app/_services/_number-validation.service";
 import * as Globals from 'app/_shared/_globals';
 import { GlobalService } from 'app/_services/_global.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
     selector: 'app-orders',
@@ -15,6 +16,12 @@ import { GlobalService } from 'app/_services/_global.service';
     styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+    minDate = new Date(2017, 0, 1);
+    maxDate = new Date(2025, 12, 31);
+    colorTheme = 'theme-blue';
+    public bsConfig: Partial<BsDatepickerConfig>;
+
+
     purchaseSelected: any;
     hasFinancialRights: boolean = false;
     formToReset: any;
@@ -264,6 +271,7 @@ export class OrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.bsConfig = Object.assign({}, { containerClass: this.colorTheme, showWeekNumbers: false });
         //checking if the user has the financial rights
         for (var key in Globals.admin_permissions) {
             if (Globals.admin_permissions.hasOwnProperty(key)) {

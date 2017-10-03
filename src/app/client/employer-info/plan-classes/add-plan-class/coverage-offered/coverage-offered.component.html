@@ -62,12 +62,13 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
@@ -80,12 +81,13 @@
                                                                     </div>
                                                                     <div *ngIf="coverageOfferedData.employee_mv_coverage == '1'" class="form-group row years1 plan-div-margin">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="col-sm-12">
@@ -139,12 +141,13 @@
                                                                     </div>
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[2].element_label}}<span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[2].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
@@ -157,12 +160,13 @@
                                                                     </div>
                                                                     <div *ngIf="coverageOfferedData.employee_essential_coverage == '1'" class="form-group row years2 plan-div-margin">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[3].element_label}}<span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[3].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="col-sm-12">
@@ -215,12 +219,13 @@
                                                                     </div>
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[4].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[4].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[4].element_label}}<span *ngIf="labelsData[4].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[4].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
@@ -233,12 +238,13 @@
                                                                     </div>
                                                                     <div *ngIf="coverageOfferedData.spouse_essential_coverage == '1'" class="form-group row plan-div-margin spousediv" id="spouse_conditional_coverage_div" style="display: block;">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[5].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[5].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[5].element_label}}<span *ngIf="labelsData[5].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[5].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">
@@ -251,12 +257,13 @@
                                                                     </div>
                                                                     <div class="form-group row plan-div-margin">
                                                                         <div class="col-md-6 inl-q-a">
-                                                                                <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[6].element_label"></label>
-                                                                                </div>
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[6].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[6].element_label}}<span *ngIf="labelsData[6].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[6].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-4" style="margin-top: 3px;">
                                                                             <label class="radio-inline">

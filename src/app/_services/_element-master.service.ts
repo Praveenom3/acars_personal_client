@@ -24,7 +24,8 @@ export class ElementMasterService {
         return this._http.put(
             this._elementMasterUrl + '/' + ElementData.element_id,
             JSON.stringify({
-                "element_label": ElementData.element_label
+                "element_label": ElementData.element_label,
+                "element_popup_text":ElementData.element_popup_text
             }),
             { headers: this._globalService.getHeaders() }
         ).map(response => response.json())

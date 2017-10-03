@@ -38,8 +38,7 @@
                                 <input class="form-control mr-left-5" [(ngModel)]="filterQuery" />
                             </div>
                         </div>
-                        <table class="table table-hover table-bordered table-striped" [mfData]="clientsTableData | ordersFilter : filterQuery" #mf="mfDataTable"
-                            [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <table class="table table-hover table-bordered table-striped" [mfData]="clientsTableData | ordersFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                             <thead>
                                 <tr class="tr-blue-grid-head">
@@ -91,8 +90,7 @@
 
 <!-- Add Client Modal -->
 
-<div class="modal fade" bsModal #addClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addClientDetails"
-    aria-hidden="true">
+<div class="modal fade" bsModal #addClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addClientDetails" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:75%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -113,21 +111,19 @@
                         <table class="col-xs-12">
                             <tr>
                                 <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}"><label class="form-control-label">Client Name : <span class="red">*</span></label></td>
-                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}"><input type="text" maxlength="34" class="form-control" style="width: 90%;" oninput="this.value=this.value.replace(/[^A-Za-z0-9& ]/g, '')"
-                                        [(ngModel)]="temp_client_name" [formControl]="_addClientForm.controls['client_name']"
+                                <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}"><input type="text" maxlength="34" class="form-control" style="width: 90%;" oninput="this.value=this.value.replace(/[^A-Za-z0-9& ]/g, '')" [(ngModel)]="temp_client_name" [formControl]="_addClientForm.controls['client_name']"
                                         [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_name')}"></td>
                                 <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}"><label class="form-control-label">Select Brand : <span class="red">*</span></label></td>
                                 <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}">
 
-                                    <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_addClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}"
-                                        (ngModelChange)="onBrandChange(this._addClientForm, $event)" style="width:90%;">
+                                    <select class="form-control" [ngModel]="temp_brand_id" [formControl]="_addClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'brand_id')}" (ngModelChange)="onBrandChange(this._addClientForm, $event)"
+                                        style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
                                         <option *ngFor="let ab of availableBrands" [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
                                     <td style="width:10%;"><label class="control-label">Client # :</label></td>
                                     <td style="width:20%;">
-                                        <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_addClientForm.controls['client_number']"
-                                            [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_number')}">
+                                        <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_addClientForm.controls['client_number']" [ngClass]="{'form-control-danger': !_isValid(this._addClientForm, this._addClientFormErrors,'client_number')}">
 
                                     </td>
                             </tr>
@@ -162,8 +158,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered table-striped" [mfData]="totalPurchases" #addPurchaseHist="mfDataTable" [mfRowsOnPage]="rowsOnPage"
-                                    [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                <table class="table table-hover table-bordered table-striped" [mfData]="totalPurchases" #addPurchaseHist="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                                     <thead>
                                         <tr class="tr-blue-grid-head">
@@ -252,8 +247,7 @@
 
 
 <!-- Update Client Modal -->
-<div class="modal fade" bsModal #updateClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updateClientDetails"
-    aria-hidden="true">
+<div class="modal fade" bsModal #updateClientModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updateClientDetails" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:75%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -275,25 +269,22 @@
                             <tr>
                                 <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}"><label class="form-control-label">Client Name : <span class="red">*</span></label></td>
                                 <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}">
-                                    <input type="text" maxlength="34" class="form-control" style="width: 90%;" *ngIf="hasFinancialRights" oninput="this.value=this.value.replace(/[^A-Za-z& ]/g, '')"
-                                        [(ngModel)]="temp_client_name" [formControl]="_updateClientForm.controls['client_name']"
+                                    <input type="text" maxlength="34" class="form-control" style="width: 90%;" *ngIf="hasFinancialRights" oninput="this.value=this.value.replace(/[^A-Za-z& ]/g, '')" [(ngModel)]="temp_client_name" [formControl]="_updateClientForm.controls['client_name']"
                                         [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_name')}">
                                     <span *ngIf="!hasFinancialRights" class="form-control" style="width: 90%;" readOnly>{{_updateClientForm.controls['client_name'].value}}</span>
                                 </td>
                                 <td style="width:13%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}"><label class="form-control-label">Select Brand : <span class="red">*</span></label></td>
                                 <td style="width:22%;" [ngClass]="{'has-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}">
 
-                                    <select class="form-control" *ngIf="hasFinancialRights" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']"
-                                        [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}"
-                                        (ngModelChange)="onBrandChange(this._updateClientForm, $event)" style="width:90%;">
+                                    <select class="form-control" *ngIf="hasFinancialRights" [ngModel]="temp_brand_id" [formControl]="_updateClientForm.controls['brand_id']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'brand_id')}" (ngModelChange)="onBrandChange(this._updateClientForm, $event)"
+                                        style="width:90%;">
                                         <option value='' [ngValue]='' selected>Select</option>
                                         <option *ngFor="let ab of availableBrands" [value]="ab.brand_id" [ngValue]="ab">{{ab.brand_name}}</option>
                                     </select>
                                     <span *ngIf="!hasFinancialRights" class="form-control" style="width: 90%;" readOnly>{{this.temp_brand}}</span>
                                     <td style="width:10%;"><label class="control-label">Client # :</label></td>
                                     <td style="width:20%;">
-                                        <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_updateClientForm.controls['client_number']"
-                                            [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_number')}">
+                                        <input type="text" readOnly class="form-control" value="{{temp_client_number}}" [formControl]="_updateClientForm.controls['client_number']" [ngClass]="{'form-control-danger': !_isValid(this._updateClientForm, this._updateClientFormErrors, 'client_number')}">
 
                                     </td>
                             </tr>
@@ -328,8 +319,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered table-striped" [mfData]="totalPurchases" #updatePurchaseHist="mfDataTable"
-                                    [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                <table class="table table-hover table-bordered table-striped" [mfData]="totalPurchases" #updatePurchaseHist="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 
                                     <thead>
                                         <tr class="tr-blue-grid-head">
@@ -418,8 +408,7 @@
 
 
 <!-- Add Purchase Modal -->
-<div class="modal fade" bsModal #addPurchaseModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addPurchaseDetails"
-    aria-hidden="true">
+<div class="modal fade" bsModal #addPurchaseModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="addPurchaseDetails" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width: 80%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -466,8 +455,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
                                 <label class="form-control-label">Product</label>
-                                <select class="form-control" [formControl]="_addPurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._addPurchaseForm, $event)"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
+                                <select class="form-control" [formControl]="_addPurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._addPurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
                                     <ng-container *ngFor="let sp of selectableProducts">
                                         <option [value]="sp.product_id" *ngIf="sp.is_deleted == '0'">{{sp.product_full_name}}</option>
@@ -481,8 +469,10 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
                                 <label class="form-control-label">Total # of Eins</label>
+
                                 <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_eins']"
                                    min="0" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
+
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.total_no_eins.valid">{{_addPurchaseFormErrors.total_no_eins.message}}</span>
 
@@ -508,8 +498,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_first_name')}">
                                 <label class="form-control-label">Purchaser First Name</label>
-                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_first_name']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_first_name')}">
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_first_name']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_first_name')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_first_name.valid">{{_addPurchaseFormErrors.purchaser_first_name.message}}</span>
 
@@ -518,8 +507,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_last_name')}">
                                 <label class="form-control-label">Purchaser Last Name</label>
-                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_last_name']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_last_name')}">
+                                <input type="text" [(ngModel)]="filterQuery" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_addPurchaseForm.controls['purchaser_last_name']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_last_name')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_last_name.valid">{{_addPurchaseFormErrors.purchaser_last_name.message}}</span>
 
@@ -541,8 +529,7 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <label class="form-control-label">Purchaser Phone</label>
-                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_addPurchaseForm.controls['purchaser_mobile']"
-                                    class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_mobile')}">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_addPurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchaser_mobile.valid">{{_addPurchaseFormErrors.purchaser_mobile.message}}</span>
 
@@ -570,8 +557,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
                                 <label class="form-control-label">Amount</label>
-                                <input type="text" OnlyAmountNumber="true" class="form-control" [formControl]="_addPurchaseForm.controls['amount']" DecimalPlaces="2"
-                                    minValue="1.00" maxValue="999999.00" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
+                                <input type="text" OnlyAmountNumber="true" class="form-control" [formControl]="_addPurchaseForm.controls['amount']" DecimalPlaces="2" minValue="1.00" maxValue="999999.00" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'amount')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.amount.valid">{{_addPurchaseFormErrors.amount.message}}</span>
 
@@ -597,7 +583,9 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
 
                                 <label class="form-control-label">Date of Purchase</label>
-                                <input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">
+                                <input type="text" placement="top" [formControl]="_addPurchaseForm.controls['purchase_date']" [bsConfig]="bsConfig" date="true" [minDate]="minDate" [maxDate]="maxDate" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}"
+                                    bsDatepicker class="form-control ">
+                                <!-- <input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_date')}">-->
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.purchase_date.valid">{{_addPurchaseFormErrors.purchase_date.message}}</span>
 
@@ -633,8 +621,9 @@
                             <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">
                                     <label class="form-control-label">Invoice Date</label>
-                                    <input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_created_at']"
-                                        [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">
+                                    <input type="text" placement="top" [formControl]="_addPurchaseForm.controls['invoice_created_at']" [bsConfig]="bsConfig" date="true" [minDate]="minDate" [maxDate]="maxDate" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}"
+                                        bsDatepicker class="form-control ">
+                                    <!--<input type="date" max="9999-12-31" class="form-control" [formControl]="_addPurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'invoice_created_at')}">-->
 
                                     <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.invoice_created_at.valid">{{_addPurchaseFormErrors.invoice_created_at.message}}</span>
 
@@ -673,8 +662,7 @@
 <!-- ./Add Purchase Modal -->
 
 <!-- Update Purchase Modal -->
-<div class="modal fade" bsModal #updatePurchaseModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updatePurchaseDetails"
-    aria-hidden="true">
+<div class="modal fade" bsModal #updatePurchaseModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="updatePurchaseDetails" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width: 80%;">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -720,8 +708,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                 <label class="form-control-label">Product</label>
-                                <select class="form-control" *ngIf="temp_product == ''" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
+                                <select class="form-control" *ngIf="temp_product == ''" [formControl]="_updatePurchaseForm.controls['product_id']" (ngModelChange)="onProductChange(this._updatePurchaseForm, $event)" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'product_id')}">
                                     <option value='' [ngValue]='' selected>Select</option>
                                     <!-- <option *ngFor="let sp of availableProducts" [value]="sp.product_id" >{{sp.product_full_name}}</option> -->
                                     
@@ -738,8 +725,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_eins')}">
                                 <label class="form-control-label">Total # of Eins</label>
-                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_eins']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_eins')}">
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_updatePurchaseForm.controls['total_no_eins']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'total_no_eins')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.total_no_eins.valid">{{_updatePurchaseFormErrors.total_no_eins.message}}</span>
 
@@ -765,8 +751,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_first_name')}">
                                 <label class="form-control-label">Purchaser First Name</label>
-                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_first_name']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_first_name')}">
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_first_name']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_first_name')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_first_name.valid">{{_updatePurchaseFormErrors.purchaser_first_name.message}}</span>
 
@@ -775,8 +760,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_last_name')}">
                                 <label class="form-control-label">Purchaser Last Name</label>
-                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_last_name']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_last_name')}">
+                                <input type="text" oninput="this.value=this.value.replace(/[^A-Za-z ]/g, '')" maxlength="20" class="form-control" [formControl]="_updatePurchaseForm.controls['purchaser_last_name']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_last_name')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_last_name.valid">{{_updatePurchaseFormErrors.purchaser_last_name.message}}</span>
 
@@ -798,8 +782,7 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <label class="form-control-label">Purchaser Phone</label>
-                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']"
-                                    class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
+                                <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" [formControl]="_updatePurchaseForm.controls['purchaser_mobile']" class="form-control" placeholder="(___) ___-____" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchaser_mobile')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchaser_mobile.valid">{{_updatePurchaseFormErrors.purchaser_mobile.message}}</span>
 
@@ -827,8 +810,7 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
                                 <label class="form-control-label">Amount</label>
-                                <input type="text" OnlyAmountNumber="true" DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
+                                <input type="text" OnlyAmountNumber="true" DecimalPlaces="2" minValue="1.00" maxValue="999999.00" class="form-control" [formControl]="_updatePurchaseForm.controls['amount']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'amount')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.amount.valid">{{_updatePurchaseFormErrors.amount.message}}</span>
 
@@ -854,7 +836,9 @@
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
 
                                 <label class="form-control-label">Date of Purchase</label>
-                                <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">
+                                <input type="text" placement="top" [formControl]="_updatePurchaseForm.controls['purchase_date']" [bsConfig]="bsConfig" date="true" [minDate]="minDate" [maxDate]="maxDate" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}"
+                                    bsDatepicker class="form-control ">
+                                <!-- <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['purchase_date']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_date')}">-->
 
                                 <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.purchase_date.valid">{{_updatePurchaseFormErrors.purchase_date.message}}</span>
 
@@ -890,8 +874,9 @@
                             <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">
                                     <label class="form-control-label">Invoice Date</label>
-                                    <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_created_at']"
-                                        [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">
+                                    <input type="text" placement="top" [formControl]="_updatePurchaseForm.controls['invoice_created_at']" [bsConfig]="bsConfig" date="true" [minDate]="minDate" [maxDate]="maxDate" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}"
+                                        bsDatepicker class="form-control ">
+                                    <!-- <input type="date" max="9999-12-31" class="form-control" [formControl]="_updatePurchaseForm.controls['invoice_created_at']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'invoice_created_at')}">-->
 
                                     <span class="help-block help-block-error" *ngIf="!_updatePurchaseFormErrors.invoice_created_at.valid">{{_updatePurchaseFormErrors.invoice_created_at.message}}</span>
 
