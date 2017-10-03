@@ -151,6 +151,11 @@ export class ClientDashBoardService {
         }
         return clientId;
     }
+    setHomeUrl(productId, clientId) {
+        this.clientHomeUrl = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(clientId) + '/dashboard';
+    }
+
+
     /**
      * 
      * @param productId 
@@ -161,8 +166,7 @@ export class ClientDashBoardService {
         this.client_id = "yes";
         let products = this._globalService.getProducts();
         this.product = products[productId];
-        
-        this.clientHomeUrl = '/client/' + this._globalService.encode(productId) + '/' + this._globalService.encode(clientId) + '/dashboard';
+        this.setHomeUrl(productId, clientId);
         let userType: any = localStorage.getItem('usertype');
         if (this.product) {
 
@@ -174,7 +178,7 @@ export class ClientDashBoardService {
                 this.redirectClientToWelcomeScreens();
             } else {
                 this.dashBoard = true;
-                
+
                 if (userType != 4) {
                     let productYear = this.product.applicable_year;
 
@@ -182,20 +186,20 @@ export class ClientDashBoardService {
                     let productsList = Object.keys(products).map(function (key) {
                         return products[key]
                     })
-                    
-                    let productIds:any[];
+
+                    let productIds: any[];
                     let clientUsers: any = [];
                     let companyUsersList: any = [];
                     productsList.forEach(element => {
-                        if(element.applicable_year == productYear){
+                        if (element.applicable_year == productYear) {
                             let clients: any[] = element['clients'];
                             let clientsList = Object.keys(clients).map(function (key) {
                                 return clients[key]
                             })
                             clientsList.forEach(clientElement => {
-                                let productinfo:any = {
-                                    'productId':element.product_id,
-                                    'clientId':clientElement.client_id
+                                let productinfo: any = {
+                                    'productId': element.product_id,
+                                    'clientId': clientElement.client_id
                                 };
                                 if (clientElement.companyUser) {
                                     companyUsersList.push(productinfo);
@@ -297,7 +301,7 @@ export class ClientDashBoardService {
             this.clientLogo = this.logoPath + brand.brand_logo;
         }
     }
-    
+
     /**
      * 
      * @param company 
@@ -305,7 +309,7 @@ export class ClientDashBoardService {
     public setAccountManagerData(productId, clientId) {
         let clients = this.getProductFieldFromSession(productId, 'clients');
         let client = clients[clientId];
-       
+
         if (client) {
             this.accountManager = '';
             this.accountManagerNumber = '';
@@ -315,7 +319,7 @@ export class ClientDashBoardService {
             }
             if (client['account_manager_number'] && client['account_manager_number'] != 'null' && client['account_manager_number'] != '') {
                 let mobile = client['account_manager_number'];
-              //  mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
+                //  mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
                 this.accountManagerNumber = mobile;
             }
             if (client['account_manager_mail'] != 'null' && client['account_manager_mail'] != '') {
