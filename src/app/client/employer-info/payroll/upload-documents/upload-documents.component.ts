@@ -1,9 +1,10 @@
-import { Component, OnInit, Directive } from '@angular/core';
+import { Component, OnInit, Directive, ViewChild } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { FileUploader } from 'ng2-file-upload';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
 import { GlobalService } from "app/_services/_global.service";
 import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
+import { ModalDirective } from 'ngx-bootstrap';
 const URL = '/api/';
 
 
@@ -17,6 +18,9 @@ const URL = '/api/';
 @Directive({ selector: '[ng2FileSelect,ng2FileDrop]' })
 
 export class UploadDocumentsComponent implements OnInit {
+  
+  @ViewChild('companyUploadDataSuccess') public companyUploadDataSuccess: ModalDirective;
+
   company: string;
   product: string;
   companyDetails: any;
@@ -27,7 +31,6 @@ export class UploadDocumentsComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({ url: URL });
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
-
 
   constructor(route: ActivatedRoute,
     private _globalService: GlobalService,
