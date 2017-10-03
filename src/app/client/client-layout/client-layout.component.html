@@ -63,7 +63,7 @@
                          <span class="font-14">Welcome</span> {{userFirstName}}<span class="font-14"></span></span>
                 </a>
                 <ul *ngIf="(userType==3 || userType==4 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby=""
-                    role="menu" style="margin-top:16px !important;">
+                    role="menu" style="margin-top:-6px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/profile']">
                         <i class="dropdown-icon icmn-user"></i> Profile</a>
                     <!-- <a class="dropdown-item dropdown-a color-white color-red" [routerLink]="['/client/messages']">
@@ -77,15 +77,24 @@
                     <div class="dropdown-divider margin-0"></div>
                     <a class="dropdown-item dropdown-a color-white" href="#">
                         <i class="dropdown-icon icmn-exit"></i> Logout</a>
+                    <div class="dropdown-divider margin-0"></div>
+                    <div class="termsNCondition-div">
+                            <span> <a href="#" class="termsNCondition-link">Terms & Conditions</a></span> &nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#" class="termsNCondition-link"> Privacy Policy</a></span>
+                        </div>
                 </ul>
                 <ul *ngIf="(userType==1 || userType==2 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby=""
-                    role="menu" style="margin-top:16px !important;">
+                    role="menu" style="margin-top:-6px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/dashboard']">
                         <i class="dropdown-icon fa fa-home">
                             </i> Admin Dashboard</a>
+                    <div class="dropdown-divider margin-0"></div>
                     <a class="dropdown-item dropdown-a color-white" href="#">
                         <i class="dropdown-icon icmn-exit">
                             </i> Logout</a>
+                    <div class="dropdown-divider margin-0"></div>
+                    <div class="termsNCondition-div">
+                            <span> <a href="#" class="termsNCondition-link">Terms & Conditions</a></span> &nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#" class="termsNCondition-link"> Privacy Policy</a></span>
+                        </div>
                 </ul>
             </div>
         </div>

@@ -23,12 +23,21 @@ export class SearchScreenService {
         private _http: Http) {
     }
 
-    public getAdminSearchDetails(key): Observable<any> {
+    public getAdminSearchDetails(key, type): Observable<any> {
+        let search_str = ''
+        if(type == "key"){
+            search_str = JSON.stringify({
+                "key": key
+            });
+        }else if(type == "keyword"){
+            search_str = JSON.stringify({
+                "keyword": key
+            });
+        }
+        
         return this._http.post(
             this._apiUrl + 'admin-search',
-            JSON.stringify({
-                "key": key
-            }),
+            search_str,
             { headers: this._globalService.getHeaders() }
         ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
