@@ -305,7 +305,7 @@ export class ClientDashBoardService {
     public setAccountManagerData(productId, clientId) {
         let clients = this.getProductFieldFromSession(productId, 'clients');
         let client = clients[clientId];
-        console.log(client);
+       
         if (client) {
             this.accountManager = '';
             this.accountManagerNumber = '';

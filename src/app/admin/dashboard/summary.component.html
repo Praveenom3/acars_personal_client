@@ -7,9 +7,10 @@
                 <div class="widget-body">
                     <div href="javascript: void(0);" class="widget-body-inner">
                         <h5 class="text-uppercase text-float-right text-float-right"> # of Clients</h5>
-                        <i class="counter-icon fa fa-user-plus" aria-hidden="true"></i>
+                        <a [routerLink]="['/admin/orders']">
+                            <i class="counter-icon fa fa-user-plus" aria-hidden="true"></i></a>
                         <span class="counter-count">
-                            <span class="counter-init" data-from="25" data-to="942">942</span>
+                            <span class="counter-init" data-from="25" data-to="942">{{clientsCount}}</span>
                         </span>
                     </div>
                 </div>
@@ -22,7 +23,7 @@
                         <h5 class="text-uppercase text-float-right text-float-right"> # of Admin Users</h5>
                         <i class="counter-icon fa fa-users" aria-hidden="true"></i>
                         <span class="counter-count">
-                            <span class="counter-init" data-from="25" data-to="942">42</span>
+                            <span class="counter-init" data-from="25" data-to="942">{{adminUsersCount}}</span>
                         </span>
                     </div>
                 </div>
@@ -35,7 +36,7 @@
                         <h5 class="text-uppercase text-float-right"> # of Companies</h5>
                         <i class="counter-icon fa fa-building-o"></i>
                         <span class="counter-count">
-                                <span class="counter-init" data-from="0" data-to="99">99</span>
+                                <span class="counter-init" data-from="0" data-to="99">{{companiesCount}}</span>
                         </span>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                         <h5 class="text-uppercase text-float-right"> # of Forms Purchased</h5>
                         <i class="counter-icon fa fa-file-text-o"></i>
                         <span class="counter-count">
-                                <span class="counter-init" data-from="0" data-to="67">67</span>
+                                <span class="counter-init" data-from="0" data-to="67">{{formsPurchased}}</span>
                         </span>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
                         <h5 class="text-uppercase text-float-right"> Amount Invoiced</h5>
                         <i class="counter-icon fa fa-money"></i>
                         <span class="counter-count">
-                                $<span class="counter-init" data-from="0" data-to="356">356</span>
+                                $<span class="counter-init" data-from="0" data-to="356">{{invoicedAmount}}</span>
                         </span>
                     </div>
                 </div>
@@ -74,7 +75,7 @@
                         <h5 class="text-uppercase text-float-right"> Amount Received</h5>
                         <i class="counter-icon  fa fa-money" aria-hidden="true"></i>
                         <span class="counter-count">
-                        $<span class="counter-init" data-from="25" data-to="942">942</span>
+                        $<span class="counter-init" data-from="25" data-to="942">{{recievedAmount}}</span>
                         </span>
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                         <h5 class="text-uppercase text-float-right">Signed Contracts</h5>
                         <i class="counter-icon fa fa-check-square-o" aria-hidden="true"></i>
                         <span class="counter-count">
-                        <span class="counter-init" data-from="25" data-to="942">942</span>
+                        <span class="counter-init" data-from="25" data-to="942">{{countOfSignedContracts}}</span>
                         </span>
                     </div>
                 </div>
@@ -100,7 +101,7 @@
                         <h5 class="text-uppercase text-float-right"> # of Purchases</h5>
                         <i class="counter-icon fa fa-shopping-cart"></i>
                         <span class="counter-count">
-                                <span class="counter-init" data-from="0" data-to="99">99</span>
+                                <span class="counter-init" data-from="0" data-to="99">{{purchasesCount}}</span>
                         </span>
                     </div>
                 </div>
@@ -113,7 +114,7 @@
                         <h5 class="text-uppercase text-float-right"> # of Brokers</h5>
                         <i class="counter-icon fa fa-user"></i>
                         <span class="counter-count">
-                                <span class="counter-init" data-from="0" data-to="67">67</span>
+                                <span class="counter-init" data-from="0" data-to="67">{{brokersCount}}</span>
                         </span>
                     </div>
                 </div>
@@ -126,7 +127,7 @@
                         <h5 class="text-uppercase text-float-right"> # of Self Insured Plans</h5>
                         <i class="counter-icon fa fa-sellsy"></i>
                         <span class="counter-count">
-                                <span class="counter-init" data-from="0" data-to="356">356</span>
+                                <span class="counter-init" data-from="0" data-to="356">{{selfInsuredPlans}}</span>
                         </span>
                     </div>
                 </div>

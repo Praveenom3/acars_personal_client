@@ -83,11 +83,11 @@
                     <div class="form-inline">
                         <div class="form-group pull-right padding-10">
                             <label for="email"><b>Search:</b></label>
-                            <input class="form-control mr-left-5" />
+                            <input class="form-control mr-left-5" [(ngModel)]="outstandingContractsFilterQuery" />
                         </div>
                     </div>
 
-                    <table class="table table-hover table-bordered table-striped" [mfData]="outstandingContractsData | outstadingInvoicesFilter : invoicesFilterQuery"
+                    <table class="table table-hover table-bordered table-striped" [mfData]="outstandingContractsData | outstadingInvoicesFilter : outstandingContractsFilterQuery"
                         #outstandingContractsObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
@@ -151,10 +151,10 @@
                     <div class="form-inline">
                         <div class="form-group pull-right padding-10">
                             <label for="email"><b>Search:</b></label>
-                            <input class="form-control mr-left-5" />
+                            <input class="form-control mr-left-5" [(ngModel)]="discoveryCallsFilterQuery" />
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped" [mfData]="discoverySessionData | outstadingInvoicesFilter : invoicesFilterQuery"
+                    <table class="table table-hover table-bordered table-striped" [mfData]="discoverySessionData | outstadingInvoicesFilter : discoveryCallsFilterQuery"
                         #discoverySessionDataObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">

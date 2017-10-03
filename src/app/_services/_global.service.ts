@@ -27,11 +27,11 @@ export class GlobalService {
     constructor() {
 
         if (environment.production == true) {
-            this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
-            this.apiRoot = 'http://services.acadev.acareportingsoftware.com/';
+            this.apiHost = 'http://198.90.22.116/v1';
+            this.apiRoot = 'http://198.90.22.116/';
         } else {
-            this.apiHost = 'http://services.acadev.acareportingsoftware.com/v1';
-            this.apiRoot = 'http://services.acadev.acareportingsoftware.com/';
+            this.apiHost = 'http://198.90.22.116/v1';
+            this.apiRoot = 'http://198.90.22.116/';
         }
     }
 
@@ -54,6 +54,10 @@ export class GlobalService {
 
     public getUserId(): any {
         return localStorage.getItem('user_id');
+    }
+    
+    public getUserEmail(): any {
+        return localStorage.getItem('useremail');
     }
     /**
      * Returns User type of logged in user

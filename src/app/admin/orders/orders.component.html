@@ -181,6 +181,9 @@
                                                 <mfDefaultSorter by="contact_num">Contact #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
+                                                <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+                                            </th>
+                                            <th class="text-center">
                                                 <mfDefaultSorter by="invoice_num">Invoice #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
@@ -203,6 +206,7 @@
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{formatPhoneNumber(item.purchaser_mobile)}}</td>
+                                                <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
@@ -211,7 +215,7 @@
                                             </tr>
                                         </ng-container>
                                         <tr class="tr-text-center" *ngIf=!addPurchaseHist.data?.length>
-                                            <td colspan="10">
+                                            <td colspan="11">
                                                 No records are found
                                             </td>
                                         </tr>
@@ -338,6 +342,9 @@
                                                 <mfDefaultSorter by="contact_num">Contact #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
+                                                <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+                                            </th>
+                                            <th class="text-center">
                                                 <mfDefaultSorter by="invoice_num">Invoice #</mfDefaultSorter>
                                             </th>
                                             <th class="text-center">
@@ -360,6 +367,7 @@
                                                 <td class="text-center">{{item.purchaser_last_name}}</td>
                                                 <td class="text-center">{{item.purchaser_email}}</td>
                                                 <td class="text-center">{{ formatPhoneNumber(item.purchaser_mobile)}}</td>
+                                                <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
@@ -368,7 +376,7 @@
                                             </tr>
                                         </ng-container>
                                         <tr class="tr-text-center" *ngIf=!updatePurchaseHist.data?.length>
-                                            <td colspan="10">
+                                            <td colspan="11">
                                                 No records are found
                                             </td>
                                         </tr>
@@ -461,7 +469,10 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
                                 <label class="form-control-label">Total # of Eins</label>
-                                <input type="number" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_eins']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
+
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_eins']"
+                                   min="0" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
+
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.total_no_eins.valid">{{_addPurchaseFormErrors.total_no_eins.message}}</span>
 

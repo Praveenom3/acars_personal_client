@@ -47,11 +47,11 @@ export class PrimaryContractComponent implements OnInit {
     } else if (this.clientDashBoardService.primaryContractModel.first_name != null &&
       this.clientDashBoardService.primaryContractModel.first_name != '' &&
       this.clientDashBoardService.primaryContractModel.first_name) {
-      let mobile = this.clientDashBoardService.contractSignorModel.mobile_number;
+      let mobile = this.clientDashBoardService.primaryContractModel.mobile_number;
       if (mobile) {
         mobile = mobile.replace(/[`()|\-\/\ ]/gi, '');
         mobile = '(' + mobile.slice(0, 3) + ') ' + '' + mobile.slice(3, 6) + '-' + mobile.slice(6, 10);
-        this.clientDashBoardService.contractSignorModel.mobile_number = mobile;
+        this.clientDashBoardService.primaryContractModel.mobile_number = mobile;
       }
       this.setup();
 

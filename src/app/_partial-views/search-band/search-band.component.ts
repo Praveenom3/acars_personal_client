@@ -32,6 +32,6 @@ export class SearchBandComponent implements OnInit {
    */
   searchData(){
     this.searchParam = this.searchParam ? this.searchParam : '';
-    this.router.navigate(['/admin/search/search-results'], { queryParams: { key: this.searchParam } });
+    this.router.navigate(['/admin/search/search-results'], { queryParams: { keyword: this.searchParam } });
   }
 }

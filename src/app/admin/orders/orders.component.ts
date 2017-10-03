@@ -161,7 +161,7 @@ export class OrdersComponent implements OnInit {
     public temp_new_index = -1;
     public temp_total_index = -1;
     public show_account_manager = 0;
-
+    
     public orders;
     public clientsTableData;
     maxClientNumber: any;
@@ -444,6 +444,10 @@ export class OrdersComponent implements OnInit {
             form.controls['is_invoice_paid'].updateValueAndValidity();
 
         } else {
+            form.controls['invoice_no'].reset();
+            form.controls['invoice_created_at'].reset();
+            form.controls['is_invoice_paid'].reset();
+
             form.controls['invoice_no'].setValidators(null);
             form.controls['invoice_created_at'].setValidators(null);
             form.controls['is_invoice_paid'].setValidators(null);
@@ -525,8 +529,9 @@ export class OrdersComponent implements OnInit {
             this.temp_total_index = this.totalPurchases.indexOf(data);
 
             this.patchValue(this._updatePurchaseForm, data);
+            
+            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(10), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
 
-            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
             this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
 
             if (this._updateClientForm.value.client_id) {
@@ -545,8 +550,7 @@ export class OrdersComponent implements OnInit {
             } else {
                 this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, false);
             }
-
-
+            this.validationMessages.total_no_eins.min = 'EIN count should be greater than the current value of ' + this._updatePurchaseForm.value.total_no_eins;
             this.updatePurchaseModal.show();
         }
     }
@@ -1050,7 +1054,7 @@ export class OrdersComponent implements OnInit {
         },
         'total_no_eins': {
             'required': 'Total No. of EIN\'s is required.',
-            'min': 'Min value can\'t be less than already provided value',
+            'min': 'EIN count should be greater than the current value of 0' ,
             'minValue': 'Total No. of EIN\'s should be greater than 0',
             'maxValue': 'Total No. of EIN\'s should be less than or equal to 10'
         },
