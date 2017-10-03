@@ -69,6 +69,8 @@ export class ClientDashBoardService {
     public benefitPlanLink: string;
     public planClassesLink: string;
     public payRollDataLink: string;
+    public uploadFilesLink: string;
+    public documentsHistoryLink: string;
     public medicalPlanDataLink: string;
     public clientHomeUrl: string;
     public clientLogo: string = '';
@@ -281,6 +283,8 @@ export class ClientDashBoardService {
         this.benefitPlanLink = url + '/employer-info/benefit-plan-info';
         this.planClassesLink = url + '/employer-info/plan-classes';
         this.payRollDataLink = url + '/employer-info/payroll';
+        this.uploadFilesLink = url + '/employer-info/payroll/upload-documents';
+        this.documentsHistoryLink = url + '/employer-info/payroll/documents-history';
         this.medicalPlanDataLink = url + '/employer-info/enrollments';
     }
     /**
