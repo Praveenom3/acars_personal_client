@@ -32,9 +32,18 @@ export class OutstandingsService {
         return this._http.post(
             this._oustandingUrl + '/toggle-status',
             data,
-            {headers: this._globalService.getHeaders()}
-     ).map(response => response.json())
-    .catch(this._globalService.handleError);
+            { headers: this._globalService.getHeaders() }
+        ).map(response => response.json())
+            .catch(this._globalService.handleError);
     }
-
+    /**
+     * Fetches data used to display in dashboard summary
+     */
+    public getSummaryInformation() {
+        return this._http.get(
+            this._oustandingUrl + '/get-summary-information',
+            { headers: this._globalService.getHeaders() }
+        ).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
 }

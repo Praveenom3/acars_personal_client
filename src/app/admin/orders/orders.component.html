@@ -481,8 +481,8 @@
                         <div class="col-md-4">
                             <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
                                 <label class="form-control-label">Total # of Eins</label>
-                                <input type="number" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_eins']"
-                                    [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
+                                <input type="number" min="0" oninput="this.value=this.value.slice(0,this.maxLength)" maxLength="3" class="form-control" [formControl]="_addPurchaseForm.controls['total_no_eins']"
+                                   min="0" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'total_no_eins')}">
 
                                 <span class="help-block help-block-error" *ngIf="!_addPurchaseFormErrors.total_no_eins.valid">{{_addPurchaseFormErrors.total_no_eins.message}}</span>
 
