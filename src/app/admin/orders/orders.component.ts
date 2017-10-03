@@ -154,7 +154,7 @@ export class OrdersComponent implements OnInit {
     public temp_new_index = -1;
     public temp_total_index = -1;
     public show_account_manager = 0;
-
+    
     public orders;
     public clientsTableData;
     maxClientNumber: any;
@@ -439,7 +439,7 @@ export class OrdersComponent implements OnInit {
             form.controls['invoice_no'].reset();
             form.controls['invoice_created_at'].reset();
             form.controls['is_invoice_paid'].reset();
-            
+
             form.controls['invoice_no'].setValidators(null);
             form.controls['invoice_created_at'].setValidators(null);
             form.controls['is_invoice_paid'].setValidators(null);
@@ -521,8 +521,9 @@ export class OrdersComponent implements OnInit {
             this.temp_total_index = this.totalPurchases.indexOf(data);
 
             this.patchValue(this._updatePurchaseForm, data);
+            
+            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(10), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
 
-            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
             this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
 
             if (this._updateClientForm.value.client_id) {
@@ -531,18 +532,17 @@ export class OrdersComponent implements OnInit {
                 this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
                 this.getSelectableProducts('', this._updatePurchaseForm.value.product_id, 'clientUpdatePurchaseBeforeSubmit');
             }
-            
+
             this.checkNewAndUpdatePurchasesList(this._updateClientForm.value.client_id);
-            
-            
+
+
             //setting validators for invoice dependant inputs
-            if(this._updatePurchaseForm.value.is_invoice == '1' || this._updatePurchaseForm.value.is_invoice == 1){
+            if (this._updatePurchaseForm.value.is_invoice == '1' || this._updatePurchaseForm.value.is_invoice == 1) {
                 this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, true);
-            }else{
+            } else {
                 this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, false);
             }
-
-
+            this.validationMessages.total_no_eins.min = 'EIN count should be greater than the current value of ' + this._updatePurchaseForm.value.total_no_eins;
             this.updatePurchaseModal.show();
         }
     }
@@ -607,11 +607,11 @@ export class OrdersComponent implements OnInit {
         return "NA";
     }
 
-    public checkNewAndUpdatePurchasesList(client_id?){
+    public checkNewAndUpdatePurchasesList(client_id?) {
         if (this.newPurchases.length > 0) {
             this.newPurchases.forEach((newProductElement, index) => {
                 let product_full_name = this.getItemName('product', newProductElement.product_id);
-                
+
                 this.selectableProducts.forEach((selectableProductElement, index) => {
                     Globals.products_keywords.forEach(product_key => {
                         if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
@@ -628,11 +628,11 @@ export class OrdersComponent implements OnInit {
             this.updatePurchases.forEach((updateProductElement, index) => {
                 //change the previously selected value of the update purchase to not deleted status
                 this.clientsTableData.forEach(clientx => {
-                    if(clientx.client_id == client_id){
+                    if (clientx.client_id == client_id) {
                         clientx.clientPurchases.forEach(purchase => {
                             if (purchase.purchase_id == updateProductElement.product_id) {
                                 let product_full_name = this.getItemName('product', updateProductElement.product_id);
-                                
+
                                 Globals.products_keywords.forEach(product_key => {
                                     if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
                                         this.availableProducts.forEach((availableProductElement, index) => {
@@ -647,11 +647,11 @@ export class OrdersComponent implements OnInit {
                             }
                         });
                     }
-                    
+
                 });
                 //assigning the newly selected product to deleted status
                 let product_full_name = this.getItemName('product', updateProductElement.product_id);
-                
+
                 this.selectableProducts.forEach((selectableProductElement, index) => {
                     Globals.products_keywords.forEach(product_key => {
                         if (product_full_name.toLowerCase().indexOf(product_key.toLowerCase()) !== -1) {
@@ -1046,7 +1046,7 @@ export class OrdersComponent implements OnInit {
         },
         'total_no_eins': {
             'required': 'Total No. of EIN\'s is required.',
-            'min': 'Min value can\'t be less than already provided value',
+            'min': 'EIN count should be greater than the current value of 0' ,
             'minValue': 'Total No. of EIN\'s should be greater than 0',
             'maxValue': 'Total No. of EIN\'s should be less than or equal to 10'
         },
@@ -1128,7 +1128,7 @@ export class OrdersComponent implements OnInit {
 
             //updating the orders with selectable products
             this.orders = this.getOrders();
-            
+
             //Scenario 2 : Purchase is Old
             //  }else if(item.hasOwnProperty('is_new_purchase') && item.is_new_purchase == 0){
         } else {
@@ -1219,10 +1219,10 @@ export class OrdersComponent implements OnInit {
      * 
      * @param phoneNumber 
      */
-    formatPhoneNumber(phoneNumber){
-        if(phoneNumber){
+    formatPhoneNumber(phoneNumber) {
+        if (phoneNumber) {
             phoneNumber = phoneNumber.replace(/[`()|\-\/\ ]/gi, '');
-          return  '(' + phoneNumber.slice(0, 3) + ') ' + '' + phoneNumber.slice(3, 6) + '-' + phoneNumber.slice(6, 10)
+            return '(' + phoneNumber.slice(0, 3) + ') ' + '' + phoneNumber.slice(3, 6) + '-' + phoneNumber.slice(6, 10)
         }
         return '';
     }
