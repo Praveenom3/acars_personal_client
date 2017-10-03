@@ -29,8 +29,11 @@ export class SearchResultsComponent implements OnInit {
 
     route.queryParams.subscribe(
       data => {
-        this.key = data['key'];
-        this.getSerachResults(this.key);
+        if(data['key']){
+          this.getSearchResults(data['key'], "key");
+        }else if(data['keyword']){
+          this.getSearchResults(data['keyword'], "keyword");
+        }        
       }
     );
 
@@ -40,8 +43,8 @@ export class SearchResultsComponent implements OnInit {
 
   }
 
-  getSerachResults(key) {
-    this.adminUserService.getAdminSearchDetails(key)
+  getSearchResults(key, type) {
+    this.adminUserService.getAdminSearchDetails(key, type)
       .subscribe((searchResults) => {
         if (searchResults) {
           this.searchResults = [];
