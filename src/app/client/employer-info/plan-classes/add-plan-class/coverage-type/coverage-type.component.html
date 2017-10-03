@@ -66,7 +66,8 @@
                                                                                     <label class="control-label span-label" [innerHTML]="labelsData[0].element_serial_id"></label>
                                                                                 </div>
                                                                                 <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[0].element_label"></label>
+                                                                                    <label class="control-label span-label">{{labelsData[0].element_label}}<span *ngIf="labelsData[0].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[0].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-7">
@@ -80,7 +81,8 @@
                                                                                     <label class="control-label span-label" [innerHTML]="labelsData[1].element_serial_id"></label>
                                                                                 </div>
                                                                                 <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[1].element_label"></label>
+                                                                                    <label class="control-label span-label">{{labelsData[1].element_label}}<span *ngIf="labelsData[1].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[1].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-7">
@@ -96,7 +98,8 @@
                                                                                     <label class="control-label span-label" [innerHTML]="labelsData[2].element_serial_id"></label>
                                                                                 </div>
                                                                                 <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[2].element_label"></label>
+                                                                                    <label class="control-label span-label">{{labelsData[2].element_label}}<span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[2].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                    </label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -108,20 +111,28 @@
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="2"> Self Insured
-                                                                                </label>
+                                                                                            </label>
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="2">                                                                                        Self Insured
+                                                                                        <span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="A self-insured group health plan (or a 'self-funded' plan as it is also called) is one in which the employer assumes the financial risk for providing health care benefits to its employees. There is not a set premium per month, but payment of claims used by the employees."
+                                                                                            placement="right" triggers="mouseenter:mouseleave"></span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="3">  Fully Insured
-                                                                                           </label>
+                                                                                          
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="3"> 
+                                                                                                                                                                               Fully Insured
+                                                                                        <span *ngIf="labelsData[2].element_popup_text"  class="fa fa-info-circle information-icon" popover="With a fully-insured health plan the company pays a premium to the insurance carrier. The premium rates are fixed for a year, based on the number of employees enrolled in the plan each month."
+                                                                                            placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                        </label>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <label class="radio-inline">
-                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="4">  Multi Employer Plan
-                                                                                        </label>
+                                                                                            </label>
+                                                                                        <input type="radio" [(ngModel)]="coverageTypeData.plan_offer_type" (click)="resetSelectTypes('plan_offer_type')" name="TblAcaPlanCoverageType[plantype]" value="4">                                                                                        Multi Employer Plan
+                                                                                        <span *ngIf="labelsData[2].element_popup_text" class="fa fa-info-circle information-icon" popover="A multi-employer plan is a collectively bargained plan maintained by more than one employer, usually within the same or related industries, and a labor union."
+                                                                                            placement="right" triggers="mouseenter:mouseleave"></span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
@@ -779,22 +790,23 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                            <div class="form-group inl-q-a">
+                                                                        <div class="form-group inl-q-a">
+                                                                            <div>
+                                                                                <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
+                                                                            </div>
+                                                                            <div class="tabSpace width-100">
+                                                                                <label class="control-label span-label">{{labelsData[3].element_label}}<span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[3].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                                                </label>
                                                                                 <div>
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
-                                                                                </div>
-                                                                                <div class="tabSpace width-100">
-                                                                                    <label class="control-label span-label" [innerHTML]="labelsData[3].element_label"></label>
-                                                                                    <div>
-                                                                                        <label class="radio-inline">
+                                                                                    <label class="radio-inline">
                                                                                             <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="1"> Yes
                                                                                         </label>
-                                                                                        <label class="radio-inline">
+                                                                                    <label class="radio-inline">
                                                                                             <input type="radio" [(ngModel)]="coverageTypeData.employee_medical_plan" name="employee_medical_plan" value="2"> No
                                                                                         </label>
-                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <!-- ./form content -->

@@ -68,7 +68,9 @@
                                         </span>
                                     </td>
                                     <td *ngSwitchCase="'date'">
-                                        <input [(ngModel)]="setting.setting_revised_value" [min]="getMinDate(setting)" #settingModel="ngModel" type="date" class="form-control " id="changed_value_{{setting.setting_id}}" required>
+                                        <input type="text" placement="top" [bsConfig]="bsConfig" date="true" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="setting.setting_revised_value" id="changed_value_{{setting.setting_id}}" #settingModel="ngModel" bsDatepicker class="form-control"
+                                            required>
+                                        <!--<input [(ngModel)]="setting.setting_revised_value" [min]="getMinDate(setting)" #settingModel="ngModel" type="date" class="form-control " id="changed_value_{{setting.setting_id}}" required>-->
                                         <span *ngIf="settingModel.invalid && (settingModel.dirty || settingModel.touched)" class="help-block help-block-error">
                                                 Please Enter valid {{setting.setting_name}} value
                                         </span>

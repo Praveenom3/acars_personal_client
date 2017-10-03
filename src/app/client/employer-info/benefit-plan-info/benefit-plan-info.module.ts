@@ -12,6 +12,7 @@ import { MecCoverageService } from "app/_services/_mec-coverage.service";
 import { SharedModule } from "app/_shared/shared.module";
 import { BpiDataDataResolver } from "app/_services/bpi-data-resolver";
 import { ElementMasterResolver } from "app/_services/_element-resolver";
+import { PopoverModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ElementMasterResolver } from "app/_services/_element-resolver";
     BenefitPlanInfoRoutingModule,
     FormsModule,
     PartialViews,
-    SharedModule
+    SharedModule,
+    PopoverModule.forRoot(),
   ],
   declarations: [GeneralPlanInformationComponent, MecCoverageComponent],
   providers: [BpiDataDataResolver, ElementMasterResolver, ElementMasterService, GeneralPlanInfoService, MecCoverageService]

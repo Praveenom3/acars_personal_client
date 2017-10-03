@@ -11,6 +11,7 @@ import { PlanClassesService } from "app/_services/_plan-classes.service";
 import { ElementMasterService } from "app/_services/_element-master.service";
 import { PlanClassDataDataResolver } from "app/_services/plan-class-data-resolver";
 import { ElementMasterResolver } from "app/_services/_element-resolver";
+import { PopoverModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ElementMasterResolver } from "app/_services/_element-resolver";
     AddPlanClassRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    PartialViews
+    PartialViews,
+    PopoverModule.forRoot(),
   ],
   declarations: [CoverageTypeComponent, CoverageOfferedComponent, EmployeeContributionsComponent],
   providers: [ElementMasterResolver,PlanClassDataDataResolver, PlanClassesService, ElementMasterService]

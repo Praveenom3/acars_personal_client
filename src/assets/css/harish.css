@@ -374,3 +374,7 @@ select.form-control {
 .border-btm-dd {
     border-bottom: 1px solid #ddd;
 }
+
+.bs-datepicker {
+    z-index: 10000 !important;
+}
