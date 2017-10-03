@@ -16,6 +16,7 @@ import { AuthGuard } from "app/_services/_auth.guard";
 import { OutstandingsComponent } from "app/admin/dashboard/outstandings.component";
 import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.component";
 import { SearchResultsComponent } from "app/admin/search/search-results.component";
+import { FileReviewComponent } from 'app/admin/dashboard/file-review.component';
 
 const routes: Routes = [
     {
@@ -51,6 +52,10 @@ const routes: Routes = [
     {
         path: 'processing',
         component: ProcessingComponent
+    },
+    {
+        path: 'file-review',
+        component: FileReviewComponent
     },
     {
         path: 'aca-forms',

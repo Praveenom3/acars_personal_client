@@ -1,0 +1,77 @@
+<!-- company info -->
+<client-company-info [companyData]="companyDetails"></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+<client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
+
+<div class="product-container col-md-12">
+    
+        <div class="col-md-12 padding-0" style="margin-top:50px;">
+            <!-- company info -->
+            <div style="width:19%;padding: 10px 0;">
+                    
+                <div class="col-md-12 padding-0" style="margin-top:10px;">
+                    <div class="client-dash-first-row-widgets widget col-md-12 padding-15 comp-dash-divs" id="upload-div" style="padding-bottom:0px;">
+                        <div (click)="redirectToEmployeeData('uploadfiles')" class="btn-primary upload-download-block cursor-pointer upload-datafiles-media" style="padding:23px; background-color:#13a9cc">
+                            <ul class="ul-inline download-upload-ul">
+                                <li class="download-ul-li">
+                                    <img src="../src/assets/images/upload.png">
+                                </li>
+                                <li>
+                                    <h6 class="upload-margin font-weight-300">UPLOAD</h6>
+                                    <h6 class="font-weight-300">DATA FILES</h6>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                    </div>
+                    <div style="padding:23px;text-align:center;">
+                        
+                        <a class="link-blue-underline" style="font-size:18px;">Download Data Template</a>
+                    </div>
+                </div>
+            </div>
+            <!-- ./company info -->
+    
+            <div style="width:67%;display: inline-block;margin-left:3%;">
+                <div class="row">
+                    <div class="col-xs-12">
+                            <a style="cursor:pointer;" [routerLink]="['/client/',product,company,'employer-info','payroll','document-history-details']">
+                            <div style="display:inline-flex;width:100%;">
+                        <div style="width:260px;">
+                            <div><span class="fontcolor-blue font-weight-600" style="padding-right:15px;padding-top:9px;">Medical Payroll File Name</span></div>
+                            <div><span class="fontcolor-blue font-weight-600" style="padding-right:15px;padding-top:9px;">Status: Returned to Client</span></div>
+                        </div>
+                        <div style="background-color: #fff;padding:7px;width:inherit;">
+                            <div style="display:table-cell;vertical-align:middle;">
+                                <label class="font-weight-600">Mark Combs – ACA Reporting – mark@skyinsurancetech.com – 888-999-5665 (1/3/2017, 11:34 am)</label>
+                            </div>
+                        </div>
+                    </div>
+                        </a>
+                    </div>
+                </div>
+ 
+                <div class="col-xs-12 history-brk"></div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a style="cursor:pointer;" [routerLink]="['/client/',product,company,'employer-info','payroll','document-history-details']">
+                            <div style="display:inline-flex;width:100%;">
+                        <div style="width:260px;">
+                            <div><span class="fontcolor-blue font-weight-600" style="padding-right:15px;padding-top:9px;">Medical Payroll File Name</span></div>
+                            <div><span class="fontcolor-blue font-weight-600" style="padding-right:15px;padding-top:9px;">Status: Returned to Client</span></div>
+                        </div>
+                        <div style="background-color: #fff;padding:7px;width:inherit;">
+                            <div style="display:table-cell;vertical-align:middle;">
+                                <label class="font-weight-600">Mark Combs – ACA Reporting – mark@skyinsurancetech.com – 888-999-5665 (1/3/2017, 11:34 am)</label>
+                            </div>
+                        </div>
+                    </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

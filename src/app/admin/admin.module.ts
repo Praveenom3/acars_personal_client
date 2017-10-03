@@ -34,6 +34,7 @@ import { OutstandingsFilterPipe } from "app/_filters/outstandings-filter.pipe";
 import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.component";
 import { SearchScreenService } from "app/_services/_search-screen.service";
 import { SearchResultsComponent } from "app/admin/search/search-results.component";
+import { FileReviewComponent } from 'app/admin/dashboard/file-review.component';
 
 @NgModule({
   imports: [
@@ -67,7 +68,8 @@ import { SearchResultsComponent } from "app/admin/search/search-results.componen
     SearchComponent, 
     SearchResultsComponent,
     ActivityLogComponent,
-    ErrorLogComponent
+    ErrorLogComponent,
+    FileReviewComponent
   ],
   providers: [OutstandingsService, ErrorLogService, AdminUserService, SearchScreenService]
 
