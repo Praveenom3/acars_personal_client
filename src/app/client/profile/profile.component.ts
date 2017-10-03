@@ -11,7 +11,7 @@ import { ClientDashBoardService } from 'app/_services/_client-dashboard.service'
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
-  
+
   currentProfile: { user_id: number; first_name: string; last_name: string; is_active: string; username: string; mobile: string; phone_extension: string; };
 
   public user_id: any;
@@ -24,13 +24,18 @@ export class ProfileComponent implements OnInit {
 
   constructor(private _globalService: GlobalService,
     private _formBuilder: FormBuilder,
-    private clientUserService: ClientUserService,    
+    private clientUserService: ClientUserService,
     public dashBoardService: ClientDashBoardService,
     private ordersService: OrdersService,
     private toastrService: ToastrService) {
-      
-      this.dashBoardService.initDashBoardVaraibles();
 
+    this.dashBoardService.initDashBoardVaraibles();
+    dashBoardService.setBrandData();
+    dashBoardService.setActiveProduct();
+    let company = JSON.parse(_globalService.getCompany());
+    let productId = _globalService.decode(company.product_id);
+    let clientId = _globalService.decode(company.client_id);
+    dashBoardService.setHomeUrl(productId, clientId);
     this._currentUserForm = _formBuilder.group({
       first_name: ['', Validators.compose([Validators.required])],
       last_name: ['', Validators.compose([Validators.required])],
@@ -49,7 +54,7 @@ export class ProfileComponent implements OnInit {
     (this._globalService.getUserId()) ?
       this.user_id = this._globalService.getUserId()
       : this.user_id = 0;
-      
+
     this.getClientProfile();
     this.currentProfile = this.createNewProfile();
   }
@@ -81,7 +86,7 @@ export class ProfileComponent implements OnInit {
   /*on submit sending form data to service*/
   public onSubmit() {
     if (this.currentProfile.user_id > 0) {
-     
+
       //checking if email is valid and then submitting the details
       let data = {
         "client_email": this.currentProfile.username
@@ -89,53 +94,53 @@ export class ProfileComponent implements OnInit {
 
       this.ordersService.validateClientEmail(data).subscribe(
         result => {
-            if (result.success) {
+          if (result.success) {
 
-              this.currentProfile.mobile = this.currentProfile.mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
-              
-              this.clientUserService.updateClientProfile(this.currentProfile).subscribe(
-                result => {
-                  if (result.success) {
-                    this._submitted = true;
-                    localStorage.setItem('firstName', this.currentProfile.first_name);
-                    localStorage.setItem('lastName', this.currentProfile.last_name);
-                    this.getClientProfile();
-                    this.toastrService.success('Profile Updated Successfully.');
-                  } else {
-                    this._errorMessage = 'Profile not Updated';
-                    this._submitted = false;
-                  }
-                },
-                error => {
+            this.currentProfile.mobile = this.currentProfile.mobile.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\ ]/gi, '');
+
+            this.clientUserService.updateClientProfile(this.currentProfile).subscribe(
+              result => {
+                if (result.success) {
+                  this._submitted = true;
+                  localStorage.setItem('firstName', this.currentProfile.first_name);
+                  localStorage.setItem('lastName', this.currentProfile.last_name);
+                  this.getClientProfile();
+                  this.toastrService.success('Profile Updated Successfully.');
+                } else {
+                  this._errorMessage = 'Profile not Updated';
                   this._submitted = false;
-                  // Validation error
-                  if (error.status == 422) {
-                    this._resetFormErrors();
-                    let errorFields = JSON.parse(error.data.message);
-                    this._setFormErrors(errorFields);
-                  } else {
-                    this._errorMessage = error.data;
-                  }
-                });
-              
-
-            } else {
-                this.toastrService.error('Trouble validating the Email. Please try later.');
+                }
+              },
+              error => {
                 this._submitted = false;
-            }
+                // Validation error
+                if (error.status == 422) {
+                  this._resetFormErrors();
+                  let errorFields = JSON.parse(error.data.message);
+                  this._setFormErrors(errorFields);
+                } else {
+                  this._errorMessage = error.data;
+                }
+              });
+
+
+          } else {
+            this.toastrService.error('Trouble validating the Email. Please try later.');
+            this._submitted = false;
+          }
         },
         error => {
           console.log("hello");
-            this._submitted = false;
-            if (error.status == 422) {
-                this._resetFormErrors();
-                this._formErrors['username'].valid = false;
-                this._formErrors['username'].message = error.data.message;
-                //this._errorMessage = "Trouble updating the Client. Please try later."
-                //this._setFormErrors(this._addPurchaseFormErrors, errorFields);
-            } else {
-                this.toastrService.error('Trouble validating the Email. Please try later.');
-            }
+          this._submitted = false;
+          if (error.status == 422) {
+            this._resetFormErrors();
+            this._formErrors['username'].valid = false;
+            this._formErrors['username'].message = error.data.message;
+            //this._errorMessage = "Trouble updating the Client. Please try later."
+            //this._setFormErrors(this._addPurchaseFormErrors, errorFields);
+          } else {
+            this.toastrService.error('Trouble validating the Email. Please try later.');
+          }
         });
 
 
@@ -144,7 +149,7 @@ export class ProfileComponent implements OnInit {
 
 
 
-      
+
     }
   }
 
@@ -157,7 +162,7 @@ export class ProfileComponent implements OnInit {
       'required': 'Last Name is required.'
     },
     'username': {
-      'required': 'Email is required.',      
+      'required': 'Email is required.',
       'pattern': 'Valid Email is required.',
     },
     'mobile': {
