@@ -20,7 +20,7 @@ export class NewPurchasesComponent implements OnInit {
     _errorMessage: any;
     purchasesData: any[];
     public invoicesFilterQuery = "";
-    public rowsOnPage = 5;
+    public rowsOnPage = 20;
     public sortOrder = "";
     public sortBy = "";
 

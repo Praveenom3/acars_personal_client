@@ -23,7 +23,7 @@ export class OutstandingsComponent implements OnInit {
     outstandingContractsData: any[];
     discoverySessionData: any[];
     public invoicesFilterQuery = "";
-    public rowsOnPage = 5;
+    public rowsOnPage = 10;
     public sortOrder = "";
     public sortBy = "";
 
