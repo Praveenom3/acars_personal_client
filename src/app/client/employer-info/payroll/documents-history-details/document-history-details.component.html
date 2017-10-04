@@ -1,0 +1,102 @@
+<!-- company info -->
+<client-company-info [companyData]="companyDetails"></client-company-info>
+<!-- ./company info -->
+<!-- Main Tabs -->
+<client-reporting-band></client-reporting-band>
+<!-- ./Main Tabs -->
+
+<div class="product-container col-md-12">
+        <div class="col-md-12 padding-top-20">
+                <div style="margin-left:22%;">
+                        <a style="cursor:pointer;" [routerLink]="['/client/',product,company,'employer-info','payroll','documents-history']"><img style="height:33px;" src='../src/assets/images/icons/admin/back.png'></a>
+                    </div>
+        </div>
+
+
+
+        <div class="col-md-12 padding-0">
+                <!-- company info -->
+                            <div style="width:19%;padding: 10px 0;">
+                                    
+                                    <div class="col-md-12 padding-0" style="margin-top:10px;">
+                                            <div (click)="redirectToEmployeeData('uploadfiles')" class="client-dash-first-row-widgets widget col-md-12 padding-15 comp-dash-divs" id="upload-div" style="padding-bottom:0px;">
+                                                    <div class="btn-primary upload-download-block cursor-pointer upload-datafiles-media" style="padding:23px; background-color:#13a9cc">
+                                                        <ul class="ul-inline download-upload-ul">
+                                                            <li class="download-ul-li">
+                                                                <img src="../src/assets/images/upload.png">
+                                                            </li>
+                                                            <li>
+                                                                <h6 class="upload-margin font-weight-300">UPLOAD</h6>
+                                                                <h6 class="font-weight-300">DATA FILES</h6>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <div style="padding:23px;text-align:center;">
+                                                    
+                                                    <a class="link-blue-underline" style="font-size:18px;">Download Data Template</a>
+                                                </div>
+                                        </div>
+                                    
+                                </div>
+                                <!-- ./company info -->
+    
+                                <div style="width:67%;display: inline-block;margin-left:3%;">
+    
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div style="display:inline-flex">
+                                                <h6 class="fontcolor-blue" style="padding-right:15px;padding-top:9px;">Medical Payroll File Name</h6>
+                                                <button class="btn file-review-btn-actions"><img src='../src/assets/images/icons/admin/download-1.png'></button>
+                                                <button class="btn file-review-btn-actions"><img class="folder" src='../src/assets/images/icons/admin/folder.png'></button>
+                                            </div>
+                                            <div class=" pull-right">
+                                                <button class="btn fontcolor-blue font-weight-600">Returned to Client</button>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="row no-margin">
+                                        <div class="col-xs-12 admin-review-block">
+                                            <div class="review-title">
+                                                <span>Sally Smith – <a class="link-blue-underline">sally@abc.com</a> – 888-999-5665 (1/1/2017, 9:34 am)</span>
+                                            </div>
+                                            <div>
+                                                <label>This is the updated payroll file, please use this to replace the data previously sent</label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="row no-margin padding-top-10">
+                                            <div class="col-xs-12 admin-reply-block">
+                                                <div class="review-title">
+                                                    <span>Mark Combs – ACA Reporting – mark@skyinsurancetech.com – 888-999-5665 (1/3/2017, 11:34 am)</span>
+                                                </div>
+                                                <div>
+                                                    <label>I’m sorry but your package is actually a self serviced package and this is considered raw data.  Please go to the document upload section of the platform, download the data template and convert your data into that format.  Then you can resubmit the data to us.  If you have any questions in the meantime, please don’t hesitate to contact me.  Thank you.</label>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                                <div class="col-xs-12">
+                                                   
+                                                    <a class="fontcolor-blue font-weight-600 cursor-pointer">Reply</a>
+                                                    
+                                                </div>
+                                            </div>
+    
+    
+    
+    
+                                    
+                                    
+                                </div>
+    
+        </div>
+</div>

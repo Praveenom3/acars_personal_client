@@ -565,8 +565,11 @@ export class CompaniesComponent implements OnInit {
       switch (step) {
         case 'payroll':
         case 'uploadfiles':
-          this.router.navigate([this.clientDashBoardService.payRollDataLink])
+          this.router.navigate([this.clientDashBoardService.uploadFilesLink])
           break;
+        case 'documentsHistory':
+        this.router.navigate([this.clientDashBoardService.documentsHistoryLink])
+        break;
         case 'medicalplan':
           this.router.navigate([this.clientDashBoardService.medicalPlanDataLink])
           break;
