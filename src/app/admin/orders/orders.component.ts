@@ -52,104 +52,104 @@ export class OrdersComponent implements OnInit {
             'form_value': '0-100'
         },
         {
-            'form_name': '100 – 500 FORMS',
-            'form_value': '100–500'
+            'form_name': '100 - 500 FORMS',
+            'form_value': '100-500'
         },
         {
-            'form_name': '500 – 1,000 FORMS',
-            'form_value': '500–1000'
+            'form_name': '500 - 1,000 FORMS',
+            'form_value': '500-1000'
         },
         {
-            'form_name': '1,000 – 1,500 FORMS',
-            'form_value': '1000–1500'
+            'form_name': '1,000 - 1,500 FORMS',
+            'form_value': '1000-1500'
         },
         {
-            'form_name': '1,500 – 2,000 FORMS',
-            'form_value': '1500–2000'
+            'form_name': '1,500 - 2,000 FORMS',
+            'form_value': '1500-2000'
         },
         {
-            'form_name': '2,000 – 2,500 FORMS',
-            'form_value': '2000–2500'
+            'form_name': '2,000 - 2,500 FORMS',
+            'form_value': '2000-2500'
         },
         {
-            'form_name': '2,500 – 3,000 FORMS',
-            'form_value': '2500–3000'
+            'form_name': '2,500 - 3,000 FORMS',
+            'form_value': '2500-3000'
         },
         {
-            'form_name': '3,000 – 3,500 FORMS',
-            'form_value': '3000–3500'
+            'form_name': '3,000 - 3,500 FORMS',
+            'form_value': '3000-3500'
         },
         {
-            'form_name': '3,500 – 4,000 FORMS',
-            'form_value': '3500–4000'
+            'form_name': '3,500 - 4,000 FORMS',
+            'form_value': '3500-4000'
         },
         {
-            'form_name': '4,000 – 4,500 FORMS',
-            'form_value': '4000–4500'
+            'form_name': '4,000 - 4,500 FORMS',
+            'form_value': '4000-4500'
         },
         {
-            'form_name': '4,500 – 5,000 FORMS',
-            'form_value': '4500–5000'
+            'form_name': '4,500 - 5,000 FORMS',
+            'form_value': '4500-5000'
         },
         {
-            'form_name': '5,000 – 6,000 FORMS',
-            'form_value': '5000–6000'
+            'form_name': '5,000 - 6,000 FORMS',
+            'form_value': '5000-6000'
         },
         {
-            'form_name': '6,000 – 7,000 FORMS',
-            'form_value': '6000–7000'
+            'form_name': '6,000 - 7,000 FORMS',
+            'form_value': '6000-7000'
         },
         {
-            'form_name': '7,000 – 8,000 FORMS',
-            'form_value': '7000–8000'
+            'form_name': '7,000 - 8,000 FORMS',
+            'form_value': '7000-8000'
         },
         {
-            'form_name': '8,000 – 9,000 FORMS',
-            'form_value': '8000–9000'
+            'form_name': '8,000 - 9,000 FORMS',
+            'form_value': '8000-9000'
         },
         {
-            'form_name': '9,000 – 10,000 FORMS',
-            'form_value': '9000–10000'
+            'form_name': '9,000 - 10,000 FORMS',
+            'form_value': '9000-10000'
         },
         {
-            'form_name': '10,000 – 11,000 FORMS',
-            'form_value': '10000–11000'
+            'form_name': '10,000 - 11,000 FORMS',
+            'form_value': '10000-11000'
         },
         {
-            'form_name': '11,000 – 12,000 FORMS',
-            'form_value': '11000–12000'
+            'form_name': '11,000 - 12,000 FORMS',
+            'form_value': '11000-12000'
         },
         {
-            'form_name': '12,000 – 13,000 FORMS',
-            'form_value': '12000–13000'
+            'form_name': '12,000 - 13,000 FORMS',
+            'form_value': '12000-13000'
         },
         {
-            'form_name': '13,000 – 14,000 FORMS',
-            'form_value': '13000–14000'
+            'form_name': '13,000 - 14,000 FORMS',
+            'form_value': '13000-14000'
         },
         {
-            'form_name': '14,000 – 15,000 FORMS',
-            'form_value': '14000–15000'
+            'form_name': '14,000 - 15,000 FORMS',
+            'form_value': '14000-15000'
         },
         {
-            'form_name': '15,000 – 16,000 FORMS',
-            'form_value': '15000–16000'
+            'form_name': '15,000 - 16,000 FORMS',
+            'form_value': '15000-16000'
         },
         {
-            'form_name': '16,000 – 17,000 FORMS',
-            'form_value': '16000–17000'
+            'form_name': '16,000 - 17,000 FORMS',
+            'form_value': '16000-17000'
         },
         {
-            'form_name': '17,000 – 18,000 FORMS',
-            'form_value': '17000–18000'
+            'form_name': '17,000 - 18,000 FORMS',
+            'form_value': '17000-18000'
         },
         {
-            'form_name': '18,000 – 19,000 FORMS',
-            'form_value': '18000–19000'
+            'form_name': '18,000 - 19,000 FORMS',
+            'form_value': '18000-19000'
         },
         {
-            'form_name': '19,000 – 20,000 FORMS',
-            'form_value': '19000–20000'
+            'form_name': '19,000 - 20,000 FORMS',
+            'form_value': '19000-20000'
         }
     ];
 
@@ -212,7 +212,7 @@ export class OrdersComponent implements OnInit {
 
         this._addPurchaseForm = _formBuilder.group({
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(10), this.minValue(1)])],
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(15), this.minValue(1)])],
             total_no_forms: ['', Validators.compose([Validators.required])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -236,7 +236,7 @@ export class OrdersComponent implements OnInit {
             purchase_user_id: [''],
             purchase_id: [''],
             product_id: ['', Validators.compose([Validators.required])],
-            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(10), this.minValue(1)])],
+            total_no_eins: ['', Validators.compose([Validators.required, Validators.maxLength(3), this.maxValue(15), this.minValue(1)])],
             total_no_forms: ['', Validators.compose([Validators.required])],
             purchaser_first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             purchaser_last_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -530,7 +530,7 @@ export class OrdersComponent implements OnInit {
 
             this.patchValue(this._updatePurchaseForm, data);
             
-            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(10), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
+            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(15), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
 
             this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
 
@@ -1056,7 +1056,7 @@ export class OrdersComponent implements OnInit {
             'required': 'Total No. of EIN\'s is required.',
             'min': 'EIN count should be greater than the current value of 0' ,
             'minValue': 'Total No. of EIN\'s should be greater than 0',
-            'maxValue': 'Total No. of EIN\'s should be less than or equal to 10'
+            'maxValue': 'Total No. of EIN\'s should be less than or equal to 15'
         },
         'total_no_forms': {
             'required': 'Total No. of Form\'s is required.'
