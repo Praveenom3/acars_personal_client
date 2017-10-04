@@ -27,7 +27,7 @@ export class AdminUsersComponent implements OnInit {
     results: any;
 
     public filterQuery = "";
-    public rowsOnPage = 5;
+    public rowsOnPage = 20;
     public sortOrder = "";
     public sortBy = "";
 
