@@ -24,7 +24,7 @@
                                     <span class="inner-block-text">Coverage Type and Waiting Period</span></a>
 
                             </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
+                            <li *ngIf="!(coverageTypeData.plan_offer_type == '1' || coverageTypeData.plan_offer_type == '4')" class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-2">
                                 <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'coverage-offered']" *ngIf="encodedId">
                                     <div class="inner-block-digits pull-left">2</div>
                                     <span class="inner-block-text">Type of Coverage Offered</span></a>
@@ -32,7 +32,7 @@
                                     <div class="inner-block-digits pull-left">2</div>
                                     <span class="inner-block-text">Type of Coverage Offered</span></a>
                             </li>
-                            <li class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
+                            <li *ngIf="!(coverageTypeData.plan_offer_type == '1' || coverageTypeData.plan_offer_type == '4')" class="inner-block-li" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" id="anchor-pb-3">
                                 <a [routerLink]="['/client/',product,company,'employer-info','plan-classes','plan-class', encodedId, 'employee-contributions']" *ngIf="encodedId">
                                     <div class="inner-block-digits pull-left">3</div>
                                     <span class="inner-block-text">Employee Contributions</span></a>
@@ -55,7 +55,7 @@
 
                                                     <form>
                                                         <div class="border-top-bottom-ddd col-md-12 padding-0 emp-info-font" style="margin-bottom:10px;">
-                                                            <div id="employer_info_container" [style.width.px]="employer_info_container_width">
+                                                            <div id="employer_info_container" [style.width]="employer_info_container_width + '%'">
 
                                                                 <!-- form content -->
                                                                 <div class="col-md-12">
@@ -790,7 +790,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group inl-q-a">
+                                                                        <div class="form-group inl-q-a" *ngIf="!(coverageTypeData.plan_offer_type == '1' || coverageTypeData.plan_offer_type == '4')">
                                                                             <div>
                                                                                 <label class="control-label span-label" [innerHTML]="labelsData[3].element_serial_id"></label>
                                                                             </div>

@@ -44,7 +44,7 @@ export class MecCoverageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employer_info_container_width = 1240;
+    this.employer_info_container_width = 91;
 	
     this.ElementLabelsList();
     this.mecCoverageData = this.createMecCoverage();
