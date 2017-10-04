@@ -42,7 +42,7 @@ export class GeneralPlanInformationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employer_info_container_width = 1240;
+    this.employer_info_container_width = 91;
 	
     this.generalPlanInfoData = this.createNewGeneralPlanInfo();
     this.ElementLabelsList();
