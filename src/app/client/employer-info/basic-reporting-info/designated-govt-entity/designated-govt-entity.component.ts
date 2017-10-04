@@ -17,6 +17,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   labelsData: any = '';
   employer_info_container_width: number = 1240;
   isValidDgeEin: boolean = false;
+  isValidDgeEinFormat: boolean = false;
   isValidDgePhone: boolean = false;
   client_id: any;
   purchase_id: any;
@@ -98,13 +99,21 @@ export class DesignatedGovtEntityComponent implements OnInit {
       this.isValidDgePhone = false;
     }
   }
-
+  /**
+   * Validating EIN
+   * @param ein 
+   */
   isValidEin(ein) {
     if (ein) {
       let einNumber = this._globalService.numberFilter(ein);
       if (einNumber.length < 9) {
         this.isValidDgeEin = true;
       } else {
+        let einFormat = /^(\d)\1+$/;
+        this.isValidDgeEinFormat = false;
+        if (einFormat.test(einNumber)) {
+          this.isValidDgeEinFormat = true;
+        }
         this.isValidDgeEin = false;
       }
     } else {

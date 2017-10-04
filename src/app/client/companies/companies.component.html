@@ -199,11 +199,11 @@
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12 padding-left-0 padding-right-0">
                         <div class="widget col-md-12 company-details-main-block padding-10 comp-dash-divs">
-                            <div class="col-md-6 ">
+                            <div class="col-md-7 ">
                                 <h4 class="font-weight-300 dark-blue-text client-name-header"> Client : &nbsp;{{clientDashBoardService.client.client_name}}</h4>
                             </div>
-                            <div class="col-md-6">
-                                <h4 class="font-weight-300 dark-blue-text company-client-number-header">
+                            <div class="col-md-5">
+                                <h4 class="pull-right font-weight-300 dark-blue-text company-client-number-header">
                                     ID: {{clientDashBoardService.company.company_client_number}}
                                 </h4>
                             </div>
@@ -553,21 +553,30 @@
                             <div class="col-md-6">
                                 <label class="form-control-label">Company Name<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
-                                    <input type="text" class="form-control" maxlength="30" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
+                                    <input type="text" class="form-control" maxlength="75" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
                                         [ngClass]="{'form-control-danger': !_isValid('company_name')}">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_name.valid">{{_formErrors.company_name.message}}</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">EIN<span class = "red">*</span></label>
-                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
-                                    <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
-                                        [(ngModel)]="companyEdit.company_ein" [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
-                                        placeholder="(__)-______">
-                                    <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
+                                <label class="form-control-label">Company Name 2</label>
+                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name_2')}">
+                                    <input type="text" class="form-control" maxlength="75" [formControl]="_companyForm.controls['company_name_2']" [(ngModel)]="companyEdit.company_name_2"
+                                        [ngClass]="{'form-control-danger': !_isValid('company_name_2')}">
+                                    <span class="help-block help-block-error" *ngIf="!_formErrors.company_name_2.valid">{{_formErrors.company_name_2.message}}</span>
                                 </div>
                             </div>
-
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <label class="form-control-label">EIN<span class = "red">*</span></label>
+                                    <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_ein')}">
+                                        <input type="text" name="company_ein" [textMask]="{mask: mask,guide: false, modelClean: true}" class="form-control" [formControl]="_companyForm.controls['company_ein']"
+                                            [(ngModel)]="companyEdit.company_ein" [ngClass]="{'form-control-danger': !_isValid('company_ein')}"
+                                            placeholder="(__)-______">
+                                        <span class="help-block help-block-error" *ngIf="!_formErrors.company_ein.valid">{{_formErrors.company_ein.message}}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer footer-background">
