@@ -205,6 +205,7 @@ export class AggregatedGroupComponent implements OnInit {
         this.groupListsData = planOfferData.briAggregatedGroupLists;
         for (let tempData of this.groupListsData) {
           this.inputs.push({ name: tempData.group_name, ein: tempData.group_ein });
+          this.inputErrors.push({ einMinValidation: false, einPatternValidation: false });
           this.lengb = this.inputs.length;
         }
       }
