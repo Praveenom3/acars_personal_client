@@ -70,7 +70,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="aggregatedGroupData.is_authoritative_transmittal == 2" class="form-group row is-authoritative-transmittal-no" style="margin-top: 10px; margin-bottom: 20px;">
+                        <div *ngIf="aggregatedGroupData.is_authoritative_transmittal == 2" class="form-group row is-authoritative-transmittal-no"
+                            style="margin-top: 10px; margin-bottom: 20px;">
                             <div class="col-sm-12 inl-q-a">
                                 <div>
                                     <label class="control-label span-label">5.1.1</label>
@@ -132,7 +133,8 @@
                                                     <label class="control-label span-label">{{labelsData[3].element_label}}<span *ngIf="labelsData[3].element_popup_text" class="fa fa-info-circle information-icon" popover="{{labelsData[3].element_popup_text}}" placement="right" triggers="mouseenter:mouseleave"></span>
                                                     </label>
                                                     <div class="field-tblacaaggregatedgroup-total_1095_forms">
-                                                        <input type="text" OnlyNumber="true" class="form-control form-height aggregate-clear" [(ngModel)]="aggregatedGroupData.total_1095_forms" name="total_1095_forms" maxlength="5">
+                                                        <input type="text" OnlyNumber="true" class="form-control form-height aggregate-clear" [(ngModel)]="aggregatedGroupData.total_1095_forms"
+                                                            name="total_1095_forms" maxlength="5">
                                                     </div>
                                                 </div>
                                             </div>
@@ -209,11 +211,23 @@
                                                         <div class="row" id="row_1" style="margin-bottom: 10px;">
                                                             <div class="col-sm-3 padding-right-0">
                                                                 <p>Group Name</p>
-                                                                <input type="text" groupNames="true" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.name" class="form-control aggregate-clear" maxlength="34">
+                                                                <input type="text" groupNames="true" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.name" class="form-control aggregate-clear"
+                                                                    maxlength="30">
                                                             </div>
                                                             <div class="col-sm-3 padding-right-0 padding_left_30">
                                                                 <p>Group EIN</p>
-                                                                <input type="text" [textMask]="{mask: ein_mask}" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.ein" class="form-control aggregate-clear">
+                                                                <!-- <input type="text" [textMask]="{mask: ein_mask}" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.ein" class="form-control aggregate-clear"> -->
+
+                                                                <input type="text" [textMask]="{mask: ein_mask}" [ngModelOptions]="{standalone: true}" (ngModelChange)="isValidEin($event,i)"
+                                                                    class="form-control aggregate-clear" [(ngModel)]="input.ein">
+
+                                                                <span class="help-block help-block-error" *ngIf="inputErrors[i].einMinValidation">
+                                                                    EIN should be 9 digit length.
+                                                                </span>
+                                                                <span class="help-block help-block-error" *ngIf="inputErrors[i].einPatternValidation">
+                                                                    Invalid EIN
+                                                                </span>
+
                                                             </div>
                                                             <div class="col-sm-2 padding-left-5" *ngIf="(lengb-1 == i)? true : false">
                                                                 <p>&nbsp;&nbsp;</p>
@@ -242,8 +256,8 @@
                 <div class="modal-footer-btn padding-15">
                     <a class="btn btn-default check-changed" (click)="redirectToDashboard()" type="button">Cancel</a> &nbsp;
                     <a class="btn btn-warning check-changed" (click)="redirectToPrevious()" type="button">Previous</a> &nbsp;
-                    <button type="button" class="btn btn-modal-blue" (click)="formSubmit('exit')">Save & Exit</button> &nbsp;
-                    <button type="button" class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')">Save & Continue</button>
+                    <button type="button" class="btn btn-modal-blue" (click)="formSubmit('exit')" [disabled]='validateEin()'>Save & Exit</button>                    &nbsp;
+                    <button type="button" class="btn btn-modal-blue  pull-right " (click)="formSubmit('next')" [disabled]='validateEin()'>Save & Continue</button>
                 </div>
             </div>
         </form>
