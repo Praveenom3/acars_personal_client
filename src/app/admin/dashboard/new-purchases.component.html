@@ -12,7 +12,8 @@
                             <input class="form-control mr-left-5" [(ngModel)]="invoicesFilterQuery" />
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped" [mfData]="purchasesData | outstadingInvoicesFilter : invoicesFilterQuery" #purchasesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table class="table table-hover table-bordered table-striped" [mfData]="purchasesData | outstadingInvoicesFilter : invoicesFilterQuery"
+                        #purchasesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
@@ -22,10 +23,16 @@
                                     <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
                                 </th>
                                 <th>
+                                    <mfDefaultSorter by="client_number">Client #</mfDefaultSorter>
+                                </th>
+                                <th>
                                     <mfDefaultSorter by="brand_name">Brand</mfDefaultSorter>
                                 </th>
                                 <th>
                                     <mfDefaultSorter by="product_name">Product</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="account_manager">Account Manager</mfDefaultSorter>
                                 </th>
                                 <th>
                                     <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
@@ -39,9 +46,11 @@
                             <ng-container *ngIf="purchasesObj.data?.length">
                                 <tr *ngFor="let purchase of purchasesObj.data">
                                     <td class="text-center">{{purchase.purchase_date | date: 'MM/dd/yyyy'}}</td>
-                                    <td class="text-center"><a (click) = "redirectToClientDashBoard(purchase)" class="tbl-col-link">{{purchase.client_name}}</a></td>
+                                    <td class="text-center"><a (click)="redirectToClientDashBoard(purchase)" class="tbl-col-link">{{purchase.client_name}}</a></td>
+                                    <td class="text-center">{{purchase.client_number}}</td>
                                     <td class="text-center">{{purchase.brand_name}}</td>
                                     <td class="text-center">{{purchase.product_full_name}}</td>
+                                    <td class="text-center">{{purchase.account_manager}}</td>
                                     <td class="text-center">{{purchase.amount}}</td>
                                     <td class="text-center">{{(purchase.is_invoice == 1) ? "Invoice":"Credit Card" }}</td>
                                 </tr>

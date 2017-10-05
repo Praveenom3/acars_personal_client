@@ -344,26 +344,7 @@ export class CompaniesComponent implements OnInit {
    * @param company 
    */
   public setCompany(company: Company) {
-    this.clientDashBoardService.splitUrl = '';
-    this.clientDashBoardService.getCompanyInformation(company.company_id).subscribe(result => {
-      if (result.success) {
-        let productId = this.clientDashBoardService.productParams;
-        let clientId = company.client_id;
-        let companyInformation = result.data;
-        this.clientDashBoardService.setAccountManagerData(companyInformation.product_id, companyInformation.client_id);
-        this.clientDashBoardService.setCompany(companyInformation);
-        // Generate the URL:
-        let url = this.router.createUrlTree(['/client/' +
-          this.globalService.encode(companyInformation.product_id) +
-          '/' +
-          this.globalService.encode(companyInformation.client_id) + '/dashboard'])
-          .toString();
-        // Change the URL without navigate:
-        this.location.go(url);
-      }
-    }, error => {
-      this.toastrService.error(error.data.message);
-    });
+    this.clientDashBoardService.setSelectedCompany(company);
   }
 
   /**
@@ -568,8 +549,8 @@ export class CompaniesComponent implements OnInit {
           this.router.navigate([this.clientDashBoardService.uploadFilesLink])
           break;
         case 'documentsHistory':
-        this.router.navigate([this.clientDashBoardService.documentsHistoryLink])
-        break;
+          this.router.navigate([this.clientDashBoardService.documentsHistoryLink])
+          break;
         case 'medicalplan':
           this.router.navigate([this.clientDashBoardService.medicalPlanDataLink])
           break;
