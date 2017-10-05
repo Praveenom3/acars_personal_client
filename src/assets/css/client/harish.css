@@ -523,7 +523,7 @@ table.table-company-dashboard tbody tr:hover {
     border: none;
     word-break: break-word;
 }
-.company-name-media{
+.company-name-div,.company-name-media{
     word-break: break-word;
 }
 
