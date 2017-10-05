@@ -27,6 +27,7 @@ export class CompaniesdashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.dashBoard.changeStyle(true);
+    this.dashBoard.clientHomeUrl = '/client/vht';
     this.companySelected = false;
     this.selectCompany();
   }

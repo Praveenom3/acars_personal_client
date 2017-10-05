@@ -214,7 +214,7 @@
                                                 <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid
-                                                    == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
+                                                    == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'CC'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                                 <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
@@ -381,7 +381,7 @@
                                                 <td class="text-center">{{item.amount}}</td>
                                                 <td class="text-center">{{item.invoice_no}}</td>
                                                 <td class="text-center">{{(item.is_invoice == 1 || item.is_invoice == '1') ? ((item.is_invoice_paid
-                                                    == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'Yes'}}</td>
+                                                    == 1 || item.is_invoice_paid == '1') ? 'Yes':'No'): 'CC'}}</td>
                                                 <td class="text-center">{{item.invoice_created_at | date: 'MM/dd/yyyy'}}</td>
                                                 <td class="text-center"><a class="red" (click)=removePurchase(item)><i class="fa fa-trash"></i></a></td>
 
