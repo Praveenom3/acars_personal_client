@@ -1,26 +1,17 @@
-import { Component, OnInit, Directive, ViewChild } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { FileUploader } from 'ng2-file-upload';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
+import { Component, OnInit, Directive } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { GlobalService } from "app/_services/_global.service";
+import { SettingsService } from 'app/_services/_setting.service';
 import { ClientDashBoardService } from 'app/_services/_client-dashboard.service';
-import { ModalDirective } from 'ngx-bootstrap';
-const URL = '/api/';
 
 
 @Component({
-  selector: 'app-upload-documents',
-  templateUrl: './upload-documents.component.html',
-  styleUrls: ['./upload-documents.component.css']
+  selector: 'app-documents-history',
+  templateUrl: './documents-history.component.html',
+  styleUrls: ['./documents-history.component.css']
 })
 
-
-@Directive({ selector: '[ng2FileSelect,ng2FileDrop]' })
-
-export class UploadDocumentsComponent implements OnInit {
-  
-  @ViewChild('companyUploadDataSuccess') public companyUploadDataSuccess: ModalDirective;
-
+export class DocumentsHistoryComponent implements OnInit {
   company: string;
   product: string;
   companyDetails: any;
@@ -28,13 +19,11 @@ export class UploadDocumentsComponent implements OnInit {
   company_id: any;
   client_id: any;
   purchase_id: any;
-  public uploader: FileUploader = new FileUploader({ url: URL });
-  public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
+
 
   constructor(route: ActivatedRoute,
-    private _globalService: GlobalService,
-    public clientDashBoardService: ClientDashBoardService,) {
+    public router: Router,
+    private _globalService: GlobalService) {
     this.product_id = _globalService.decode(route.snapshot.params['product']);
     this.company_id = _globalService.decode(route.snapshot.params['company']);
     this.product = route.snapshot.params['product'];
@@ -44,14 +33,6 @@ export class UploadDocumentsComponent implements OnInit {
 
   ngOnInit() {
     this.getCompany();
-  }
-
-  public fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
   }
 
   /*GET COMPANY DETAILS AND PRODUCT YEAR*/
@@ -66,5 +47,9 @@ export class UploadDocumentsComponent implements OnInit {
       this.purchase_id = this._globalService.decode(this.companyDetails.purchase_id);
       this.client_id = this._globalService.decode(this.companyDetails.client_id);
     }
+  }
+
+  public redirectToEmployeeData(step: string) {
+    this.router.navigate(['/client/'+this.product+'/'+this.company+'/employer-info/payroll/upload-documents']);
   }
 }

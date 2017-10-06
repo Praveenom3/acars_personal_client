@@ -225,3 +225,46 @@ body.body-blue .actions>li{
 .box-head {
     font-size: 1.6286rem !important;
 }
+
+.pad-top-btm-0{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.file-review-btn-actions{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-right:5px;
+    height: 33px;
+}
+
+.file-review-btn-actions img{
+    height: 24px;
+}
+
+.file-review-btn-actions img.folder {
+    height: 33px;
+}
+
+.admin-review-block, .admin-reply-block{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #fff;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+.admin-review-block > .review-title, .admin-reply-block > .review-title{
+    font-weight: 600;
+}
+
+.admin-review-block{
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+}
+
+.history-brk{
+    margin-top:10px;
+    margin-bottom:10px;
+    border-bottom: 1px solid blue;
+}

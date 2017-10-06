@@ -27,12 +27,13 @@ export class AggregatedGroupComponent implements OnInit {
   section_id: any = 5;
   product_id: any;
   company_id: any;
+
   public ein_mask = [/[1-9]/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
 
   public labels: any[] = [];
   _errorMessage: any;
   inputs = [{ name: "", ein: "" }];
-
+  inputErrors = [{ einMinValidation: false, einPatternValidation: false }];
   public totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   constructor(private route: ActivatedRoute,
@@ -49,7 +50,7 @@ export class AggregatedGroupComponent implements OnInit {
 
   ngOnInit() {
     this.employer_info_container_width = document.getElementById("manage-plan-tabs").offsetWidth;
-	
+
     this.lengb = this.inputs.length;
     this.ElementLabelsList();
     this.aggregatedGroupData = this.createNewAggregatedGroup();
@@ -80,14 +81,38 @@ export class AggregatedGroupComponent implements OnInit {
       this.aggregatedGroupData.total_1095_forms = '';
     }
   }
+  /**
+   * Validating EIN
+   * @param ein 
+   * @param i 
+   */
+  isValidEin(ein, i) {
+    this.inputErrors[i].einMinValidation = false;
+    this.inputErrors[i].einPatternValidation = false;
+
+    if (ein) {
+      let einNumber = this.globalService.numberFilter(ein);
+      if (einNumber.length < 9) {
+        this.inputErrors[i].einMinValidation = true;
+
+      } else {
+        let einFormat = /^(\d)\1+$/;
+        if (einFormat.test(einNumber)) {
+          this.inputErrors[i].einPatternValidation = true;
+        }
+      }
+    }
+  }
 
   addInput() {
     this.inputs.push({ name: '', ein: '' });
+    this.inputErrors.push({ einMinValidation: false, einPatternValidation: false });
     this.lengb = this.inputs.length;
   }
 
   remove(input) {
     this.inputs.splice(input, 1);
+    this.inputErrors.splice(input, 1);
     this.lengb = this.inputs.length;
   }
 
@@ -180,6 +205,7 @@ export class AggregatedGroupComponent implements OnInit {
         this.groupListsData = planOfferData.briAggregatedGroupLists;
         for (let tempData of this.groupListsData) {
           this.inputs.push({ name: tempData.group_name, ein: tempData.group_ein });
+          this.inputErrors.push({ einMinValidation: false, einPatternValidation: false });
           this.lengb = this.inputs.length;
         }
       }
@@ -242,7 +268,7 @@ export class AggregatedGroupComponent implements OnInit {
 
             // this.getAggregatedGroupData();
             //this.aggregatedGroupData = this.createNewAggregatedGroup();
-           // this.toastrService.success('Basic Info record added succesfully.');
+            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -261,7 +287,7 @@ export class AggregatedGroupComponent implements OnInit {
             }
             //this.getAggregatedGroupData();
             //this.aggregatedGroupData = this.createNewAggregatedGroup();
-           // this.toastrService.success('Basic Info record added succesfully.');
+            // this.toastrService.success('Basic Info record added succesfully.');
           } else {
             this._errorMessage = 'Not Updated.';
           }
@@ -270,5 +296,18 @@ export class AggregatedGroupComponent implements OnInit {
         });
     }
   }
-
+  validateEin() {
+    let disable = false;
+    this.inputErrors.forEach(element => {
+      if (element.einMinValidation) {
+        disable = true;
+        return true;
+      }
+      if (element.einPatternValidation) {
+        disable = true;
+        return true;
+      }
+    });
+    return disable;
+  }
 }

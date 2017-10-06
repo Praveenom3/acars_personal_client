@@ -10,7 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { AdminUser } from "app/_models/admin-user";
 import { GlobalService } from './_global.service';
-
+import { HttpService } from 'app/interceptors/http.service';
 
 @Injectable()
 
@@ -21,7 +21,8 @@ export class AdminUserService {
 
     constructor(private _globalService: GlobalService,
         private _router: Router,
-        private _http: Http) {
+        private _http: Http,
+        private _httpService: HttpService) {
 
     }
 
@@ -60,7 +61,7 @@ export class AdminUserService {
     }
 
     public getAdminUsers(): Observable<any> {
-        return this._http.get(
+        return this._httpService.get(
             this._apiUrl,
             { headers: this._globalService.getHeaders() }
         ).map((response: Response) => response.json().data)

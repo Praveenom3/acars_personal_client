@@ -53,7 +53,7 @@ export class CoverageTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employer_info_container_width = 1240;
+    this.employer_info_container_width = 91;
 	
     this.coverageTypeData = this.createNewCoverageType();
     this.ElementLabelsList();
@@ -213,7 +213,13 @@ export class CoverageTypeComponent implements OnInit {
             if (param == "exit") {
               this.redirectToDashboard();
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
+              if(this.coverageTypeData.plan_offer_type == '1' || this.coverageTypeData.plan_offer_type == '4'){
+                this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/payroll']);
+
+              }else{
+                this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
+              }
+              
             }
             // this.toastrService.success('Coverage Type Information record added succesfully.');
           } else {
@@ -230,7 +236,12 @@ export class CoverageTypeComponent implements OnInit {
             if (param == "exit") {
               this.redirectToDashboard();
             } else {
-              this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
+              if(this.coverageTypeData.plan_offer_type == '1' || this.coverageTypeData.plan_offer_type == '4'){
+                this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/payroll']);
+
+              }else{
+                this.router.navigate(['client/' + this.product + '/' + this.company + '/employer-info/plan-classes/plan-class/' + this.encodedId + '/coverage-offered']);
+              }
             }
             //  this.toastrService.success('Coverage Type Information record updated succesfully.');
           } else {

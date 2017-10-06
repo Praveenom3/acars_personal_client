@@ -17,6 +17,7 @@ import { Brands } from 'app/_models/brands';
 import { CompanyUserService } from 'app/_services/_company-user.service';
 import { ToastrService } from "ngx-toastr";
 import { HttpService } from "app/interceptors/http.service";
+import { Location } from '@angular/common';
 
 @Injectable()
 
@@ -69,6 +70,8 @@ export class ClientDashBoardService {
     public benefitPlanLink: string;
     public planClassesLink: string;
     public payRollDataLink: string;
+    public uploadFilesLink: string;
+    public documentsHistoryLink: string;
     public medicalPlanDataLink: string;
     public clientHomeUrl: string;
     public clientLogo: string = '';
@@ -93,6 +96,7 @@ export class ClientDashBoardService {
         private toastrService: ToastrService,
         private _companyUserService: CompanyUserService,
         private _http: HttpService,
+        private location: Location,
         private _httpService: HttpService) {
     }
     /**
@@ -191,7 +195,7 @@ export class ClientDashBoardService {
                     let clientUsers: any = [];
                     let companyUsersList: any = [];
                     productsList.forEach(element => {
-                        if (element.applicable_year == productYear) {
+                        if (element.applicable_year == productYear && element.product_name.toLowerCase() != 'vht') {
                             let clients: any[] = element['clients'];
                             let clientsList = Object.keys(clients).map(function (key) {
                                 return clients[key]
@@ -221,16 +225,35 @@ export class ClientDashBoardService {
 
                                 this.companies = result.data.companiesList;
                                 this.rowsOnPage = this.companies.length;
-                                this.company = result.data.defaultCompanyInformation;
-
-                                this.selectedCompanyRow = this.company.company_id;
-                                this.company.company_data = this.checkCompanyData(this.company);
-                                if (this.company.companyUsers) {
-                                    this.userRowsOnPage = this.company.companyUsers.length;
+                                let companyStatus = true;
+                                let sessionCompanyData = JSON.parse(this._globalService.getCompany());
+                                if (sessionCompanyData && sessionCompanyData != null && typeof sessionCompanyData != 'undefined') {
+                                    let sessionCompanyId = this._globalService.decode(sessionCompanyData.company_id);
+                                    let selectedCompany: Company;
+                                    this.companies.forEach(element => {
+                                        if (element.company_id == sessionCompanyId) {
+                                            selectedCompany = element;
+                                            return;
+                                        }
+                                    });
+                                    if (selectedCompany) {
+                                        companyStatus = false;
+                                        this.setSelectedCompany(selectedCompany);
+                                    }
                                 }
-                                this.setAccountManagerData(productId, clientId);
-                                this.setCompanyUrls(productId, this.company.company_id);
-                                this.setCompanyToSession()
+                                
+                                if (companyStatus) {
+                                    
+                                    this.company = result.data.defaultCompanyInformation;
+                                    this.selectedCompanyRow = this.company.company_id;
+                                    this.company.company_data = this.checkCompanyData(this.company);
+                                    if (this.company.companyUsers) {
+                                        this.userRowsOnPage = this.company.companyUsers.length;
+                                    }
+                                    this.setAccountManagerData(productId, clientId);
+                                    this.setCompanyUrls(productId, this.company.company_id);
+                                    this.setCompanyToSession()
+                                }
                             }
                         },
                         error => {
@@ -248,14 +271,32 @@ export class ClientDashBoardService {
 
                                 this.companies = result.data.companiesList;
                                 this.rowsOnPage = this.companies.length;
-                                this.company = result.data.defaultCompanyInformation;
-                                this.client = this.product['clients'][this.company.client_id]
-                                this.selectedCompanyRow = this.company.company_id;
-                                this.company.company_data = this.checkCompanyData(this.company);
-                                this.userRowsOnPage = this.company.companyUsers.length;
-                                this.setAccountManagerData(productId, clientId);
-                                this.setCompanyUrls(productId, this.company.company_id);
-                                this.setCompanyToSession()
+                                let sessionCompanyData = JSON.parse(this._globalService.getCompany());
+                                let companyStatus = true;
+                                if (sessionCompanyData && sessionCompanyData != null && typeof sessionCompanyData != 'undefined') {
+                                    let sessionCompanyId = this._globalService.decode(sessionCompanyData.company_id);
+                                    let selectedCompany: Company;
+                                    this.companies.forEach(element => {
+                                        if (element.company_id == sessionCompanyId) {
+                                            selectedCompany = element;
+                                            return;
+                                        }
+                                    });
+                                    if (selectedCompany) {
+                                        companyStatus = false;
+                                        this.setSelectedCompany(selectedCompany);
+                                    }
+                                }
+                                if (companyStatus) {
+                                    this.company = result.data.defaultCompanyInformation;
+                                    this.client = this.product['clients'][this.company.client_id]
+                                    this.selectedCompanyRow = this.company.company_id;
+                                    this.company.company_data = this.checkCompanyData(this.company);
+                                    this.userRowsOnPage = this.company.companyUsers.length;
+                                    this.setAccountManagerData(productId, clientId);
+                                    this.setCompanyUrls(productId, this.company.company_id);
+                                    this.setCompanyToSession()
+                                }
                             }
                         },
                         error => {
@@ -281,6 +322,8 @@ export class ClientDashBoardService {
         this.benefitPlanLink = url + '/employer-info/benefit-plan-info';
         this.planClassesLink = url + '/employer-info/plan-classes';
         this.payRollDataLink = url + '/employer-info/payroll';
+        this.uploadFilesLink = url + '/employer-info/payroll/upload-documents';
+        this.documentsHistoryLink = url + '/employer-info/payroll/documents-history';
         this.medicalPlanDataLink = url + '/employer-info/enrollments';
     }
     /**
@@ -525,6 +568,29 @@ export class ClientDashBoardService {
             this.setCompanyUrls(this.product.product_id, this.company.company_id);
             this.setCompanyToSession()
         }
+    }
+
+    setSelectedCompany(selectedCompany: Company) {
+        this.splitUrl = '';
+        this.getCompanyInformation(selectedCompany.company_id).subscribe(result => {
+            if (result.success) {
+                let productId = this.productParams;
+                let clientId = selectedCompany.client_id;
+                let companyInformation = result.data;
+                this.setAccountManagerData(companyInformation.product_id, companyInformation.client_id);
+                this.setCompany(companyInformation);
+                // Generate the URL:
+                let url = this._router.createUrlTree(['/client/' +
+                    this._globalService.encode(companyInformation.product_id) +
+                    '/' +
+                    this._globalService.encode(companyInformation.client_id) + '/dashboard'])
+                    .toString();
+                // Change the URL without navigate:
+                this.location.go(url);
+            }
+        }, error => {
+            this.toastrService.error(error.data.message);
+        });
     }
 
     /**

@@ -2,6 +2,7 @@ export interface Company {
 
     company_id: number;
     company_name: string;
+    company_name_2: string;
     company_ein: string;
     client_id: number;
     purchase_id: number;
@@ -15,7 +16,7 @@ export interface Company {
 
     basicReporting: any;
     benefitPlan: any;
-    planClasses:any
+    planClasses: any
     payroll_data: any;
     medical_plan_data: any;
 

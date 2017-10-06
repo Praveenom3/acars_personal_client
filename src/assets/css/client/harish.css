@@ -733,13 +733,12 @@ table.table-company-dashboard tbody tr:hover {
 }
 
 
-/*.efile-span {
-    display: block;
-    margin-left: 35px;
-}*/
+.efile-span {
+    margin-left: 15%;
+}
 
 .irs-span {
-    margin-left: 10px;
+    margin-left: 1%;
 }
 
 button.add-company-ein {

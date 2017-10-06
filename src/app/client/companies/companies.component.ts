@@ -58,11 +58,12 @@ export class CompaniesComponent implements OnInit {
     public settingsService: SettingsService,
     public companyUserService: CompanyUserService,
     public clientUserService: ClientUserService,
-    private location :Location
+    private location: Location
   ) {
 
     this._companyForm = _formBuilder.group({
-      company_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])], 
+      company_name: ['', Validators.compose([Validators.required, Validators.maxLength(75), Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
+      company_name_2: ['', Validators.compose([Validators.maxLength(75), Validators.pattern(/^[a-zA-Z0-9& ,]+$/)])],
       company_ein: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
     });
 
@@ -99,7 +100,13 @@ export class CompaniesComponent implements OnInit {
   public validationMessages = {
     'company_name': {
       'required': 'Company Name is required.',
-      'pattern': 'No special characters are allowed other than & ,'
+      'pattern': 'No special characters are allowed other than & ,',
+      'maxlength': 'Company Name 2 should be at most 75 chars length'
+    },
+    'company_name_2': {
+      'required': 'Company Name 2 is required.',
+      'pattern': 'No special characters are allowed other than & ,',
+      'maxlength': 'Company Name 2 should be at most 75 chars length'
     },
     'company_ein': {
       'required': 'Company EIN is required.',
@@ -204,13 +211,16 @@ export class CompaniesComponent implements OnInit {
     /* if (!this.clientDashBoardService.company.onBoarding_data && !updateEin) {
       return false;
     } */
-    if(companyInfo.company_ein){
+    if (companyInfo.company_ein) {
       companyInfo.company_ein = companyInfo.company_ein.replace(/[`()|\-\/\ ]/gi, '');
-      companyInfo.company_ein = companyInfo.company_ein.slice(0, 2) + '-'+ companyInfo.company_ein.slice(2, 9);
+      companyInfo.company_ein = companyInfo.company_ein.slice(0, 2) + '-' + companyInfo.company_ein.slice(2, 9);
     }
-    
     this.companyEdit = Object.assign({}, companyInfo);
-    this.companyEdit.company_ein = this.formatCompanyEin(companyInfo.company_ein);
+    if (companyInfo.company_ein) {
+      let ein = companyInfo.company_ein;
+      this.companyEdit.company_ein = ein.slice(0, 2) + '-' + ein.slice(2, 10);
+    }
+
     this.modalTitle = "Edit Company : " + companyInfo.company_name;
     this._submitted = false;
     this.companyModal.show();
@@ -288,10 +298,12 @@ export class CompaniesComponent implements OnInit {
       if (element.company_id == updatedCompany.company_id) {
         element.company_name = updatedCompany.company_name;
         element.company_ein = updatedCompany.company_ein;
+        element.company_name_2 = updatedCompany.company_name_2;
       }
       if (this.clientDashBoardService.company.company_id == updatedCompany.company_id) {
         this.clientDashBoardService.company.company_name = updatedCompany.company_name;
         this.clientDashBoardService.company.company_ein = updatedCompany.company_ein;
+        this.clientDashBoardService.company.company_name_2 = updatedCompany.company_name_2;
       }
     });
     this.clientDashBoardService.setCompanyToSession();
@@ -311,6 +323,7 @@ export class CompaniesComponent implements OnInit {
   private _resetFormErrors(): void {
     this._formErrors = {
       company_name: { valid: true, message: '' },
+      company_name_2: { valid: true, message: '' },
       company_ein: { valid: true, message: '' },
     };
   }
@@ -331,26 +344,7 @@ export class CompaniesComponent implements OnInit {
    * @param company 
    */
   public setCompany(company: Company) {
-    this.clientDashBoardService.splitUrl = '';
-    this.clientDashBoardService.getCompanyInformation(company.company_id).subscribe(result => {
-      if (result.success) {
-        let productId = this.clientDashBoardService.productParams;
-        let clientId = company.client_id;
-        let companyInformation = result.data;
-        this.clientDashBoardService.setAccountManagerData(companyInformation.product_id, companyInformation.client_id);
-        this.clientDashBoardService.setCompany(companyInformation);
-        // Generate the URL:
-        let url = this.router.createUrlTree(['/client/' + 
-                                                        this.globalService.encode(companyInformation.product_id) + 
-                                                        '/' + 
-                                                        this.globalService.encode(companyInformation.client_id) + '/dashboard'])
-                                                      .toString();
-      // Change the URL without navigate:
-        this.location.go(url);
-      }
-    }, error => {
-      this.toastrService.error(error.data.message);
-    });
+    this.clientDashBoardService.setSelectedCompany(company);
   }
 
   /**
@@ -552,7 +546,10 @@ export class CompaniesComponent implements OnInit {
       switch (step) {
         case 'payroll':
         case 'uploadfiles':
-          this.router.navigate([this.clientDashBoardService.payRollDataLink])
+          this.router.navigate([this.clientDashBoardService.uploadFilesLink])
+          break;
+        case 'documentsHistory':
+          this.router.navigate([this.clientDashBoardService.documentsHistoryLink])
           break;
         case 'medicalplan':
           this.router.navigate([this.clientDashBoardService.medicalPlanDataLink])
