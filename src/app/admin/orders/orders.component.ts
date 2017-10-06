@@ -161,7 +161,7 @@ export class OrdersComponent implements OnInit {
     public temp_new_index = -1;
     public temp_total_index = -1;
     public show_account_manager = 0;
-    
+
     public orders;
     public clientsTableData;
     maxClientNumber: any;
@@ -529,7 +529,7 @@ export class OrdersComponent implements OnInit {
             this.temp_total_index = this.totalPurchases.indexOf(data);
 
             this.patchValue(this._updatePurchaseForm, data);
-            
+
             this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(15), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
 
             this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
@@ -754,8 +754,8 @@ export class OrdersComponent implements OnInit {
                     this._updateClientFormSubmitted = false;
                     if (error.status == 422) {
                         this._resetFormErrors();
-                        let errorFields = JSON.parse(error.data.message);
-                        this.toastrService.error('Trouble in updating client. Please try later.');
+                        let errorMessage = JSON.parse(error.data.message);
+                        this.toastrService.error('Trouble in updating client. Please try later.' + errorMessage);
                         //   this._setFormErrors(this._addClientFormErrors, errorFields);
                     } else {
                         //this._errorMessage = error.data;
@@ -1054,7 +1054,7 @@ export class OrdersComponent implements OnInit {
         },
         'total_no_eins': {
             'required': 'Total No. of EIN\'s is required.',
-            'min': 'EIN count should be greater than the current value of 0' ,
+            'min': 'EIN count should be greater than the current value of 0',
             'minValue': 'Total No. of EIN\'s should be greater than 0',
             'maxValue': 'Total No. of EIN\'s should be less than or equal to 15'
         },
