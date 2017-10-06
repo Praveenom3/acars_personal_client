@@ -218,6 +218,7 @@ export class CompaniesComponent implements OnInit {
     this.companyEdit = Object.assign({}, companyInfo);
     if (companyInfo.company_ein) {
       let ein = companyInfo.company_ein;
+      ein = ein.replace(/[`()|\-\/\ ]/gi, '');
       this.companyEdit.company_ein = ein.slice(0, 2) + '-' + ein.slice(2, 10);
     }
 

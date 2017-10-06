@@ -33,7 +33,7 @@ export class AggregatedGroupComponent implements OnInit {
   public labels: any[] = [];
   _errorMessage: any;
   inputs = [{ name: "", ein: "" }];
-  inputErrors = [{ einMinValidation: false, einPatternValidation: false }];
+  inputErrors = [{ einMinValidation: false, einPatternValidation: false, einUniqueValidation: '' }];
   public totalYear = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   constructor(private route: ActivatedRoute,
@@ -89,7 +89,7 @@ export class AggregatedGroupComponent implements OnInit {
   isValidEin(ein, i) {
     this.inputErrors[i].einMinValidation = false;
     this.inputErrors[i].einPatternValidation = false;
-
+    this.inputErrors[i].einUniqueValidation = '';
     if (ein) {
       let einNumber = this.globalService.numberFilter(ein);
       if (einNumber.length < 9) {
@@ -106,7 +106,7 @@ export class AggregatedGroupComponent implements OnInit {
 
   addInput() {
     this.inputs.push({ name: '', ein: '' });
-    this.inputErrors.push({ einMinValidation: false, einPatternValidation: false });
+    this.inputErrors.push({ einMinValidation: false, einPatternValidation: false, einUniqueValidation: '' });
     this.lengb = this.inputs.length;
   }
 
@@ -205,7 +205,7 @@ export class AggregatedGroupComponent implements OnInit {
         this.groupListsData = planOfferData.briAggregatedGroupLists;
         for (let tempData of this.groupListsData) {
           this.inputs.push({ name: tempData.group_name, ein: tempData.group_ein });
-          this.inputErrors.push({ einMinValidation: false, einPatternValidation: false });
+          this.inputErrors.push({ einMinValidation: false, einPatternValidation: false, einUniqueValidation: '' });
           this.lengb = this.inputs.length;
         }
       }
@@ -274,6 +274,27 @@ export class AggregatedGroupComponent implements OnInit {
           }
         },
         error => {
+          let errorFields = JSON.parse(error.data.message);
+          let einErrors = Object.keys(errorFields).map(function (key) {
+            return errorFields[key]
+          })
+          let einErrorKeys = Object.keys(errorFields);
+          this.inputErrors.forEach((item, index) => {
+
+            item.einUniqueValidation = '';
+            let search: any = index;
+
+            var filteredArray = einErrorKeys.filter(function (itm) {
+              if (itm == search) {
+                return true;
+              }
+            });
+
+            if (filteredArray.length > 0 && errorFields[index] && typeof errorFields[index] != 'undefined') {
+              item.einUniqueValidation = errorFields[index].group_ein;
+            }
+
+          });
         });
     } else {
       this._aggregateGroupService.addAggregatedGroup(this.aggregatedGroupData).subscribe(
@@ -293,6 +314,25 @@ export class AggregatedGroupComponent implements OnInit {
           }
         },
         error => {
+          let errorFields = JSON.parse(error.data.message);
+          let einErrors = Object.keys(errorFields).map(function (key) {
+            return errorFields[key]
+          })
+          let einErrorKeys = Object.keys(errorFields);
+          this.inputErrors.forEach((item, index) => {
+
+            item.einUniqueValidation = '';
+            let search: any = index;
+
+            var filteredArray = einErrorKeys.filter(function (itm) {
+              if (itm == search) {
+                return true;
+              }
+            });
+            if (filteredArray.length > 0 && errorFields[index] && typeof errorFields[index] != 'undefined') {
+              item.einUniqueValidation = errorFields[index].group_ein;
+            }
+          });
         });
     }
   }
