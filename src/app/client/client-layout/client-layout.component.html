@@ -35,7 +35,8 @@
     <div class="menu transistion-menu header-top col-md-10 masterhead padding-left-0  media-hide-header">
         <div class="logo-container col-md-2  media-hide-header">
 
-            <img [src]="dashBoardService.clientLogo" style="height:44px;" class="width-198 img-transistion" alt="Benefits Client Template" />
+            <img [src]="dashBoardService.clientLogo" style="height:44px;" class="width-198 img-transistion" alt="Benefits Client Template"
+            />
 
         </div>
         <ul class="actions  media-hide-header">
@@ -53,14 +54,16 @@
         </ul>
     </div>
 
-    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile" id="profile_details">
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile"
+        id="profile_details">
         <div class="menu-user-block col-md-12">
             <div class="dropdown dropdown-avatar pull-right">
                 <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false">
                     <span class="header-name media-hide-profilename">
                          <span class="font-14">Welcome</span> {{userFirstName}}<span class="font-14"></span></span>
                 </a>
-                <ul *ngIf="(userType==3 || userType==4 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:-6px !important;">
+                <ul *ngIf="(userType==3 || userType==4 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby=""
+                    role="menu" style="margin-top:-6px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/client/profile']">
                         <i class="dropdown-icon icmn-user"></i> Profile</a>
                     <!-- <a class="dropdown-item dropdown-a color-white color-red" [routerLink]="['/client/messages']">
@@ -76,10 +79,18 @@
                         <i class="dropdown-icon icmn-exit"></i> Logout</a>
                     <div class="dropdown-divider margin-0"></div>
                     <div class="termsNCondition-div">
-                        <span> <a  class="termsNCondition-link">Terms & Conditions</a></span> &nbsp;&nbsp;&nbsp;&nbsp;<span><a  class="termsNCondition-link"> Privacy Policy</a></span>
+                        <span> 
+                            <a target="_blank" *ngIf = "dashBoardService.termsLink" class="termsNCondition-link" href="{{dashBoardService.termsLink}}" >Terms & Conditions</a>
+                             <a *ngIf = "!dashBoardService.termsLink" class="termsNCondition-link">Terms & Conditions</a>
+                        </span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>
+                            <a target="_blank" *ngIf = "dashBoardService.termsLink" class="termsNCondition-link" href="{{dashBoardService.termsLink}}"> Privacy Policy</a>
+                            <a *ngIf = "!dashBoardService.termsLink" class="termsNCondition-link"> Privacy Policy</a>
+                        </span>
                     </div>
                 </ul>
-                <ul *ngIf="(userType==1 || userType==2 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby="" role="menu" style="margin-top:-6px !important;">
+                <ul *ngIf="(userType==1 || userType==2 )" class="dropdown-menu arrow-icon dropdown-menu-left arrow padding-0 margin-0" aria-labelledby=""
+                    role="menu" style="margin-top:-6px !important;">
                     <a class="dropdown-item dropdown-a color-white" [routerLink]="['/admin/dashboard']">
                         <i class="dropdown-icon fa fa-home">
                             </i> Admin Dashboard</a>
@@ -104,13 +115,16 @@
                 <div class="nav-tabs-horizontal">
                     <ul class="nav nav-tabs border-bottom display-inblock" role="tablist">
                         <li *ngIf="vhtStatus" class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap " [ngClass]='dashBoardService.vht' (click)="setInformation(productsData.vht)" [routerLink]="productsData.vht">Variable Hour Tracking</a>
+                            <a class="nav-link plan-link color-white no-wrap " [ngClass]='dashBoardService.vht' (click)="setInformation(productsData.vht)"
+                                [routerLink]="productsData.vht">Variable Hour Tracking</a>
                         </li>
                         <li *ngIf="aca16Status" class="nav-item hover">
-                            <a class="nav-link plan-link color-white no-wrap " [ngClass]='dashBoardService.aca16' (click)="setInformation(productsData.aca16)" [routerLink]='productsData.aca16'>2016 ACA Reporting</a>
+                            <a class="nav-link plan-link color-white no-wrap " [ngClass]='dashBoardService.aca16' (click)="setInformation(productsData.aca16)"
+                                [routerLink]='productsData.aca16'>2016 ACA Reporting</a>
                         </li>
                         <li *ngIf="aca17Status" class="nav-item hover">
-                            <a class="nav-link plan-link color-white dropdown-icon-li no-wrap " [ngClass]='dashBoardService.aca17' (click)="setInformation(productsData.aca17)" [routerLink]="productsData.aca17">2017 ACA Reporting</a>
+                            <a class="nav-link plan-link color-white dropdown-icon-li no-wrap " [ngClass]='dashBoardService.aca17' (click)="setInformation(productsData.aca17)"
+                                [routerLink]="productsData.aca17">2017 ACA Reporting</a>
                         </li>
                     </ul>
                 </div>
@@ -122,7 +136,8 @@
 
 <!-- change password modal -->
 
-<div class="modal fade" id="change_password_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="change_password_modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -149,7 +164,7 @@
                     </div>
                     <div class="col-sm-8">
 
-                        <input type="password" class="form-control add-member-input" placeholder="Current Password.." id="current-password" name="oldpass"> <span class="error-msg red" id="current-password-error"></span>
+                        <input type="password" class="form-control add-member-input" placeholder="Current Password.." id="current-password" name="oldpass">                        <span class="error-msg red" id="current-password-error"></span>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
@@ -157,7 +172,7 @@
                         <label class="add-member-label">New Password:<span class="red">*</span></label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control add-member-input" placeholder="New Password.." id="new-password" name="newpass"> <span class="error-msg red" id="new-password-error"></span>
+                        <input type="password" class="form-control add-member-input" placeholder="New Password.." id="new-password" name="newpass">                        <span class="error-msg red" id="new-password-error"></span>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
@@ -165,8 +180,7 @@
                         <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control add-member-input" placeholder="Confirm Password.." id="new-confirm-password" name="repeatnewpass"> <span class="error-msg red" id="confirm-password-error"></span> <label class="error-msg"
-                            id="display-password-error"></label>
+                        <input type="password" class="form-control add-member-input" placeholder="Confirm Password.." id="new-confirm-password" name="repeatnewpass">                        <span class="error-msg red" id="confirm-password-error"></span> <label class="error-msg" id="display-password-error"></label>
                     </div>
                 </div>
 
