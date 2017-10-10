@@ -214,7 +214,14 @@
                             </div>
 
                             <div class="col-md-12 company-details-display color-ash">
-                                <div class="company-name-div">{{clientDashBoardService.company.company_name}}</div>
+                                <div class="company-name-div">
+                                    <span>
+                                        {{clientDashBoardService.company.company_name}}
+                                    </span>
+                                    <span *ngIf="clientDashBoardService.company.company_name_2">
+                                        , {{clientDashBoardService.company.company_name_2}}
+                                    </span>
+                                </div>
                                 <span class="company-eins-block">
                                     
                                    EIN : &nbsp;   {{formatCompanyEin(clientDashBoardService.company.company_ein)}}
@@ -754,7 +761,7 @@
                     <div class="col-md-12">
                         <div class="col-md-6">
                             <label class="form-control-label">Copy From</label>
-                            <div class="">
+                            <div class="copy-company-name">
                                 <b>Company</b> : {{clientDashBoardService.company.company_name}}
                             </div>
                         </div>

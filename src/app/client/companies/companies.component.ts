@@ -526,6 +526,7 @@ export class CompaniesComponent implements OnInit {
     if (!ein) {
       return '_ _-_ _ _ _ _ _ _';
     }
+    ein = ein.replace(/[`()|\-\/\ ]/gi, '');
     let einString: string = ein.slice(0, 2) + '-' + ein.slice(2, 10);
     return einString;
   }
