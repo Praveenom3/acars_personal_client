@@ -17,3 +17,18 @@
     top:115px;
     border: 1px solid #dfe4ed;
 }
+
+.popover {
+    width: 158px !important;
+    border-color: #13a9cc !important;
+}
+
+.popover.popover-bottom .popover-arrow {
+    top: -8px;
+    margin-left: -2px;
+}
+.popover-content {
+    font-size: 15px;
+    color: #13a9cc;
+    padding: 5px 14px;
+}

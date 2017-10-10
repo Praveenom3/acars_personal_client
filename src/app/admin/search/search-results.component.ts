@@ -16,7 +16,7 @@ export class SearchResultsComponent implements OnInit {
   key: any;
   _errorMessage: any;
   searchResults: any[] = [];
-
+  
   searchData: any;
 
   constructor(private adminUserService: SearchScreenService,
@@ -29,18 +29,18 @@ export class SearchResultsComponent implements OnInit {
 
     route.queryParams.subscribe(
       data => {
-        if(data['key']){
+        if (data['key']) {
           this.getSearchResults(data['key'], "key");
-        }else if(data['keyword']){
+        } else if (data['keyword']) {
           this.getSearchResults(data['keyword'], "keyword");
-        }        
+        }
       }
     );
 
   }
 
   ngOnInit() {
-
+    
   }
 
   getSearchResults(key, type) {
@@ -54,6 +54,7 @@ export class SearchResultsComponent implements OnInit {
       error => { this._errorMessage = error.data }
       );
   }
+
 
 
   /**
