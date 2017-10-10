@@ -10,7 +10,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { AdminUser } from "app/_models/admin-user";
 import { GlobalService } from './_global.service';
-import {HttpService}  from "app/interceptors/http.service";
+import { HttpService } from "app/interceptors/http.service";
 
 @Injectable()
 
@@ -44,6 +44,18 @@ export class CompanyUserService {
     public getCompanyUserCompanies(data) {
         return this._http.post(
             this._apiUrl + '/get-companies-list', data,
+            {
+                headers: this._globalService.getHeaders()
+            }).map(response => response.json())
+            .catch(this._globalService.handleError);
+    }
+    /**
+     * 
+     * @param data 
+     */
+    public copyCompanyDetails(data) {
+        return this._http.post(
+            this._apiUrl + '/copy-companies-details', data,
             {
                 headers: this._globalService.getHeaders()
             }).map(response => response.json())

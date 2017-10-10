@@ -212,7 +212,7 @@
                                                             <div class="col-sm-3 padding-right-0">
                                                                 <p>Group Name</p>
                                                                 <input type="text" groupNames="true" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.name" class="form-control aggregate-clear"
-                                                                    maxlength="30">
+                                                                    maxlength="75">
                                                             </div>
                                                             <div class="col-sm-3 padding-right-0 padding_left_30">
                                                                 <p>Group EIN</p>
@@ -227,7 +227,9 @@
                                                                 <span class="help-block help-block-error" *ngIf="inputErrors[i].einPatternValidation">
                                                                     Invalid EIN
                                                                 </span>
-
+                                                                <span class="help-block help-block-error" *ngIf="inputErrors[i].einUniqueValidation">
+                                                                   {{ inputErrors[i].einUniqueValidation}}
+                                                                </span>
                                                             </div>
                                                             <div class="col-sm-2 padding-left-5" *ngIf="(lengb-1 == i)? true : false">
                                                                 <p>&nbsp;&nbsp;</p>

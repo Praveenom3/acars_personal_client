@@ -27,6 +27,16 @@ export class OutstandingsService {
         ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);
     }
+    /**
+     * 
+     */
+    public getSignedPurchases(): Observable<any[]> {
+        return this._http.get(
+            this._oustandingUrl + '/get-signed-purchases',
+            { headers: this._globalService.getHeaders() }
+        ).map((response: Response) => response.json().data)
+            .catch(this._globalService.handleError);
+    }
 
     public toggleStatus(data): Observable<any[]> {
         return this._http.post(

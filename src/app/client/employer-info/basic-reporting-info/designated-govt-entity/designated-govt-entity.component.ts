@@ -35,7 +35,8 @@ export class DesignatedGovtEntityComponent implements OnInit {
   section_id: any = 4;
   product_id: any;
   company_id: any;
-
+  einValidationMessage: string;
+  isEinUnique: boolean = true;
   constructor(private route: ActivatedRoute,
     private toastrService: ToastrService,
     private router: Router,
@@ -104,6 +105,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
    * @param ein 
    */
   isValidEin(ein) {
+    this.isEinUnique = true;
     if (ein) {
       let einNumber = this._globalService.numberFilter(ein);
       if (einNumber.length < 9) {
@@ -190,6 +192,7 @@ export class DesignatedGovtEntityComponent implements OnInit {
   private formSubmit(param) {
     this.govtEntityData['purchase_id'] = this.purchase_id;
     this.govtEntityData['company_id'] = this.company_id;
+    this.isEinUnique = true;
     if (this.govtEntityData.designated_govt_entity_id > 0) {
       this._designatedGovtEntity.updateGovtEntity(this.govtEntityData).subscribe(
         result => {
@@ -204,10 +207,15 @@ export class DesignatedGovtEntityComponent implements OnInit {
             //this.getDesignatedGovtEntityData();
             // this.toastrService.success('Employee status tracking record added succesfully.');
           } else {
+            console.log(result.data.message)
+            this.toastrService.error('Employee status tracking record added succesfully.');
             this._errorMessage = 'Not Updated.';
           }
         },
         error => {
+          let errorFields = JSON.parse(error.data.message);
+          this.isEinUnique = false;
+          this.einValidationMessage = errorFields.dge_ein;
         });
     } else {
       this._designatedGovtEntity.addGovtEntity(this.govtEntityData).subscribe(

@@ -800,6 +800,25 @@ button.add-company-ein {
     display: block;
 }
 
+.selected-list .c-list .c-token{
+    background:#13a9cc !important;
+}
+button.copy-company-button{
+    line-height: 14px;
+    padding: 7px;
+    top: 18px;
+    margin-top: -34px;
+    height: 30px;
+}
+.companies-multi-select ul{
+    max-height:150px !important;
+}
+.companies-multi-select .list-filter input{
+    height: 30px!important;
+}
+.companies-multi-select ul li{
+    padding:5px 10px !important;
+}
 
 /* @media screen and (max-width: 768px) {
     .content-header-text {
