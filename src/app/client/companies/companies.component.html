@@ -196,6 +196,11 @@
             <div class="container padding-bottom-30">
                 <div class="col-lg-6 col-md-12 padding-right-12">
                     <h2 class="font-weight-300 fontcolor-blue margin-bottom-5 text-center">COMPANY DETAILS</h2>
+                    <span class="copy-company-span" *ngIf="userType == 2 || userType == 1">
+                            <button (click)="copyCompany()" class="copy-company-button pull-right btn btn-primary btn-blue">
+                                        Copy Company
+                            </button>
+                    </span>
                     <div class="header-border-btm-blue"></div>
                     <div class="col-md-12 padding-left-0 padding-right-0">
                         <div class="widget col-md-12 company-details-main-block padding-10 comp-dash-divs">
@@ -591,7 +596,7 @@
 
     <!-- ./Edit Company Details Modal -->
 
-
+    <!-- Edit Company User -->
     <div class="modal fade" bsModal #companyUserModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -690,7 +695,8 @@
 
         </div>
     </div>
-
+    <!-- Edit Company user end -->
+    <!-- Upload data -->
     <div class="modal fade" bsModal #companyUploadDataFile="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
         <div class="upload-file-block modal-dialog modal-lg">
@@ -723,6 +729,53 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+    <!-- Upload data end -->
+
+    <!-- copy company -->
+
+    <div class="modal fade" bsModal #copyCompanyModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header modal-header-color">
+
+                    <button type="button" class="close-modal modal-opacity close-modal-blue" (click)="closeCopyCompanyModal()">
+								X
+							</button>
+                    <h4 class="company-name-media modal-title color-white" id="myModalLabel">
+                        Copy Company
+                    </h4>
+                </div>
+
+                <div class="modal-body row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label class="form-control-label">Copy From</label>
+                            <div class="">
+                                <b>Company</b> : {{clientDashBoardService.company.company_name}}
+                            </div>
+                        </div>
+                        <div class="companies-multi-select col-md-6">
+                            <label class="form-control-label">Copy To</label>
+                            <!-- <div class="form-group"> -->
+                            <angular2-multiselect [data]="companyDropdownList" [(ngModel)]="selectedCompanies" [settings]="companyDropdownSettings" (onSelect)="onItemSelect($event)"
+                                (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+                            </angular2-multiselect>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer footer-background">
+                    <div *ngIf="selectedCompanies.length > 0" class="color-red pull-left copy-company-warning">
+                        <span class="copy-company-text"> Note: Selected companies data will be overridden</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-blue" (click)="copyCompanySubmit()" [disabled]="selectedCompanies.length <= 0 ">
+				  Copy</button>
+                    <button type="button" class="btn btn-default" (click)="closeCopyCompanyModal()">Close</button>
+                </div>
             </div>
         </div>
     </div>
