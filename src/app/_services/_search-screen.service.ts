@@ -25,19 +25,27 @@ export class SearchScreenService {
 
     public getAdminSearchDetails(key, type): Observable<any> {
         let search_str = ''
-        if(type == "key"){
+        if (type == "key") {
             search_str = JSON.stringify({
                 "key": key
             });
-        }else if(type == "keyword"){
+        } else if (type == "keyword") {
             search_str = JSON.stringify({
                 "keyword": key
             });
         }
-        
+
         return this._http.post(
             this._apiUrl + 'admin-search',
             search_str,
+            { headers: this._globalService.getHeaders() }
+        ).map((response: Response) => response.json().data)
+            .catch(this._globalService.handleError);
+    }
+
+    public getUsersCount(): Observable<any> {
+        return this._http.get(
+            this._apiUrl + 'users-count',
             { headers: this._globalService.getHeaders() }
         ).map((response: Response) => response.json().data)
             .catch(this._globalService.handleError);

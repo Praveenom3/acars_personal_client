@@ -9,6 +9,7 @@ import { NumberValidationService } from "app/_services/_number-validation.servic
 import * as Globals from 'app/_shared/_globals';
 import { GlobalService } from 'app/_services/_global.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { OldClientsSearchService } from 'app/_services/_old_clients_search.service';
 
 @Component({
     selector: 'app-orders',
@@ -16,6 +17,8 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
     styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+    _branderrorMessage: any;
+    isOldClient: boolean = false;
     minDate = new Date(2017, 0, 1);
     maxDate = new Date(2025, 12, 31);
     colorTheme = 'theme-blue';
@@ -154,6 +157,7 @@ export class OrdersComponent implements OnInit {
     ];
 
     public temp_brand_id = '';
+    public temp_brand_id_add: Brands;
     public temp_brand = '';
     public temp_product = '';
     public temp_client_name = '';
@@ -195,6 +199,7 @@ export class OrdersComponent implements OnInit {
         private _globalService: GlobalService,
         private _formBuilder: FormBuilder,
         private ordersService: OrdersService,
+        private clientSearchService: OldClientsSearchService,
         private toastrService: ToastrService) {
 
         this._addClientForm = _formBuilder.group({
@@ -206,7 +211,7 @@ export class OrdersComponent implements OnInit {
         this._updateClientForm = _formBuilder.group({
             client_id: [''],
             client_name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-            brand_id: ['', Validators.compose([Validators.required])],
+            brand_id: [{ value: '', disabled: false }, Validators.compose([Validators.required])],
             client_number: ['']
         });
 
@@ -271,6 +276,7 @@ export class OrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+        // this.selectByName("2");
         this.bsConfig = Object.assign({}, { containerClass: this.colorTheme, showWeekNumbers: false });
         //checking if the user has the financial rights
         for (var key in Globals.admin_permissions) {
@@ -288,6 +294,45 @@ export class OrdersComponent implements OnInit {
 
         this.orders = this.getOrders();
         this._resetFormErrors();
+    }
+
+
+    public ClientNamefocusOut(keyword) {
+        if (keyword != "") {
+            this.clientSearchService.getClientDetails(keyword)
+                .subscribe((client) => {
+                    if (client) {
+                        this._addClientForm.get('brand_id').disable();
+                        this.isOldClient = true;
+                        this._addClientForm.reset();
+                        this._resetFormErrors();
+                        this.temp_client_number = client.client_number;
+                        this.temp_brand = client.brand.brand_name;
+                        this.temp_client_name = client.client_name;
+                        this._addClientForm.controls['client_name'].setValue(client.client_name);
+                        this._addClientForm.controls['client_number'].patchValue(client.client_number);
+                        this.selectBrand(client.brand_id);
+                    } else {
+                        this._addClientForm.reset();
+                        this._resetFormErrors();
+                        this.temp_brand = "";
+                        this.temp_brand_id_add = null;
+                        this._addClientForm.controls['brand_id'].patchValue(this.temp_brand_id_add);
+                        this.temp_client_number = '';
+                        this._addClientForm.controls['client_name'].patchValue(keyword);
+                        this._addClientForm.get('brand_id').enable();
+                    }
+                },
+                error => { this._branderrorMessage = error.data.message; }
+                );
+        }
+
+    }
+
+    public selectBrand(brand: any) {
+        this.temp_brand_id_add = null;
+        this.temp_brand_id_add = this.availableBrands.find(brands => brands.brand_id == brand);
+        this._addClientForm.controls['brand_id'].patchValue(this.temp_brand_id_add);
     }
 
     /*getting orders from service*/
@@ -428,7 +473,7 @@ export class OrdersComponent implements OnInit {
         } else {
             //getting all the available products.. This stmt alone can be used in the freshly adding client scenario also
             this.selectableProducts = JSON.parse(JSON.stringify(this.availableProducts));
-            this.temp_arr = [];
+             this.temp_arr = [];
         }
     }
 
@@ -464,6 +509,8 @@ export class OrdersComponent implements OnInit {
         this._errorMessage = '';
 
         if (modal == 'addClientModal') {
+            this.temp_brand_id_add = null;
+            this._addClientForm.get('brand_id').enable();
             this._addClientFormSubmitted = false;
 
             this.totalPurchases = [];
@@ -497,7 +544,6 @@ export class OrdersComponent implements OnInit {
 
             this.updateClientModal.show();
         } else if (modal == 'addPurchaseModal') {
-
             if (this._updateClientForm.value.client_id) {
                 this.getSelectableProducts(this._updateClientForm.value.client_id, '', 'clientAddPurchase');
             } else {
@@ -530,9 +576,11 @@ export class OrdersComponent implements OnInit {
 
             this.patchValue(this._updatePurchaseForm, data);
 
+
             let totalMaxEins: number = parseInt(this._updatePurchaseForm.value.total_no_eins) + 15;
-            console.log(totalMaxEins);
+           
             this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(totalMaxEins), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
+
 
             this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
 
@@ -678,10 +726,16 @@ export class OrdersComponent implements OnInit {
 
     public onSubmit(form) {
         if (form == this._addClientForm) {
+            this._addClientFormSubmitted = true;
+
+            if (this.isOldClient) {
+                this._addClientForm.get('brand_id').enable();
+            }
 
             if (this._addClientForm.value.brand_id.hasOwnProperty('brand_id')) {
                 this._addClientForm.value.brand_id = this._addClientForm.value.brand_id.brand_id;
             }
+
 
             this._addClientForm.value.client_number = this.temp_client_number;
 
@@ -690,29 +744,37 @@ export class OrdersComponent implements OnInit {
                 "purchases": this.totalPurchases
             };
 
-            this._addClientFormSubmitted = true;
 
             this.ordersService.createClientsAndPurchases(data).subscribe(
                 result => {
                     if (result.success) {
+
                         this.orders = this.getOrders();
                         this.askConfirm = false;
                         this.closeModal('addClientModal');
                         this.toastrService.success('Client and Purchases Added Succesfully.');
                     } else {
+                        if (this.isOldClient) {
+                            this._addClientForm.get('brand_id').disable();
+                        }
                         this.toastrService.error('Trouble adding the client. Please try later.');
                         this._addClientFormSubmitted = false;
                     }
                 },
                 error => {
                     this._addClientFormSubmitted = false;
+                    if (this.isOldClient) {
+                        this._addClientForm.get('brand_id').disable();
+                    }
                     if (error.status == 422) {
-                        this._resetFormErrors();
-                        let errorFields = JSON.parse(error.data.message);
 
+                        this._resetFormErrors();
+
+                        let errorFields = JSON.parse(error.data.message);
                         this.toastrService.error('Trouble adding the client. Please try later.');
                         //   this._setFormErrors(this._addClientFormErrors, errorFields);
                     } else {
+
                         //this._errorMessage = error.data;
                         this.toastrService.error('Trouble adding the client. Please try later.');
                     }
@@ -838,14 +900,13 @@ export class OrdersComponent implements OnInit {
     }
 
     public onBrandChange(form, value) {
+
         if (form == this._addClientForm) {
-            if (value) {
+            if (value && value instanceof Object) {
                 if (value.hasOwnProperty('brand_name')) {
                     this.temp_brand = value.brand_name;
-
                     this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
                 } else {
-
                     this.temp_brand = this.getItemName('brand', value);
 
                     if (this.temp_brand !== 'NA') {
@@ -855,7 +916,7 @@ export class OrdersComponent implements OnInit {
                         this.temp_brand = '';
                     }
                 }
-            } else {
+            } else if (value == '') {
                 this.temp_client_number = '';
                 this.temp_brand = '';
             }
