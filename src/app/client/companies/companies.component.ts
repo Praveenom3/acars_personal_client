@@ -480,7 +480,12 @@ export class CompaniesComponent implements OnInit {
         if (error.status == 422) {
           this._resetCompanyUserFormErrors();
           let errorFields = JSON.parse(error.data.message);
-          this._setCompanyUserFormErrors(errorFields);
+          if (typeof errorFields == 'string') {
+            this.toastrService.error(errorFields);
+          } else {
+            this._setCompanyUserFormErrors(errorFields);
+          }
+
         } else {
           this._errorMessage = error.data;
         }
