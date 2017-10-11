@@ -21,3 +21,23 @@
   .search-user-box-new {
       height: 175px;
   }
+
+  .pagination {
+    background: #fff;
+    padding: 9px;
+    float: right;
+}
+
+.pagination .current {
+    padding: 3px 10px;
+    background: #2199e8;
+    color: #fefefe;
+    cursor: default;
+    margin-right: 3px;
+}
+
+.pagination li {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

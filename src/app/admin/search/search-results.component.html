@@ -1,22 +1,24 @@
 <search-band></search-band>
 
 <div class="page-content col-md-12 section-page-content">
-    <div class="container" *ngIf="searchResults.length > 0">
+    <div class="container" *ngIf="collection.length > 0">
+            <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
         <div class="col-md-12 border-ddd widget">
+               
             <div class="col-md-12  padding-0">
-                <div *ngFor="let result of searchResults">
-                    <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="result.user_id">
+                <div *ngFor="let item of collection | paginate: { itemsPerPage: 30, currentPage: p }">
+                    <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="item.user_id">
                         <div class="col-xs-12 padding-0 border-ddd">
                             <div class="col-xs-12  padding-6 search-user-box-new">
                                 <div class="col-xs-12  margin-top-10" style="font-family: arial;">
                                     <div class="col-xs-12 padding-0  margin-bottom-35">
                                         <div class="col-xs-9 ">
-                                            <div class="no-wrap">{{result.admin_user}}</div>
+                                            <div class="no-wrap">{{item.admin_user}}</div>
                                             <div class="no-wrap">
-                                                <span class="us-phone-mask-input">{{result.mobile}}</span>
+                                                <span class="us-phone-mask-input">{{item.mobile}}</span>
                                             </div>
                                             <div class="no-wrap">
-                                                <a class="cursor-pointer color-blue">{{result.username}}</a>
+                                                <a class="cursor-pointer color-blue">{{item.username}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -32,19 +34,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="result.client_id">
+                    <div class="col-xl-4 col-md-6 col-xs-12 padding-10" *ngIf="item.client_id">
                         <div class="col-xs-12 padding-0 border-ddd">
                             <div class="col-xs-12  padding-6 search-user-box-new">
                                 <div class="col-xs-12  margin-top-10" style="font-family: arial;">
                                     <div class="col-xs-12 padding-0  margin-bottom-30">
                                         <div class="col-xs-9 ">
-                                            <div class="no-wrap">{{result.client_name}}</div>
+                                            <div class="no-wrap">{{item.client_name}}</div>
                                             <div class="no-wrap">
-                                                <span class="us-phone-mask-input">{{result.client_number}}</span>
+                                                <span class="us-phone-mask-input">{{item.client_number}}</span>
                                             </div>
                                         </div>
                                         <div class="col-xs-3 pull-right">
-                                            <a class="cursor-pointer color-blue link-blue-underline" (click)="redirectToClientDashBoard(result)">Dashboard</a>
+                                            <a class="cursor-pointer color-blue link-blue-underline" (click)="redirectToClientDashBoard(item)">Dashboard</a>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 padding-0">
@@ -54,8 +56,8 @@
                                         </div>
                                         <div class="col-xs-9">
                                             <h6 class="margin-bottom-5">Products:</h6>
-                                            <div *ngIf="result.products">
-                                                <p class="productsInSearchResult" *ngFor="let product of result.products">
+                                            <div *ngIf="item.products">
+                                                <p class="productsInSearchitem" *ngFor="let product of item.products">
                                                     {{product.product_full_name}}
                                                 </p>
                                             </div>
@@ -69,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="container" *ngIf="searchResults.length == 0">
+    <div class="container" *ngIf="collection.length == 0">
         <div class="widget width-100 padding-50 font-20 color-blue" align="center">
             No records found.
         </div>

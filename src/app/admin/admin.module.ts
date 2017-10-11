@@ -35,6 +35,7 @@ import { NewPurchasesComponent } from "app/admin/dashboard/new-purchases.compone
 import { SearchScreenService } from "app/_services/_search-screen.service";
 import { SearchResultsComponent } from "app/admin/search/search-results.component";
 import { FileReviewComponent } from 'app/admin/dashboard/file-review.component';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { FileReviewComponent } from 'app/admin/dashboard/file-review.component';
     SharedModule,
     DataTableModule,
     PartialViews,
-    TextMaskModule
+    TextMaskModule,
+    NgxPaginationModule
   ],
   declarations: [
     OutstandingsComponent,
