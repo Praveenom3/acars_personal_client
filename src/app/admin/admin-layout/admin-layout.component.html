@@ -43,7 +43,8 @@
                                 [routerLinkActive]="['page-active']">
                             Scheduled Jobs
                         </a> -->
-                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/error-log']" [routerLinkActive]="['page-active']">
+                            <a class="dropdown-item dropdown-a color-white" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/error-log']"
+                                [routerLinkActive]="['page-active']">
                             Error Log
                         </a>
                             <!-- <a class="dropdown-item dropdown-a color-white color-red" *ngIf=globalService.systemAdmin_permission [routerLink]="['/admin/activity-log']"
@@ -107,7 +108,8 @@
         </ul>
     </div>
 
-    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile" id="profile_details">
+    <div class="menu transistion-menu header-top profile col-md-2 back-color masterhead padding-left-0 pull-right back-color-profile admin-profile"
+        id="profile_details">
         <div class="menu-user-block col-md-12">
             <div class="dropdown dropdown-avatar pull-right">
                 <a href="javascript: void(0);" class="dropdown-toggle profile-icon" data-toggle="dropdown" aria-expanded="false">
@@ -123,7 +125,7 @@
                     <a class="dropdown-item dropdown-a color-white cursor-pointer" (click)="chngPwdModal.show()"><i
 						class="dropdown-icon fa fa-repeat"></i> Change Password</a>
                     <div class="dropdown-divider margin-0"></div>
-                    <a class="dropdown-item dropdown-a color-white border-btm-dd" href="#"><i
+                    <a (click)="authenticationService.logoutUser()" class="dropdown-item dropdown-a color-white border-btm-dd" href="#"><i
                         class="dropdown-icon icmn-exit"></i> Logout</a>
                     <!-- <div class="termsNCondition-div">
                         <span> <a  class="termsNCondition-link">Terms & Conditions</a></span> &nbsp;&nbsp;&nbsp;&nbsp;<span><a  class="termsNCondition-link"> Privacy Policy</a></span>
@@ -139,7 +141,8 @@
         <router-outlet></router-outlet>
     </div>
 </section>
-<div class="modal fade" bsModal #chngPwdModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #chngPwdModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -164,7 +167,8 @@
                             <label class="add-member-label">Current Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="Current Password" id="current-password" name="currentPassword" formControlName="currentPassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','currentPassword')}">
+                            <input type="password" class="form-control" placeholder="Current Password" id="current-password" name="currentPassword" formControlName="currentPassword"
+                                [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','currentPassword')}">
                             <control-messages [control]="chngPwdForm.controls.currentPassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.currentPassword.valid">{{_formErrors.currentPassword.message}}</span>
                         </div>
@@ -174,7 +178,8 @@
                             <label class="add-member-label">New Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="New Password" id="new-password" name="newPassword" formControlName="newPassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','newPassword')}">
+                            <input type="password" class="form-control" placeholder="New Password" id="new-password" name="newPassword" formControlName="newPassword"
+                                [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','newPassword')}">
                             <control-messages [control]="chngPwdForm.controls.newPassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.newPassword.valid">{{_formErrors.newPassword.message}}</span>
                         </div>
@@ -184,7 +189,8 @@
                             <label class="add-member-label">Confirm Password:<span class="red">*</span></label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" placeholder="Confirm Password" id="new-confirm-password" name="retypePassword" formControlName="retypePassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','retypePassword')}">
+                            <input type="password" class="form-control" placeholder="Confirm Password" id="new-confirm-password" name="retypePassword"
+                                formControlName="retypePassword" [ngClass]="{'form-control-danger': !_isValid('chngPwdForm','retypePassword')}">
                             <control-messages [control]="chngPwdForm.controls.retypePassword"></control-messages>
                             <span class="help-block help-block-error" *ngIf="!_formErrors.retypePassword.valid">{{_formErrors.retypePassword.message}}</span>
                             <span *ngIf="_errorMessageChngPwd" class="help-block help-block-error">{{_errorMessageChngPwd}}</span>

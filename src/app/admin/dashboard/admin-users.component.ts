@@ -57,9 +57,9 @@ export class AdminUsersComponent implements OnInit {
         private toastrService: ToastrService,
         private _http: Http) {
         this._adminUserForm = _formBuilder.group({
-            first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-            last_name: ['', Validators.compose([Validators.required, Validators.minLength(2),])],
-            is_active: ['', Validators.compose([])],
+            first_name: ['', Validators.compose([Validators.pattern(/^[a-zA-Z .]+$/), Validators.required, Validators.minLength(2)])],
+            last_name: ['', Validators.compose([Validators.pattern(/^[a-zA-Z .]+$/), Validators.required, Validators.minLength(2),])],
+            is_active: ['', Validators.compose([Validators.required])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             phone_extension: ['',]
@@ -210,7 +210,11 @@ export class AdminUsersComponent implements OnInit {
                     if (error.status == 422) {
                         this._resetFormErrors();
                         let errorFields = JSON.parse(error.data.message);
-                        this._setFormErrors(errorFields);
+                        if (typeof errorFields == 'string') {
+                            this.toastrService.error(errorFields);
+                        } else {
+                            this._setFormErrors(errorFields);
+                        }
                     } else {
                         this._errorMessage = error.data;
                     }
@@ -234,7 +238,12 @@ export class AdminUsersComponent implements OnInit {
                     if (error.status == 422) {
                         this._resetFormErrors();
                         let errorFields = JSON.parse(error.data.message);
-                        this._setFormErrors(errorFields);
+                        if (typeof errorFields == 'string') {
+                            this.toastrService.error(errorFields);
+                        } else {
+                            this._setFormErrors(errorFields);
+                        }
+
                     } else {
                         this._errorMessage = error.data;
                     }

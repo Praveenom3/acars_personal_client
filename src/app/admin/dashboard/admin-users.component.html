@@ -17,7 +17,8 @@
                         </div>
                     </div>
 
-                    <table class="table table-hover table-bordered table-striped" [mfData]="adminUsers | dataFilter : filterQuery" #adminUserObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table class="table table-hover table-bordered table-striped" [mfData]="adminUsers | dataFilter : filterQuery" #adminUserObj="mfDataTable"
+                        [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                             <tr class="tr-blue-grid-head">
                                 <th>
@@ -50,7 +51,7 @@
                                     <td>{{adminUser.phone_extension}}</td>
                                     <td *ngIf="_globalService.getUserEmail() === adminUser.username">{{(adminUser.is_active) == 1 ? "Active" : "Inactive"}}</td>
                                     <td *ngIf="_globalService.getUserEmail() !== adminUser.username"><a class="link-blue" style="cursor:pointer" (click)="statusChange(adminUser)">{{(adminUser.is_active) == 1 ? "Active" : "Inactive"}}</a></td>
-                                    
+
                                 </tr>
                             </ng-container>
                             <tr class="tr-text-center" *ngIf=!adminUserObj.data?.length>
@@ -72,7 +73,8 @@
 </div>
 
 <!-- Add Admin User Modal -->
-<div class="modal fade" bsModal #AdminUsersModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #AdminUsersModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header modal-header-color">
@@ -90,7 +92,8 @@
                                 <div class="">
                                     <label class="form-control-label">First Name <span class="red">*</span></label>
                                     <div class="form-group required" [ngClass]="{'has-danger': !_isValid('first_name')}">
-                                        <input type="text" NameWithDotSpace="true" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name" [ngClass]="{'form-control-danger': !_isValid('first_name')}" maxlength="34">
+                                        <input type="text" NameWithDotSpace="true" class="form-control" [formControl]="_adminUserForm.controls['first_name']" [(ngModel)]="adminUserSelected.first_name"
+                                            [ngClass]="{'form-control-danger': !_isValid('first_name')}" maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.first_name.valid">{{_formErrors.first_name.message}}</span>
                                     </div>
                                 </div>
@@ -99,15 +102,17 @@
                                 <div class="">
                                     <label class="form-control-label">Last Name <span class="red">*</span></label>
                                     <div class="form-group field-adminusers-last_name required" [ngClass]="{'has-danger': !_isValid('last_name')}">
-                                        <input type="text" NameWithDotSpace="true" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']" [(ngModel)]="adminUserSelected.last_name" [ngClass]="{'form-control-danger': !_isValid('last_name')}" maxlength="34">
+                                        <input type="text" NameWithDotSpace="true" id="adminusers-last_name" class="form-control" [formControl]="_adminUserForm.controls['last_name']"
+                                            [(ngModel)]="adminUserSelected.last_name" [ngClass]="{'form-control-danger': !_isValid('last_name')}"
+                                            maxlength="34">
                                         <span class="help-block help-block-error" *ngIf="!_formErrors.last_name.valid">{{_formErrors.last_name.message}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="">
-                                    <label class="form-control-label">Status</label>
-                                    <div class="form-group field-adminusers-last_name required" *ngIf="_globalService.getUserEmail() !== adminUserSelected.username">
+                                    <label class="form-control-label">Status <span class="red">*</span></label>
+                                    <div class="form-group field-adminusers-last_name" *ngIf="_globalService.getUserEmail() !== adminUserSelected.username">
                                         <label class="radio-inline">
                                                   <input type="radio" [(ngModel)]="adminUserSelected.is_active" name="is_active" [formControl]="_adminUserForm.controls['is_active']"  value="1"> Active
                                          </label>
@@ -126,14 +131,16 @@
                             <div class="col-md-4">
                                 <label class="form-control-label" for="user-username">Email Address <span class="red">*</span></label>
                                 <div class="form-group field-user-username" [ngClass]="{'has-danger': !_isValid('username')}">
-                                    <input type="text" id="adminusers-email" maxlength="50" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['username']" [(ngModel)]="adminUserSelected.username" [ngClass]="{'form-control-danger': !_isValid('username')}">
+                                    <input type="text" id="adminusers-email" maxlength="50" class="form-control" aria-required="true" [formControl]="_adminUserForm.controls['username']"
+                                        [(ngModel)]="adminUserSelected.username" [ngClass]="{'form-control-danger': !_isValid('username')}">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.username.valid">{{_formErrors.username.message}}</span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-control-label">Phone <span class="red">*</span></label>
                                 <div class="form-group field-adminusers-phone required" [ngClass]="{'has-danger': !_isValid('mobile')}">
-                                    <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" id="adminusers-phone" class="form-control" [formControl]="_adminUserForm.controls['mobile']" [(ngModel)]="adminUserSelected.mobile" [ngClass]="{'form-control-danger': !_isValid('mobile')}"
+                                    <input type="text" [textMask]="{mask: mask,guide: false, modelClean: true}" id="adminusers-phone" class="form-control" [formControl]="_adminUserForm.controls['mobile']"
+                                        [(ngModel)]="adminUserSelected.mobile" [ngClass]="{'form-control-danger': !_isValid('mobile')}"
                                         aria-required="true" placeholder="(___) ___-____" maxlength="34">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.mobile.valid">{{_formErrors.mobile.message}}</span>
                                 </div>
@@ -141,7 +148,8 @@
                             <div class="col-md-4">
                                 <label class="form-control-label">Extension</label>
                                 <div class="form-group field-adminusers-extension" [ngClass]="{'has-danger': !_isValid('phone_extension')}">
-                                    <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_adminUserForm.controls['phone_extension']" [(ngModel)]="adminUserSelected.phone_extension" [ngClass]="{'form-control-danger': !_isValid('phone_extension')}"
+                                    <input type="text" id="adminusers-extension" OnlyNumber="true" class="form-control numbers" [formControl]="_adminUserForm.controls['phone_extension']"
+                                        [(ngModel)]="adminUserSelected.phone_extension" [ngClass]="{'form-control-danger': !_isValid('phone_extension')}"
                                         value="" maxlength="6">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.phone_extension.valid">{{_formErrors.phone_extension.message}}</span>
                                 </div>
@@ -153,7 +161,8 @@
                                     Permissions:
                                     <span class="fa fa-info-circle information-icon" popover="Select if you would like for the user to have super administrator privileges in the system to performing all functions including changing the access level of other administrative users.
                                                     Next, select if this user should be able to access financial
-                                                    performance of the entire application." popoverTitle="Access Privileges" placement="right" triggers="mouseenter:mouseleave"></span>
+                                                    performance of the entire application." popoverTitle="Access Privileges"
+                                        placement="right" triggers="mouseenter:mouseleave"></span>
                                 </h6>
                                 <div class="md-checkbox-list ">
 
