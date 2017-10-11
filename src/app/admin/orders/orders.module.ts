@@ -13,6 +13,7 @@ import { OrdersFilterPipe } from "app/admin/orders/orders-filter.pipe";
 import { DataTableModule } from "angular2-datatable";
 import { ModalModule, BsDatepickerModule } from "ngx-bootstrap";
 import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
+import { OldClientsSearchService } from 'app/_services/_old_clients_search.service';
 
 @NgModule({
   imports: [
@@ -29,6 +30,6 @@ import { TextMaskModule } from "angular2-text-mask/dist/angular2TextMask";
      BsDatepickerModule.forRoot()
   ],
   declarations: [OrdersComponent, OrdersFilterPipe],  
-  providers: [ OrdersService ]
+  providers: [ OrdersService,OldClientsSearchService ]
 })
 export class OrdersModule { }
