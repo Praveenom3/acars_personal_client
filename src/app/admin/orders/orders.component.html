@@ -554,9 +554,9 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">
 
-                                <label class="form-control-label">Purchased Status</label>
+                                <label class="form-control-label">Purchased Status <span class="red">*</span></label>
                                 <div style="height:34px; padding-top:5px;">
                                     <label class="radio-inline">
                                         <input type="radio" name="purchasedStatus" [value]="1" [checked]="_addPurchaseForm.controls['purchase_status'].value==='1'" [formControl]="_addPurchaseForm.controls['purchase_status']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'purchase_status')}">Active
@@ -611,9 +611,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice')}">
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice')}">
 
-                                <label class="form-control-label">Invoice</label>
+                                <label class="form-control-label">Invoice <span class="red">*</span></label>
                                 <div style="height:34px; padding-top:5px;">
                                     <label class="radio-inline">
                                         <input type="radio" name="isInvoice" [value]="1" (click)="toggleInvoiceFieldsValidator(this._addPurchaseForm, true)" [checked]="_addPurchaseForm.controls['is_invoice'].value==='1'" [formControl]="_addPurchaseForm.controls['is_invoice']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice')}">Yes
@@ -652,9 +652,9 @@
                             </div>
 
                             <div class="col-md-4" *ngIf="_addPurchaseForm.controls['is_invoice'].value == '1'">
-                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice_paid')}">
+                                <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice_paid')}">
 
-                                    <label class="form-control-label">Invoice Paid</label>
+                                    <label class="form-control-label">Invoice Paid <span class="red">*</span></label>
                                     <div style="height:34px; padding-top:5px;">
                                         <label class="radio-inline">
                                         <input type="radio" name="isInvoicePaid" [value]="1" [checked]="_addPurchaseForm.controls['is_invoice_paid'].value==='1'" [formControl]="_addPurchaseForm.controls['is_invoice_paid']" [ngClass]="{'form-control-danger': !_isValid(this._addPurchaseForm, this._addPurchaseFormErrors, 'is_invoice_paid')}">Yes
@@ -817,9 +817,9 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">
 
-                                <label class="form-control-label">Purchased Status</label>
+                                <label class="form-control-label">Purchased Status <span class="red">*</span></label>
                                 <div style="height:34px; padding-top:5px;">
                                     <label class="radio-inline">
                                         <input type="radio" name="purchasedStatus" [value]="1" [checked]="_updatePurchaseForm.controls['purchase_status'].value==='1'" [formControl]="_updatePurchaseForm.controls['purchase_status']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'purchase_status')}">Active
@@ -874,9 +874,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice')}">
+                            <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice')}">
 
-                                <label class="form-control-label">Invoice</label>
+                                <label class="form-control-label">Invoice <span class="red">*</span></label>
                                 <div style="height:34px; padding-top:5px;">
                                     <label class="radio-inline">
                                         <input type="radio" name="isInvoice" [value]="1" (click)="toggleInvoiceFieldsValidator(this._updatePurchaseForm, true)" [checked]="_updatePurchaseForm.controls['is_invoice'].value==='1'" [formControl]="_updatePurchaseForm.controls['is_invoice']" [ngClass]="{'form-control-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice')}">Yes
@@ -915,9 +915,9 @@
                             </div>
 
                             <div class="col-md-4" *ngIf="_updatePurchaseForm.controls['is_invoice'].value == '1'">
-                                <div class="form-group required" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice_paid')}">
+                                <div class="form-group" [ngClass]="{'has-danger': !_isValid(this._updatePurchaseForm, this._updatePurchaseFormErrors, 'is_invoice_paid')}">
 
-                                    <label class="form-control-label">Invoice Paid</label>
+                                    <label class="form-control-label">Invoice Paid <span class="red">*</span> </label>
                                     <div style="height:34px; padding-top:5px;">
 
                                         <label class="radio-inline">

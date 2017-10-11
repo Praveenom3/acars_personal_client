@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Rx';
 
 import { environment } from '../../environments/environment';
 
-
 @Injectable()
 export class GlobalService {
     systemAdmin_permission: boolean = false;
@@ -15,7 +14,7 @@ export class GlobalService {
     public apiHost: string;
     public apiRoot: string;
     public setting: any = {};
-	public emailRegx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    public emailRegx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     public years = ["2016", "2017"];
     URL_STRING = '00eeaa';
     public productTypes: any[] = [
@@ -29,9 +28,13 @@ export class GlobalService {
         if (environment.production == true) {
             this.apiHost = 'http://198.90.22.116/v1';
             this.apiRoot = 'http://198.90.22.116/';
+            //this.apiHost = 'http://acars.localhost/v1';
+            //this.apiRoot = 'http://acars.localhost/';
         } else {
             this.apiHost = 'http://198.90.22.116/v1';
             this.apiRoot = 'http://198.90.22.116/';
+            //this.apiHost = 'http://acars.localhost/v1';
+            //this.apiRoot = 'http://acars.localhost/';
         }
     }
 
@@ -39,6 +42,7 @@ export class GlobalService {
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json; charset=UTF-8');
         this.headers.append('Authorization', 'Bearer ' + this.getToken());
+        this.headers.append('Cache-Control', 'no-cache');
         return this.headers;
     }
 
@@ -55,7 +59,7 @@ export class GlobalService {
     public getUserId(): any {
         return localStorage.getItem('user_id');
     }
-    
+
     public getUserEmail(): any {
         return localStorage.getItem('useremail');
     }
@@ -100,16 +104,16 @@ export class GlobalService {
         let splittedString = param.split(this.URL_STRING);
         return atob(splittedString[1]);
     }
-  
-     public numberFilter(numString) {
+
+    public numberFilter(numString) {
         let returnNumber;
         if (numString) {
             returnNumber = numString.replace(/[^0-9]/g, '');
         }
         return returnNumber;
     }
-  
-  
+
+
     public handleError(error: Response | any) {
 
         let errorMessage: any = {};
@@ -133,16 +137,16 @@ export class GlobalService {
         let permissionsSet: any = [];
         if (localStorage.getItem("admin_permissions") != 'undefined') {
             let admin_permissions = JSON.parse(localStorage.getItem('admin_permissions'));
-          
+
             if ((admin_permissions).indexOf(1) !== -1) {
                 this.financial_permission = true;
-           }
-           if ((admin_permissions).indexOf(2) !== -1) {
+            }
+            if ((admin_permissions).indexOf(2) !== -1) {
                 this.masterData_permission = true;
-           }
-           if ((admin_permissions).indexOf(3) !== -1) {
+            }
+            if ((admin_permissions).indexOf(3) !== -1) {
                 this.systemAdmin_permission = true;
-           }
+            }
 
         }
     }

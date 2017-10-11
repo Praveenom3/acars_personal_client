@@ -59,7 +59,7 @@ export class AdminUsersComponent implements OnInit {
         this._adminUserForm = _formBuilder.group({
             first_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             last_name: ['', Validators.compose([Validators.required, Validators.minLength(2),])],
-            is_active: ['', Validators.compose([])],
+            is_active: ['', Validators.compose([Validators.required])],
             username: ['', Validators.compose([Validators.required, Validators.pattern(this._globalService.emailRegx)])],
             mobile: ['', Validators.compose([Validators.required, Validators.minLength(14)])],
             phone_extension: ['',]

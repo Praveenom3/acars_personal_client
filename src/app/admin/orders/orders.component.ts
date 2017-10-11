@@ -732,8 +732,6 @@ export class OrdersComponent implements OnInit {
                 allPurchases = allPurchases.concat(this.updatePurchases);
             }
 
-            this.updatePurchases = [];
-
             let data = {
                 "Clients": this._updateClientForm.value,
                 "purchases": allPurchases
@@ -745,6 +743,7 @@ export class OrdersComponent implements OnInit {
                 result => {
                     if (result.success) {
                         this.orders = this.getOrders();
+                        this.updatePurchases = [];
                         this.askConfirm = false;
                         this.closeModal('updateClientModal');
                         this.toastrService.success('Client updated Succesfully.');

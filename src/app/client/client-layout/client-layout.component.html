@@ -75,7 +75,7 @@
                     <a class="dropdown-item dropdown-a color-white" href="#change_password_modal" role="button" data-toggle="modal">
                         <i class="dropdown-icon fa fa-repeat"></i> Change Password</a>
                     <div class="dropdown-divider margin-0"></div>
-                    <a class="dropdown-item dropdown-a color-white" href="#">
+                    <a (click)="_authenticateUser.logoutUser()" class="dropdown-item dropdown-a color-white" href="#">
                         <i class="dropdown-icon icmn-exit"></i> Logout</a>
                     <div class="dropdown-divider margin-0"></div>
                     <div class="termsNCondition-div">

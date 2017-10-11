@@ -18,7 +18,7 @@ declare var $: any;
     templateUrl: './admin-layout.component.html',
 })
 export class AdminLayoutComponent implements OnInit {
-    
+
     @ViewChild('chngPwdModal') public chngPwdModal: ModalDirective;
 
     isMenuActive: boolean = false;
@@ -46,8 +46,8 @@ export class AdminLayoutComponent implements OnInit {
         private toastrService: ToastrService,
         private _idleTimeout: IdleTimeoutService,
         private globalService: GlobalService,
-        public loaderService:LoaderService
-) {
+        public loaderService: LoaderService
+    ) {
         _idleTimeout.init();
 
         this.useremail = localStorage.getItem('useremail');
@@ -66,7 +66,7 @@ export class AdminLayoutComponent implements OnInit {
         this.chngPwdForm.valueChanges
             .subscribe(data => this.onValueChanged(data));
 
-      this.globalService.getPermissions();
+        this.globalService.getPermissions();
     }
 
     ngOnInit() {
@@ -164,5 +164,4 @@ export class AdminLayoutComponent implements OnInit {
         this.chngPwdForm.reset();
         this._resetFormErrors();
     }
-
 }

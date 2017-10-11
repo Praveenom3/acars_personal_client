@@ -80,18 +80,18 @@ export class LoginComponent implements OnInit {
             });
 
         this._resetFormErrors();
+        let authToken = this.globalService.getToken();
+        if (this._cookieService.get('rememberMe') || authToken) {
 
-        if (this._cookieService.get('rememberMe')) {
-            
             let userType: any = localStorage.getItem("usertype");
             if (userType == 1 || userType == 2) {
                 this.globalService.getPermissions();
-                if(this.globalService.financial_permission){
+                if (this.globalService.financial_permission) {
                     this.router.navigate(['/admin/summary']);
-                }else{
+                } else {
                     this.router.navigate(['/admin/dashboard']);
                 }
-                
+
 
             } else if (userType == 3 || userType == 4) {
                 this.navigateUser(userType);
@@ -103,9 +103,7 @@ export class LoginComponent implements OnInit {
             this.authenticationService.logout();
         }
 
-        this.authenticationService.logout();
-
-
+        //this.authenticationService.logout();
 
         if (localStorage.getItem("toastr_success") !== null) {
             this.toastrService.success(localStorage.getItem("toastr_success"));
@@ -216,9 +214,9 @@ export class LoginComponent implements OnInit {
                     } else {
                         if (result.data.user_type == 1 || result.data.user_type == 2) {
                             this.globalService.getPermissions();
-                            if(this.globalService.financial_permission){
+                            if (this.globalService.financial_permission) {
                                 this.router.navigate(['/admin/summary']);
-                            }else{
+                            } else {
                                 this.router.navigate(['/admin/dashboard']);
                             }
                         } else if (result.data.user_type == 3 || result.data.user_type == 4) {
@@ -299,7 +297,7 @@ export class LoginComponent implements OnInit {
                     product = element;
                 }
             });
-            
+
             let clientKeys: any[] = Object.keys(product.clients);
             let client = product['clients'][clientKeys[0]];
 
