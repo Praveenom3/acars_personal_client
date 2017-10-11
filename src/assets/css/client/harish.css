@@ -813,11 +813,15 @@ button.copy-company-button{
 .companies-multi-select ul{
     max-height:150px !important;
 }
+.companies-multi-select .selected-list,.copy-company-name{
+    word-break: break-all;
+}
 .companies-multi-select .list-filter input{
     height: 30px!important;
 }
 .companies-multi-select ul li{
     padding:5px 10px !important;
+    word-break: break-all;
 }
 
 /* @media screen and (max-width: 768px) {
