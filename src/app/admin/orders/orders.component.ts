@@ -324,7 +324,7 @@ export class OrdersComponent implements OnInit {
                         this._addClientForm.get('brand_id').enable();
                     }
                 },
-                error => { this._branderrorMessage = error.data.message; }
+                error => { this._errorMessage = error.data.message; }
                 );
         }
 
