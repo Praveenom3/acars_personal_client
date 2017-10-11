@@ -24,6 +24,7 @@ export class CompaniesComponent implements OnInit {
   @ViewChild('companyModal') public companyModal: ModalDirective;
   @ViewChild('companyUserModal') public companyUserModal: ModalDirective;
   @ViewChild('companyUploadDataFile') public companyUploadDataFile: ModalDirective;
+  @ViewChild('copyCompanyModal') public copyCompanyModal: ModalDirective;
 
   public modalTitle: string;
   public companyUserModalTitle: string;
@@ -48,6 +49,10 @@ export class CompaniesComponent implements OnInit {
   public userType: any;
   public mask = [/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]
   public phoneNumberMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+
+  companyDropdownList = [];
+  selectedCompanies = [];
+  companyDropdownSettings = {};
 
   constructor(public route: ActivatedRoute,
     private _formBuilder: FormBuilder,
@@ -218,6 +223,7 @@ export class CompaniesComponent implements OnInit {
     this.companyEdit = Object.assign({}, companyInfo);
     if (companyInfo.company_ein) {
       let ein = companyInfo.company_ein;
+      ein = ein.replace(/[`()|\-\/\ ]/gi, '');
       this.companyEdit.company_ein = ein.slice(0, 2) + '-' + ein.slice(2, 10);
     }
 
@@ -266,10 +272,6 @@ export class CompaniesComponent implements OnInit {
           this.resetCompanyInfo(result);
           this._submitted = false;
           this.toastrService.success('Company Details Updated Successfully.');
-          let companies: any[] = this.clientDashBoardService.companies;
-          companies.push(result.data);
-
-          this.clientDashBoardService.companies = companies;
         } else {
           this._errorMessage = 'Record not Updated';
           this._submitted = false;
@@ -524,6 +526,7 @@ export class CompaniesComponent implements OnInit {
     if (!ein) {
       return '_ _-_ _ _ _ _ _ _';
     }
+    ein = ein.replace(/[`()|\-\/\ ]/gi, '');
     let einString: string = ein.slice(0, 2) + '-' + ein.slice(2, 10);
     return einString;
   }
@@ -604,7 +607,80 @@ export class CompaniesComponent implements OnInit {
     this._submitted = false;
     this.companyModal.show();
   }
+  /**
+   * 
+   */
+  copyCompany() {
+    let companiesList = this.clientDashBoardService.companies;
+    let companies = [];
 
+    companiesList.forEach(element => {
+      if (element.company_ein && element.company_id != this.clientDashBoardService.company.company_id) {
+        let company = [];
+        company['id'] = element.company_id;
+        company['itemName'] = element.company_name
+        companies.push(company);
+      }
+    });
+    this.companyDropdownList = companies;
+
+    this.companyDropdownSettings = {
+      singleSelection: false,
+      text: "Select Companies",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      classes: "myclass custom-class",
+      searchPlaceholderText: "Search Companies",
+      enableCheckAll: true
+    };
+
+    this.copyCompanyModal.show();
+  }
+  onItemSelect(item: any) {
+
+  }
+  OnItemDeSelect(item: any) {
+
+  }
+  onSelectAll(items: any) {
+
+  }
+  onDeSelectAll(items: any) {
+
+  }
+  /**
+   * 
+   */
+  closeCopyCompanyModal() {
+    this.selectedCompanies = [];
+    this.copyCompanyModal.hide();
+  }
+  /**
+   * 
+   */
+  copyCompanySubmit() {
+    let companyIds: any[] = [];
+    this.selectedCompanies.forEach((element) => {
+      companyIds.push(element.id);
+    });
+    let data = {
+      'toCompanyIds': companyIds,
+      'fromCompanyId': this.clientDashBoardService.company.company_id
+    };
+    this.companyUserService.copyCompanyDetails(data).subscribe(
+      result => {
+        if (result.success) {
+          this.closeCopyCompanyModal();
+          this.toastrService.success('Company Details copied successfully');
+        } else {
+          this.toastrService.error('Failed to copy Company Details');
+        }
+      },
+      error => {
+        this.toastrService.error('Failed to copy Company Details');
+      });
+  }
   setFormErrorsOnChange(form, formErrors, data?: any) {
     if (!form) { return; }
     for (let field in formErrors) {

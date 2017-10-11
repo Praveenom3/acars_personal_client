@@ -318,6 +318,7 @@ app-client-layout .section-container .left-small-box p {
 .table-company-dashboard tbody tr td {
     padding: 2px;
     border: none;
+    word-break: break-word
 }
 
 .no-border,
@@ -520,8 +521,11 @@ table.table-company-dashboard tbody tr:hover {
 .table-company-users-dashboard tbody tr td {
     padding: 4px !important;
     border: none;
+    word-break: break-word;
 }
-
+.company-name-div,.company-name-media{
+    word-break: break-word;
+}
 
 /* For Uploads file pop up*/
 
@@ -796,6 +800,29 @@ button.add-company-ein {
     display: block;
 }
 
+.selected-list .c-list .c-token{
+    background:#13a9cc !important;
+}
+button.copy-company-button{
+    line-height: 14px;
+    padding: 7px;
+    top: 18px;
+    margin-top: -34px;
+    height: 30px;
+}
+.companies-multi-select ul{
+    max-height:150px !important;
+}
+.companies-multi-select .selected-list,.copy-company-name{
+    word-break: break-all;
+}
+.companies-multi-select .list-filter input{
+    height: 30px!important;
+}
+.companies-multi-select ul li{
+    padding:5px 10px !important;
+    word-break: break-all;
+}
 
 /* @media screen and (max-width: 768px) {
     .content-header-text {

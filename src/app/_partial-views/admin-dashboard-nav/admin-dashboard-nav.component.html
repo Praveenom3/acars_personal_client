@@ -3,7 +3,7 @@
         <ul class="top-sub-navigation">
             <li *ngIf=globalService.financial_permission [routerLink]="['/admin/summary']" [routerLinkActive]="['active']"><a>Summary</a></li>
             <li [routerLink]="['/admin/dashboard']" [routerLinkActive]="['active']"><a>Outstandings</a></li>
-            <li [routerLink]="['/admin/financials']" [routerLinkActive]="['active']"><a>New Purchases</a></li>
+            <li [routerLink]="['/admin/financials']" [routerLinkActive]="['active']"><a>Purchases</a></li>
             <!-- <li [routerLink]="['/admin/new-sales']" [routerLinkActive]="['active']"><a class="color-red">New Sales</a></li> -->
             <li [routerLink]="['/admin/admin-users']" *ngIf="globalService.systemAdmin_permission" [routerLinkActive]="['active']"><a>Admin Users</a></li>
             <!-- <li [routerLink]="['/admin/processing']" [routerLinkActive]="['active']"><a class="color-red">Processing</a></li> -->

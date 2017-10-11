@@ -576,7 +576,11 @@ export class OrdersComponent implements OnInit {
 
             this.patchValue(this._updatePurchaseForm, data);
 
-            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(15), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
+
+            let totalMaxEins: number = parseInt(this._updatePurchaseForm.value.total_no_eins) + 15;
+           
+            this._updatePurchaseForm.controls['total_no_eins'].setValidators(Validators.compose([Validators.required, this.maxValue(totalMaxEins), this.minValue(1), NumberValidationService.min(this._updatePurchaseForm.value.total_no_eins), Validators.maxLength(3)]));
+
 
             this._updatePurchaseForm.controls['total_no_eins'].updateValueAndValidity();
 
@@ -597,6 +601,7 @@ export class OrdersComponent implements OnInit {
                 this.toggleInvoiceFieldsValidator(this._updatePurchaseForm, false);
             }
             this.validationMessages.total_no_eins.min = 'EIN count should be greater than the current value of ' + this._updatePurchaseForm.value.total_no_eins;
+            this.validationMessages.total_no_eins.maxValue = "Total No. of EIN's should be less than or equal to " + totalMaxEins;
             this.updatePurchaseModal.show();
         }
     }
@@ -814,8 +819,8 @@ export class OrdersComponent implements OnInit {
                     this._updateClientFormSubmitted = false;
                     if (error.status == 422) {
                         this._resetFormErrors();
-                        let errorFields = JSON.parse(error.data.message);
-                        this.toastrService.error('Trouble in updating client. Please try later.');
+                        let errorMessage = JSON.parse(error.data.message);
+                        this.toastrService.error('Trouble in updating client. Please try later.' + errorMessage);
                         //   this._setFormErrors(this._addClientFormErrors, errorFields);
                     } else {
                         //this._errorMessage = error.data;

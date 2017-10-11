@@ -26,6 +26,7 @@ import { CompaniesFilterPipe } from "app/client/companies/companies-filter.pipe"
 import { SettingsService } from "app/_services/_setting.service";
 import { CompanyUserService } from "app/_services/_company-user.service";
 import { OrdersService } from 'app/_services/_orders.service';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { OrdersService } from 'app/_services/_orders.service';
     DataTableModule,
     PartialViews,
     ModalModule.forRoot(),
-    TextMaskModule
+    TextMaskModule,
+    AngularMultiSelectModule
   ],
   declarations: [
     DashboardComponent,

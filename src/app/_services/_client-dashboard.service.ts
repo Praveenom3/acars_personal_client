@@ -75,7 +75,7 @@ export class ClientDashBoardService {
     public medicalPlanDataLink: string;
     public clientHomeUrl: string;
     public clientLogo: string = '';
-
+    public termsLink: string = '';
     public selectedCompanyRow: any = '';
 
     logoPath: string = this._globalService.apiRoot + '/images/uploads/brands/';
@@ -241,9 +241,9 @@ export class ClientDashBoardService {
                                         this.setSelectedCompany(selectedCompany);
                                     }
                                 }
-                                
+
                                 if (companyStatus) {
-                                    
+
                                     this.company = result.data.defaultCompanyInformation;
                                     this.selectedCompanyRow = this.company.company_id;
                                     this.company.company_data = this.checkCompanyData(this.company);
@@ -342,6 +342,11 @@ export class ClientDashBoardService {
                 'terms_conditions_url': brand.terms_conditions_url
             }
             this.clientLogo = this.logoPath + brand.brand_logo;
+            let termsUrl: string = brand.terms_conditions_url;
+            if (termsUrl) {
+                termsUrl = termsUrl.replace(/^https?:\/\//, '')
+            }
+            this.termsLink = 'https://' + termsUrl;
         }
     }
 
