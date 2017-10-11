@@ -40,10 +40,10 @@
             "assets/css/site.css",
             "assets/css/admin.css",
             "assets/css/custom.css",
-            "assets/css/harish.css",
-            "assets/css/naveen.css",
-            "assets/css/client/harish.css",
-            "assets/css/client/naveen.css",
+            "assets/css/custom1.css",
+            "assets/css/custom2.css",
+            "assets/css/client/custom1.css",
+            "assets/css/client/custom2.css",
             "../node_modules/ngx-toastr/toastr.css"
         ],
         "scripts": [

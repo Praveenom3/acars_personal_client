@@ -19,7 +19,10 @@ export class NewPurchasesComponent implements OnInit {
     purchases: any;
     _errorMessage: any;
     purchasesData: any[];
+    signedPurchasesData: any[];
     public invoicesFilterQuery = "";
+    public signedPurchasesQuery = "";
+
     public rowsOnPage = 20;
     public sortOrder = "";
     public sortBy = "";
@@ -30,6 +33,7 @@ export class NewPurchasesComponent implements OnInit {
 
     ngOnInit() {
         this.getPurchases('2');
+        this.getSignedPurchases();
     }
 
     private getPurchases(purpose) {
@@ -37,6 +41,19 @@ export class NewPurchasesComponent implements OnInit {
             .subscribe((purchases) => {
                 if (purchases.length > 0) {
                     this.purchasesData = purchases;
+                }
+            },
+            error => { this._errorMessage = error.data }
+            );
+    }
+    /**
+     * 
+     */
+    private getSignedPurchases() {
+        this._outstandingsService.getSignedPurchases()
+            .subscribe((purchases) => {
+                if (purchases.length > 0) {
+                    this.signedPurchasesData = purchases;
                 }
             },
             error => { this._errorMessage = error.data }

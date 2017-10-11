@@ -51,19 +51,19 @@
                                     <td class="text-center">{{purchase.brand_name}}</td>
                                     <td class="text-center">{{purchase.product_full_name}}</td>
                                     <td class="text-center">{{purchase.account_manager}}</td>
-                                    <td class="text-center">{{purchase.amount}}</td>
-                                    <td class="text-center">{{(purchase.is_invoice == 1) ? "Invoice":"Credit Card" }}</td>
+                                    <td class="text-center product-delete-action">{{purchase.amount}}</td>
+                                    <td class="text-center product-delete-action">{{(purchase.is_invoice == 1) ? "Invoice":"Credit Card" }}</td>
                                 </tr>
                             </ng-container>
                             <tr class="tr-text-center" *ngIf=!purchasesObj.data?.length>
-                                <td colspan="6">
+                                <td colspan="8">
                                     No records are found
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="6">
+                                <td colspan="8">
                                     <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
                                 </td>
                             </tr>
@@ -72,5 +72,84 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-12 padding-0 border-ddd margin-btm34">
+            <div class="panel panel-primary">
+                <div class="table-responsive kv-grid-container" style="overflow: auto">
+                    <caption class="datatable-caption">Signed Purchases</caption>
+                    <div class="form-inline">
+                        <div class="form-group pull-right padding-10">
+                            <label for="email"><b>Search:</b></label>
+                            <input class="form-control mr-left-5" [(ngModel)]="signedPurchasesQuery" />
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped" [mfData]="signedPurchasesData | outstadingInvoicesFilter : signedPurchasesQuery"
+                        #signedPurchasesObj="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                            <tr class="tr-blue-grid-head">
+                                <th>
+                                    <mfDefaultSorter by="purchase_date">Purchase Date</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="client_name">Client</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="client_number">Client #</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="product_name">Product</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="account_manager">Account Manager</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    Contact Details
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="signedPurchasesObj.data?.length">
+                                <tr *ngFor="let purchase of signedPurchasesObj.data">
+                                    <td class="text-center">{{purchase.purchase_date | date: 'MM/dd/yyyy'}}</td>
+                                    <td class="text-center"><a (click)="redirectToClientDashBoard(purchase)" class="tbl-col-link">{{purchase.clientName}}</a></td>
+                                    <td class="text-center">{{purchase.clientNumber}}</td>
+                                    <td class="text-center">{{purchase.productName}}</td>
+                                    <td class="text-center">{{purchase.accountManager}}</td>
+                                    <td class="text-center">
+                                        <div class="billing-contact-div pull-left">
+                                            <span><b>Billing Contact:</b></span> : {{purchase.billingContact.first_name}}
+                                            {{purchase.billingContact.last_name}}, {{purchase.billingContact.email}}, {{purchase.billingContact.mobile}}
+                                        </div>
+                                        <div class="baa-signer-div pull-left">
+                                            <span><b>BAA Signer:</b></span> {{purchase.agreementSigned.first_name}} {{purchase.agreementSigned.last_name}},
+                                            {{purchase.agreementSigned.email}}, {{purchase.agreementSigned.mobile}}
+                                        </div>
+                                        <div class="primary-contact-div pull-left">
+                                            <span><b>Primary Contact:</b></span> {{purchase.primaryContact.first_name}} {{purchase.primaryContact.last_name}},
+                                            {{purchase.primaryContact.email}}, {{purchase.primaryContact.mobile}}
+                                        </div>
+                                        <!--     <span class="fa fa-info-circle information-icon" popover="Billing Contact : {{purchase.billingContact.first_name}} BAA signer : {{purchase.agreementSigned.first_name}} Primary Contact : {{purchase.primaryContact.first_name}}"
+                                            placement="right" triggers="mouseenter:mouseleave"></span> -->
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <tr class="tr-text-center" *ngIf=!signedPurchasesObj.data?.length>
+                                <td colspan="8">
+                                    No records are found
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

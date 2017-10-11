@@ -102,6 +102,9 @@
                                             <span class="help-block help-block-error" *ngIf="!isValidDgeEin && this.isValidDgeEinFormat">
                                                 Invalid EIN.
                                             </span>
+                                            <span class="help-block help-block-error" *ngIf="!isValidDgeEin && !this.isValidDgeEinFormat && !isEinUnique">
+                                                {{einValidationMessage}}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

@@ -79,6 +79,13 @@ export class AuthenticationService {
             this._cookieService.remove('rememberMe');
         }
     }
+    /**
+     * 
+     */
+    public logoutUser(): void {
+        this.logout();
+        this._router.navigate(['/login']);
+    }
 
     /* Function to call the rest api to change the password */
     public changePassword(username, currentPassword, newPassword, retypePassword): Observable<any> {
@@ -128,7 +135,7 @@ export class AuthenticationService {
 
     /* Function to call the rest api to change the password */
     public verifyPasswordResetToken(token): Observable<any> {
-        
+
         let headers = new Headers();
         headers.append('Content-Type', 'application/json; charset=UTF-8');
 
@@ -141,16 +148,16 @@ export class AuthenticationService {
             { headers: headers }
         ).map(response => response.json())
             .map((response) => {
-                if(response.success == true){
+                if (response.success == true) {
                     return Observable.of(true);
-                }else{
+                } else {
                     return Observable.of(false);
                 }
             })
-            .catch((response:Response) => {
+            .catch((response: Response) => {
                 // Handler case for different status
-             //   return Observable.empty();
-             return Observable.of(false);
+                //   return Observable.empty();
+                return Observable.of(false);
             })
     }
     /* ./Function to call the rest api to change the password */
