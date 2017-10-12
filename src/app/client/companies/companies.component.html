@@ -566,7 +566,7 @@
                                 <label class="form-control-label">Business Name 1<span class = "red">*</span></label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name')}">
                                     <input type="text" class="form-control" maxlength="75" [formControl]="_companyForm.controls['company_name']" [(ngModel)]="companyEdit.company_name"
-                                        [ngClass]="{'form-control-danger': !_isValid('company_name')}">
+                                        [ngClass]="{'form-control-danger': !_isValid('company_name')}" businessName1="true">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_name.valid">{{_formErrors.company_name.message}}</span>
                                 </div>
                             </div>
@@ -574,7 +574,7 @@
                                 <label class="form-control-label">Business Name 2</label>
                                 <div class="form-group required" [ngClass]="{'has-danger': !_isValid('company_name_2')}">
                                     <input type="text" class="form-control" maxlength="75" [formControl]="_companyForm.controls['company_name_2']" [(ngModel)]="companyEdit.company_name_2"
-                                        [ngClass]="{'form-control-danger': !_isValid('company_name_2')}">
+                                        [ngClass]="{'form-control-danger': !_isValid('company_name_2')}" businessName2="true">
                                     <span class="help-block help-block-error" *ngIf="!_formErrors.company_name_2.valid">{{_formErrors.company_name_2.message}}</span>
                                 </div>
                             </div>
