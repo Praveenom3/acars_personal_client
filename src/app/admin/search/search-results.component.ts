@@ -13,9 +13,10 @@ import { ToastrService } from "ngx-toastr";
 })
 
 export class SearchResultsComponent implements OnInit {
+  p: number = 1;
   key: any;
   _errorMessage: any;
-  searchResults: any[] = [];
+  collection: any[] = [];
   
   searchData: any;
 
@@ -26,6 +27,10 @@ export class SearchResultsComponent implements OnInit {
     private globalService: GlobalService,
     private toastrService: ToastrService,
   ) {
+    
+    for (let i = 1; i <= 100; i++) {
+      this.collection.push(`item ${i}`);
+    }
 
     route.queryParams.subscribe(
       data => {
@@ -47,8 +52,8 @@ export class SearchResultsComponent implements OnInit {
     this.adminUserService.getAdminSearchDetails(key, type)
       .subscribe((searchResults) => {
         if (searchResults) {
-          this.searchResults = [];
-          this.searchResults = searchResults;
+          this.collection = [];
+          this.collection = searchResults;
         }
       },
       error => { this._errorMessage = error.data }

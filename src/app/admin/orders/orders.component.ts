@@ -313,6 +313,7 @@ export class OrdersComponent implements OnInit {
                         this._addClientForm.controls['client_number'].patchValue(client.client_number);
                         this.selectBrand(client.brand_id);
                     } else {
+                        this.isOldClient = false;
                         this._addClientForm.reset();
                         this._resetFormErrors();
                         this.temp_brand = "";
@@ -323,7 +324,7 @@ export class OrdersComponent implements OnInit {
                         this._addClientForm.get('brand_id').enable();
                     }
                 },
-                error => { this._branderrorMessage = error.data.message; }
+                error => { this._errorMessage = error.data.message; }
                 );
         }
 
@@ -333,6 +334,7 @@ export class OrdersComponent implements OnInit {
         this.temp_brand_id_add = null;
         this.temp_brand_id_add = this.availableBrands.find(brands => brands.brand_id == brand);
         this._addClientForm.controls['brand_id'].patchValue(this.temp_brand_id_add);
+       
     }
 
     /*getting orders from service*/
@@ -473,7 +475,7 @@ export class OrdersComponent implements OnInit {
         } else {
             //getting all the available products.. This stmt alone can be used in the freshly adding client scenario also
             this.selectableProducts = JSON.parse(JSON.stringify(this.availableProducts));
-             this.temp_arr = [];
+            this.temp_arr = [];
         }
     }
 
@@ -520,7 +522,6 @@ export class OrdersComponent implements OnInit {
             this.addClientModal.show();
 
         } else if (modal == 'updateClientModal') {
-
             this._updateClientFormSubmitted = false;
 
             this.totalPurchases = [];
@@ -736,7 +737,6 @@ export class OrdersComponent implements OnInit {
                 this._addClientForm.value.brand_id = this._addClientForm.value.brand_id.brand_id;
             }
 
-
             this._addClientForm.value.client_number = this.temp_client_number;
 
             let data = {
@@ -901,25 +901,26 @@ export class OrdersComponent implements OnInit {
     public onBrandChange(form, value) {
 
         if (form == this._addClientForm) {
-            if (value && value instanceof Object) {
-                if (value.hasOwnProperty('brand_name')) {
-                    this.temp_brand = value.brand_name;
-                    this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
-                } else {
-                    this.temp_brand = this.getItemName('brand', value);
-
-                    if (this.temp_brand !== 'NA') {
+            if(this.isOldClient == false){
+                if (value) {
+                    if (value.hasOwnProperty('brand_name')) {
+                        this.temp_brand = value.brand_name;
                         this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
                     } else {
-                        this.temp_client_number = '';
-                        this.temp_brand = '';
+                        this.temp_brand = this.getItemName('brand', value);
+    
+                        if (this.temp_brand !== 'NA') {
+                            this.temp_client_number = this.temp_brand.substring(0, 3) + '-' + this.maxClientNumber;
+                        } else {
+                            this.temp_client_number = '';
+                            this.temp_brand = '';
+                        }
                     }
+                } else{
+                    this.temp_client_number = '';
+                    this.temp_brand = '';
                 }
-            } else if (value == '') {
-                this.temp_client_number = '';
-                this.temp_brand = '';
             }
-
         } else if (form == this._updateClientForm) {
             if (value && value.hasOwnProperty('brand_name')) {
                 this.temp_brand = value.brand_name;
