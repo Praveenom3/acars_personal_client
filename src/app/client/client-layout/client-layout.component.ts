@@ -6,7 +6,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { CompaniesComponent } from "../../client/companies/companies.component";
 import { ClientDashBoardService } from "app/_services/_client-dashboard.service";
 import { GlobalService } from "app/_services/_global.service";
-import {LoaderService} from "app/interceptors/loader.service"
+import { LoaderService } from "app/interceptors/loader.service";
+import { AuthenticationService } from "app/_services/_authentication.service";
 @Component({
   selector: 'app-client-layout',
   templateUrl: './client-layout.component.html',
@@ -27,8 +28,9 @@ export class ClientLayoutComponent implements OnInit {
     route: ActivatedRoute,
     private _idleTimeout: IdleTimeoutService,
     public dashBoardService: ClientDashBoardService,
+    private authenticationService: AuthenticationService,
     private _globalService: GlobalService,
-    public loaderService:LoaderService,
+    public loaderService: LoaderService,
   ) {
 
     _idleTimeout.init();
