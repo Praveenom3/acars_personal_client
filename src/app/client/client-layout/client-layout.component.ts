@@ -27,9 +27,8 @@ export class ClientLayoutComponent implements OnInit {
   constructor(private router: Router,
     route: ActivatedRoute,
     private _idleTimeout: IdleTimeoutService,
-    public _authenticateUser:AuthenticationService,
     public dashBoardService: ClientDashBoardService,
-    private authenticationService: AuthenticationService,
+    public authenticationService: AuthenticationService,
     private _globalService: GlobalService,
     public loaderService: LoaderService,
   ) {
